@@ -21,9 +21,7 @@ namespace dotNet_00_5781_2431_5820
             string name = Console.ReadLine();
             Console.WriteLine("{0}, welcome to my first console application", name);
         }
-        private static void Welcome5820()
-        {
-        }
+         static partial void Welcome5820();
         
     }
 }

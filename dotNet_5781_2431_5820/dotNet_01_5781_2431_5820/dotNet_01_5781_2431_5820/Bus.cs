@@ -34,11 +34,11 @@ namespace dotNet_01_5781_2431_5820
         {
             Km = b;
         }
-        public void setkmToTratment(int b)
+        public void setkmToTritment(int b)
         {
             kmToFix = b;
         }
-        public void setlastTratment(DateTime b)
+        public void setlastTritment(DateTime b)
         {
             lastFix = b;
         }
@@ -64,11 +64,11 @@ namespace dotNet_01_5781_2431_5820
         {
             return Km;
         }
-        public int getkmToTratment()
+        public int getkmToTritment()
         {
             return kmToFix;
         }
-        public DateTime getlastTratment()
+        public DateTime getlastTritment()
         {
             return lastFix;
         }

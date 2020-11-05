@@ -11,20 +11,39 @@ namespace dotNet_01_5781_2431_5820
     /// </summary>
     class Bus
     {
-        private string licenseNum;
+        private string LicenseNum;
         private DateTime StartToDrive;
         private int Km;
-        private int kmToFix;
-        private DateTime lastFix;
-        private int gas;
+        private int KmToFix;
+        private DateTime LastFix;
+        private int Gas;
 
         /// <summary>
         /// Set functions that put the data into the private fields of the class
         /// </summary>
         /// <param name="s">The variable that receives the data sent to it in the function</param>
+        ///        
+        //public bool ValidRide(DateTime currentTime)//checks validation of ride
+        //{
+        //    if ((KmToFix < 20000) && (Gas - Km >= 0) && (LastFix >= currentTime.AddYears(-1)))
+        //        return true;
+        //    else
+        //        return false;
+        //}
+        //public bool ValidLicense()
+        //{
+        //    if ((LicenseNum.Length != 7) && (LicenseNum.Length != 8))
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
         public void setLicenseNum(string b)
         {
-            licenseNum = b;
+            LicenseNum = b;
         }
         public void setbeganToWork(DateTime b)
         {
@@ -36,15 +55,15 @@ namespace dotNet_01_5781_2431_5820
         }
         public void setkmToTritment(int b)
         {
-            kmToFix = b;
+            KmToFix = b;
         }
         public void setlastTritment(DateTime b)
         {
-            lastFix = b;
+            LastFix = b;
         }
         public void setfuel(int b)
         {
-            gas = b;
+            Gas = b;
         }
 
 
@@ -54,7 +73,7 @@ namespace dotNet_01_5781_2431_5820
         /// <returns></returns>
         public string getLicenseNum()
         {
-            return licenseNum;
+            return LicenseNum;
         }
         public DateTime getbeganToWork()
         {
@@ -66,15 +85,15 @@ namespace dotNet_01_5781_2431_5820
         }
         public int getkmToTritment()
         {
-            return kmToFix;
+            return KmToFix;
         }
         public DateTime getlastTritment()
         {
-            return lastFix;
+            return LastFix;
         }
         public int getfuel()
         {
-            return gas;
+            return Gas;
         }
     }
 }

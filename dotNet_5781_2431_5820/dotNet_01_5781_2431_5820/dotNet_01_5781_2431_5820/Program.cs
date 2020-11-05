@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace dotNet_01_5781_2431_5820
 {
-    public enum BChoice { a, b, c, d, e };
     class Program
     {
         static Random rand = new Random(DateTime.Now.Millisecond);

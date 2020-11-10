@@ -3,9 +3,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace dotNet_01_5781_2431_5820
 {
@@ -20,78 +19,51 @@ namespace dotNet_01_5781_2431_5820
             Console.WriteLine("please press 3 to choose treatment or refuel gas the bus.");
             Console.WriteLine("please press 4 to Print the data of all the busses.");
             Console.WriteLine("please press 0 tO exit.");
-            int num;
-            bool succes;
-            DateTime start = new DateTime();
-            List<Bus> busses = new List<Bus>();
+            int Num;
+            bool Succes;
+            DateTime Start = new DateTime();
+            List<Bus> Busses = new List<Bus>();
             do
             {
                 Console.WriteLine("Enter your choice :");
 
-                while (!int.TryParse(Console.ReadLine(), out num))
+                while (!int.TryParse(Console.ReadLine(), out Num))
                 {
                     Console.WriteLine("wrong number!!! enter again:");
                 }
-                BChoice ch = (BChoice)num;
-                Bus bus1 = new Bus();
+                BChoice Ch = (BChoice)Num;
+                Bus Bus1 = new Bus();
 
 
-                    switch (ch)
+                    switch (Ch)
                     {
-                        //to add a new vehicle
+                        //to add a new vehicle by checking the validation
                         case BChoice.b:
-
-                            succes = false;
-                            while (succes == false)  // Performs a check to see if the input is correct.
+                        bool Flag= Bus1.AddBus(Busses,Start);//if able to add
+                       if (Flag)//add it to the busses list
                             {
-                                Console.WriteLine("Please enter date of entry to the road");
-                                succes = DateTime.TryParse(Console.ReadLine(), out start);
-                                if (!succes)
-                                {
-                                    Console.WriteLine("ERROR");
-                                }
-
-                            }
-                            bus1.setbeganToWork(start);
-
-                            Console.WriteLine("Please enter the bus's license number:");
-                            if (((bus1.getbeganToWork()).Year) >= 2018)//How many numbers should a license number have 
-                            {
-                                string str = Console.ReadLine();
-                                while (str.Length != 8)
-                                {
-                                    Console.WriteLine("ERROR");
-                                    str = Console.ReadLine();
-                                }
-                                bus1.setLicenseNum(str);
-                            }
-                            else
-                            {
-                                string str = Console.ReadLine();
-                                while (str.Length != 7)
-                                {
-                                    Console.WriteLine("ERROR");
-                                    str = Console.ReadLine();
-                                }
-                                bus1.setLicenseNum(str);
-                            }
-                            busses.Add(bus1);
+                            Busses.Add(Bus1);
                             Console.WriteLine("Added");
-                            break;
+                            }
+                        else
+                        {
+                            Console.WriteLine("Bus was'nt Added");
+                        }
+                        break;
 
                         //choosing a bus to drive
                         case BChoice.c:
 
-                            string license;
-                            if (!busses.Any())
+                            string License;
+                            if (!Busses.Any())
                             {
                                 Console.WriteLine("There are no busses yet");
                             }
                             else
                             {
                                 Console.WriteLine("Please enter the bus's license number:");
-                                license = Console.ReadLine();
-                                if ((license.Length != 7) && (license.Length != 8))//Performs a check to see if the input is correct.
+                                License = Console.ReadLine();
+                                if ((License.Length != 7) && (License.Length != 8))//Performs a check to see if the input is correct.
                                 {
                                     Console.WriteLine("ERROR");
                                 }
@@ -99,21 +71,21 @@ namespace dotNet_01_5781_2431_5820
                                 {
                                     {
 
-                                        succes = false;
-                                        DateTime currentTime = DateTime.Now;
-                                        foreach (Bus i in busses)//Go through each bus on the list to see if the selected bus can make the trip.
+                                        Succes = false;
+                                        DateTime CurrentTime = DateTime.Now;
+                                        foreach (Bus i in Busses)//Go through each bus on the list to see if the selected bus can make the trip.
                                         {
-                                            if (i.getLicenseNum() == license)
+                                            if (i.getLicenseNum() == License)
                                             {
-                                                succes = true;
-                                                int km = rand.Next(1200);//How many kilometers will the trip be (up to 1200).
-                                                if ((i.getkmToTritment() < 20000) && (i.getfuel() - km >= 0) && (i.getlastTritment() >= currentTime.AddYears(-1)))//Go through each bus on the list to see if the selected bus can make the trip
+                                                Succes = true;
+                                                int Km = rand.Next(1200);//How many kilometers will the trip be (up to 1200).
+                                                if ((i.getkmToTritment() < 20000) && (i.getfuel() - Km >= 0) && (i.getlastTritment() >= CurrentTime.AddYears(-1)))//Go through each bus on the list to see if the selected bus can make the trip
                                                 {
-                                                    i.setkmToTritment(i.getkmToTritment() + km);
-                                                    i.setfuel(i.getfuel() - km);
-                                                    i.settotalKm(i.gettotalKm() + km);
+                                                    i.setkmToTritment(i.getkmToTritment() + Km);
+                                                    i.setfuel(i.getfuel() - Km);
+                                                    i.settotalKm(i.gettotalKm() + Km);
                                                     Console.WriteLine("The drive is possible");
-                                                    Console.WriteLine("The amount of Km is " + km);
+                                                    Console.WriteLine("The amount of Km is " + Km);
                                                 }
                                                 else
                                                 {
@@ -122,7 +94,7 @@ namespace dotNet_01_5781_2431_5820
                                             }
 
                                         }
-                                        if (succes == false)
+                                        if (Succes == false)
                                         {
                                             Console.WriteLine("The license number was'nt found");//If the bus does not exist it prints an appropriate message.
                                         }
@@ -135,46 +107,46 @@ namespace dotNet_01_5781_2431_5820
                         case BChoice.d:
 
                             Console.WriteLine("Enter the bus's license number:");
-                            license = Console.ReadLine();
-                            while ((license.Length != 7) && (license.Length != 8))//Checks if the license number is correct
+                            License = Console.ReadLine();
+                            while ((License.Length != 7) && (License.Length != 8))//Checks if the license number is correct
                             {
                                 Console.WriteLine("ERROR");
-                                license = Console.ReadLine();
+                                License = Console.ReadLine();
                             }
                             Console.WriteLine
                     (@"Do you want to refoul gas or to do treatment?
         To refoul press 1,
         To treatment press 2.");
 
-                            while (!int.TryParse(Console.ReadLine(), out num))
+                            while (!int.TryParse(Console.ReadLine(), out Num))
                             { Console.WriteLine("wrong number!!! Please try again:"); }
-                            succes = false;
-                            foreach (Bus i in busses)//Looking for the requested bus.
+                            Succes = false;
+                            foreach (Bus i in Busses)//Looking for the requested bus.
                             {
-                                if (i.getLicenseNum() == license)
+                                if (i.getLicenseNum() == License)
                                 {
-                                    succes = true;
-                                    if (num == 1)//If you ask for refueling, refuel.
+                                    Succes = true;
+                                    if (Num == 1)//If you ask for refueling, refuel.
                                     {
                                         i.setfuel(1200);
                                         Console.WriteLine("refouling was performed");
                                     }
 
-                                    if (num == 2)//If you ask for treatment, do the treatment.
+                                    if (Num == 2)//If you ask for treatment, do the treatment.
                                     {
                                         DateTime currentTime1 = DateTime.Now;
                                         i.setkmToTritment(0);
                                         i.setlastTritment(currentTime1);
                                         Console.WriteLine("The treatment was performed");
                                     }
-                                    if (num != 1 && num != 2)
+                                    if (Num != 1 && Num != 2)
                                     {
                                         Console.WriteLine("ERROR");
                                     }
                                 }
 
                             }
-                            if (succes == false)
+                            if (Succes == false)
                             {
                                 Console.WriteLine("The bus was'nt found");
                             }
@@ -182,7 +154,7 @@ namespace dotNet_01_5781_2431_5820
 
                         //printing the data of the vehicle
                         case BChoice.e:
-                            foreach (Bus i in busses)//Prints the license numbers of all buses
+                            foreach (Bus i in Busses)//Prints the license numbers of all buses
                             {
                                 string last;
                                 string first;
@@ -211,7 +183,7 @@ namespace dotNet_01_5781_2431_5820
                             }
                             break;
                     }
-            }while (num != 0) ;  
+            }while (Num != 0) ;  
         }
     }
 }

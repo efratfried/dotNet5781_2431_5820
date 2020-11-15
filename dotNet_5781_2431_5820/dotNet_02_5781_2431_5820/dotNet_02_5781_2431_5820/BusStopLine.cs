@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace dotNet_02_5781_2431_5820
 {
-    class BusStopLine:BusStop
-    { 
+    public class BusStopLine: BusStop
+      {
+        BusStopLine (string code)=> base.BusStop(code) ;
         public double DistancefromPriviouStation(BusStopLine BusstopLine1 , BusStopLine BusstopLine2)
         {
-
+            BusstopLine1.
+            return x;
         }
-    }
+      }
 }

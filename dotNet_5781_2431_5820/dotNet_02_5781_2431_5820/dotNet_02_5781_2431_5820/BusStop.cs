@@ -7,9 +7,9 @@ using System.Xml.Schema;
 
 namespace dotNet_02_5781_2431_5820
 {
-    class BusStop
-    {
-        BusStop(string code)//we need to do the valid check first !!!
+     public class BusStop
+      {
+        public BusStop(string code="0")//we need to do the valid check first !!!
         {//get a valid code from the 
             this.CodeStation = code;
             Random rnd1= new Random();
@@ -21,20 +21,22 @@ namespace dotNet_02_5781_2431_5820
             Console.WriteLine("please enter adress");
             this.BusStopLocation.SetLocation (orech , rochav);
         }
-        public string CodeStation;
-        Location BusStopLocation;
 
-        class Location
+         public string CodeStation;
+         public Location BusStopLocation;
+
+        public class Location
         {
-            private double Latitude;
-            private double Longitude;
+            private double Latitude=0;
+            private double Longitude=0;
             private Adress adress;
+            public Location() {Adress() }  //ctor
             class Adress
             {
-                public string City;
-                public string Street;
-                public int Num;
-
+                public Adress() { } //ctor
+                public string City="0";
+                public string Street="0";
+                public int Num=0;
                 public void PrintAdress()
                 {
                     if(Street!=null)//if the user chose to enter an adress
@@ -44,13 +46,12 @@ namespace dotNet_02_5781_2431_5820
                 }
             }
 
-
             public void SetLocation(double Rochav, double Orech)
             {
                 Latitude = Rochav;
                 Longitude = Orech;
                 Console.WriteLine("do you want to enter an adress? ");
-                Console.WriteLine("if you do please enter the bus station adress else press 0");//i didnt check if it is actually put each val into the right var
+                Console.WriteLine("if you do ,Please enter the bus station adress. else press 0");//i didnt check if it is actually put each val into the right var
                 adress.Street= Console.ReadLine();
                 if (adress.Street!="0")
                 {
@@ -61,7 +62,6 @@ namespace dotNet_02_5781_2431_5820
                 {
                     adress.Street = null;
                 }
-              
             }
             public double GetLatitude()
             {

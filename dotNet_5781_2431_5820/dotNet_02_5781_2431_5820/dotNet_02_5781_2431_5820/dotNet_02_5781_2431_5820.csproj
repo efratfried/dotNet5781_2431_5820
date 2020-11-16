@@ -43,9 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Area.cs" />
+    <Compile Include="BusLine.cs" />
     <Compile Include="BusStop.cs" />
     <Compile Include="BusStopLine.cs" />
-    <Compile Include="Page1.cs" />
+    <Compile Include="enum_areaes.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

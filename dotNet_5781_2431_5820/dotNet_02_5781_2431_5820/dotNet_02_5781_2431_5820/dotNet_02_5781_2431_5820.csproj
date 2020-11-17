@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Area.cs" />
     <Compile Include="BusLine.cs" />
     <Compile Include="BusStop.cs" />
     <Compile Include="BusStopLine.cs" />

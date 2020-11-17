@@ -9,9 +9,14 @@ namespace dotNet_02_5781_2431_5820
 {
     public class BusStop
     {
-        public BusStop(string code = null,bool flag=true)//we need to do the valid check first !!!!!!
+       protected Area MyArea;
+
+        public BusStop( bool flag=true)//we need to do the valid check first !!!!!!
         {//get a valid code from the 
-            this.CodeStation = code;
+            Random rndArea = new Random();
+
+            MyArea = (Area)(rndArea.Next()%7);
+            CodeStation = Code++ ;
             Random rnd1 = new Random();
             Random rnd2 = new Random();
             Random rnd3 = new Random();
@@ -21,30 +26,10 @@ namespace dotNet_02_5781_2431_5820
             this.BusStopLocation.SetLocation(orech, rochav,flag);
         }
 
-        public string CodeStation;
+        private static int Code =1 ;
+        public int CodeStation;
         public Location BusStopLocation;
-        public bool ValidCodeStation(string str, List<BusStop> BusStops)
-        {//func checks abbility to add the code that was entered
-            if (str.Length != 6)
-            {
-                //if the entered code was incorrect
-                return false;
-            }
-            else//if it is 6 digits
-            {
-                //checks if it is not already in the list
-                if (BusStops.Any())
-                {
-                    foreach (BusStop b in BusStops)
-                    {
-                        if (b.CodeStation == CodeStation)
-                        {
-                            return false;
-                        }
-                    }
-                }
-                return true;
-            }
-        }
+ 
+        
     }
 }

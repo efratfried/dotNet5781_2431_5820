@@ -7,7 +7,7 @@ namespace dotNet_02_5781_2431_5820
 {
     public class BusStopLine : BusStop
     {
-        public BusStopLine(string code) : base(code) 
+        public BusStopLine() : base() 
         {}
 
         public double DistancefromPriviouStation(BusStopLine BusstopLine1 , BusStopLine BusstopLine2)
@@ -17,11 +17,13 @@ namespace dotNet_02_5781_2431_5820
             return Distance;
         }
 
-        public string TimefromPriviouStation(BusStopLine BusstopLine1, double DistancefromPriviouStation(BusStopLine BusstopLine1, BusStopLine BusstopLine2))
+        public TimeSpan TimefromPriviouStation(BusStopLine BusstopLine2)
         {
-            string TotalTime = "0";
-            BusstopLine1
-            return TotalTime;
+         double Dis= DistancefromPriviouStation(this, BusstopLine2);
+            Dis =  Dis * 60 / 75;//75 km per hour is a avrage of the able speed on the
+            int dis = Convert.ToInt32(Dis);
+            TimeSpan dt = new TimeSpan(dis);
+            return dt;
         }
     }
 

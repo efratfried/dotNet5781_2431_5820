@@ -11,7 +11,7 @@ namespace dotNet_02_5781_2431_5820.git
         static void Main(string[] args)
         {
             List<BusLine> lineBuses = new List<BusLine>();  //list of all the busses's lines.
-            List<BusStop> busStops = new List<BusStop>();  //list of all the exist stations
+           // List<BusStop> busStops = new List<BusStop>();  //list of all the exist stations
 
             Console.WriteLine("Welcome to our bus's control system .");
             Console.WriteLine("Please choose your request :");

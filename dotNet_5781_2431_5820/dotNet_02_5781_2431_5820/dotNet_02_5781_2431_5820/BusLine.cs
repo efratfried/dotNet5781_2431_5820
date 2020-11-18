@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
-
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System;
 namespace dotNet_02_5781_2431_5820.git
 {
     internal class BusLine
@@ -107,13 +110,47 @@ namespace dotNet_02_5781_2431_5820.git
         {//get 2 stations & return all the stations between them in a new line.
              if (StopOnLine(station1)&& StopOnLine(station2))
             {
-                LineStops.GetRange(LineStops.(station1))      //  *********************continue fron here*********************************
-            }
+                BusStopLine mysubroute = new BusStopLine();
+                int index1 = -1;
+                int index2 = -1;
+                for (int i = 0; i < LineStops.Count; i++)
+                {
+                    if (LineStops[i].CodeStation == station1.CodeStation)
+                    {
+                        index1 = i;
+                    }
+                }
+                if (index1 == -1)
+                {
+                    throw ("ERROR");
+                }
+                for (int i = 0; i < LineStops.Count; i++)
+                {
+                    if (LineStops[i].CodeStation == station2.CodeStation)
+                    {
+                        index2 = i;
+                    }
+                }
+                if (index2 == -1)
+                {
+                    throw ("ERROR");
+
+                }
+                int temp = index1;
+                index1 = Math.Min(index1, index2);
+                index2 = Math.Max(temp, index2);
+                for (int i = index1, j = index2, k = 0; i <= j; i++, k++)
+                {
+                    mysubroute.stations[k] = LineStops[i];
+                }
+                mysubroute.FirstStation = LineStops[index1];
+                mysubroute.LastStation = LineStops[index2];
+                return mysubroute;   //  *********************continue fron here*********************************
+             }
              else
             {
                 throw ("could'nt find the wanted stations in the line");
-            }
-          
+            }   
         }
     }
 }

@@ -110,42 +110,44 @@ namespace dotNet_02_5781_2431_5820.git
         {//get 2 stations & return all the stations between them in a new line.
              if (StopOnLine(station1)&& StopOnLine(station2))
             {
-                BusStopLine mysubroute = new BusStopLine();
+  
+                BusStopLine SubPath = new BusStopLine();
                 int index1 = -1;
                 int index2 = -1;
                 for (int i = 0; i < LineStops.Count; i++)
-                {
+                {//find the location of the first station to start the sub path.
                     if (LineStops[i].CodeStation == station1.CodeStation)
                     {
                         index1 = i;
                     }
                 }
-                if (index1 == -1)
+                if (index1 == -1)  //in that case it n=meens that the wanted codestation isnt exsist.
                 {
                     throw ("ERROR");
                 }
                 for (int i = 0; i < LineStops.Count; i++)
-                {
+                {//find the location of the second station to end the sub path.
                     if (LineStops[i].CodeStation == station2.CodeStation)
                     {
                         index2 = i;
                     }
                 }
-                if (index2 == -1)
+                if (index2 == -1)  //in that case it n=meens that the wanted codestation isnt exsist.
                 {
                     throw ("ERROR");
 
                 }
+
                 int temp = index1;
                 index1 = Math.Min(index1, index2);
                 index2 = Math.Max(temp, index2);
                 for (int i = index1, j = index2, k = 0; i <= j; i++, k++)
-                {
-                    mysubroute.stations[k] = LineStops[i];
+                {//the loop goes from the index of the first sub station to the second one.
+                    SubPath.LineStops[k] = LineStops[i];
                 }
-                mysubroute.FirstStation = LineStops[index1];
-                mysubroute.LastStation = LineStops[index2];
-                return mysubroute;   //  *********************continue fron here*********************************
+                SubPath.Start() = LineStops[index1];
+                SubPath.End() = LineStops[index2];
+                return SubPath;
              }
              else
             {

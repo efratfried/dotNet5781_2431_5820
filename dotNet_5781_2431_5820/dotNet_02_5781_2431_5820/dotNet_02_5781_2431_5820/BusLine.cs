@@ -5,14 +5,17 @@ using System.Threading.Tasks;
 using System;
 namespace dotNet_02_5781_2431_5820.git
 {
-    internal class BusLine
+    public class BusLine
     {
-      public  int LineNum;
+        public BusLine[] OtherSide;
+        public  int LineNum;
         public static BusStopLine Start { get; set; }
-      public  static BusStopLine End { get; set; }
+        public  static BusStopLine End { get; set; }
         public List <BusStopLine> LineStops;//list of all the station of the line
         public Area MyArea;
-        public BusLine(BusStopLine first, BusStopLine last)
+
+
+        public BusLine(BusStopLine first, BusStopLine last, BusLine Side2=null)
         {
             checked
             {
@@ -22,6 +25,7 @@ namespace dotNet_02_5781_2431_5820.git
                 }
                 else
                 {
+                    OtherSide[0]=Side2;//check if the array is not doing any problems being null
                     Start = first;
                     End = last;
                     LineStops.Add(first);
@@ -140,7 +144,7 @@ namespace dotNet_02_5781_2431_5820.git
                 index1 = Math.Min(index1, index2);
                 index2 = Math.Max(temp, index2);
                 BusLine SubPath = new BusLine(LineStops[index1],LineStops[index2]);
-
+               
                 for (int i = ++index1, j = index2; i < j; i++)
                 {//the loop goes from the index of the first sub station to the second one.
                     SubPath.LineStops.Insert(i,LineStops[i]);
@@ -151,6 +155,30 @@ namespace dotNet_02_5781_2431_5820.git
             {
                 throw ("could'nt find the wanted stations in the line");
             }   
+        }
+        public override string ToString()
+        {//returns in this format: busline:122 area:jerusalem one side: 115478 222555 second side: 222555 115478
+            string ThisSidePath = "first side: ";
+            ThisSidePath += ReturnsPathString(this);
+            string OtherSidePath="second side: ";
+            if(OtherSide[0]!=null)
+            {
+                OtherSidePath+= ReturnsPathString(OtherSide[0]);
+            }
+            else
+            {
+                OtherSidePath = ".";
+            }
+            return "busline:"+LineNum+"area:"+MyArea+ ThisSidePath+ OtherSidePath;
+        }
+       public string ReturnsPathString(BusLine WantedBusLine)
+        {//returns string with the path of the bus that was sent to her
+            string OtherSidePath = " ";
+                for (int i = 0; i <= WantedBusLine.LineStops.Count; i++)
+                {
+                    OtherSidePath += WantedBusLine.LineStops[i].CodeStation;
+                }
+                return OtherSidePath;
         }
     }
 }

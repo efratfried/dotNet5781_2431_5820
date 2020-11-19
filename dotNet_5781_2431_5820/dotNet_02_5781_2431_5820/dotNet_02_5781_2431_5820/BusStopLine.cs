@@ -20,8 +20,8 @@ namespace dotNet_02_5781_2431_5820
         public TimeSpan TimefromPriviouStation(BusStopLine BusstopLine2)
         {
          double Dis= DistancefromPriviouStation(this, BusstopLine2);
-            Dis =  Dis * 60 / 75;//75 km per hour is a avrage of the able speed on the
-            int dis = Convert.ToInt32(Dis);
+            Dis =  Dis * 60 / 75;//75 km per hour is a avrage of the able speed on the road for busses - 50 in the city and 100 out of the city
+            int dis = Convert.ToInt32(Dis);//dont care to loose a little bit info because it is not exact but evaluieted time
             TimeSpan dt = new TimeSpan(dis);
             return dt;
         }

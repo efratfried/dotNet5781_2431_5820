@@ -8,8 +8,8 @@ namespace dotNet_02_5781_2431_5820
 {
     public class Location
     {
-        private double Latitude;
-        private double Longitude;
+        protected double Latitude { set;  get; }
+        protected double Longitude { set; get; }
         private Adress adress;
         public Location()
         {
@@ -22,17 +22,36 @@ namespace dotNet_02_5781_2431_5820
             public string City { set; get; }
             public string Street { set; get; }
             public int Num { set; get; }
-
-            public void PrintAdress()
+            public override string ToString()
             {
-                if (Street != null)//if the user chose to enter an adress
+                if (Street != null)
                 {
-                    Console.WriteLine("{0} {1},{2} ", Street, Num, City);
+                    return Street + Num + City+".";
                 }
+                else
+                    return ".";
             }
         }
+        public override string ToString()
+        {
+            char Long;
+            char lat;
+            if (Longitude > 0)
+                Long = 'N';
+            else if (Longitude < 0)
+                Long = 'S';
+            else
+                Long = ' ';
 
-        public void SetLocation(double Rochav, double Orech, bool flag)
+            if (Latitude > 0)
+                lat = 'E';
+            else if (Latitude < 0)
+                lat = 'W';
+            else
+                lat = ' ';
+                return Longitude + "°" + Long + " " + Latitude + "°" + lat + adress.ToString();// adress to string is never null:)
+        }
+            public void SetLocation(double Rochav, double Orech, bool flag)
         {
             Latitude = Rochav;
             Longitude = Orech;
@@ -65,25 +84,6 @@ namespace dotNet_02_5781_2431_5820
         public double GetLongitude()
         {
             return Longitude;
-        }
-        public void PrintLocation()
-        {
-            char Long;
-            char lat;
-            if (Longitude > 0)
-                Long = 'N';
-            else if (Longitude < 0)
-                Long = 'S';
-            else
-                Long = ' ';
-
-            if (Latitude > 0)
-                lat = 'E';
-            else if (Latitude < 0)
-                lat = 'W';
-            else
-                lat = ' ';
-            Console.WriteLine("{0}°{1},{2}°{3}", Longitude, Long, Latitude, lat);
         }
     }
 }

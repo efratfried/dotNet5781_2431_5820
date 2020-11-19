@@ -55,7 +55,7 @@ namespace dotNet_02_5781_2431_5820
         {
             int i = 0;
             double DrivingTime = 0;
-            foreach(var item in )
+            foreach(var item in busStops )
             {
                 i++;
                 if(item.CodeStation == StationCode1)

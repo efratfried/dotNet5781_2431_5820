@@ -8,7 +8,7 @@ namespace dotNet_02_5781_2431_5820.git
     internal class BusLine
     {
       public  int LineNum;
-      public static BusStopLine Start { get; set; }
+        public static BusStopLine Start { get; set; }
       public  static BusStopLine End { get; set; }
         public List <BusStopLine> LineStops;//list of all the station of the line
         public Area MyArea;
@@ -109,9 +109,7 @@ namespace dotNet_02_5781_2431_5820.git
         public BusLine SubPath(BusStopLine station1 , BusStopLine station2)
         {//get 2 stations & return all the stations between them in a new line.
              if (StopOnLine(station1)&& StopOnLine(station2))
-            {
-  
-                BusStopLine SubPath = new BusStopLine();
+            {  
                 int index1 = -1;
                 int index2 = -1;
                 for (int i = 0; i < LineStops.Count; i++)
@@ -141,12 +139,12 @@ namespace dotNet_02_5781_2431_5820.git
                 int temp = index1;
                 index1 = Math.Min(index1, index2);
                 index2 = Math.Max(temp, index2);
-                for (int i = index1, j = index2, k = 0; i <= j; i++, k++)
+                BusLine SubPath = new BusLine(LineStops[index1],LineStops[index2]);
+
+                for (int i = ++index1, j = index2; i < j; i++)
                 {//the loop goes from the index of the first sub station to the second one.
-                    SubPath.LineStops[k] = LineStops[i];
+                    SubPath.LineStops.Insert(i,LineStops[i]);
                 }
-                SubPath.Start() = LineStops[index1];
-                SubPath.End() = LineStops[index2];
                 return SubPath;
              }
              else

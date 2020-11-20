@@ -9,6 +9,7 @@ namespace dotNet_02_5781_2431_5820
     public class Location
     {
         protected double Latitude { set;  get; }
+
         protected double Longitude { set; get; }
         private Adress adress;
         public Location()

@@ -27,7 +27,7 @@ namespace dotNet_02_5781_2431_5820
             }
         }
         public double DistanceBetweenTwoStations(int StationCode1,int StationCode2)
-        {
+        {//function to get the distance between two stations
             double orech1=0;
             double rochav1=0;
             double orech2=0;
@@ -35,12 +35,12 @@ namespace dotNet_02_5781_2431_5820
             foreach(var item in busStops)
             {
                 if(item.CodeStation == StationCode1)
-                {
+                {//get the cordinate of the first station
                       orech1 = item.BusStopLocation.GetLongitude();
                       rochav1 = item.BusStopLocation.GetLatitude();
                 }
                 if (item.CodeStation == StationCode2)
-                {
+                {//get the cordinate of the second station
                     orech2 = item.BusStopLocation.GetLongitude();
                     rochav2 = item.BusStopLocation.GetLatitude();
                  }
@@ -52,14 +52,14 @@ namespace dotNet_02_5781_2431_5820
         }
 
        public double DrivingBetweenTwoStations(int StationCode1, int StationCode2)
-        {
+        {//function to get the time between two stations
             int i = 0;
             double DrivingTime = 0;
             foreach(var item in busStops )
             {
                 i++;
                 if(item.CodeStation == StationCode1)
-                {
+                {//check if the first station's code is equal
                     break;
                 }
                 while (busStops[i].CodeStation != StationCode2) 

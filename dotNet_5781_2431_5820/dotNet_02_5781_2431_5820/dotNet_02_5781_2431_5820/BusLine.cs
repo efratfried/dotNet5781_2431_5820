@@ -41,6 +41,7 @@ namespace dotNet_02_5781_2431_5820.git
             {
                 if (UselessStop == LineStops[0] || UselessStop == LineStops[LineStops.Count])
                 {
+                    
                     //we need to take care of when there are 2 sides to the line!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 }
 

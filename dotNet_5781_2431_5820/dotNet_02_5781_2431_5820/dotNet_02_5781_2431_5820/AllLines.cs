@@ -27,7 +27,7 @@ namespace dotNet_02_5781_2431_5820
             }
         }
         public double DistanceBetweenTwoStations(int StationCode1,int StationCode2)
-        {//function to get the distance between two stations
+        {//function to get the distance between two stations.
             double orech1=0;
             double rochav1=0;
             double orech2=0;

@@ -67,6 +67,7 @@ namespace dotNet_02_5781_2431_5820
                     DrivingTime = busStops[i].TimefromPriviouStation(/*need to have an bus stop line here!*/);
                     i++;
                 }
+
             }
             DrivingTime = busStops[i].TimefromPriviouStation(/*need to have an bus stop line here!*/);
             return DrivingTime;

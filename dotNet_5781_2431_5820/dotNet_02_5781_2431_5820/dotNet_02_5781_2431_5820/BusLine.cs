@@ -7,13 +7,12 @@ namespace dotNet_02_5781_2431_5820.git
 {
     public class BusLine
     {
-        public BusLine[] OtherSide;
+        public BusLine[] OtherSide;//to see IEnumerable i think its better than this
         public  int LineNum;
         public static BusStopLine Start { get; set; }
         public  static BusStopLine End { get; set; }
         public List <BusStopLine> LineStops;//list of all the station of the line
         public Area MyArea;
-
 
         public BusLine(BusStopLine first, BusStopLine last, BusLine Side2=null)
         {

@@ -55,18 +55,18 @@ namespace dotNet_02_5781_2431_5820
             return Distance;
         }
 
-       public TimeSpan DrivingBetweenTwoStations(int StationCode1, int StationCode2)
+        public TimeSpan DrivingBetweenTwoStations(int StationCode1, int StationCode2)
         {
             int i = 0;
             TimeSpan DrivingTime = new TimeSpan();
-            foreach(var item in busStops )
+            foreach (var item in busStops)
             {// need to do a check who is first and who is seconed
                 i++;
-                if(item.CodeStation == StationCode1)
+                if (item.CodeStation == StationCode1)
                 {//check if the first station's code is equal
                     break;
                 }
-                while (busStops[i].CodeStation != StationCode2) 
+                while (busStops[i].CodeStation != StationCode2)
                 {
                     DrivingTime = busStops[i].TimefromPriviouStation(/*need to have an bus stop line here!*/);
                     i++;

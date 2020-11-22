@@ -14,7 +14,7 @@ namespace dotNet_02_5781_2431_5820.git
         static void Main(string[] args)
         {
             List<BusLine> lineBuses = new List<BusLine>();  //list of all the busses's lines.
-           // List<BusStop> busStops = new List<BusStop>();  //list of all the exist stations
+           List<BusStop> busStops = new List<BusStop>();  //list of all the exist stations
 
             Console.WriteLine("Welcome to our bus's control system .");
             Console.WriteLine("Please choose your request :");
@@ -23,6 +23,7 @@ namespace dotNet_02_5781_2431_5820.git
             Console.WriteLine("Please press 3 to search for the station's lines. ");
             Console.WriteLine("Please press 4 to print all the exist line in the system or for printing all the pass by stations & lines. ");
             Console.WriteLine("Please press 0 to exit the system.");
+
             int num;
 
             BusLine Line1 = new BusLine();
@@ -35,19 +36,22 @@ namespace dotNet_02_5781_2431_5820.git
                 {
                     Console.WriteLine("wrong number!!! enter again:");
                 }
-                LChoice ch = (LChoice)num;
+
+                Options ch = (Options)num;
                 switch (ch)
                 {
-                    case LChoice.b:
-                        Console.WriteLine("If you want to add a new bus's line press 1");
-                        Console.WriteLine("If you want to add a new bus's station press 0");
+                    case Options.add:
+                        Console.WriteLine("If you want to add a new bus's line press 1");  //to add a new bus line.
+                        Console.WriteLine("If you want to add a new bus's station press 0");//to add a new bus stop
+                        bool flag;
                         string ans = Console.ReadLine();
-                        bool flag = true;
+
+                        flag = System.Convert.ToBoolean(ans);
                         if (!flag)
                         {
                             Console.WriteLine("You want to add a new bus's station");
                             string StatioNum;
-                            StatioNum = Console.ReadLine();
+                            StatioNum = Console.ReadLine();//get the station's num code 
                             station1.setStationNum(StatioNum);
                             while (!(ValidStation(List < BusStop > station1)))
                             {
@@ -55,7 +59,8 @@ namespace dotNet_02_5781_2431_5820.git
                                 Console.WriteLine("If you do press 1");
                                 string answer = Console.ReadLine();
                                 StatioNum = Console.ReadLine();
-                                station1.setStationNum(StatioNum);
+                                station1.CodeStation(StatioNum);
+                                //station1.setStationNum(StatioNum);
                             }
                             string Latitude;
                             Latitude = Console.ReadLine();
@@ -96,22 +101,22 @@ namespace dotNet_02_5781_2431_5820.git
                         }
                         break;
 
-                    case LChoice.c:
+                    case Options.delete:
                         Console.WriteLine("If you want to delete a bus's line press 1");
                         Console.WriteLine("If you want to delete a bus's station press 0");
                         break;
 
-                    case LChoice.d:
+                    case Options.search:
                         Console.WriteLine("If you want to search for the lines which passing the station press 1");
                         Console.WriteLine("If you want to search for option of driving between 2 stations press 0");
                         break;
 
-                    case LChoice.e:
+                    case Options.print:
                         Console.WriteLine("If you want to print all the existing lines press 1");
                         Console.WriteLine("If you want to print all the stations & the lines passing them press 0");
                         break;
 
-                    case LChoice.a:
+                    case Options.exit:
                         Console.WriteLine("Have a nice day");
                         break;
                 }

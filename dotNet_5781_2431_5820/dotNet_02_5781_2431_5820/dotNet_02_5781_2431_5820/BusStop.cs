@@ -1,6 +1,6 @@
 ﻿//efrat fried
 //tamar packter
-
+using dotNet_02_5781_2431_5820.git;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +14,8 @@ namespace dotNet_02_5781_2431_5820
     public class BusStop
     {
         protected Area MyArea;
-
-        public BusStop(bool flag = true)//we need to do the valid check first !!!!!!
-        {//get a valid code from the 
+        public BusStop(bool flag = true)//we need to do the valid check first-???
+        {//get a valid code from ?
             Random rndArea = new Random();
 
             MyArea = (Area)(rndArea.Next() % 7);
@@ -29,11 +28,9 @@ namespace dotNet_02_5781_2431_5820
             double orech = (rnd3.NextDouble() + rnd4.NextDouble()) % 1.4 + 34.3;
             this.BusStopLocation.SetLocation(orech, rochav, flag);
         }
-
         public static int Code = 1;
         public int CodeStation;
         public Location BusStopLocation;
-
         public override string ToString()
         {
             return "Bus Station Code:" + Code + ", "+ BusStopLocation.ToString();

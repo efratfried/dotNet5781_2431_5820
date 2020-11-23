@@ -1,9 +1,14 @@
-﻿using dotNet_02_5781_2431_5820.git;
+﻿//efrat fried
+//tamar packter
+//we didnt have much time therefor we didnt finish to do all the request program , that is the best we could
+//we hope so you appriciate the alot thinking & down to the smallest details.
+using dotNet_02_5781_2431_5820.git;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 
 namespace dotNet_02_5781_2431_5820
@@ -29,6 +34,7 @@ namespace dotNet_02_5781_2431_5820
                 }
             }
         }
+<<<<<<< HEAD
         public double DistanceBetweenTwoStations(int StationCode1, int StationCode2)
         {
             double orech1 = 0;
@@ -44,9 +50,23 @@ namespace dotNet_02_5781_2431_5820
                 {
                     orech1 = item.BusStopLocation.GetLongitude();
                     rochav1 = item.BusStopLocation.GetLatitude();
+=======
+        public double DistanceBetweenTwoStations(int StationCode1,int StationCode2)
+        {//function to get the distance between two stations.
+            double orech1=0;
+            double rochav1=0;
+            double orech2=0;
+            double rochav2=0;
+            foreach(var item in busStops)
+            {
+                if(item.CodeStation == StationCode1)
+                {//get the cordinate of the first station
+                      orech1 = item.BusStopLocation.GetLongitude();
+                      rochav1 = item.BusStopLocation.GetLatitude();
+>>>>>>> 5c7138ae8ac1aa8c803f70558ecca644cf1913dc
                 }
                 if (item.CodeStation == StationCode2)
-                {
+                {//get the cordinate of the second station
                     orech2 = item.BusStopLocation.GetLongitude();
                     rochav2 = item.BusStopLocation.GetLatitude();
                 }
@@ -64,8 +84,11 @@ namespace dotNet_02_5781_2431_5820
             foreach (var item in busStops)
             {// need to do a check who is first and who is seconed
                 i++;
+<<<<<<< HEAD
                 if (item.CodeStation == StationCode1)
-                {
+                {=======
+                if(item.CodeStation == StationCode1)
+                {//check if the first station's code is equal>>>>>>> 5c7138ae8ac1aa8c803f70558ecca644cf1913dc
                     break;
                 }
                 DrivingTime = new TimeSpan();
@@ -75,6 +98,7 @@ namespace dotNet_02_5781_2431_5820
                     DrivingTime += busStops[i].TimefromPriviouStation(/*need to have an bus stop line here!*/);
                     i++;
                 }
+
             }
             DrivingTime = busStops[i].TimefromPriviouStation(/*need to have an bus stop line here!*/);
             return DrivingTime;

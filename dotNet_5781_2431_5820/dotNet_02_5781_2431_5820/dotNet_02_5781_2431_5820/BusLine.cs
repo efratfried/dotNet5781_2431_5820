@@ -1,30 +1,97 @@
-﻿using System.Collections.Generic;
+﻿//efrat fried
+//tamar packter
+using dotNet_02_5781_2431_5820.git;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
+using System.Collections;
+
 namespace dotNet_02_5781_2431_5820.git
 {
-    public class BusLine
+    public class BusLine : IEnumerator
     {
-        public BusLine[] OtherSide;//to see IEnumerable i think its better than this
-        public  int LineNum;
-        public static BusStopLine Start { get; set; }
-        public  static BusStopLine End { get; set; }
-        public List <BusStopLine> LineStops;//list of all the station of the line
+        public int LineNum;
+        public  BusStopLine Start { get; set; }
+        public  BusStopLine End { get; set; }
+        public List<BusStopLine> LineStops;//list of all the station of the line
         public Area MyArea;
+        private int iCurrent = -1;
+        public  BusLine OtherSide(ref AllLines MyLines)
+        {
+            foreach(BusLine l in MyLines.Lines)
+            {
+                if ((l.LineNum==LineNum)&& (l.Start==End))
+                {
+                    return  l;
+                }                
+            }
+            return null;
+        }
+        public IEnumerator GetEnumerator()
+        {
+            return (IEnumerator)this;
+        }
+        public bool MoveNext()
+        {
+            if (iCurrent < LineStops.Count - 1)
+            {
+                ++iCurrent;
+                return true;
+            }
+            return false;
+        }
+        static public IEnumerable<T> Swap3<T>(this IList<T> source, int index1, int index2)
+{
+    // Parameter checking is skipped in this example.
+    // It is assumed that index1 < index2. Otherwise a check should be build in and both indexes should be swapped.
 
+    using (IEnumerator<T> e = source.GetEnumerator())
+    {
+        // Iterate to the first index.
+        for (int i = 0; i < index1; i++)
+            yield return source[i];
+
+        // Return the item at the second index.
+        yield return source[index2];
+
+        if (index1 != index2)
+        {
+            // Return the items between the first and second index.
+            for (int i = index1 + 1; i < index2; i++)
+                yield return source[i];
+
+            // Return the item at the first index.
+            yield return source[index1];
+        }
+
+        // Return the remaining items.
+        for (int i = index2 + 1; i < source.Count; i++)
+            yield return source[i];
+    }
+}
+        public void Reset()
+        {
+            iCurrent = -1;
+        }
+        public object Current
+        {
+            get
+            {
+                return LineStops[iCurrent];
+            }
+        }
         public BusLine(BusStopLine first, BusStopLine last, BusLine Side2=null)
         {
             checked
             {
                 if(first==last)
                 {
-                    throw ("you need to enter to different stops");
+                    throw ("you need to enter two different stops");
                 }
                 else
                 {
-                    OtherSide[0]=Side2;//check if the array is not doing any problems being null
                     Start = first;
                     End = last;
                     LineStops.Add(first);
@@ -33,27 +100,54 @@ namespace dotNet_02_5781_2431_5820.git
             }
         }
 
-        public void RemoveStop(BusStopLine UselessStop)
+        public void RemoveStop(BusStopLine UselessStop,AllLines  MyLines)
         {
 
-            if (LineStops.Contains(UselessStop))
+            if (LineStops.Contains(UselessStop))//PROBLEM NEED TO DO FOR EACH FIRST ON USELESSSSTOP
             {
-                if (UselessStop == LineStops[0] || UselessStop == LineStops[LineStops.Count])
+                if (UselessStop == Start || UselessStop == End)
                 {
-                    
+                    LineStops.Remove(UselessStop);
+                    Start = LineStops[0];
+                    End = LineStops[LineStops.Count];
+                    if (OtherSide(ref MyLines) != null)
+                    {
+                        OtherSide(ref MyLines).RemoveStop(UselessStop, MyLines);
+                        if(Start == OtherSide(ref MyLines).End)//it means we removed the end in this
+                        {
+                            //means otherside start not eaqual to org end
+                            if (!OtherSide(ref MyLines).LineStops.Contains(End))
+                            {//case doesnt exist
+                               OtherSide(ref MyLines).AddStop(End,"start");
+                            }
+                            else
+                            {
+                                foreach (BusStopLine l in LineStops)
+                                {
+                                    if(l==End)
+                                    {
+                                        LineStops.;
+                                    }
+                                }
+                            }
+                        }
+                        //means otherside end not eaqual to org start
+                        else
+                        {
+
+                        }
+                    }
                     //we need to take care of when there are 2 sides to the line!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 }
-
-                LineStops.Remove(UselessStop);
             }
             else
             {
                 throw ("could'nt find the requested station");
             }
         }
-       public void AddStop(BusStopLine NewStop)
+       public void AddStop(BusStopLine NewStop,string state=null)
         {
-          int index=  WhereToAdd(NewStop);
+          int index=  WhereToAdd(NewStop,state);
             if (index == 0 || index == LineStops.Count)
             {
                 // remeber!!!!! we need to take care of when you have two sides line we need to change his last/first opsite one too!!!!!!!:)
@@ -68,13 +162,21 @@ namespace dotNet_02_5781_2431_5820.git
             }
                 LineStops.Insert(index, NewStop);
         }
-        public int  WhereToAdd(BusStopLine NewStop)
+        public int  WhereToAdd(BusStopLine NewStop,string state=null)//nedd to take care of other side!!!!!!!
         {
             int i=0;
             int k;
+            if(state=="start")
+                {
+                return 0;
+                }
+            else if(state=="end")
+            {
+                return LineStops.Count;
+            }
             double FirstDis=LineStops[i].DistancefromPriviouStation(NewStop,LineStops[i++]);
             double LastDis = LineStops[LineStops.Count].DistancefromPriviouStation(NewStop, LineStops[LineStops.Count]);
-
+            if()
             for ( k=i-1;i<=LineStops.Count;i++,k++)
                {
                 if((LineStops[i].DistancefromPriviouStation(NewStop, LineStops[i])< (LineStops[i].DistancefromPriviouStation(LineStops[i], LineStops[k]))&& (LineStops[i].DistancefromPriviouStation(NewStop, LineStops[k]) < LineStops[i].DistancefromPriviouStation(LineStops[i], LineStops[k]))))

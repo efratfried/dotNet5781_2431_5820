@@ -43,6 +43,7 @@ namespace dotNet_02_5781_2431_5820.git
                 switch (ch)
                 {
                     case Options.add:
+
                         Console.WriteLine("If you want to add a new bus's line press 1");  //to add a new bus line.
                         Console.WriteLine("If you want to add a new bus's station press 0");//to add a new bus stop
                         bool flag;
@@ -106,16 +107,52 @@ namespace dotNet_02_5781_2431_5820.git
                     case Options.delete:
                         Console.WriteLine("If you want to delete a bus's line press 1");
                         Console.WriteLine("If you want to delete a bus's station press 0");
+                        bool flag;
+                        string ans = Console.ReadLine();
+
+                        flag = System.Convert.ToBoolean(ans);
+                        if (!flag)
+                        {
+                            Console.WriteLine("you want to dalete a bus's station);
+                        }
+                        else
+                        {
+                            Console.WriteLine("you want to dalete a bus's line);
+                        }
                         break;
 
                     case Options.search:
                         Console.WriteLine("If you want to search for the lines which passing the station press 1");
                         Console.WriteLine("If you want to search for option of driving between 2 stations press 0");
+                          bool flag;
+                        string ans = Console.ReadLine();
+
+                        flag = System.Convert.ToBoolean(ans);
+                        if (!flag)
+                        {
+                            Console.WriteLine("you want to print the driving path between two stations);
+                        }
+                        else
+                        {
+                            Console.WriteLine("you want to search for the passing by lines in a certain station);
+                        }
                         break;
 
                     case Options.print:
                         Console.WriteLine("If you want to print all the existing lines press 1");
                         Console.WriteLine("If you want to print all the stations & the lines passing them press 0");
+                         bool flag;
+                        string ans = Console.ReadLine();
+
+                        flag = System.Convert.ToBoolean(ans);
+                        if (!flag)
+                        {
+                            Console.WriteLine("you want to print all the stations & the lines passing them);
+                        }
+                        else
+                        {
+                            Console.WriteLine("you want to print all the existing lines");
+                        }
                         break;
 
                     case Options.exit:

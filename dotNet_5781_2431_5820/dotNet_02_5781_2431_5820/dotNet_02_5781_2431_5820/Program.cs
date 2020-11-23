@@ -105,6 +105,7 @@ namespace dotNet_02_5781_2431_5820.git
                         break;
 
                     case Options.delete:
+
                         Console.WriteLine("If you want to delete a bus's line press 1");
                         Console.WriteLine("If you want to delete a bus's station press 0");
                         bool flag;
@@ -113,11 +114,21 @@ namespace dotNet_02_5781_2431_5820.git
                         flag = System.Convert.ToBoolean(ans);
                         if (!flag)
                         {
-                            Console.WriteLine("you want to dalete a bus's station);
+                            Console.WriteLine("you want to delete a bus's station);
+                            while (!(ValidStation(List < BusStop > station1)))
+                            {
+                                Console.WriteLine("Do you want to try again?");
+                                Console.WriteLine("If you do press 1");
+                                string answer = Console.ReadLine();
+                                StatioNum = Console.ReadLine();
+                                station1.CodeStation(StatioNum);
+                                //station1.setStationNum(StatioNum);
+                            }
+                            ans=RemoveStop(StatioNum);
                         }
                         else
                         {
-                            Console.WriteLine("you want to dalete a bus's line);
+                            Console.WriteLine("you want to delete a bus's line);
                         }
                         break;
 

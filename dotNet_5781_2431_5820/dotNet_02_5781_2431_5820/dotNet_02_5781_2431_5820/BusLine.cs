@@ -33,6 +33,8 @@ namespace dotNet_02_5781_2431_5820.git
         {
             return (IEnumerator)this;
         }
+
+       
         public bool MoveNext()
         {
             if (iCurrent < LineStops.Count - 1)
@@ -282,5 +284,29 @@ namespace dotNet_02_5781_2431_5820.git
                 }
                 return OtherSidePath;
         }
+
+        public double DistanceBetweenTwoStations(int StationCode1, int StationCode2)
+        {//function to get the distance between two stations.
+            int FirstStationIndex = IndexOfStation(StationCode1);
+            double TotalDistance=0;
+            int SecondStationIndex= IndexOfStation(StationCode2);
+            int temp;
+            for (; FirstStationIndex < SecondStationIndex; FirstStationIndex++)
+            {
+                TotalDistance += this.LineStops[FirstStationIndex].DistancefromPriviouStation(LineStops[FirstStationIndex],LineStops[FirstStationIndex + 1]);
+            }
+            return TotalDistance;
+        }
+        public int IndexOfStation(int StationCode)
+        {//return the index of the station in the array
+            foreach(BusStopLine L in LineStops)
+            {
+                if(L.CodeStation== StationCode)//if the busline is in the "array" return index
+                {
+                    return LineStops.IndexOf(L);
+                }
+            }
+            return -1;//if the busline wasnt found.
+        }
     }
-}
+};

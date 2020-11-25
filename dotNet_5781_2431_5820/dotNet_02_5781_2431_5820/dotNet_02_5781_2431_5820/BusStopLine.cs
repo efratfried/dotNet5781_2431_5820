@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
-namespace dotNet_02_5781_2431_5820
+namespace dotNet_02_5781_2431_5820.git
 {
-    public class BusStopLine : BusStop
+    public class BusStopLine : BusStop, IComparable
     {
         public BusStopLine() : base() 
         {}
@@ -29,6 +29,21 @@ namespace dotNet_02_5781_2431_5820
             int dis = Convert.ToInt32(Dis);//dont care to loose a little bit info because it is not exact but evaluieted time
             TimeSpan dt = new TimeSpan(dis);
             return dt;
+        }
+        public int CopareTo(object L)
+        {
+            if (this.IndexOfStation(this.LineStops.) > L)
+            {
+                return 1;
+            }
+            if (this < L)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 

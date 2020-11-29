@@ -13,7 +13,7 @@ namespace dotNet_02_5781_2431_5820.git
     public class BusLine : IEnumerator, IComparable
     {
         public int LineNum;
-        public BusLine(BusStopLine first, BusStopLine last, BusLine Side2 = null)
+        public BusLine(BusStopLine first, BusStopLine last, int LineNUm)
         {
             checked
             {
@@ -27,6 +27,7 @@ namespace dotNet_02_5781_2431_5820.git
                     End = last;
                     LineStops.Add(first);
                     LineStops.Add(last);
+                    this.LineNum = LineNUm;
                 }
             }
         }
@@ -327,6 +328,7 @@ namespace dotNet_02_5781_2431_5820.git
             }
             return -1;//if the busline wasnt found.
         }
-        
+       
+
     }
 };

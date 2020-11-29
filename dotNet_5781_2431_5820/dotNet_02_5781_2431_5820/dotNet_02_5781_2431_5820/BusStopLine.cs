@@ -12,7 +12,9 @@ namespace dotNet_02_5781_2431_5820.git
     public class BusStopLine : BusStop
     {
         public BusStopLine() : base() 
-        {}
+        {
+
+        }
 
         public double DistancefromPriviouStation(BusStopLine BusstopLine1 , BusStopLine BusstopLine2)
         {
@@ -45,5 +47,7 @@ namespace dotNet_02_5781_2431_5820.git
             else//if a & b are equal.
                 return 0;
         }
+         
     }
+
 }

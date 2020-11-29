@@ -26,7 +26,7 @@ namespace dotNet_02_5781_2431_5820
             Random rnd4 = new Random();
             double rochav = (rnd1.NextDouble() + rnd2.NextDouble()) % 2.4 + 31;
             double orech = (rnd3.NextDouble() + rnd4.NextDouble()) % 1.4 + 34.3;
-            this.BusStopLocation.SetLocation(orech, rochav, flag);
+            this.BusStopLocation.SetLocation(orech, rochav, flag); //check the ctor if zero doesnt do any problems.
         }
         public static int Code = 1;
         public int CodeStation;

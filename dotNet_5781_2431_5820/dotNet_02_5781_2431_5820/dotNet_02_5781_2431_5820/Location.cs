@@ -16,11 +16,13 @@ namespace dotNet_02_5781_2431_5820
         protected double Longitude { set; get; }
         private Adress adress;
         public Location()
-        {
+        {//ctor
+           // Random lat = new Random();
+           // Random long = new Random();
             Latitude = 0;
             Longitude = 0;
             adress = new Adress();
-        }  //ctor
+        }  
         class Adress
         {
             public string City { set; get; }

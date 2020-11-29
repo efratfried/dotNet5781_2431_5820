@@ -1,5 +1,4 @@
 ﻿//efrat fried
-
 //tamar packter
 using dotNet_02_5781_2431_5820.git;
 using System;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 using System.Xml.Schema;
 namespace dotNet_02_5781_2431_5820.git
 {
-    public class BusStopLine : BusStop, IComparable
+    public class BusStopLine : BusStop
     {
         public BusStopLine() : base() 
         {}
@@ -30,21 +29,21 @@ namespace dotNet_02_5781_2431_5820.git
             TimeSpan dt = new TimeSpan(dis);
             return dt;
         }
-        public int CopareTo(object L)
-        {
-            if (this.IndexOfStation(this.LineStops.) > L)
-            {
-                return 1;
-            }
-            if (this < L)
-            {
+        public int CopareTo(BusLine A,BusLine B, BusStopLine distanation)
+        {//compare between two stations's code to see which station is first/second.
+            int IndexOfFirst = A.IndexOfStation(this.CodeStation);
+            int IndexOfSecond = B.IndexOfStation(this.CodeStation);
+
+            if (A.DrivingTimeBetweenTwoStations(A.LineStops[IndexOfFirst].CodeStation, distanation.CodeStation)< B.DrivingTimeBetweenTwoStations(B.LineStops[IndexOfSecond].CodeStation, distanation.CodeStation))
+            {//if a is amaller than b.
                 return -1;
             }
-            else
-            {
-                return 0;
+            else if (A.DrivingTimeBetweenTwoStations(A.LineStops[IndexOfFirst].CodeStation, distanation.CodeStation) > B.DrivingTimeBetweenTwoStations(B.LineStops[IndexOfSecond].CodeStation, distanation.CodeStation))
+            {//if a is bigger than b.
+                return 1;
             }
+            else//if a & b are equal.
+                return 0;
         }
     }
-
 }

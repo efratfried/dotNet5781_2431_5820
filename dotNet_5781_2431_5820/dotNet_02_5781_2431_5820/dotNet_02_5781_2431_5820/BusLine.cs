@@ -10,22 +10,39 @@ using System.Collections;
 
 namespace dotNet_02_5781_2431_5820.git
 {
-    public class BusLine : IEnumerator
+    public class BusLine : IEnumerator, IComparable
     {
         public int LineNum;
+        public BusLine(BusStopLine first, BusStopLine last, BusLine Side2 = null)
+        {
+            checked
+            {
+                if (first == last)
+                {//no circle lines.
+                    throw ("you need to enter two different stops");
+                }
+                else
+                {
+                    Start = first;
+                    End = last;
+                    LineStops.Add(first);
+                    LineStops.Add(last);
+                }
+            }
+        }
         public  BusStopLine Start { get; set; }
         public  BusStopLine End { get; set; }
         public List<BusStopLine> LineStops;//list of all the station of the line
         public Area MyArea;
         private int iCurrent = -1;
-        public  BusLine OtherSide(ref AllLines MyLines)
+        public  BusLine OtherSide( AllLines MyLines)
         {
-            foreach(BusLine l in MyLines.Lines)
+            foreach(BusLine L in MyLines.Lines)
             {
-                if ((l.LineNum==LineNum)&& (l.Start==End))
+                if ((L.LineNum==LineNum)&& (L.Start==End))
                 {
-                    return  l;
-                }                
+                    return  L;
+                }
             }
             return null;
         }
@@ -84,23 +101,7 @@ namespace dotNet_02_5781_2431_5820.git
                 return LineStops[iCurrent];
             }
         }
-        public BusLine(BusStopLine first, BusStopLine last, BusLine Side2=null)
-        {
-            checked
-            {
-                if(first==last)
-                {
-                    throw ("you need to enter two different stops");
-                }
-                else
-                {
-                    Start = first;
-                    End = last;
-                    LineStops.Add(first);
-                    LineStops.Add(last);
-                }
-            }
-        }
+       
 
         public void RemoveStop(BusStopLine UselessStop,AllLines  MyLines)
         {
@@ -297,6 +298,24 @@ namespace dotNet_02_5781_2431_5820.git
             }
             return TotalDistance;
         }
+        public TimeSpan DrivingTimeBetweenTwoStations(int StationCode1, int StationCode2)
+        {
+            TimeSpan TotalTime=new TimeSpan() ;
+            int Before = IndexOfStation(StationCode1);
+            int After= IndexOfStation(StationCode2);
+            if(Math.Min(Before, After)== After)//there is an option that the min function return a boolian value.
+            {//like the swap function that isnt exsist.
+                int temp = Before;
+                Before = After;
+                After = temp;
+            }
+
+            for (; Before < After; Before++)//get the whole time 
+            {
+             TotalTime += this.LineStops[Before].TimefromPriviouStation( LineStops[Before + 1]);
+            }
+             return TotalTime;
+        }
         public int IndexOfStation(int StationCode)
         {//return the index of the station in the array
             foreach(BusStopLine L in LineStops)
@@ -308,5 +327,6 @@ namespace dotNet_02_5781_2431_5820.git
             }
             return -1;//if the busline wasnt found.
         }
+        
     }
 };

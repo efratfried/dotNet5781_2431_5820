@@ -36,11 +36,11 @@ namespace dotNet_02_5781_2431_5820.git
         public List<BusStopLine> LineStops;//list of all the station of the line
         public Area MyArea;
         private int iCurrent = -1;
-        public  BusLine OtherSide( AllLines MyLines)
+        public BusLine OtherSide(AllLines MyLines)
         {
             foreach(BusLine L in MyLines.Lines)
             {
-                if ((L.LineNum==LineNum)&& (L.Start==End))
+                if ((L.LineNum == LineNum) && (L.Start == End)) 
                 {
                     return  L;
                 }
@@ -103,7 +103,6 @@ namespace dotNet_02_5781_2431_5820.git
             }
         }
        
-
         public void RemoveStop(BusStopLine UselessStop,AllLines  MyLines)
         {
 
@@ -114,15 +113,15 @@ namespace dotNet_02_5781_2431_5820.git
                     LineStops.Remove(UselessStop);
                     Start = LineStops[0];
                     End = LineStops[LineStops.Count];
-                    if (OtherSide(ref MyLines) != null)
+                    if (OtherSide( MyLines) != null)
                     {
-                        OtherSide(ref MyLines).RemoveStop(UselessStop, MyLines);
-                        if(Start == OtherSide(ref MyLines).End)//it means we removed the end in this
+                        OtherSide( MyLines).RemoveStop(UselessStop, MyLines);
+                        if(Start == OtherSide( MyLines).End)//it means we removed the end in this
                         {
                             //means otherside start not eaqual to org end
-                            if (!OtherSide(ref MyLines).LineStops.Contains(End))
+                            if (!OtherSide( MyLines).LineStops.Contains(End))
                             {//case doesnt exist
-                               OtherSide(ref MyLines).AddStop(End,"start");
+                               OtherSide( MyLines).AddStop(End,"start");
                             }
                             else
                             {
@@ -264,18 +263,9 @@ namespace dotNet_02_5781_2431_5820.git
         }
         public override string ToString()
         {//returns in this format: busline:122 area:jerusalem one side: 115478 222555 second side: 222555 115478
-            string ThisSidePath = "first side: ";
+            string ThisSidePath = "The line's path: ";
             ThisSidePath += ReturnsPathString(this);
-            string OtherSidePath="second side: ";
-            if(OtherSide[0]!=null)
-            {
-                OtherSidePath+= ReturnsPathString(OtherSide[0]);
-            }
-            else
-            {
-                OtherSidePath = ".";
-            }
-            return "busline:"+LineNum+"area:"+MyArea+ ThisSidePath+ OtherSidePath;
+            return "busline:"+LineNum+"area:"+MyArea+ ThisSidePath;
         }
        public string ReturnsPathString(BusLine WantedBusLine)
         {//returns string with the path of the bus that was sent to her

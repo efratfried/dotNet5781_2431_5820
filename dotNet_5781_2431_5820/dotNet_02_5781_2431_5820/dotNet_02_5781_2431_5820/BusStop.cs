@@ -31,6 +31,18 @@ namespace dotNet_02_5781_2431_5820
         public static int Code = 1;
         public int CodeStation;
         public Location BusStopLocation;
+        public bool ValidStation(string StationNum)
+        {
+            bool Flag = false;
+            if(StationNum.Length<0||StationNum.Length>6)
+            {
+                return Flag;
+            }
+            else
+            {
+                return Flag = true;
+            }
+        }
         public override string ToString()
         {
             return "Bus Station Code:" + Code + ", "+ BusStopLocation.ToString();

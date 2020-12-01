@@ -53,28 +53,31 @@ namespace dotNet_02_5781_2431_5820.git
                             Console.WriteLine("You want to add a new bus's station");
                             string StatioNum;
                             StatioNum = Console.ReadLine();//get the station's num code 
-                            station1.setStationNum(StatioNum);
-                            while (!(ValidStation(List < BusStop > station1)))
+                            //station1.setStationNum(StatioNum);
+                            while (!(ValidStation(StatioNum))
                             {
                                 Console.WriteLine("Do you want to try again?");
-                                Console.WriteLine("If you do press 1");
+                                Console.WriteLine("If you do ,press 1");
                                 string answer = Console.ReadLine();
-                                StatioNum = Console.ReadLine();
-                                station1.CodeStation(StatioNum);
+                                if(answer==1)
+                                {//if we want to enter a new number.
+                                    StatioNum = Console.ReadLine();
+                                    station1.CodeStation(StatioNum);
+                                }
                                 //station1.setStationNum(StatioNum);
                             }
                             string Latitude;
                             Latitude = Console.ReadLine();
-                            station1.setStationLocation(Latitude);
+                           // station1.setStationLocation(Latitude);
 
                             string Longitude;
                             Longitude = Console.ReadLine();
-                            station1.setStationLocation(Longitude);
+                           //station1.setStationLocation(Longitude);
 
                             string Adress;
                             Adress = Console.ReadLine();
-                            station1.setStationAdress(Adress);
-
+                            //station1.setStationAdress(Adress);
+                            
                             Console.WriteLine("Added");
                         }
 
@@ -84,19 +87,19 @@ namespace dotNet_02_5781_2431_5820.git
 
                             string NumLine;
                             NumLine = Console.ReadLine();
-                            Line1.setLineNum(NumLine);
+                            //Line1.setLineNum(NumLine);
 
                             string StartSt;
                             StartSt = Console.ReadLine();
-                            Line1.setStartStation(StartSt);
+                            //Line1.setStartStation(StartSt);
 
                             string FinishSt;
                             FinishSt = Console.ReadLine();
-                            Line1.setFinishStation(FinishSt);
+                            //Line1.setFinishStation(FinishSt);
 
                             string Area;
                             Area = Console.ReadLine();
-                            Line1.setLineArea(Area);
+                           // Line1.setLineArea(Area);
 
                             Console.WriteLine("Added");
                         }

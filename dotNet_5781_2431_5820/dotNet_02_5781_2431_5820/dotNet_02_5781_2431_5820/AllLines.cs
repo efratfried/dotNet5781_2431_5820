@@ -116,56 +116,13 @@ namespace dotNet_02_5781_2431_5820
         }
         public BusLine ShortToLong()
         {
-            if(Lines.Any())
+            if (Lines.Any())
             {
-                foreach(var line in Lines)
+                foreach (var line in Lines)
                 {
-
+                    //here we need to send to the sort function the line to do sort merge.
                 }
             }
-        }
-
-
-       public void MergeSort(BusLine arr, BusLine temp , int left, int right)
-        {
-            int mid = (right + left) / 2;
-
-            if (mid > left) //more than one cell
-                MergeSort(arr, temp, left, mid);
-
-            if (right > mid + 1)    //more than one cell
-                MergeSort(arr, temp, mid + 1, right);
-
-            Merge(arr, temp, left, mid, right);
-        }
-
-        void sort(int arr [])
-        {
-            int temp[ARR_LENGTH];   //array aid
-
-            MergeSort(arr, temp, 0, ARR_LENGTH - 1);
-        }
-
-        int main()
-        {
-            srand((unsigned int)(time(NULL)));  //init the rand
-
-            int arr[ARR_LENGTH];
-
-            for (int i = 0; i < ARR_LENGTH; i++)
-                arr[i] = rand() % 100;  //insert data
-
-            for (int i = 0; i < ARR_LENGTH; i++)
-                cout << arr[i] << " ";      //print before sorting
-            cout << endl << endl;
-
-            sort(arr);
-
-            for (int i = 0; i < ARR_LENGTH; i++)
-                cout << arr[i] << " ";      //print after sorting
-            cout << endl;
-
-            return (EXIT_SUCCESS);
         }
     }
 }

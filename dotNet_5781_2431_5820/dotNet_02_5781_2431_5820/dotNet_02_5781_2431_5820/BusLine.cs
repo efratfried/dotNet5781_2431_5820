@@ -318,7 +318,94 @@ namespace dotNet_02_5781_2431_5820.git
             }
             return -1;//if the busline wasnt found.
         }
-       
 
+        public void Sort(BusLine[] Arr, int Left, int Right)
+        {//Merge sort using the function Merge
+            if (Left < Right)
+            {
+                // Find the middle point
+                int Middle = (Left + Right) / 2;
+
+                // Sort first and second halves
+                Sort(Arr, Left, Middle);
+                Sort(Arr, Middle + 1, Right);
+
+                // Merge the sorted halves
+                Merge(Arr, Left, Middle, Right);
+            }
+        }
+
+        public void Merge(BusLine[] Arr, int Left, int Middle, int Right)
+        {//merge two arrays
+
+            int Arry1Lengh = Middle - Left + 1;
+            int Arry2Lengh = Right - Middle;
+
+            // Create temp arrays
+            BusLine[] L = new BusLine[Arry1Lengh];
+            BusLine[] R = new BusLine[Arry2Lengh];
+            int i, j;
+
+            // Copy data to temp arrays
+            for (i = 0; i < Arry1Lengh; ++i)
+            {
+                L[i] = Arr[Left + i];
+            }
+            for (j = 0; j < Arry2Lengh; ++j)
+            {
+                R[j] = Arr[Middle + 1 + j];
+            }
+
+            // Merge the temp arrays
+
+            // Initial indexes of first and second subarrays
+            i = 0;
+            j = 0;
+
+            // Initial index of merged subarry array
+            int k = Left;
+            while (i < Arry1Lengh && j < Arry2Lengh)
+            {
+                if (L[i] <= R[j])
+                {
+                    Arr[k] = L[i];
+                    i++;
+                }
+                else
+                {
+                    Arr[k] = R[j];
+                    j++;
+                }
+                k++;
+            }
+
+            // Copy remaining elements of L[] if any
+            while (i < Arry1Lengh)
+            {
+                Arr[k] = L[i];
+                i++;
+                k++;
+            }
+
+            // Copy remaining elements of R[] if any
+            while (j < Arry2Lengh)
+            {
+                Arr[k] = R[j];
+                j++;
+                k++;
+            }
+        }
+            //the indexer for busline
+        public BusLine this[int index]
+        {
+            get 
+            {
+                return this[index];
+            }
+            private set
+            {
+                this[index] = value;
+            }
+        }
     }
 };

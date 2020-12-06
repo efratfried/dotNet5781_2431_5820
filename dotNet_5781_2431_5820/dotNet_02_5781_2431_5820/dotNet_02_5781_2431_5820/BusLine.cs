@@ -10,7 +10,7 @@ using System.Collections;
 
 namespace dotNet_02_5781_2431_5820.git
 {
-    public class BusLine : IEnumerator, IComparable
+    public class BusLine 
     {
         public int LineNum;
         public BusLine(BusStopLine first, BusStopLine last, int LineNUm)
@@ -19,7 +19,7 @@ namespace dotNet_02_5781_2431_5820.git
             {
                 if (first == last)
                 {//no circle lines.
-                    throw ("you need to enter two different stops");
+                    throw new Exception("you need to enter two different stops");
                 }
                 else
                 {
@@ -35,82 +35,27 @@ namespace dotNet_02_5781_2431_5820.git
         public  BusStopLine End { get; set; }
         public List<BusStopLine> LineStops;//list of all the station of the line
         public Area MyArea;
-        private int iCurrent = -1;
+        
         public BusLine OtherSide(AllLines MyLines)
         {
             foreach(BusLine L in MyLines.Lines)
             {
-                if ((L.LineNum == LineNum) && (L.Start == End)) 
+                if ((L.LineNum == LineNum) && ((L.Start == End)||(L.End == Start)))
                 {
                     return  L;
                 }
             }
             return null;
         }
-        public IEnumerator GetEnumerator()
-        {
-            return (IEnumerator)this;
-        }
-
        
-        public bool MoveNext()
-        {
-            if (iCurrent < LineStops.Count - 1)
-            {
-                ++iCurrent;
-                return true;
-            }
-            return false;
-        }
-        static public IEnumerable<T> Swap3<T>(this IList<T> source, int index1, int index2)
-{
-    // Parameter checking is skipped in this example.
-    // It is assumed that index1 < index2. Otherwise a check should be build in and both indexes should be swapped.
-
-    using (IEnumerator<T> e = source.GetEnumerator())
-    {
-        // Iterate to the first index.
-        for (int i = 0; i < index1; i++)
-            yield return source[i];
-
-        // Return the item at the second index.
-        yield return source[index2];
-
-        if (index1 != index2)
-        {
-            // Return the items between the first and second index.
-            for (int i = index1 + 1; i < index2; i++)
-                yield return source[i];
-
-            // Return the item at the first index.
-            yield return source[index1];
-        }
-
-        // Return the remaining items.
-        for (int i = index2 + 1; i < source.Count; i++)
-            yield return source[i];
-    }
-}
-        public void Reset()
-        {
-            iCurrent = -1;
-        }
-        public object Current
-        {
-            get
-            {
-                return LineStops[iCurrent];
-            }
-        }
        
         public void RemoveStop(BusStopLine UselessStop,AllLines  MyLines)
         {
-
-            if (LineStops.Contains(UselessStop))//PROBLEM NEED TO DO FOR EACH FIRST ON USELESSSSTOP
+            if (LineStops.Contains(UselessStop))//PROBLEM NEED TO DO FOR EACH FIRST ON USELESSS STOP
             {
+                LineStops.Remove(UselessStop);//check if not doing any problems.
                 if (UselessStop == Start || UselessStop == End)
                 {
-                    LineStops.Remove(UselessStop);
                     Start = LineStops[0];
                     End = LineStops[LineStops.Count];
                     if (OtherSide( MyLines) != null)
@@ -125,27 +70,41 @@ namespace dotNet_02_5781_2431_5820.git
                             }
                             else
                             {
-                                foreach (BusStopLine l in LineStops)
+                                foreach (BusStopLine l in OtherSide(MyLines).LineStops)
                                 {
                                     if(l==End)
                                     {
-                                        LineStops.;
+                                        OtherSide(MyLines).LineStops.Remove(End);
+                                        OtherSide(MyLines).LineStops.Insert(0, End);
                                     }
                                 }
                             }
                         }
-                        //means otherside end not eaqual to org start
                         else
                         {
-
+                            //means otherside end not eaqual to org start
+                            if (!OtherSide(MyLines).LineStops.Contains(Start))
+                            {//case doesnt exist
+                                OtherSide(MyLines).AddStop(Start, "End");
+                            }
+                            else
+                            {
+                                foreach (BusStopLine l in OtherSide(MyLines).LineStops)
+                                {
+                                    if (l == Start)
+                                    {
+                                        OtherSide(MyLines).LineStops.Remove(Start);
+                                        OtherSide(MyLines).LineStops.Insert(LineStops.Count, Start);
+                                    }
+                                }
+                            }
                         }
                     }
-                    //we need to take care of when there are 2 sides to the line!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 }
             }
             else
             {
-                throw ("could'nt find the requested station");
+                throw new Exception("could'nt find the requested station");
             }
         }
        public void AddStop(BusStopLine NewStop,string state=null)
@@ -179,14 +138,13 @@ namespace dotNet_02_5781_2431_5820.git
             }
             double FirstDis=LineStops[i].DistancefromPriviouStation(NewStop,LineStops[i++]);
             double LastDis = LineStops[LineStops.Count].DistancefromPriviouStation(NewStop, LineStops[LineStops.Count]);
-            if()
             for ( k=i-1;i<=LineStops.Count;i++,k++)
-               {
+            {
                 if((LineStops[i].DistancefromPriviouStation(NewStop, LineStops[i])< (LineStops[i].DistancefromPriviouStation(LineStops[i], LineStops[k]))&& (LineStops[i].DistancefromPriviouStation(NewStop, LineStops[k]) < LineStops[i].DistancefromPriviouStation(LineStops[i], LineStops[k]))))
                     {
                     return k;//the first one that it shorten its way
                     }
-               }
+            }
             //if you came here it means that no one shortage his path so he needs to be added to first or last stop
                 if (FirstDis>LastDis)
             {
@@ -230,7 +188,7 @@ namespace dotNet_02_5781_2431_5820.git
                 }
                 if (index1 == -1)  //in that case it n=meens that the wanted codestation isnt exsist.
                 {
-                    throw ("ERROR");
+                    throw new Exception ("ERROR");
                 }
                 for (int i = 0; i < LineStops.Count; i++)
                 {//find the location of the second station to end the sub path.
@@ -241,14 +199,14 @@ namespace dotNet_02_5781_2431_5820.git
                 }
                 if (index2 == -1)  //in that case it n=meens that the wanted codestation isnt exsist.
                 {
-                    throw ("ERROR");
+                    throw new Exception("ERROR");
 
                 }
 
                 int temp = index1;
                 index1 = Math.Min(index1, index2);
                 index2 = Math.Max(temp, index2);
-                BusLine SubPath = new BusLine(LineStops[index1],LineStops[index2]);
+                BusLine SubPath = new BusLine(LineStops[index1],LineStops[index2],LineNum);
                
                 for (int i = ++index1, j = index2; i < j; i++)
                 {//the loop goes from the index of the first sub station to the second one.
@@ -258,7 +216,7 @@ namespace dotNet_02_5781_2431_5820.git
              }
              else
             {
-                throw ("could'nt find the wanted stations in the line");
+                throw new Exception("could'nt find the wanted stations in the line");
             }   
         }
         public override string ToString()
@@ -282,7 +240,6 @@ namespace dotNet_02_5781_2431_5820.git
             int FirstStationIndex = IndexOfStation(StationCode1);
             double TotalDistance=0;
             int SecondStationIndex= IndexOfStation(StationCode2);
-            int temp;
             for (; FirstStationIndex < SecondStationIndex; FirstStationIndex++)
             {
                 TotalDistance += this.LineStops[FirstStationIndex].DistancefromPriviouStation(LineStops[FirstStationIndex],LineStops[FirstStationIndex + 1]);
@@ -318,94 +275,8 @@ namespace dotNet_02_5781_2431_5820.git
             }
             return -1;//if the busline wasnt found.
         }
-
-        public void Sort(BusLine[] Arr, int Left, int Right)
-        {//Merge sort using the function Merge
-            if (Left < Right)
-            {
-                // Find the middle point
-                int Middle = (Left + Right) / 2;
-
-                // Sort first and second halves
-                Sort(Arr, Left, Middle);
-                Sort(Arr, Middle + 1, Right);
-
-                // Merge the sorted halves
-                Merge(Arr, Left, Middle, Right);
-            }
-        }
-
-        public void Merge(BusLine[] Arr, int Left, int Middle, int Right)
-        {//merge two arrays
-
-            int Arry1Lengh = Middle - Left + 1;
-            int Arry2Lengh = Right - Middle;
-
-            // Create temp arrays
-            BusLine[] L = new BusLine[Arry1Lengh];
-            BusLine[] R = new BusLine[Arry2Lengh];
-            int i, j;
-
-            // Copy data to temp arrays
-            for (i = 0; i < Arry1Lengh; ++i)
-            {
-                L[i] = Arr[Left + i];
-            }
-            for (j = 0; j < Arry2Lengh; ++j)
-            {
-                R[j] = Arr[Middle + 1 + j];
-            }
-
-            // Merge the temp arrays
-
-            // Initial indexes of first and second subarrays
-            i = 0;
-            j = 0;
-
-            // Initial index of merged subarry array
-            int k = Left;
-            while (i < Arry1Lengh && j < Arry2Lengh)
-            {
-                if (L[i] <= R[j])
-                {
-                    Arr[k] = L[i];
-                    i++;
-                }
-                else
-                {
-                    Arr[k] = R[j];
-                    j++;
-                }
-                k++;
-            }
-
-            // Copy remaining elements of L[] if any
-            while (i < Arry1Lengh)
-            {
-                Arr[k] = L[i];
-                i++;
-                k++;
-            }
-
-            // Copy remaining elements of R[] if any
-            while (j < Arry2Lengh)
-            {
-                Arr[k] = R[j];
-                j++;
-                k++;
-            }
-        }
+        
             //the indexer for busline
-        public BusLine this[int index]
-        {
-            get 
-            {
-                return this[index];
-            }
-            private set
-            {
-                this[index] = value;
-            }
-        }
+        
     }
 };

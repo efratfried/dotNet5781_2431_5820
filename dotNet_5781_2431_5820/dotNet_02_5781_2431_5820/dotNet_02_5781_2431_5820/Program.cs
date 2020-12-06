@@ -51,33 +51,6 @@ namespace dotNet_02_5781_2431_5820.git
                         if (!flag)
                         {
                             Console.WriteLine("You want to add a new bus's station");
-                            string StatioNum;
-                            StatioNum = Console.ReadLine();//get the station's num code 
-                            //station1.setStationNum(StatioNum);
-                            while (!(ValidStation(StatioNum))
-                            {
-                                Console.WriteLine("Do you want to try again?");
-                                Console.WriteLine("If you do ,press 1");
-                                string answer = Console.ReadLine();
-                                if(answer==1)
-                                {//if we want to enter a new number.
-                                    StatioNum = Console.ReadLine();
-                                    station1.CodeStation(StatioNum);
-                                }
-                                //station1.setStationNum(StatioNum);
-                            }
-                            string Latitude;
-                            Latitude = Console.ReadLine();
-                           // station1.setStationLocation(Latitude);
-
-                            string Longitude;
-                            Longitude = Console.ReadLine();
-                           //station1.setStationLocation(Longitude);
-
-                            string Adress;
-                            Adress = Console.ReadLine();
-                            //station1.setStationAdress(Adress);
-                            
                             Console.WriteLine("Added");
                         }
 
@@ -87,20 +60,17 @@ namespace dotNet_02_5781_2431_5820.git
 
                             string NumLine;
                             NumLine = Console.ReadLine();
-                            //Line1.setLineNum(NumLine);
 
                             string StartSt;
                             StartSt = Console.ReadLine();
-                            //Line1.setStartStation(StartSt);
 
                             string FinishSt;
                             FinishSt = Console.ReadLine();
-                            //Line1.setFinishStation(FinishSt);
 
                             string Area;
                             Area = Console.ReadLine();
-                           // Line1.setLineArea(Area);
-
+                            // Line1.setLineArea(Area);
+                            lineBuses.AddLine(int NumLine);
                             Console.WriteLine("Added");
                         }
                         break;
@@ -130,6 +100,7 @@ namespace dotNet_02_5781_2431_5820.git
                         else
                         {
                             Console.WriteLine("you want to delete a bus's line);
+                             lineBuses.RemoveLine(int removable);
                         }
                         break;
 
@@ -166,13 +137,12 @@ namespace dotNet_02_5781_2431_5820.git
                             Console.WriteLine("you want to print all the existing lines");
                         }
                         break;
-
-                    case Options.exit:
-                        Console.WriteLine("Have a nice day");
-                        break;
                 }
 
             } while (num != 0);
+            default.exit:
+                        Console.WriteLine("Have a nice day");
+            break;
         }
     }
 }

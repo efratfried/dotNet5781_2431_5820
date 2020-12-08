@@ -14,9 +14,15 @@ namespace dotNet_02_5781_2431_5820.git
     {
         //FIELDS
         public int LineNum;
-        public BusLine(BusStopLine first, BusStopLine last, int LineNUm)
+        public BusLine(BusStopLine first=null, BusStopLine last, int LineNUm)
         {
-            checked
+            if(first==null)
+            {
+
+                Console.WriteLine("please enter the line num" );
+                LineNum=Console.Read()
+            }
+            else
             {
                 if (first == last)
                 {//no circle lines.
@@ -31,6 +37,7 @@ namespace dotNet_02_5781_2431_5820.git
                     this.LineNum = LineNUm;
                 }
             }
+               
         }
         public  BusStopLine Start { get; set; }
         public  BusStopLine End { get; set; }

@@ -155,7 +155,6 @@ namespace dotNet_02_5781_2431_5820
                 return null; //check run time compilation
             }
         }
-
         public void Merge(List<BusLine> Arr, int Left, int Middle, int Right)
         {//merge two arrays
 

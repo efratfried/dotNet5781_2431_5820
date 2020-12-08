@@ -33,14 +33,13 @@ namespace dotNet_02_5781_2431_5820
         public Location BusStopLocation;
         public bool ValidStation(string StationNum)
         {
-            bool Flag = false;
             if(StationNum.Length<0||StationNum.Length>6)
             {
-                return Flag;
+                return false;
             }
             else
             {
-                return Flag = true;
+                return true;
             }
         }
         public override string ToString()

@@ -48,7 +48,6 @@
     <Compile Include="BusStop.cs" />
     <Compile Include="BusStopLine.cs" />
     <Compile Include="enum_areaes.cs" />
-    <Compile Include="GeoCoordinate.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="OurExeption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

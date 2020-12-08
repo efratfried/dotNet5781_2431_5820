@@ -276,44 +276,42 @@ namespace dotNet_02_5781_2431_5820.git
         //the indexer for busline
 
         public int CompareTo(object obj)
-        {//comparing distance from one stop to other between two lines and returns who is the shorter
-
+        {//comparing distance from one stop to other between two lines and returns who is the realationship between them
             if (obj == null) return 1;//end of array
             BusLine otherline = obj as BusLine;
-            int a_index = 0; 
-            int b_index = 0;
+            double a_total_dis = 0;
+            double b_total_dis = 0;
             int desStationNum;
             Console.WriteLine("enter destination station");
-            desStationNum = Console.Read();            
+            desStationNum = Console.Read();      
+            
             foreach (BusStopLine a in otherline.LineStops)
             {
-                if (a.CodeStation != desStationNum)
+                if (a.CodeStation != desStationNum && (iCurrent+1< otherline.LineStops.Count))
                 {
-                    a_index++;
+                    a_total_dis += a.DistancefromPriviouStation(a, otherline.LineStops[iCurrent+1]);
+                }
+                else
+                {
+                    break;
+                } 
+            }
+            foreach (BusStopLine b in this.LineStops)
+            {
+                if (b.CodeStation != desStationNum && (iCurrent + 1 < otherline.LineStops.Count))
+                {
+                    b_total_dis += b.DistancefromPriviouStation(b, otherline.LineStops[iCurrent + 1]);
                 }
                 else
                 {
                     break;
                 }
-
             }
-            foreach (BusStopLine b in this.LineStops)
-            {
-                
-                    if (b.CodeStation != desStationNum)
-                    {
-                        b_index++;
-                    }
-                    else
-                    {
-                        break;
-                    }
-            }
-            if(a_index<b_index)
+            if(a_total_dis<b_total_dis)
             {
                 return 1;
             }
-            else if(a_index > b_index)
+            else if(a_total_dis > b_total_dis)
             {
                 return -1;
             }
@@ -321,7 +319,7 @@ namespace dotNet_02_5781_2431_5820.git
             {
                 return 0;
             }
-        }
+        }//we need to do two sub pathes that starts in current station and end in destination
         public bool MoveNext()
         {
             if (iCurrent < LineStops.Count - 1)

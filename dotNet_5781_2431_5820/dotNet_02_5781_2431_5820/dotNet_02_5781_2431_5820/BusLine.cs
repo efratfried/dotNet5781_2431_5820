@@ -14,13 +14,12 @@ namespace dotNet_02_5781_2431_5820.git
     {
         //FIELDS
         public int LineNum;
-        public BusLine(BusStopLine first=null, BusStopLine last, int LineNUm)
+        public BusLine(BusStopLine first = null, BusStopLine last = null, int LineNUm = 0)
         {
             if(first==null)
             {
-
                 Console.WriteLine("please enter the line num" );
-                LineNum=Console.Read()
+                LineNum = Console.Read();
             }
             else
             {

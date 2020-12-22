@@ -10,12 +10,18 @@ using System.Collections;
 
 namespace dotNet_02_5781_2431_5820.git
 {
-    public class BusLine 
+    public class BusLine : IComparable, IEnumerator
     {
+        //FIELDS
         public int LineNum;
-        public BusLine(BusStopLine first, BusStopLine last, int LineNUm)
+        public BusLine(BusStopLine first = null, BusStopLine last = null, int LineNUm = 0)
         {
-            checked
+            if(first==null)
+            {
+                Console.WriteLine("please enter the line num" );
+                LineNum = Console.Read();
+            }
+            else
             {
                 if (first == last)
                 {//no circle lines.
@@ -30,12 +36,13 @@ namespace dotNet_02_5781_2431_5820.git
                     this.LineNum = LineNUm;
                 }
             }
+               
         }
         public  BusStopLine Start { get; set; }
         public  BusStopLine End { get; set; }
         public List<BusStopLine> LineStops;//list of all the station of the line
         public Area MyArea;
-        
+        private int iCurrent = -1;
         public BusLine OtherSide(AllLines MyLines)
         {
             foreach(BusLine L in MyLines.Lines)
@@ -46,9 +53,8 @@ namespace dotNet_02_5781_2431_5820.git
                 }
             }
             return null;
-        }
-       
-       
+        }              
+        //FUNCTIONS
         public void RemoveStop(BusStopLine UselessStop,AllLines  MyLines)
         {
             if (LineStops.Contains(UselessStop))//PROBLEM NEED TO DO FOR EACH FIRST ON USELESSS STOP
@@ -155,7 +161,6 @@ namespace dotNet_02_5781_2431_5820.git
                 return 0;
             }
         }
-
         public bool ValidLineNum(int Numl)//if the line num is bigger than 3 digits
         {
             if ((Numl >= 1)&&(Numl<=999))
@@ -172,7 +177,6 @@ namespace dotNet_02_5781_2431_5820.git
             //check if the station is on the line.
             return LineStops.Contains(station);
         }
-
         public BusLine SubPath(BusStopLine station1 , BusStopLine station2)
         {//get 2 stations & return all the stations between them in a new line.
              if (StopOnLine(station1)&& StopOnLine(station2))
@@ -234,7 +238,6 @@ namespace dotNet_02_5781_2431_5820.git
                 }
                 return OtherSidePath;
         }
-
         public double DistanceBetweenTwoStations(int StationCode1, int StationCode2)
         {//function to get the distance between two stations.
             int FirstStationIndex = IndexOfStation(StationCode1);
@@ -275,8 +278,77 @@ namespace dotNet_02_5781_2431_5820.git
             }
             return -1;//if the busline wasnt found.
         }
-        
-            //the indexer for busline
-        
+
+        //the indexer for busline
+
+        public int CompareTo(object obj)
+        {//comparing distance from one stop to other between two lines and returns who is the realationship between them
+            if (obj == null) return 1;//end of array
+            BusLine otherline = obj as BusLine;
+            double a_total_dis = 0;
+            double b_total_dis = 0;
+            int desStationNum;
+            Console.WriteLine("enter destination station");
+            desStationNum = Console.Read();      
+            
+            foreach (BusStopLine a in otherline.LineStops)
+            {
+                if (a.CodeStation != desStationNum && (iCurrent+1< otherline.LineStops.Count))
+                {
+                    a_total_dis += a.DistancefromPriviouStation(a, otherline.LineStops[iCurrent+1]);
+                }
+                else
+                {
+                    break;
+                } 
+            }
+            foreach (BusStopLine b in this.LineStops)
+            {
+                if (b.CodeStation != desStationNum && (iCurrent + 1 < otherline.LineStops.Count))
+                {
+                    b_total_dis += b.DistancefromPriviouStation(b, otherline.LineStops[iCurrent + 1]);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            if(a_total_dis<b_total_dis)
+            {
+                return 1;
+            }
+            else if(a_total_dis > b_total_dis)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }//we need to do two sub pathes that starts in current station and end in destination
+        public bool MoveNext()
+        {
+            if (iCurrent < LineStops.Count - 1)
+            {
+                ++iCurrent;
+                return true;
+            }
+            return false;
+        }
+        public void Reset()
+        {
+            iCurrent = -1;
+        }
+        public object Current
+        {
+            get
+            {
+                return LineStops[iCurrent];
+            }
+        }
+        public IEnumerator GetEnumerator()
+        {
+            return (IEnumerator)this;
+        }
     }
 };

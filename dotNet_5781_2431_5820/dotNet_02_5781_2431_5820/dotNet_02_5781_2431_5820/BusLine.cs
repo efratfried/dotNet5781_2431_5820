@@ -10,44 +10,46 @@ using System.Collections;
 
 namespace dotNet_02_5781_2431_5820.git
 {
-    public class BusLine : IComparable, IEnumerator
+    public class BusLine 
     {
-        private int iCurrent = -1;
         public int LineNum;
         public BusLine(BusStopLine first, BusStopLine last, int LineNUm)
         {
+            checked
+            {
                 if (first == last)
                 {//no circle lines.
                     throw new Exception("you need to enter two different stops");
                 }
                 else
                 {
-                    Start = first; 
+                    Start = first;
                     End = last;
                     LineStops.Add(first);
                     LineStops.Add(last);
                     this.LineNum = LineNUm;
                 }
+            }
         }
-        public BusStopLine Start { get; set; }
-        public BusStopLine End { get; set; }
+        public  BusStopLine Start { get; set; }
+        public  BusStopLine End { get; set; }
         public List<BusStopLine> LineStops;//list of all the station of the line
         public Area MyArea;
-
+        
         public BusLine OtherSide(AllLines MyLines)
         {
-            foreach (BusLine L in MyLines.Lines)
+            foreach(BusLine L in MyLines.Lines)
             {
-                if ((L.LineNum == LineNum) && ((L.Start == End) || (L.End == Start)))
+                if ((L.LineNum == LineNum) && ((L.Start == End)||(L.End == Start)))
                 {
-                    return L;
+                    return  L;
                 }
             }
             return null;
         }
-
-
-        public void RemoveStop(BusStopLine UselessStop, AllLines MyLines)
+       
+       
+        public void RemoveStop(BusStopLine UselessStop,AllLines  MyLines)
         {
             if (LineStops.Contains(UselessStop))//PROBLEM NEED TO DO FOR EACH FIRST ON USELESSS STOP
             {
@@ -56,21 +58,21 @@ namespace dotNet_02_5781_2431_5820.git
                 {
                     Start = LineStops[0];
                     End = LineStops[LineStops.Count];
-                    if (OtherSide(MyLines) != null)
+                    if (OtherSide( MyLines) != null)
                     {
-                        OtherSide(MyLines).RemoveStop(UselessStop, MyLines);
-                        if (Start == OtherSide(MyLines).End)//it means we removed the end in this
+                        OtherSide( MyLines).RemoveStop(UselessStop, MyLines);
+                        if(Start == OtherSide( MyLines).End)//it means we removed the end in this
                         {
                             //means otherside start not eaqual to org end
-                            if (!OtherSide(MyLines).LineStops.Contains(End))
+                            if (!OtherSide( MyLines).LineStops.Contains(End))
                             {//case doesnt exist
-                                OtherSide(MyLines).AddStop(End, "start");
+                               OtherSide( MyLines).AddStop(End,"start");
                             }
                             else
                             {
                                 foreach (BusStopLine l in OtherSide(MyLines).LineStops)
                                 {
-                                    if (l == End)
+                                    if(l==End)
                                     {
                                         OtherSide(MyLines).LineStops.Remove(End);
                                         OtherSide(MyLines).LineStops.Insert(0, End);
@@ -105,13 +107,13 @@ namespace dotNet_02_5781_2431_5820.git
                 throw new Exception("could'nt find the requested station");
             }
         }
-        public void AddStop(BusStopLine NewStop, string state = null)
+       public void AddStop(BusStopLine NewStop,string state=null)
         {
-            int index = WhereToAdd(NewStop, state);
+          int index=  WhereToAdd(NewStop,state);
             if (index == 0 || index == LineStops.Count)
             {
                 // remeber!!!!! we need to take care of when you have two sides line we need to change his last/first opsite one too!!!!!!!:)
-                if (index == 0)
+                if (index==0)
                 {
                     Start = NewStop;
                 }
@@ -120,31 +122,31 @@ namespace dotNet_02_5781_2431_5820.git
                     End = NewStop;
                 }
             }
-            LineStops.Insert(index, NewStop);
+                LineStops.Insert(index, NewStop);
         }
-        public int WhereToAdd(BusStopLine NewStop, string state = null)//nedd to take care of other side!!!!!!!
+        public int  WhereToAdd(BusStopLine NewStop,string state=null)//nedd to take care of other side!!!!!!!
         {
-            int i = 0;
+            int i=0;
             int k;
-            if (state == "start")
-            {
+            if(state=="start")
+                {
                 return 0;
-            }
-            else if (state == "end")
+                }
+            else if(state=="end")
             {
                 return LineStops.Count;
             }
-            double FirstDis = LineStops[i].DistancefromPriviouStation(NewStop, LineStops[i++]);
+            double FirstDis=LineStops[i].DistancefromPriviouStation(NewStop,LineStops[i++]);
             double LastDis = LineStops[LineStops.Count].DistancefromPriviouStation(NewStop, LineStops[LineStops.Count]);
-            for (k = i - 1; i <= LineStops.Count; i++, k++)
+            for ( k=i-1;i<=LineStops.Count;i++,k++)
             {
-                if ((LineStops[i].DistancefromPriviouStation(NewStop, LineStops[i]) < (LineStops[i].DistancefromPriviouStation(LineStops[i], LineStops[k])) && (LineStops[i].DistancefromPriviouStation(NewStop, LineStops[k]) < LineStops[i].DistancefromPriviouStation(LineStops[i], LineStops[k]))))
-                {
+                if((LineStops[i].DistancefromPriviouStation(NewStop, LineStops[i])< (LineStops[i].DistancefromPriviouStation(LineStops[i], LineStops[k]))&& (LineStops[i].DistancefromPriviouStation(NewStop, LineStops[k]) < LineStops[i].DistancefromPriviouStation(LineStops[i], LineStops[k]))))
+                    {
                     return k;//the first one that it shorten its way
-                }
+                    }
             }
             //if you came here it means that no one shortage his path so he needs to be added to first or last stop
-            if (FirstDis > LastDis)
+                if (FirstDis>LastDis)
             {
                 return LineStops.Count;
             }
@@ -156,13 +158,13 @@ namespace dotNet_02_5781_2431_5820.git
 
         public bool ValidLineNum(int Numl)//if the line num is bigger than 3 digits
         {
-            if ((Numl >= 1) && (Numl <= 999))
+            if ((Numl >= 1)&&(Numl<=999))
             {
                 return true;
             }
-            else
-            {
-                return false;
+            else 
+            { 
+                return false; 
             }
         }
         public bool StopOnLine(BusStopLine station)
@@ -171,10 +173,10 @@ namespace dotNet_02_5781_2431_5820.git
             return LineStops.Contains(station);
         }
 
-        public BusLine SubPath(BusStopLine station1, BusStopLine station2)
+        public BusLine SubPath(BusStopLine station1 , BusStopLine station2)
         {//get 2 stations & return all the stations between them in a new line.
-            if (StopOnLine(station1) && StopOnLine(station2))
-            {
+             if (StopOnLine(station1)&& StopOnLine(station2))
+            {  
                 int index1 = -1;
                 int index2 = -1;
                 for (int i = 0; i < LineStops.Count; i++)
@@ -186,7 +188,7 @@ namespace dotNet_02_5781_2431_5820.git
                 }
                 if (index1 == -1)  //in that case it n=meens that the wanted codestation isnt exsist.
                 {
-                    throw new Exception("ERROR");
+                    throw new Exception ("ERROR");
                 }
                 for (int i = 0; i < LineStops.Count; i++)
                 {//find the location of the second station to end the sub path.
@@ -204,52 +206,52 @@ namespace dotNet_02_5781_2431_5820.git
                 int temp = index1;
                 index1 = Math.Min(index1, index2);
                 index2 = Math.Max(temp, index2);
-                BusLine SubPath = new BusLine(LineStops[index1], LineStops[index2], LineNum);
-
+                BusLine SubPath = new BusLine(LineStops[index1],LineStops[index2],LineNum);
+               
                 for (int i = ++index1, j = index2; i < j; i++)
                 {//the loop goes from the index of the first sub station to the second one.
-                    SubPath.LineStops.Insert(i, LineStops[i]);
+                    SubPath.LineStops.Insert(i,LineStops[i]);
                 }
                 return SubPath;
-            }
-            else
+             }
+             else
             {
                 throw new Exception("could'nt find the wanted stations in the line");
-            }
+            }   
         }
         public override string ToString()
         {//returns in this format: busline:122 area:jerusalem one side: 115478 222555 second side: 222555 115478
             string ThisSidePath = "The line's path: ";
             ThisSidePath += ReturnsPathString(this);
-            return "busline:" + LineNum + "area:" + MyArea + ThisSidePath;
+            return "busline:"+LineNum+"area:"+MyArea+ ThisSidePath;
         }
-        public string ReturnsPathString(BusLine WantedBusLine)
+       public string ReturnsPathString(BusLine WantedBusLine)
         {//returns string with the path of the bus that was sent to her
             string OtherSidePath = " ";
-            for (int i = 0; i <= WantedBusLine.LineStops.Count; i++)
-            {
-                OtherSidePath += WantedBusLine.LineStops[i].CodeStation;
-            }
-            return OtherSidePath;
+                for (int i = 0; i <= WantedBusLine.LineStops.Count; i++)
+                {
+                    OtherSidePath += WantedBusLine.LineStops[i].CodeStation;
+                }
+                return OtherSidePath;
         }
 
         public double DistanceBetweenTwoStations(int StationCode1, int StationCode2)
         {//function to get the distance between two stations.
             int FirstStationIndex = IndexOfStation(StationCode1);
-            double TotalDistance = 0;
-            int SecondStationIndex = IndexOfStation(StationCode2);
+            double TotalDistance=0;
+            int SecondStationIndex= IndexOfStation(StationCode2);
             for (; FirstStationIndex < SecondStationIndex; FirstStationIndex++)
             {
-                TotalDistance += this.LineStops[FirstStationIndex].DistancefromPriviouStation(LineStops[FirstStationIndex], LineStops[FirstStationIndex + 1]);
+                TotalDistance += this.LineStops[FirstStationIndex].DistancefromPriviouStation(LineStops[FirstStationIndex],LineStops[FirstStationIndex + 1]);
             }
             return TotalDistance;
         }
         public TimeSpan DrivingTimeBetweenTwoStations(int StationCode1, int StationCode2)
         {
-            TimeSpan TotalTime = new TimeSpan();
+            TimeSpan TotalTime=new TimeSpan() ;
             int Before = IndexOfStation(StationCode1);
-            int After = IndexOfStation(StationCode2);
-            if (Math.Min(Before, After) == After)//there is an option that the min function return a boolian value.
+            int After= IndexOfStation(StationCode2);
+            if(Math.Min(Before, After)== After)//there is an option that the min function return a boolian value.
             {//like the swap function that isnt exsist.
                 int temp = Before;
                 Before = After;
@@ -258,73 +260,23 @@ namespace dotNet_02_5781_2431_5820.git
 
             for (; Before < After; Before++)//get the whole time 
             {
-                TotalTime += this.LineStops[Before].TimefromPriviouStation(LineStops[Before + 1]);
+             TotalTime += this.LineStops[Before].TimefromPriviouStation( LineStops[Before + 1]);
             }
-            return TotalTime;
+             return TotalTime;
         }
-      
-        //the indexer for busline
         public int IndexOfStation(int StationCode)
         {//return the index of the station in the array
-            foreach (BusStopLine L in LineStops)
+            foreach(BusStopLine L in LineStops)
             {
-                if (L.CodeStation == StationCode)//if the busline is in the "array" return index
+                if(L.CodeStation== StationCode)//if the busline is in the "array" return index
                 {
                     return LineStops.IndexOf(L);
                 }
             }
             return -1;//if the busline wasnt found.
-        } 
-        public int CompareTo(object obj)
-        {
-            if (obj == null) return 1;
-
-            BusLine otherTemperature = obj as BusLine;
-            if (otherTemperature != null)
-                return this.CompareTo(otherTemperature);
-            else
-                throw new Exception("Object is not a Temperature");
         }
-        public int CompareTo(BusLine A, BusLine B, BusStopLine distanation)//compare which driving time is shorter.
-        {
-            //compare between two stations's code to see which station is first/second.
-            int IndexOfFirst = A.IndexOfStation(this.CodeStation);
-            int IndexOfSecond = B.IndexOfStation(this.CodeStation);
-
-            if (A.DrivingTimeBetweenTwoStations(A.LineStops[IndexOfFirst].CodeStation, distanation.CodeStation) < (B.DrivingTimeBetweenTwoStations(B.LineStops[IndexOfSecond].CodeStation, distanation.CodeStation)))
-            {//if a is amaller than b.
-                return -1;
-            }
-            else if (A.DrivingTimeBetweenTwoStations(A.LineStops[IndexOfFirst].CodeStation, distanation.CodeStation) > (B.DrivingTimeBetweenTwoStations(B.LineStops[IndexOfSecond].CodeStation, distanation.CodeStation)))
-            {//if a is bigger than b.
-                return 1;
-            }
-            else//if a & b are equal.
-                return 0;
-        }
-        public bool MoveNext()
-        {
-            if (iCurrent < LineStops.Count - 1)
-            {
-                ++iCurrent;
-                return true;
-            }
-            return false;
-        }
-        public void Reset()
-        {
-            iCurrent = -1;
-        }
-        public object Current
-        {
-            get
-            {
-                return LineStops[iCurrent];
-            }
-        }
-        public IEnumerator GetEnumerator()
-        {
-            return (IEnumerator)this;
-        }
+        
+            //the indexer for busline
+        
     }
 };

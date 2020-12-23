@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System;
 using System.Collections;
 
+//רקצשרל
+
 namespace dotNet_02_5781_2431_5820.git
 {
     public class BusLine : IComparable, IEnumerator

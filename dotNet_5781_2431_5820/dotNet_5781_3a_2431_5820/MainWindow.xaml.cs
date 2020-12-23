@@ -23,6 +23,15 @@ namespace dotNet_5781_3a_2431_5820
         public MainWindow()
         {
             InitializeComponent();
+            AllLines OurArray = new AllLines();
+
+            OurArray.AddLine();
+        }
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
+
+

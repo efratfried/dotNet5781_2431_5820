@@ -1,12 +1,31 @@
-﻿<Window x:Class="dotNet_5781_3a_2431_5820.MainWindow"
+﻿<Window x:Class="dotNet_3a_5781_2431_2851.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:dotNet_5781_3a_2431_5820"
+        xmlns:local="clr-namespace:dotNet_3a_5781_2431_2851"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="640" Width="800">
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="400*"/>
+        </Grid.RowDefinitions>
+        <Grid HorizontalAlignment="Left" Height="68" Margin="0,0,-0.4,0" VerticalAlignment="Top" Width="794"/>
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <Label Content="Bus Line Number:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="198" Height="59" FontWeight="Bold" FontSize="18" FontFamily="Aharoni" Margin="0,10,0,-1"/>
+            <Label Content="Area:" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,10,0,0" VerticalAlignment="Top" Width="160" FontSize="18" FontFamily="Aharoni"/>
+            <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="6.6,0,0,0" VerticalAlignment="Stretch" Width="182" Height="68" Name="cbBusLines"/>
+            <TextBox Grid.Column="2" Height="69" Margin="198.2,0,-0.4,-1" TextWrapping="Wrap" Text="Here will be the area" VerticalAlignment="Top" Grid.ColumnSpan="2" TextChanged="TextBox_TextChanged"/>
+        </Grid>
+        <ListBox HorizontalAlignment="Left" Name="lbBusLineStations" Height="542" Margin="0,0,-0.4,0" Grid.Row="1" VerticalAlignment="Top" Width="794"/>
     </Grid>
 </Window>
+

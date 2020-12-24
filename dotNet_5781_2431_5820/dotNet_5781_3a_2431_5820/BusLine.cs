@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 using System;
 using System.Collections;
 
-//רקצשרל
-
 namespace dotNet_02_5781_2431_5820.git
 {
     public class BusLine : IComparable, IEnumerator
@@ -37,8 +35,7 @@ namespace dotNet_02_5781_2431_5820.git
                     LineStops.Add(last);
                     this.LineNum = LineNUm;
                 }
-            }
-               
+            }              
         }
         public  BusStopLine Start { get; set; }
         public  BusStopLine End { get; set; }
@@ -117,7 +114,12 @@ namespace dotNet_02_5781_2431_5820.git
         }
        public void AddStop(BusStopLine NewStop,string state=null)
         {
-          int index=  WhereToAdd(NewStop,state);
+           if( LineStops.Contains(NewStop))
+            {
+               throw new Exception("The stop is already in the Line's stops list");
+            }
+
+            int index=  WhereToAdd(NewStop,state);
             if (index == 0 || index == LineStops.Count)
             {
                 // remeber!!!!! we need to take care of when you have two sides line we need to change his last/first opsite one too!!!!!!!:)

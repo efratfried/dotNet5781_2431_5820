@@ -14,6 +14,9 @@ namespace dotNet_02_5781_2431_5820
     public class BusStop
     {
         protected Area MyArea;
+        public static int Code = 1;
+        public int CodeStation;
+        public Location BusStopLocation;
         public BusStop(bool flag = true)//we need to do the valid check first-???
         {//get a valid code from ?
             Random rndArea = new Random();
@@ -28,9 +31,6 @@ namespace dotNet_02_5781_2431_5820
             double orech = (rnd3.NextDouble() + rnd4.NextDouble()) % 1.4 + 34.3;
             this.BusStopLocation.SetLocation(orech, rochav, flag); //check the ctor if zero doesnt do any problems.
         }
-        public static int Code = 1;
-        public int CodeStation;
-        public Location BusStopLocation;
         public bool ValidStation(string StationNum)
         {
             if(StationNum.Length<0||StationNum.Length>6)

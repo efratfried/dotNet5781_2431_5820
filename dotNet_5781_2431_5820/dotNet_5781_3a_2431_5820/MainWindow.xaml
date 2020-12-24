@@ -32,7 +32,9 @@ VerticalAlignment="Stretch" Width="auto">
             </ComboBox>
             <TextBox Grid.Column="2" Height="69" Margin="198.2,0,-0.4,-1" TextWrapping="Wrap" Text="Here will be the area" VerticalAlignment="Top" Grid.ColumnSpan="2" TextChanged="TextBox_TextChanged" Background="#FF5C75EA"/>
         </Grid>
-        <ListBox HorizontalAlignment="Left" Name="lbBusLineStations" Height="542" Margin="0,0,-0.4,0" Grid.Row="1" VerticalAlignment="Top" Width="794"/>
+        <ListBox HorizontalAlignment="Left" Name="lbBusLineStations" Height="542" Margin="0,0,-0.4,0" Grid.Row="1" VerticalAlignment="Top" Width="794">
+            <ListBox Height="532" Width="784"/>
+        </ListBox>
     </Grid>
 </Window>
 

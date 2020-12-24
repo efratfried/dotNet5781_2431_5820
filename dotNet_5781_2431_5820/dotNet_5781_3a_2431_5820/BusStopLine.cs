@@ -12,7 +12,7 @@ namespace dotNet_02_5781_2431_5820.git
 {
     public class BusStopLine : BusStop
     {
-        public BusStopLine() : base(){}
+        public BusStopLine(bool flag =true) : base(flag){}
         public double DistancefromPriviouStation(BusStopLine BusstopLine1, BusStopLine BusstopLine2)
         {
             //returns the distance by equation sqrt( (x-x)^2+(y-y)^2)

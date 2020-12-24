@@ -19,9 +19,9 @@ namespace dotNet_02_5781_2431_5820
         public List<BusStopLine> busStops;
         public void AddLine(int WantedLine)
         {
-            BusLine NewLine=null;
+            BusLine NewLine = null;
             Random rand = new Random();
-            if (busStops.Count<2)
+            if (busStops.Count < 2)
             {
                 throw new Exception("Add more stations");
             }
@@ -48,7 +48,6 @@ namespace dotNet_02_5781_2431_5820
                             {//if there is only one side of the line.
                                 int index = IndexOfLine(item.LineNum);
                                 NewLine = new BusLine(item.End, item.Start, WantedLine);
-                                Lines.Insert(index, NewLine);
                             }
                         }
                     }
@@ -60,11 +59,18 @@ namespace dotNet_02_5781_2431_5820
                         int randLast = rand.Next(0, a);
                         NewLine = new BusLine(busStops[randFirst], busStops[randLast], WantedLine);
                     }
+                    //adding more stations to the line randomly.
+                    Random A = new Random();
+                    int MaxAmountOfStations = A.Next(0, busStops.Count);
+                    for (int i = 0; i < MaxAmountOfStations; i+=A.Next(0, busStops.Count))
+                    {
+                        NewLine.AddStop(busStops[i]);
+                    }
                     Lines.Add(NewLine);
                 }
             }
-               
-            }
+
+        }
         public void RemoveLine(int removable)
         {
             if (!Lines.Any())
@@ -230,5 +236,33 @@ namespace dotNet_02_5781_2431_5820
                 this[index] = value;
             }
         }
+        public void AddStopToList()
+        {
+            BusStopLine a = new BusStopLine(false);
+            busStops.Add(a);
+        }
+        public void RemoveStop(int UselessStop)
+        {
+            busStops.Remove(SearchStop(UselessStop));
+        }
+        public BusStopLine SearchStop(int CodeStop)
+        {
+            if (!busStops.Any())
+            {//if the list is empty
+                new Exception("The are'nt stops in the list");
+                return null;
+            }
+            else
+            {
+                foreach (var item in busStops)
+                {
+                    if (item.CodeStation == CodeStop)
+                    {
+                        return item;
+                    }
+                }
+                return null;
+            }
+        }
     }
-}
+}   

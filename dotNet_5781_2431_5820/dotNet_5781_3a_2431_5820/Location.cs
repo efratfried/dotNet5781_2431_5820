@@ -58,15 +58,15 @@ namespace dotNet_02_5781_2431_5820
                 return Longitude + "°" + Long + " " + Latitude + "°" + lat + adress.ToString();// adress to string is never null:)
         }
             public void SetLocation(double Rochav, double Orech, bool flag)
-        {
-            Latitude = Rochav;
-            Longitude = Orech;
-            //the defult is yes i want addres but in busstopline its false so i can have location without adress
-            if (flag)
             {
-                DoYouWantAdress();
+                Latitude = Rochav;
+                Longitude = Orech;
+                //the defult is yes i want addres but in busstopline its false so i can have location without adress
+                if (flag)
+                {
+                    DoYouWantAdress();
+                }
             }
-        }
         public void DoYouWantAdress()
         {
             Console.WriteLine("do you want to enter an adress? ");

@@ -22,7 +22,7 @@ namespace dotNet_5781_3a_2431_5820
     /// </summary>
     public partial class BusPresentation : Window
     {
-        public List<BusLine> ComboBox { get; set; }
+        ComboBox cbBusLines = new ComboBox();
         public AllLines busLineCollection;
         public BusPresentation()//ctor
         {
@@ -42,9 +42,10 @@ namespace dotNet_5781_3a_2431_5820
                 int rand1 = i.Next();
                 busLineCollection.AddLine(rand1);
             }
+            cbBusLines.ItemsSource = busLineCollection.Lines;
+            cbBusLines.DisplayMemberPath = " BusLineNum ";
+            cbBusLines.SelectedIndex = 0;
             ComboBox = busLineCollection.Lines;
-
-
         }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

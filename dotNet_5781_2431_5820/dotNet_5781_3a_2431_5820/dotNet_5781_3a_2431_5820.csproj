@@ -102,5 +102,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bus.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bus1.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

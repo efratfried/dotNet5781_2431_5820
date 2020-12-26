@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet_3a_5781_2431_2851"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="800">
+        Title="BusPresentation" Height="640" Width="800">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
@@ -20,9 +20,9 @@ VerticalAlignment="Stretch" Width="auto">
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <Label Content="Bus Line Number:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="198" Height="69" FontWeight="Bold" FontSize="18" FontFamily="Aharoni" Margin="0,0,0,-1" Background="#FF5C75EA"/>
+            <Label Content="Bus Line Number:" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="198" Height="69" FontWeight="Bold" FontSize="18" FontFamily="Aharoni" Margin="0,0,0,-1" Background="#FF5C75EA"/>
             <Label Content="Area:" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0,0,0" VerticalAlignment="Top" Width="198" FontSize="18" FontFamily="Aharoni" Height="68" Background="#FF5C75EA"/>
-            <ComboBox HorizontalAlignment="Left" Margin="198,0,0,0" VerticalAlignment="Stretch" Width="199" Height="68" Name="cbBusLines" Grid.ColumnSpan="3">
+            <ComboBox HorizontalAlignment=" Left" Margin="198,0,0,0" VerticalAlignment="Stretch" Width="199" Height="68" Name="cbBusLines" Grid.ColumnSpan="3">
                 <ComboBox.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0"/>
@@ -30,11 +30,8 @@ VerticalAlignment="Stretch" Width="auto">
                     </LinearGradientBrush>
                 </ComboBox.Background>
             </ComboBox>
-            <TextBox Grid.Column="2" Height="69" Margin="198.2,0,-0.4,-1" TextWrapping="Wrap" Text="Here will be the area" VerticalAlignment="Top" Grid.ColumnSpan="2" TextChanged="TextBox_TextChanged" Background="#FF5C75EA"/>
+            <TextBox Grid.Column="2" Height="69" Margin="198.2,-1,-0.4,0" TextWrapping="Wrap" Text="Here will be the area" VerticalAlignment="Top" Grid.ColumnSpan="2" TextChanged="TextBox_TextChanged" Background="#FF5C75EA"/>
         </Grid>
-        <ListBox HorizontalAlignment="Left" Name="lbBusLineStations" Height="542" Margin="0,0,-0.4,0" Grid.Row="1" VerticalAlignment="Top" Width="794">
-            <ListBox Height="532" Width="784"/>
-        </ListBox>
     </Grid>
 </Window>
 

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace dotNet_5781_3a_2431_5820
 {
     /// <summary>
@@ -22,12 +23,13 @@ namespace dotNet_5781_3a_2431_5820
     /// </summary>
     public partial class BusPresentation : Window
     {
-        public List<BusLine> ComboBox { get; set; }
+        ComboBox cbBusLines = new ComboBox();
         public AllLines busLineCollection;
+
         public BusPresentation()//ctor
         {
+            InitializeComponent();
             busLineCollection = new AllLines();
-            //InitializeComponent();
             Random m = new Random();
             int rand = m.Next(50,100);
 
@@ -42,14 +44,26 @@ namespace dotNet_5781_3a_2431_5820
                 int rand1 = i.Next();
                 busLineCollection.AddLine(rand1);
             }
-            ComboBox = busLineCollection.Lines;
 
-
+            cbBusLines.ItemsSource = busLineCollection.Lines;
+            cbBusLines.DisplayMemberPath = " BusLineNum ";
+            cbBusLines.SelectedIndex = 0;
         }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private BusLine currentDisplayBusLine;
+       /* private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ShowBusLine((cbBusLines.SelectedValue as BusLine).BusLineNum);
+        }
+        private void ShowBusLine(int index)
+        {
+            currentDisplayBusLine = busLineCollection[index];
+            UpGrid.DataContext = currentDisplayBusLine;
+            lbBusLineStations.DataContext = currentDisplayBusLine.Stations;
+        }*/
+       /* private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-        }
+        }*/
     }
 }
 

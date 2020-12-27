@@ -15,8 +15,14 @@ namespace dotNet_02_5781_2431_5820
 {
     public class AllLines
     {
+        
         public List<BusLine> Lines;
         public List<BusStopLine> busStops;
+        public AllLines ()//ctor
+        {
+            Lines=new List<BusLine> ();
+            busStops=new List<BusStopLine> ();
+        }
         public void AddLine(int WantedLine)
         {
             BusLine NewLine = null;
@@ -91,17 +97,19 @@ namespace dotNet_02_5781_2431_5820
             }
         }
         public int IndexOfLine(int LineNum)
-        {//return the index of the line in the array
+         {//return the index of the line in the array
 
-            foreach (BusLine L in Lines)
-            {
-                if (L.LineNum == LineNum)//if the busline is in the "array" return index
-                {
-                    return Lines.IndexOf(L);
-                }
-            }
-            return -1;//if the busline wasnt found.
-        }
+             foreach (BusLine L in Lines)
+             {
+                 if (L.LineNum == LineNum)//if the busline is in the "array" return index
+                 {
+                     return Lines.IndexOf(L);
+                 }
+             }
+             return -1;//if the busline wasnt found.
+         }
+
+
         public string LinesInStop(int StationCode)
         {//get the num of a station & returns all the lines that passing by.
             if (busStops.Any())
@@ -229,8 +237,16 @@ namespace dotNet_02_5781_2431_5820
         {
             get
             {
-                return this[index];
+                foreach (var item in Lines)
+                {
+                    if (item.LineNum == index)
+                    {
+                        return item;
+                    }
+                }
+                return null;
             }
+
             private set
             {
                 this[index] = value;

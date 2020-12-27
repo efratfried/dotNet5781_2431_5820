@@ -17,9 +17,11 @@ namespace dotNet_02_5781_2431_5820
         public static int Code = 1;
         public int CodeStation;
         public Location BusStopLocation;
+        
         public BusStop(bool flag = true)//we need to do the valid check first-???
         {//get a valid code from ?
             Random rndArea = new Random();
+            BusStopLocation = new Location();
 
             MyArea = (Area)(rndArea.Next() % 7);
             CodeStation = Code++;

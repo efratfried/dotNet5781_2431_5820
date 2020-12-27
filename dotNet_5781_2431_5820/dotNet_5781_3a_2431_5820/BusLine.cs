@@ -31,6 +31,7 @@ namespace dotNet_02_5781_2431_5820.git
                 {
                     Start = first;
                     End = last;
+                    LineStops = new List<BusStopLine>();
                     LineStops.Add(first);
                     LineStops.Add(last);
                     this.LineNum = LineNUm;
@@ -284,7 +285,7 @@ namespace dotNet_02_5781_2431_5820.git
         }
 
         //the indexer for busline
-
+        
         public int CompareTo(object obj)
         {//comparing distance from one stop to other between two lines and returns who is the realationship between them
             if (obj == null) return 1;//end of array

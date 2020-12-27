@@ -62,10 +62,10 @@ namespace dotNet_02_5781_2431_5820
                 Latitude = Rochav;
                 Longitude = Orech;
                 //the defult is yes i want addres but in busstopline its false so i can have location without adress
-                if (flag)
+               /* if (flag)
                 {
                     DoYouWantAdress();
-                }
+                }*/
             }
         public void DoYouWantAdress()
         {

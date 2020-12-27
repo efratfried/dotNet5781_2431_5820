@@ -37,7 +37,11 @@ namespace dotNet_02_5781_2431_5820
                 {//if there arent any lines in the list i can add a new line.
                     int a = busStops.Count;
                     int randFirst = rand.Next(0, a);
-                    int randLast = rand.Next(0, a);
+                    int randLast = rand.Next(0, a);                  
+                        while(randFirst == randLast)
+                        {
+                            randLast += rand.Next() % (a-randLast);
+                        }
                     NewLine = new BusLine(busStops[randFirst], busStops[randLast], WantedLine);
                 }
                 else

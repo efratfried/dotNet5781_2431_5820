@@ -28,13 +28,13 @@ namespace dotNet_5781_3a_2431_5820
             InitializeComponent();
             busLineCollection = new AllLines();     
             Random m = new Random();
-            int StopsNum = m.Next(50,100);
+            int StopsNum = 5;//m.Next(50,100);
 
             for (int i = 0; i < 5; i++)
             {//before adding a line we need to have a stations at least start & begin stations.
                 busLineCollection.AddStopToList();//check this func
             }
-
+            //till here everthing is all right!!!!!!!!!
             for (int j = 0; j < 10; j++)
             {//10 randoms lines.
                 int NumofTheLine = m.Next(1,999);

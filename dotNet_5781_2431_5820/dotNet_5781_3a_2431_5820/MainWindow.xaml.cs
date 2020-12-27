@@ -25,26 +25,27 @@ namespace dotNet_5781_3a_2431_5820
         public AllLines busLineCollection;
         public BusPresentation()//ctor
         {
-            busLineCollection = new AllLines();
             InitializeComponent();
+            busLineCollection = new AllLines();     
             Random m = new Random();
             int StopsNum = m.Next(50,100);
 
-            for (int i = 0; i < StopsNum; i++)
+            for (int i = 0; i < 5; i++)
             {//before adding a line we need to have a stations at least start & begin stations.
-                busLineCollection.AddStopToList();
+                busLineCollection.AddStopToList();//check this func
             }
 
             for (int j = 0; j < 10; j++)
             {//10 randoms lines.
                 int NumofTheLine = m.Next(1,999);
-                busLineCollection.AddLine(NumofTheLine);
+                busLineCollection.AddLine(NumofTheLine);//check this func
             }
 
             cbBusLines.ItemsSource = busLineCollection.Lines;
             cbBusLines.DisplayMemberPath = " BusLineNum ";
             cbBusLines.SelectedIndex = 0;
         }
+
         private BusLine currentDisplayBusLine;
        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

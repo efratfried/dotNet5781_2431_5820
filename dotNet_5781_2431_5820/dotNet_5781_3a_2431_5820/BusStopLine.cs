@@ -44,6 +44,9 @@ namespace dotNet_02_5781_2431_5820.git
             else//if a & b are equal.
                 return 0;
         }
-       
+        public override bool Equals(object code)
+        {
+            return this.CodeStation==((BusStopLine)code).CodeStation;
+        }
     }
 }

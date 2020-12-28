@@ -23,10 +23,12 @@ namespace dotNet_02_5781_2431_5820
             Lines=new List<BusLine> ();
             busStops=new List<BusStopLine> ();
         }
+        static Random rand = new Random();
         public void AddLine(int WantedLine)
         {
+
             BusLine NewLine;
-            Random rand = new Random();
+           
             if (busStops.Count < 2)
             {
                 throw new Exception("Add more stations");
@@ -38,11 +40,12 @@ namespace dotNet_02_5781_2431_5820
                     int a = busStops.Count;
                     int randFirst = rand.Next(0, a);
                     int randLast = rand.Next(0, a);                  
-                        while(randFirst == randLast)
+                        while(randFirst.Equals(randLast))
                         {
-                            randLast += rand.Next() % (a-randLast);
+                            randLast = rand.Next(0, a);
                         }
                     NewLine = new BusLine(busStops[randFirst], busStops[randLast], WantedLine);
+                    Lines.Add(NewLine);
                 }
                 else
                 {//if there are any lines we need to check if it is in the list.
@@ -79,7 +82,6 @@ namespace dotNet_02_5781_2431_5820
                     //Lines.Add(NewLine);
                 }
             }
-
         }
         public void RemoveLine(int removable)
         {

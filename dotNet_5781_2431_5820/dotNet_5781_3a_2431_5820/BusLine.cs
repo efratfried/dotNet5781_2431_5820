@@ -14,6 +14,7 @@ namespace dotNet_02_5781_2431_5820.git
     {
         //FIELDS
         public int LineNum;
+        Random rand = new Random();
         public BusLine(BusStopLine first = null, BusStopLine last = null, int LineNUm = 0)
         {
             if(first==null)
@@ -23,9 +24,12 @@ namespace dotNet_02_5781_2431_5820.git
             }
             else
             {
-                if (first == last)
+                if (first.Equals(last))
                 {//no circle lines.
-                    throw new Exception("you need to enter two different stops");
+                    while (first.Equals(last))
+                    {
+                        last = rand.Next(0, );
+                    }
                 }
                 else
                 {

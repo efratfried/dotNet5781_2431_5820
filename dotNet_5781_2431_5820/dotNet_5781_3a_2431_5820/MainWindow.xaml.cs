@@ -23,12 +23,13 @@ namespace dotNet_5781_3a_2431_5820
     public partial class BusPresentation : Window
     {
         public AllLines busLineCollection;
+        static Random m = new Random();
         public BusPresentation()//ctor
         {
             InitializeComponent();
             busLineCollection = new AllLines();     
-            Random m = new Random();
-            int StopsNum = 5;//m.Next(50,100);
+            
+            int StopsNum = m.Next(50,100);
 
             for (int i = 0; i < 5; i++)
             {//before adding a line we need to have a stations at least start & begin stations.

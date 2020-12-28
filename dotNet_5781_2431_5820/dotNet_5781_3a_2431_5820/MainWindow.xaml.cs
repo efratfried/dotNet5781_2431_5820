@@ -45,7 +45,6 @@ namespace dotNet_5781_3a_2431_5820
             cbBusLines.DisplayMemberPath = " BusLineNum ";
             cbBusLines.SelectedIndex = 0;
         }
-
         private BusLine currentDisplayBusLine;
        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

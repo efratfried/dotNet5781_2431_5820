@@ -78,8 +78,9 @@ namespace dotNet_02_5781_2431_5820
                         NewLine = new BusLine(busStops[randFirst], busStops[randLast], WantedLine);
                     }
                     else
+                    {
                         throw new Exception("unknown");
-
+                    }
                     //adding more stations to the line randomly.
                     int MaxAmountOfStations = rand.Next(0, busStops.Count);
                     for (int i = rand.Next(0, busStops.Count); i < MaxAmountOfStations; i+= rand.Next(0, 10))//almost totaly random

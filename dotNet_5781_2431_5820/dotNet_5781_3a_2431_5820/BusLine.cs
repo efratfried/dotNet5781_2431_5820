@@ -14,8 +14,8 @@ namespace dotNet_02_5781_2431_5820.git
     {
         //FIELDS
         public int LineNum;
-        Random rand = new Random();
-        public BusLine(BusStopLine first = null, BusStopLine last = null, int LineNUm = 0)
+        Random  rand = new Random();
+        public  BusLine(BusStopLine first = null, BusStopLine last = null, int LineNUm = 0)
         {
             if(first==null)
             {
@@ -26,10 +26,7 @@ namespace dotNet_02_5781_2431_5820.git
             {
                 if (first.Equals(last))
                 {//no circle lines.
-                    while (first.Equals(last))
-                    {
-                        last = rand.Next(0, );
-                    }
+                    Console.WriteLine("we have problems");
                 }
                 else
                 {
@@ -44,10 +41,10 @@ namespace dotNet_02_5781_2431_5820.git
         }
         public  BusStopLine Start { get; set; }
         public  BusStopLine End { get; set; }
-        public List<BusStopLine> LineStops;//list of all the station of the line
-        public Area MyArea;
+        public  List<BusStopLine> LineStops;//list of all the station of the line
+        public  Area MyArea;
         private int iCurrent = -1;
-        public BusLine OtherSide(AllLines MyLines)
+        public  BusLine OtherSide(AllLines MyLines)
         {
             foreach(BusLine L in MyLines.Lines)
             {
@@ -117,11 +114,12 @@ namespace dotNet_02_5781_2431_5820.git
                 throw new Exception("could'nt find the requested station");
             }
         }
-       public void AddStop(BusStopLine NewStop,string state=null)
+        public void AddStop(BusStopLine NewStop,string state=null)
         {
            if( LineStops.Contains(NewStop))
             {
-               throw new Exception("The stop is already in the Line's stops list");
+             //  throw new Exception("The stop is already in the Line's stops list");
+            //do nothing
             }
 
             int index=  WhereToAdd(NewStop,state);
@@ -151,9 +149,10 @@ namespace dotNet_02_5781_2431_5820.git
             {
                 return LineStops.Count;
             }
-            double FirstDis=LineStops[i].DistancefromPriviouStation(NewStop,LineStops[i++]);
-            double LastDis = LineStops[LineStops.Count].DistancefromPriviouStation(NewStop, LineStops[LineStops.Count]);
-            for ( k=i-1;i<=LineStops.Count;i++,k++)
+            double FirstDis=LineStops[i].DistancefromPriviouStation(NewStop,LineStops[i+1]);
+            i++;
+            double LastDis = LineStops[LineStops.Count-1].DistancefromPriviouStation(NewStop, LineStops[LineStops.Count-1]);
+            for ( k=i-1;i<LineStops.Count;i++,k++)
             {
                 if((LineStops[i].DistancefromPriviouStation(NewStop, LineStops[i])< (LineStops[i].DistancefromPriviouStation(LineStops[i], LineStops[k]))&& (LineStops[i].DistancefromPriviouStation(NewStop, LineStops[k]) < LineStops[i].DistancefromPriviouStation(LineStops[i], LineStops[k]))))
                     {
@@ -234,14 +233,15 @@ namespace dotNet_02_5781_2431_5820.git
         }
         public override string ToString()
         {//returns in this format: busline:122 area:jerusalem one side: 115478 222555 second side: 222555 115478
-            string ThisSidePath = "The line's path: ";
+            string ThisSidePath = "";
             ThisSidePath += ReturnsPathString(this);
-            return "busline:"+LineNum+"area:"+MyArea+ ThisSidePath;
+            return "busline:" + LineNum + "area:" + MyArea + ThisSidePath;
+            //  return LineNum.ToString();
         }
-       public string ReturnsPathString(BusLine WantedBusLine)
+        public string ReturnsPathString(BusLine WantedBusLine)
         {//returns string with the path of the bus that was sent to her
             string OtherSidePath = " ";
-                for (int i = 0; i <= WantedBusLine.LineStops.Count; i++)
+                for (int i = 0; i < WantedBusLine.LineStops.Count; i++)
                 {
                     OtherSidePath += WantedBusLine.LineStops[i].CodeStation;
                 }
@@ -287,9 +287,12 @@ namespace dotNet_02_5781_2431_5820.git
             }
             return -1;//if the busline wasnt found.
         }
-
-        //the indexer for busline
-        
+         public string path()
+        {
+            string ThisSidePath = "The line's path: ";
+            ThisSidePath += ReturnsPathString(this);
+            return "busline:" + LineNum + "area:" + MyArea + ThisSidePath;
+        }
         public int CompareTo(object obj)
         {//comparing distance from one stop to other between two lines and returns who is the realationship between them
             if (obj == null) return 1;//end of array

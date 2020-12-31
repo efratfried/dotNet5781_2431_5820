@@ -1,7 +1,7 @@
 ﻿//efrat fried
 //tamar packter
 
-namespace dotNet_02_5781_2431_5820.git
+namespace dotNet_3a_5781_2431_5820
 {
-        enum Options { add, delete, search, print, exit };
+    enum Options { add, delete, search, print, exit };
 }

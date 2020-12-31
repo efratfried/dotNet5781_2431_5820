@@ -26,7 +26,6 @@ namespace dotNet_02_5781_2431_5820
         static Random rand = new Random();
         public void AddLine(int WantedLine)
         {
-
             BusLine NewLine;
            
             if (busStops.Count < 2)
@@ -60,26 +59,32 @@ namespace dotNet_02_5781_2431_5820
                             else
                             {//if there is only one side of the line.
                                 int index = IndexOfLine(item.LineNum);
-                                NewLine = new BusLine(item.End, item.Start, WantedLine);
+                                NewLine = new BusLine(item.End, item.Start, WantedLine);                          
                             }
                         }
                     }
                     //if not returned must be that the line isnt there.
-                    if (IndexOfLine(WantedLine) ==-1)
+                    if (IndexOfLine(WantedLine) == -1)
                     { //the list isnt empty but the wanted line isnt there.
                         int a = busStops.Count;
                         int randFirst = rand.Next(0, a);
                         int randLast = rand.Next(0, a);
+                        while (randFirst.Equals(randLast))
+                        {
+                            randLast = rand.Next(0, a);
+                        }
                         NewLine = new BusLine(busStops[randFirst], busStops[randLast], WantedLine);
                     }
+                    else
+                        throw new Exception("unknown");
+
                     //adding more stations to the line randomly.
-                    Random A = new Random();
-                    int MaxAmountOfStations = A.Next(0, busStops.Count);
-                    for (int i = 0; i < MaxAmountOfStations; i+=A.Next(0, busStops.Count))
+                    int MaxAmountOfStations = rand.Next(0, busStops.Count);
+                    for (int i = rand.Next(0, busStops.Count); i < MaxAmountOfStations; i+= rand.Next(0, 10))//almost totaly random
                     {
-                       // NewLine.AddStop(busStops[i]);
+                        NewLine.AddStop(busStops[i]);
                     }
-                    //Lines.Add(NewLine);
+                    Lines.Add(NewLine);
                 }
             }
         }
@@ -114,7 +119,6 @@ namespace dotNet_02_5781_2431_5820
              }
              return -1;//if the busline wasnt found.
          }
-
         public string LinesInStop(int StationCode)
         {//get the num of a station & returns all the lines that passing by.
             if (busStops.Any())
@@ -238,24 +242,14 @@ namespace dotNet_02_5781_2431_5820
                 k++;
             }
         }
-        public BusLine this[int index]
+        public BusLine this[int busLineNum]//indexer
         {
             get
             {
-                foreach (var item in Lines)
-                {
-                    if (item.LineNum == index)
-                    {
-                        return item;
-                    }
-                }
-                return null;
+                return this.Lines.Find(item => item.LineNum == busLineNum);
             }
-
-            private set
-            {
-                this[index] = value;
-            }
+            set
+            {}
         }
         public void AddStopToList()
         {

@@ -18,9 +18,6 @@ namespace dotNet_02_5781_2431_5820
         public int CodeStation;
         public Location BusStopLocation;
         static Random rnd1 = new Random();
-       // Random rnd2 = new Random();
-       // Random rnd3 = new Random();
-       // Random rnd4 = new Random();
         public BusStop(bool flag = true)//we need to do the valid check first-???
         {//get a valid code from ?
             Random rndArea = new Random();
@@ -46,7 +43,7 @@ namespace dotNet_02_5781_2431_5820
         }
         public override string ToString()
         {
-            return "Bus Station Code:" + Code + ", "+ BusStopLocation.ToString();
+            return "Bus Station Code: " + CodeStation + " , "+ BusStopLocation.ToString();
         }
     }
 }

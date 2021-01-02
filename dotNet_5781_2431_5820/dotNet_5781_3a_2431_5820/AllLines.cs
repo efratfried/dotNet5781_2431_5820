@@ -88,6 +88,7 @@ namespace dotNet_02_5781_2431_5820
                         NewLine.AddStop(busStops[i]);
                     }
                     Lines.Add(NewLine);
+
                 }
             }
         }

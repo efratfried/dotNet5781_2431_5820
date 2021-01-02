@@ -39,7 +39,6 @@ namespace dotNet_02_5781_2431_5820
                     int a = busStops.Count;
                     int randFirst = rand.Next(0, a);
                     int randLast = rand.Next(0, a);
-                    int NumOfStations;
                         while (randFirst.Equals(randLast))
                         {
                             randLast = rand.Next(0, a);

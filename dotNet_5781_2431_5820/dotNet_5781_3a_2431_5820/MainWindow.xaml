@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet_5781_3a_2431_5820"
         mc:Ignorable="d"
+        Icon="C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\dotNet_5781_3a_2431_5820\Path Finder.PNG"
+</Grid> "
         Title="BusPresentation" Height="640" Width="800">
+        
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
@@ -39,7 +42,7 @@ VerticalAlignment="Stretch" Width="auto">
                 </ListBox.Background>
             </ListBox>
         </ListBox>
-        <Image Source="C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\dotNet_5781_3a_2431_5820\Path Finder.PNG" Margin="620,396,-0.4,10.4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Height="136" Width="174"/>
+        <Image Source="C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\dotNet_5781_3a_2431_5820\Path Finder.PNG" Margin="610,396,9.6,10.4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Height="136" Width="174"/>
     </Grid>
 </Window>
 

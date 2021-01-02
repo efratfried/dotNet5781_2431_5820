@@ -38,12 +38,14 @@ namespace dotNet_02_5781_2431_5820
                 {//if there arent any lines in the list i can add a new line.
                     int a = busStops.Count;
                     int randFirst = rand.Next(0, a);
-                    int randLast = rand.Next(0, a);                  
-                        while(randFirst.Equals(randLast))
+                    int randLast = rand.Next(0, a);
+                    int NumOfStations;
+                        while (randFirst.Equals(randLast))
                         {
                             randLast = rand.Next(0, a);
                         }
                     NewLine = new BusLine(busStops[randFirst], busStops[randLast], WantedLine);
+              
                     Lines.Add(NewLine);
                 }
                 else
@@ -76,8 +78,9 @@ namespace dotNet_02_5781_2431_5820
                         NewLine = new BusLine(busStops[randFirst], busStops[randLast], WantedLine);
                     }
                     else
+                    {
                         throw new Exception("unknown");
-
+                    }
                     //adding more stations to the line randomly.
                     int MaxAmountOfStations = rand.Next(0, busStops.Count);
                     for (int i = rand.Next(0, busStops.Count); i < MaxAmountOfStations; i+= rand.Next(0, 10))//almost totaly random

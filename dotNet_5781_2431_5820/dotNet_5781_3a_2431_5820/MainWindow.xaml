@@ -8,11 +8,10 @@
         Title="BusPresentation" Height="640" Width="800">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="68*"/>
-            <RowDefinition Height="123*"/>
-            <RowDefinition Height="418*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
-        <Grid HorizontalAlignment="Left" Height="68" Margin="0,0,-2,0" VerticalAlignment="Top" Width="794"/>
+        <Grid HorizontalAlignment="Left" Height="68" Margin="0,0,-0.4,0" VerticalAlignment="Top" Width="794"/>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
 VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
@@ -21,8 +20,8 @@ VerticalAlignment="Stretch" Width="auto">
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <Label Content="Bus Line Number:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="198" Height="69" FontSize="28" FontFamily="Tw Cen MT Condensed" Margin="0,0,0,-1" Background="#FFF3B613" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" BorderThickness="0"/>
-            <Label Content="Area:" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0,0,0" VerticalAlignment="Top" Width="198" FontSize="24" FontFamily="Gisha" Height="68" Background="#FFF3B613"/>
+            <Label Content="Bus Line Number:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="70" FontSize="28" FontFamily="Tw Cen MT Condensed" Margin="0,0,0,-1" Background="#FFF3B613" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="Area:" Grid.Column="2" HorizontalAlignment="Center" Margin="0.2,0,0,0" VerticalAlignment="Center" Width="200" FontSize="28" FontFamily="Tw Cen MT Condensed" Height="70" Background="#FFF3B613" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <ComboBox  HorizontalAlignment="Left" Width="199" Name="cbBusLines"  Grid.ColumnSpan="2" SelectionChanged="cbBusLines_SelectionChanged" ItemsSource="{Binding}" Grid.Column="1" Height="68" VerticalAlignment="Top">
                 <ComboBox.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -33,10 +32,14 @@ VerticalAlignment="Stretch" Width="auto">
             </ComboBox>
             <TextBox  Grid.Column="2" Height="69" Margin="198.2,0,-0.4,-1" TextWrapping="Wrap"  Text="" VerticalAlignment="Top" Grid.ColumnSpan="2" TextChanged="TextBox_TextChanged" Background="#FFF3B613"/>
         </Grid>
-        <ListBox HorizontalAlignment="Left" Name="lbBusLineStations" Height="298" Grid.Row="1" VerticalAlignment="Top" Width="630" Grid.RowSpan="2" Margin="92,0,0,0">
-            <ListBox Height="514" Width="784" SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding}" FontSize="22" FontFamily="Gisha"/>
+        <ListBox HorizontalAlignment="Left" Name="lbBusLineStations" Height="542" Margin="0,0,-0.4,0" Grid.Row="1" VerticalAlignment="Top" Width="794">
+            <ListBox Height="542" Width="784" SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding}" FontSize="22" FontFamily="Gisha">
+                <ListBox.Background>
+                    <ImageBrush/>
+                </ListBox.Background>
+            </ListBox>
         </ListBox>
-
+        <Image Source="C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\dotNet_5781_3a_2431_5820\Path Finder.PNG" Margin="620,396,-0.4,10.4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Height="136" Width="174"/>
     </Grid>
 </Window>
 

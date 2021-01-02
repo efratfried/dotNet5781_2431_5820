@@ -63,7 +63,7 @@ namespace dotNet_5781_3a_2431_5820
             { }
         }
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        {// showing the buss stashions in the big window
            ShowBusLine((cbBusLines.SelectedValue as BusLine).LineNum);
         }
 

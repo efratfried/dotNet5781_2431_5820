@@ -8,10 +8,11 @@
         Title="BusPresentation" Height="640" Width="800">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="400*"/>
+            <RowDefinition Height="68*"/>
+            <RowDefinition Height="123*"/>
+            <RowDefinition Height="418*"/>
         </Grid.RowDefinitions>
-        <Grid HorizontalAlignment="Left" Height="68" Margin="0,0,-0.4,0" VerticalAlignment="Top" Width="794"/>
+        <Grid HorizontalAlignment="Left" Height="68" Margin="0,0,-2,0" VerticalAlignment="Top" Width="794"/>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
 VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
@@ -28,14 +29,14 @@ VerticalAlignment="Stretch" Width="auto">
                         <GradientStop Color="#FFF0F0F0" Offset="0"/>
                         <GradientStop Color="#FFEAEAEA" Offset="1"/>
                     </LinearGradientBrush>
-                </ComboBox.Background> 
+                </ComboBox.Background>
             </ComboBox>
             <TextBox  Grid.Column="2" Height="69" Margin="198.2,0,-0.4,-1" TextWrapping="Wrap"  Text="" VerticalAlignment="Top" Grid.ColumnSpan="2" TextChanged="TextBox_TextChanged" Background="#FFF3B613"/>
         </Grid>
-        <ListBox HorizontalAlignment="Left" Name="lbBusLineStations" Height="542" Margin="0,0,-0.4,0" Grid.Row="1" VerticalAlignment="Top" Width="794">
-            <ListBox Height="542" Width="784" SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding}" FontSize="22" FontFamily="Gisha"/>
+        <ListBox HorizontalAlignment="Left" Name="lbBusLineStations" Height="298" Grid.Row="1" VerticalAlignment="Top" Width="630" Grid.RowSpan="2" Margin="92,0,0,0">
+            <ListBox Height="514" Width="784" SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding}" FontSize="22" FontFamily="Gisha"/>
         </ListBox>
-        
+
     </Grid>
 </Window>
 

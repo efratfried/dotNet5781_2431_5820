@@ -118,7 +118,7 @@ namespace dotNet_02_5781_2431_5820.git
         {
            if( LineStops.Contains(NewStop))
             {
-             //  throw new Exception("The stop is already in the Line's stops list");
+                return;
             //do nothing
             }
 

@@ -8,8 +8,8 @@ namespace DO
 {
     public class FollowingStations
     {
-        public int FirstCode { set; get; }
-        public int SecondCode { set; get; }
+        public int FirstStationCode { set; get; }
+        public int SecondStationCode { set; get; }
         public double Distance { set; get; }
         public TimeSpan AaverageDrivingTime { set; get; }
         public TimeSpan WalkingTime { set; get; }

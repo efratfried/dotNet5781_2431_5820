@@ -11,65 +11,65 @@ namespace DLAPI
     public interface IDL
     {
         #region Bus
-        int AddBus(int BusNum);
+        int AddBus(Bus Bus);
         Bus GetBus(int BusNum);
-        void UpdateBus(int BusNum);
-        void DeleteBus(int BusNum);
+        void UpdateBus(Bus Bus);
+        void DeleteBus(Bus Bus);
         #endregion
         #region Station
-        int AddStation(int CodeStation);
+        int AddStation(Station Station);
         Station GetStation(int CodeStation);
-        void UpdateStation(int CodeStation);
-        void DeleteStation(int CodeStation);
+        void UpdateStation(Station Station);
+        void DeleteStation(Station Station);
         #endregion
         #region User
-        int AddUser(string Name, int Password);
+        int AddUser(User User);
         User GetUserName(int password);
         User GetUserPassword(int PAssword);
-        void UpdateUser(string Name, int Password);
-        void DeleteUser(string Name, int Password);
+        void UpdateUser(User Userr);
+        void DeleteUser(User User);
         #endregion
         #region Adress
-        int AddAdress(string Street, int num, string city);
+        int AddAdress(Adress Adress);
         void GetAdress(string Street, int num, string city);
-        void UpdateAdress(string Street, int num, string city);
-        void DeleteAdress(string Street, int num, string city);
+        void UpdateAdress(Adress Adress);
+        void DeleteAdress(Adress Adress);
         #endregion
         #region BusLine
-        int AddBusLine(int BusNum);
+        int AddBusLine(BusLine BusLine);
         BusLine GetBusLine(int BusNum);
-        void UpdateBusLine(int BusNum);
-        void DeleteBusLine(int BusNum);
+        void UpdateBusLine(BusLine BusLine);
+        void DeleteBusLine(BusLine BusLine);
         #endregion
         #region BusStationLine
-        int AddBusStationLine(int BusNum, int CodeStation);
+        int AddBusStationLine(BusStationLine BusStationLine);
         BusStationLine GetBusStationLine(int BusNum, int CodeStation);
-        void UpdateBusStationLine(int BusNum, int CodeStation);
-        void DeleteBusStationLine(int BusNum, int CodeStation);
+        void UpdateBusStationLine(BusStationLine BusStationLine);
+        void DeleteBusStationLine(BusStationLine BusStationLine);
         #endregion
-        #region DrivingLine
-        int AddDrivingLine(int BusNum);
+        #region DrivingBus
+        int AddDrivingLine(DrivingBus DrivingBus);
         DrivingBus GetDrivingBus(int BusNum);
-        void UpdateDrivingLine(int BusNum);
-        void DeleteDrivingLine(int BusNum);
+        void UpdateDrivingLine(DrivingBus DrivingBus);
+        void DeleteDrivingLine(DrivingBus DrivingBus);
         #endregion
         #region Location
-        int AddLocation(double latitude, double longtitude);
+        int AddLocation(Location Location);
         Location GetLocation(double latitude, double longtitude);
-        void UpdateLocation(double latitude, double longtitude);
-        void DeleteLocation(double latitude, double longtitude);
+        void UpdateLocation(Location Location);
+        void DeleteLocation(Location Location);
         #endregion
         #region OutGoingLine
-        int AddOutGoingLine(int BusNum);
-        OutGoingLine GetOutGoingLine(int BusNum);
-        void UpdateOutGoingLine(int BusNum);
-        void DeleteOutGoingLine(int BusNum);
+        int AddOutGoingLine(OutGoingLine OutGoingLine);
+        OutGoingLine GetOutGoingLine(OutGoingLine OutGoingLine);
+        void UpdateOutGoingLine(OutGoingLine OutGoingLine);
+        void DeleteOutGoingLine(OutGoingLine OutGoingLine);
         #endregion
         #region UserDrive
-        int AddUserDrive(string name, int password);
-        UserDrive GetUserDrive(string Name);
-        void UpdateUserDrive(string name);
-        void DeleteUserDrive(string name);
+        int AddUserDrive(UserDrive UserDrive);
+        UserDrive GetUserDrive(UserDrive UserDrive);
+        void UpdateUserDrive(UserDrive UserDrive);
+        void DeleteUserDrive(UserDrive UserDrive);
 
         #endregion
         #region FollowingStations

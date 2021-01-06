@@ -41,6 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLAPI\IBL.cs" />
+    <Compile Include="BO\Adress.cs" />
+    <Compile Include="BO\Bus.cs" />
+    <Compile Include="BO\BusLine.cs" />
+    <Compile Include="BO\BusStationLine.cs" />
+    <Compile Include="BO\DrivingBus.cs" />
+    <Compile Include="BO\Enum.cs" />
+    <Compile Include="BO\Exception.cs" />
+    <Compile Include="BO\FollowingStations.cs" />
+    <Compile Include="BO\OutGoingLine.cs" />
+    <Compile Include="BO\Station.cs" />
+    <Compile Include="BO\Tools.cs" />
+    <Compile Include="BO\User.cs" />
+    <Compile Include="BO\UserDrive.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -11,5 +11,9 @@ namespace DO
         protected string UserName { set; get; }
         protected string Password { set; get; }
         public Access Me { protected set; get; }
+        public override string ToString()
+        {
+            return this.ToStringProperty();
+        }
     }
 }

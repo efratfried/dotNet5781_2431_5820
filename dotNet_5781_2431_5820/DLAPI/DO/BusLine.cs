@@ -8,11 +8,16 @@ namespace DO
 {
     public class BusLine
     {
-        protected int ID { set; get; }
+        public int ID { set; get; }
         public int BusNum { set; get; }
         public Area Area { set; get; }
         public int FirstStation { set; get; }
         public int LastStation { set; get; }
-        public Company Mycompany { set; get; }
+        public BusLine MyBusLine { set; get; }
+        public bool IsDeleted { set; get; }
+        public override string ToString()
+        {
+            return this.ToStringProperty();
+        }
     }
 }

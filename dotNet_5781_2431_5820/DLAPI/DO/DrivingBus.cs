@@ -10,12 +10,15 @@ namespace DO
     {
         protected int ID { get; set; }//key one
         public int LicenseNum { get; set; }//key two 
-        // string  { get; set; }
         public TimeSpan AstimateTimeOut { get; set; }
         public TimeSpan ActualTimeOut { get; set; }
         public string LastestStation { get; set; }
         public TimeSpan TimePassFromLastestStation { get; set; }
         public TimeSpan AstimateArrive { get; set; }
         public string DriverID { get; set; }
+        public override string ToString()
+        {
+            return this.ToStringProperty();
+        }
     }
 }

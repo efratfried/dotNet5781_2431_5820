@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DO\Exception.cs" />
+    <Compile Include="DO\Tools.cs" />
     <Compile Include="IDL.cs" />
     <Compile Include="DO\Adress.cs" />
     <Compile Include="DO\Bus.cs" />
@@ -49,7 +51,6 @@
     <Compile Include="DO\DrivingBus.cs" />
     <Compile Include="DO\Enum.cs" />
     <Compile Include="DO\FollowingStations.cs" />
-    <Compile Include="DO\Location.cs" />
     <Compile Include="DO\OutGoingLine.cs" />
     <Compile Include="DO\Station.cs" />
     <Compile Include="DO\User.cs" />

@@ -57,7 +57,7 @@ namespace dotNet_02_5781_2431_5820
                 lat = ' ';
                 return Longitude + "° " + Long + "  " + Latitude + "° " + lat + adress.ToString();// adress to string is never null:)
         }
-            public void SetLocation(double Rochav, double Orech, bool flag)
+        public void SetLocation(double Rochav, double Orech, bool flag)
             {
                 Latitude = Rochav;
                 Longitude = Orech;

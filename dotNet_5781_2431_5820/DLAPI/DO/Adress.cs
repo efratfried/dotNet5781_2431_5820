@@ -8,8 +8,10 @@ namespace DO
 {
     public class Adress
     {
-        public string City { set; get; }
-        public string Street { set; get; }
-        public int Num { set; get; }
+        public string Address { set; get; }
+        public override string ToString()
+        {
+            return this.ToStringProperty();
+        }
     }
 }

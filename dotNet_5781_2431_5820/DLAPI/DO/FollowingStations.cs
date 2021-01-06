@@ -13,5 +13,9 @@ namespace DO
         public double Distance { set; get; }
         public TimeSpan AaverageDrivingTime { set; get; }
         public TimeSpan WalkingTime { set; get; }
+        public override string ToString()
+        {
+            return this.ToStringProperty();
+        }
     }
 }

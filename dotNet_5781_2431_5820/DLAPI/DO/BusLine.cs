@@ -13,7 +13,7 @@ namespace DO
         public Area Area { set; get; }
         public int FirstStation { set; get; }
         public int LastStation { set; get; }
-        public BusLine MyBusLine { set; get; }
+        //public BusLine MyBusLine { set; get; }
         public bool IsDeleted { set; get; }
         public override string ToString()
         {

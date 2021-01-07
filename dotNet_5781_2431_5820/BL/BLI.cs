@@ -9,7 +9,7 @@ using BO;
 
 namespace BLAPI
 {
-    public interface IBL
+    public interface BLI
     {
         IDL dl = DLFactory.GetDL();
 

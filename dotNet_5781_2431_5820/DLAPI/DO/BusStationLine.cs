@@ -12,9 +12,5 @@ namespace DO
         public int BusStationNum { set; get; }
         public int IndexInLine { set; get; }
         public int NumOfPassingLines { set; get; }
-        public override string ToString()
-        {
-            return this.ToStringProperty();
-        }
     }
 }

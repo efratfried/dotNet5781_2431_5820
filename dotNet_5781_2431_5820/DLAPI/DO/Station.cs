@@ -15,10 +15,5 @@ namespace DO
         public string Address { get; set; }
         public double Latitude { get; set; }
         public double longitude { get; set; }
-
-        public override string ToString()
-        {
-            return this.ToStringProperty();
-        }
     }
 }

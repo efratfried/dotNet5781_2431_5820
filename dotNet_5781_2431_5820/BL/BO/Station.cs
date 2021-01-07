@@ -15,7 +15,6 @@ namespace BO
         public string Address { get; set; }
         public double Latitude { get; set; }
         public double longitude { get; set; }
-        public IEnumerable<BusStationLine> Lecturers { get; set; } //is it correct <BusStationLine> ???????????
         public override string ToString() => this.ToStringProperty();
     }
 }

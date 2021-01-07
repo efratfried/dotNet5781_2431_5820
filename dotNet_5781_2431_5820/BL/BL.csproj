@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLAPI\IBL.cs" />
     <Compile Include="BO\Adress.cs" />
     <Compile Include="BO\Bus.cs" />
     <Compile Include="BO\BusLine.cs" />
@@ -55,7 +54,7 @@
     <Compile Include="BO\Tools.cs" />
     <Compile Include="BO\User.cs" />
     <Compile Include="BO\UserDrive.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="IBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +66,9 @@
       <Project>{10ccbc35-3674-4290-ae37-c082f4b4db44}</Project>
       <Name>DLobject</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BLAPI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

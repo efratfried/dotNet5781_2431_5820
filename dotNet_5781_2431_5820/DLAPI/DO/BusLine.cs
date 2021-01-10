@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DO
 {
     public class BusLine
-    {
+    {// the actual line
         public int ID { set; get; }
         public int BusNum { set; get; }
         public Area Area { set; get; }

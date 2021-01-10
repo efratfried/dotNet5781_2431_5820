@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DO
 {
     public class FollowingStations
-    {
+    {//info between to folowing station 
         public int FirstStationCode { set; get; }
         public int SecondStationCode { set; get; }
         public double Distance { set; get; }

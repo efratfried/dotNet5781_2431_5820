@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DO
 {
     public class Bus
-    {
+    {// the thechnical phyzical fitchers of the bus
         public int LicenseNum { get; set; }
         public DateTime LicenseDate { get; set; }
         public double KM { get; set; }

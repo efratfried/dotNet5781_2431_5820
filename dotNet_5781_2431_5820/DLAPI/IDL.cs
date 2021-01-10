@@ -23,7 +23,7 @@ namespace DLAPI
         #region Station
         DO.Station GetStation(int Num);
         IEnumerable<DO.Station> GetAllStations();
-        IEnumerable<object> GetStationListWithSelectedFields(Func<DO.Station, object> generate);
+        IEnumerable<DO.Station> GetStationListWithSelectedFields(Predicate<DO.Station> predicate);
         void AddStation(DO.Station Station);
         void UpdateStation(DO.Station Station);
         void UpdateStation(int Num, Action<DO.Station> update); //method that knows to updt specific fields in Student

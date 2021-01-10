@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLAPI\IBL.cs" />
+    <Compile Include="BLImp.cs" />
     <Compile Include="BO\Adress.cs" />
     <Compile Include="BO\Bus.cs" />
     <Compile Include="BO\BusLine.cs" />
@@ -55,7 +56,7 @@
     <Compile Include="BO\Tools.cs" />
     <Compile Include="BO\User.cs" />
     <Compile Include="BO\UserDrive.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="BLI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,5 +69,6 @@
       <Name>DLobject</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,37 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//using BO;
+
 
 namespace BLAPI
 {
     public interface IBL
     {
-        #region Bus
-        BO.BusLine GetStudent(int id);
-        IEnumerable<BO.BusLine> GetAllStudents();
-        IEnumerable<BO.BusStationLine> GetStudentIDNameList();
+        #region BusLine
+    BO.BusLine GetBusLine(int Num);
+        IEnumerable<BO.BusLine> GetBusLines();
+        IEnumerable<BO.Bus> GetBusLineIDNameList();
 
-        IEnumerable<BO.BusLine> GetStudentsBy(Predicate<BO.BusLine> predicate);
+        IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate);
 
-        void UpdateStudentPersonalDetails(BO.BusLine BusLine);
+        void UpdateBusLineDetails(BO.BusLine busLine);
 
-        void DeleteStudent(int id);
+        void DeleteBusLine(int Num);
 
         #endregion
 
+        #region BusStationLine
+        IEnumerable<BO.BusStationLine> GetAllBusStationLines();
+        #endregion
+        //מפה לטפל
         #region StudentInCourse
         void AddStudentInCourse(int perID, int courseID, float grade = 0);
         void UpdateStudentGradeInCourse(int perID, int courseID, float grade);
         void DeleteStudentInCourse(int perID, int courseID);
 
-        #endregion
-
-        #region Station
-        IEnumerable<BO.Station> GetAllCourses();
-        #endregion
+        #endregion       
 
         #region StudentCourse
-        IEnumerable<BO.Station> GetAllCoursesPerStudent(int id);
+        IEnumerable<BO.StudentCourse> GetAllCoursesPerStudent(int id);
         #endregion
+
     }
 }

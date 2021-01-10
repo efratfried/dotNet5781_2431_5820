@@ -16,9 +16,5 @@ namespace DO
         public TimeSpan TimePassFromLastestStation { get; set; }
         public TimeSpan AstimateArrive { get; set; }
         public string DriverID { get; set; }
-        public override string ToString()
-        {
-            return this.ToStringProperty();
-        }
     }
 }

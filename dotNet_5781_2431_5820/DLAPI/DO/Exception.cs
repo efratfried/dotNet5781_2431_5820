@@ -16,101 +16,121 @@ namespace DO
         public DriverIdException(int id, string message, Exception innerException) :
             base(message, innerException) => ID = id;
 
-        public override string ToString() => base.ToString() + $", bad person id: {ID}";
+        public override string ToString() => base.ToString() + $", bad driver id: {ID}";
         }
-
-    public class BadBusIdCourseIDException : Exception
+    public class UserNameException : Exception
     {
-        public int personID;
-        public int courseID;
-        public BadBusIdCourseIDException(int perID, int crsID) : base() { personID = perID; courseID = crsID; }
-        public BadBusIdCourseIDException(int perID, int crsID, string message) :
-            base(message)
-        { personID = perID; courseID = crsID; }
-        public BadBusIdCourseIDException(int perID, int crsID, string message, Exception innerException) :
-            base(message, innerException)
-        { personID = perID; courseID = crsID; }
+        public string Name;
+        public UserNameException(string name) : base() => Name = name;
+        public UserNameException(string name, string message) :
+            base(message) => Name = name;
+        public UserNameException(string name, string message, Exception innerException) :
+            base(message, innerException) => Name = name;
 
-        public override string ToString() => base.ToString() + $", bad person id: {personID} and course id: {courseID}";
+        public override string ToString() => base.ToString() + $", bad driver name: {Name}";
     }
-
-    public class BadStationIdCourseIDException : Exception
+    public class BadBusException : Exception
     {
-        public string xmlFilePath;
-        public BadStationIdCourseIDException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-        public BadStationIdCourseIDException(string xmlPath, string message) :
+        public int BusID;
+        public int BusNum;
+        public BadBusException(int BID, int BNum) : base() { BusID = BID; BusNum = BNum; }
+        public BadBusException(int perID, int BNum, string message) :
             base(message)
-        { xmlFilePath = xmlPath; }
-        public BadStationIdCourseIDException(string xmlPath, string message, Exception innerException) :
+        { BusID = perID; BusNum = BNum; }
+        public BadBusException(int BID, int BNum, string message, Exception innerException) :
             base(message, innerException)
-        { xmlFilePath = xmlPath; }
+        { BusID = BID; BusNum = BNum; }
 
-        public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
+        public override string ToString() => base.ToString() + $", bad Bus id: {BusID} the Num is: {BusNum}";
     }
-    public class BadLicenseIdCourseIDException : Exception
+    public class BadLocationExeption:Exception
     {
-        public string xmlFilePath;
-        public BadLicenseIdCourseIDException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-        public BadLicenseIdCourseIDException(string xmlPath, string message) :
+        public double Langtitude;
+        public double Longtitude;
+        public BadLocationExeption(double rochav, double orech) : base() { Langtitude = rochav; Longtitude = orech; }
+        public BadLocationExeption(double rochav, double orech, string message) :
             base(message)
-        { xmlFilePath = xmlPath; }
-        public BadLicenseIdCourseIDException(string xmlPath, string message, Exception innerException) :
+        { Langtitude = rochav; Longtitude = orech; }
+        public BadLocationExeption(double rochav, double orech, string message, Exception innerException) :
             base(message, innerException)
-        { xmlFilePath = xmlPath; }
+        { Langtitude = rochav; Longtitude = orech; }
 
-        public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
+        public override string ToString() => base.ToString() + $", bad langtitude cordinates : {Langtitude} the logtitude cordinates are: {Longtitude}";
     }
+    public class BadLicenseNumException : Exception
+    {
+        public int License;
+        public BadLicenseNumException(int L) : base() => License = L;
+        public BadLicenseNumException(int L, string message) :
+            base(message) => License = L;
+        public BadLicenseNumException(int L, string message, Exception innerException) :
+            base(message, innerException) => License = L;
 
+        public override string ToString() => base.ToString() + $", bad License num : {License}";
+    }
     public class beyondTimeLimitLineException : Exception
     {
-        public string xmlFilePath;
-        public beyondTimeLimitLineException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-        public beyondTimeLimitLineException(string xmlPath, string message) :
-            base(message)
-        { xmlFilePath = xmlPath; }
-        public beyondTimeLimitLineException(string xmlPath, string message, Exception innerException) :
-            base(message, innerException)
-        { xmlFilePath = xmlPath; }
+        public DateTime Time;
+        public beyondTimeLimitLineException(DateTime T) : base() => Time = T;
+        public beyondTimeLimitLineException(DateTime T, string message) :
+            base(message) => Time = T;
+        public beyondTimeLimitLineException(DateTime T, string message, Exception innerException) :
+            base(message, innerException) => Time = T;
 
-        public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
+        public override string ToString() => base.ToString() + $", bad working hours : {Time}";
     }
+    public class BadCodeStationException : Exception
+    {
+        public int StationCode;
+        public BadCodeStationException(int Code) : base() => StationCode = Code;
+        public BadCodeStationException(int Code, string message) :
+            base(message) => StationCode = Code;
+        public BadCodeStationException(int Code, string message, Exception innerException) :
+            base(message, innerException) => StationCode = Code;
 
-    public class BadCodeStationIDException : Exception
+        public override string ToString() => base.ToString() + $", bad station code : {StationCode}";
+    }
+    public class BadStationNameException : Exception
+    {
+        public string StationName;
+        public BadStationNameException(string Name) : base() => StationName = Name;
+        public BadStationNameException(string Name, string message) :
+            base(message) => StationName = Name;
+        public BadStationNameException(string Name, string message, Exception innerException) :
+            base(message, innerException) => StationName = Name;
+
+        public override string ToString() => base.ToString() + $", bad station's name : {StationName}";
+    }
+    public class BadUserPasswordException : Exception
+    {
+        public string Password;
+        public BadUserPasswordException(string pass) : base() => Password = pass;
+        public BadUserPasswordException(string pass, string message) :
+            base(message) => Password = pass;
+        public BadUserPasswordException(string pass, string message, Exception innerException) :
+            base(message, innerException) => Password = pass;
+
+        public override string ToString() => base.ToString() + $", bad User's Password : {Password}";
+    }
+    public class BadStationIndexInLineException : Exception
+    {
+        public int Index;
+        public BadStationIndexInLineException(int index) : base() => Index = index;
+        public BadStationIndexInLineException(int index, string message) :
+            base(message) => Index = index;
+        public BadStationIndexInLineException(int index, string message, Exception innerException) :
+            base(message, innerException) => Index = index;
+
+        public override string ToString() => base.ToString() + $", bad station's index on the line : {Index}";
+    }
+    public class XMLFileLoadCreateException : Exception
     {
         public string xmlFilePath;
-        public BadCodeStationIDException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-        public BadCodeStationIDException(string xmlPath, string message) :
+        public XMLFileLoadCreateException(string xmlPath) : base() { xmlFilePath = xmlPath; }
+        public XMLFileLoadCreateException(string xmlPath, string message) :
             base(message)
         { xmlFilePath = xmlPath; }
-        public BadCodeStationIDException(string xmlPath, string message, Exception innerException) :
-            base(message, innerException)
-        { xmlFilePath = xmlPath; }
-
-        public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
-    }
-
-    public class BadLocationException : Exception
-    {
-        public string xmlFilePath;
-        public BadLocationException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-        public BadLocationException(string xmlPath, string message) :
-            base(message)
-        { xmlFilePath = xmlPath; }
-        public BadLocationException(string xmlPath, string message, Exception innerException) :
-            base(message, innerException)
-        { xmlFilePath = xmlPath; }
-
-        public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
-    }
-
-    public class BadNotExsitingStationException : Exception
-    {
-        public string xmlFilePath;
-        public BadNotExsitingStationException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-        public BadNotExsitingStationException(string xmlPath, string message) :
-            base(message)
-        { xmlFilePath = xmlPath; }
-        public BadNotExsitingStationException(string xmlPath, string message, Exception innerException) :
+        public XMLFileLoadCreateException(string xmlPath, string message, Exception innerException) :
             base(message, innerException)
         { xmlFilePath = xmlPath; }
 

@@ -11,7 +11,6 @@ namespace DLAPI
     public interface IDL
     {
 
-
        /*  #region StudentInCourse
          IEnumerable<DO.StudentInCourse> GetStudentsInCourseList(Predicate<DO.StudentInCourse> predicate);        
          void AddStudentInCourse(int perID, int courseID, float grade=0);
@@ -20,13 +19,6 @@ namespace DLAPI
          void DeleteStudentFromAllCourses(int perID);
 
          #endregion
-
-
-         #region Lecturer
-         
-
-         #endregion
-
          */
 
         #region Bus
@@ -62,7 +54,18 @@ namespace DLAPI
         #endregion
 
         #region OutGoingLine
-        IEnumerable<DO.Station> GetLecturersInCourseList(Predicate<DO.Station> predicate);
+        IEnumerable<DO.Station> GetOutGoingLinesList(Predicate<DO.Station> predicate);
+        /*DO.OutGoingLine GetOutGoingLine(int Num);
+        IEnumerable<DO.OutGoingLine> GetAllOutGoingLines();
+        IEnumerable<object> GetOutGoingLineListWithSelectedFields(Func<DO.OutGoingLine, object> generate);
+        void AddOutGoingLine(DO.OutGoingLine OutGoingLine);
+        void UpdateOutGoingLine(DO.OutGoingLine OutGoingLine);
+        void UpdateOutGoingLine(int Num, Action<DO.OutGoingLine> update); //method that knows to updt specific fields in OutGoingLine
+        void DeleteOutGoingLine(int Num); // removes only OutGoingLine, does not remove the appropriate Bus...*/
+        #endregion
+
+        #region DrivingBus
+        IEnumerable<DO.Station> GetDrivingBusList(Predicate<DO.Station> predicate);
         /*DO.OutGoingLine GetOutGoingLine(int Num);
         IEnumerable<DO.OutGoingLine> GetAllOutGoingLines();
         IEnumerable<object> GetOutGoingLineListWithSelectedFields(Func<DO.OutGoingLine, object> generate);
@@ -101,9 +104,6 @@ namespace DLAPI
         void UpdateUserDrive(int Num, Action<DO.UserDrive> update); //method that knows to updt specific fields in Person
         void DeleteUserDrive(int Num);
         #endregion
-
-        
-
 
     }
 }

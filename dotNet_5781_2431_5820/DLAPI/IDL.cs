@@ -11,22 +11,17 @@ namespace DLAPI
     public interface IDL
     {
 
-       /*  #region StudentInCourse
-         IEnumerable<DO.StudentInCourse> GetStudentsInCourseList(Predicate<DO.StudentInCourse> predicate);        
-         void AddStudentInCourse(int perID, int courseID, float grade=0);
-         void UpdateStudentGradeInCourse(int perID, int courseID, float grade);
-         void DeleteStudentInCourse(int perID, int courseID);
-         void DeleteStudentFromAllCourses(int perID);
+        /*  #region StudentInCourse
+          IEnumerable<DO.StudentInCourse> GetStudentsInCourseList(Predicate<DO.StudentInCourse> predicate);        
+          void AddStudentInCourse(int perID, int courseID, float grade=0);
+          void UpdateStudentGradeInCourse(int perID, int courseID, float grade);
+          void DeleteStudentInCourse(int perID, int courseID);
+          void DeleteStudentFromAllCourses(int perID);
 
-         #endregion
-
-
-         #region Lecturer
-         
-
-         #endregion
+          #endregion
 
          */
+       
 
         #region Bus
         IEnumerable<DO.Bus> GetAllBusses();
@@ -101,8 +96,15 @@ namespace DLAPI
         void DeleteUserDrive(int Num);
         #endregion
 
-        
+        #region DrivingBus
+        IEnumerable<DO.Station> GetDrivingBusinBusStationLineList(Predicate<DO.Station> predicate);
 
+        #endregion
+
+        #region OutGoingLine
+        IEnumerable<DO.Station> GetOutGoingBusInBusStationLineList(Predicate<DO.Station> predicate);
+
+        #endregion
 
     }
 }

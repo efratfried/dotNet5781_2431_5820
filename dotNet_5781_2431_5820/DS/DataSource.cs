@@ -15,11 +15,12 @@ namespace DS
         public static List<Bus> BusList;
         public static List<Station> StationLists;
         public static List<BusLine> BusLineList;
-        public static List<BusStationLine> BusStationLineLisT;
+        /*public static List<BusStationLine> BusStationLineLisT;
         public static List<User> UserList;
         public static List<UserDrive> UserDriveList;
         public static List<DrivingBus> DrivingBusList;
-        public static List<OutGoingLine> OutGoingLineList;
+        public static List<OutGoingLine> OutGoingLineList
+        */
         static DataSource()
         {
             InitAllLists();

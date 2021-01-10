@@ -235,7 +235,7 @@ namespace dotNet_02_5781_2431_5820.git
         {//returns in this format: busline:122 area:jerusalem one side: 115478 222555 second side: 222555 115478
             string ThisSidePath = "";
             ThisSidePath += ReturnsPathString(this);
-            return "busline:" + LineNum + "area:" + MyArea + ThisSidePath;
+                return /*"busline:" +*/ LineNum.ToString(); //+ "area:" + MyArea + ThisSidePath;
             //  return LineNum.ToString();
         }
         public string ReturnsPathString(BusLine WantedBusLine)

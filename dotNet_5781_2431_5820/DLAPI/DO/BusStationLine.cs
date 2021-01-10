@@ -8,7 +8,7 @@ namespace DO
 {
     public class BusStationLine
     {
-        protected int ID { set; get; }
+        public  int ID { set; get; }
         public int BusStationNum { set; get; }
         public int IndexInLine { set; get; }
         public int NumOfPassingLines { set; get; }

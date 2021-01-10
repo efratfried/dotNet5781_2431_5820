@@ -123,7 +123,7 @@ namespace DLAPI
         #region BusLine
         DO.BusLine GetBusLine(int Num);
         IEnumerable<DO.BusLine> GetAllBusLines();
-        IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object> generate);
+        IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object> generate);  
         void AddBusLine(DO.BusLine BusLine);
         void UpdateBusLine(DO.BusLine BusLine);
         void UpdateBusLine(int Num, Action<DO.BusLine> update); //method that knows to updt specific fields in BusLine

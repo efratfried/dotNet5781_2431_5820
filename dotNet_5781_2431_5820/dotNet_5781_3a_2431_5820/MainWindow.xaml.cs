@@ -45,13 +45,13 @@ namespace dotNet_5781_3a_2431_5820
         private void ShowBusLine(int index)
         {
             currentDisplayBusLine = busLineCollection[index];
-            UpGrid.DataContext = currentDisplayBusLine;
+            UpGrid.DataContext = currentDisplayBusLine.LineNum;
             lbBusLineStations.DataContext = currentDisplayBusLine.LineStops;
         }
         private BusLine currentDisplayBusLine;
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-          ShowBusLine(((int)(cbBusLines.SelectedValue as BusLine).MyArea));
+            // ShowBusLine(((int)(cbBusLines.SelectedItem as BusLine).MyArea));
         }
         public BusLine this[int busLineNum]//indexer
         {
@@ -63,10 +63,9 @@ namespace dotNet_5781_3a_2431_5820
             { }
         }
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {// showing the buss stashions in the big window
-           ShowBusLine((cbBusLines.SelectedValue as BusLine).LineNum);
+        {
+            ShowBusLine((cbBusLines.SelectedValue as BusLine).LineNum);
         }
-
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ShowBusLine((cbBusLines.SelectedValue as BusLine).LineNum);

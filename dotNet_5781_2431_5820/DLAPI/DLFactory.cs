@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DLAPI
 {
     public static class DLFactory
-    {
+    {/*
         public static IDL GetDL()
         {
             // get dal implementation name from config.xml according to <data> element
@@ -76,5 +76,6 @@ namespace DLAPI
             }
 
         }
+        */
     }
 }

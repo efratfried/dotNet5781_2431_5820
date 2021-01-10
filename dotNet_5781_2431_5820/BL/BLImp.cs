@@ -10,8 +10,10 @@ using BO;
 
 namespace BL
 {
+    /*
     class BLImp : IBL //internal
     {
+        
         IDL dl = DLFactory.GetDL();
 
         #region BusLine
@@ -212,5 +214,7 @@ namespace BL
         }
 
         #endregion
+        
     }
+        */
 }

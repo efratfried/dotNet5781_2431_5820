@@ -11,6 +11,7 @@ namespace BLAPI
 {
     public interface BLI
     {
+        /*
         IDL dl = DLFactory.GetDL();
 
         #region BusLine
@@ -211,6 +212,6 @@ namespace BLAPI
         }
 
         #endregion
-
+*/
     }
 }

@@ -11,7 +11,6 @@ namespace DLAPI
     public interface IDL
     {
 
-
        /*  #region StudentInCourse
          IEnumerable<DO.StudentInCourse> GetStudentsInCourseList(Predicate<DO.StudentInCourse> predicate);        
          void AddStudentInCourse(int perID, int courseID, float grade=0);

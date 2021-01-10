@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLAPI\IBL.cs" />
+    <Compile Include="BLImp.cs" />
     <Compile Include="BO\Adress.cs" />
     <Compile Include="BO\Bus.cs" />
     <Compile Include="BO\BusLine.cs" />

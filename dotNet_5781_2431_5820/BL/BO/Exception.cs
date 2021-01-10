@@ -6,115 +6,157 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /*  [Serializable]
+      public class DriverIdException : Exception
+      {
+          public int ID;
+          public DriverIdException(int id) : base() => ID = id;
+          public DriverIdException(int id, string message) :
+              base(message) => ID = id;
+          public DriverIdException(int id, string message, Exception innerException) :
+              base(message, innerException) => ID = id;
+
+          public override string ToString() => base.ToString() + $", bad person id: {ID}";
+      }
+      [Serializable]
+      public class BadBusIdException : Exception
+      {
+          public int personID;
+          public int courseID;
+          public BadBusIdException(int perID, int crsID) : base() { personID = perID; courseID = crsID; }
+          public BadBusIdException(int perID, int crsID, string message) :
+              base(message)
+          { personID = perID; courseID = crsID; }
+          public BadBusIdException(int perID, int crsID, string message, Exception innerException) :
+              base(message, innerException)
+          { personID = perID; courseID = crsID; }
+
+          public override string ToString() => base.ToString() + $", bad person id: {personID} and course id: {courseID}";
+      }
+      [Serializable]
+      public class BadStationException : Exception
+      {
+          public string xmlFilePath;
+          public BadStationException(string xmlPath) : base() { xmlFilePath = xmlPath; }
+          public BadStationException(string xmlPath, string message) :
+              base(message)
+          { xmlFilePath = xmlPath; }
+          public BadStationException(string xmlPath, string message, Exception innerException) :
+              base(message, innerException)
+          { xmlFilePath = xmlPath; }
+
+          public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
+      }
+      [Serializable]
+      public class BadLicenseIdException : Exception
+      {
+          public string xmlFilePath;
+          public BadLicenseIdCourseIDException(string xmlPath) : base() { xmlFilePath = xmlPath; }
+          public BadLicenseIdCourseIDException(string xmlPath, string message) :
+              base(message)
+          { xmlFilePath = xmlPath; }
+          public BadLicenseIdCourseIDException(string xmlPath, string message, Exception innerException) :
+              base(message, innerException)
+          { xmlFilePath = xmlPath; }
+
+          public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
+      }
+      [Serializable]
+      public class beyondTimeLimitLineException : Exception
+      {
+          public string xmlFilePath;
+          public beyondTimeLimitLineException(string xmlPath) : base() { xmlFilePath = xmlPath; }
+          public beyondTimeLimitLineException(string xmlPath, string message) :
+              base(message)
+          { xmlFilePath = xmlPath; }
+          public beyondTimeLimitLineException(string xmlPath, string message, Exception innerException) :
+              base(message, innerException)
+          { xmlFilePath = xmlPath; }
+
+          public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
+      }
+      [Serializable]
+      public class BadCodeStationIDException : Exception
+      {
+          public string xmlFilePath;
+          public BadCodeStationIDException(string xmlPath) : base() { xmlFilePath = xmlPath; }
+          public BadCodeStationIDException(string xmlPath, string message) :
+              base(message)
+          { xmlFilePath = xmlPath; }
+          public BadCodeStationIDException(string xmlPath, string message, Exception innerException) :
+              base(message, innerException)
+          { xmlFilePath = xmlPath; }
+
+          public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
+      }
+      [Serializable]
+      public class BadLocationException : Exception
+      {
+          public string xmlFilePath;
+          public BadLocationException(string xmlPath) : base() { xmlFilePath = xmlPath; }
+          public BadLocationException(string xmlPath, string message) :
+              base(message)
+          { xmlFilePath = xmlPath; }
+          public BadLocationException(string xmlPath, string message, Exception innerException) :
+              base(message, innerException)
+          { xmlFilePath = xmlPath; }
+
+          public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
+      }
+      [Serializable]
+      public class BadNotExsitingStationException : Exception
+      {
+          public string xmlFilePath;
+          public BadNotExsitingStationException(string xmlPath) : base() { xmlFilePath = xmlPath; }
+          public BadNotExsitingStationException(string xmlPath, string message) :
+              base(message)
+          { xmlFilePath = xmlPath; }
+          public BadNotExsitingStationException(string xmlPath, string message, Exception innerException) :
+              base(message, innerException)
+          { xmlFilePath = xmlPath; }
+
+          public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
+      }
+    */
+
     [Serializable]
-    public class DriverIdException : Exception
+    public class BadBusLineIdException : Exception
+    {
+        public int Num;
+        public BadBusLineIdException(string message, Exception innerException) :
+            base(message, innerException) => Num = ((DO.BadBusException)innerException).BusNum;
+        public override string ToString() => base.ToString() + $", bad BusLine num: {Num}";
+    }
+
+    [Serializable]
+    public class BadDrivingBusException : Exception
     {
         public int ID;
-        public DriverIdException(int id) : base() => ID = id;
-        public DriverIdException(int id, string message) :
-            base(message) => ID = id;
-        public DriverIdException(int id, string message, Exception innerException) :
-            base(message, innerException) => ID = id;
-
-        public override string ToString() => base.ToString() + $", bad person id: {ID}";
+        public BadDrivingBusException(string message, Exception innerException) :
+            base(message, innerException) => ID = ((DO.BadBusException)innerException).BusID;
+        public override string ToString() => base.ToString() + $", bad DrivingBus id: {ID}";
     }
+
     [Serializable]
-    public class BadBusIdCourseIDException : Exception
+    public class BadOutGoingLineException : Exception
+    {
+        public int ID;
+        public BadOutGoingLineException(string message, Exception innerException) :
+            base(message, innerException) => ID = ((DO.BadBusException)innerException).BusID;
+        public override string ToString() => base.ToString() + $", bad OutGoingLine id: {ID}";
+    }
+
+    [Serializable]//לטפל בזה
+    public class BadStudentIdCourseIDException : Exception
     {
         public int personID;
         public int courseID;
-        public BadBusIdCourseIDException(int perID, int crsID) : base() { personID = perID; courseID = crsID; }
-        public BadBusIdCourseIDException(int perID, int crsID, string message) :
-            base(message)
-        { personID = perID; courseID = crsID; }
-        public BadBusIdCourseIDException(int perID, int crsID, string message, Exception innerException) :
+        public BadStudentIdCourseIDException(string message, Exception innerException) :
             base(message, innerException)
-        { personID = perID; courseID = crsID; }
-
-        public override string ToString() => base.ToString() + $", bad person id: {personID} and course id: {courseID}";
-    }
-    [Serializable]
-    public class BadStationIdCourseIDException : Exception
-    {
-        public string xmlFilePath;
-        public BadStationIdCourseIDException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-        public BadStationIdCourseIDException(string xmlPath, string message) :
-            base(message)
-        { xmlFilePath = xmlPath; }
-        public BadStationIdCourseIDException(string xmlPath, string message, Exception innerException) :
-            base(message, innerException)
-        { xmlFilePath = xmlPath; }
-
-        public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
-    }
-    [Serializable]
-    public class BadLicenseIdCourseIDException : Exception
-    {
-        public string xmlFilePath;
-        public BadLicenseIdCourseIDException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-        public BadLicenseIdCourseIDException(string xmlPath, string message) :
-            base(message)
-        { xmlFilePath = xmlPath; }
-        public BadLicenseIdCourseIDException(string xmlPath, string message, Exception innerException) :
-            base(message, innerException)
-        { xmlFilePath = xmlPath; }
-
-        public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
-    }
-    [Serializable]
-    public class beyondTimeLimitLineException : Exception
-    {
-        public string xmlFilePath;
-        public beyondTimeLimitLineException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-        public beyondTimeLimitLineException(string xmlPath, string message) :
-            base(message)
-        { xmlFilePath = xmlPath; }
-        public beyondTimeLimitLineException(string xmlPath, string message, Exception innerException) :
-            base(message, innerException)
-        { xmlFilePath = xmlPath; }
-
-        public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
-    }
-    [Serializable]
-    public class BadCodeStationIDException : Exception
-    {
-        public string xmlFilePath;
-        public BadCodeStationIDException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-        public BadCodeStationIDException(string xmlPath, string message) :
-            base(message)
-        { xmlFilePath = xmlPath; }
-        public BadCodeStationIDException(string xmlPath, string message, Exception innerException) :
-            base(message, innerException)
-        { xmlFilePath = xmlPath; }
-
-        public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
-    }
-    [Serializable]
-    public class BadLocationException : Exception
-    {
-        public string xmlFilePath;
-        public BadLocationException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-        public BadLocationException(string xmlPath, string message) :
-            base(message)
-        { xmlFilePath = xmlPath; }
-        public BadLocationException(string xmlPath, string message, Exception innerException) :
-            base(message, innerException)
-        { xmlFilePath = xmlPath; }
-
-        public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
-    }
-    [Serializable]
-    public class BadNotExsitingStationException : Exception
-    {
-        public string xmlFilePath;
-        public BadNotExsitingStationException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-        public BadNotExsitingStationException(string xmlPath, string message) :
-            base(message)
-        { xmlFilePath = xmlPath; }
-        public BadNotExsitingStationException(string xmlPath, string message, Exception innerException) :
-            base(message, innerException)
-        { xmlFilePath = xmlPath; }
-
-        public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
+        {
+            personID = ((DO.BadPersonIdCourseIDException)innerException).personID;
+            courseID = ((DO.BadPersonIdCourseIDException)innerException).courseID;
+        }
+        public override string ToString() => base.ToString() + $", bad student id: {personID} and course ID: {courseID}";
     }
 }

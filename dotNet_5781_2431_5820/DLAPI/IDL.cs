@@ -90,6 +90,36 @@ namespace DLAPI
         void DeleteBus(int Num);
         #endregion
 
+        #region BusLine
+        DO.BusLine GetStudent(int id);
+        IEnumerable<DO.BusLine> GetAllStudents();
+        IEnumerable<object> GetStudentListWithSelectedFields(Func<DO.BusLine, object> generate);
+        void AddBusLine(DO.BusLine BusLine);
+        void UpdateBusLine(DO.BusLine BusLine);
+        void UpdateBusLine(int id, Action<DO.BusLine> update); //method that knows to updt specific fields in Student
+        void DeleteBusLine(int id); // removes only Student, does not remove the appropriate Person...
+        #endregion
+
+        #region BusStationLine
+        IEnumerable<DO.BusStationLine> GetStudentsInCourseList(Predicate<DO.BusStationLine> predicate);
+        void AddBusStationLine(int StationID, int BusStationeNum);
+        void UpdateBusStationLine(int StationID, int BusStationeNum);
+        void DeleteBusStationLine(int StationID, int StationeNum);
+        void DeleteBusStationLine(int StationID);
+
+        #endregion
+
+        #region Station
+        DO.Station GetStation(int id);
+        IEnumerable<DO.Station> GetAllStations();
+        #endregion
+
+        #region DrivingBus
+        IEnumerable<DO.OutGoingLine> GetLecturersInCourseList(Predicate<DO.OutGoingLine> predicate);
+
+        #endregion
+
+        /*
         #region Station
         DO.Station GetStation(int Num);
         IEnumerable<DO.Station> GetAllStations();
@@ -148,6 +178,6 @@ namespace DLAPI
         void UpdateBusStationLine(DO.BusStationLine BusStationLine);
         void UpdateBusStationLinee(int Num, Action<DO.BusStationLine> update); //method that knows to updt specific fields in BusStationLine
         void DeleteBusStationLine(int Num); // removes only BusStationLine, does not remove the appropriate Bus...
-        #endregion
+        #endregion*/
     }
 }

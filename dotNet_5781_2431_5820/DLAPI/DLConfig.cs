@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DLAPI
 {
     static class DLConfig
-    {
+    {/*
         public class DLPackage
         {
             public string Name;
@@ -50,5 +50,7 @@ namespace DLAPI
     {
         public DLConfigException(string message) : base(message) { }
         public DLConfigException(string message, Exception inner) : base(message, inner) { }
+    }
+        */
     }
 }

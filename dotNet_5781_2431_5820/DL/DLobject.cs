@@ -22,7 +22,8 @@ namespace DL
 
         //Implement IDL methods, CRUD
         #region Bus
-        /*
+        /*
+
        */
         public DO.Bus GetBus(int LicenseNum)
         {
@@ -31,19 +32,19 @@ namespace DL
             if (bus != null)
                 return bus.Clone();
             else
-                throw new DO.BadPersonIdException( LicenseNum, $"bad person License Num: {LicenseNum}");
+                throw new DO.BadPersonIdException(LicenseNum, $"bad person License Num: {LicenseNum}");
         }
-    public IEnumerable<DO.Bus> GetAllBusses()
+        public IEnumerable<DO.Bus> GetAllBusses()
         {
             return from person in DataSource.BusList
                    select person.Clone();
         }
-    public IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate)
+        public IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate)
         {
             throw new NotImplementedException();
         }
-        public void  AddBus(DO.Bus bus)
-        { 
+        public void AddBus(DO.Bus bus)
+        {
             if (DataSource.BusList.FirstOrDefault(B => B.LicenseNum == LicenseNum) != null)
                 throw new DO.BadPersonIdException(bus.LicenseNum, "Duplicate bus LicenseNum");
             DataSource.BusList.Add(bus.Clone());
@@ -119,7 +120,7 @@ namespace DL
             DO.BusLine busl = DataSource.BusLineList.Find(p => p.ID == BusLine.ID);
             if (busl != null)
             {
-              //  DataSource.BusLineList.Remove(busl);
+                //  DataSource.BusLineList.Remove(busl);
                 DataSource.BusLineList.Add(BusLine.Clone());
             }
             else
@@ -204,29 +205,38 @@ namespace DL
 
         public DO.BusStationLine GetBusStationLine(int Num)
         {
-            return DataSource.BusStationLineLisT.Find(c => c.ID == Num).Clone();
+            return DataSource.StationLists.Find(c => c.ID == Num).Clone();
         }
 
         public IEnumerable<DO.BusStationLine> GetAllBusStationLine()
         {
-            return from course in DataSource.BusStationLineLisT
+            return from course in DataSource.StationLists
                    select course.Clone();
         }
-      public void AddBusStationLine(DO.BusStationLine BusStationLine)
+        public void AddBusStationLine(DO.BusStationLine BusStationLine)
         {
 
         }
-      public void UpdateBusStationLine(DO.BusStationLine BusStationLine);
-      public void UpdateBusStationLinee(int Num, Action<DO.BusStationLine> update); //method that knows to updt specific fields in BusStationLine
-      public void DeleteBusStationLine(int Num); // removes only BusStationLine, does not remove the appropriate Bus...
+        public void UpdateBusStationLine(DO.BusStationLine BusStationLine)
+        {
 
-        #endregion Course
+        }
+        public void UpdateBusStationLinee(int Num, Action<DO.BusStationLine> update) //method that knows to updt specific fields in BusStationLine
+        {
+
+        }
+        public void DeleteBusStationLine(int Num); // removes only BusStationLine, does not remove the appropriate Bus...
+        {
+
+        }
+
+        #endregion BusStationLine
 
         #region Lecturer
-        public IEnumerable<DO.LecturerInCourse> GetLecturersInCourseList(Predicate<DO.LecturerInCourse> predicate)
+        public IEnumerable<DO.Station> GetStationListWithSelectedFields(Predicate<DO.Station> predicate)
         {
             //Returns deferred query + clone:
-            return from sic in DataSource.ListLectInCourses
+            return from sic in DataSource.StationLists
                    where predicate(sic)
                    select sic.Clone();
         }

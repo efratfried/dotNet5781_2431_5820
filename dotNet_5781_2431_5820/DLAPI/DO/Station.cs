@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DO
 {
     public class Station
-    {
+    {//the phizical fitchers of station
         public string StationName { get; set; }
         //public Adress Adress { get; set; }
         public int CodeStation { get; set; }

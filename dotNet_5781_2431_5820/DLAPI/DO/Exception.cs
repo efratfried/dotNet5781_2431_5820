@@ -43,6 +43,18 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad Bus id: {BusID} the Num is: {BusNum}";
     }
+
+    public class BadBusNumException : Exception
+    {
+        public int LicenseNum;
+        public BadBusNumException(int L) : base() => LicenseNum = L;
+        public BadBusNumException(int L, string message) :
+            base(message) => LicenseNum = L;
+        public BadBusNumException(int L, string message, Exception innerException) :
+            base(message, innerException) => LicenseNum = L;
+
+        public override string ToString() => base.ToString() + $", bad License num : {LicenseNum}";
+    }
     public class BadLocationExeption:Exception
     {
         public double Langtitude;

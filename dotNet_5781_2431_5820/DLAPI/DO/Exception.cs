@@ -30,7 +30,7 @@ namespace DO
         public override string ToString() => base.ToString() + $", bad driver name: {Name}";
     }
     public class BadBusException : Exception
-    {
+    {//busline related
         public int BusID;
         public int BusNum;
         public BadBusException(int BID, int BNum) : base() { BusID = BID; BusNum = BNum; }

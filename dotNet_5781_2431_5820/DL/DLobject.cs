@@ -11,7 +11,6 @@ using DS;
 namespace DL
 {
     sealed class DLObject : IDL    //internal
-
     {
         //Implement IDL methods, CRUD
         #region Bus
@@ -221,7 +220,8 @@ namespace DL
         }
 
     #endregion BusStationLine
-    #region outgoingbus
+
+        #region outgoingbus
     public IEnumerable<DO.Station> GetStationListWithSelectedFields(Predicate<DO.Station> predicate)
     {
         //Returns deferred query + clone:

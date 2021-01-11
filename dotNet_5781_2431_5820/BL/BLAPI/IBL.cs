@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace BLAPI
 {
     public interface IBL
-    {
+    {/*
         #region BusLine
     BO.BusLine GetBusLine(int Num);
         IEnumerable<BO.BusLine> GetBusLines();
@@ -37,6 +37,6 @@ namespace BLAPI
         #region StudentCourse
         IEnumerable<BO.StudentCourse> GetAllCoursesPerStudent(int id);
         #endregion
-
+*/
     }
 }

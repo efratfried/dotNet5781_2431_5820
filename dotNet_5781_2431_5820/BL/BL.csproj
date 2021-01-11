@@ -57,6 +57,7 @@
     <Compile Include="BO\User.cs" />
     <Compile Include="BO\UserDrive.cs" />
     <Compile Include="BLI.cs" />
+    <Compile Include="DeepCopyUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -16,7 +16,5 @@ namespace BO
         public bool IsDeleted { set; get; }
         public IEnumerable<BusLine> BussesList { get; set; }
         public override string ToString() => this.ToStringProperty();
-
-
     }
 }

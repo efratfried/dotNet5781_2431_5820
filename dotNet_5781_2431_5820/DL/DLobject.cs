@@ -63,7 +63,7 @@ namespace DL
                 DataSource.BusList.Add(Bus.Clone());
             }
             else
-                throw new DO.BadLicenseNumException(Bus.LicenseNum /, $"bad person id: {Bus.LicenseNum}");
+                throw new DO.BadLicenseNumException(Bus.LicenseNum , $"bad person id: {Bus.LicenseNum}");
         }
 
         public void UpdateBus(int Num, Action<DO.Bus> update) //method that knows to updt specific fields in Person

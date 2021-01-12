@@ -5,49 +5,46 @@ using DLAPI;
 using BLAPI;
 using System.Threading;
 using BO;
-
 //using BO;
 
 namespace BL
 {
-    /*
     class BLImp : IBL //internal
     {
-        
         IDL dl = DLFactory.GetDL();
 
-        #region BusLine
-        BO.BusLine studentDoBoAdapter(DO.BusLine studentDO)
+        #region Bus
+        BO.Bus BusDoBoAdapter(DO.Bus BusDO)
         {
-            BO.BusLine studentBO = new BO.BusLine();
-            DO.Bus personDO;
-            int id = studentDO.ID;
+            BO.Bus BusBO = new BO.Bus();
+            DO.Person personDO;
+            int id = BusDO.ID;
             try
             {
-                personDO = dl.GetBus(id);
+                personDO = dl.GetPerson(id);
             }
-            catch (DO.BadBusException ex)
+            catch (DO.BadPersonIdException ex)
             {
-                throw new BO.BadBusLineIdException("Student ID is illegal", ex);
+                throw new BO.BadBusIdException("Bus ID is illegal", ex);
             }
-            personDO.CopyPropertiesTo(BusLineBO);
-            //studentBO.ID = personDO.ID;
-            //studentBO.BirthDate = personDO.BirthDate;
-            //studentBO.City = personDO.City;
-            //studentBO.Name = personDO.Name;
-            //studentBO.HouseNumber = personDO.HouseNumber;
-            //studentBO.Street = personDO.Street;
-            //studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
+            personDO.CopyPropertiesTo(BusBO);
+            //BusBO.ID = personDO.ID;
+            //BusBO.BirthDate = personDO.BirthDate;
+            //BusBO.City = personDO.City;
+            //BusBO.Name = personDO.Name;
+            //BusBO.HouseNumber = personDO.HouseNumber;
+            //BusBO.Street = personDO.Street;
+            //BusBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
 
-            studentDO.CopyPropertiesTo(BusLineBO);
-            //studentBO.StartYear = studentDO.StartYear;
-            //studentBO.Status = (BO.StudentStatus)(int)studentDO.Status;
-            //studentBO.Graduation = (BO.StudentGraduate)(int)studentDO.Graduation;
+            BusDO.CopyPropertiesTo(BusBO);
+            //BusBO.StartYear = BusDO.StartYear;
+            //BusBO.Status = (BO.BusStatus)(int)BusDO.Status;
+            //BusBO.Graduation = (BO.BusGraduate)(int)BusDO.Graduation;
 
-            studentBO.ListOfCourses = from sic in dl.GetStudentsInCourseList(sic => sic.BusId == id)
-                                      let course = dl.GetBusLine(sic.CourseId)
-                                      select course.CopyToStudentCourse(sic);
-            //new BO.StudentCourse()
+            BusBO.ListOfCourses = from sic in dl.GetBussInCourseList(sic => sic.PersonId == id)
+                                      let course = dl.GetCourse(sic.CourseId)
+                                      select course.CopyToBusCourse(sic);
+            //new BO.BusCourse()
             //{
             //    ID = course.ID,
             //    Number = course.Number,
@@ -57,139 +54,140 @@ namespace BL
             //    Grade = sic.Grade
             //};
 
-            return BusLineBO;
+            return BusBO;
         }
 
-        public BO.BusLine GetBusLine(int Num)
+        public BO.Bus GetBus(int id)
         {
-            DO.BusLine studentDO;
+            DO.Bus BusDO;
             try
             {
-                studentDO = dl.GetBusLine(Num);
+                BusDO = dl.GetBus(id);
             }
-            catch (DO.BadBusException ex)
+            catch (DO.BadPersonIdException ex)
             {
-                throw new BO.BadBusLineIdException("BusLine num does not exist or it is not a BusLine", ex);
+                throw new BO.BadBusIdException("Person id does not exist or he is not a Bus", ex);
             }
-            return studentDoBoAdapter(BusLineDO);
+            return BusDoBoAdapter(BusDO);
         }
-
-        public IEnumerable<BO.BusLine> GetAllBusLines()
+        public IEnumerable<BO.Bus> GetAllBuss()
         {
-            //return from item in dl.GetStudentListWithSelectedFields( (stud) => { return GetStudent(stud.ID); } )
-            //       let student = item as BO.Student
-            //       orderby student.ID
-            //       select student;
-            return from BusLineDO in dl.GetAllBusLines()
-                   orderby BusLineDO.ID
-                   select BusLineDoBoAdapter(BusLineDO);
+            //return from item in dl.GetBusListWithSelectedFields( (stud) => { return GetBus(stud.ID); } )
+            //       let Bus = item as BO.Bus
+            //       orderby Bus.ID
+            //       select Bus;
+            return from BusDO in dl.GetAllBuss()
+                   orderby BusDO.ID
+                   select BusDoBoAdapter(BusDO);
         }
-        public IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate)
+        public IEnumerable<BO.Bus> GetBussBy(Predicate<BO.Bus> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<BO.Bus> GetBusLineIDNameList()
+        public IEnumerable<BO.ListedPerson> GetBusIDNameList()
         {
-            return from item in dl.GetBusLineListWithSelectedFields((studentDO) =>
+            return from item in dl.GetBusListWithSelectedFields((BusDO) =>
             {
                 try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                return new BO.Bus() { ID = BusLineDO.ID, Name = dl.GetBus(BusLineDO.ID).Name };
+                return new BO.ListedPerson() { ID = BusDO.ID, Name = dl.GetPerson(BusDO.ID).Name };
             })
-                   let studentBO = item as BO.Bus
-                   //orderby student.ID
-                   select studentBO;
+                   let BusBO = item as BO.ListedPerson
+                   //orderby Bus.ID
+                   select BusBO;
         }
 
-        public void UpdateStudentPersonalDetails(BO.BusLine busline)
+        public void UpdateBusPersonalDetails(BO.Bus Bus)
         {
             //Update DO.Person            
             DO.Person personDO = new DO.Person();
-            student.CopyPropertiesTo(personDO);
+            Bus.CopyPropertiesTo(personDO);
             try
             {
                 dl.UpdatePerson(personDO);
             }
             catch (DO.BadPersonIdException ex)
             {
-                throw new BO.BadStudentIdException("Student ID is illegal", ex);
+                throw new BO.BadBusIdException("Bus ID is illegal", ex);
             }
 
-            //Update DO.Student            
-            DO.Student studentDO = new DO.Student();
-            student.CopyPropertiesTo(studentDO);
+            //Update DO.Bus            
+            DO.Bus BusDO = new DO.Bus();
+            Bus.CopyPropertiesTo(BusDO);
             try
             {
-                dl.UpdateStudent(studentDO);
+                dl.UpdateBus(BusDO);
             }
             catch (DO.BadPersonIdException ex)
             {
-                throw new BO.BadStudentIdException("Student ID is illegal", ex);
+                throw new BO.BadBusIdException("Bus ID is illegal", ex);
             }
 
         }
 
-        public void DeleteBusLine(int num)
+        public void DeleteBus(int id)
         {
             try
             {
                 dl.DeletePerson(id);
-                dl.DeleteStudent(id);
-                dl.DeleteStudentFromAllCourses(id);
+                dl.DeleteBus(id);
+                dl.DeleteBusFromAllCourses(id);
             }
             catch (DO.BadPersonIdCourseIDException ex)
             {
-                throw new BO.BadStudentIdCourseIDException("Student ID and Course ID is Not exist", ex);
+                throw new BO.BadBusIdCourseIDException("Bus ID and Course ID is Not exist", ex);
             }
             catch (DO.BadPersonIdException ex)
             {
-                throw new BO.BadStudentIdException("Person id does not exist or he is not a student", ex);
+                throw new BO.BadBusIdException("Person id does not exist or he is not a Bus", ex);
             }
         }
 
         #endregion
-
-        #region StudentIn Course
-        public void AddStudentInCourse(int perID, int courseID, float grade = 0)
+    }
+}
+        /*
+        #region BusIn Course
+        public void AddBusInCourse(int perID, int courseID, float grade = 0)
         {
             try
             {
-                dl.AddStudentInCourse(perID, courseID, grade);
+                dl.AddBusInCourse(perID, courseID, grade);
             }
             catch (DO.BadPersonIdCourseIDException ex)
             {
-                throw new BO.BadStudentIdCourseIDException("Student ID and Course ID is Not exist", ex);
+                throw new BO.BadBusIdCourseIDException("Bus ID and Course ID is Not exist", ex);
             }
         }
 
-        public void UpdateStudentGradeInCourse(int perID, int courseID, float grade)
+        public void UpdateBusGradeInCourse(int perID, int courseID, float grade)
         {
             try
             {
-                dl.UpdateStudentGradeInCourse(perID, courseID, grade);
+                dl.UpdateBusGradeInCourse(perID, courseID, grade);
             }
             catch (DO.BadPersonIdCourseIDException ex)
             {
-                throw new BO.BadStudentIdCourseIDException("Student ID and Course ID is Not exist", ex);
+                throw new BO.BadBusIdCourseIDException("Bus ID and Course ID is Not exist", ex);
             }
         }
 
-        public void DeleteStudentInCourse(int perID, int courseID)
+        public void DeleteBusInCourse(int perID, int courseID)
         {
             try
             {
-                dl.DeleteStudentInCourse(perID, courseID);
+                dl.DeleteBusInCourse(perID, courseID);
             }
             catch (DO.BadPersonIdCourseIDException ex)
             {
-                throw new BO.BadStudentIdCourseIDException("Student ID and Course ID is Not exist", ex);
+                throw new BO.BadBusIdCourseIDException("Bus ID and Course ID is Not exist", ex);
             }
         }
         #endregion
 
         #region Course
 
-        BO.BusStationLine courseDoBoAdapter(DO.BusStationLine courseDO)
+        BO.Course courseDoBoAdapter(DO.Course courseDO)
         {
             BO.Course courseBO = new BO.Course();
             int id = courseDO.ID;
@@ -200,21 +198,21 @@ namespace BL
                                  select (BO.CourseLecturer)course.CopyPropertiesToNew(typeof(BO.CourseLecturer));
             return courseBO;
         }
-        public IEnumerable<BO.BusStationLine> GetAllCourses()
+        public IEnumerable<BO.Course> GetAllCourses()
         {
             return from crsDO in dl.GetAllCourses()
                    select courseDoBoAdapter(crsDO);
         }
 
-        public IEnumerable<BO.BusStationLine> GetAllCoursesPerStudent(int id)
+        public IEnumerable<BO.BusCourse> GetAllCoursesPerBus(int id)
         {
-            return from sic in dl.GetStudentsInCourseList(sic => sic.PersonId == id)
+            return from sic in dl.GetBussInCourseList(sic => sic.PersonId == id)
                    let course = dl.GetCourse(sic.CourseId)
-                   select course.CopyToStudentCourse(sic);
+                   select course.CopyToBusCourse(sic);
         }
 
         #endregion
-        
+
+
     }
-        */
 }

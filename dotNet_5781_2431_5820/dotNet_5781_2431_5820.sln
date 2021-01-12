@@ -12,6 +12,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotNet_5781_3a_2431_5820", "dotNet_5781_3a_2431_5820\dotNet_5781_3a_2431_5820.csproj", "{355A4A95-C0ED-4424-86B6-AACF054BFDC7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{39FDEF2F-3BBB-4949-A5AA-766451C4F1B8}"
+	ProjectSection(SolutionItems) = preProject
+		config.xml = config.xml
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLobject", "DL\DLobject.csproj", "{10CCBC35-3674-4290-AE37-C082F4B4DB44}"
 EndProject
@@ -22,6 +25,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS", "DS\DS.csproj", "{42DAD1BE-B611-4CB9-BB1B-FA81D32BD988}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{93A5CD33-13D4-47C6-A7A2-263708CBC14D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLXML", "DLXML", "{EC8D2394-BFA5-4A7C-8114-89C3B185D887}"
+	ProjectSection(SolutionItems) = preProject
+		DLXML.cs = DLXML.cs
+		XMLTools.cs = XMLTools.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +77,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EC8D2394-BFA5-4A7C-8114-89C3B185D887} = {39FDEF2F-3BBB-4949-A5AA-766451C4F1B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2875C04-3F90-4F35-BE97-59F7787D3587}

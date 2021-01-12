@@ -10,8 +10,31 @@ namespace BLAPI
 {
     public interface IBL
     {
+        #region bus
+        BO.Bus GetBus(int id);
+        IEnumerable<BO.Bus> GetAllBuss();
+        IEnumerable<BO.BusList> GetBusIDNameList();
+
+        IEnumerable<BO.Bus> GetBussBy(Predicate<BO.Bus> predicate);
+
+        void UpdateBusPersonalDetails(BO.Bus Bus);
+
+        void DeleteBus(int id);
+        /*
+        public int LicenseNum { get; set; }
+        public DateTime LicenseDate { get; set; }
+        public double KM { get; set; }
+        public double foul { get; set; }
+        public Bus_Status Status { get; set; }
+        public Firm MyFirm { get; set; }
+        public IEnumerable<DateTime> AccidentsDuco { get; set; }
+        public IEnumerable<Treat> TreatsDuco { get; set; }
+        public IEnumerable<DrivingBus> drivingBusesDuco { get; set; }
+        */
+
+        #endregion
         #region BusLine
-    BO.BusLine GetBusLine(int Num);
+        BO.BusLine GetBusLine(int Num);
         IEnumerable<BO.BusLine> GetBusLines();
         IEnumerable<BO.Bus> GetBusLineIDNameList();
 
@@ -27,15 +50,15 @@ namespace BLAPI
         IEnumerable<BO.BusStationLine> GetAllBusStationLines();
         #endregion
         //מפה לטפל
-        #region StudentInCourse
-        void AddStudentInCourse(int perID, int courseID, float grade = 0);
-        void UpdateStudentGradeInCourse(int perID, int courseID, float grade);
-        void DeleteStudentInCourse(int perID, int courseID);
+        #region BusInCourse
+        void AddBusInCourse(int perID, int courseID, float grade = 0);
+        void UpdateBusGradeInCourse(int perID, int courseID, float grade);
+        void DeleteBusInCourse(int perID, int courseID);
 
         #endregion       
 
-        #region StudentCourse
-        IEnumerable<BO.StudentCourse> GetAllCoursesPerStudent(int id);
+        #region BusCourse
+        IEnumerable<BO.BusCourse> GetAllCoursesPerBus(int id);
         #endregion
 
     }

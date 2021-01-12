@@ -22,24 +22,24 @@ namespace DL
 
         #region DS XML Files
 
-        string personsPath = @"BusXml.xml"; //XElement
-        string studentsPath = @"StudentsXml.xml"; //XMLSerializer
-        string coursesPath = @"CoursesXml.xml"; //XMLSerializer
-        string lecturersPath = @"LecturersXml.xml"; //XMLSerializer
-        string lectInCoursesPath = @"LecturerInCourseXml.xml"; //XMLSerializer
-        string studInCoursesPath = @"StudentInCoureseXml.xml"; //XMLSerializer
+        string BussPath = @"BusesXml.xml"; //XElement
+        string BusLinesPath = @"BusLinesXml.xml"; //XMLSerializer
+        string StationsPath = @"StationsXml.xml"; //XMLSerializer
+        string DrivingBussPath = @"DrivingBusesXml.xml"; //XMLSerializer
+        string lectInStationsPath = @"OutGoingBusesXml.xml"; //XMLSerializer
+        string studInStationsPath = @"BusStationLineXml.xml"; //XMLSerializer
 
 
         #endregion
 
-        #region Person
-        public DO.Person GetPerson(int id)
+        #region Bus
+        public DO.Bus GetBus(int id)
         {
-            XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
+            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BussPath);
 
-            Person p = (from per in personsRootElem.Elements()
+            Bus p = (from per in BussRootElem.Elements()
                         where int.Parse(per.Element("ID").Value) == id
-                        select new Person()
+                        select new Bus()
                         {
                             ID = Int32.Parse(per.Element("ID").Value),
                             Name = per.Element("Name").Value,
@@ -47,21 +47,21 @@ namespace DL
                             HouseNumber = Int32.Parse(per.Element("HouseNumber").Value),
                             City = per.Element("City").Value,
                             BirthDate = DateTime.Parse(per.Element("BirthDate").Value),
-                            PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), per.Element("PersonalStatus").Value)
+                            BusalStatus = (BusalStatus)Enum.Parse(typeof(BusalStatus), per.Element("BusalStatus").Value)
                         }
                         ).FirstOrDefault();
 
             if (p == null)
-                throw new DO.BadPersonIdException(id, $"bad person id: {id}");
+                throw new DO.BadBusIdException(id, $"bad Bus id: {id}");
 
             return p;
         }
-        public IEnumerable<DO.Person> GetAllPersons()
+        public IEnumerable<DO.Bus> GetAllBuss()
         {
-            XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
+            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BussPath);
 
-            return (from p in personsRootElem.Elements()
-                    select new Person()
+            return (from p in BussRootElem.Elements()
+                    select new Bus()
                     {
                         ID = Int32.Parse(p.Element("ID").Value),
                         Name = p.Element("Name").Value,
@@ -69,16 +69,16 @@ namespace DL
                         HouseNumber = Int32.Parse(p.Element("HouseNumber").Value),
                         City = p.Element("City").Value,
                         BirthDate = DateTime.Parse(p.Element("BirthDate").Value),
-                        PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), p.Element("PersonalStatus").Value)
+                        BusalStatus = (BusalStatus)Enum.Parse(typeof(BusalStatus), p.Element("BusalStatus").Value)
                     }
                    );
         }
-        public IEnumerable<DO.Person> GetAllPersonsBy(Predicate<DO.Person> predicate)
+        public IEnumerable<DO.Bus> GetAllBussBy(Predicate<DO.Bus> predicate)
         {
-            XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
+            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BussPath);
 
-            return from p in personsRootElem.Elements()
-                   let p1 = new Person()
+            return from p in BussRootElem.Elements()
+                   let p1 = new Bus()
                    {
                        ID = Int32.Parse(p.Element("ID").Value),
                        Name = p.Element("Name").Value,
@@ -86,263 +86,263 @@ namespace DL
                        HouseNumber = Int32.Parse(p.Element("HouseNumber").Value),
                        City = p.Element("City").Value,
                        BirthDate = DateTime.Parse(p.Element("BirthDate").Value),
-                       PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), p.Element("PersonalStatus").Value)
+                       BusalStatus = (BusalStatus)Enum.Parse(typeof(BusalStatus), p.Element("BusalStatus").Value)
                    }
                    where predicate(p1)
                    select p1;
         }
-        public void AddPerson(DO.Person person)
+        public void AddBus(DO.Bus Bus)
         {
-            XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
+            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BussPath);
 
-            XElement per1 = (from p in personsRootElem.Elements()
-                             where int.Parse(p.Element("ID").Value) == person.ID
+            XElement per1 = (from p in BussRootElem.Elements()
+                             where int.Parse(p.Element("ID").Value) == Bus.ID
                              select p).FirstOrDefault();
 
             if (per1 != null)
-                throw new DO.BadPersonIdException(person.ID, "Duplicate person ID");
+                throw new DO.BadBusIdException(Bus.ID, "Duplicate Bus ID");
 
-            XElement personElem = new XElement("Person",
-                                   new XElement("ID", person.ID),
-                                   new XElement("Name", person.Name),
-                                   new XElement("Street", person.Street),
-                                   new XElement("HouseNumber", person.HouseNumber.ToString()),
-                                   new XElement("City", person.City),
-                                   new XElement("BirthDate", person.BirthDate),
-                                   new XElement("PersonalStatus", person.PersonalStatus.ToString()));
+            XElement BusElem = new XElement("Bus",
+                                   new XElement("ID", Bus.ID),
+                                   new XElement("", Bus.Name),
+                                   new XElement("Street", Bus.Street),
+                                   new XElement("HouseNumber", Bus.HouseNumber.ToString()),
+                                   new XElement("City", Bus.City),
+                                   new XElement("BirthDate", Bus.BirthDate),
+                                   new XElement("BusalStatus", Bus.BusalStatus.ToString()));
 
-            personsRootElem.Add(personElem);
+            BussRootElem.Add(BusElem);
 
-            XMLTools.SaveListToXMLElement(personsRootElem, personsPath);
+            XMLTools.SaveListToXMLElement(BussRootElem, BussPath);
         }
 
-        public void DeletePerson(int id)
+        public void DeleteBus(int id)
         {
-            XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
+            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BussPath);
 
-            XElement per = (from p in personsRootElem.Elements()
+            XElement per = (from p in BussRootElem.Elements()
                             where int.Parse(p.Element("ID").Value) == id
                             select p).FirstOrDefault();
 
             if (per != null)
             {
                 per.Remove();
-                XMLTools.SaveListToXMLElement(personsRootElem, personsPath);
+                XMLTools.SaveListToXMLElement(BussRootElem, BussPath);
             }
             else
-                throw new DO.BadPersonIdException(id, $"bad person id: {id}");
+                throw new DO.BadBusIdException(id, $"bad Bus id: {id}");
         }
 
-        public void UpdatePerson(DO.Person person)
+        public void UpdateBus(DO.Bus Bus)
         {
-            XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
+            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BussPath);
 
-            XElement per = (from p in personsRootElem.Elements()
-                            where int.Parse(p.Element("ID").Value) == person.ID
+            XElement per = (from p in BussRootElem.Elements()
+                            where int.Parse(p.Element("ID").Value) == Bus.ID
                             select p).FirstOrDefault();
 
             if (per != null)
             {
-                per.Element("ID").Value = person.ID.ToString();
-                per.Element("Name").Value = person.Name;
-                per.Element("Street").Value = person.Street;
-                per.Element("HouseNumber").Value = person.HouseNumber.ToString();
-                per.Element("City").Value = person.City;
-                per.Element("BirthDate").Value = person.BirthDate.ToString();
-                per.Element("PersonalStatus").Value = person.PersonalStatus.ToString();
+                per.Element("ID").Value = Bus.ID.ToString();
+                per.Element("Name").Value = Bus.Name;
+                per.Element("Street").Value = Bus.Street;
+                per.Element("HouseNumber").Value = Bus.HouseNumber.ToString();
+                per.Element("City").Value = Bus.City;
+                per.Element("BirthDate").Value = Bus.BirthDate.ToString();
+                per.Element("BusalStatus").Value = Bus.BusalStatus.ToString();
 
-                XMLTools.SaveListToXMLElement(personsRootElem, personsPath);
+                XMLTools.SaveListToXMLElement(BussRootElem, BussPath);
             }
             else
-                throw new DO.BadPersonIdException(person.ID, $"bad person id: {person.ID}");
+                throw new DO.BadBusIdException(Bus.ID, $"bad Bus id: {Bus.ID}");
         }
 
-        public void UpdatePerson(int id, Action<DO.Person> update)
+        public void UpdateBus(int id, Action<DO.Bus> update)
         {
             throw new NotImplementedException();
         }
 
-        #endregion Person
+        #endregion Bus
 
-        #region Student
-        public DO.Student GetStudent(int id)
+        #region BusLine
+        public DO.BusLine GetBusLine(int id)
         {
-            List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
 
-            DO.Student stu = ListStudents.Find(p => p.ID == id);
+            DO.BusLine stu = ListBusLines.Find(p => p.ID == id);
             if (stu != null)
                 return stu; //no need to Clone()
             else
-                throw new DO.BadPersonIdException(id, $"bad student id: {id}");
+                throw new DO.BadBusIdException(id, $"bad BusLine id: {id}");
         }
-        public void AddStudent(DO.Student student)
+        public void AddBusLine(DO.BusLine BusLine)
         {
-            List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
 
-            if (ListStudents.FirstOrDefault(s => s.ID == student.ID) != null)
-                throw new DO.BadPersonIdException(student.ID, "Duplicate student ID");
+            if (ListBusLines.FirstOrDefault(s => s.ID == BusLine.ID) != null)
+                throw new DO.BadBusIdException(BusLine.ID, "Duplicate BusLine ID");
 
-            if (GetPerson(student.ID) == null)
-                throw new DO.BadPersonIdException(student.ID, "Missing person ID");
+            if (GetBus(BusLine.ID) == null)
+                throw new DO.BadBusIdException(BusLine.ID, "Missing Bus ID");
 
-            ListStudents.Add(student); //no need to Clone()
+            ListBusLines.Add(BusLine); //no need to Clone()
 
-            XMLTools.SaveListToXMLSerializer(ListStudents, studentsPath);
+            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesPath);
 
         }
-        public IEnumerable<DO.Student> GetAllStudents()
+        public IEnumerable<DO.BusLine> GetAllBusLines()
         {
-            List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
 
-            return from student in ListStudents
-                   select student; //no need to Clone()
+            return from BusLine in ListBusLines
+                   select BusLine; //no need to Clone()
         }
-        public IEnumerable<object> GetStudentFields(Func<int, string, object> generate)
+        public IEnumerable<object> GetBusLineFields(Func<int, string, object> generate)
         {
-            List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
 
-            return from student in ListStudents
-                   select generate(student.ID, GetPerson(student.ID).Name);
+            return from BusLine in ListBusLines
+                   select generate(BusLine.ID, GetBus(BusLine.ID).Name);
         }
 
-        public IEnumerable<object> GetStudentListWithSelectedFields(Func<DO.Student, object> generate)
+        public IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object> generate)
         {
-            List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
 
-            return from student in ListStudents
-                   select generate(student);
+            return from BusLine in ListBusLines
+                   select generate(BusLine);
         }
-        public void UpdateStudent(DO.Student student)
+        public void UpdateBusLine(DO.BusLine BusLine)
         {
-            List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
 
-            DO.Student stu = ListStudents.Find(p => p.ID == student.ID);
+            DO.BusLine stu = ListBusLines.Find(p => p.ID == BusLine.ID);
             if (stu != null)
             {
-                ListStudents.Remove(stu);
-                ListStudents.Add(student); //no nee to Clone()
+                ListBusLines.Remove(stu);
+                ListBusLines.Add(BusLine); //no nee to Clone()
             }
             else
-                throw new DO.BadPersonIdException(student.ID, $"bad student id: {student.ID}");
+                throw new DO.BadBusIdException(BusLine.ID, $"bad BusLine id: {BusLine.ID}");
 
-            XMLTools.SaveListToXMLSerializer(ListStudents, studentsPath);
+            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesPath);
         }
 
-        public void UpdateStudent(int id, Action<DO.Student> update)
+        public void UpdateBusLine(int id, Action<DO.BusLine> update)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteStudent(int id)
+        public void DeleteBusLine(int id)
         {
-            List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
 
-            DO.Student stu = ListStudents.Find(p => p.ID == id);
+            DO.BusLine stu = ListBusLines.Find(p => p.ID == id);
 
             if (stu != null)
             {
-                ListStudents.Remove(stu);
+                ListBusLines.Remove(stu);
             }
             else
-                throw new DO.BadPersonIdException(id, $"bad student id: {id}");
+                throw new DO.BadBusIdException(id, $"bad BusLine id: {id}");
 
-            XMLTools.SaveListToXMLSerializer(ListStudents, studentsPath);
+            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesPath);
         }
-        #endregion Student
+        #endregion BusLine
 
-        #region StudentInCourse
-        public IEnumerable<DO.StudentInCourse> GetStudentsInCourseList(Predicate<DO.StudentInCourse> predicate)
+        #region BusStationLine
+        public IEnumerable<DO.BusStationLine> GetBusLinesInStationList(Predicate<DO.BusStationLine> predicate)
         {
-            List<StudentInCourse> ListStudInCourses = XMLTools.LoadListFromXMLSerializer<StudentInCourse>(studInCoursesPath);
+            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsPath);
 
-            return from sic in ListStudInCourses
+            return from sic in ListStudInStations
                    where predicate(sic)
                    select sic; //no need to Clone()
         }
-        public void AddStudentInCourse(int perID, int courseID, float grade = 0)
+        public void AddBusStationLine(int perID, int StationID, float grade = 0)
         {
-            List<StudentInCourse> ListStudInCourses = XMLTools.LoadListFromXMLSerializer<StudentInCourse>(studInCoursesPath);
+            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsPath);
 
-            if (ListStudInCourses.FirstOrDefault(cis => (cis.PersonId == perID && cis.CourseId == courseID)) != null)
-                throw new DO.BadPersonIdCourseIDException(perID, courseID, "person ID is already registered to course ID");
+            if (ListStudInStations.FirstOrDefault(cis => (cis.BusId == perID && cis.StationId == StationID)) != null)
+                throw new DO.BadBusIdStationIDException(perID, StationID, "Bus ID is already registered to Station ID");
 
-            DO.StudentInCourse sic = new DO.StudentInCourse() { PersonId = perID, CourseId = courseID, Grade = grade };
+            DO.BusStationLine sic = new DO.BusStationLine() { BusId = perID, StationId = StationID, Grade = grade };
 
-            ListStudInCourses.Add(sic);
+            ListStudInStations.Add(sic);
 
-            XMLTools.SaveListToXMLSerializer(ListStudInCourses, studInCoursesPath);
+            XMLTools.SaveListToXMLSerializer(ListStudInStations, studInStationsPath);
         }
 
-        public void UpdateStudentGradeInCourse(int perID, int courseID, float grade)
+        public void UpdateBusLineGradeInStation(int perID, int StationID, float grade)
         {
-            List<StudentInCourse> ListStudInCourses = XMLTools.LoadListFromXMLSerializer<StudentInCourse>(studInCoursesPath);
+            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsPath);
 
-            DO.StudentInCourse sic = ListStudInCourses.Find(cis => (cis.PersonId == perID && cis.CourseId == courseID));
+            DO.BusStationLine sic = ListStudInStations.Find(cis => (cis.BusId == perID && cis.StationId == StationID));
 
             if (sic != null)
             {
                 sic.Grade = grade;
             }
             else
-                throw new DO.BadPersonIdCourseIDException(perID, courseID, "person ID is NOT registered to course ID");
+                throw new DO.BadBusIdStationIDException(perID, StationID, "Bus ID is NOT registered to Station ID");
 
-            XMLTools.SaveListToXMLSerializer(ListStudInCourses, studInCoursesPath);
+            XMLTools.SaveListToXMLSerializer(ListStudInStations, studInStationsPath);
         }
 
-        public void DeleteStudentInCourse(int perID, int courseID)
+        public void DeleteBusStationLine(int perID, int StationID)
         {
-            List<StudentInCourse> ListStudInCourses = XMLTools.LoadListFromXMLSerializer<StudentInCourse>(studInCoursesPath);
+            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsPath);
 
-            DO.StudentInCourse sic = ListStudInCourses.Find(cis => (cis.PersonId == perID && cis.CourseId == courseID));
+            DO.BusStationLine sic = ListStudInStations.Find(cis => (cis.BusId == perID && cis.StationId == StationID));
 
             if (sic != null)
             {
-                ListStudInCourses.Remove(sic);
+                ListStudInStations.Remove(sic);
             }
             else
-                throw new DO.BadPersonIdCourseIDException(perID, courseID, "person ID is NOT registered to course ID");
+                throw new DO.BadBusIdStationIDException(perID, StationID, "Bus ID is NOT registered to Station ID");
 
-            XMLTools.SaveListToXMLSerializer(ListStudInCourses, studInCoursesPath);
-
-        }
-        public void DeleteStudentFromAllCourses(int perID)
-        {
-            List<StudentInCourse> ListStudInCourses = XMLTools.LoadListFromXMLSerializer<StudentInCourse>(studInCoursesPath);
-
-            ListStudInCourses.RemoveAll(p => p.PersonId == perID);
-
-            XMLTools.SaveListToXMLSerializer(ListStudInCourses, studInCoursesPath);
+            XMLTools.SaveListToXMLSerializer(ListStudInStations, studInStationsPath);
 
         }
-
-        #endregion StudentInCourse
-
-        #region Course
-        public DO.Course GetCourse(int id)
+        public void DeleteBusLineFromAllStations(int perID)
         {
-            List<Course> ListCourses = XMLTools.LoadListFromXMLSerializer<Course>(coursesPath);
+            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsPath);
 
-            return ListCourses.Find(c => c.ID == id); //no need to Clone()
+            ListStudInStations.RemoveAll(p => p.BusId == perID);
+
+            XMLTools.SaveListToXMLSerializer(ListStudInStations, studInStationsPath);
+
+        }
+
+        #endregion BusStationLine
+
+        #region Station
+        public DO.Station GetStation(int id)
+        {
+            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
+
+            return ListStations.Find(c => c.ID == id); //no need to Clone()
 
             //if not exist throw exception etc.
         }
 
-        public IEnumerable<DO.Course> GetAllCourses()
+        public IEnumerable<DO.Station> GetAllStations()
         {
-            List<Course> ListCourses = XMLTools.LoadListFromXMLSerializer<Course>(coursesPath);
+            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
 
-            return from course in ListCourses
-                   select course; //no need to Clone()
+            return from Station in ListStations
+                   select Station; //no need to Clone()
         }
 
-        #endregion Course
+        #endregion Station
 
-        #region Lecturer
-        public IEnumerable<DO.LecturerInCourse> GetLecturersInCourseList(Predicate<DO.LecturerInCourse> predicate)
+        #region DrivingBus
+        public IEnumerable<DO.OutgoingLine> GetDrivingBussInStationList(Predicate<DO.OutgoingLine> predicate)
         {
-            List<LecturerInCourse> ListLectInCourses = XMLTools.LoadListFromXMLSerializer<LecturerInCourse>(lectInCoursesPath);
+            List<OutgoingLine> ListLectInStations = XMLTools.LoadListFromXMLSerializer<OutgoingLine>(lectInStationsPath);
 
-            return from sic in ListLectInCourses
+            return from sic in ListLectInStations
                    where predicate(sic)
                    select sic; //no need to Clone()
         }

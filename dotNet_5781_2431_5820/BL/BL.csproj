@@ -54,20 +54,15 @@
     <Compile Include="BO\OutGoingLine.cs" />
     <Compile Include="BO\Station.cs" />
     <Compile Include="BO\Tools.cs" />
+    <Compile Include="BO\Treat.cs" />
     <Compile Include="BO\User.cs" />
     <Compile Include="BO\UserDrive.cs" />
-    <Compile Include="BLI.cs" />
-    <Compile Include="DeepCopyUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DLAPI\DLAPI.csproj">
       <Project>{5551cc42-878a-4eb9-8b68-4f0edb5c65ca}</Project>
       <Name>DLAPI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DL\DLobject.csproj">
-      <Project>{10ccbc35-3674-4290-ae37-c082f4b4db44}</Project>
-      <Name>DLobject</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

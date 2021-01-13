@@ -106,7 +106,7 @@ namespace BL
             {
                 dl.UpdateBus(BusDO);
             }
-            catch (DO.BadBusIdException ex)
+            catch (DO.BadBusException ex)
             {
                 throw new BO.BadBusIdException("Bus ID is illegal", ex);
             }
@@ -118,7 +118,7 @@ namespace BL
             {
                 dl.UpdateBus(BusDO);
             }
-            catch (DO.BadBusIdException ex)
+            catch (DO.BadBusException ex)
             {
                 throw new BO.BadBusIdException("Bus ID is illegal", ex);
             }

@@ -16,22 +16,22 @@ namespace BO
           public DriverIdException(int id, string message, Exception innerException) :
               base(message, innerException) => ID = id;
 
-          public override string ToString() => base.ToString() + $", bad person id: {ID}";
+          public override string ToString() => base.ToString() + $", bad Bus id: {ID}";
       }
       [Serializable]
       public class BadBusIdException : Exception
       {
-          public int personID;
-          public int courseID;
-          public BadBusIdException(int perID, int crsID) : base() { personID = perID; courseID = crsID; }
+          public int BusID;
+          public int StationID;
+          public BadBusIdException(int perID, int crsID) : base() { BusID = perID; StationID = crsID; }
           public BadBusIdException(int perID, int crsID, string message) :
               base(message)
-          { personID = perID; courseID = crsID; }
+          { BusID = perID; StationID = crsID; }
           public BadBusIdException(int perID, int crsID, string message, Exception innerException) :
               base(message, innerException)
-          { personID = perID; courseID = crsID; }
+          { BusID = perID; StationID = crsID; }
 
-          public override string ToString() => base.ToString() + $", bad person id: {personID} and course id: {courseID}";
+          public override string ToString() => base.ToString() + $", bad Bus id: {BusID} and Station id: {StationID}";
       }
       [Serializable]
       public class BadStationException : Exception
@@ -51,11 +51,11 @@ namespace BO
       public class BadLicenseIdException : Exception
       {
           public string xmlFilePath;
-          public BadLicenseIdCourseIDException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-          public BadLicenseIdCourseIDException(string xmlPath, string message) :
+          public BadLicenseIdStationIDException(string xmlPath) : base() { xmlFilePath = xmlPath; }
+          public BadLicenseIdStationIDException(string xmlPath, string message) :
               base(message)
           { xmlFilePath = xmlPath; }
-          public BadLicenseIdCourseIDException(string xmlPath, string message, Exception innerException) :
+          public BadLicenseIdStationIDException(string xmlPath, string message, Exception innerException) :
               base(message, innerException)
           { xmlFilePath = xmlPath; }
 
@@ -147,16 +147,16 @@ namespace BO
     }
 
     [Serializable]//לטפל בזה
-    public class BadStudentIdCourseIDException : Exception
+    public class BadBusLineIdStationIDException : Exception
     {
-        public int personID;
-        public int courseID;
-        public BadStudentIdCourseIDException(string message, Exception innerException) :
+        public int BusID;
+        public int StationID;
+        public BadBusLineIdStationIDException(string message, Exception innerException) :
             base(message, innerException)
         {
-            personID = ((DO.BadPersonIdCourseIDException)innerException).personID;
-            courseID = ((DO.BadPersonIdCourseIDException)innerException).courseID;
+            BusID = ((DO.BadBusException)innerException).BusID;
+            StationID = ((DO.BadBusException)innerException).StationID;
         }
-        public override string ToString() => base.ToString() + $", bad student id: {personID} and course ID: {courseID}";
+        public override string ToString() => base.ToString() + $", bad BusLine id: {BusID} and Station ID: {StationID}";
     }
 }

@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,13 +28,12 @@ namespace BL
             from.CopyPropertiesTo(to);
             return to;
         }
-        public static BO.StudentCourse CopyToStudentCourse(this DO.Course course, DO.StudentInCourse sic)
+        public static BO.BusLineStation CopyToBusLineStation(this DO.Station Station, DO.BusLineInStation sic)
         {
-            BO.StudentCourse result = (BO.StudentCourse)course.CopyPropertiesToNew(typeof(BO.StudentCourse));
+            BO.BusLineStation result = (BO.BusLineStation)Station.CopyPropertiesToNew(typeof(BO.BusLineStation));
             // propertys' names changed? copy them here...
             result.Grade = sic.Grade;
             return result;
         }
     }
 }
-*/

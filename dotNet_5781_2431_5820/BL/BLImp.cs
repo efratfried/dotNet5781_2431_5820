@@ -17,17 +17,16 @@ namespace BL
         BO.Bus BusDoBoAdapter(DO.Bus BusDO)
         {
             BO.Bus BusBO = new BO.Bus();
-            DO.Bus BusDO;
-            int id = BusDO.ID;
+            int LicenseNum = BusDO.LicenseNum;
             try
             {
-                BusDO = dl.GetBus(id);
+                BusDO = dl.GetBus(LicenseNum);
             }
             catch (DO.BadBusException ex)
             {
-                throw new BO.BadBusIdException("Bus ID is illegal", ex);
+                throw new BO.BadBusIdException("Bus LicenseNum is illegal", ex);
             }
-            BusDO.CopyPropertiesTo(BusBO);
+            BusDO.CopyPropertiesTo(BusBO.TreatsDuco);
             //BusBO.ID = BusDO.ID;
             //BusBO.BirthDate = BusDO.BirthDate;
             //BusBO.City = BusDO.City;
@@ -36,37 +35,25 @@ namespace BL
             //BusBO.Street = BusDO.Street;
             //BusBO.BusalStatus = (BO.BusalStatus)(int)BusDO.BusalStatus;
 
-            BusDO.CopyPropertiesTo(BusBO);
+            BusDO.CopyPropertiesTo(BusBO.drivingBusesDuco);
             //BusBO.StartYear = BusDO.StartYear;
             //BusBO.Status = (BO.BusStatus)(int)BusDO.Status;
             //BusBO.Graduation = (BO.BusGraduate)(int)BusDO.Graduation;
 
-            BusBO.ListOfCourses = from sic in dl.GetBussInCourseList(sic => sic.BusId == id)
-                                      let course = dl.GetCourse(sic.CourseId)
-                                      select course.CopyToBusCourse(sic);
-            //new BO.BusCourse()
-            //{
-            //    ID = course.ID,
-            //    Number = course.Number,
-            //    Name = course.Name,
-            //    Year = course.Year,
-            //    Semester = (BO.Semester)(int)course.Semester,
-            //    Grade = sic.Grade
-            //};
 
             return BusBO;
         }
 
-        public BO.Bus GetBus(int id)
+        public BO.Bus GetBus(int LicenseNum)
         {
             DO.Bus BusDO;
             try
             {
-                BusDO = dl.GetBus(id);
+                BusDO = dl.GetBus(LicenseNum);
             }
             catch (DO.BadBusException ex)
             {
-                throw new BO.BadBusIdException("Bus id does not exist or he is not a Bus", ex);
+                throw new BO.BadBusIdException("Buss' LicenseNum does not exist or it is not a Bus", ex);
             }
             return BusDoBoAdapter(BusDO);
         }
@@ -76,8 +63,8 @@ namespace BL
             //       let Bus = item as BO.Bus
             //       orderby Bus.ID
             //       select Bus;
-            return from BusDO in dl.GetAllBuss()
-                   orderby BusDO.ID
+            return from BusDO in dl.GetAllBusses()
+                   orderby BusDO.LicenseNum
                    select BusDoBoAdapter(BusDO);
         }
         public IEnumerable<BO.Bus> GetBussBy(Predicate<BO.Bus> predicate)
@@ -85,15 +72,15 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<BO.BussList> GetBusIDNameList()
+        public IEnumerable<BO.Bus> GetBusLicenseNumNameList()
         {
-            return from item in dl.GetBusListWithSelectedFields((BusDO) =>
+            return from item in dl.GetAllBusListWithSelectedFields((BusDO) =>
             {
                 try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                return new BO.ListedBus() { ID = BusDO.ID, Name = dl.GetBus(BusDO.ID).Name };
+                return new BO.Bus() { LicenseNum = BusDO.LicenseNum};
             })
-                   let BusBO = item as BO.BussList
-                   //orderby Bus.ID
+                   let BusBO = item as BO.Bus
+                   //orderby Bus.LicenseNum
                    select BusBO;
         }
 
@@ -108,38 +95,19 @@ namespace BL
             }
             catch (DO.BadBusException ex)
             {
-                throw new BO.BadBusIdException("Bus ID is illegal", ex);
+                throw new BO.BadBusIdException("Bus's LicenseNum is illegal", ex);
             }
-
-            //Update DO.Bus            
-            DO.Bus BusDO = new DO.Bus();
-            Bus.CopyPropertiesTo(BusDO);
-            try
-            {
-                dl.UpdateBus(BusDO);
-            }
-            catch (DO.BadBusException ex)
-            {
-                throw new BO.BadBusIdException("Bus ID is illegal", ex);
-            }
-
         }
 
-        public void DeleteBus(int id)
+        public void DeleteBus(int LicenseNum)
         {
             try
             {
-                dl.DeleteBus(id);
-                dl.DeleteBus(id);
-                dl.DeleteBusFromAllCourses(id);
+                dl.DeleteBus(LicenseNum);
             }
-            catch (DO.BadBusIdCourseIDException ex)
+            catch (DO.BadBusException ex)
             {
-                throw new BO.BadBusIdCourseIDException("Bus ID and Course ID is Not exist", ex);
-            }
-            catch (DO.BadBusIdException ex)
-            {
-                throw new BO.BadBusIdException("Bus id does not exist or he is not a Bus", ex);
+                throw new BO.BadBusIdException("Bus LicenseNum does not exist or it is not a Bus", ex);
             }
         }
 

@@ -58,6 +58,7 @@
     <Compile Include="BO\Treat.cs" />
     <Compile Include="BO\User.cs" />
     <Compile Include="BO\UserDrive.cs" />
+    <Compile Include="DeepCopyUntilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

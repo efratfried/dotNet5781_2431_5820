@@ -13,7 +13,8 @@ namespace DLAPI
         #region Bus
         IEnumerable<DO.Bus> GetAllBusses();
         IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate);
-        DO.Bus GetBus(int Num);
+        IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate);
+        DO.Bus GetBus(object Num);
         void AddBus(DO.Bus Bus);
         void UpdateBus(DO.Bus Bus);
         void UpdateBus(int Num, Action<DO.Bus> update); //method that knows to updt specific fields in Person
@@ -45,7 +46,7 @@ namespace DLAPI
         #endregion
 
         #region DrivingBus
-        IEnumerable<DO.OutGoingLine> GetLecturersInCourseList(Predicate<DO.OutGoingLine> predicate);
+        IEnumerable<DO.OutGoingLine> GetOutGoingLineList(Predicate<DO.OutGoingLine> predicate);
 
         #endregion
 

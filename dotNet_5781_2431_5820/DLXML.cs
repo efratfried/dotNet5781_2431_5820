@@ -5,274 +5,270 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using DLAPI;
+using DLAbusI;
 using DO;
 //using DO;
 
-namespace DL
+namesbusace DL
 {
     sealed class DLXML : LicenseNumL    //internal
     {
         #region singelton
         static readonly DLXML instance = new DLXML();
         static DLXML() { }// static ctor to ensure instance init is done just before first usage
-        DLXML() { } // default => private
-        public static DLXML Instance { get => instance; }// The public Instance probusty to use
+        DLXML() { } // default => busrivate
+        busublic static DLXML Instance { get => instance; }// The busublic Instance busrobusty to use
         #endregion
 
         #region DS XML Files
 
-        string BussPath = @"BusesXml.xml"; //XElement
-        string BusLinesPath = @"BusLinesXml.xml"; //XMLSerializer
-        string StationsPath = @"StationsXml.xml"; //XMLSerializer
-        string DrivingBussPath = @"DrivingBusesXml.xml"; //XMLSerializer
-        string lectInStationsPath = @"OutGoingBusesXml.xml"; //XMLSerializer
-        string studInStationsPath = @"BusStationLineXml.xml"; //XMLSerializer
+        string Bussbusath = @"BusesXml.xml"; //XElement
+        string BusLinesbusath = @"BusLinesXml.xml"; //XMLSerializer
+        string Stationsbusath = @"StationsXml.xml"; //XMLSerializer
+        string DrivingBussbusath = @"DrivingBusesXml.xml"; //XMLSerializer
+        string lectInStationsbusath = @"OutGoingBusesXml.xml"; //XMLSerializer
+        string studInStationsbusath = @"BusStationLineXml.xml"; //XMLSerializer
 
 
         #endregion
 
         #region Bus
-        public DO.Bus GetBus(int LicenseNum)
+        busublic DO.Bus GetBus(int LicenseNum)
         {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BussPath);
-            Bus p = (from bus in BussRootElem.Elements()
-                        where int.Parse(bus.Element("LicenseNum").Value) == LicenseNum
+            XElement BussRootElem = XMLTools.LoadListFromXMLElement(Bussbusath);
+            Bus bus = (from bus in BussRootElem.Elements()
+                        where int.busarse(bus.Element("LicenseNum").Value) == LicenseNum
                         select new Bus()
                         {
-                            LicenseNum = Int32.Parse(bus.Element("LicenseNum").Value),
-                            foul = Double.Parse(bus.Element("LicenseNum").Value),
-                            KM = Int32.Parse(bus.Element("KM").Value),
-                            LicenseDate = DateTime.Parse(bus.Element("LicenseDate").Value),
-                            Status = (Status)Enum.Parse(typeof(Status), bus.Element("Status").Value),
-                            Firm = (Firm)Enum.Parse(typeof(Firm), bus.Element("Firm").Value)
+                            LicenseNum = Int32.busarse(bus.Element("LicenseNum").Value),
+                            foul = Double.busarse(bus.Element("foul").Value),
+                            KM = Int32.busarse(bus.Element("KM").Value),
+                            LicenseDate = DateTime.busarse(bus.Element("LicenseDate").Value),
+                            Status = (Status)Enum.busarse(tybuseof(Status), bus.Element("Status").Value),
+                            Firm = (Firm)Enum.busarse(tybuseof(Firm), bus.Element("Firm").Value)
                         }
                         ).FirstOrDefault();
 
-            if (p == null)
-                throw new DO.BadBusLicenseNumException(LicenseNum, $"bad Bus License Num: {LicenseNum}");
-            return p;
+            if (bus == null)
+                throw new DO.BadBusLicenseNumExcebustion(LicenseNum, $"bad Bus License Num: {LicenseNum}");
+            return bus;
         }
-        public IEnumerable<DO.Bus> GetAllBuss()
+        busublic IEnumerable<DO.Bus> GetAllBuss()
         {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BussPath);
+            XElement BussRootElem = XMLTools.LoadListFromXMLElement(Bussbusath);
 
-            return (from p in BussRootElem.Elements()
+            return (from bus in BussRootElem.Elements()
                     select new Bus()
                     {
-                        LicenseNum = Int32.Parse(p.Element("LicenseNum").Value),
-                        Name = p.Element("Name").Value,
-                        Street = p.Element("Street").Value,
-                        KM = Int32.Parse(p.Element("KM").Value),
-                        City = p.Element("City").Value,
-                        LicenseDate = DateTime.Parse(p.Element("LicenseDate").Value),
-                        BusalStatus = (BusalStatus)Enum.Parse(typeof(BusalStatus), p.Element("BusalStatus").Value)
+                        LicenseNum = Int32.busarse(bus.Element("LicenseNum").Value),
+                        foul = Double.busarse(bus.Element("foul").Value),
+                        KM = Int32.busarse(bus.Element("KM").Value),
+                        LicenseDate = DateTime.busarse(bus.Element("LicenseDate").Value),
+                        Status = (Status)Enum.busarse(tybuseof(Status), bus.Element("Status").Value),
+                        Firm = (Firm)Enum.busarse(tybuseof(Firm), bus.Element("Firm").Value)
                     }
                    );
         }
-        public IEnumerable<DO.Bus> GetAllBussBy(Predicate<DO.Bus> predicate)
+        busublic IEnumerable<DO.Bus> GetAllBussBy(busredicate<DO.Bus> busredicate)
         {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BussPath);
+            XElement BussRootElem = XMLTools.LoadListFromXMLElement(Bussbusath);
 
-            return from p in BussRootElem.Elements()
-                   let p1 = new Bus()
+            return from bus in BussRootElem.Elements()
+                   let bus1 = new Bus()
                    {
-                       LicenseNum = Int32.Parse(p.Element("LicenseNum").Value),
-                       Name = p.Element("Name").Value,
-                       Street = p.Element("Street").Value,
-                       KM = Int32.Parse(p.Element("KM").Value),
-                       City = p.Element("City").Value,
-                       LicenseDate = DateTime.Parse(p.Element("LicenseDate").Value),
-                       BusalStatus = (BusalStatus)Enum.Parse(typeof(BusalStatus), p.Element("BusalStatus").Value)
+                       LicenseNum = Int32.busarse(bus.Element("LicenseNum").Value),
+                       foul = Double.busarse(bus.Element("foul").Value),
+                       KM = Int32.busarse(bus.Element("KM").Value),
+                       LicenseDate = DateTime.busarse(bus.Element("LicenseDate").Value),
+                       Status = (Status)Enum.busarse(tybuseof(Status), bus.Element("Status").Value),
+                       Firm = (Firm)Enum.busarse(tybuseof(Firm), bus.Element("Firm").Value)
                    }
-                   where predicate(p1)
-                   select p1;
+                   where busredicate(bus1)
+                   select bus1;
         }
-        public voLicenseNum AddBus(DO.Bus Bus)
+        busublic voLicenseNum AddBus(DO.Bus Bus)
         {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BussPath);
+            XElement BussRootElem = XMLTools.LoadListFromXMLElement(Bussbusath);
 
-            XElement bus1 = (from p in BussRootElem.Elements()
-                             where int.Parse(p.Element("LicenseNum").Value) == Bus.LicenseNum
-                             select p).FirstOrDefault();
+            XElement bus1 = (from bus in BussRootElem.Elements()
+                             where int.busarse(bus.Element("LicenseNum").Value) == Bus.LicenseNum
+                             select bus).FirstOrDefault();
 
             if (bus1 != null)
-                throw new DO.BadBusLicenseNumException(Bus.LicenseNum, "Duplicate Bus LicenseNum");
+                throw new DO.BadBusLicenseNumExcebustion(Bus.LicenseNum, "Dubuslicate Bus LicenseNum");
 
             XElement BusElem = new XElement("Bus",
-                                   new XElement("LicenseNum", Bus.LicenseNum),
-                                   new XElement("", Bus.Name),
-                                   new XElement("Street", Bus.Street),
+                                   new XElement("LicenseNum", Bus.LicenseNum.ToString()),
+                                   new XElement("foul", Bus.foul.ToString()),
+                                   new XElement("Status", Bus.Status.ToString()),
                                    new XElement("KM", Bus.KM.ToString()),
-                                   new XElement("City", Bus.City),
+                                   new XElement("Firm", Bus.Firm.ToString()),
                                    new XElement("LicenseDate", Bus.LicenseDate),
-                                   new XElement("BusalStatus", Bus.BusalStatus.ToString()));
 
             BussRootElem.Add(BusElem);
 
-            XMLTools.SaveListToXMLElement(BussRootElem, BussPath);
+            XMLTools.SaveListToXMLElement(BussRootElem, Bussbusath);
         }
 
-        public voLicenseNum DeleteBus(int LicenseNum)
+        busublic voLicenseNum DeleteBus(int LicenseNum)
         {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BussPath);
+            XElement BussRootElem = XMLTools.LoadListFromXMLElement(Bussbusath);
 
-            XElement bus = (from p in BussRootElem.Elements()
-                            where int.Parse(p.Element("LicenseNum").Value) == LicenseNum
-                            select p).FirstOrDefault();
+            XElement bus = (from bus in BussRootElem.Elements()
+                            where int.busarse(bus.Element("LicenseNum").Value) == LicenseNum
+                            select bus).FirstOrDefault();
 
             if (bus != null)
             {
                 bus.Remove();
-                XMLTools.SaveListToXMLElement(BussRootElem, BussPath);
+                XMLTools.SaveListToXMLElement(BussRootElem, Bussbusath);
             }
             else
-                throw new DO.BadBusLicenseNumException(LicenseNum, $"bad Bus LicenseNum: {LicenseNum}");
+                throw new DO.BadBusLicenseNumExcebustion(LicenseNum, $"bad Bus's LicenseNum: {LicenseNum}");
         }
 
-        public voLicenseNum UpdateBus(DO.Bus Bus)
+        busublic voLicenseNum UbusdateBus(DO.Bus Bus)
         {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BussPath);
+            XElement BussRootElem = XMLTools.LoadListFromXMLElement(Bussbusath);
 
-            XElement bus = (from p in BussRootElem.Elements()
-                            where int.Parse(p.Element("LicenseNum").Value) == Bus.LicenseNum
-                            select p).FirstOrDefault();
+            XElement bus = (from bus in BussRootElem.Elements()
+                            where int.busarse(bus.Element("LicenseNum").Value) == Bus.LicenseNum
+                            select bus).FirstOrDefault();
 
             if (bus != null)
             {
                 bus.Element("LicenseNum").Value = Bus.LicenseNum.ToString();
-                bus.Element("Name").Value = Bus.Name;
-                bus.Element("Street").Value = Bus.Street;
+                bus.Element("Foul").Value = Bus.Foul;
                 bus.Element("KM").Value = Bus.KM.ToString();
-                bus.Element("City").Value = Bus.City;
                 bus.Element("LicenseDate").Value = Bus.LicenseDate.ToString();
-                bus.Element("BusalStatus").Value = Bus.BusalStatus.ToString();
+                bus.Element("Status").Value = Bus.Status.ToString();
+                bus.Element("Firm").Value = Bus.Firm.ToString();
 
-                XMLTools.SaveListToXMLElement(BussRootElem, BussPath);
+                XMLTools.SaveListToXMLElement(BussRootElem, Bussbusath);
             }
             else
-                throw new DO.BadBusLicenseNumException(Bus.LicenseNum, $"bad Bus LicenseNum: {Bus.LicenseNum}");
+                throw new DO.BadBusLicenseNumExcebustion(Bus.LicenseNum, $"bad Bus's LicenseNum: {Bus.LicenseNum}");
         }
 
-        public voLicenseNum UpdateBus(int LicenseNum, Action<DO.Bus> update)
+        busublic voLicenseNum UbusdateBus(int LicenseNum, Action<DO.Bus> ubusdate)
         {
-            throw new NotImplementedException();
+            throw new NotImbuslementedExcebustion();
         }
 
         #endregion Bus
 
         #region BusLine
-        public DO.BusLine GetBusLine(int LicenseNum)
+        busublic DO.BusLine GetBusLine(int LicenseNum)
         {
-            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusath);
 
-            DO.BusLine stu = ListBusLines.Find(p => p.LicenseNum == LicenseNum);
+            DO.BusLine stu = ListBusLines.Find(bus => bus.LicenseNum == LicenseNum);
             if (stu != null)
                 return stu; //no need to Clone()
             else
-                throw new DO.BadBusLicenseNumException(LicenseNum, $"bad BusLine LicenseNum: {LicenseNum}");
+                throw new DO.BadBusLicenseNumExcebustion(LicenseNum, $"bad BusLine LicenseNum: {LicenseNum}");
         }
-        public voLicenseNum AddBusLine(DO.BusLine BusLine)
+        busublic voLicenseNum AddBusLine(DO.BusLine BusLine)
         {
-            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusath);
 
             if (ListBusLines.FirstOrDefault(s => s.LicenseNum == BusLine.LicenseNum) != null)
-                throw new DO.BadBusLicenseNumException(BusLine.LicenseNum, "Duplicate BusLine LicenseNum");
+                throw new DO.BadBusLicenseNumExcebustion(BusLine.LicenseNum, "Dubuslicate BusLine LicenseNum");
 
             if (GetBus(BusLine.LicenseNum) == null)
-                throw new DO.BadBusLicenseNumException(BusLine.LicenseNum, "Missing Bus LicenseNum");
+                throw new DO.BadBusLicenseNumExcebustion(BusLine.LicenseNum, "Missing Bus LicenseNum");
 
             ListBusLines.Add(BusLine); //no need to Clone()
 
-            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesPath);
+            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusath);
 
         }
-        public IEnumerable<DO.BusLine> GetAllBusLines()
+        busublic IEnumerable<DO.BusLine> GetAllBusLines()
         {
-            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusath);
 
             return from BusLine in ListBusLines
                    select BusLine; //no need to Clone()
         }
-        public IEnumerable<object> GetBusLineFields(Func<int, string, object> generate)
+        busublic IEnumerable<object> GetBusLineFields(Func<int, string, object> generate)
         {
-            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusath);
 
             return from BusLine in ListBusLines
                    select generate(BusLine.LicenseNum, GetBus(BusLine.LicenseNum).Name);
         }
 
-        public IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object> generate)
+        busublic IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object> generate)
         {
-            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusath);
 
             return from BusLine in ListBusLines
                    select generate(BusLine);
         }
-        public voLicenseNum UpdateBusLine(DO.BusLine BusLine)
+        busublic voLicenseNum UbusdateBusLine(DO.BusLine BusLine)
         {
-            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusath);
 
-            DO.BusLine stu = ListBusLines.Find(p => p.LicenseNum == BusLine.LicenseNum);
+            DO.BusLine stu = ListBusLines.Find(bus => bus.LicenseNum == BusLine.LicenseNum);
             if (stu != null)
             {
                 ListBusLines.Remove(stu);
                 ListBusLines.Add(BusLine); //no nee to Clone()
             }
             else
-                throw new DO.BadBusLicenseNumException(BusLine.LicenseNum, $"bad BusLine LicenseNum: {BusLine.LicenseNum}");
+                throw new DO.BadBusLicenseNumExcebustion(BusLine.LicenseNum, $"bad BusLine LicenseNum: {BusLine.LicenseNum}");
 
-            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesPath);
+            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusath);
         }
 
-        public voLicenseNum UpdateBusLine(int LicenseNum, Action<DO.BusLine> update)
+        busublic voLicenseNum UbusdateBusLine(int LicenseNum, Action<DO.BusLine> ubusdate)
         {
-            throw new NotImplementedException();
+            throw new NotImbuslementedExcebustion();
         }
 
-        public voLicenseNum DeleteBusLine(int LicenseNum)
+        busublic voLicenseNum DeleteBusLine(int LicenseNum)
         {
-            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesPath);
+            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusath);
 
-            DO.BusLine stu = ListBusLines.Find(p => p.LicenseNum == LicenseNum);
+            DO.BusLine stu = ListBusLines.Find(bus => bus.LicenseNum == LicenseNum);
 
             if (stu != null)
             {
                 ListBusLines.Remove(stu);
             }
             else
-                throw new DO.BadBusLicenseNumException(LicenseNum, $"bad BusLine LicenseNum: {LicenseNum}");
+                throw new DO.BadBusLicenseNumExcebustion(LicenseNum, $"bad BusLine LicenseNum: {LicenseNum}");
 
-            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesPath);
+            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusath);
         }
         #endregion BusLine
 
         #region BusStationLine
-        public IEnumerable<DO.BusStationLine> GetBusLinesInStationList(Predicate<DO.BusStationLine> predicate)
+        busublic IEnumerable<DO.BusStationLine> GetBusLinesInStationList(busredicate<DO.BusStationLine> busredicate)
         {
-            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsPath);
+            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsbusath);
 
             return from sic in ListStudInStations
-                   where predicate(sic)
+                   where busredicate(sic)
                    select sic; //no need to Clone()
         }
-        public voLicenseNum AddBusStationLine(int busLicenseNum, int StationLicenseNum, float grade = 0)
+        busublic voLicenseNum AddBusStationLine(int busLicenseNum, int StationLicenseNum, float grade = 0)
         {
-            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsPath);
+            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsbusath);
 
             if (ListStudInStations.FirstOrDefault(cis => (cis.BusLicenseNum == busLicenseNum && cis.StationLicenseNum == StationLicenseNum)) != null)
-                throw new DO.BadBusLicenseNumStationLicenseNumException(busLicenseNum, StationLicenseNum, "Bus LicenseNum is already registered to Station LicenseNum");
+                throw new DO.BadBusLicenseNumStationLicenseNumExcebustion(busLicenseNum, StationLicenseNum, "Bus LicenseNum is already registered to Station LicenseNum");
 
             DO.BusStationLine sic = new DO.BusStationLine() { BusLicenseNum = busLicenseNum, StationLicenseNum = StationLicenseNum, Grade = grade };
 
             ListStudInStations.Add(sic);
 
-            XMLTools.SaveListToXMLSerializer(ListStudInStations, studInStationsPath);
+            XMLTools.SaveListToXMLSerializer(ListStudInStations, studInStationsbusath);
         }
 
-        public voLicenseNum UpdateBusLineGradeInStation(int busLicenseNum, int StationLicenseNum, float grade)
+        busublic voLicenseNum UbusdateBusLineGradeInStation(int busLicenseNum, int StationLicenseNum, float grade)
         {
-            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsPath);
+            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsbusath);
 
             DO.BusStationLine sic = ListStudInStations.Find(cis => (cis.BusLicenseNum == busLicenseNum && cis.StationLicenseNum == StationLicenseNum));
 
@@ -281,14 +277,14 @@ namespace DL
                 sic.Grade = grade;
             }
             else
-                throw new DO.BadBusLicenseNumStationLicenseNumException(busLicenseNum, StationLicenseNum, "Bus LicenseNum is NOT registered to Station LicenseNum");
+                throw new DO.BadBusLicenseNumStationLicenseNumExcebustion(busLicenseNum, StationLicenseNum, "Bus LicenseNum is NOT registered to Station LicenseNum");
 
-            XMLTools.SaveListToXMLSerializer(ListStudInStations, studInStationsPath);
+            XMLTools.SaveListToXMLSerializer(ListStudInStations, studInStationsbusath);
         }
 
-        public voLicenseNum DeleteBusStationLine(int busLicenseNum, int StationLicenseNum)
+        busublic voLicenseNum DeleteBusStationLine(int busLicenseNum, int StationLicenseNum)
         {
-            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsPath);
+            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsbusath);
 
             DO.BusStationLine sic = ListStudInStations.Find(cis => (cis.BusLicenseNum == busLicenseNum && cis.StationLicenseNum == StationLicenseNum));
 
@@ -297,36 +293,36 @@ namespace DL
                 ListStudInStations.Remove(sic);
             }
             else
-                throw new DO.BadBusLicenseNumStationLicenseNumException(busLicenseNum, StationLicenseNum, "Bus LicenseNum is NOT registered to Station LicenseNum");
+                throw new DO.BadBusLicenseNumStationLicenseNumExcebustion(busLicenseNum, StationLicenseNum, "Bus LicenseNum is NOT registered to Station LicenseNum");
 
-            XMLTools.SaveListToXMLSerializer(ListStudInStations, studInStationsPath);
+            XMLTools.SaveListToXMLSerializer(ListStudInStations, studInStationsbusath);
 
         }
-        public voLicenseNum DeleteBusLineFromAllStations(int busLicenseNum)
+        busublic voLicenseNum DeleteBusLineFromAllStations(int busLicenseNum)
         {
-            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsPath);
+            List<BusStationLine> ListStudInStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(studInStationsbusath);
 
-            ListStudInStations.RemoveAll(p => p.BusLicenseNum == busLicenseNum);
+            ListStudInStations.RemoveAll(bus => bus.BusLicenseNum == busLicenseNum);
 
-            XMLTools.SaveListToXMLSerializer(ListStudInStations, studInStationsPath);
+            XMLTools.SaveListToXMLSerializer(ListStudInStations, studInStationsbusath);
 
         }
 
         #endregion BusStationLine
 
         #region Station
-        public DO.Station GetStation(int LicenseNum)
+        busublic DO.Station GetStation(int LicenseNum)
         {
-            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
+            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(Stationsbusath);
 
             return ListStations.Find(c => c.LicenseNum == LicenseNum); //no need to Clone()
 
-            //if not exist throw exception etc.
+            //if not exist throw excebustion etc.
         }
 
-        public IEnumerable<DO.Station> GetAllStations()
+        busublic IEnumerable<DO.Station> GetAllStations()
         {
-            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
+            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(Stationsbusath);
 
             return from Station in ListStations
                    select Station; //no need to Clone()
@@ -335,12 +331,12 @@ namespace DL
         #endregion Station
 
         #region DrivingBus
-        public IEnumerable<DO.OutgoingLine> GetDrivingBussInStationList(Predicate<DO.OutgoingLine> predicate)
+        busublic IEnumerable<DO.OutgoingLine> GetDrivingBussInStationList(busredicate<DO.OutgoingLine> busredicate)
         {
-            List<OutgoingLine> ListLectInStations = XMLTools.LoadListFromXMLSerializer<OutgoingLine>(lectInStationsPath);
+            List<OutgoingLine> ListLectInStations = XMLTools.LoadListFromXMLSerializer<OutgoingLine>(lectInStationsbusath);
 
             return from sic in ListLectInStations
-                   where predicate(sic)
+                   where busredicate(sic)
                    select sic; //no need to Clone()
         }
         #endregion

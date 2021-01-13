@@ -1,12 +1,19 @@
-﻿<Window x:Class="PL.MainWindow"
+﻿<Window x:Class="PL.Bus_Presentation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1200">
     <Grid>
-        
+        <Button Content="אוטובוסים" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Height="137" FontSize="28" Background="#FFC2E5CC"/>
+        <Button Content="קווים" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Height="137" Margin="0,144,0,0" FontSize="28" Background="#FFC2E5CC"/>
+        <Button Content="תחנות קו" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Height="137" Margin="0,287.5,0,0" FontSize="28" Background="#FFC2E5CC"/>
+        <Button Content="תחנות" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Height="137" Margin="0,432,0,0" FontSize="28" Background="#FFC2E5CC"/>
+        <Rectangle Fill="#FF26A96A" Height="560" Stroke="Black" Margin="983,5,201.6,5.4"/>
+        <Button Content="הוסף אוטובוס חדש" HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Margin="1005,31,0,0" Height="35" FontSize="14"/>
+        <Button Content="מחיקת אוטובוס " HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Margin="1005,105,0,0" Height="35" FontSize="14"/>
+        <Button Content="עדכון אוטובוס " HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Margin="1005,180,0,0" Height="35" FontSize="14"/>
     </Grid>
 </Window>

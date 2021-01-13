@@ -10,10 +10,10 @@ namespace BLAPI
     {
         #region bus
         BO.Bus GetBus(int id);
-        IEnumerable<BO.ListBuss> GetAllBuss();
-        IEnumerable<BO.ListBuss> GetBusIDNameList();
+        IEnumerable<BO.Bus> GetAllBuss();
+        IEnumerable<BO.Bus> GetBusIDNameList();
 
-        IEnumerable<BO.ListBuss> GetBussBy(Predicate<BO.Bus> predicate);
+        IEnumerable<BO.Bus> GetBussBy(Predicate<BO.Bus> predicate);
 
         void UpdateBusPersonalDetails(BO.Bus Bus);
 
@@ -29,8 +29,9 @@ namespace BLAPI
         public IEnumerable<Treat> TreatsDuco { get; set; }
         public IEnumerable<DrivingBus> drivingBusesDuco { get; set; }
         */
-
+        
         #endregion
+        /*
         #region BusLine
         BO.BusLine GetBusLine(int Num);
         IEnumerable<BO.BusLine> GetBusLines();
@@ -58,6 +59,6 @@ namespace BLAPI
         #region BusCourse
         IEnumerable<BO.BusCourse> GetAllCoursesPerBus(int id);
         #endregion
-
+    */
     }
 }

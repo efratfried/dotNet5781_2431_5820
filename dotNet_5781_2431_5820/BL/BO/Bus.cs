@@ -12,7 +12,7 @@ namespace BO
         public DateTime LicenseDate { get; set; }
         public double KM { get; set; }
         public double foul { get; set; }
-        public Bus_Status Status { get; set; }
+        public Status Status { get; set; }
         public Firm MyFirm { get; set; }
         public IEnumerable <DateTime> AccidentsDuco { get; set; }
         public IEnumerable<Treat> TreatsDuco { get; set; }

@@ -100,7 +100,7 @@ namespace DL
         {
             if (DataSource.BusLineList.FirstOrDefault(s => s.ID == BusLine.ID) != null)
                 throw new DO.BadIDException(BusLine.ID, "Duplicate BusLine ID");
-            if (DataSource.ListBuss.FirstOrDefault(p => p.ID == BusLine.ID) == null)
+            if (DataSource.BusList.FirstOrDefault(p => p.ID == BusLine.ID) == null)
                 throw new DO.BadIDException(BusLine.ID, "Missing Bus ID");
             DataSource.BusLineList.Add(BusLine.Clone());
         }

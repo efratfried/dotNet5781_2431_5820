@@ -4,18 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 //using BO;
-
-
 namespace BLAPI
 {
     public interface IBL
     {
         #region bus
         BO.Bus GetBus(int id);
-        IEnumerable<BO.Bus> GetAllBuss();
-        IEnumerable<BO.BusList> GetBusIDNameList();
+        IEnumerable<BO.ListBuss> GetAllBuss();
+        IEnumerable<BO.ListBuss> GetBusIDNameList();
 
-        IEnumerable<BO.Bus> GetBussBy(Predicate<BO.Bus> predicate);
+        IEnumerable<BO.ListBuss> GetBussBy(Predicate<BO.Bus> predicate);
 
         void UpdateBusPersonalDetails(BO.Bus Bus);
 

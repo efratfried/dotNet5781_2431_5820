@@ -22,7 +22,7 @@ namespace BL
             {
                 BusDO = dl.GetBus(LicenseNum);
             }
-            catch (DO.BadBusException ex)
+            catch (DO.BadLicenseNumException ex)
             {
                 throw new BO.BadBusIdException("Bus LicenseNum is illegal", ex);
             }
@@ -51,7 +51,7 @@ namespace BL
             {
                 BusDO = dl.GetBus(LicenseNum);
             }
-            catch (DO.BadBusException ex)
+            catch (DO.BadLicenseNumException ex)
             {
                 throw new BO.BadBusIdException("Buss' LicenseNum does not exist or it is not a Bus", ex);
             }
@@ -93,7 +93,7 @@ namespace BL
             {
                 dl.UpdateBus(BusDO);
             }
-            catch (DO.BadBusException ex)
+            catch (DO.BadLicenseNumException ex)
             {
                 throw new BO.BadBusIdException("Bus's LicenseNum is illegal", ex);
             }
@@ -104,7 +104,7 @@ namespace BL
             {
                 dl.DeleteBus(LicenseNum);
             }
-            catch (DO.BadBusException ex)
+            catch (DO.BadLicenseNumException ex)
             {
                 throw new BO.BadBusIdException("Bus LicenseNum does not exist or it is not a Bus", ex);
             }

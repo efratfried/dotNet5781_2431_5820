@@ -133,6 +133,17 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad station's index on the line : {Index}";
     }
+    public class BadUserDriveNameException : Exception
+    {
+        public string Name;
+        public BadUserDriveNameException(string name) : base() => Name = name;
+        public BadUserDriveNameException(string name, string message) :
+            base(message) => Name = name;
+        public BadUserDriveNameException(string name, string message, Exception innerException) :
+            base(message, innerException) => Name = name;
+
+        public override string ToString() => base.ToString() + $", bad User's Drive name : {Name}";
+    }
     public class XMLFileLoadCreateException : Exception
     {
         public string xmlFilePath;
@@ -146,4 +157,5 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
     }
+
 }

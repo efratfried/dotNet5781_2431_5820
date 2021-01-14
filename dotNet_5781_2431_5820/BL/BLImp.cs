@@ -106,6 +106,10 @@ namespace BL
                 throw new BO.BadBusIdException("Bus LicenseNum does not exist or it is not a Bus", ex);
             }
         }
+        public void AddBus(BO.Bus bus)
+        {
+
+        }
 
         #endregion
     }

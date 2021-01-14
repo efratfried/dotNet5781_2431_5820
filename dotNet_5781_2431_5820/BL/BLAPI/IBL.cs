@@ -13,8 +13,10 @@ namespace BLAPI
         IEnumerable<BO.Bus> GetAllBuss();
         IEnumerable<BO.Bus> GetBusIDList();
         IEnumerable<BO.Bus> GetBussBy(Predicate<BO.Bus> predicate);
-        void UpdateBusPersonalDetails(BO.Bus Bus);
+        void UpdateBusPersonalDetails(BO.Bus bus);
         void DeleteBus(int id);
+        void AddBus(BO.Bus bus);
+
         /*
         public int LicenseNum { get; set; }
         public DateTime LicenseDate { get; set; }

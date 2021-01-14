@@ -195,5 +195,15 @@ namespace PL
         {
             MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
         }
+
+        private void graduationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btUpdateStudent_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace DO
 {
     public class OutGoingLine
     {//info page in sation on line
-        protected int ID { set; get; }
+        public int ID { set; get; }
         public TimeSpan Startime { set; get; }
         public TimeSpan Prequency { set; get; }
         public TimeSpan EndTime { set; get; }

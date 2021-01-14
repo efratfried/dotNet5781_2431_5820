@@ -11,7 +11,6 @@ using DS;
 namespace DL
 {
     sealed class DLObject : IDL    //internal
-
     {
         #region singelton
         static readonly DLObject instance = new DLObject();
@@ -19,7 +18,6 @@ namespace DL
         DLObject() { } // default => private
         public static DLObject Instance { get => instance; }// The public Instance probusty to use
         #endregion
-
         //Implement IDL methods, CRUD
         #region Bus
         public IEnumerable<DO.Bus> GetAllBusses()
@@ -31,6 +29,11 @@ namespace DL
         {
             throw new NotImplementedException();//it means we need to put exeption here;
         }
+        public IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate)
+        {
+            return from Bus in DataSource.BusList
+                   select generate(Bus);
+        }
         public DO.Bus GetBus(int LicenseNum)
         {
             DO.Bus bus = DataSource.BusList.Find(B => B.LicenseNum == LicenseNum);
@@ -39,12 +42,6 @@ namespace DL
                 return bus.Clone();
             else
                 throw new DO.BadBusLicenseNumException(LicenseNum, $"no Bus has License Num: {LicenseNum}");
-        }
-
-        public IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate)
-        {
-            return from Bus in DataSource.BusList
-                   select generate(Bus);
         }
         public void AddBus(DO.Bus bus)
         { //need a check if actually it is ==bus.---- or only ==licensnum
@@ -96,12 +93,10 @@ namespace DL
             return from station in DataSource.StationLists
                    select station.Clone();
         }
-        
         public IEnumerable<DO.Bus> GetAllStations(Predicate<DO.Station> predicate)
         {
             throw new NotImplementedException();//it means we need to put exeption here;
         }
-  
         public IEnumerable<object> GetAllStationsWithSelectedFields(Func<DO.Station, object> generate)
         {
             return from station in DataSource.StationLists
@@ -198,7 +193,7 @@ namespace DL
                 DataSource.BusLineList.Remove(busl);
             }
             else
-                throw new DO.BadBusLineException(id,id, $"bad BusLine id: {id}");
+                throw new DO.BadBusLineException(id, id, $"bad BusLine id: {id}");
         }
         #endregion
         #region BusStationLine
@@ -223,7 +218,6 @@ namespace DL
             return from BusSationLine in DataSource.BusStationLineList
                    select generate(BusSationLine);
         }
-
         public DO.BusLine GetBusStationLine(int id)
         {
             DO.BusLine busl = DataSource.BusLineList.Find(p => p.ID == id);
@@ -236,21 +230,20 @@ namespace DL
         public void AddBusStationLine(int ID, int BusStationNum)
         {
             if (DataSource.BusStationLineList.FirstOrDefault(cis => (cis.ID == ID && cis.BusStationNum == BusStationNum)) != null)
-                throw new DO.(ID, BusStationNum, "Bus ID is already registered to Station ID");
-            DO.BusStationLine sic = new DO.BusStationLine() { ID = ID, BusStationNum = BusStationNum};
+                throw new DO.BadBusLineException(ID, BusStationNum, "Bus ID is already registered to Station ID");
+            DO.BusStationLine sic = new DO.BusStationLine() { ID = ID, BusStationNum = BusStationNum };
             DataSource.BusStationLineList.Add(sic);
         }
-
         public void UpdateBusStationLine(int BusStationLine)
         {
-            DO.BusLine busl = DataSource.BusLineList.Find(p => p.ID == BusStationLine.ID);
+            DO.BusLine busl = DataSource.BusLineList.Find(p => p.ID == BusStationLine);
             if (busl != null)
             {
-                DataSource.BusStationLineList.Remove(busl);
-                DataSource.BusStationLineList.Add(BusStationLine.Clone());
+                DataSource.BusLineList.Remove(busl);
+                DataSource.BusLineList.Add(busl.Clone());
             }
             else
-                throw new DO.BadIDException(BusStationLine.ID, $"bad BusLine id: {BusStationLine.ID}");
+                throw new DO.BadCodeStationException(BusStationLine, $"bad BusLine id: {BusStationLine}");
         }
         public void UpdateBusLineIndexInLineInStation(int ID, int BusStationNum, int IndexInLine)
         {
@@ -263,17 +256,16 @@ namespace DL
             else
                 throw new DO.BadIDBusStationNumException(ID, BusStationNum, "Bus ID is NOT registered to Station ID");
         }
-
         public void DeleteBusStationLine(int BusStationNum)
         {
-            DO.BusStationLine sic = DataSource.BusStationLineList.Find(cis => ( cis.BusStationNum == BusStationNum));
+            DO.BusStationLine sic = DataSource.BusStationLineList.Find(cis => (cis.BusStationNum == BusStationNum));
 
             if (sic != null)
             {
                 DataSource.BusStationLineList.Remove(sic);
             }
             else
-                throw new DO.BadIDBusStationNumException( BusStationNum, "Bus ID is NOT registered to Station ID");
+                throw new DO.BadIDBusStationNumException(BusStationNum, "Bus ID is NOT registered to Station ID");
         }
         public void DeleteBusStationLineFromAllStations(int ID)
         {
@@ -281,5 +273,46 @@ namespace DL
         }
 
         #endregion BusStationLine           
+
+        #region OutGoingLine
+        DO.OutGoingLine GetOutGoingLine(int ID)
+        {
+            DO.OutGoingLine outGoingLine = DataSource.OutGoingLineList.Find(p => p.ID == ID);
+            try { Thread.Sleep(2000); } catch (ThreadInterruptedException e) { }
+            if (outGoingLine != null)
+                return outGoingLine.Clone();
+            else
+                throw new DO.BadCodeStationException(ID, $"bad BusLine id: {ID}");
         }
+        IEnumerable<DO.OutGoingLine> GetAllOutGoingLines(Predicate<DO.OutGoingLine> predicate)
+        {
+            return from sic in DataSource.OutGoingLineList
+                   where predicate(sic)
+                   select sic.Clone();
+        }
+        IEnumerable<object> GetOutGoingLineListWithSelectedFields(Func<DO.OutGoingLine, object> generate)
+        {
+            return from OutGoingLine in DataSource.OutGoingLineList
+                   select generate(OutGoingLine);
+        }
+        public void AddOutGoingLine(DO.OutGoingLine OutGoingLine)
+        {
+            if (DataSource.OutGoingLineList.FirstOrDefault(cis => (cis.ID == OutGoingLine.ID)) != null)
+                throw new DO.BadBusLicenseNumException(OutGoingLine.ID, "Bus ID is already registered AND OUT");
+            DO.BusStationLine sic = new DO.BusStationLine() { ID = OutGoingLine.ID };
+            DataSource.BusStationLineList.Add(sic);
+        }
+        public void DeleteOutGoingLine(int Num)
+        {
+            DO.OutGoingLine sic = DataSource.OutGoingLineList.Find(cis => (cis.ID == Num));
+
+            if (sic != null)
+            {
+                DataSource.OutGoingLineList.Remove(sic);
+            }
+            else
+                throw new DO.BadBusLineException(Num, Num, "Bus ID is NOT registered to Station ID");
+        }
+        #endregion
+    }
 }

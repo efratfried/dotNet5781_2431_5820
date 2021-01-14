@@ -76,8 +76,6 @@ namespace DLAPI
         IEnumerable<DO.OutGoingLine> GetAllOutGoingLines();
         IEnumerable<object> GetOutGoingLineListWithSelectedFields(Func<DO.OutGoingLine, object> generate);
         void AddOutGoingLine(DO.OutGoingLine OutGoingLine);
-        void UpdateOutGoingLine(DO.OutGoingLine OutGoingLine);
-        void UpdateOutGoingLine(int Num, Action<DO.OutGoingLine> update); //method that knows to updt specific fields in OutGoingLine
         void DeleteOutGoingLine(int Num); // removes only OutGoingLine, does not remove the appropriate Bus...
         #endregion
     }

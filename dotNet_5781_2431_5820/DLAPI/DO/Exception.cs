@@ -17,17 +17,7 @@ namespace DO
             base(message, innerException) => ID = id;
         public override string ToString() => base.ToString() + $", bad driver id: {ID}";
         }
-    public class UserNameException : Exception
-    {
-        public string Name;
-        public UserNameException(string name) : base() => Name = name;
-        public UserNameException(string name, string message) :
-            base(message) => Name = name;
-        public UserNameException(string name, string message, Exception innerException) :
-            base(message, innerException) => Name = name;
-
-        public override string ToString() => base.ToString() + $", bad driver name: {Name}";
-    }
+ 
     public class BadBusLineException : Exception
     {//busline related
         public int BusID;
@@ -111,15 +101,15 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad station's name : {StationName}";
     }
-    public class BadUserPasswordException : Exception
+    public class BadUserName_PasswordException : Exception
     {
         public string Password;
-        public BadUserPasswordException(string pass) : base() => Password = pass;
-        public BadUserPasswordException(string pass, string message) :
-            base(message) => Password = pass;
-        public BadUserPasswordException(string pass, string message, Exception innerException) :
-            base(message, innerException) => Password = pass;
-
+        public string Name;
+        public BadUserName_PasswordException(string pass,string name) : base() { Password=pass; Name=name; }
+        public BadUserName_PasswordException(string pass, string name, string message) :
+            base(message) { Password = pass; Name = name; }
+        public BadUserName_PasswordException(string pass, string name, string message, Exception innerException) :
+            base(message, innerException) { Password = pass; Name = name; }
         public override string ToString() => base.ToString() + $", bad User's Password : {Password}";
     }
     public class BadStationIndexInLineException : Exception
@@ -132,6 +122,17 @@ namespace DO
             base(message, innerException) => Index = index;
 
         public override string ToString() => base.ToString() + $", bad station's index on the line : {Index}";
+    }
+    public class BadUserDriveNameException : Exception
+    {
+        public string Name;
+        public BadUserDriveNameException(string name) : base() => Name = name;
+        public BadUserDriveNameException(string name, string message) :
+            base(message) => Name = name;
+        public BadUserDriveNameException(string name, string message, Exception innerException) :
+            base(message, innerException) => Name = name;
+
+        public override string ToString() => base.ToString() + $", bad User's Drive name : {Name}";
     }
     public class XMLFileLoadCreateException : Exception
     {
@@ -146,4 +147,5 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
     }
+
 }

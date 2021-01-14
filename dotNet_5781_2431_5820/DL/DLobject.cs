@@ -280,25 +280,26 @@ namespace DL
             DataSource.BusStationLineList.RemoveAll(p => p.ID == ID);
         }
 
-        #endregion BusStationLine           
+        #endregion BusStationLine  
+        
         #region User
         public IEnumerable<DO.User> GetAllUsers()
         {//returns all members in list
-            return from Bus in DataSource.UserList
+            return from User in DataSource.UserList
                    select User.Clone();
         }
         public IEnumerable<DO.User> GetAllUsers(Predicate<DO.User> predicate)
         {
             throw new NotImplementedException();//it means we need to put exeption here;
         }
-        public DO.Bus GetUser(string Name)
+        public DO.User GetUser(string Name,string password)
         {
-            DO.User user = DataSource.BusList.Find(B => B.LicenseNum == Name);
+            DO.User user = DataSource.UserList.Find(B => B.UserName == Name&& B.Password== password);
 
-            if (User != null)
-                return User.Clone();
+            if (user != null)
+                return user.Clone();
             else
-                throw new DO.BadUserNameException(Name, $"no Bus has License Num: {Name}");
+                throw new DO.BadUserName_PasswordException(Name,password, $"no such user: {Name}{password}");
         }
 
         public IEnumerable<object> GetAllUserListWithSelectedFields(Func<DO.User, object> generate)
@@ -307,14 +308,14 @@ namespace DL
                    select generate(User);
         }
         public void AddUser(DO.User user)
-        { //need a check if actually it is ==bus.---- or only ==licensnum
-            if (DataSource.UserList.FirstOrDefault(B => B.user == User.user) != null)
-                throw new DO.BadUserNameException(User.LicenseNum, "Duplicate Users");
-            DataSource.UserList.Add(User.Clone());
+        { //need a check if actually it is ==bus.---- or only ==Username
+            if (DataSource.UserList.FirstOrDefault(B => B.UserName == user.UserName) != null)
+                throw new DO.BadUserName_PasswordException(user.UserName, "Duplicate Users");
+            DataSource.UserList.Add(user.Clone());
         }
-        public void UpdateUser(DO.User user)
+        public void UpdateUser(DO.User User)
         {
-            DO.User user = DataSource.UserList.Find(b => b.user == Bus.user);
+            DO.User user = DataSource.UserList.Find(b => b.UserName == User.UserName);
 
             if (user != null)
             {
@@ -322,7 +323,7 @@ namespace DL
                 DataSource.UserList.Add(User.Clone());
             }
             else
-                throw new DO.BadUserNameException(User.LicenseNum, $"bad user name: {User.name}");
+                throw new DO.BadUserName_PasswordException(User.UserName, $"bad user name: {User.UserName}");
         }
         public void UpdateUser(string name, Action<DO.Bus> update) //method that knows to updt specific fields in Bus
         {
@@ -330,14 +331,14 @@ namespace DL
         }
         public void DeleteUser(string name)
         {
-            DO.User user = DataSource.UserList.Find(p => p.User == name);
+            DO.User user = DataSource.UserList.Find(p => p.UserName == name);
 
             if (user != null)
             {
-                DataSource.BusList.Remove(user);
+                DataSource.UserList.Remove(user);
             }
             else
-                throw new DO.BadLicenseNumException(name, $"User name : {name}");
+                throw new DO.BadUserName_PasswordException(name, $"User name : {name}");
         }
 
         #endregion Bus 
@@ -345,19 +346,19 @@ namespace DL
         #region UserDrive
         public IEnumerable<DO.UserDrive> GetAllUserDrive()
         {//returns all members in list
-            return from Bus in DataSource.UserDriveList
+            return from UserDrive in DataSource.UserDriveList
                   select UserDrive.Clone();
         }
         public IEnumerable<DO.UserDrive> GetAllUserDrives(Predicate<DO.UserDrive> predicate)
         {
             throw new NotImplementedException();//it means we need to put exeption here;
         }
-        public DO.Bus GetUserDrive(string Name)
+        public DO.UserDrive GetUserDrive(string Name)
         {
             DO.UserDrive userDrive = DataSource.UserDriveList.Find(B => B.UserName == Name);
 
             if (userDrive != null)
-                return UserDrive.Clone();
+                return userDrive.Clone();
             else
                 throw new DO.BadUserDriveNameException(Name, $"no userDrive has that name: {Name}");
         }
@@ -366,10 +367,10 @@ namespace DL
             return from UserDrive in DataSource.UserDriveList
                    select generate(UserDrive);
         }
-        public void AddUser(DO.UserDrive userDrive)
+        public void AddUserDrive(DO.UserDrive userDrive)
         { //need a check if actually it is ==bus.---- or only ==licensnum
-            if (DataSource.UserDriveList.FirstOrDefault(B => B.UserName == UserDrive.userDrive) != null)
-                throw new DO.BadUserDriveNameException(UserDrive.LicenseNum, "Duplicate User's drives names");
+            if (DataSource.UserDriveList.FirstOrDefault(B => B.UserName == userDrive.UserName) != null)
+                throw new DO.BadUserDriveNameException(userDrive.UserName, "Duplicate User's drives names");
             DataSource.UserDriveList.Add(userDrive.Clone());
         }
         public void UpdateUserDrive(DO.UserDrive UserDrive)
@@ -390,11 +391,11 @@ namespace DL
         }
         public void DeleteUserDrive(string name)
         {
-            DO.User user = DataSource.UserDriveList.Find(p => p.UserDrive == name);
+            DO.UserDrive user = DataSource.UserDriveList.Find(p => p.UserName == name);
 
             if (user != null)
             {
-                DataSource.BusList.Remove(name);
+                DataSource.UserDriveList.Remove(user);
             }
             else
                 throw new DO.BadUserDriveNameException(name, $"UserDrive name : {name}");

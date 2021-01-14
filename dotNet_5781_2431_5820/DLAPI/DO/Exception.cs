@@ -9,13 +9,12 @@ namespace DO
     [Serializable]
     public class DriverIdException : Exception
         {
-            public int ID;
+        public int ID;
         public DriverIdException(int id) : base() => ID = id;
         public DriverIdException(int id, string message) :
             base(message) => ID = id;
         public DriverIdException(int id, string message, Exception innerException) :
             base(message, innerException) => ID = id;
-
         public override string ToString() => base.ToString() + $", bad driver id: {ID}";
         }
     public class UserNameException : Exception
@@ -29,27 +28,27 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad driver name: {Name}";
     }
-    public class BadBusException : Exception
+    public class BadBusLineException : Exception
     {//busline related
         public int BusID;
         public int BusNum;
-        public BadBusException(int BID, int BNum) : base() { BusID = BID; BusNum = BNum; }
-        public BadBusException(int perID, int BNum, string message) :
+        public BadBusLineException(int BID, int BNum) : base() { BusID = BID; BusNum = BNum; }
+        public BadBusLineException(int perID, int BNum, string message) :
             base(message)
         { BusID = perID; BusNum = BNum; }
-        public BadBusException(int BID, int BNum, string message, Exception innerException) :
+        public BadBusLineException(int BID, int BNum, string message, Exception innerException) :
             base(message, innerException)
         { BusID = BID; BusNum = BNum; }
 
         public override string ToString() => base.ToString() + $", bad Bus id: {BusID} the Num is: {BusNum}";
     }
-    public class BadBusNumException : Exception
+    public class BadBusLicenseNumException : Exception
     {
         public int LicenseNum;
-        public BadBusNumException(int L) : base() => LicenseNum = L;
-        public BadBusNumException(int L, string message) :
+        public BadBusLicenseNumException(int L) : base() => LicenseNum = L;
+        public BadBusLicenseNumException(int L, string message) :
             base(message) => LicenseNum = L;
-        public BadBusNumException(int L, string message, Exception innerException) :
+        public BadBusLicenseNumException(int L, string message, Exception innerException) :
             base(message, innerException) => LicenseNum = L;
 
         public override string ToString() => base.ToString() + $", bad License num : {LicenseNum}";

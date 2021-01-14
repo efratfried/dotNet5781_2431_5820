@@ -40,6 +40,7 @@ namespace DLAPI
         void GetBusStationLineListWithSelectedFields(Func<DO.BusStationLine, object> generate);
 
         #endregion
+
         #region Station
         DO.Station GetStation(int id);
         IEnumerable<DO.Station> GetAllStations();
@@ -48,17 +49,6 @@ namespace DLAPI
         #region DrivingBus
         IEnumerable<DO.OutGoingLine> GetOutGoingLineList(Predicate<DO.OutGoingLine> predicate);
 
-        #endregion
-
-        /*
-        #region Station
-        DO.Station GetStation(int Num);
-        IEnumerable<DO.Station> GetAllStations();
-        IEnumerable<DO.Station> GetStationListWithSelectedFields(Predicate<DO.Station> predicate);
-        void AddStation(DO.Station Station);
-        void UpdateStation(DO.Station Station);
-        void UpdateStation(int Num, Action<DO.Station> update); //method that knows to updt specific fields in Student
-        void DeleteStation(int Num); // removes only Student, does not remove the appropriate Person...
         #endregion
 
         #region User
@@ -81,16 +71,6 @@ namespace DLAPI
         void DeleteUserDrive(int Num);
         #endregion
 
-        #region BusLine
-        DO.BusLine GetBusLine(int Num);
-        IEnumerable<DO.BusLine> GetAllBusLines();
-        IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object> generate);  
-        void AddBusLine(DO.BusLine BusLine);
-        void UpdateBusLine(DO.BusLine BusLine);
-        void UpdateBusLine(int Num, Action<DO.BusLine> update); //method that knows to updt specific fields in BusLine
-        void DeleteBusLine(int Num); // removes only BusLine, does not remove the appropriate Bus...
-        #endregion
-
         #region OutGoingLine
         DO.OutGoingLine GetOutGoingLine(int Num);
         IEnumerable<DO.OutGoingLine> GetAllOutGoingLines();
@@ -100,15 +80,5 @@ namespace DLAPI
         void UpdateOutGoingLine(int Num, Action<DO.OutGoingLine> update); //method that knows to updt specific fields in OutGoingLine
         void DeleteOutGoingLine(int Num); // removes only OutGoingLine, does not remove the appropriate Bus...
         #endregion
-
-        #region BusStationLine
-        DO.BusStationLine GetBusStationLine(int Num);
-        IEnumerable<DO.BusStationLine> GetAllBusStationLine();
-        IEnumerable<object> GetBusStationLineListWithSelectedFields(Func<DO.BusStationLine, object> generate);
-        void AddBusStationLine(DO.BusStationLine BusStationLine);
-        void UpdateBusStationLine(DO.BusStationLine BusStationLine);
-        void UpdateBusStationLinee(int Num, Action<DO.BusStationLine> update); //method that knows to updt specific fields in BusStationLine
-        void DeleteBusStationLine(int Num); // removes only BusStationLine, does not remove the appropriate Bus...
-        #endregion*/
     }
 }

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DLAPI;
-//using DO;
 using DS;
 
 namespace DL
@@ -29,11 +28,6 @@ namespace DL
         {
             throw new NotImplementedException();//it means we need to put exeption here;
         }
-        public IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate)
-        {
-            return from Bus in DataSource.BusList
-                   select generate(Bus);
-        }
         public DO.Bus GetBus(int LicenseNum)
         {
             DO.Bus bus = DataSource.BusList.Find(B => B.LicenseNum == LicenseNum);
@@ -42,6 +36,11 @@ namespace DL
                 return bus.Clone();
             else
                 throw new DO.BadBusLicenseNumException(LicenseNum, $"no Bus has License Num: {LicenseNum}");
+        }
+        public IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate)
+        {
+            return from Bus in DataSource.BusList
+                   select generate(Bus);
         }
         public void AddBus(DO.Bus bus)
         { //need a check if actually it is ==bus.---- or only ==licensnum
@@ -218,9 +217,9 @@ namespace DL
             return from BusSationLine in DataSource.BusStationLineList
                    select generate(BusSationLine);
         }
-        public DO.BusLine GetBusStationLine(int id)
+        public DO.BusStationLine GetBusStationLine(int id)
         {
-            DO.BusLine busl = DataSource.BusLineList.Find(p => p.ID == id);
+            DO.BusStationLine busl = DataSource.BusStationLineList.Find(p => p.ID == id);
             try { Thread.Sleep(2000); } catch (ThreadInterruptedException e) { }
             if (busl != null)
                 return busl.Clone();
@@ -230,20 +229,20 @@ namespace DL
         public void AddBusStationLine(int ID, int BusStationNum)
         {
             if (DataSource.BusStationLineList.FirstOrDefault(cis => (cis.ID == ID && cis.BusStationNum == BusStationNum)) != null)
-                throw new DO.BadBusLineException(ID, BusStationNum, "Bus ID is already registered to Station ID");
+                throw new DO.BadCodeStationException(BusStationNum, "BusStationLine code is already registered to Stations code");
             DO.BusStationLine sic = new DO.BusStationLine() { ID = ID, BusStationNum = BusStationNum };
             DataSource.BusStationLineList.Add(sic);
         }
-        public void UpdateBusStationLine(int BusStationLine)
+        public void UpdateBusStationLine(DO.BusStationLine BusStationLine)
         {
-            DO.BusLine busl = DataSource.BusLineList.Find(p => p.ID == BusStationLine);
+            DO.BusStationLine busl = DataSource.BusStationLineList.Find(p => p.ID == BusStationLine.ID);
             if (busl != null)
             {
-                DataSource.BusLineList.Remove(busl);
-                DataSource.BusLineList.Add(busl.Clone());
+                DataSource.BusStationLineList.Remove(busl);
+                DataSource.BusStationLineList.Add(BusStationLine.Clone());
             }
             else
-                throw new DO.BadCodeStationException(BusStationLine, $"bad BusLine id: {BusStationLine}");
+                throw new DO.BadCodeStationException(BusStationLine.ID, $"bad BusLine id: {BusStationLine.ID}");
         }
         public void UpdateBusLineIndexInLineInStation(int ID, int BusStationNum, int IndexInLine)
         {
@@ -254,7 +253,7 @@ namespace DL
                 sic.IndexInLine = IndexInLine;
             }
             else
-                throw new DO.BadIDBusStationNumException(ID, BusStationNum, "Bus ID is NOT registered to Station ID");
+                throw new DO.BadCodeStationException(BusStationNum, "Bus code is NOT registered to Stations codes");
         }
         public void DeleteBusStationLine(int BusStationNum)
         {
@@ -265,17 +264,137 @@ namespace DL
                 DataSource.BusStationLineList.Remove(sic);
             }
             else
-                throw new DO.BadIDBusStationNumException(BusStationNum, "Bus ID is NOT registered to Station ID");
+                throw new DO.BadCodeStationException(BusStationNum, "Bus code is NOT registered to Stations codes");
         }
         public void DeleteBusStationLineFromAllStations(int ID)
         {
             DataSource.BusStationLineList.RemoveAll(p => p.ID == ID);
         }
 
-        #endregion BusStationLine           
+        #endregion BusStationLine  
+        #region User
+        public IEnumerable<DO.User> GetAllUser()
+        {//returns all members in list
+            return from User in DataSource.UserList
+                   select User.Clone();
+        }
+        public IEnumerable<DO.User> GetAllUser(Predicate<DO.User> predicate)
+        {
+            throw new NotImplementedException();//it means we need to put exeption here;
+        }
+        public DO.User GetUser(string Name, string password)
+        {
+            DO.User user = DataSource.UserList.Find(B => B.UserName == Name && B.Password == password);
 
+            if (user != null)
+                return user.Clone();
+            else
+                throw new DO.BadUserName_PasswordException(Name, password, $"no such user: {Name}{password}");
+        }
+        public IEnumerable<object> GetAllUserListWithSelectedFields(Func<DO.User, object> generate)
+        {
+            return from User in DataSource.UserList
+                   select generate(User);
+        }
+        public void AddUser(DO.User user)
+        { //need a check if actually it is ==bus.---- or only ==Username
+            if (DataSource.UserList.FirstOrDefault(B => B.UserName == user.UserName) != null)
+                throw new DO.BadUserName_PasswordException(user.UserName, "Duplicate Users");
+            DataSource.UserList.Add(user.Clone());
+        }
+        public void UpdateUser(DO.User User)
+        {
+            DO.User user = DataSource.UserList.Find(b => b.UserName == User.UserName);
+
+            if (user != null)
+            {
+                DataSource.UserList.Remove(user);
+                DataSource.UserList.Add(User.Clone());
+            }
+            else
+                throw new DO.BadUserName_PasswordException(User.UserName, $"bad user name: {User.UserName}");
+        }
+        public void UpdateUser(string name, Action<DO.User> update) //method that knows to updt specific fields in Bus
+        {
+            throw new NotImplementedException();//it means we need to put exeption here;
+        }
+        public void DeleteUser(string name)
+        {
+            DO.User user = DataSource.UserList.Find(p => p.UserName == name);
+
+            if (user != null)
+            {
+                DataSource.UserList.Remove(user);
+            }
+            else
+                throw new DO.BadUserName_PasswordException(name, $"User name : {name}");
+        }
+
+        #endregion Bus 
+        #region UserDrive
+   /*     public IEnumerable<object> GetAllUserDriveListWithSelectedFields(Func<DO.UserDrive, object> generate)
+        {
+            return from UserDrive in DataSource.UserDriveList
+                   select generate(UserDrive);
+        }*/
+        public IEnumerable<DO.UserDrive> GetAllUserDrive()
+        {//returns all members in list
+            return from UserDrive in DataSource.UserDriveList
+                   select UserDrive.Clone();
+        }
+        public IEnumerable<DO.UserDrive> GetAllUserDrive(Predicate<DO.UserDrive> predicate)
+        {
+            throw new NotImplementedException();//it means we need to put exeption here;
+        }
+        public DO.UserDrive GetUserDrive(string Name)
+        {
+            DO.UserDrive userDrive = DataSource.UserDriveList.Find(B => B.UserName == Name);
+
+            if (userDrive != null)
+                return userDrive.Clone();
+            else
+                throw new DO.BadUserDriveNameException(Name, $"no userDrive has that name: {Name}");
+        }
+        public void AddUserDrive(DO.UserDrive userDrive)
+        { //need a check if actually it is ==bus.---- or only ==licensnum
+            if (DataSource.UserDriveList.FirstOrDefault(B => B.UserName == userDrive.UserName) != null)
+                throw new DO.BadUserDriveNameException(userDrive.UserName, "Duplicate User's drives names");
+            DataSource.UserDriveList.Add(userDrive.Clone());
+        }
+        public void UpdateUserDrive(DO.UserDrive UserDrive)
+        {
+            DO.UserDrive userDrive = DataSource.UserDriveList.Find(b => b.UserName == UserDrive.UserName);
+
+            if (UserDrive != null)
+            {
+                DataSource.UserDriveList.Remove(UserDrive);
+                DataSource.UserDriveList.Add(UserDrive.Clone());
+            }
+            else
+                throw new DO.BadUserDriveNameException(UserDrive.UserName, $"bad user name: {UserDrive.UserName}");
+        }
+        public void UpdateUserDrive(string name, Action<DO.UserDrive> update) //method that knows to updt specific fields in Bus
+        {
+            throw new NotImplementedException();//it means we need to put exeption here;
+        }
+        public void DeleteUserDrive(string name)
+        {
+            DO.UserDrive user = DataSource.UserDriveList.Find(p => p.UserName == name);
+
+            if (user != null)
+            {
+                DataSource.UserDriveList.Remove(user);
+            }
+            else
+                throw new DO.BadUserDriveNameException(name, $"UserDrive name : {name}");
+        }
+        #endregion UserDrive 
         #region OutGoingLine
-        DO.OutGoingLine GetOutGoingLine(int ID)
+
+        //DO.OutGoingLine GetOutGoingLine(int Num);
+        //IEnumerable<DO.OutGoingLine> GetAllOutGoingLines(Predicate<DO.OutGoingLine> predicate);
+
+        public DO.OutGoingLine GetOutGoingLine(int ID)
         {
             DO.OutGoingLine outGoingLine = DataSource.OutGoingLineList.Find(p => p.ID == ID);
             try { Thread.Sleep(2000); } catch (ThreadInterruptedException e) { }
@@ -284,13 +403,13 @@ namespace DL
             else
                 throw new DO.BadCodeStationException(ID, $"bad BusLine id: {ID}");
         }
-        IEnumerable<DO.OutGoingLine> GetAllOutGoingLines(Predicate<DO.OutGoingLine> predicate)
+        public IEnumerable<DO.OutGoingLine> GetAllOutGoingLines(Predicate<DO.OutGoingLine> predicate)
         {
             return from sic in DataSource.OutGoingLineList
                    where predicate(sic)
                    select sic.Clone();
         }
-        IEnumerable<object> GetOutGoingLineListWithSelectedFields(Func<DO.OutGoingLine, object> generate)
+        public IEnumerable<object> GetOutGoingLineListWithSelectedFields(Func<DO.OutGoingLine, object> generate)
         {
             return from OutGoingLine in DataSource.OutGoingLineList
                    select generate(OutGoingLine);

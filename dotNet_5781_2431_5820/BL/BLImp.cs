@@ -43,7 +43,6 @@ namespace BL
 
             return BusBO;
         }
-
         public BO.Bus GetBus(int LicenseNum)
         {
             DO.Bus BusDO;
@@ -71,8 +70,7 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-
-        public IEnumerable<BO.Bus> GetBusLicenseNumNameList()
+        public IEnumerable<BO.Bus> GetBusIDList()
         {
             return from item in dl.GetAllBusListWithSelectedFields((BusDO) =>
             {
@@ -83,8 +81,7 @@ namespace BL
                    //orderby Bus.LicenseNum
                    select BusBO;
         }
-
-        public void UpdateBusBusalDetails(BO.Bus Bus)
+        public void UpdateBusPersonalDetails(BO.Bus Bus)
         {
             //Update DO.Bus            
             DO.Bus BusDO = new DO.Bus();

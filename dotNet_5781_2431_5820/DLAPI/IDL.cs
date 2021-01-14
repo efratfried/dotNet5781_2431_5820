@@ -34,7 +34,7 @@ namespace DLAPI
         #region BusStationLine
         IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate);
         void AddBusStationLine(int StationID, int BusStationeNum);
-        void UpdateBusStationLine(int StationeNum);
+        void UpdateBusStationLine(DO.BusStationLine StationeNum);
         void DeleteBusStationLine( int StationeNum);
         void DeleteBusStationLineFromAllStations(int StationID);
         void GetBusStationLineListWithSelectedFields(Func<DO.BusStationLine, object> generate);
@@ -53,27 +53,27 @@ namespace DLAPI
 
         #region User
         IEnumerable<DO.User> GetAllUser();
-        IEnumerable<DO.User> GetUserDrive(Predicate<DO.User> predicate);
-        DO.Bus GetUser(int Num);
+        IEnumerable<DO.User> GetAllUser(Predicate<DO.User> predicate);
+        DO.User GetUser(string Num,string pass);
         void AddUser(DO.User User);
         void UpdateUser(DO.User User);
-        void UpdateUser(int Num, Action<DO.User> update); //method that knows to updt specific fields in Person
-        void DeleteUser(int Num);
+        void UpdateUser(string Num, Action<DO.User> update); //method that knows to updt specific fields in Person
+        void DeleteUser(string Num);
         #endregion
 
         #region UserDrive
         IEnumerable<DO.UserDrive> GetAllUserDrive();
-        IEnumerable<DO.UserDrive> GetUserDrive(Predicate<DO.UserDrive> predicate);
-        DO.Bus GetUserDrive(int Num);
+        IEnumerable<DO.UserDrive> GetAllUserDrive(Predicate<DO.UserDrive> predicate);
+        DO.UserDrive GetUserDrive(string Num);
         void AddUserDrive(DO.UserDrive UserDrive);
         void UpdateUserDrive(DO.UserDrive UserDrive);
-        void UpdateUserDrive(int Num, Action<DO.UserDrive> update); //method that knows to updt specific fields in Person
-        void DeleteUserDrive(int Num);
+        void UpdateUserDrive(string Num, Action<DO.UserDrive> update); //method that knows to updt specific fields in Person
+        void DeleteUserDrive(string Num);
         #endregion
 
         #region OutGoingLine
         DO.OutGoingLine GetOutGoingLine(int Num);
-        IEnumerable<DO.OutGoingLine> GetAllOutGoingLines();
+        IEnumerable<DO.OutGoingLine> GetAllOutGoingLines(Predicate<DO.OutGoingLine> predicate);
         IEnumerable<object> GetOutGoingLineListWithSelectedFields(Func<DO.OutGoingLine, object> generate);
         void AddOutGoingLine(DO.OutGoingLine OutGoingLine);
         void DeleteOutGoingLine(int Num); // removes only OutGoingLine, does not remove the appropriate Bus...

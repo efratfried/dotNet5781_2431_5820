@@ -40,7 +40,6 @@ namespace DLAPI
         void GetBusStationLineListWithSelectedFields(Func<DO.BusStationLine, object> generate);
 
         #endregion
-
         #region Station
         DO.Station GetStation(int id);
         IEnumerable<DO.Station> GetAllStations();

@@ -234,17 +234,6 @@ namespace DL
             DataSource.BusStationLineList.RemoveAll(p => p.ID == ID);
         }
 
-        #endregion BusStationLine
-            #region DrivingBus
-        //yes we use outgoinglist in it 
-        public IEnumerable<DO.OutGoingLine> GetOutGoingLineList(Predicate<DO.GetOutGoingLine> predicate)
-        {
-            //Returns deferred query + clone:
-            return from sic in DataSource.OutGoingLineList
-                   where predicate(sic)
-                   select sic.Clone();
-        }
-        #endregion
-            
+        #endregion BusStationLine           
         }
 }

@@ -98,7 +98,6 @@ namespace BL
                 throw new BO.BadBusIdException("Bus's LicenseNum is illegal", ex);
             }
         }
-
         public void DeleteBus(int LicenseNum)
         {
             try

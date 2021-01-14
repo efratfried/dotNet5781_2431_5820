@@ -43,7 +43,6 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad Bus id: {BusID} the Num is: {BusNum}";
     }
-
     public class BadBusNumException : Exception
     {
         public int LicenseNum;

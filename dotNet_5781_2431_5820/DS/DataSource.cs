@@ -19,6 +19,9 @@ namespace DS
         public static List<OutGoingLine> OutGoingLineList;
         public static List<User> UserList;
         public static List<UserDrive> UserDriveList;
+        public static List<Accident> AccidentsList;
+        public static List<Treat> TreatList;
+        public static List<DrivingBus> DrivingList;
 
 
         static DataSource()

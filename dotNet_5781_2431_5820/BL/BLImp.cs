@@ -20,26 +20,26 @@ namespace BL
             int LicenseNum = BusDO.LicenseNum;
             try
             {
-                BusDO = dl.GetBus(LicenseNum);
+                BusDO = dl.GetBus(LicenseNum); 
             }
             catch (DO.BadLicenseNumException ex)
             {
                 throw new BO.BadBusIdException("Bus LicenseNum is illegal", ex);
             }
-            BusDO.CopyPropertiesTo(BusBO.TreatsDuco);
-            //BusBO.ID = BusDO.ID;
-            //BusBO.BirthDate = BusDO.BirthDate;
-            //BusBO.City = BusDO.City;
-            //BusBO.Name = BusDO.Name;
-            //BusBO.HouseNumber = BusDO.HouseNumber;
-            //BusBO.Street = BusDO.Street;
-            //BusBO.BusalStatus = (BO.BusalStatus)(int)BusDO.BusalStatus;
 
-            BusDO.CopyPropertiesTo(BusBO.drivingBusesDuco);
+            BusDO.CopyPropertiesTo(BusBO);
+            
             //BusBO.StartYear = BusDO.StartYear;
             //BusBO.Status = (BO.BusStatus)(int)BusDO.Status;
             //BusBO.Graduation = (BO.BusGraduate)(int)BusDO.Graduation;
-
+            /*
+             *       studentBO.ListOfCourses = from sic in dl.GetStudentsInCourseList(sic => sic.PersonId == id)
+                                      let course = dl.GetCourse(sic.CourseId)
+                                      select course.CopyToStudentCourse(sic);
+             * */
+            BusBO.AccidentsDuco = from sic in dl.GetAllAccidentsList(sic => sic.LicenseNum == LicenseNum)
+                                      let Accident = dl.GetAccident(sic.AccidentNum)
+                                      select Accident.CopyPropertiesTo(sic);
 
             return BusBO;
         }
@@ -111,7 +111,7 @@ namespace BL
 
         }
 
-        #endregion
+        #endregion Bus
     }
 }
         /*

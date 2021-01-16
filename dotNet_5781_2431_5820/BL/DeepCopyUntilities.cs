@@ -28,11 +28,19 @@ namespace BL
             from.CopyPropertiesTo(to);
             return to;
         }
-        public static BO.StudentCourse CopyToStudentCourse(this DO.Station station, DO.BusStationLine sic)
+        /*public static BO.StudentCourse CopyToStudentCourse(this DO.Station station, DO.BusStationLine sic)
         {
             BO.StudentCourse result = (BO.StudentCourse)course.CopyPropertiesToNew(typeof(BO.StudentCourse));
             // propertys' names changed? copy them here...
             result.Grade = sic.Grade;
+            return result;
+        }*/
+
+        public static BO.Accident CopyToAccident(this DO.Bus Bus, DO.Accident sic)
+        {
+            BO.Accident result = (BO.Accident)Bus.CopyPropertiesToNew(typeof(BO.Accident));
+            // propertys' names changed? copy them here...
+            result.AccidentNum = sic.AccidentNum;
             return result;
         }
     }

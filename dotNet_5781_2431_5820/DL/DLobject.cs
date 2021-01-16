@@ -433,5 +433,72 @@ namespace DL
                 throw new DO.BadBusLineException(Num, Num, "Bus ID is NOT registered to Station ID");
         }
         #endregion
+        /*.BusLine GetAccident(int Accidentnum);
+        IEnumerable<DO.Accident> GetAllAccidents();
+        IEnumerable<object> GetAccidentListWithSelectedFields(Func<DO.Accident, object> generate);
+        void AddAccident(DO.Accident Accident);
+        void UpdateAccident(DO.Accident Accident);
+        void DeleteAccident(int Accidentnum); // removes only Accident, does not remove the appropriate Person...
+        */
+        #region Accident
+        public IEnumerable<DO.Accident> GetAllAccidentsList(Predicate<DO.Accident> predicate)
+        {
+            return from Accident in DataSource.AccidentsList
+                   select Accident.Clone();
+        }
+        public IEnumerable<DO.Accident> GetAllAccidents()
+        {//returns all members in list
+            return from Accident in DataSource.AccidentsList
+                   select Accident.Clone();
+        }
+        public IEnumerable<DO.Accident> GetAllAccidents(Func<DO.Accident, object> generate)
+        {
+            throw new NotImplementedException();//it means we need to put exeption here;
+        }
+        public DO.Accident GetAccident(int AccidentNum)
+        {
+            DO.Accident Accident = DataSource.AccidentsList.Find(B => B.AccidentnUM == AccidentNum);
+
+            if (Accident != null)
+                return Accident.Clone();
+            else
+                throw new DO.BadBusLicenseNumException(AccidentNum, $"no Accident like that: {AccidentNum}");
+        }
+        public IEnumerable<object> GetAccidentListWithSelectedFields(Func<DO.Accident, object> generate)
+        {
+            return from Accident in DataSource.AccidentsList
+                   select generate(Accident);
+        }
+        public void AddAccident(DO.Accident Accident)
+        { //need a check if actually it is ==bus.---- or only ==licensnum
+            if (DataSource.AccidentsList.FirstOrDefault(B => B.AccidentnUM == Accident.AccidentnUM) != null)
+                throw new DO.BadLicenseNumException(Accident.AccidentnUM, "Duplicate bus LicenseNum");
+            DataSource.AccidentsList.Add(Accident.Clone());
+        }
+        public void UpdateAccident(DO.Accident Accident)
+        {
+            DO.Accident Accidents = DataSource.AccidentsList.Find(b => b.AccidentnUM == Accident.AccidentnUM);
+
+            if (Accident != null)
+            {
+                DataSource.AccidentsList.Remove(Accident);
+                DataSource.AccidentsList.Add(Accident.Clone());
+            }
+            else
+                throw new DO.BadLicenseNumException(Accident.LicenseNum, $"bad Bus id: {Accident.LicenseNum}");
+        }
+        public void DeleteAccident(int AccidentNum)
+        {
+            DO.Accident Accident = DataSource.AccidentsList.Find(p => p.AccidentnUM == AccidentNum);
+
+            if (Accident != null)
+            {
+                DataSource.AccidentsList.Remove(Accident);
+            }
+            else
+                throw new DO.BadLicenseNumException(AccidentNum, $"bad Bus id: {AccidentNum}");
+        }
+
+        #endregion
     }
 }

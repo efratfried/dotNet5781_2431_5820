@@ -9,7 +9,7 @@ using BO;
 
 namespace BL
 {
-    class BLImp : IBL //internal
+    class BLImp : HelpFunctions,IBL //internal
     {
         IDL dl = DLFactory.GetDL();
 
@@ -17,7 +17,7 @@ namespace BL
         BO.Bus BusDoBoAdapter(DO.Bus BusDO)
         {
             BO.Bus BusBO = new BO.Bus();
-            int LicenseNum = BusDO.LicenseNum;
+            string LicenseNum = BusDO.LicenseNum;
             try
             {
                 BusDO = dl.GetBus(LicenseNum); 
@@ -28,18 +28,11 @@ namespace BL
             }
 
             BusDO.CopyPropertiesTo(BusBO);
-            
-            //BusBO.StartYear = BusDO.StartYear;
-            //BusBO.Status = (BO.BusStatus)(int)BusDO.Status;
-            //BusBO.Graduation = (BO.BusGraduate)(int)BusDO.Graduation;
-            /*
-             *       studentBO.ListOfCourses = from sic in dl.GetStudentsInCourseList(sic => sic.PersonId == id)
-                                      let course = dl.GetCourse(sic.CourseId)
-                                      select course.CopyToStudentCourse(sic);
-             * */
+
             BusBO.AccidentsDuco = from sic in dl.GetAllAccidentsList(sic => sic.LicenseNum == LicenseNum)
                                       let Accident = dl.GetAccident(sic.AccidentNum)
-                                      select Accident.CopyPropertiesTo(sic);
+                                      select (DO.Accident)Accident.CopyPropertiesToNew(typeof(DO.Accident));
+
 
             return BusBO;
         }
@@ -70,7 +63,7 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<BO.Bus> GetBusIDList()
+        public IEnumerable<BO.Bus> GetBusLicenseNumList()
         {
             return from item in dl.GetAllBusListWithSelectedFields((BusDO) =>
             {
@@ -107,8 +100,32 @@ namespace BL
             }
         }
         public void AddBus(BO.Bus bus)
-        {
+        { 
 
+            DO.Bus BusDO = new DO.Bus();
+            if (bus.LicenseNum.Length != 7 && bus.LicenseNum.Length != 8) 
+            {
+                throw new Exception("invalid license num lengh")...
+            }
+
+            if ((bus.LicenseDate.Year < 2018 && bus.LicenseNum.Length != 7) || (bus.LicenseDate.Year >=2018 && bus.LicenseDate < DateTime.Now && bus.LicenseNum.Length != 8)) 
+            {//check the validation of the license num accroding to it date
+                throw new Exception("invalid license's date")..
+            }
+
+            bus.KM = 0;
+            bus.foul = 0;
+            bus.Status = Status.UnAvailable;
+            
+            BusDO.CopyPropertiesToNew(typeof(BO.Bus));    
+            try
+            {
+                dl.AddBus(BusDO);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadBustIdException("Bus ID is illegal", ex);
+            }
         }
 
         #endregion Bus

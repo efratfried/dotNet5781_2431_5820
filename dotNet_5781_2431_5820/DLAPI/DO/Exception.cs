@@ -34,11 +34,11 @@ namespace DO
     }
     public class BadBusLicenseNumException : Exception
     {
-        public int LicenseNum;
-        public BadBusLicenseNumException(int L) : base() => LicenseNum = L;
-        public BadBusLicenseNumException(int L, string message) :
+        public string LicenseNum;
+        public BadBusLicenseNumException(string L) : base() => LicenseNum = L;
+        public BadBusLicenseNumException(string L, string message) :
             base(message) => LicenseNum = L;
-        public BadBusLicenseNumException(int L, string message, Exception innerException) :
+        public BadBusLicenseNumException(string L, string message, Exception innerException) :
             base(message, innerException) => LicenseNum = L;
 
         public override string ToString() => base.ToString() + $", bad License num : {LicenseNum}";
@@ -59,11 +59,11 @@ namespace DO
     }
     public class BadLicenseNumException : Exception
     {
-        public int License;
-        public BadLicenseNumException(int L) : base() => License = L;
-        public BadLicenseNumException(int L, string message) :
+        public string License;
+        public BadLicenseNumException(string L) : base() => License = L;
+        public BadLicenseNumException(string L, string message) :
             base(message) => License = L;
-        public BadLicenseNumException(int L, string message, Exception innerException) :
+        public BadLicenseNumException(string L, string message, Exception innerException) :
             base(message, innerException) => License = L;
 
         public override string ToString() => base.ToString() + $", bad License num : {License}";

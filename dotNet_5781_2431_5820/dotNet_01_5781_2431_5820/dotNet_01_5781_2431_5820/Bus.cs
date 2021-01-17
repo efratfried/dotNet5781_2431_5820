@@ -66,7 +66,9 @@ namespace dotNet_01_5781_2431_5820
                 return false;
         }
         public void TikunClali(List<Bus> Buses)
-        { }
+        {
+
+        }
         public bool ValidLicense()
         {//if the license is correct
 

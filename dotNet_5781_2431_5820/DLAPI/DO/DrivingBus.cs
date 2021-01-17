@@ -9,7 +9,7 @@ namespace DO
     public class DrivingBus
     {// real time updates 
         protected int ID { get; set; }//key one
-        public int LicenseNum { get; set; }//key two 
+        public string LicenseNum { get; set; }//key two 
         public TimeSpan AstimateTimeOut { get; set; }
         public TimeSpan ActualTimeOut { get; set; }
         public string LastestStation { get; set; }

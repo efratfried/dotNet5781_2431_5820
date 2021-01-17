@@ -8,7 +8,7 @@ namespace DO
 { 
         public class Accident
     {
-        public int LicenseNum { get; set; }
+        public string LicenseNum { get; set; }
         public DateTime AccidentDate { get; set; }
         public int AccidentNum{ get; set; }
     }

@@ -14,11 +14,11 @@ namespace DLAPI
         IEnumerable<DO.Bus> GetAllBusses();
         IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate);
         IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate);
-        DO.Bus GetBus(int Num);
+        DO.Bus GetBus(string Num);
         void AddBus(DO.Bus Bus);
         void UpdateBus(DO.Bus Bus);
-        void UpdateBus(int Num, Action<DO.Bus> update); //method that knows to updt specific fields in Person
-        void DeleteBus(int Num);
+        void UpdateBus(string Num, Action<DO.Bus> update); //method that knows to updt specific fields in Person
+        void DeleteBus(string Num);
         #endregion
 
         #region BusLine
@@ -32,11 +32,12 @@ namespace DLAPI
         #endregion
 
         #region BusStationLine
+        IEnumerable<DO.BusStationLine> GetAllBusStationLines(string BusStationLineNum);
         IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate);
-        void AddBusStationLine(int StationID, int BusStationeNum);
+        void AddBusStationLine(string StationID, string BusStationeNum);
         void UpdateBusStationLine(DO.BusStationLine StationeNum);
-        void DeleteBusStationLine( int StationeNum);
-        void DeleteBusStationLineFromAllStations(int StationID);
+        void DeleteBusStationLine( string StationeNum);
+        void DeleteBusStationLineFromAllStations(string StationID);
         void GetBusStationLineListWithSelectedFields(Func<DO.BusStationLine, object> generate);
 
         #endregion

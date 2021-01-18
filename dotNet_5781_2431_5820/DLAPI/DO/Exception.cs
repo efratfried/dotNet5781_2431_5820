@@ -17,7 +17,6 @@ namespace DO
             base(message, innerException) => ID = id;
         public override string ToString() => base.ToString() + $", bad driver id: {ID}";
         }
- 
     public class BadBusLineException : Exception
     {//busline related
         public int BusID;

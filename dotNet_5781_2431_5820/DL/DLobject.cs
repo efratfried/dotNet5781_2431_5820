@@ -28,7 +28,7 @@ namespace DL
         {
             throw new NotImplementedException();//it means we need to put exeption here;
         }
-        public DO.Bus GetBus(int LicenseNum)
+        public DO.Bus GetBus(string LicenseNum)
         {
             DO.Bus bus = DataSource.BusList.Find(B => B.LicenseNum == LicenseNum);
 
@@ -60,11 +60,11 @@ namespace DL
             else
                 throw new DO.BadLicenseNumException(Bus.LicenseNum, $"bad Bus id: {Bus.LicenseNum}");
         }
-        public void UpdateBus(int Num, Action<DO.Bus> update) //method that knows to updt specific fields in Bus
+        public void UpdateBus(string Num, Action<DO.Bus> update) //method that knows to updt specific fields in Bus
         {
             throw new NotImplementedException();//it means we need to put exeption here;
         }
-        public void DeleteBus(int Num)
+        public void DeleteBus(string Num)
         {
             DO.Bus bus = DataSource.BusList.Find(p => p.LicenseNum == Num);
 
@@ -97,7 +97,7 @@ namespace DL
         {
             throw new NotImplementedException();//it means we need to put exeption here;
         }
-        public IEnumerable<object> GetAllStationsWithSelectedFields(Func<DO.Station, object> generate)
+        public IEnumerable<object> GetAllStationListWithSelectedFields(Func<DO.Station, object> generate)
         {
             return from station in DataSource.StationLists
                    select generate(station);
@@ -198,28 +198,21 @@ namespace DL
         }
         #endregion
         #region BusStationLine
+        public IEnumerable<DO.BusStationLine> GetAllBusStationLines(string)
+        {//returns all members in list
+            return from BusStationLine in DataSource.BusStationLineList
+                   select BusStationLine.Clone();
+        }
         public IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate)
         {
-            //option A - not good!!! 
-            //produces final list instead of deferred query and does not allow probus cloning:
-            // return DataSource.BusStationLineList.FindAll(predicate);
-
-            // option B - ok!!
-            //Returns deferred query + clone:
-            //return DataSource.BusStationLineList.Where(sic => predicate(sic)).Select(sic => sic.Clone());
-
-            // option c - ok!!
-            //Returns deferred query + clone:
-            return from sic in DataSource.BusStationLineList
-                   where predicate(sic)
-                   select sic.Clone();
+            throw new NotImplementedException();//it means we need to put exeption here;
         }
         public IEnumerable<object> GetBusStationLineListWithSelectedFields(Func<DO.BusStationLine, object> generate)
         {
             return from BusSationLine in DataSource.BusStationLineList
                    select generate(BusSationLine);
         }
-        public DO.BusStationLine GetBusStationLine(int id)
+        public DO.BusStationLine GetBusStationLine(string id)
         {
             DO.BusStationLine busl = DataSource.BusStationLineList.Find(p => p.ID == id);
             try { Thread.Sleep(2000); } catch (ThreadInterruptedException e) { }
@@ -228,7 +221,7 @@ namespace DL
             else
                 throw new DO.BadCodeStationException(id, $"bad BusLine id: {id}");
         }
-        public void AddBusStationLine(int ID, int BusStationNum)
+        public void AddBusStationLine(string ID, string BusStationNum)
         {
             if (DataSource.BusStationLineList.FirstOrDefault(cis => (cis.ID == ID && cis.BusStationNum == BusStationNum)) != null)
                 throw new DO.BadCodeStationException(BusStationNum, "BusStationLine code is already registered to Stations code");
@@ -246,7 +239,7 @@ namespace DL
             else
                 throw new DO.BadCodeStationException(BusStationLine.ID, $"bad BusLine id: {BusStationLine.ID}");
         }
-        public void UpdateBusLineIndexInLineInStation(int ID, int BusStationNum, int IndexInLine)
+        public void UpdateBusLineIndexInLineInStation(string ID, string BusStationNum, int IndexInLine)
         {
             DO.BusStationLine sic = DataSource.BusStationLineList.Find(cis => (cis.ID == ID && cis.BusStationNum == BusStationNum));
 
@@ -257,7 +250,7 @@ namespace DL
             else
                 throw new DO.BadCodeStationException(BusStationNum, "Bus code is NOT registered to Stations codes");
         }
-        public void DeleteBusStationLine(int BusStationNum)
+        public void DeleteBusStationLine(string BusStationNum)
         {
             DO.BusStationLine sic = DataSource.BusStationLineList.Find(cis => (cis.BusStationNum == BusStationNum));
 
@@ -268,7 +261,7 @@ namespace DL
             else
                 throw new DO.BadCodeStationException(BusStationNum, "Bus code is NOT registered to Stations codes");
         }
-        public void DeleteBusStationLineFromAllStations(int ID)
+        public void DeleteBusStationLineFromAllStations(string ID)
         {
             DataSource.BusStationLineList.RemoveAll(p => p.ID == ID);
         }

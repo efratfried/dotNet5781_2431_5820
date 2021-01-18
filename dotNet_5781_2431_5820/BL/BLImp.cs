@@ -133,7 +133,6 @@ namespace BL
 
         #endregion Bus
 
-
         #region Station
         BO.Station StationDoBoAdapter(DO.Station StationDO)
         {
@@ -175,7 +174,7 @@ namespace BL
                    orderby StationDO.CodeStation
                    select StationDoBoAdapter(StationDO);
         }
-        public IEnumerable<BO.Bus> GetStationBy(Predicate<BO.Station> predicate)
+        public IEnumerable<BO.Station> GetStationBy(Predicate<BO.Station> predicate)
         {
             throw new NotImplementedException();
         }
@@ -244,6 +243,102 @@ namespace BL
                 throw new BO.BaStationtIdException("station num is illegal", ex);
             }
         }
+
+        #endregion
+
+        #region BusStationLine
+        BO.BusStationLine BusStationLineDoBoAdapter(DO.BusStationLine BusStationLineDO)
+        {
+            BO.BusStationLine BusStationLineBO = new BO.BusStationLine();
+            string CodeStation = BusStationLineDO.BusStationNum;
+            try
+            {
+                BusStationLineDO = dl.GetAllBusStationLines(CodeStation);
+            }
+            catch (DO.BadCodeStationException ex)
+            {
+                throw new BO.BadStationIdException("Bus LicenseNum is illegal", ex);
+            }
+
+            BusStationLineDO.CopyPropertiesTo(BusStationLineBO);
+
+            return BusStationLineBO;
+        }
+        public BO.BusStationLine GetBusStationLine(string CodeStation)
+        {
+            DO.Station StationDO;
+            try
+            {
+                StationDO = dl.GetStation(CodeStation);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadStationIdException("Buss' LicenseNum does not exist or it is not a Bus", ex);
+            }
+            return StationDoBoAdapter(StationDO);
+        }
+        public IEnumerable<BO.BusStationLine> GetAllBusStationLines()
+        {
+            //return from item in dl.GetBusListWithSelectedFields( (stud) => { return GetBus(stud.ID); } )
+            //       let Bus = item as BO.Bus
+            //       orderby Bus.ID
+            //       select Bus;
+            return from StationDO in dl.GetAllStations()
+                   orderby StationDO.CodeStation
+                   select StationDoBoAdapter(StationDO);
+        }
+        public IEnumerable<BO.BusStationLine> GetBusStationLineBy(Predicate<BO.BusStationLine> predicate)
+        {
+            throw new NotImplementedException();
+        }
+        public IEnumerable<BO.BusStationLine> GetBusStationLineList()
+        {
+            return from item in dl.GetAllStationListWithSelectedFields((StationDO) =>
+            {
+                try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
+                return new BO.Station() { CodeStation = StationDO.CodeStation };
+            })
+                   let StationBO = item as BO.Station
+                   //orderby Bus.LicenseNum
+                   select StationBO;
+        }
+        public void UpdateStationPersonalDetails(BO.BusStationLine bus_station_num)
+        {
+            //Update DO.Bus            
+            DO.Station StationDO = new DO.Station();
+            Station.CopyPropertiesTo(StationDO);
+            try
+            {
+                dl.UpdateStation(StationDO);
+            }
+            catch (DO.BadStationNumException ex)
+            {
+                throw new BO.BadStationIdException("Bus's LicenseNum is illegal", ex);
+            }
+        }
+        public void DeleteStation(BO.BusStationLine bus_station_line)
+        {
+            try
+            {
+                dl.DeleteStation(LicenseNum);
+            }
+            catch (DO.BadCodeStationException ex)
+            {
+                throw new BO.BadStationIdException("Bus LicenseNum does not exist or it is not a Bus", ex);
+            }
+        }
+        public void AddBusStationLine(string bus_station_line)
+        {
+
+        }
+
+        /* IEnumerable<BO.Station> GetAllStations();
+         IEnumerable<BO.Station> GetStationsBy(Predicate<BO.Station> predicate);
+         IEnumerable<BO.Station> GetStationList();
+         BO.Station GetStation(string BusStationLineNum);
+         void AddBus(BO.BusStationLine bus_station_line);
+         void UpdateBusPersonalDetails(BO.BusStationLine bus_station_line);
+         void DeleteStation(BO.BusStationLine bus_station_line);*/
 
         #endregion
     }

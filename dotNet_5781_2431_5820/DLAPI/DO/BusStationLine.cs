@@ -8,9 +8,13 @@ namespace DO
 {
     public class BusStationLine
     {// the station info inside the line
-        public  int ID { set; get; }
-        public int BusStationNum { set; get; }
+        public  string ID { set; get; }
+        public string BusStationNum { set; get; }
         public int IndexInLine { set; get; }
         public int NumOfPassingLines { set; get; }
+        public override string ToString()
+        {
+            return this.ToStringProperty();
+        }
     }
 }

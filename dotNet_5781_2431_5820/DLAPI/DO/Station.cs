@@ -10,10 +10,14 @@ namespace DO
     {//the phizical fitchers of station
         public string StationName { get; set; }
         //public Adress Adress { get; set; }
-        public int CodeStation { get; set; }
+        public string CodeStation { get; set; }
         public bool DisableAccess { get; set; }
         public string Address { get; set; }
         public double Latitude { get; set; }
         public double longitude { get; set; }
+        public override string ToString()
+        {
+            return this.ToStringProperty();
+        }
     }
 }

@@ -16,20 +16,19 @@ namespace BLAPI
         void UpdateBusPersonalDetails(BO.Bus bus);
         void DeleteBus(int id);
         void AddBus(BO.Bus bus);
-
-        /*
-        public int LicenseNum { get; set; }
-        public DateTime LicenseDate { get; set; }
-        public double KM { get; set; }
-        public double foul { get; set; }
-        public Bus_Status Status { get; set; }
-        public Firm MyFirm { get; set; }
-        public IEnumerable<DateTime> AccidentsDuco { get; set; }
-        public IEnumerable<Treat> TreatsDuco { get; set; }
-        public IEnumerable<DrivingBus> drivingBusesDuco { get; set; }
-        */
-        
         #endregion
+
+        #region Station
+        IEnumerable<BO.Station> GetAllStations();
+        IEnumerable<BO.Station> GetStationsBy(Predicate<BO.Station> predicate);
+        IEnumerable<BO.Station> GetStationBumList();
+        BO.Station GetStation(string StationNum);
+        void AddBus(BO.Station station);
+        void UpdateBusPersonalDetails(BO.Station station);
+        void DeleteStation(string StationNum);
+      
+        #endregion
+
         /*
         #region BusLine
         BO.BusLine GetBusLine(int Num);

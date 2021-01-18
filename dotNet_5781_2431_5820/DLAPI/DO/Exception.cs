@@ -81,11 +81,11 @@ namespace DO
     }
     public class BadCodeStationException : Exception
     {
-        public int StationCode;
-        public BadCodeStationException(int Code) : base() => StationCode = Code;
-        public BadCodeStationException(int Code, string message) :
+        public string StationCode;
+        public BadCodeStationException(string Code) : base() => StationCode = Code;
+        public BadCodeStationException(string Code, string message) :
             base(message) => StationCode = Code;
-        public BadCodeStationException(int Code, string message, Exception innerException) :
+        public BadCodeStationException(string Code, string message, Exception innerException) :
             base(message, innerException) => StationCode = Code;
 
         public override string ToString() => base.ToString() + $", bad station code : {StationCode}";

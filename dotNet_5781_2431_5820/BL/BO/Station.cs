@@ -10,7 +10,7 @@ namespace BO
     {
         public string StationName { get; set; }
         //public Adress Adress { get; set; }
-        public int CodeStation { get; set; }
+        public string CodeStation { get; set; }
         public bool DisableAccess { get; set; }
         public string Address { get; set; }
         public double Latitude { get; set; }

@@ -4,15 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/*
- * preson = BusLine
- * student =bus
- * lecturer=outgoingBus 
- * course= Station
- * studentIncuorse=BusStationLine
- * lecturerIncourse=drivingBus
- * */
-
 namespace DO
 {
     public class Adress

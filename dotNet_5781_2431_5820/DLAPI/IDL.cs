@@ -42,8 +42,17 @@ namespace DLAPI
         #endregion
 
         #region Station
-        DO.Station GetStation(int id);
         IEnumerable<DO.Station> GetAllStations();
+        IEnumerable<DO.Station> GetAllStations(Predicate<DO.Station> predicate);
+        IEnumerable<object> GetAllStationListWithSelectedFields(Func<DO.Station, object> generate);
+        DO.Bus GetStation(string StationCode);
+        void AddStation(DO.Station station);
+        void UpdateStation(DO.Station station);
+        void UpdateStation(string StationCode, Action<DO.Station> update); //method that knows to updt specific fields in Person
+        void DeleteStation(string NuStationCodem);
+        /*
+        DO.Station GetStation(string id);
+        IEnumerable<DO.Station> GetAllStations();*/
         #endregion
 
         #region DrivingBus

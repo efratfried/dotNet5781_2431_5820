@@ -76,9 +76,10 @@ namespace DL
                 throw new DO.BadLicenseNumException(Num, $"bad Bus id: {Num}");
         }
 
-        #endregion Bus 
+        #endregion Bus
+        
         #region station
-        public DO.Station GetStation(int CodeStation)
+        public DO.Station GetStation(string CodeStation)
         {
             DO.Station station = DataSource.StationLists.Find(B => B.CodeStation == CodeStation);
 
@@ -119,21 +120,22 @@ namespace DL
             else
                 throw new DO.BadCodeStationException(Station.CodeStation, $"bad Station id: {Station.CodeStation}");
         }
-        public void UpdateStation(int Num, Action<DO.Station> update) //method that knows to updt specific fields in Bus
+        public void UpdateStation(string CodeStation, Action<DO.Station> update) //method that knows to updt specific fields in Bus
         {
             throw new NotImplementedException();//it means we need to put exeption here;
         }
-        public void DeleteStation(int Num)
+        public void DeleteStation(string CodeStation)
         {
-            DO.Station station = DataSource.StationLists.Find(p => p.CodeStation == Num);
+            DO.Station station = DataSource.StationLists.Find(p => p.CodeStation == CodeStation);
 
             if (station != null)
             {
                 DataSource.StationLists.Remove(station);
             }
             else
-                throw new DO.BadCodeStationException(Num, $"bad Station id: {Num}");
+                throw new DO.BadCodeStationException(CodeStation, $"bad Station id: {CodeStation}");
         }
+
         #endregion station
         #region BusLine
         public DO.BusLine GetBusLine(int id)

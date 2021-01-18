@@ -7,6 +7,9 @@ using System.Threading;
 using BO;
 //using BO;
 
+//      :הערות
+//איך נחשב את מספר התחנה שעולה כול פעם
+//איך נציג תחנות עוקבות
 namespace BL
 {
     class BLImp : HelpFunctions, IBL //internal
@@ -214,7 +217,7 @@ namespace BL
         }
         public void AddStation(BO.Station station)
         {
-
+            
             DO.Station StationDO = new DO.Station();
             Random lat1 = new Random();
             Random lat2 = new Random();
@@ -222,6 +225,7 @@ namespace BL
             Random long2 = new Random();
             double rochav = (lat1.NextDouble() + lat2.NextDouble()) % 2.4 + 31;
             double orech = (long1.NextDouble() + long2.NextDouble()) % 1.4 + 34.3;
+
             if (station.Latitude!=rochav || station.longitude!=orech)
             {
                 throw new Exception("the cordinates are wrong")...

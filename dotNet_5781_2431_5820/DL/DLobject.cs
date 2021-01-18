@@ -137,6 +137,7 @@ namespace DL
         }
 
         #endregion station
+
         #region BusLine
         public DO.BusLine GetBusLine(int id)
         {
@@ -197,6 +198,7 @@ namespace DL
                 throw new DO.BadBusLineException(id, id, $"bad BusLine id: {id}");
         }
         #endregion
+
         #region BusStationLine
         public IEnumerable<DO.BusStationLine> GetAllBusStationLines(string)
         {//returns all members in list
@@ -267,6 +269,7 @@ namespace DL
         }
 
         #endregion BusStationLine  
+
         #region User
         public IEnumerable<DO.User> GetAllUser()
         {//returns all members in list
@@ -326,6 +329,7 @@ namespace DL
         }
 
         #endregion Bus 
+
         #region UserDrive
    /*     public IEnumerable<object> GetAllUserDriveListWithSelectedFields(Func<DO.UserDrive, object> generate)
         {
@@ -384,6 +388,7 @@ namespace DL
                 throw new DO.BadUserDriveNameException(name, $"UserDrive name : {name}");
         }
         #endregion UserDrive 
+
         #region OutGoingLine
 
         //DO.OutGoingLine GetOutGoingLine(int Num);
@@ -428,13 +433,7 @@ namespace DL
                 throw new DO.BadBusLineException(Num, Num, "Bus ID is NOT registered to Station ID");
         }
         #endregion
-        /*.BusLine GetAccident(int Accidentnum);
-        IEnumerable<DO.Accident> GetAllAccidents();
-        IEnumerable<object> GetAccidentListWithSelectedFields(Func<DO.Accident, object> generate);
-        void AddAccident(DO.Accident Accident);
-        void UpdateAccident(DO.Accident Accident);
-        void DeleteAccident(int Accidentnum); // removes only Accident, does not remove the appropriate Person...
-        */
+
         #region Accident
         public IEnumerable<DO.Accident> GetAllAccidentsList(Predicate<DO.Accident> predicate)
         {

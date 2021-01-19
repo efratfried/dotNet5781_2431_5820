@@ -218,12 +218,9 @@ namespace BL
         {
             
             DO.Station StationDO = new DO.Station();
-            Random lat1 = new Random();
-            Random lat2 = new Random();
-            Random long1 = new Random();
-            Random long2 = new Random();
-            double rochav = (lat1.NextDouble() + lat2.NextDouble()) % 2.4 + 31;
-            double orech = (long1.NextDouble() + long2.NextDouble()) % 1.4 + 34.3;
+            static Random rand = new Random();
+            double rochav = (rand.NextDouble() * rand.NextDouble()) % 2.4 + 31;
+            double orech = (rand.NextDouble() * rand.NextDouble()) % 1.4 + 34.3;
 
             if (station.Latitude!=rochav || station.longitude!=orech)
             {
@@ -247,13 +244,22 @@ namespace BL
         #endregion
 
         #region BusStationLine
+        /*
+                IEnumerable<BO.BusStationLine> GetAllBusStationLines();
+               IEnumerable<BO.BusStationLine> GetBusStationLinesBy(Predicate<BO.BusStationLine> predicate);
+               IEnumerable<BO.BusStationLine> GetBusStationLineList(string BusStationLineNum);
+               BO.Station GetBusStationLine(string StationNum);
+               void AddBusStationLine(BO.BusStationLine station);
+               void UpdateBusPersonalDetails(BO.Station station);
+               void DeleteStation(string StationNum);
+         */
         BO.BusStationLine BusStationLineDoBoAdapter(DO.BusStationLine BusStationLineDO)
         {
             BO.BusStationLine BusStationLineBO = new BO.BusStationLine();
             string CodeStation = BusStationLineDO.BusStationNum;
             try
             {
-                BusStationLineDO = dl.GetAllBusStationLines(CodeStation);
+                BusStationLineDO = dl.GetBusStationLine(CodeStation);
             }
             catch (DO.BadCodeStationException ex)
             {
@@ -266,26 +272,22 @@ namespace BL
         }
         public BO.BusStationLine GetBusStationLine(string CodeStation)
         {
-            DO.Station StationDO;
+            DO.BusStationLine BusStationLineDO;
             try
             {
-                StationDO = dl.GetStation(CodeStation);
+                BusStationLineDO = dl.GetBusStationLine(CodeStation);
             }
             catch (DO.BadLicenseNumException ex)
             {
                 throw new BO.BadStationIdException("Buss' LicenseNum does not exist or it is not a Bus", ex);
             }
-            return StationDoBoAdapter(StationDO);
+            return BusStationLineDoBoAdapter(BusStationLineDO);
         }
         public IEnumerable<BO.BusStationLine> GetAllBusStationLines()
         {
-            //return from item in dl.GetBusListWithSelectedFields( (stud) => { return GetBus(stud.ID); } )
-            //       let Bus = item as BO.Bus
-            //       orderby Bus.ID
-            //       select Bus;
-            return from StationDO in dl.GetAllStations()
-                   orderby StationDO.CodeStation
-                   select StationDoBoAdapter(StationDO);
+            return from BusStationLineDO in dl.GetBusStationLineList()
+                   orderby BusStationLineDO.CodeStation
+                   select BusStationLineDoBoAdapter(BusStationLineDO);
         }
         public IEnumerable<BO.BusStationLine> GetBusStationLineBy(Predicate<BO.BusStationLine> predicate)
         {
@@ -293,23 +295,36 @@ namespace BL
         }
         public IEnumerable<BO.BusStationLine> GetBusStationLineList()
         {
-            return from item in dl.GetAllStationListWithSelectedFields((StationDO) =>
+            return from item in dl.GetBusStationLineListWithSelectedFields((BusStationLineDO) =>
             {
                 try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                return new BO.Station() { CodeStation = StationDO.CodeStation };
+                return new BO.BusStationLine() { ID = BusStationLineDO.ID };
             })
-                   let StationBO = item as BO.Station
+                   let BusStationLineBo = item as BO.BusStationLine
                    //orderby Bus.LicenseNum
-                   select StationBO;
+                   select BusStationLineBo;
+        }
+        public void AddBusStationLine(string bus_station_line)
+        {
+            DO.BusStationLine BusStationLineDO = new DO.BusStationLine();
+            BusStationLineDO.CopyPropertiesToNew(typeof(BO.Station));
+            try
+            {
+                dl.AddBusStationLine(BusStationLineDO.ID, bus_station_line);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadBustIdException("Bus ID is illegal", ex);
+            }
         }
         public void UpdateStationPersonalDetails(BO.BusStationLine bus_station_num)
         {
             //Update DO.Bus            
-            DO.Station StationDO = new DO.Station();
-            Station.CopyPropertiesTo(StationDO);
+            DO.BusStationLine BusStationLineDO = new DO.BusStationLine();
+            BusStationLine.CopyPropertiesTo(BusStationLineDO);
             try
             {
-                dl.UpdateStation(StationDO);
+                dl.UpdateStation(BusStationLineDO);
             }
             catch (DO.BadStationNumException ex)
             {
@@ -320,16 +335,12 @@ namespace BL
         {
             try
             {
-                dl.DeleteStation(LicenseNum);
+                dl.DeleteStation(bus_station_line);
             }
             catch (DO.BadCodeStationException ex)
             {
                 throw new BO.BadStationIdException("Bus LicenseNum does not exist or it is not a Bus", ex);
             }
-        }
-        public void AddBusStationLine(string bus_station_line)
-        {
-
         }
 
         /* IEnumerable<BO.Station> GetAllStations();

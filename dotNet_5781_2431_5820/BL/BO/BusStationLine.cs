@@ -8,7 +8,7 @@ namespace BO
 {
     public class BusStationLine
     {
-        protected string ID { set; get; }
+        public string ID { set; get; }
         public string BusStationNum { set; get; }
         public int IndexInLine { set; get; }
         public int NumOfPassingLines { set; get; }

@@ -36,6 +36,7 @@ namespace DLAPI
         IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate);
         void AddBusStationLine(string StationID, string BusStationeNum);
         void UpdateBusStationLine(DO.BusStationLine StationeNum);
+        DO.BusStationLine GetBusStationLine(string Id);
         void DeleteBusStationLine( string StationeNum);
         void DeleteBusStationLineFromAllStations(string StationID);
         void GetBusStationLineListWithSelectedFields(Func<DO.BusStationLine, object> generate);

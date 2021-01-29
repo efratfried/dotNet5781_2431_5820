@@ -12,16 +12,16 @@ namespace DS
 {
     public static class DataSource
     {
-        public static List<Bus> BusList;
-        public static List<Station> StationLists;
-        public static List<BusLine> BusLineList;
-        public static List<BusStationLine> BusStationLineList;
-        public static List<OutGoingLine> OutGoingLineList;
-        public static List<User> UserList;
-        public static List<UserDrive> UserDriveList;
+        public static List<Bus> BussesList;
+        public static List<Station> StationsList;
+        public static List<BusLine> BusLinesList;
+        public static List<BusStationLine> BusStationsLineList;
+        public static List<OutGoingLine> OutGoingLinesList;
+        public static List<User> UsersList;
+        public static List<UserDrive> UserDrivesList;
         public static List<Accident> AccidentsList;
-        public static List<Treat> TreatList;
-        public static List<DrivingBus> DrivingList;
+        public static List<Treat> TreatsList;
+        public static List<DrivingBus> DrivingsList;
 
 
         static DataSource()
@@ -35,7 +35,7 @@ namespace DS
                 #region Station_List
                         new Station
                         {
-                          CodeStation = 73,
+                          CodeStation = "73",
                           StationName = "שדרות גולדה מאיר/המשורר אצ''ג",
                           Address = "רחוב:שדרות גולדה מאיר  עיר: ירושלים ",
                           Latitude = 31.825302,
@@ -44,7 +44,7 @@ namespace DS
                         },
                          new Station
                         {
-                            CodeStation = 76,
+                            CodeStation = "76",
                             StationName = "בית ספר צור באהר בנות/אלמדינה אלמונוורה",
                             Address = "רחוב:אל מדינה אל מונאוורה  עיר: ירושלים",
                             Latitude = 31.738425,
@@ -53,7 +53,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 77,
+                            CodeStation = "77",
                             StationName = "בית ספר אבן רשד/אלמדינה אלמונוורה",
                             Address = "רחוב:אל מדינה אל מונאוורה  עיר: ירושלים ",
                             Latitude = 31.738676,
@@ -62,7 +62,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 78,
+                            CodeStation = "78",
                             StationName = "שרי ישראל/יפו",
                             Address = "רחוב:שדרות שרי ישראל 15 עיר: ירושלים",
                             Latitude = 31.789128,
@@ -71,7 +71,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 83,
+                            CodeStation = "83",
                             StationName = "בטן אלהווא/חוש אל מרג",
                             Address = "רחוב:בטן אל הווא  עיר: ירושלים",
                             Latitude = 31.766358,
@@ -80,7 +80,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 84,
+                            CodeStation = "84",
                             StationName = "מלכי ישראל/הטורים",
                             Address = " רחוב:מלכי ישראל 77 עיר: ירושלים ",
                             Latitude = 31.790758,
@@ -89,7 +89,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 85,
+                            CodeStation = "85",
                             StationName = "בית ספר לבנים/אלמדארס",
                             Address = "רחוב:אלמדארס  עיר: ירושלים",
                             Latitude = 31.768643,
@@ -98,7 +98,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 86,
+                            CodeStation = "86",
                             StationName = "מגרש כדורגל/אלמדארס",
                             Address = "רחוב:אלמדארס  עיר: ירושלים",
                             Latitude = 31.769899,
@@ -107,7 +107,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 88,
+                            CodeStation = "88",
                             StationName = "בית ספר לבנות/בטן אלהוא",
                             Address = " רחוב:בטן אל הווא  עיר: ירושלים",
                             Latitude = 31.767064,
@@ -116,7 +116,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 89,
+                            CodeStation = "89",
                             StationName = "דרך בית לחם הישה/ואדי קדום",
                             Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים ",
                             Latitude = 31.765863,
@@ -125,7 +125,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 90,
+                            CodeStation = "90",
                             StationName = "גולדה/הרטום",
                             Address = "רחוב:דרך בית לחם הישנה  עיר: ירושלים",
                             Latitude = 31.799804,
@@ -134,7 +134,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 91,
+                            CodeStation = "91",
                             StationName = "דרך בית לחם הישה/ואדי קדום",
                             Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים ",
                             Latitude = 31.765717,
@@ -143,7 +143,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 93,
+                            CodeStation = "93",
                             StationName = "חוש סלימה 1",
                             Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים",
                             Latitude = 31.767265,
@@ -152,7 +152,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 94,
+                            CodeStation = "94",
                             StationName = "דרך בית לחם הישנה ב",
                             Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים",
                             Latitude = 31.767084,
@@ -161,7 +161,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 95,
+                            CodeStation = "95",
                             StationName = "דרך בית לחם הישנה א",
                             Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים",
                             Latitude = 31.768759,
@@ -170,7 +170,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 97,
+                            CodeStation = "97",
                             StationName = "שכונת בזבז 2",
                             Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים",
                             Latitude = 31.77002,
@@ -179,7 +179,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 102,
+                            CodeStation = "102",
                             StationName = "גולדה/שלמה הלוי",
                             Address = " רחוב:שדרות גולדה מאיר  עיר: ירושלים",
                             Latitude = 31.8003,
@@ -188,7 +188,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 103,
+                            CodeStation = "103",
                             StationName = "גולדה/הרטום",
                             Address = " רחוב:שדרות גולדה מאיר  עיר: ירושלים",
                             Latitude = 31.8,
@@ -197,7 +197,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 105,
+                            CodeStation = "105",
                             StationName = "גבעת משה",
                             Address = " רחוב:גבעת משה 2 עיר: ירושלים",
                             Latitude = 31.797708,
@@ -206,7 +206,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 106,
+                            CodeStation = "106",
                             StationName = "גבעת משה",
                             Address = " רחוב:גבעת משה 3 עיר: ירושלים",
                             Latitude = 31.797535,
@@ -216,7 +216,7 @@ namespace DS
                         //20
                         new Station
                         {
-                            CodeStation = 108,
+                            CodeStation = "108",
                             StationName = "עזרת תורה/עלי הכהן",
                             Address = "  רחוב:עזרת תורה 25 עיר: ירושלים",
                             Latitude = 31.797535,
@@ -225,7 +225,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 109,
+                            CodeStation = "109",
                             StationName = "עזרת תורה/דורש טוב",
                             Address = "  רחוב:עזרת תורה 21 עיר: ירושלים ",
                             Latitude = 31.796818,
@@ -234,7 +234,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 110,
+                            CodeStation = "110",
                             StationName = "עזרת תורה/דורש טוב",
                             Address = " רחוב:עזרת תורה 12 עיר: ירושלים",
                             Latitude = 31.796129,
@@ -243,7 +243,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 111,
+                            CodeStation = "111",
                             StationName = "יעקובזון/עזרת תורה",
                             Address = "  רחוב:יעקובזון 1 עיר: ירושלים",
                             Latitude = 31.794631,
@@ -252,7 +252,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 112,
+                            CodeStation = "112",
                             StationName = "יעקובזון/עזרת תורה",
                             Address = " רחוב:יעקובזון  עיר: ירושלים",
                             Latitude = 31.79508,
@@ -262,7 +262,7 @@ namespace DS
                         //25
                         new Station
                         {
-                            CodeStation = 113,
+                            CodeStation = "113",
                             StationName = "זית רענן/אוהל יהושע",
                             Address = "  רחוב:זית רענן 1 עיר: ירושלים",
                             Latitude = 31.796255,
@@ -271,7 +271,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 115,
+                            CodeStation = "115",
                             StationName = "זית רענן/תורת חסד",
                             Address = " רחוב:זית רענן  עיר: ירושלים",
                             Latitude = 31.798423,
@@ -280,7 +280,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 116,
+                            CodeStation = "116",
                             StationName = "זית רענן/תורת חסד",
                             Address = "  רחוב:הרב סורוצקין 48 עיר: ירושלים ",
                             Latitude = 31.798689,
@@ -289,7 +289,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 117,
+                            CodeStation = "117",
                             StationName = "קרית הילד/סורוצקין",
                             Address = "  רחוב:הרב סורוצקין  עיר: ירושלים",
                             Latitude = 31.799165,
@@ -298,7 +298,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 119,
+                            CodeStation = "119",
                             StationName = "סורוצקין/שנירר",
                             Address = "  רחוב:הרב סורוצקין 31 עיר: ירושלים",
                             Latitude = 31.797829,
@@ -307,7 +307,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 1485,
+                            CodeStation = "1485",
                             StationName = "שדרות נווה יעקוב/הרב פרדס ",
                             Address = "רחוב: שדרות נווה יעקוב  עיר:ירושלים ",
                             Latitude = 31.840063,
@@ -317,7 +317,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 1486,
+                            CodeStation = "1486",
                             StationName = "מרכז קהילתי /שדרות נווה יעקוב",
                             Address = "רחוב:שדרות נווה יעקוב ירושלים עיר:ירושלים ",
                             Latitude = 31.838481,
@@ -326,7 +326,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 1487,
+                            CodeStation = "1487",
                             StationName = " מסוף 700 /שדרות נווה יעקוב ",
                             Address = "חוב:שדרות נווה יעקב 7 עיר: ירושלים  ",
                             Latitude = 31.837748,
@@ -335,7 +335,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 1488,
+                            CodeStation = "1488",
                             StationName = " הרב פרדס/אסטורהב ",
                             Address = "רחוב:מעגלות הרב פרדס  עיר: ירושלים רציף  ",
                             Latitude = 31.840279,
@@ -344,7 +344,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 1490,
+                            CodeStation = "1490",
                             StationName = "הרב פרדס/צוקרמן ",
                             Address = "רחוב:מעגלות הרב פרדס 24 עיר: ירושלים   ",
                             Latitude = 31.843598,
@@ -353,7 +353,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 1491,
+                            CodeStation = "1491",
                             StationName = "ברזיל ",
                             Address = "רחוב:ברזיל 14 עיר: ירושלים",
                             Latitude = 31.766256,
@@ -362,7 +362,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 1492,
+                            CodeStation = "1492",
                             StationName = "בית וגן/הרב שאג ",
                             Address = "רחוב:בית וגן 61 עיר: ירושלים ",
                             Latitude = 31.76736,
@@ -371,7 +371,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 1493,
+                            CodeStation = "1493",
                             StationName = "בית וגן/עוזיאל ",
                             Address = "רחוב:בית וגן 21 עיר: ירושלים    ",
                             Latitude = 31.770543,
@@ -380,7 +380,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 1494,
+                            CodeStation = "1494",
                             StationName = " קרית יובל/שמריהו לוין ",
                             Address = "רחוב:ארתור הנטקה  עיר: ירושלים    ",
                             Latitude = 31.768465,
@@ -389,7 +389,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 1510,
+                            CodeStation = "1510",
                             StationName = " קורצ'אק / רינגלבלום ",
                             Address = "רחוב:יאנוש קורצ'אק 7 עיר: ירושלים",
                             Latitude = 31.759534,
@@ -398,7 +398,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 1511,
+                            CodeStation = "1511",
                             StationName = " טהון/גולומב ",
                             Address = "רחוב:יעקב טהון  עיר: ירושלים     ",
                             Latitude = 31.761447,
@@ -406,7 +406,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 1512,
+                            CodeStation = "1512",
                             StationName = "הרב הרצוג/שח''ל ",
                             Address = "רחוב:הרב הרצוג  עיר: ירושלים רציף",
                             Latitude = 31.761447,
@@ -415,7 +415,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 1514,
+                            CodeStation = "1514",
                             StationName = "פרץ ברנשטיין/נזר דוד ",
                             Address = "רחוב:הרב הרצוג  עיר: ירושלים רציף",
                             Latitude = 31.759186,
@@ -424,7 +424,7 @@ namespace DS
                         },
                          new Station
                          {
-                             CodeStation = 1518,
+                             CodeStation = "1518",
                              StationName = "פרץ ברנשטיין/נזר דוד",
                              Address = " רחוב:פרץ ברנשטיין 56 עיר: ירושלים ",
                              Latitude = 31.759121,
@@ -433,7 +433,7 @@ namespace DS
                          },
                       new Station
                       {
-                          CodeStation = 1522,
+                          CodeStation = "1522",
                           StationName = "מוזיאון ישראל/רופין",
                           Address = "  רחוב:דרך רופין  עיר: ירושלים ",
                           Latitude = 31.774484,
@@ -443,7 +443,7 @@ namespace DS
 
                      new Station
                      {
-                         CodeStation = 1523,
+                         CodeStation = "1523",
                          StationName = "הרצוג/טשרניחובסקי",
                          Address = "   רחוב:הרב הרצוג  עיר: ירושלים  ",
                          Latitude = 31.769652,
@@ -452,7 +452,7 @@ namespace DS
                      },
                       new Station
                       {
-                          CodeStation = 1524,
+                          CodeStation = "1524",
                           StationName = "רופין/שד' הזז",
                           Address = "    רחוב:הרב הרצוג  עיר: ירושלים   ",
                           Latitude = 31.769652,
@@ -461,7 +461,7 @@ namespace DS
                       },
                         new Station
                         {
-                            CodeStation = 121,
+                            CodeStation = "121",
                             StationName = "מרכז סולם/סורוצקין ",
                             Address = " רחוב:הרב סורוצקין 13 עיר: ירושלים",
                             Latitude = 31.796033,
@@ -470,7 +470,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 123,
+                            CodeStation = "123",
                             StationName = "אוהל דוד/סורוצקין ",
                             Address = "  רחוב:הרב סורוצקין 9 עיר: ירושלים",
                             Latitude = 31.794958,
@@ -479,7 +479,7 @@ namespace DS
                         },
                         new Station
                         {
-                            CodeStation = 122,
+                            CodeStation = "122",
                             StationName = "מרכז סולם/סורוצקין ",
                             Address = "  רחוב:הרב סורוצקין 28 עיר: ירושלים",
                             Latitude = 31.79617,
@@ -590,163 +590,163 @@ namespace DS
                 #region Busses_List
                 new Bus
                 {
-                    LicenseNum = 12343576,
+                    LicenseNum ="'12343576",
                     LicenseDate = new DateTime(2018, 7, 8),
                     KM = 100000,
                     foul = 80.2,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 87654567,
+                    LicenseNum = "87654567",
                     LicenseDate = new DateTime(2020, 10, 22),
                     KM = 10000,
                     foul = 50.3,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 20090890,
+                    LicenseNum = "20090890",
                     LicenseDate = new DateTime(2015, 12, 1),
                     KM = 120000,
                     foul = 23.5,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 98074231,
+                    LicenseNum = "98074231",
                     LicenseDate = new DateTime(2019, 11, 3),
                     KM = 15000,
                     foul = 45.9,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 40506066,
+                    LicenseNum = "40506066",
                     LicenseDate = new DateTime(2010, 10, 16),
                     KM = 200540,
                     foul = 10,
-                    Status = Status.On_Foul
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 17846530,
+                    LicenseNum = "17846530",
                     LicenseDate = new DateTime(2013, 7, 27),
                     KM = 151234,
                     foul = 67,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 87348787,
+                    LicenseNum = "87348787",
                     LicenseDate = new DateTime(2020, 4, 14),
                     KM = 4567,
                     foul = 22.6,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 54546575,
+                    LicenseNum = "54546575",
                     LicenseDate = new DateTime(2018, 3, 14),
                     KM = 40980,
                     foul = 0,
-                    Status = Status.On_Foul
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 23453496,
+                    LicenseNum = "23453496",
                     LicenseDate = new DateTime(2019, 5, 17),
                     KM = 20003,
                     foul = 50,
-                    Status = Status.OnDrive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 87687625,
+                    LicenseNum = "87687625",
                     LicenseDate = new DateTime(2016, 4, 19),
                     KM = 80450,
                     foul = 27.6,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 43247698,
+                    LicenseNum = "43247698",
                     LicenseDate = new DateTime(1999, 12, 17),
                     KM = 300000,
                     foul = 0,
-                    Status = Status.On_Treat
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 45457638,
+                    LicenseNum = "45457638",
                     LicenseDate = new DateTime(2019, 11, 18),
                     KM = 15330,
                     foul = 39.6,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 98763650,
+                    LicenseNum = "98763650",
                     LicenseDate = new DateTime(2020, 9, 28),
                     KM = 2500,
                     foul = 17.8,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 45382957,
+                    LicenseNum = "45382957",
                     LicenseDate = new DateTime(2020, 1, 12),
                     KM = 89045,
                     foul = 34.8,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 90080098,
+                    LicenseNum = "90080098",
                     LicenseDate = new DateTime(2019, 8, 18),
                     KM = 54098,
                     foul = 43.9,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 70006593,
+                    LicenseNum = "70006593",
                     LicenseDate = new DateTime(2018, 6, 26),
                     KM = 101089,
                     foul = 11.4,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 24240746,
+                    LicenseNum = "24240746",
                     LicenseDate = new DateTime(2017, 10, 6),
                     KM = 109670,
                     foul = 28.7,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 38602756,
+                    LicenseNum = "38602756",
                     LicenseDate = new DateTime(2019, 8, 19),
                     KM = 57892,
                     foul = 38.2,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 78945665,
+                    LicenseNum = "78945665",
                     LicenseDate = new DateTime(2016, 5, 15),
                     KM = 178954,
                     foul = 11.2,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 },
                 new Bus
                 {
-                    LicenseNum = 12312300,
+                    LicenseNum = "12312300",
                     LicenseDate = new DateTime(2020, 12, 29),
                     KM = 0,
                     foul = 50,
-                    Status = Status.Available_Drive
+                    Status = Status.Available
                 }
             #endregion
             };

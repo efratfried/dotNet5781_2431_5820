@@ -52,9 +52,6 @@ namespace DLAPI
         void UpdateStation(DO.Station station);
         void UpdateStation(string StationCode, Action<DO.Station> update); //method that knows to updt specific fields in Person
         void DeleteStation(string NuStationCodem);
-        /*
-        DO.Station GetStation(string id);
-        IEnumerable<DO.Station> GetAllStations();*/
         #endregion
 
         #region DrivingBus

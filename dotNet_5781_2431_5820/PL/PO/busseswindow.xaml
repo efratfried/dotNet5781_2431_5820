@@ -1,0 +1,43 @@
+﻿<Window x:Class="PL.PO.busseswindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.PO"
+        mc:Ignorable="d"
+        Title="busseswindow" Height="485" Width="1000">
+    <Grid Margin="0,0,-8,-31">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+       
+        <Button x:Name="start_treatment" Content="התחל טיפול" HorizontalAlignment="Left" Margin="154,373,0,0" VerticalAlignment="Top" Width="146" Click="start_treatment_Click"/>
+        <Button x:Name="start_filling_foul" Content="התחל תדלוק" HorizontalAlignment="Left" Margin="155,327,0,0" VerticalAlignment="Top" Width="146" Click="start_filling_foul_Click"/>
+        <Button x:Name="start_driving" Content="התחל נסיעה" HorizontalAlignment="Left" Margin="154,284,0,0" VerticalAlignment="Top" Width="146" Click="start_driving_Click"/>
+        <ListBox x:Name="busses_list" Height="29" Margin="426,70,237,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
+        <TabControl x:Name="inner_info" HorizontalAlignment="Left" Height="269" Margin="426,141,0,0" VerticalAlignment="Top" Width="337" SelectionChanged="inner_info_SelectionChanged">
+            <TabItem x:Name="accident" Header="TabItem">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,-4" RenderTransformOrigin="0.479,0.505">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="46*"/>
+                        <ColumnDefinition Width="285*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="treats" Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem x:Name="last_drives" Header="TabItem" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <TextBlock x:Name="aviability_status" HorizontalAlignment="Left" Margin="47,109,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="48" Width="124" RenderTransformOrigin="0.487,0.292"/>
+        <TextBlock x:Name="foul_status" HorizontalAlignment="Left" Margin="47,178,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="48" Width="124"/>
+        <StackPanel x:Name="actions_pannel" HorizontalAlignment="Left" Height="452" Margin="792,0,0,0" VerticalAlignment="Top" Width="198">
+            <Button x:Name="delete_bus" Content="מחק אוטובוס" Margin="0,8" Height="29" Click="delete_bus_Click"/>
+            <Button x:Name="update_bus" Content="עדכון אוטובוס"  Height="29" Click="update_bus_Click"/>
+            <Button x:Name="add_bus" Content="הוסף אוטובוס חדש" Margin="0,8" Height="29" Click="add_bus_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

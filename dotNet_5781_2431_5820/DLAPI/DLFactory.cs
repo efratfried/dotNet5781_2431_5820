@@ -18,7 +18,7 @@ namespace DLAPI
                 dlPackage = DLConfig.DLPackages[dlType];
             }
             catch (KeyNotFoundException ex)
-            {
+            { 
             //    if package name is not found in the list -there is a problem in config.xml
                 throw new DLConfigException($"Wrong DL type: {dlType}", ex);
             }

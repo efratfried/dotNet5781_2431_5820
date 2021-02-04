@@ -23,5 +23,63 @@ namespace PL.PO
         {
             InitializeComponent();
         }
+
+        private void entering(object sender, RoutedEventArgs e)
+        {
+            if (manager_Name.Text.lengh!=0 && manager_Password.Text.Length!=0)
+            {
+                ManagerWindow win = new ManagerWindow(bl);
+                win.Show();
+            }
+
+            /* if (manager_Name.Text.lengh != 0)
+             {
+                 ManagerWindow win = new ManagerWindow(bl);
+                 win.Show();
+             }
+
+             if (manager_Name.Text.lengh != 0)
+             {
+                 ManagerWindow win = new ManagerWindow(bl);
+                 win.Show();
+             }*/
+            else
+            {
+                throw new Exception("")...
+            }
+        }
+
+        //manager's
+        private void manager_Name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }
+
+        private void user_Password_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        //user's
+        private void Newuser_Password_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Newuser_Name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        //new_users's
+        private void user_Name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void manager_Password_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

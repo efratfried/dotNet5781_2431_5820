@@ -1,0 +1,17 @@
+﻿<Window x:Class="PL.PO.BusStation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.PO"
+        mc:Ignorable="d"
+        Title="BusStation" Height="485" Width="1000">
+    <Grid>
+        <StackPanel x:Name="actions_pannel" HorizontalAlignment="Left" Height="452" Margin="792,0,0,0" VerticalAlignment="Top" Width="198">
+            <Button x:Name="delete_station" Content="מחק תחנה" Margin="0,8" Height="29" Click="delete_bus_Click"/>
+            <Button x:Name="update_station" Content="עדכון תחנה"  Height="29" Click="update_bus_Click"/>
+            <Button x:Name="add_station" Content="הוסף תחנה חדש" Margin="0,8" Height="29" Click="add_bus_Click"/>
+        </StackPanel>
+        <StackPanel x:Name="BusStationsList" HorizontalAlignment="Left" Height="399" Margin="456,28,0,0" VerticalAlignment="Top" Width="310"/>
+    </Grid>
+</Window>

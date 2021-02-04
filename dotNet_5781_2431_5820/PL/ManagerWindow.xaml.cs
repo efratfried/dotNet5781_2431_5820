@@ -26,8 +26,8 @@ namespace PL
 
         private void busses_Click(object sender, RoutedEventArgs e)
         {
-            busseswindow bus = new busseswindow(bl);
-            bus.show();
+            PL.PO.busseswindow busseswindow= new PO.busseswindow();
+            busseswindow.Show();
         }
 
         private void buslines_Click(object sender, RoutedEventArgs e)

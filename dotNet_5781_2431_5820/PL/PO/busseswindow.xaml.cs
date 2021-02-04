@@ -27,6 +27,7 @@ namespace PL.PO
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+            DataContext = Binding.IndexerName;
         }
 
         private void inner_info_SelectionChanged(object sender, SelectionChangedEventArgs e)

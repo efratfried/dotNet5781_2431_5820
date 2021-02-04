@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PL
+namespace PL.PO
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for BusStation.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class BusStation : Window
     {
-        public Page1()
+        public BusStation()
         {
             InitializeComponent();
         }

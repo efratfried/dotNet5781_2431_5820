@@ -24,6 +24,34 @@ namespace PL.PO
             InitializeComponent();
         }
 
+        /*
+         זה נראה לי מתאים דבר ראשון להפוך לקומבו בוקס ולא לליסט בוקס 
+        בנוסף זו פונקציה שלדעתי מתאימה אבל צריך לשרמט אותה.
+         void RefreshAllRegisteredCoursesGrid()
+        {
+            studentCourseDataGrid.DataContext = bl.GetAllCoursesPerStudent(curStu.ID);
+        }
+
+        void RefreshAllNotRegisteredCoursesGrid()
+        {
+            List<BO.Course> listOfUnRegisteredCourses = bl.GetAllCourses().Where(c1 => bl.GetAllCoursesPerStudent(curStu.ID).All(c2 => c2.ID != c1.ID)).ToList();
+            courseDataGrid.DataContext = listOfUnRegisteredCourses;
+        }
+
+        private void cbStudentID_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            curStu = (cbStudentID.SelectedItem as BO.Student);
+            gridOneStudent.DataContext = curStu;
+
+            if (curStu != null)
+            {
+                //list of courses of selected student
+                RefreshAllRegisteredCoursesGrid();
+                //list of all courses (that selected student is not registered to it)
+                RefreshAllNotRegisteredCoursesGrid();                
+            }
+        }
+*/
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="BusLines" Height="485" Width="1000">
     <Grid>
-        <StackPanel HorizontalAlignment="Left" Height="434" Margin="765,10,0,0" VerticalAlignment="Top" Width="217"/>
-        <StackPanel HorizontalAlignment="Left" Height="400" Margin="61,26,0,0" VerticalAlignment="Top" Width="646"/>
+        <StackPanel  x:Name="BusLine_code" HorizontalAlignment="Left" Height="434" Margin="765,10,0,0" VerticalAlignment="Top" Width="217"/>
+        <StackPanel x:Name="BusLine_information" HorizontalAlignment="Left" Height="400" Margin="61,26,0,0" VerticalAlignment="Top" Width="646"/>
 
     </Grid>
 </Window>

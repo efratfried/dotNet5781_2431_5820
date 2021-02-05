@@ -8,9 +8,9 @@
         Title="Window1" Height="600" Width="1200">
     <Grid Margin="-223,-69,-126,-77">
         <StackPanel HorizontalAlignment="Left" Height="480" VerticalAlignment="Top" Width="1189" Margin="221,154,0,0"  />
-        <Button x:Name="busses" Content="אוטובוסים" HorizontalAlignment="Left" Margin="1117,72,0,0" VerticalAlignment="Top" Width="297" Height="77" Click="busses_Click"/>
-        <Button x:Name="buslinesStations" Content="תחנות קו" HorizontalAlignment="Left" Margin="225,72,0,0" VerticalAlignment="Top" Width="297.25" Height="77" Click="buslinesStations_Click"/>
-        <Button x:Name="Stations"  Content="תחנות" HorizontalAlignment="Left" Margin="521,72,0,0" VerticalAlignment="Top" Width="297" Height="77" Click="Stations_Click"/>
-        <Button x:Name="buslines"  Content="קווים" HorizontalAlignment="Left" Margin="819,72,0,0" VerticalAlignment="Top" Width="297" Height="77" Click="buslines_Click" />
+        <Button x:Name="busses" Content="אוטובוסים" HorizontalAlignment="Left" Margin="1117,72,0,0" VerticalAlignment="Top" Width="297" Height="77" Click="busses_Click" FontSize="20" Foreground="DarkBlue" BorderBrush="DarkBlue"/>
+        <Button x:Name="buslinesStations" Content="תחנות קו" HorizontalAlignment="Left" Margin="225,72,0,0" VerticalAlignment="Top" Width="297.25" Height="77" Click="buslinesStations_Click" FontSize="20" Foreground="DarkBlue" BorderBrush="DarkBlue"/>
+        <Button x:Name="Stations"  Content="תחנות" HorizontalAlignment="Left" Margin="521,72,0,0" VerticalAlignment="Top" Width="297" Height="77" Click="Stations_Click" FontSize="20" Foreground="DarkBlue" BorderBrush="DarkBlue"/>
+        <Button x:Name="buslines"  Content="קווים" HorizontalAlignment="Left" Margin="819,72,0,0" VerticalAlignment="Top" Width="297" Height="77" Click="buslines_Click" FontSize="20" Foreground="DarkBlue" BorderBrush="DarkBlue"/>
     </Grid>
 </Window>

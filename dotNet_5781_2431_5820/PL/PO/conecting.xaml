@@ -7,7 +7,7 @@
         xmlns:BO="clr-namespace:BO;assembly=BL"
         mc:Ignorable="d"
         Title="Connecting" Height="485" Width="1000" WindowStartupLocation="CenterScreen" >
-    <Grid>
+    <Grid x:Name="Connection_Grid">
         <Label Content="כניסת מנהל " HorizontalAlignment="Left" Margin="656,60,0,0" VerticalAlignment="Top" Height="41" Width="135" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="DarkBlue"/>
         <TextBox x:Name="manager_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="604,106,0,0" TextChanged="manager_Name_TextChanged" BorderBrush="#FF10168C"/>
         <TextBox x:Name="manager_Password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="604,156,0,0" TextChanged="manager_Password_TextChanged" BorderBrush="#FF10168C"/>

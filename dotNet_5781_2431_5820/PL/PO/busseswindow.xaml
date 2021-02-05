@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.PO"
         mc:Ignorable="d"
         Title="busseswindow" Height="485" Width="1000">
-    <Grid Margin="0,0,-8,-31">
+    <Grid x:Name="___Bus_Window_" Margin="0,0,-8,-31">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
@@ -18,7 +18,7 @@
        
  <TabControl x:Name="inner_info" HorizontalAlignment="Left" Height="269" Margin="426,141,0,0" VerticalAlignment="Top" Width="337" SelectionChanged="inner_info_SelectionChanged">
             <TabItem x:Name="accident" Header="תיעוד תאונות" Foreground="DarkBlue" BorderBrush="#FF10168C">
-                <Grid Background="#FFE5E5E5" Margin="0,0,0,-4" RenderTransformOrigin="0.479,0.505">
+                <Grid x:Name="Bus_Ducoments" Background="#FFE5E5E5" Margin="0,0,0,-4" RenderTransformOrigin="0.479,0.505">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="16*"/>
                         <ColumnDefinition Width="31*"/>

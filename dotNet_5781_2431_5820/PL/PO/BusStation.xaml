@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.PO"
         mc:Ignorable="d"
         Title="BusStation" Height="485" Width="1000">
-    <Grid>
+    <Grid x:Name="BusStation_Grid">
         <StackPanel x:Name="actions_pannel" HorizontalAlignment="Left" Height="452" Margin="792,0,0,0" VerticalAlignment="Top" Width="198">
             <Button x:Name="delete_station" Content="מחק תחנה" Margin="0,8" Height="29" Click="delete_bus_Click" Foreground="DarkBlue" BorderBrush="#FF10168C"/>
             <Button x:Name="update_station" Content="עדכון תחנה"  Height="29" Click="update_bus_Click" Foreground="DarkBlue" BorderBrush="#FF10168C"/>

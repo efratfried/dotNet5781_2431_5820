@@ -26,7 +26,7 @@
         <Label Content="סיסמה" HorizontalAlignment="Left" Margin="370,334,0,0" VerticalAlignment="Top" Width="64" Foreground="DarkBlue" />
         <Label Content="שם משתמש" HorizontalAlignment="Left" Margin="363,273,0,0" VerticalAlignment="Top" Width="90" Foreground="DarkBlue"/>
 
-        <Button x:Name="entering" Content="כניסה" HorizontalAlignment="Left" Height="42" Margin="483,363,0,0" VerticalAlignment="Top" Width="105" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="entering" Foreground="DarkBlue"/>
+        <Button x:Name="entering" Content="כניסה" HorizontalAlignment="Left" Height="42" Margin="483,363,0,0" VerticalAlignment="Top" Width="105" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="entering" Foreground="DarkBlue" />
        
     </Grid>
 </Window>

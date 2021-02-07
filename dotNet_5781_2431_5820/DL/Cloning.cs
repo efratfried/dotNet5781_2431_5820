@@ -36,7 +36,6 @@ namespace DL
         {
             T copyToObject = new T();
             //T copyToObject = (T)Activator.CreateInstance(typeof(T));
-
             foreach (PropertyInfo propertyInfo in typeof(T).GetProperties())
                 propertyInfo.SetValue(copyToObject, propertyInfo.GetValue(original, null), null);
 

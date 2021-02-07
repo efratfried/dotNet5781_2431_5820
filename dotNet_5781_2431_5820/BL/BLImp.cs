@@ -290,7 +290,7 @@ namespace BL
                    select BusStationLineDoBoAdapter(BusStationLineDO);
         }
         public IEnumerable<BO.BusStationLine> GetBusStationLineBy(Predicate<BO.BusStationLine> predicate)
-        {
+        {//need fill field 
             throw new NotImplementedException();
         }
         public IEnumerable<BO.BusStationLine> GetBusStationLineList()

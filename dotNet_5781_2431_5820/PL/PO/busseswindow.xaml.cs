@@ -54,8 +54,8 @@ namespace PL.PO
 */
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             DataContext = Binding.IndexerName;
+
         }
 
         private void inner_info_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -80,16 +80,18 @@ namespace PL.PO
 
         private void update_bus_Click(object sender, RoutedEventArgs e)
         {
+            SlidePanel.Height = update_bus.Height;
 
         }
 
         private void delete_bus_Click(object sender, RoutedEventArgs e)
         {
-
+            SlidePanel.Height = delete_bus.Height;
         }
 
         private void add_bus_Click(object sender, RoutedEventArgs e)
         {
+            SlidePanel.Height = add_bus.Height;
 
         }
     }

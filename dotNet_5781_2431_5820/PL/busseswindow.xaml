@@ -1,9 +1,9 @@
-﻿<Window x:Class="PL.PO.busseswindow"
+﻿<Window x:Class="PL.busseswindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PL.PO"
+        xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="busseswindow" Height="485" Width="1000">
     <Grid x:Name="___Bus_Window_" Margin="0,0,-8,-31">
@@ -11,7 +11,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="busses_list" ItemsSource="{Binding}"  Height="29" Margin="426,70,237,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
+        <ComboBox x:Name="busses_list" ItemsSource="{Binding }"  Height="29" Margin="426,70,237,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
         <Button x:Name="start_treatment" Content="התחל טיפול" HorizontalAlignment="Left" Margin="154,373,0,0" VerticalAlignment="Top" Width="146" Click="start_treatment_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="20"/>
         <Button x:Name="start_filling_foul" Content="התחל תדלוק" HorizontalAlignment="Left" Margin="155,327,0,0" VerticalAlignment="Top" Width="146" Click="start_filling_foul_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="20"/>
         <Button x:Name="start_driving" Content="התחל נסיעה" HorizontalAlignment="Left" Margin="154,284,0,0" VerticalAlignment="Top" Width="146" Click="start_driving_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="20"/>

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.PO
+namespace PL
 {
     /// <summary>
     /// Interaction logic for EnteringWindow.xaml

@@ -12,12 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.PO
+namespace PL
 {
     /// <summary>
     /// Interaction logic for conecting.xaml
     /// </summary>
-    public partial class conecting : Window
+     partial class conecting : Window
     {
         public conecting()
         {
@@ -26,9 +26,8 @@ namespace PL.PO
 
         private void entering(object sender, RoutedEventArgs e)
         {
-            if (manager_Name.Text.lengh!=0 && manager_Password.Text.Length!=0)
+            if (manager_Name.Text.Length!=0 && manager_Password.Text.Length!=0)
             {
-                ManagerWindow win = new ManagerWindow(bl);
                 win.Show();
             }
 
@@ -45,7 +44,7 @@ namespace PL.PO
              }*/
             else
             {
-                throw new Exception("The details are'nt correct")...
+                throw new Exception("The details are'nt correct")...;
             }
         }
 

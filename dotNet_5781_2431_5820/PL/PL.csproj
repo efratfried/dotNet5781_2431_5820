@@ -52,20 +52,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PO\Bus.cs" />
-    <Compile Include="PO\BusLine.cs" />
-    <Compile Include="PO\BusLines.xaml.cs">
-      <DependentUpon>BusLines.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PO\busseswindow.xaml.cs">
+    <Compile Include="busseswindow.xaml.cs">
       <DependentUpon>busseswindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PO\BusStation.xaml.cs">
+    <Compile Include="BusStation.xaml.cs">
       <DependentUpon>BusStation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PO\conecting.xaml.cs">
+    <Compile Include="conecting.xaml.cs">
       <DependentUpon>conecting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PO\EnteringWindow.xaml.cs">
+    <Compile Include="EnteringWindow.xaml.cs">
       <DependentUpon>EnteringWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PO\ListedBus.cs" />
@@ -108,23 +104,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PO\BusLines.xaml">
+    <Page Include="busseswindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PO\busseswindow.xaml">
+    <Page Include="BusStation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PO\BusStation.xaml">
+    <Page Include="conecting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PO\conecting.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PO\EnteringWindow.xaml">
+    <Page Include="EnteringWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

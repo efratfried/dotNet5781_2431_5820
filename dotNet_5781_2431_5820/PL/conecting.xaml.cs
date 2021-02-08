@@ -48,56 +48,19 @@ namespace PL
             }
         }
 
-        //manager's
         private void manager_Name_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(manager_Name.Text==null)
-            {
-                //manager_Name textBox = new manager_Name();
-                throw new Exception(wrong details);
-            }
+
         }
 
-        private void user_Password_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if(manager_Password.Text==null)
-            {
-                throw new Exception(wrong details);
-            }
-        }
-
-        //user's
-        private void Newuser_Password_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if(user_Name.Text==null)
-            {
-                throw new Exception(wrong details);
-            }
-        }
-
-        private void Newuser_Name_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if(user_Password.Text)
-            {
-                throw new Exception(wrong details);
-            }
-        }
-
-        //new_users's
         private void user_Name_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(Newuser_Name.Text==null)
-            {
-                throw new Exception(wrong details);
-            }
+
         }
 
-        private void manager_Password_TextChanged(object sender, TextChangedEventArgs e)
+        private void Newuser_Password_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(Newuser_Password.Text==null)
-            {
-                throw new Exception(wrong details);
-            }
+
         }
     }
 }

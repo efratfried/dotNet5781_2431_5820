@@ -8,26 +8,29 @@
         mc:Ignorable="d"
         Title="Connecting" Height="485" Width="1000" WindowStartupLocation="CenterScreen" >
     <Grid x:Name="Connection_Grid">
+        
         <Label Content="כניסת מנהל " HorizontalAlignment="Left" Margin="656,60,0,0" VerticalAlignment="Top" Height="41" Width="135" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="DarkBlue"/>
         <TextBox x:Name="manager_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="604,106,0,0" TextChanged="manager_Name_TextChanged" BorderBrush="#FF10168C"/>
-        <TextBox x:Name="manager_Password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="604,156,0,0" TextChanged="manager_Password_TextChanged" BorderBrush="#FF10168C"/>
         <Label Content="סיסמה" HorizontalAlignment="Left" Margin="890,144,0,0" VerticalAlignment="Top" Width="64" Foreground="DarkBlue"/>
         <Label Content="שם משתמש" HorizontalAlignment="Left" Margin="890,102,0,0" VerticalAlignment="Top" Width="77" Foreground="DarkBlue"/>
+        <PasswordBox x:Name="manager_password" HorizontalAlignment="Left" Margin="604,146,0,0" VerticalAlignment="Top" Height="23" Width="248"/>
+
 
         <Label Content="כניסת משתמש " HorizontalAlignment="Left" Margin="137,60,0,0" VerticalAlignment="Top" Height="41" Width="161" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="DarkBlue" />
-        <TextBox x:Name="user_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,277,0,0" TextChanged="user_Name_TextChanged" BorderBrush="#FF10168C"/>
-        <TextBox x:Name="user_Password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,156,0,0" TextChanged="user_Password_TextChanged" BorderBrush="#FF10168C"/>
+        <TextBox x:Name="user_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,108,0,0" TextChanged="user_Name_TextChanged" BorderBrush="#FF10168C"/>
+        <PasswordBox x:Name="user_password" HorizontalAlignment="Left" Margin="87,151,0,0" VerticalAlignment="Top" Height="23" Width="248"/>
         <Label Content="סיסמה" HorizontalAlignment="Left" Margin="363,148,0,0" VerticalAlignment="Top" Width="64" Foreground="DarkBlue"/>
         <Label Content="שם משתמש" HorizontalAlignment="Left" Margin="357,106,0,0" VerticalAlignment="Top" Width="79" Foreground="DarkBlue"/>
 
         <Label Content="כניסת משתמש חדש " HorizontalAlignment="Left" Margin="112,219,0,0" VerticalAlignment="Top" Height="41" Width="198" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="DarkBlue"/>
-        <TextBox x:Name="Newuser_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,337,0,0" TextChanged="Newuser_Name_TextChanged" BorderBrush="#FF10168C"/>
-        <TextBox x:Name="Newuser_Password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,106,0,0" TextChanged="Newuser_Password_TextChanged" BorderBrush="#FF10168C"/>
+        <TextBox x:Name="Newuser_name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,277,0,0" TextChanged="Newuser_Password_TextChanged" BorderBrush="#FF10168C"/>
         <Label Content="סיסמה" HorizontalAlignment="Left" Margin="370,334,0,0" VerticalAlignment="Top" Width="64" Foreground="DarkBlue" />
         <Label Content="שם משתמש" HorizontalAlignment="Left" Margin="363,273,0,0" VerticalAlignment="Top" Width="90" Foreground="DarkBlue"/>
-
+        <PasswordBox x:Name="Newuser_password" HorizontalAlignment="Left" Margin="87,334,0,0" VerticalAlignment="Top" Height="23" Width="248"/>
+        
         <Button x:Name="entering" Content="כניסה"  HorizontalAlignment="Left" Height="42" Margin="483,363,0,0" VerticalAlignment="Top" Width="105" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="entering" Foreground="DarkBlue" RenderTransformOrigin="0.634,1.212" />
-        <PasswordBox HorizontalAlignment="Left" Margin="93,181,0,0" VerticalAlignment="Top" Height="33" Width="217"/>
+        
+
 
     </Grid>
 </Window>

@@ -479,7 +479,7 @@ namespace DL
         }
         public void DeleteAccident(string AccidentNum)
         {
-            DO.Accident Accident = DataSource.AccidentsList.Find(p => p.AccidentnUM == AccidentNum);
+            DO.Accident Accident = DataSource.AccidentsList.Find(p => p.AccidentNum == AccidentNum);
 
             if (Accident != null)
             {

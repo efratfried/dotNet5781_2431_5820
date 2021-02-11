@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using BLAPI;
 namespace PL
 {
     /// <summary>
@@ -19,6 +20,8 @@ namespace PL
     /// </summary>
      partial class conecting : Window
     {
+        IBL bl;
+        BO.User _user;
         public conecting()
         {
             InitializeComponent();
@@ -26,9 +29,12 @@ namespace PL
 
         private void entering(object sender, RoutedEventArgs e)
         {
-            if (manager_Name.Text.Length!=0 && manager_Password.Text.Length!=0)
+            if (manager_Name.Text.Length!=0 && manager_password.Text.Length!=0)
             {
-                win.Show();
+                /*
+                 *List<BO.Course> listOfUnRegisteredCourses = bl.GetAllCourses().Where(c1 => bl.GetAllCoursesPerStudent(curStu.ID).All(c2 => c2.ID != c1.ID)).ToList();
+            courseDataGrid.DataContext = listOfUnRegisteredCourses; */
+                List<BO.User> users=bl.GetAllUser().where()
             }
 
             /* if (manager_Name.Text.lengh != 0)
@@ -48,19 +54,12 @@ namespace PL
             }
         }
 
-        private void manager_Name_TextChanged(object sender, TextChangedEventArgs e)
+        private void manager_passowrd_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if(manager_password.Text.Length!=0)
+            {
 
-        }
-
-        private void user_Name_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void Newuser_Password_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            }
         }
     }
 }

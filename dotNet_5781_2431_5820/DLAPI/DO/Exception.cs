@@ -19,13 +19,13 @@ namespace DO
         }
     public class BadBusLineException : Exception
     {//busline related
-        public int BusID;
-        public int BusNum;
-        public BadBusLineException(int BID, int BNum) : base() { BusID = BID; BusNum = BNum; }
-        public BadBusLineException(int perID, int BNum, string message) :
+        public string BusID;
+        public string BusNum;
+        public BadBusLineException(string BID, string BNum) : base() { BusID = BID; BusNum = BNum; }
+        public BadBusLineException(string BID, string BNum, string message) :
             base(message)
-        { BusID = perID; BusNum = BNum; }
-        public BadBusLineException(int BID, int BNum, string message, Exception innerException) :
+        { BusID = BID; BusNum = BNum; }
+        public BadBusLineException(string BID, string BNum, string message, Exception innerException) :
             base(message, innerException)
         { BusID = BID; BusNum = BNum; }
 
@@ -41,6 +41,17 @@ namespace DO
             base(message, innerException) => LicenseNum = L;
 
         public override string ToString() => base.ToString() + $", bad License num : {LicenseNum}";
+    }
+    public class BadStationNumException : Exception
+    {
+        public string LicenseNum;
+        public BadStationNumException(string L) : base() => LicenseNum = L;
+        public BadStationNumException(string L, string message) :
+            base(message) => LicenseNum = L;
+        public BadStationNumException(string L, string message, Exception innerException) :
+            base(message, innerException) => LicenseNum = L;
+
+        public override string ToString() => base.ToString() + $", bad station num : {LicenseNum}";
     }
     public class BadLocationExeption:Exception
     {

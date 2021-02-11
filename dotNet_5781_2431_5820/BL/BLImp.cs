@@ -62,6 +62,12 @@ namespace BL
                    orderby BusDO.LicenseNum
                    select BusDoBoAdapter(BusDO);
         }
+        public IEnumerable<BO.Bus> GetBusIDList()
+        {
+            return from BusDO in dl.GetBusIDList()
+                   orderby BusDO.LicenseNum
+                   select BusDoBoAdapter(BusDO);
+        }
         public IEnumerable<BO.Bus> GetBussBy(Predicate<BO.Bus> predicate)
         {
             throw new NotImplementedException();
@@ -108,12 +114,12 @@ namespace BL
             DO.Bus BusDO = new DO.Bus();
             if (bus.LicenseNum.Length != 7 && bus.LicenseNum.Length != 8)
             {
-                throw new Exception("invalid license num lengh")...
+                throw new Exception("invalid license num lengh");
             }
 
             if ((bus.LicenseDate.Year < 2018 && bus.LicenseNum.Length != 7) || (bus.LicenseDate.Year >= 2018 && bus.LicenseDate < DateTime.Now && bus.LicenseNum.Length != 8))
             {//check the validation of the license num accroding to it date
-                throw new Exception("invalid license's date")..
+                throw new Exception("invalid license's date");
             }
 
             bus.KM = 0;
@@ -200,7 +206,7 @@ namespace BL
             }
             catch (DO.BadStationNumException ex)
             {
-                throw new BO.BadStationIdException("Bus's LicenseNum is illegal", ex);
+                throw new BO.BadStationNumException("Station num is illegal", ex);
             }
         }
         public void DeleteStation(string LicenseNum)
@@ -224,11 +230,11 @@ namespace BL
 
             if (station.Latitude!=rochav || station.longitude!=orech)
             {
-                throw new Exception("the cordinates are wrong")...
+                throw new Exception("the cordinates are wrong");
             }
             if (station.CodeStation.Length > 6 || station.CodeStation.Length < 0)
             {
-                throw new Exception("incorrect station's code")...
+                throw new Exception("incorrect station's code");
             }
             StationDO.CopyPropertiesToNew(typeof(BO.Station));
             try
@@ -350,6 +356,119 @@ namespace BL
          void AddBus(BO.BusStationLine bus_station_line);
          void UpdateBusPersonalDetails(BO.BusStationLine bus_station_line);
          void DeleteStation(BO.BusStationLine bus_station_line);*/
+
+        #endregion
+
+        #region BusLine
+        BO.BusLine BusLineDoBoAdapter(DO.BusLine BusLineDO)
+        {
+            BO.BusLine BusLineBO = new BO.BusLine();
+            string LicenseNum = BusLineDO.BusNum;
+            try
+            {
+                BusLineDO = dl.GetBusLine(LicenseNum);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadBusLineIdException("Bus LicenseNum is illegal", ex);
+            }
+
+            BusLineDO.CopyPropertiesTo(BusLineBO);
+
+            BusLineBO.AccidentsDuco = from sic in dl.GetAllAccidentsList(sic => sic.LicenseNum == LicenseNum)
+                                  let Accident = dl.GetAccident(sic.AccidentNum)
+                                  select (DO.Accident)Accident.CopyPropertiesToNew(typeof(DO.Accident));
+
+
+            return BusLineBO;
+        }
+        public BO.BusLine GetBusLine(int LicenseNum)
+        {
+            DO.BusLine BusLineDO;
+            try
+            {
+                BusLineDO = dl.GetBusLine(LicenseNum);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadBusLineIdException("Buss' LicenseNum does not exist or it is not a Bus", ex);
+            }
+            return BusLineDoBoAdapter(BusLineDO);
+        }
+        public IEnumerable<BO.BusLine> GetAllBusLines()
+        {
+            //return from item in dl.GetBusListWithSelectedFields( (stud) => { return GetBus(stud.ID); } )
+            //       let Bus = item as BO.Bus
+            //       orderby Bus.ID
+            //       select Bus;
+            return from BusLineDO in dl.GetAllBusLines()
+                   orderby BusLineDO.IsDeleted
+                   select BusLineDoBoAdapter(BusLineDO);
+        }
+        public IEnumerable<BO.BusLine> GetBusLineBy(Predicate<BO.BusLine> predicate)
+        {
+            throw new NotImplementedException();
+        }
+        public IEnumerable<BO.BusLine> GetBusLineLicenseNumList()
+        {
+            return from item in dl.GetAllBusLineListWithSelectedFields((BusLineDO) =>
+            {
+                try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
+                return new BO.BusLine() { LicenseNum = BusLineDO.LicenseNum };
+            })
+                   let BusLineBO = item as BO.BusLine
+                   //orderby Bus.LicenseNum
+                   select BusLineBO;
+        }
+        public void UpdateBusLinePersonalDetails(BO.BusLine BusLine)
+        {
+            //Update DO.Bus            
+            DO.BusLine BusLineDO = new DO.BusLine();
+            BusLine.CopyPropertiesTo(BusLineDO);
+            try
+            {
+                dl.UpdateBus(BusLineDO);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadBusLineIdException("BusLine's LicenseNum is illegal", ex);
+            }
+        }
+        public void DeleteBusLine(string ID)
+        {
+            try
+            {
+                dl.DeleteBus(ID);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadBusLineIdException("BusLine's ID does not exist or it is not a Bus", ex);
+            }
+        }
+        public void AddBusLine(BO.BusLine busline)
+        {
+
+            DO.BusLine BusLineDO = new DO.BusLine();
+            if (busline.LicenseNum.Length != 7 && busline.ID.Length != 8)
+            {
+                throw new Exception("invalid license num lengh");
+            }
+
+            if ((busline.LicenseDate.Year < 2018 && busline.LicenseNum.Length != 7) || (busline.LicenseDate.Year >= 2018 && busline.LicenseDate < DateTime.Now && busline.LicenseNum.Length != 8))
+            {//check the validation of the license num accroding to it date
+                throw new Exception("invalid license's date");
+            }
+
+            BusLineDO.CopyPropertiesToNew(typeof(BO.BusLine));
+            try
+            {
+                dl.AddBusLine(BusLineDO);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadBusIdException("Bus ID is illegal", ex);
+            }
+        }
 
         #endregion
     }

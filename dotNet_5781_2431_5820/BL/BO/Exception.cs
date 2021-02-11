@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    /*  [Serializable]
+    [Serializable]
       public class DriverIdException : Exception
       {
           public int ID;
@@ -21,17 +21,17 @@ namespace BO
       [Serializable]
       public class BadBusIdException : Exception
       {
-          public int BusID;
-          public int StationID;
-          public BadBusIdException(int perID, int crsID) : base() { BusID = perID; StationID = crsID; }
-          public BadBusIdException(int perID, int crsID, string message) :
+          public string BusID;
+          public string LicenseNum;
+          public BadBusIdException(string BID, string LID) : base() { BusID = BID; LicenseNum = LID; }
+          public BadBusIdException(string BID, string LID, string message) :
               base(message)
-          { BusID = perID; StationID = crsID; }
-          public BadBusIdException(int perID, int crsID, string message, Exception innerException) :
+          { BusID = BID; LicenseNum = LID; }
+          public BadBusIdException(string BID, string LID, string message, Exception innerException) :
               base(message, innerException)
-          { BusID = perID; StationID = crsID; }
+          { BusID = BID; LicenseNum = LID; }
 
-          public override string ToString() => base.ToString() + $", bad Bus id: {BusID} and Station id: {StationID}";
+          public override string ToString() => base.ToString() + $", bad Bus id: {BusID} and Station id: {LicenseNum}";
       }
       [Serializable]
       public class BadStationException : Exception
@@ -51,17 +51,32 @@ namespace BO
       public class BadLicenseIdException : Exception
       {
           public string xmlFilePath;
-          public BadLicenseIdStationIDException(string xmlPath) : base() { xmlFilePath = xmlPath; }
-          public BadLicenseIdStationIDException(string xmlPath, string message) :
+          public BadLicenseIdException(string xmlPath) : base() { xmlFilePath = xmlPath; }
+          public BadLicenseIdException(string xmlPath, string message) :
               base(message)
           { xmlFilePath = xmlPath; }
-          public BadLicenseIdStationIDException(string xmlPath, string message, Exception innerException) :
+          public BadLicenseIdException(string xmlPath, string message, Exception innerException) :
               base(message, innerException)
           { xmlFilePath = xmlPath; }
 
           public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
       }
-      [Serializable]
+    [Serializable]
+    public class BadStationNumException : Exception
+    {
+        public string xmlFilePath;
+        public BadStationNumException(string xmlPath) : base() { xmlFilePath = xmlPath; }
+        public BadStationNumException(string xmlPath, string message) :
+            base(message)
+        { xmlFilePath = xmlPath; }
+        public BadStationNumException(string xmlPath, string message, Exception innerException) :
+            base(message, innerException)
+        { xmlFilePath = xmlPath; }
+
+        public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
+    }
+
+    [Serializable]
       public class beyondTimeLimitLineException : Exception
       {
           public string xmlFilePath;
@@ -117,46 +132,45 @@ namespace BO
 
           public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
       }
-    */
 
-    [Serializable]
+     [Serializable]
     public class BadBusLineIdException : Exception
     {
-        public int Num;
+        public string Num;
         public BadBusLineIdException(string message, Exception innerException) :
-            base(message, innerException) => Num = ((DO.BadBusException)innerException).BusNum;
+            base(message, innerException) => Num = ((DO.BadBusLicenseNumException)innerException).LicenseNum;
         public override string ToString() => base.ToString() + $", bad BusLine num: {Num}";
     }
 
     [Serializable]
     public class BadDrivingBusException : Exception
     {
-        public int ID;
+        public string ID;
         public BadDrivingBusException(string message, Exception innerException) :
-            base(message, innerException) => ID = ((DO.BadBusException)innerException).BusID;
+            base(message, innerException) => ID = ((DO.BadBusLicenseNumException)innerException).LicenseNum;
         public override string ToString() => base.ToString() + $", bad DrivingBus id: {ID}";
     }
 
     [Serializable]
     public class BadOutGoingLineException : Exception
     {
-        public int ID;
+        public string ID;
         public BadOutGoingLineException(string message, Exception innerException) :
-            base(message, innerException) => ID = ((DO.BadBusException)innerException).BusID;
+            base(message, innerException) => ID = ((DO.BadBusLicenseNumException)innerException).LicenseNum;
         public override string ToString() => base.ToString() + $", bad OutGoingLine id: {ID}";
     }
 
     [Serializable]//לטפל בזה
     public class BadBusLineIdStationIDException : Exception
     {
-        public int BusID;
-        public int StationID;
-        public BadBusLineIdStationIDException(string message, Exception innerException) :
+        public string BusID;
+        public int BusNum;
+        public BadBusLineIDException(string message, Exception innerException) :
             base(message, innerException)
         {
-            BusID = ((DO.BadBusException)innerException).BusID;
-            StationID = ((DO.BadBusException)innerException).StationID;
+            BusID = ((DO.BadBusLineException)innerException).BusID;
+            BusNum = ((DO.BadBusLineException)innerException).BusNum;
         }
-        public override string ToString() => base.ToString() + $", bad BusLine id: {BusID} and Station ID: {StationID}";
+        public override string ToString() => base.ToString() + $", bad BusLine id: {BusID} and BusLineNum : {BusNum}";
     }
 }

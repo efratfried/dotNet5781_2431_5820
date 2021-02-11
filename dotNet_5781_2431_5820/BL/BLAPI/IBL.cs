@@ -39,35 +39,25 @@ namespace BLAPI
         void DeleteStation(string StationNum);
 
         #endregion
-
-        /*
+        
         #region BusLine
-        BO.BusLine GetBusLine(int Num);
+        BO.BusLine GetBusLine(string Num);
         IEnumerable<BO.BusLine> GetBusLines();
-        IEnumerable<BO.Bus> GetBusLineIDNameList();
-
+        IEnumerable<BO.BusLine> GetBusLineIDList();
         IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate);
-
         void UpdateBusLineDetails(BO.BusLine busLine);
-
         void DeleteBusLine(int Num);
-
+        void AddBusLine(BO.BusLine busLine);
         #endregion
 
-        #region BusStationLine
-        IEnumerable<BO.BusStationLine> GetAllBusStationLines();
+        #region user
+        BO.Bus GetUser(int id);
+        IEnumerable<BO.User> GetAllUsers();
+        IEnumerable<BO.User> GetUserIDList();
+        IEnumerable<BO.User> GetUserBy(Predicate<BO.User> predicate);
+        void UpdateUserPersonalDetails(BO.User user);
+        void DeleteUser(int id);
+        void AddUser(BO.User bususer);
         #endregion
-        //מפה לטפל
-        #region BusInCourse
-        void AddBusInCourse(int perID, int courseID, float grade = 0);
-        void UpdateBusGradeInCourse(int perID, int courseID, float grade);
-        void DeleteBusInCourse(int perID, int courseID);
-
-        #endregion       
-
-        #region BusCourse
-        IEnumerable<BO.BusCourse> GetAllCoursesPerBus(int id);
-        #endregion
-    */
     }
 }

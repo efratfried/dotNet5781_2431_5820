@@ -93,10 +93,6 @@ namespace DL
             return from station in DataSource.StationsList
                    select station.Clone();
         }
-        public IEnumerable<DO.Bus> GetAllStations(Predicate<DO.Station> predicate)
-        {
-            throw new NotImplementedException();//it means we need to put exeption here;
-        }
         public IEnumerable<object> GetAllStationListWithSelectedFields(Func<DO.Station, object> generate)
         {
             return from station in DataSource.StationsList
@@ -139,7 +135,7 @@ namespace DL
         #endregion station
 
         #region BusLine
-        public DO.BusLine GetBusLine(int id)
+        public DO.BusLine GetBusLine(string id)
         {
             DO.BusLine busl = DataSource.BusLinesList.Find(p => p.ID == id);
             try { Thread.Sleep(2000); } catch (ThreadInterruptedException e) { }
@@ -182,11 +178,11 @@ namespace DL
             else
                 throw new DO.BadBusLineException(BusLine.ID, BusLine.BusNum, $"bad BusLine id: {BusLine.ID}");
         }
-        public void UpdateBusLine(int id, Action<DO.BusLine> update)
+        public void UpdateBusLine(string id, Action<DO.BusLine> update)
         {
             throw new NotImplementedException();//it means we need to put exeption here;//it means we need to put exeption here
         }
-        public void DeleteBusLine(int id)
+        public void DeleteBusLine(string id)
         {
             DO.BusLine busl = DataSource.BusLinesList.Find(p => p.ID == id);
 
@@ -200,7 +196,7 @@ namespace DL
         #endregion
 
         #region BusStationLine
-        public IEnumerable<DO.BusStationLine> GetAllBusStationLines(string)
+        public IEnumerable<DO.BusStationLine> GetAllBusStationLines(string busstationline)
         {//returns all members in list
             return from BusStationLine in DataSource.BusStationsLineList
                    select BusStationLine.Clone();
@@ -394,7 +390,7 @@ namespace DL
         //DO.OutGoingLine GetOutGoingLine(int Num);
         //IEnumerable<DO.OutGoingLine> GetAllOutGoingLines(Predicate<DO.OutGoingLine> predicate);
 
-        public DO.OutGoingLine GetOutGoingLine(int ID)
+        public DO.OutGoingLine GetOutGoingLine(string ID)
         {
             DO.OutGoingLine outGoingLine = DataSource.OutGoingLinesList.Find(p => p.ID == ID);
             try { Thread.Sleep(2000); } catch (ThreadInterruptedException e) { }
@@ -421,7 +417,7 @@ namespace DL
             DO.BusStationLine sic = new DO.BusStationLine() { ID = OutGoingLine.ID };
             DataSource.BusStationsLineList.Add(sic);
         }
-        public void DeleteOutGoingLine(int Num)
+        public void DeleteOutGoingLine(string Num)
         {
             DO.OutGoingLine sic = DataSource.OutGoingLinesList.Find(cis => (cis.ID == Num));
 
@@ -449,7 +445,7 @@ namespace DL
         {
             throw new NotImplementedException();//it means we need to put exeption here;
         }
-        public DO.Accident GetAccident(int AccidentNum)
+        public DO.Accident GetAccident(string AccidentNum)
         {
             DO.Accident Accident = DataSource.AccidentsList.Find(B => B.AccidentnUM == AccidentNum);
 
@@ -481,7 +477,7 @@ namespace DL
             else
                 throw new DO.BadLicenseNumException(Accident.LicenseNum, $"bad Bus id: {Accident.LicenseNum}");
         }
-        public void DeleteAccident(int AccidentNum)
+        public void DeleteAccident(string AccidentNum)
         {
             DO.Accident Accident = DataSource.AccidentsList.Find(p => p.AccidentnUM == AccidentNum);
 

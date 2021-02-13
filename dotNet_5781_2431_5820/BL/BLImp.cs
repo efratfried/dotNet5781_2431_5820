@@ -5,11 +5,7 @@ using DLAPI;
 using BLAPI;
 using System.Threading;
 using BO;
-//using BO;
 
-//      :הערות
-//איך נחשב את מספר התחנה שעולה כול פעם
-//איך נציג תחנות עוקבות
 namespace BL
 {
     class BLImp : HelpFunctions, IBL //internal
@@ -166,7 +162,7 @@ namespace BL
             }
             catch (DO.BadLicenseNumException ex)
             {
-                throw new BO.BadStationIdException("Buss' LicenseNum does not exist or it is not a Bus", ex);
+                throw new BO.BadStationException("Station's code don't exist or it is not a station", ex);
             }
             return StationDoBoAdapter(StationDO);
         }
@@ -217,7 +213,7 @@ namespace BL
             }
             catch (DO.BadCodeStationException ex)
             {
-                throw new BO.BadStationIdException("Bus LicenseNum does not exist or it is not a Bus", ex);
+                throw new BO.BadStationException("Bus LicenseNum does not exist or it is not a Bus", ex);
             }
         }
         public void AddStation(BO.Station station)
@@ -243,7 +239,7 @@ namespace BL
             }
             catch (DO.BadLicenseNumException ex)
             {
-                throw new BO.BaStationtIdException("station num is illegal", ex);
+                throw new BO.BadStationException("station num is illegal", ex);
             }
         }
 
@@ -267,9 +263,9 @@ namespace BL
             {
                 BusStationLineDO = dl.GetBusStationLine(CodeStation);
             }
-            catch (DO.BadCodeStationException ex)
+            catch (DO.BadBusStationLineCodeException ex)
             {
-                throw new BO.BadStationIdException("Bus LicenseNum is illegal", ex);
+                throw new BO.BadBusStationLineCodeException("Bus LicenseNum is illegal", ex);
             }
 
             BusStationLineDO.CopyPropertiesTo(BusStationLineBO);
@@ -283,16 +279,16 @@ namespace BL
             {
                 BusStationLineDO = dl.GetBusStationLine(CodeStation);
             }
-            catch (DO.BadLicenseNumException ex)
+            catch (DO.BadBusStationLineCodeException ex)
             {
-                throw new BO.BadStationIdException("Buss' LicenseNum does not exist or it is not a Bus", ex);
+                throw new BO.BadBusStationLineCodeException("Buss' LicenseNum does not exist or it is not a Bus", ex);
             }
             return BusStationLineDoBoAdapter(BusStationLineDO);
         }
         public IEnumerable<BO.BusStationLine> GetAllBusStationLines()
         {
             return from BusStationLineDO in dl.GetBusStationLineList()
-                   orderby BusStationLineDO.CodeStation
+                   orderby BusStationLineDO.ID
                    select BusStationLineDoBoAdapter(BusStationLineDO);
         }
         public IEnumerable<BO.BusStationLine> GetBusStationLineBy(Predicate<BO.BusStationLine> predicate)
@@ -318,9 +314,9 @@ namespace BL
             {
                 dl.AddBusStationLine(BusStationLineDO.ID, bus_station_line);
             }
-            catch (DO.BadLicenseNumException ex)
+            catch (DO.BadBusStationLineCodeException ex)
             {
-                throw new BO.BadBustIdException("Bus ID is illegal", ex);
+                throw new BO.BadBusStationLineCodeException("Bus ID is illegal", ex);
             }
         }
         public void UpdateStationPersonalDetails(BO.BusStationLine bus_station_num)
@@ -334,7 +330,7 @@ namespace BL
             }
             catch (DO.BadStationNumException ex)
             {
-                throw new BO.BadStationIdException("Bus's LicenseNum is illegal", ex);
+                throw new BO.BadBusStationLineCodeException("Bus's LicenseNum is illegal", ex);
             }
         }
         public void DeleteStation(BO.BusStationLine bus_station_line)
@@ -345,7 +341,7 @@ namespace BL
             }
             catch (DO.BadCodeStationException ex)
             {
-                throw new BO.BadStationIdException("Bus LicenseNum does not exist or it is not a Bus", ex);
+                throw new BO.BadBusStationLineCodeException("Bus LicenseNum does not exist or it is not a Bus", ex);
             }
         }
 

@@ -62,7 +62,7 @@ namespace BO
           public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
       }
       [Serializable]
-    public class BadStationNumException : Exception
+      public class BadStationNumException : Exception
     {
         public string xmlFilePath;
         public BadStationNumException(string xmlPath) : base() { xmlFilePath = xmlPath; }
@@ -172,5 +172,20 @@ namespace BO
             BusNum = ((DO.BadBusLineException)innerException).BusNum;
         }
         public override string ToString() => base.ToString() + $", bad BusLine id: {BusID} and BusLineNum : {BusNum}";
+    }
+    [Serializable]
+    public class BadBusStationLineCodeException : Exception
+    {
+        public string BusID;
+        public string BusStationNum;
+        public BadBusStationLineCodeException(string BID, string LID) : base() { BusID = BID; BusStationNum = LID; }
+        public BadBusStationLineCodeException(string BID, string LID, string message) :
+            base(message)
+        { BusID = BID; BusStationNum = LID; }
+        public BadBusStationLineCodeException(string BID, string LID, string message, Exception innerException) :
+            base(message, innerException)
+        { BusID = BID; BusStationNum = LID; }
+
+        public override string ToString() => base.ToString() + $", bad Bus id: {BusID} and Station id: {BusStationNum}";
     }
 }

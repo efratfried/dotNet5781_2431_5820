@@ -13,6 +13,7 @@ namespace DLAPI
         #region Bus
         IEnumerable<DO.Bus> GetAllBusses();
         IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate);
+        IEnumerable<DO.Bus> GetBusIDList();
         IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate);
         DO.Bus GetBus(string Num);
         void AddBus(DO.Bus Bus);

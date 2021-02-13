@@ -9,7 +9,7 @@ namespace BLAPI
     public interface IBL
     {
         #region bus
-        BO.Bus GetBus(int id);
+        BO.Bus GetBus(string id);
         IEnumerable<BO.Bus> GetAllBuss();
         IEnumerable<BO.Bus> GetBusIDList();
         IEnumerable<BO.Bus> GetBussBy(Predicate<BO.Bus> predicate);

@@ -83,7 +83,7 @@ namespace BL
                    //orderby Bus.LicenseNum
                    select BusBO;
         }
-        public void UpdateBusPersonalDetails(BO.Bus Bus)
+        public void UpdateBusPersonalDetails(BO.Bus bus)
         {
             //Update DO.Bus            
             DO.Bus BusDO = new DO.Bus();
@@ -97,7 +97,7 @@ namespace BL
                 throw new BO.BadBusIdException("Bus's LicenseNum is illegal", ex);
             }
         }
-        public void DeleteBus(int LicenseNum)
+        public void DeleteBus(string LicenseNum)
         {
             try
             {
@@ -133,7 +133,7 @@ namespace BL
             }
             catch (DO.BadLicenseNumException ex)
             {
-                throw new BO.BadBustIdException("Bus ID is illegal", ex);
+                throw new BO.BadBusIdException("Bus ID is illegal", ex);
             }
         }
 
@@ -150,7 +150,7 @@ namespace BL
             }
             catch (DO.BadCodeStationException ex)
             {
-                throw new BO.BadStationIdException("Bus LicenseNum is illegal", ex);
+                throw new BO.BadStationException("Bus LicenseNum is illegal", ex);
             }
 
             StationDO.CopyPropertiesTo(StationBO);

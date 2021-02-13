@@ -21,7 +21,7 @@ namespace BLAPI
         #region Station
         IEnumerable<BO.Station> GetAllStations();
         IEnumerable<BO.Station> GetStationsBy(Predicate<BO.Station> predicate);
-        IEnumerable<BO.Station> GetStationList();
+        IEnumerable<BO.Station> GetStation();
         BO.Station GetStation(string BusStationLineNum);
         void AddBus(BO.BusStationLine bus_station_line);
         void UpdateBusPersonalDetails(BO.BusStationLine bus_station_line);

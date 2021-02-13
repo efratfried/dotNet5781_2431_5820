@@ -37,7 +37,7 @@ namespace DL
             else
                 throw new DO.BadBusLicenseNumException(LicenseNum, $"no Bus has License Num: {LicenseNum}");
         }
-        public IEnumerable<object> GetAllBussesListWithSelectedFields(Func<DO.Bus, object> generate)
+        public IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate)
         {
             return from Bus in DataSource.BussesList
                    select generate(Bus);
@@ -88,7 +88,7 @@ namespace DL
             else
                 throw new DO.BadCodeStationException(CodeStation, $"no such station: {CodeStation}");
         }
-        public IEnumerable<DO.Station> GetAllStations()
+        public IEnumerable<DO.Station> GetAllStations(Predicate<DO.Station> predicate)
         {
             return from station in DataSource.StationsList
                    select station.Clone();
@@ -157,7 +157,7 @@ namespace DL
             return from BusLine in DataSource.BusLinesList
                    select BusLine.Clone();
         }
-        public IEnumerable<object> GetBusLinesListWithSelectedFields(Func<int, string, object> generate)
+        public IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object> generate)
         {
             return from BusLine in DataSource.BusLinesList
                    select generate(BusLine.ID, GetBusLine(BusLine.ID).BusNum.ToString());
@@ -445,9 +445,9 @@ namespace DL
         {
             throw new NotImplementedException();//it means we need to put exeption here;
         }
-        public DO.Accident GetAccident(string AccidentNum)
+        public DO.Accident GetAccident(int AccidentNum)
         {
-            DO.Accident Accident = DataSource.AccidentsList.Find(B => B.AccidentnUM == AccidentNum);
+            DO.Accident Accident = DataSource.AccidentsList.Find(B => B.AccidentNum == AccidentNum);
 
             if (Accident != null)
                 return Accident.Clone();
@@ -461,13 +461,13 @@ namespace DL
         }
         public void AddAccident(DO.Accident Accident)
         { //need a check if actually it is ==bus.---- or only ==licensnum
-            if (DataSource.AccidentsList.FirstOrDefault(B => B.AccidentnUM == Accident.AccidentnUM) != null)
-                throw new DO.BadLicenseNumException(Accident.AccidentnUM, "Duplicate bus LicenseNum");
+            if (DataSource.AccidentsList.FirstOrDefault(B => B.AccidentNum == Accident.AccidentNum) != null)
+                throw new DO.BadLicenseNumException(Accident.AccidentNum, "Duplicate bus LicenseNum");
             DataSource.AccidentsList.Add(Accident.Clone());
         }
         public void UpdateAccident(DO.Accident Accident)
         {
-            DO.Accident Accidents = DataSource.AccidentsList.Find(b => b.AccidentnUM == Accident.AccidentnUM);
+            DO.Accident Accidents = DataSource.AccidentsList.Find(b => b.AccidentNum == Accident.AccidentNum);
 
             if (Accident != null)
             {
@@ -477,9 +477,9 @@ namespace DL
             else
                 throw new DO.BadLicenseNumException(Accident.LicenseNum, $"bad Bus id: {Accident.LicenseNum}");
         }
-        public void DeleteAccident(string AccidentNum)
+        public void DeleteAccident(int AccidentNum)
         {
-            DO.Accident Accident = DataSource.AccidentsList.Find(p => p.AccidentNum == AccidentNum);
+            DO.Accident Accident = DataSource.AccidentsList.Find(p => (p.AccidentNum == AccidentNum));
 
             if (Accident != null)
             {

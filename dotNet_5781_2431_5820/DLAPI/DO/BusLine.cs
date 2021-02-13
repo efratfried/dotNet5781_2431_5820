@@ -8,7 +8,7 @@ namespace DO
 {
     public class BusLine
     {// the actual line
-        public string ID { set; get; }
+        public int ID { set; get; }
         public string BusNum { set; get; }
         public Area Area { set; get; }
         public int FirstStation { set; get; }

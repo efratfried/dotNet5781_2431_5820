@@ -61,7 +61,7 @@ namespace BO
 
           public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
       }
-    [Serializable]
+      [Serializable]
     public class BadStationNumException : Exception
     {
         public string xmlFilePath;
@@ -76,7 +76,7 @@ namespace BO
         public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
     }
 
-    [Serializable]
+      [Serializable]
       public class beyondTimeLimitLineException : Exception
       {
           public string xmlFilePath;
@@ -133,8 +133,8 @@ namespace BO
           public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
       }
 
-     [Serializable]
-    public class BadBusLineIdException : Exception
+      [Serializable]
+      public class BadBusLineIdException : Exception
     {
         public string Num;
         public BadBusLineIdException(string message, Exception innerException) :
@@ -142,8 +142,8 @@ namespace BO
         public override string ToString() => base.ToString() + $", bad BusLine num: {Num}";
     }
 
-    [Serializable]
-    public class BadDrivingBusException : Exception
+      [Serializable]
+      public class BadDrivingBusException : Exception
     {
         public string ID;
         public BadDrivingBusException(string message, Exception innerException) :
@@ -151,8 +151,8 @@ namespace BO
         public override string ToString() => base.ToString() + $", bad DrivingBus id: {ID}";
     }
 
-    [Serializable]
-    public class BadOutGoingLineException : Exception
+      [Serializable]
+      public class BadOutGoingLineException : Exception
     {
         public string ID;
         public BadOutGoingLineException(string message, Exception innerException) :
@@ -160,12 +160,12 @@ namespace BO
         public override string ToString() => base.ToString() + $", bad OutGoingLine id: {ID}";
     }
 
-    [Serializable]//לטפל בזה
-    public class BadBusLineIdStationIDException : Exception
+      [Serializable]//לטפל בזה
+      public class BadBusLineIdStationIDException : Exception
     {
         public string BusID;
-        public int BusNum;
-        public BadBusLineIDException(string message, Exception innerException) :
+        public string BusNum;
+        public BadBusLineIdStationIDException(string message, Exception innerException) :
             base(message, innerException)
         {
             BusID = ((DO.BadBusLineException)innerException).BusID;

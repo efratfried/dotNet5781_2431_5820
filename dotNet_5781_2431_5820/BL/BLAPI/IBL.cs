@@ -14,17 +14,16 @@ namespace BLAPI
         IEnumerable<BO.Bus> GetBusIDList();
         IEnumerable<BO.Bus> GetBussBy(Predicate<BO.Bus> predicate);
         void UpdateBusPersonalDetails(BO.Bus bus);
-        void DeleteBus(int id);
+        void DeleteBus(string id);
         void AddBus(BO.Bus bus);
         #endregion
 
         #region Station
         IEnumerable<BO.Station> GetAllStations();
         IEnumerable<BO.Station> GetStationsBy(Predicate<BO.Station> predicate);
-        IEnumerable<BO.Station> GetStation();
         BO.Station GetStation(string BusStationLineNum);
-        void AddBus(BO.BusStationLine bus_station_line);
-        void UpdateBusPersonalDetails(BO.BusStationLine bus_station_line);
+        void AddStation(BO.BusStationLine bus_station_line);
+        void UpdateStationPersonalDetails(BO.BusStationLine bus_station_line);
         void DeleteStation(BO.BusStationLine bus_station_line);
 
         #endregion
@@ -34,14 +33,14 @@ namespace BLAPI
         IEnumerable<BO.BusStationLine> GetBusStationLinesBy(Predicate<BO.BusStationLine> predicate);
         IEnumerable<BO.BusStationLine> GetBusStationLineList(string BusStationLineNum);
         BO.Station GetBusStationLine(string StationNum);
-        void AddBusStationLine(BO.BusStationLine station);
-        void UpdateBusPersonalDetails(BO.Station station);
-        void DeleteStation(string StationNum);
+        void AddBusStationLine(BO.BusStationLine BusstationLine);
+        void UpdateBusStationLinePersonalDetails(BO.BusStationLine BusstationLine);
+        void DeleteBusStationLine(string StationNum);
 
         #endregion
         
         #region BusLine
-        BO.BusLine GetBusLine(string Num);
+        BO.BusLine GetBusLine(int Num);
         IEnumerable<BO.BusLine> GetBusLines();
         IEnumerable<BO.BusLine> GetBusLineIDList();
         IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate);

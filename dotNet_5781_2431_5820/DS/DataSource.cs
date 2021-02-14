@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,7 +31,7 @@ namespace DS
         }
         static void InitAllLists()
         {
-            StationLists = new List<Station>
+            StationsList = new List<Station>
             {
                 #region Station_List
                         new Station
@@ -489,7 +490,7 @@ namespace DS
                   #endregion
             };
 
-            BusLineList = new List<BusLine>
+            BusLinesList = new List<BusLine>
             {
                 #region BusLine_list
                 new BusLine
@@ -585,7 +586,7 @@ namespace DS
                 #endregion
             };
 
-            BusList = new List<Bus>
+            BussesList = new List<Bus>
             {
                 #region Busses_List
                 new Bus

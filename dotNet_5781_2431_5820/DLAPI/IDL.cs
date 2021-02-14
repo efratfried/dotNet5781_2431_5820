@@ -13,7 +13,7 @@ namespace DLAPI
         #region Bus
         IEnumerable<DO.Bus> GetAllBusses();
         IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate);
-        IEnumerable<DO.Bus> GetBusIDList();
+        //IEnumerable<DO.Bus> GetBusIDList();
         IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate);
         DO.Bus GetBus(string Num);
         void AddBus(DO.Bus Bus);
@@ -40,7 +40,7 @@ namespace DLAPI
         DO.BusStationLine GetBusStationLine(string Id);
         void DeleteBusStationLine( string StationeNum);
         void DeleteBusStationLineFromAllStations(string StationID);
-        IEnumerable<DO.BusStationLine> GetBusStationLineListWithSelectedFields(Func<DO.BusStationLine, object> generate);
+        IEnumerable<object> GetBusStationsLineListWithSelectedFields(Func<DO.BusStationLine, object> generate);
 
         #endregion
 

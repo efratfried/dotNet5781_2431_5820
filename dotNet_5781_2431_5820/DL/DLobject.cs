@@ -79,6 +79,11 @@ namespace DL
         #endregion Bus
         
         #region station
+        public IEnumerable<DO.Station> GetAllStations()
+        {
+            return from Station in DataSource.StationsList
+                   select Station.Clone();
+        }
         public DO.Station GetStation(string CodeStation)
         {
             DO.Station station = DataSource.StationsList.Find(B => B.CodeStation == CodeStation);
@@ -147,9 +152,17 @@ namespace DL
         public void AddBusLine(DO.BusLine BusLine)
         {
             if (DataSource.BusLinesList.FirstOrDefault(s => s.ID == BusLine.ID) != null)
-                throw new DO.BadBusLineException(BusLine.ID, BusLine.BusNum, "Duplicate BusLine ID");
+            {
+                string id = BusLine.ID.ToString();
+                string Busnum = BusLine.BusNum.ToString();
+                throw new DO.BadBusLineException(id, Busnum, "Duplicate BusLine ID");
+            }
             if (DataSource.BusLinesList.FirstOrDefault(p => p.ID == BusLine.ID) == null)
-                throw new DO.BadBusLineException(BusLine.ID, BusLine.BusNum, "Missing Bus ID");
+            {
+                string id = BusLine.ID.ToString();
+                string Busnum = BusLine.BusNum.ToString();
+                throw new DO.BadBusLineException(id, Busnum, "Missing Bus ID");
+            }
             DataSource.BusLinesList.Add(BusLine.Clone());
         }
         public IEnumerable<DO.BusLine> GetAllBusLines()
@@ -201,7 +214,7 @@ namespace DL
             return from BusStationLine in DataSource.BusStationsLineList
                    select BusStationLine.Clone();
         }
-        public IEnumerable<DO.BusStationLine> GetBusStationsLineList(Predicate<DO.BusStationLine> predicate)
+        public IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate)
         {
             throw new NotImplementedException();//it means we need to put exeption here;
         }
@@ -486,7 +499,10 @@ namespace DL
                 DataSource.AccidentsList.Remove(Accident);
             }
             else
-                throw new DO.BadLicenseNumException(AccidentNum, $"bad Bus id: {AccidentNum}");
+            {
+                string accidentnum = AccidentNum.ToString();
+                throw new DO.BadLicenseNumException(accidentnum, $"bad Bus id: {accidentnum}")
+             }
         }
 
         #endregion

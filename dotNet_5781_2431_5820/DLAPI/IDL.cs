@@ -25,7 +25,7 @@ namespace DLAPI
         #region BusLine
         DO.BusLine GetBusLine(string id);
         IEnumerable<DO.BusLine> GetAllBusLines();
-        IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object> generate);
+        IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object,object> generate);
         void AddBusLine(DO.BusLine BusLine);
         void UpdateBusLine(DO.BusLine BusLine);
         void UpdateBusLine(string id, Action<DO.BusLine> update); //method that knows to updt specific fields in Student
@@ -82,7 +82,7 @@ namespace DLAPI
 
         #region OutGoingLine
         DO.OutGoingLine GetOutGoingLine(string Num);
-        IEnumerable<DO.OutGoingLine> GetAllOutGoingLines(Predicate<DO.OutGoingLine> predicate);
+        IEnumerable<DO.OutGoingLine> GetAOutGoingLineList(Predicate<DO.OutGoingLine> predicate);
         IEnumerable<object> GetOutGoingLineListWithSelectedFields(Func<DO.OutGoingLine, object> generate);
         void AddOutGoingLine(DO.OutGoingLine OutGoingLine);
         void DeleteOutGoingLine(string Num); // removes only OutGoingLine, does not remove the appropriate Bus...

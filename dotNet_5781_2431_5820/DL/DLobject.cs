@@ -170,10 +170,10 @@ namespace DL
             return from BusLine in DataSource.BusLinesList
                    select BusLine.Clone();
         }
-        public IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object> generate)
+        public IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object,object> generate)
         {
             return from BusLine in DataSource.BusLinesList
-                   select generate(BusLine.ID, GetBusLine(BusLine.ID).BusNum.ToString());
+                   select generate(/*BusLine bl = */BusLine.ID.ToString(), GetBusLine(BusLine.ID).BusNum.ToString()) ;
         }
         public IEnumerable<object> GetBusLinesListWithSelectedFields(Func<DO.BusLine, object> generate)
         {
@@ -189,7 +189,10 @@ namespace DL
                 DataSource.BusLinesList.Add(BusLine.Clone());
             }
             else
-                throw new DO.BadBusLineException(BusLine.ID, BusLine.BusNum, $"bad BusLine id: {BusLine.ID}");
+            {
+                string bl = BusLine.BusNum.ToString();
+                throw new DO.BadBusLineException(BusLine.ID, bl, $"bad BusLine id or wrong bus's num: {BusLine.ID},{bl}");
+            }
         }
         public void UpdateBusLine(string id, Action<DO.BusLine> update)
         {
@@ -412,7 +415,7 @@ namespace DL
             else
                 throw new DO.BadCodeStationException(ID, $"bad BusLine id: {ID}");
         }
-        public IEnumerable<DO.OutGoingLine> GetAllOutGoingLines(Predicate<DO.OutGoingLine> predicate)
+        public IEnumerable<DO.OutGoingLine> GetAOutGoingLineList(Predicate<DO.OutGoingLine> predicate)
         {
             return from sic in DataSource.OutGoingLinesList
                    where predicate(sic)
@@ -465,7 +468,10 @@ namespace DL
             if (Accident != null)
                 return Accident.Clone();
             else
-                throw new DO.BadBusLicenseNumException(AccidentNum, $"no Accident like that: {AccidentNum}");
+            {
+                string accidentNum = AccidentNum.ToString();
+                throw new DO.BadBusLicenseNumException(accidentNum, $"no Accident like that: {accidentNum}");
+            }
         }
         public IEnumerable<object> GetAccidentListWithSelectedFields(Func<DO.Accident, object> generate)
         {
@@ -474,8 +480,12 @@ namespace DL
         }
         public void AddAccident(DO.Accident Accident)
         { //need a check if actually it is ==bus.---- or only ==licensnum
+           
             if (DataSource.AccidentsList.FirstOrDefault(B => B.AccidentNum == Accident.AccidentNum) != null)
-                throw new DO.BadLicenseNumException(Accident.AccidentNum, "Duplicate bus LicenseNum");
+            {
+                string accidentNum = Accident.ToString();
+                throw new DO.BadLicenseNumException(accidentNum, "Duplicate bus LicenseNum");
+            }
             DataSource.AccidentsList.Add(Accident.Clone());
         }
         public void UpdateAccident(DO.Accident Accident)
@@ -501,7 +511,7 @@ namespace DL
             else
             {
                 string accidentnum = AccidentNum.ToString();
-                throw new DO.BadLicenseNumException(accidentnum, $"bad Bus id: {accidentnum}")
+                throw new DO.BadLicenseNumException(accidentnum, $"bad Bus id: {accidentnum}");
              }
         }
 

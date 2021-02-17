@@ -65,6 +65,7 @@ namespace DLAPI
         IEnumerable<DO.User> GetAllUser(Predicate<DO.User> predicate);
         DO.User GetUser(string Num,string pass);
         void AddUser(DO.User User);
+        IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate);
         void UpdateUser(DO.User User);
         void UpdateUser(string Num, Action<DO.User> update); //method that knows to updt specific fields in Person
         void DeleteUser(string Num);

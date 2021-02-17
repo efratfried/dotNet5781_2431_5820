@@ -22,9 +22,9 @@ namespace BLAPI
         IEnumerable<BO.Station> GetAllStations();
         IEnumerable<BO.Station> GetStationsBy(Predicate<BO.Station> predicate);
         BO.Station GetStation(string BusStationLineNum);
-        void AddStation(BO.BusStationLine bus_station_line);
-        void UpdateStationPersonalDetails(BO.BusStationLine bus_station_line);
-        void DeleteStation(BO.BusStationLine bus_station_line);
+        void AddStation(BO.Station station);
+        void UpdateStationPersonalDetails(BO.Station station);
+        void DeleteStation(BO.Station station);
 
         #endregion
 
@@ -50,12 +50,13 @@ namespace BLAPI
         #endregion
 
         #region user
-        BO.Bus GetUser(int id);
+        BO.Bus GetUser(string name,string password);
         IEnumerable<BO.User> GetAllUsers();
         IEnumerable<BO.User> GetUserIDList();
         IEnumerable<BO.User> GetUserBy(Predicate<BO.User> predicate);
+        IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate);
         void UpdateUserPersonalDetails(BO.User user);
-        void DeleteUser(int id);
+        void DeleteUser(string name,string password);
         void AddUser(BO.User bususer);
         #endregion
     }

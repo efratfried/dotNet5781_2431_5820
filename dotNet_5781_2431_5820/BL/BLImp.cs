@@ -302,7 +302,7 @@ namespace BL
         }
         public IEnumerable<BO.BusStationLine> GetBusStationLineList(string BusStationLineNum)
         {
-            return from item in dl.GetBusStationLineListWithSelectedFields((BusStationLineDO) =>
+            return from item in dl.GetBusStationsLineListWithSelectedFields((BusStationLineDO) =>
             {
                 try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
                 return new BO.BusStationLine() { ID = BusStationLineDO.ID };
@@ -409,7 +409,7 @@ namespace BL
         }
         public IEnumerable<BO.BusLine> GetBusLineLicenseNumList()
         {
-            return from item in dl.GetAllBusLineListWithSelectedFields((BusLineDO) =>
+            return from item in dl.GetBusLineListWithSelectedFields((BusLineDO,null) =>
             {
                 try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
                 return new BO.BusLine() { LicenseNum = BusLineDO.LicenseNum };
@@ -425,7 +425,7 @@ namespace BL
             BusLine.CopyPropertiesTo(BusLineDO);
             try
             {
-                dl.UpdateBus(BusLineDO);
+                dl.UpdateBusLine(BusLineDO);
             }
             catch (DO.BadLicenseNumException ex)
             {
@@ -448,7 +448,7 @@ namespace BL
         {
 
             DO.BusLine BusLineDO = new DO.BusLine();
-            if (busline.LicenseNum.Length != 7 && busline.ID.Length != 8)
+            if (busline.LicenseNum.Length != 7 && busline.LicenseNum.Length != 8) 
             {
                 throw new Exception("invalid license num lengh");
             }
@@ -467,6 +467,120 @@ namespace BL
             {
                 string Ex = ex.ToString();
                 throw new BO.BadBusIdException("Bus ID is illegal", Ex);
+            }
+        }
+
+        #endregion
+        #region User
+        BO.User UserDoBoAdapter(DO.User UserDO)
+        {
+            BO.User UserBO = new BO.User();
+            string password = UserDO.Password;
+            string name = UserDO.UserName;
+            try
+            {
+                UserDO = dl.GetUser(name,password);
+            }
+            catch (DO.BadUserName_PasswordException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("User's detatils ar'nt legal", Ex);
+            }
+
+            UserDO.CopyPropertiesTo(UserBO);
+
+            return UserBO;
+        }
+        public BO.User GetUser(string name,string password)
+        {
+            DO.User UserDO;
+            try
+            {
+                UserDO = dl.GetUser(name,password);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadUserName_PasswordException("User's password does not exist or you are a new user", Ex);
+            }
+            return UserDoBoAdapter(UserDO);
+        }
+        public IEnumerable<BO.User> GetAllUsers()
+        {
+            //return from item in dl.GetBusListWithSelectedFields( (stud) => { return GetBus(stud.ID); } )
+            //       let Bus = item as BO.Bus
+            //       orderby Bus.ID
+            //       select Bus;
+            return from UserDO in dl.GetAllUser()
+                   orderby UserDO.UserName
+                   select UserDoBoAdapter(UserDO);
+        }
+        public IEnumerable<BO.User> GetUserIDList()
+        {
+            return from UserDO in dl.GetUserListWithSelectedFields()
+                   orderby UserDO.Password
+                   select UserDoBoAdapter(UserDO);
+        }
+        public IEnumerable<BO.User> GetBussBy(Predicate<BO.User> predicate)
+        {
+            throw new NotImplementedException();
+        }
+        public IEnumerable<BO.User> GetUserNamesNumList()
+        {
+            return from item in dl.GetAllUserListWithSelectedFields((UserDO) =>
+            {
+                try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
+                return new BO.User() { Name = UserDO.Name };
+            })
+                   let UserBO = item as BO.User
+                   //orderby Bus.LicenseNum
+                   select UserBO;
+        }
+        public void UpdateUserPersonalDetails(BO.User User)
+        {
+            //Update DO.Bus            
+            DO.User UserDO = new DO.User();
+            User.CopyPropertiesTo(UserDO);
+            try
+            {
+                dl.UpdateUser(UserDO);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadUserName_PasswordException("User's details are illegal", Ex);
+            }
+        }
+        public void DeleteUser(string password)
+        {
+            try
+            {
+                dl.DeleteBus(password);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadUserName_PasswordException("User's details does not exist or you are a new user", Ex);
+            }
+        }
+        public void AddUser(BO.User User)
+        {
+
+            DO.User UserDO = new DO.User();
+
+            if(UserDO.UserName.Length==0 && UserDO.Password.Length==0)
+            {
+                throw new Exception("the details are wrong");
+            }
+            UserDO.CopyPropertiesToNew(typeof(BO.User));
+            try
+            {
+                dl.AddUser(UserDO);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadUserName_PasswordException("User's details are illegal", Ex);
             }
         }
 

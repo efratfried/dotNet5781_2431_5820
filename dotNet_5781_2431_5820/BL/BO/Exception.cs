@@ -188,4 +188,19 @@ namespace BO
 
         public override string ToString() => base.ToString() + $", bad Bus id: {BusID} and Station id: {BusStationNum}";
     }
+    [Serializable]
+    public class BadUserName_PasswordException : Exception
+    {
+        public string name;
+        public string password;
+        public BadUserName_PasswordException(string n, string s) : base() { name = n; password = s; }
+        public BadUserName_PasswordException(string n, string s, string message) :
+            base(message)
+        { name = n; password = s; }
+        public BadUserName_PasswordException(string n, string s, string message, Exception innerException) :
+            base(message, innerException)
+        { name = n; password = s; }
+
+        public override string ToString() => base.ToString() + $", bad Bus id: {BusID} and Station id: {BusStationNum}";
+    }
 }

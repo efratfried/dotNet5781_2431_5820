@@ -61,5 +61,10 @@ namespace PL
 
             }
         }
+
+        private void manager_Name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

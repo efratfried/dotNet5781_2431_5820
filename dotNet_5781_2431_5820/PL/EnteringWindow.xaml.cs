@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BLAPI;
 namespace PL
 {
     /// <summary>
@@ -19,9 +19,21 @@ namespace PL
     /// </summary>
     public partial class EnteringWindow : Window
     {
+        IBL bl = BLFactory.GetBL("1");//we create an "object" of IBL interface in order to use BL functions and classes
+
         public EnteringWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (connect.Click+)
+            {
+                connecting win = new connecting(bl);
+                win.Show();
+            }
         }
     }
 }

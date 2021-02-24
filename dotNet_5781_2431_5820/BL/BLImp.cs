@@ -341,7 +341,7 @@ namespace BL
                 throw new BO.BadBusStationLineCodeException("Bus's LicenseNum is illegal", Ex);
             }
         }
-        public void DeleteStation(BO.BusStationLine bus_station_line)
+        public void DeleteBusStationLine(BO.BusStationLine bus_station_line)
         {
             try
             {
@@ -410,7 +410,7 @@ namespace BL
                    orderby BusLineDO.IsDeleted
                    select BusLineDoBoAdapter(BusLineDO);
         }
-        public IEnumerable<BO.BusLine> GetBusLineBy(Predicate<BO.BusLine> predicate)
+        public IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate)
         {
             throw new NotImplementedException();
         }
@@ -478,6 +478,7 @@ namespace BL
         }
 
         #endregion
+
         #region User
         BO.User UserDoBoAdapter(DO.User UserDO)
         {
@@ -505,7 +506,7 @@ namespace BL
             {
                 UserDO = dl.GetUser(name,password);
             }
-            catch (DO.BadLicenseNumException ex)
+            catch (DO.BadUserName_PasswordException ex)
             {
                 string Ex = ex.ToString();
                 throw new BO.BadUserName_PasswordException("User's password does not exist or you are a new user", Ex);
@@ -528,16 +529,16 @@ namespace BL
                    orderby UserDO.Password
                    select UserDoBoAdapter(UserDO);
         }
-        public IEnumerable<BO.User> GetBussBy(Predicate<BO.User> predicate)
+        public IEnumerable<BO.User> GetUserBy(Predicate<BO.User> predicate)
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<BO.User> GetUserNamesNumList()
+        public IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate)
         {
-            return from item in dl.GetAllUserListWithSelectedFields((UserDO) =>
+            return from item in dl.GetUserListWithSelectedFields((UserDO) =>
             {
                 try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                return new BO.User() { Name = UserDO.Name };
+                return new BO.User() { Name = UserDO.UserName };
             })
                    let UserBO = item as BO.User
                    //orderby Bus.LicenseNum
@@ -558,11 +559,11 @@ namespace BL
                 throw new BO.BadUserName_PasswordException("User's details are illegal", Ex);
             }
         }
-        public void DeleteUser(string password)
+        public void DeleteUser(string name,string password)
         {
             try
             {
-                dl.DeleteBus(password);
+                dl.DeleteUser(name,password);
             }
             catch (DO.BadLicenseNumException ex)
             {
@@ -672,7 +673,7 @@ namespace BL
                 throw new BO.BadBusIdException("Bus's LicenseNum is illegal", Ex);
             }
         }
-        public void DeleteOutGoingLine(string LicenseNum)
+        public void DeleteOutGoingLine(BO.OutGoingLine OutGoingLine)
         {
             try
             {
@@ -681,7 +682,7 @@ namespace BL
             catch (DO.BadLicenseNumException ex)
             {
                 string Ex = ex.ToString();
-                throw new BO.BadBusIdException("Bus LicenseNum does not exist or it is not a Bus", Ex);
+                throw new BO.BadBusIdException("BusLicenseNum does not exist or it is not a Bus", Ex);
             }
         }
         public void AddOutGoingLine(BO.Bus OutGoingLine)

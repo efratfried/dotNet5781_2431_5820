@@ -55,20 +55,20 @@ namespace DLAPI
         void DeleteStation(string NuStationCodem);
         #endregion
 
-        #region DrivingBus
+      /*  #region DrivingBus
         IEnumerable<DO.OutGoingLine> GetOutGoingLineList(Predicate<DO.OutGoingLine> predicate);
 
-        #endregion
+        #endregion*/
 
         #region User
         IEnumerable<DO.User> GetAllUser();
         IEnumerable<DO.User> GetAllUser(Predicate<DO.User> predicate);
-        DO.User GetUser(string Num,string pass);
+        DO.User GetUser(string Name,string pass);
         void AddUser(DO.User User);
         IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate);
         void UpdateUser(DO.User User);
-        void UpdateUser(string Num, Action<DO.User> update); //method that knows to updt specific fields in Person
-        void DeleteUser(string Num);
+        void UpdateUser(string Name, Action<DO.User> update); //method that knows to updt specific fields in Person
+        void DeleteUser(string Name,string password);
         #endregion
 
         #region UserDrive
@@ -84,7 +84,7 @@ namespace DLAPI
         #region OutGoingLine
         IEnumerable<DO.OutGoingLine> GetAllOutGoingLines();
         DO.OutGoingLine GetOutGoingLine(string Num);
-        IEnumerable<DO.OutGoingLine> GetAOutGoingLineList(Predicate<DO.OutGoingLine> predicate);
+        IEnumerable<DO.OutGoingLine> GetOutGoingLineList(Predicate<DO.OutGoingLine> predicate);
         IEnumerable<object> GetOutGoingLineListWithSelectedFields(Func<DO.OutGoingLine, object> generate);
         void AddOutGoingLine(DO.OutGoingLine OutGoingLine);
         void UpdateOutGoingLine(DO.OutGoingLine OutGoingLine);

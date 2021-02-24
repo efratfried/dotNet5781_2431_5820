@@ -44,13 +44,13 @@ namespace BLAPI
         IEnumerable<BO.BusLine> GetBusLines();
         IEnumerable<BO.BusLine> GetBusLineIDList();
         IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate);
-        void UpdateBusLineDetails(BO.BusLine busLine);
+        void UpdateBusLinePersonalDetails(BO.BusLine busLine);
         void DeleteBusLine(int Num);
         void AddBusLine(BO.BusLine busLine);
         #endregion
 
         #region user
-        BO.Bus GetUser(string name,string password);
+        BO.User GetUser(string name,string password);
         IEnumerable<BO.User> GetAllUsers();
         IEnumerable<BO.User> GetUserIDList();
         IEnumerable<BO.User> GetUserBy(Predicate<BO.User> predicate);
@@ -61,13 +61,13 @@ namespace BLAPI
         #endregion
 
         #region outgoingline
-        BO.Bus GetOutGoingBus(string id);
-        IEnumerable<BO.Bus> GetAllOutGoingBuss();
-        IEnumerable<BO.Bus> GetOutGoingBusIDList();
-        IEnumerable<BO.Bus> GetOutGoingBussBy(Predicate<BO.Bus> predicate);
-        void UpdateOutGoingBusPersonalDetails(BO.Bus bus);
-        void DeleteOutGoingBus(BO.Station station);
-        void AddOutGoingBus(BO.Bus bus);
+        BO.OutGoingLine GetOutGoingLine(string id);
+        IEnumerable<BO.OutGoingLine> GetAllOutGoingLines();
+        IEnumerable<BO.OutGoingLine> GetOutGoingLineIDList();
+        IEnumerable<BO.OutGoingLine> GetOutGoingLinesBy(Predicate<BO.OutGoingLine> predicate);
+        void UpdateOutGoingLinePersonalDetails(BO.OutGoingLine outgoingline);
+        void DeleteOutGoingLine(BO.OutGoingLine outgoingline);
+        void AddOutGoingLine(BO.Bus outgoingline);
         #endregion
     }
 }

@@ -41,9 +41,11 @@ namespace BLAPI
         
         #region BusLine
         BO.BusLine GetBusLine(int Num);
+        IEnumerable<BO.BusLine> GetAllLinesByArea(BO.Area area);
         IEnumerable<BO.BusLine> GetBusLines();
         IEnumerable<BO.BusLine> GetBusLineIDList();
         IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate);
+        IEnumerable<BO.BusStationLine> GetAllLineStationsPerLine(int LineId);
         void UpdateBusLinePersonalDetails(BO.BusLine busLine);
         void DeleteBusLine(int Num);
         void AddBusLine(BO.BusLine busLine);

@@ -380,6 +380,19 @@ namespace BL
 
             return BusLineBO;
         }
+        public IEnumerable<BO.BusLine> GetAllLinesByArea(BO.Area area)
+        {
+            return from LineDO in dl.GetAllBusLines()
+                   where LineDO.Area.CompareTo((DO.Area)area) == 0//if the erea is equal to the given area
+                   orderby LineDO.BusNum           //order it by their bus number
+                   select BuslineDoBoAdapter(LineDO);
+        }
+        public IEnumerable<BO.BusLine> GetAllLinesPerStation(int code)
+        {
+            return from lineStation in dl.GetLineStationsListThatMatchAStation(code)
+                   let line = dl.GetBusLine(lineStation.LineId)
+                   select line.CopyDOLineStationToBOLine(lineStation);
+        }
         public IEnumerable<BO.BusLine> GetBusLines()
         {
             return from BusLineDO in dl.GetAllBusLines()

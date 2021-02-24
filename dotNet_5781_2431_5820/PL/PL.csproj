@@ -54,6 +54,9 @@
     <Compile Include="AddStation.xaml.cs">
       <DependentUpon>AddStation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BusLinesOnMapDevideByArea.xaml.cs">
+      <DependentUpon>BusLinesOnMapDevideByArea.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PO\Bus.cs" />
     <Compile Include="busseswindow.xaml.cs">
       <DependentUpon>busseswindow.xaml</DependentUpon>
@@ -70,6 +73,9 @@
     <Compile Include="PO\ListedBus.cs" />
     <Compile Include="SimulateOneStationWindow.xaml.cs">
       <DependentUpon>SimulateOneStationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleBusLine.xaml.cs">
+      <DependentUpon>SingleBusLine.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DeepCopyUtilities.cs" />
     <Compile Include="ManagerWindow.xaml.cs">
@@ -110,6 +116,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BusLinesOnMapDevideByArea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SimulateOneStationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SingleBusLine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

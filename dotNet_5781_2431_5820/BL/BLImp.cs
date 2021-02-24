@@ -5,6 +5,7 @@ using DLAPI;
 using BLAPI;
 using System.Threading;
 using BO;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace BL
 {
@@ -585,5 +586,125 @@ namespace BL
         }
 
         #endregion
+
+        #region OutGoingLine
+        BO.OutGoingLine OutGoingLineDoBoAdapter(DO.OutGoingLine OutGoingLineDO)
+        {
+            BO.OutGoingLine OutGoingLineBO = new BO.OutGoingLine();
+            string LicenseNum = OutGoingLineDO.ID;
+            try
+            {
+                OutGoingLineDO = dl.GetOutGoingLine(LicenseNum);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("Bus LicenseNum is illegal", Ex);
+            }
+
+            OutGoingLineDO.CopyPropertiesTo(OutGoingLineBO);
+
+            return OutGoingLineBO;
+        }
+        public BO.OutGoingLine GetOutGoingLine(string LicenseNum)
+        {
+            DO.OutGoingLine OutGoingLineDO;
+            try
+            {
+                OutGoingLineDO = dl.GetOutGoingLine(LicenseNum);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("Buss' LicenseNum does not exist or it is not a Bus", Ex);
+            }
+            return OutGoingLineDoBoAdapter(OutGoingLineDO);
+        }
+        public IEnumerable<BO.OutGoingLine> GetAllOutGoingLines()
+        {
+            //return from item in dl.GetBusListWithSelectedFields( (stud) => { return GetBus(stud.ID); } )
+            //       let Bus = item as BO.Bus
+            //       orderby Bus.ID
+            //       select Bus;
+            return from OutGoingLineDO in dl.GetAllOutGoingLines()
+                   orderby OutGoingLineDO.ID
+                   select OutGoingLineDoBoAdapter(OutGoingLineDO);
+        }
+        public IEnumerable<BO.OutGoingLine> GetOutGoingLineIDList()
+        {
+            return from OutGoingLineDO in dl.GetAllOutGoingLines()
+                   orderby OutGoingLineDO.ID
+                   select OutGoingLineDoBoAdapter(OutGoingLineDO);
+        }
+        public IEnumerable<BO.OutGoingLine> GetOutGoingLinesBy(Predicate<BO.OutGoingLine> predicate)
+        {
+            throw new NotImplementedException();
+        }
+        public IEnumerable<BO.OutGoingLine> GetOutGoingLineLicenseNumList()
+        {
+            return from item in dl.GetOutGoingLineListWithSelectedFields((OutGoingLineDO) =>
+            {
+                try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
+                return new BO.OutGoingLine() { Id = OutGoingLineDO.ID };
+            })
+                   let OutGoingLineBO = item as BO.OutGoingLine
+                   //orderby Bus.LicenseNum
+                   select OutGoingLineBO;
+        }
+        public void UpdateOutGoingLinePersonalDetails(BO.OutGoingLine OutGoingLine)
+        {
+            //Update DO.Bus            
+            DO.OutGoingLine OutGoingLineDO = new DO.OutGoingLine();
+            OutGoingLine.CopyPropertiesTo(OutGoingLineDO);
+            try
+            {
+                dl.UpdateOutGoingLine(OutGoingLineDO);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("Bus's LicenseNum is illegal", Ex);
+            }
+        }
+        public void DeleteOutGoingLine(string LicenseNum)
+        {
+            try
+            {
+                dl.DeleteBus(LicenseNum);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("Bus LicenseNum does not exist or it is not a Bus", Ex);
+            }
+        }
+        public void AddOutGoingLine(BO.Bus OutGoingLine)
+        {
+
+            DO.Bus OutGoingLineDO = new DO.Bus();
+            if (OutGoingLine.LicenseNum.Length != 7 && OutGoingLine.LicenseNum.Length != 8)
+            {
+                throw new Exception("invalid license num lengh");
+            }
+
+            if ((OutGoingLine.LicenseDate.Year < 2018 && OutGoingLine.LicenseNum.Length != 7) || (OutGoingLine.LicenseDate.Year >= 2018 && OutGoingLine.LicenseDate < DateTime.Now && OutGoingLine.LicenseNum.Length != 8))
+            {//check the validation of the license num accroding to it date
+                throw new Exception("invalid license's date");
+            }
+
+
+            OutGoingLineDO.CopyPropertiesToNew(typeof(BO.OutGoingLine));
+            try
+            {
+                dl.AddOutGoingLine(OutGoingLineDO);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("Bus ID is illegal", Ex);
+            }
+        }
+
+        #endregion OutGoingLine
     }
 }

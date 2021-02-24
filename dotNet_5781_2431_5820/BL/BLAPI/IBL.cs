@@ -59,5 +59,15 @@ namespace BLAPI
         void DeleteUser(string name,string password);
         void AddUser(BO.User bususer);
         #endregion
+
+        #region outgoingline
+        BO.Bus GetOutGoingBus(string id);
+        IEnumerable<BO.Bus> GetAllOutGoingBuss();
+        IEnumerable<BO.Bus> GetOutGoingBusIDList();
+        IEnumerable<BO.Bus> GetOutGoingBussBy(Predicate<BO.Bus> predicate);
+        void UpdateOutGoingBusPersonalDetails(BO.Bus bus);
+        void DeleteOutGoingBus(string id);
+        void AddOutGoingBus(BO.Bus bus);
+        #endregion
     }
 }

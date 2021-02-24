@@ -82,10 +82,12 @@ namespace DLAPI
         #endregion
 
         #region OutGoingLine
+        IEnumerable<DO.OutGoingLine> GetAllOutGoingLines();
         DO.OutGoingLine GetOutGoingLine(string Num);
         IEnumerable<DO.OutGoingLine> GetAOutGoingLineList(Predicate<DO.OutGoingLine> predicate);
         IEnumerable<object> GetOutGoingLineListWithSelectedFields(Func<DO.OutGoingLine, object> generate);
         void AddOutGoingLine(DO.OutGoingLine OutGoingLine);
+        void UpdateOutGoingLine(DO.OutGoingLine OutGoingLine);
         void DeleteOutGoingLine(string Num); // removes only OutGoingLine, does not remove the appropriate Bus...
         #endregion
 

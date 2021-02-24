@@ -216,16 +216,16 @@ namespace BL
                 throw new BO.BadStationNumException("Station num is illegal", Ex);
             }
         }
-        public void DeleteStation(string LicenseNum)
+        public void DeleteStation(Station station)
         {
             try
             {
-                dl.DeleteStation(LicenseNum);
+                dl.DeleteStation(station.CodeStation);
             }
             catch (DO.BadCodeStationException ex)
             {
                 string Ex = ex.ToString();
-                throw new BO.BadStationException("Bus LicenseNum does not exist or it is not a Bus", Ex);
+                throw new BO.BadStationException("station's code does not exist or it is not a correct code", Ex);
             }
         }
         public void AddStation(BO.Station station)
@@ -312,13 +312,13 @@ namespace BL
                    //orderby Bus.LicenseNum
                    select BusStationLineBo;
         }
-        public void AddBusStationLine(string bus_station_line)
+        public void AddBusStationLine(BusStationLine busStationLine)
         {
             DO.BusStationLine BusStationLineDO = new DO.BusStationLine();
             BusStationLineDO.CopyPropertiesToNew(typeof(BO.BusStationLine));
             try
             {
-                dl.AddBusStationLine(BusStationLineDO.ID, bus_station_line);
+                dl.AddBusStationLine(BusStationLineDO.ID, busStationLine.BusStationNum);
             }
             catch (DO.BadBusStationLineCodeException ex)
             {
@@ -379,6 +379,12 @@ namespace BL
 
 
             return BusLineBO;
+        }
+        public IEnumerable<BO.BusLine> GetBusLines()
+        {
+            return from BusLineDO in dl.GetAllBusLines()
+                   orderby BusLineDO.ID
+                   select BusLineDoBoAdapter(BusLineDO);
         }
         public BO.BusLine GetBusLine(int LicenseNum)
         {

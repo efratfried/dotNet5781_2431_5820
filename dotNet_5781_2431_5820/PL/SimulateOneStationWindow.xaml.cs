@@ -41,7 +41,7 @@ namespace PL
             // gridOneStation.DataContext =station;
             statName.Text = _stat.StationName;
             statCode.Text = _stat.CodeStation.ToString();
-            statAdress.Text = _stat.;
+            statAdress.Text = _stat.Address;
             stopwatch = new Stopwatch();
             timerworker = new BackgroundWorker();
             timerworker.DoWork += Worker_DoWork;

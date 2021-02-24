@@ -35,7 +35,7 @@ namespace BLAPI
         BO.Station GetBusStationLine(string StationNum);
         void AddBusStationLine(BO.BusStationLine BusstationLine);
         void UpdateBusStationLinePersonalDetails(BO.BusStationLine BusstationLine);
-        void DeleteBusStationLine(string StationNum);
+        void DeleteBusStationLine(BO.BusStationLine bus_station_line);
 
         #endregion
         
@@ -66,7 +66,7 @@ namespace BLAPI
         IEnumerable<BO.Bus> GetOutGoingBusIDList();
         IEnumerable<BO.Bus> GetOutGoingBussBy(Predicate<BO.Bus> predicate);
         void UpdateOutGoingBusPersonalDetails(BO.Bus bus);
-        void DeleteOutGoingBus(string id);
+        void DeleteOutGoingBus(BO.Station station);
         void AddOutGoingBus(BO.Bus bus);
         #endregion
     }

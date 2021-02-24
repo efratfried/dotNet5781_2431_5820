@@ -22,7 +22,7 @@ namespace PL
     {
         IBL bl = BLFactory.GetBL("1");//we create an "object" of IBL interface in order to use BL functions and classes
         BO.BusLine busline;
-        public SingleLine(BO.BusLine bus_line)
+        public SingleBusLine(BO.BusLine bus_line)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;

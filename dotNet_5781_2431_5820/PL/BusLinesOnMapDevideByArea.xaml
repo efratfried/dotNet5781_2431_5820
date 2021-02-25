@@ -25,6 +25,6 @@
         <Label Content="         General" HorizontalAlignment="Left" Margin="153,64,0,0" VerticalAlignment="Top" Grid.Column="2" Height="25" Width="120" Background="#FFFAF7F7" Opacity="0.5"/>
         <Label Content="      Jerusalem" HorizontalAlignment="Left" Margin="238.2,202,0,0" VerticalAlignment="Top" Grid.Column="1" Height="25" Width="120" Background="#FFFEFBFB" Opacity="0.5" Grid.ColumnSpan="2"/>
         <Label Content="          south" HorizontalAlignment="Left" Margin="68.2,304,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.138,0.814" Grid.Column="1" Height="25" Width="120" Background="#FFFAF6F6" Opacity="0.5"/>
-        <Label Content="~select an area and choose your wanted bus~" HorizontalAlignment="Left" Margin="16,10,0,0" VerticalAlignment="Top" Height="41" Width="553" FontWeight="Bold" FontSize="30" Foreground="DarkBlue" FontFamily="Narkisim" Grid.ColumnSpan="3"/>
+        <Label Content="~select an area and choose your wanted bus~" HorizontalAlignment="Left" Margin="24.2,10,-66,0" VerticalAlignment="Top" Height="41" Width="553" FontWeight="Bold" FontSize="24 " Foreground="White" FontFamily="Narkisim" Grid.ColumnSpan="2" Grid.Column="1"/>
     </Grid>
 </Window>

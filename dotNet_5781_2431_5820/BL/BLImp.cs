@@ -9,7 +9,7 @@ using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace BL
 {
-    class BLImp : HelpFunctions, IBL //internal
+    class BLImp : IBL //internal
     {
         IDL dl = DLFactory.GetDL();
         static Random rand = new Random();

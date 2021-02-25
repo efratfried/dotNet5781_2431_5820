@@ -361,7 +361,7 @@ namespace BL
         BO.BusLine BusLineDoBoAdapter(DO.BusLine BusLineDO)
         {
             BO.BusLine BusLineBO = new BO.BusLine();
-            string LicenseNum = BusLineDO.BusNum;
+            int LicenseNum = BusLineDO.BusNum;
             try
             {
                 BusLineDO = dl.GetBusLine(LicenseNum);
@@ -387,7 +387,7 @@ namespace BL
                    orderby LineDO.BusNum           //order it by their bus number
                    select BuslineDoBoAdapter(LineDO);
         }
-        public IEnumerable<BO.BusLine> GetAllLinesPerStation(int code)
+        public IEnumerable<BO.BusStationLine> GetAllLineStationsPerLine(int code)
         {
             return from lineStation in dl.GetLineStationsListThatMatchAStation(code)
                    let line = dl.GetBusLine(lineStation.LineId)
@@ -404,7 +404,7 @@ namespace BL
             DO.BusLine BusLineDO;
             try
             {
-                string licensenum = LicenseNum.ToString();
+                int licensenum = LicenseNum;
                 BusLineDO = dl.GetBusLine(licensenum);
             }
             catch (DO.BadLicenseNumException ex)
@@ -551,7 +551,7 @@ namespace BL
             return from item in dl.GetUserListWithSelectedFields((UserDO) =>
             {
                 try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                return new BO.User() { Name = UserDO.UserName };
+                return new BO.User() { UserName = UserDO.UserName };
             })
                    let UserBO = item as BO.User
                    //orderby Bus.LicenseNum
@@ -665,7 +665,7 @@ namespace BL
             return from item in dl.GetOutGoingLineListWithSelectedFields((OutGoingLineDO) =>
             {
                 try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                return new BO.OutGoingLine() { Id = OutGoingLineDO.ID };
+                return new BO.OutGoingLine() { id = OutGoingLineDO.ID };
             })
                    let OutGoingLineBO = item as BO.OutGoingLine
                    //orderby Bus.LicenseNum
@@ -690,7 +690,7 @@ namespace BL
         {
             try
             {
-                dl.DeleteBus(LicenseNum);
+                dl.DeleteOutGoingLine(OutGoingLine.ToString());
             }
             catch (DO.BadLicenseNumException ex)
             {
@@ -716,7 +716,7 @@ namespace BL
             OutGoingLineDO.CopyPropertiesToNew(typeof(BO.OutGoingLine));
             try
             {
-                dl.AddOutGoingLine(OutGoingLineDO);
+                dl.AddOutGoingLine(OutGoingLineDO.ToString());
             }
             catch (DO.BadLicenseNumException ex)
             {

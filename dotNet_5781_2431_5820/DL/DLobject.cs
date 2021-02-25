@@ -212,6 +212,12 @@ namespace DL
         #endregion
 
         #region BusStationLine
+        public IEnumerable<DO.BusStationLine> GetBusStationLinesListThatMatchAStation(string code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
+        {
+            return from ls in DataSource.BusStationsLineList
+                   where ls.BusStationNum == code
+                   select ls.Clone();
+        }
         public IEnumerable<DO.BusStationLine> GetAllBusStationLines(string busstationline)
         {//returns all members in list
             return from BusStationLine in DataSource.BusStationsLineList

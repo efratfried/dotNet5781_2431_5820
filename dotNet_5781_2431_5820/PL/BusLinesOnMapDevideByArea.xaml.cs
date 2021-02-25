@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLAPI;
+
 namespace PL
 {
     /// <summary>
@@ -55,7 +56,7 @@ namespace PL
 
         private void cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SingleLine win = new SingleLine((sender as ComboBox).SelectedItem as BO.BusLine);
+            SingleBusLine win = new SingleBusLine((sender as ComboBox).SelectedItem as BO.BusLine);
             win.Show();
         }
     }

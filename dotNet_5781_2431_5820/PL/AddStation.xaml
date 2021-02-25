@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:BO="clr-namespace:BO;assembly=BL"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="AddStation" Height="450" Width="800">
@@ -25,7 +26,7 @@
             <TextBox x:Name="codeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="3.333,0,0,5.333" Grid.Row="1" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Bottom" Width="120" PreviewKeyDown="codeTextBox_PreviewKeyDown" FontFamily="Tahoma"  Foreground="Navy" TextChanged="codeTextBox_TextChanged"/>
             <Label Content="Lattitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5.6,0,30.8" Grid.Row="2" VerticalAlignment="Center" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="26" Grid.RowSpan="2" Width="67"/>
             <TextBox x:Name="lattitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Lattitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="lattitudeTextBox_PreviewKeyDown" FontFamily="Tahoma"  Foreground="Navy" TextChanged="lattitudeTextBox_TextChanged"/>
-            <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5.8,0,1.2" Grid.Row="3" VerticalAlignment="Center" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="25" Width="71"/>
+            <Label Content="Longitude:" Grid.Column="0" Margin="0,7.4,1.4,2" Grid.Row="3" VerticalAlignment="Center" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="25" HorizontalAlignment="Right" Width="71"/>
             <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="longitudeTextBox_PreviewKeyDown" FontFamily="Tahoma"  Foreground="Navy" TextChanged="longitudeTextBox_TextChanged"/>
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4.8,0,-0.4" Grid.Row="4" VerticalAlignment="Center" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="26" Width="62"/>
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy" TextChanged="nameTextBox_TextChanged"/>

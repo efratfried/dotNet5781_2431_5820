@@ -51,6 +51,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddLine.xaml.cs">
+      <DependentUpon>AddLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddOutGoingLine.xaml.cs">
+      <DependentUpon>AddOutGoingLine.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddStation.xaml.cs">
       <DependentUpon>AddStation.xaml</DependentUpon>
     </Compile>
@@ -112,6 +118,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="AddLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddOutGoingLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddStation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

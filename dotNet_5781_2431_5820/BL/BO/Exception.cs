@@ -136,10 +136,15 @@ namespace BO
       [Serializable]
       public class BadBusLineIdException : Exception
     {
-        public string Num;
+        public string BUSNUMBER;
+        public BadBusLineIdException(string message) : base(message) { }
         public BadBusLineIdException(string message, Exception innerException) :
-            base(message, innerException) => Num = ((DO.BadBusLicenseNumException)innerException).LicenseNum;
-        public override string ToString() => base.ToString() + $", bad BusLine num: {Num}";
+            base(message, innerException) => BUSNUMBER = ((DO.BadBusLineException)innerException).BusNum;
+        //public override string ToString() => base.ToString() + $", error in line: {BUSNUMBER}";
+        public override string ToString()
+        {
+            return Message + "\n";
+        }
     }
 
       [Serializable]

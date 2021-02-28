@@ -201,6 +201,6 @@ namespace BO
             base(message, innerException)
         { name = n; password = s; }
 
-        public override string ToString() => base.ToString() + $", bad Bus id: {BusID} and Station id: {BusStationNum}";
+        public override string ToString() => base.ToString() + $", bad Bus id: {name} and Station id: {password}";
     }
 }

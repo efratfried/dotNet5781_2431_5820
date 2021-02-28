@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
+         xmlns:BO="clr-namespace:BO;assembly=BL"
         mc:Ignorable="d"
         Title="busseswindow" Height="485" Width="1000" DataContextChanged="refresh">
     <Grid x:Name="___Bus_Window_" Margin="0,0,-8,-31">

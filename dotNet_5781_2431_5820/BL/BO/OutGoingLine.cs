@@ -9,7 +9,7 @@ namespace BO
     public class OutGoingLine
     {
         protected int ID { set; get; }
-        public TimeSpan Startine { set; get; }
+        public TimeSpan Startime { set; get; }
         public TimeSpan Prequency { set; get; }
         public TimeSpan EndTime { set; get; }
         public override string ToString() => this.ToStringProperty();

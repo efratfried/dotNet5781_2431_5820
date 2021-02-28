@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLAPI;
+
 namespace PL
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace PL
             BO.Station stat = new BO.Station();//a new Station
 
             AddStation addStationWindow = new AddStation(stat);//we sent the station Stat to a new window we created named AddStation 
-            addStationWindow.Closing += addStationWindow_Closing;
+            addStationWindow.Closing += addStationWindowz_Closing;
             addStationWindow.ShowDialog();
         }
 
@@ -48,9 +49,9 @@ namespace PL
             try
             {
                 if (currStat != null)
-                    bl.UpdateStationDetails(currStat);
+                    bl.UpdateStationPersonalDetails(currStat);
             }
-            catch (BO.StationException ex)
+            catch (BO.BadStationException ex)
             {
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -65,13 +66,13 @@ namespace PL
             {
                 if (currStat != null)
                 {
-                    bl.DeleteStation(currStat.Code);
+                    bl.DeleteStation(currStat.CodeStation);
 
                     RefreshAllLinesOfStationGrid();
                     RefreshAllStationsComboBox();
                 }
             }
-            catch (BO.StationException ex)
+            catch (BO.BadStationException ex)
             {
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }

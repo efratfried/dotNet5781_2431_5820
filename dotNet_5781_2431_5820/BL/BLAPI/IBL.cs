@@ -35,22 +35,24 @@ namespace BLAPI
         BO.Station GetBusStationLine(string StationNum);
         void AddBusStationLine(BO.BusStationLine BusstationLine);
         void UpdateBusStationLinePersonalDetails(BO.BusStationLine BusstationLine);
-        void DeleteBusStationLine(string StationNum);
+        void DeleteBusStationLine(BO.BusStationLine bus_station_line);
 
         #endregion
         
         #region BusLine
         BO.BusLine GetBusLine(int Num);
+        IEnumerable<BO.BusLine> GetAllLinesByArea(BO.Area area);
         IEnumerable<BO.BusLine> GetBusLines();
         IEnumerable<BO.BusLine> GetBusLineIDList();
         IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate);
-        void UpdateBusLineDetails(BO.BusLine busLine);
+        IEnumerable<BO.BusStationLine> GetAllLineStationsPerLine(int LineId);
+        void UpdateBusLinePersonalDetails(BO.BusLine busLine);
         void DeleteBusLine(int Num);
         void AddBusLine(BO.BusLine busLine);
         #endregion
 
         #region user
-        BO.Bus GetUser(string name,string password);
+        BO.User GetUser(string name,string password);
         IEnumerable<BO.User> GetAllUsers();
         IEnumerable<BO.User> GetUserIDList();
         IEnumerable<BO.User> GetUserBy(Predicate<BO.User> predicate);
@@ -58,6 +60,16 @@ namespace BLAPI
         void UpdateUserPersonalDetails(BO.User user);
         void DeleteUser(string name,string password);
         void AddUser(BO.User bususer);
+        #endregion
+
+        #region outgoingline
+        BO.OutGoingLine GetOutGoingLine(string id);
+        IEnumerable<BO.OutGoingLine> GetAllOutGoingLines();
+        IEnumerable<BO.OutGoingLine> GetOutGoingLineIDList();
+        IEnumerable<BO.OutGoingLine> GetOutGoingLinesBy(Predicate<BO.OutGoingLine> predicate);
+        void UpdateOutGoingLinePersonalDetails(BO.OutGoingLine outgoingline);
+        void DeleteOutGoingLine(BO.OutGoingLine outgoingline);
+        void AddOutGoingLine(BO.Bus outgoingline);
         #endregion
     }
 }

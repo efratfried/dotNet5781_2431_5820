@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BLAPI;
 
 namespace PL
 {
@@ -47,7 +48,7 @@ namespace PL
            
         }
 
-        private void longitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void longitudeTextBox_TextChanged(object sender, KeyEventArgs e)
         {
             if (e == null)
             {
@@ -59,7 +60,9 @@ namespace PL
             }
             //allow entering one "." only. (since its double):
             if (e.Key == Key.OemQuestion && !Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift) && !longitudeTextBox.Text.Contains("."))
+            {
                 return;
+            }
 
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             if (char.IsDigit(c))//if c is a digit- we need to check it is not a char that apperas on the digit(when shift/alt/ctrl are down)
@@ -78,7 +81,7 @@ namespace PL
 
         }
 
-        private void lattitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void lattitudeTextBox_TextChanged(object sender, KeyEventArgs e)
         {
             if (e == null)
             {
@@ -109,7 +112,7 @@ namespace PL
 
         }
 
-        private void codeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void codeTextBox_TextChanged(object sender, KeyEventArgs e)
         {
             if (e == null)
             {

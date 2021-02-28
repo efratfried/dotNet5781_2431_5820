@@ -140,14 +140,14 @@ namespace DL
         #endregion station
 
         #region BusLine
-        public DO.BusLine GetBusLine(string id)
+        public DO.BusLine GetBusLine(int id)
         {
             DO.BusLine busl = DataSource.BusLinesList.Find(p => p.ID == id);
             try { Thread.Sleep(2000); } catch (ThreadInterruptedException e) { }
             if (busl != null)
                 return busl.Clone();
             else
-                throw new DO.BadBusLicenseNumException(id, $"bad BusLine id: {id}");
+                throw new DO.BadBusLicenseNumException(id.ToString(), $"bad BusLine id: {id}");
         }
         public void AddBusLine(DO.BusLine BusLine)
         {
@@ -191,7 +191,7 @@ namespace DL
             else
             {
                 string bl = BusLine.BusNum.ToString();
-                throw new DO.BadBusLineException(BusLine.ID, bl, $"bad BusLine id or wrong bus's num: {BusLine.ID},{bl}");
+                throw new DO.BadBusLineException(BusLine.ID.ToString(), bl, $"bad BusLine id or wrong bus's num: {BusLine.ID},{bl}");
             }
         }
         public void UpdateBusLine(string id, Action<DO.BusLine> update)
@@ -212,6 +212,12 @@ namespace DL
         #endregion
 
         #region BusStationLine
+        public IEnumerable<DO.BusStationLine> GetBusStationLinesListThatMatchAStation(string code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
+        {
+            return from ls in DataSource.BusStationsLineList
+                   where ls.BusStationNum == code
+                   select ls.Clone();
+        }
         public IEnumerable<DO.BusStationLine> GetAllBusStationLines(string busstationline)
         {//returns all members in list
             return from BusStationLine in DataSource.BusStationsLineList
@@ -301,7 +307,7 @@ namespace DL
             else
                 throw new DO.BadUserName_PasswordException(Name, password, $"no such user: {Name}{password}");
         }
-        public IEnumerable<object> GetAllUsersListWithSelectedFields(Func<DO.User, object> generate)
+        public IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate)
         {
             return from User in DataSource.UsersList
                    select generate(User);
@@ -328,7 +334,7 @@ namespace DL
         {
             throw new NotImplementedException();//it means we need to put exeption here;
         }
-        public void DeleteUser(string name)
+        public void DeleteUser(string name,string password)
         {
             DO.User user = DataSource.UsersList.Find(p => p.UserName == name);
 
@@ -415,13 +421,19 @@ namespace DL
             else
                 throw new DO.BadCodeStationException(ID, $"bad BusLine id: {ID}");
         }
-        public IEnumerable<DO.OutGoingLine> GetAOutGoingLineList(Predicate<DO.OutGoingLine> predicate)
+        public IEnumerable<DO.OutGoingLine> GetAllOutGoingLines()
+        {
+            //returns all members in list
+            return from OutGoingLine in DataSource.OutGoingLinesList
+                   select OutGoingLine.Clone();
+        }
+        public IEnumerable<DO.OutGoingLine> GetOutGoingLineList(Predicate<DO.OutGoingLine> predicate)
         {
             return from sic in DataSource.OutGoingLinesList
                    where predicate(sic)
                    select sic.Clone();
         }
-        public IEnumerable<object> GetOutGoingLinesListWithSelectedFields(Func<DO.OutGoingLine, object> generate)
+        public IEnumerable<object> GetOutGoingLineListWithSelectedFields(Func<DO.OutGoingLine, object> generate)
         {
             return from OutGoingLine in DataSource.OutGoingLinesList
                    select generate(OutGoingLine);
@@ -443,6 +455,18 @@ namespace DL
             }
             else
                 throw new DO.BadBusLineException(Num, Num, "Bus ID is NOT registered to Station ID");
+        }
+        public void UpdateOutGoingLine(DO.OutGoingLine OutGoingLine)
+        {
+            DO.OutGoingLine outGoing = DataSource.OutGoingLinesList.Find(b => b.ID == OutGoingLine.ID);
+
+            if (OutGoingLine != null)
+            {
+                DataSource.OutGoingLinesList.Remove(OutGoingLine);
+                DataSource.OutGoingLinesList.Add(OutGoingLine.Clone());
+            }
+            else
+                throw new DO.BadUserDriveNameException(OutGoingLine.ID, $"bad Bus id: {OutGoingLine.ID}");
         }
         #endregion
 

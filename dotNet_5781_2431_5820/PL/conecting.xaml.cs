@@ -31,10 +31,7 @@ namespace PL
         {
             if (manager_Name.Text.Length!=0 && manager_password.Text.Length!=0)
             {
-                /*
-                 *List<BO.Course> listOfUnRegisteredCourses = bl.GetAllCourses().Where(c1 => bl.GetAllCoursesPerStudent(curStu.ID).All(c2 => c2.ID != c1.ID)).ToList();
-            courseDataGrid.DataContext = listOfUnRegisteredCourses; */
-                List<BO.User> users=bl.GetAllUser().where()
+                List<BO.User> users=bl.GetAllUsers().where()
             }
 
             /* if (manager_Name.Text.lengh != 0)
@@ -50,7 +47,7 @@ namespace PL
              }*/
             else
             {
-                throw new Exception("The details are'nt correct")...;
+                throw new Exception("The details are'nt correct");
             }
         }
 

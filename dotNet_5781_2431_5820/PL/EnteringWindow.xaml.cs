@@ -29,9 +29,9 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (connect.Click+)
+            if (connect.id)
             {
-                connecting win = new connecting(bl);
+                conecting win = new conecting(bl);
                 win.Show();
             }
         }

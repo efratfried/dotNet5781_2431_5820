@@ -62,7 +62,21 @@ namespace DL
         }
         public void UpdateBus(string Num, Action<DO.Bus> update) //method that knows to updt specific fields in Bus
         {
-            throw new NotImplementedException();//it means we need to put exeption here;
+            DO.BusLine lineDO = new DO.BusLine();
+            currLine.CopyPropertiesTo(lineDO);
+            try
+            {
+                dl.UpdateLine(lineDO);
+
+            }
+            catch (DO.BadBusLicenseNumException ex)
+            {
+                throw new BO.BadBusLicenseNumException("Line Number is illegal\n", ex);
+            }
+            catch (DO.StationException ex)
+            {
+                throw new BO.StationException("stations are illegal\n", ex);
+            }
         }
         public void DeleteBus(string Num)
         {
@@ -123,7 +137,17 @@ namespace DL
         }
         public void UpdateStation(string CodeStation, Action<DO.Station> update) //method that knows to updt specific fields in Bus
         {
-            throw new NotImplementedException();//it means we need to put exeption here;
+            DO.Station stationDO;
+            //currStat.CopyPropertiesTo(stationDO);
+            try
+            {
+                stationDO = stationBoDoAdapter(currStat);
+                dl.UpdateStation(stationDO);
+            }
+            catch (DO.StationException ex)
+            {
+                throw new BO.StationException("cannot update the station, illegal value/s were inserted\n", ex);
+            }
         }
         public void DeleteStation(string CodeStation)
         {
@@ -194,10 +218,58 @@ namespace DL
                 throw new DO.BadBusLineException(BusLine.ID.ToString(), bl, $"bad BusLine id or wrong bus's num: {BusLine.ID},{bl}");
             }
         }
-        public void UpdateBusLine(string id, Action<DO.BusLine> update)
+        /*public void UpdateBusLine(DO.BusLine newLine)
         {
-            throw new NotImplementedException();//it means we need to put exeption here;//it means we need to put exeption here
-        }
+            DO.BusLine ln = DataSource.BusLinesList.Find(l => l.BusNum == newLine.BusNum);//search for the the line with the same lineId, if exist.
+
+            if (ln != null)//if found
+            {
+                #region calc
+                //check if the line's fields that were added are legal
+                //check the code of the stations:
+                if (!DataSource.StationsList.Exists(l => l.CodeStation == newLine.start))
+                    throw new DO.BadCodeStationException(newLine.FirstStation, $"the station with the code: {newLine.FirstStation} is not found");
+                if (!DataSource.BusLinesList.Exists(l => l.BusNum == newLine.finish))
+                    throw new DO.BadCodeStationException(newLine.LastStation, $"the station with the code: {newLine.LastStation} is not found");
+
+                if (newLine.FirstStation == newLine.LastStation)
+                    throw new DO.BadCodeStationException(newLine.LastStation, $"the last station code: {newLine.LastStation} is illegal since the first and last stations must be different");
+                #endregion
+
+                #region add new lineStations of the new stations
+                //delete the first linestation and second, and rewrite their details.
+                DO.BusStationLine ls1 = DataSource.BusStationsLineList.Find(ls => ls.ID == "0" && ls.ID == ln.ID);//change the original first station
+                DataSource.BusStationsLineList.Remove(ls1);
+                ls1.ID = newLine.FirstStation;
+                DataSource.BusStationsLineList.Add(ls1);
+
+                DO.BusStationLine ls2 = DataSource.BusStationsLineList.Find(ls => ls.IndexInLine == 1 && ls.ID == ln.ID);//change the original 2nd station
+                DataSource.BusStationsLineList.Remove(ls2);
+                ls2.PrevStation = newLine.FirstStation;
+                DataSource.BusStationsLineList.Add(ls2);
+
+                //delete the last linestation and the one before the last, and rewrite their details.
+                DO.BusStationLine lsBeforeLast = DataSource.BusStationsLineList.Find(ls => ls.NextStation == ln.LastStation && ls.ID == ln.ID);//change the original station before last
+                DataSource.BusStationsLineList.Remove(lsBeforeLast);
+                lsBeforeLast.NextStation = newLine.LastStation;
+                DataSource.BusStationsLineList.Add(lsBeforeLast);
+
+                DO.BusStationLine lsLast = DataSource.BusStationsLineList.Find(ls => ls.NextStation == -1 && ls.ID == ln.ID);//change the original last station
+                DataSource.BusStationsLineList.Remove(lsLast);
+                lsLast.ID = newLine.LastStation;
+                DataSource.BusStationsLineList.Add(lsLast);
+                #endregion
+
+                //add new adjacent stations
+                DataSource.listAdjacentStations.Add(new DO.AdjacentStations() { Station1 = newLine.FirstStation, Station2 = ls2.BusStationNum, Distance = 0.583, Time = new TimeSpan(00, 01, 16) });
+                DataSource.listAdjacentStations.Add(new DO.AdjacentStations() { Station1 = lsBeforeLast.BusStationNum, Station2 = newLine.LastStation, Distance = 0.702, Time = new TimeSpan(00, 03, 45) });
+
+                DataSource.BusLinesList.Remove(ln);
+                DataSource.BusLinesList.Add(newLine.Clone());
+            }
+            else
+                throw new DO.BadBusLineException(newLine.BusNumber, $"the line: {newLine.BusNumber} was not found");
+        }*/
         public void DeleteBusLine(string id)
         {
             DO.BusLine busl = DataSource.BusLinesList.Find(p => p.ID == id);
@@ -225,7 +297,9 @@ namespace DL
         }
         public IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate)
         {
-            throw new NotImplementedException();//it means we need to put exeption here;
+            return from DOlineStation in dl.GetLineStationsListOfALine(lineId)
+                   let BOlineStation = lineStationDoBoAdapter(DOlineStation)
+                   select BOlineStation;
         }
         public IEnumerable<object> GetBusStationsLineListWithSelectedFields(Func<DO.BusStationLine, object> generate)
         {
@@ -296,7 +370,9 @@ namespace DL
         }
         public IEnumerable<DO.User> GetAllUser(Predicate<DO.User> predicate)
         {
-            throw new NotImplementedException();//it means we need to put exeption here;
+            return from DOUser in dl.GetAllUser(UserId)
+                   let BOUser = userDoBoAdapter(DOUser)
+                   select BOUser;
         }
         public DO.User GetUser(string Name, string password)
         {

@@ -186,10 +186,10 @@ namespace BL
                    orderby StationDO.CodeStation
                    select StationDoBoAdapter(StationDO);
         }
-        public IEnumerable<BO.Station> GetStationsBy(Predicate<BO.Station> predicate)
+       /* public IEnumerable<BO.Station> GetStationsBy(Predicate<BO.Station> predicate)
         {
             throw new NotImplementedException();
-        }
+        }*/
         public IEnumerable<BO.Station> GetStationLicenseNumList()
         {
             return from item in dl.GetAllStationListWithSelectedFields((StationDO) =>
@@ -297,10 +297,10 @@ namespace BL
                    orderby BusStationLineDO.ID
                    select BusStationLineDoBoAdapter(BusStationLineDO);
         }
-        public IEnumerable<BO.BusStationLine> GetBusStationLinesBy(Predicate<BO.BusStationLine> predicate)
+       /* public IEnumerable<BO.BusStationLine> GetBusStationLinesBy(Predicate<BO.BusStationLine> predicate)
         {//need fill field 
             throw new NotImplementedException();
-        }
+        }*/
         public IEnumerable<BO.BusStationLine> GetBusStationLineList(string BusStationLineNum)
         {
             return from item in dl.GetBusStationsLineListWithSelectedFields((BusStationLineDO) =>
@@ -354,6 +354,12 @@ namespace BL
                 throw new BO.BadBusStationLineCodeException("Bus LicenseNum does not exist or it is not a Bus", Ex);
             }
         }
+        public IEnumerable<BO.BusStationLine> GetAllBusStationLinesPerLine(int lineId)
+        {
+            return from DOlineStation in dl.GetBusStationLinesListThatMatchAStation(lineId)
+                   let BOlineStation = BusStationLineDoBoAdapter(DOlineStation)
+                   select BOlineStation;
+        }
 
         #endregion
 
@@ -385,12 +391,12 @@ namespace BL
             return from LineDO in dl.GetAllBusLines()
                    where LineDO.Area.CompareTo((DO.Area)area) == 0//if the erea is equal to the given area
                    orderby LineDO.BusNum           //order it by their bus number
-                   select BuslineDoBoAdapter(LineDO);
+                   select BusLineDoBoAdapter(LineDO);
         }
         public IEnumerable<BO.BusStationLine> GetAllLineStationsPerLine(int code)
         {
-            return from lineStation in dl.GetLineStationsListThatMatchAStation(code)
-                   let line = dl.GetBusLine(lineStation.LineId)
+            return from lineStation in dl.GetBusStationLinesListThatMatchAStation(code)
+                   let line = dl.GetBusLine(lineStation.ID)
                    select line.CopyDOLineStationToBOLine(lineStation);
         }
         public IEnumerable<BO.BusLine> GetBusLines()
@@ -423,20 +429,16 @@ namespace BL
                    orderby BusLineDO.IsDeleted
                    select BusLineDoBoAdapter(BusLineDO);
         }
-        public IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate)
+       /* public IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate)
         {
             throw new NotImplementedException();
-        }
+        }*/
         public IEnumerable<BO.BusLine> GetBusLineLicenseNumList()
         {
-            return from item in dl.GetBusLineListWithSelectedFields((BusLineDO,null) =>
-            {
-                try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                return new BO.BusLine() { LicenseNum = BusLineDO.LicenseNum };
-            })
-                   let BusLineBO = item as BO.BusLine
-                   //orderby Bus.LicenseNum
-                   select BusLineBO;
+            return from LineDO in dl.GetAllBusLines()
+                   where LineDO.ID.CompareTo((DO.BusLine)busline) == 0//if the erea is equal to the given area
+                   orderby LineDO.BusNumber           //order it by their bus number
+                   select BusLineDoBoAdapter(LineDO);
         }
         public void UpdateBusLinePersonalDetails(BO.BusLine BusLine)
         {
@@ -493,116 +495,82 @@ namespace BL
         #endregion
 
         #region User
-        BO.User UserDoBoAdapter(DO.User UserDO)
+        public BO.User userDoBoAdapter(DO.User userDO)
         {
-            BO.User UserBO = new BO.User();
-            string password = UserDO.Password;
-            string name = UserDO.UserName;
+            BO.User userBO = new BO.User();
+            DO.User newUserDO;
+            string name = userDO.UserName;
+            string password = userDO.Password;
             try
             {
-                UserDO = dl.GetUser(name,password);
+                newUserDO = dl.GetUser(name, password);
             }
             catch (DO.BadUserName_PasswordException ex)
             {
-                string Ex = ex.ToString();
-                throw new BO.BadBusIdException("User's detatils ar'nt legal", Ex);
+                throw new BO.BadUserName_PasswordException("ERROR!\n", ex);
             }
+            newUserDO.CopyPropertiesTo(userBO);
 
-            UserDO.CopyPropertiesTo(UserBO);
+            userDO.CopyPropertiesTo(userBO);
 
-            return UserBO;
+            return userBO;
         }
-        public BO.User GetUser(string name,string password)
+
+        /// <summary>
+        /// returns the user with the given name and password
+        /// </summary>
+        /// <param name="name">name</param>
+        /// <returns>user bo</returns>
+        public BO.User GetUser(string name, string password)
         {
-            DO.User UserDO;
+            DO.User userDO;
             try
             {
-                UserDO = dl.GetUser(name,password);
+                userDO = dl.GetUser(name, password);
             }
             catch (DO.BadUserName_PasswordException ex)
             {
-                string Ex = ex.ToString();
-                throw new BO.BadUserName_PasswordException("User's password does not exist or you are a new user", Ex);
+                throw new BO.BadUserName_PasswordException("The user with this password wasn't found\n", ex);
             }
-            return UserDoBoAdapter(UserDO);
+            return userDoBoAdapter(userDO);
         }
+
+        /// <summary>
+        /// add a user
+        /// </summary>
+        /// <param name="user">user</param>
+        public void AddUser(BO.User user)
+        {
+            try
+            {
+                dl.AddUser(userBoDoAdapter(user));
+            }
+            catch (DO.BadUserName_PasswordException ex)
+            {
+                throw new BO.BadUserName_PasswordException("couldn't add the user\n", ex);
+            }
+        }
+
+        /// <summary>
+        /// adopt BO.user to DO.user and return it
+        /// </summary>
+        /// <param name="userBO"></param>
+        /// <returns></returns>
+        private DO.User userBoDoAdapter(BO.User userBO)
+        {
+            DO.User userDO = new DO.User();
+            userBO.CopyPropertiesTo(userDO);
+            return userDO;
+        }
+
+        /// <summary>
+        /// returns IEnumerable of all the users
+        /// </summary>
+        /// <returns>users</returns>
         public IEnumerable<BO.User> GetAllUsers()
         {
-            //return from item in dl.GetBusListWithSelectedFields( (stud) => { return GetBus(stud.ID); } )
-            //       let Bus = item as BO.Bus
-            //       orderby Bus.ID
-            //       select Bus;
-            return from UserDO in dl.GetAllUser()
-                   orderby UserDO.UserName
-                   select UserDoBoAdapter(UserDO);
-        }
-        public IEnumerable<BO.User> GetUserIDList()
-        {
-            return from UserDO in dl.GetUserListWithSelectedFields()
-                   orderby UserDO.Password
-                   select UserDoBoAdapter(UserDO);
-        }
-        public IEnumerable<BO.User> GetUserBy(Predicate<BO.User> predicate)
-        {
-            throw new NotImplementedException();
-        }
-        public IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate)
-        {
-            return from item in dl.GetUserListWithSelectedFields((UserDO) =>
-            {
-                try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                return new BO.User() { UserName = UserDO.UserName };
-            })
-                   let UserBO = item as BO.User
-                   //orderby Bus.LicenseNum
-                   select UserBO;
-        }
-        public void UpdateUserPersonalDetails(BO.User User)
-        {
-            //Update DO.Bus            
-            DO.User UserDO = new DO.User();
-            User.CopyPropertiesTo(UserDO);
-            try
-            {
-                dl.UpdateUser(UserDO);
-            }
-            catch (DO.BadLicenseNumException ex)
-            {
-                string Ex = ex.ToString();
-                throw new BO.BadUserName_PasswordException("User's details are illegal", Ex);
-            }
-        }
-        public void DeleteUser(string name,string password)
-        {
-            try
-            {
-                dl.DeleteUser(name,password);
-            }
-            catch (DO.BadLicenseNumException ex)
-            {
-                string Ex = ex.ToString();
-                throw new BO.BadUserName_PasswordException("User's details does not exist or you are a new user", Ex);
-            }
-        }
-        public void AddUser(BO.User User)
-        {
-
-            DO.User UserDO = new DO.User();
-
-            if(UserDO.UserName.Length==0 && UserDO.Password.Length==0)
-            {
-                throw new Exception("the details are wrong");
-            }
-            UserDO.CopyPropertiesToNew(typeof(BO.User));
-            try
-            {
-                dl.AddUser(UserDO);
-            }
-            catch (DO.BadLicenseNumException ex)
-            {
-                string Ex = ex.ToString();
-                throw new BO.BadUserName_PasswordException("User's details are illegal", Ex);
-            }
+            return from item in dl.GetAllUser()
+                   select userDoBoAdapter(item);
         }
 
         #endregion
@@ -656,10 +624,10 @@ namespace BL
                    orderby OutGoingLineDO.ID
                    select OutGoingLineDoBoAdapter(OutGoingLineDO);
         }
-        public IEnumerable<BO.OutGoingLine> GetOutGoingLinesBy(Predicate<BO.OutGoingLine> predicate)
+        /*public IEnumerable<BO.OutGoingLine> GetOutGoingLinesBy(Predicate<BO.OutGoingLine> predicate)
         {
             throw new NotImplementedException();
-        }
+        }*/
         public IEnumerable<BO.OutGoingLine> GetOutGoingLineLicenseNumList()
         {
             return from item in dl.GetOutGoingLineListWithSelectedFields((OutGoingLineDO) =>
@@ -716,14 +684,15 @@ namespace BL
             OutGoingLineDO.CopyPropertiesToNew(typeof(BO.OutGoingLine));
             try
             {
-                dl.AddOutGoingLine(OutGoingLineDO.ToString());
+                dl.AddOutGoingLine(OutGoingLineDO );
             }
             catch (DO.BadLicenseNumException ex)
             {
                 string Ex = ex.ToString();
                 throw new BO.BadBusIdException("Bus ID is illegal", Ex);
             }
-        }
+
+          }
 
         #endregion OutGoingLine
     }

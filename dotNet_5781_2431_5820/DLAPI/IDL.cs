@@ -27,13 +27,13 @@ namespace DLAPI
         IEnumerable<DO.BusLine> GetAllBusLines();
         IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object,object> generate);
         void AddBusLine(DO.BusLine BusLine);
-        void UpdateBusLine(DO.BusLine BusLine);
+        void UpdateBusLine(DO.BusLine newLine);
         void UpdateBusLine(string id, Action<DO.BusLine> update); //method that knows to updt specific fields in Student
         void DeleteBusLine(string id); // removes only Student, does not remove the appropriate Person...
         #endregion
 
         #region BusStationLine
-        IEnumerable<DO.BusStationLine> GetBusStationLinesListThatMatchAStation(string code);
+        IEnumerable<DO.BusStationLine> GetBusStationLinesListThatMatchAStation(int code);
         IEnumerable<DO.BusStationLine> GetAllBusStationLines(string BusStationLineNum);
         IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate);
         void AddBusStationLine(string StationID, string BusStationeNum);

@@ -191,16 +191,14 @@ namespace BO
     [Serializable]
     public class BadUserName_PasswordException : Exception
     {
-        public string name;
-        public string password;
-        public BadUserName_PasswordException(string n, string s) : base() { name = n; password = s; }
-        public BadUserName_PasswordException(string n, string s, string message) :
-            base(message)
-        { name = n; password = s; }
-        public BadUserName_PasswordException(string n, string s, string message, Exception innerException) :
-            base(message, innerException)
-        { name = n; password = s; }
+        public string NAME;
+        public BadUserName_PasswordException(string message) : base(message) { }
+        public BadUserName_PasswordException(string message, Exception innerException) :
+            base(message, innerException) => NAME = ((DO.BadUserName_PasswordException)innerException).Name;
 
-        public override string ToString() => base.ToString() + $", bad Bus id: {name} and Station id: {password}";
+        public override string ToString()
+        {
+            return Message + "\n";
+        }
     }
 }

@@ -9,10 +9,23 @@
         Title="BusStation" Height="485" Width="1000">
     <Grid x:Name="BusStation_Grid">
         <StackPanel x:Name="actions_pannel" HorizontalAlignment="Left" Height="452" Margin="792,0,0,0" VerticalAlignment="Top" Width="198">
-            <Button x:Name="delete_station" Content="מחק תחנה" Margin="0,8" Height="29" Click="delete_bus_Click" Foreground="DarkBlue" BorderBrush="#FF10168C"/>
-            <Button x:Name="update_station" Content="עדכון תחנה"  Height="29" Click="update_bus_Click" Foreground="DarkBlue" BorderBrush="#FF10168C"/>
-            <Button x:Name="add_station" Content="הוסף תחנה חדש" Margin="0,8" Height="29" Click="add_bus_Click" Foreground="DarkBlue" BorderBrush="#FF10168C"/>
+            <Button x:Name="delete_station" Content="מחק תחנה" Margin="0,8" Height="29" Click="delete_bus_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" >
+              
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="DimGray"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            
+        <Button x:Name="update_station" Content="עדכון תחנה"  Height="29" Click="update_bus_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0"/>
+        <Button x:Name="add_station" Content="הוסף תחנה חדש" Margin="0,8" Height="29" Click="add_bus_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0"/>
         </StackPanel>
         <StackPanel x:Name="BusStationsList" HorizontalAlignment="Left" Height="399" Margin="456,28,0,0" VerticalAlignment="Top" Width="310"/>
+        
     </Grid>
 </Window>

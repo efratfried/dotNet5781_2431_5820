@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace PL
     /// </summary>
     public partial class Window1 : Window
     {
+        IBL bl = BLFactory.GetBL("1");
+
         public Window1()
         {
             InitializeComponent();
@@ -26,23 +29,21 @@ namespace PL
 
         private void busses_Click(object sender, RoutedEventArgs e)
         {
-            PL.busseswindow busseswindow= new PL.busseswindow();
-            busseswindow.Show();
+            PL.busseswindow busseswindow= new PL.busseswindow(bl);
+            busseswindow.ShowDialog();//CANT OPEN OTHER WHEN FIRST NOT CLOSE
         }
 
         private void buslines_Click(object sender, RoutedEventArgs e)
         {
-
+            PL.buslineswindow busseswindow = new PL.buslineswindow(bl);
+            buslineswindow.Show();
         }
 
         private void Stations_Click(object sender, RoutedEventArgs e)
         {
-
+            PL.Stationswindow busseswindow = new PL.Stationswindow(bl);
+            Stationswindow.Show();
         }
 
-        private void buslinesStations_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PO;
+using BO;
 
 namespace PL
 {
@@ -19,9 +22,22 @@ namespace PL
     /// </summary>
     public partial class busseswindow : Window
     {
-        public busseswindow()
+        IBL bl;
+        Bus currentbus;
+        public busseswindow(IBL _bl)
         {
+
             InitializeComponent();
+            busses_list.ItemsSource =;
+            //   RefreshAllBussesComboBox();
+
+
+            // cbStudentID.DisplayMemberPath = "Name";//show only specific Property of object
+            //  cbStudentID.SelectedValuePath = "ID";//selection return only specific Property of object
+
+            // studentCourseDataGrid.IsReadOnly = true;
+            // courseDataGrid.IsReadOnly = true;
+
         }
 
         /*
@@ -51,21 +67,40 @@ namespace PL
                 RefreshAllNotRegisteredCoursesGrid();                
             }
         }
-*/
+    */
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataContext = Binding.IndexerName;
+            int id;
+            if (busses_list.SelectedIndex < 0)
+                return;
+            try
+            {
+                IEnumerable<Bus> templist = bl.GetAllBuss().Cast<Bus>();
 
+                currentbus = busses_list.SelectedItem as Bus;
+            }
+            catch (BO.BadBusLineIdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void inner_info_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            cbStudentID.DataContext = bl.GetAllStudents();
+            cbStudentID.SelectedIndex = 0; //index of the object to be selected
         }
 
         private void start_driving_Click(object sender, RoutedEventArgs e)
         {
-
+            while ()
+            {
+                delete_bus.IsEnabled = false;
+                update_bus.IsEnabled = false;
+                start_driving.IsEnabled = false;
+                start_filling_foul.IsEnabled = false;
+                start_treatment.IsEnabled = false;
+            }
         }
 
         private void start_filling_foul_Click(object sender, RoutedEventArgs e)
@@ -94,5 +129,17 @@ namespace PL
             SlidePanel.Height = add_bus.Height;
 
         }
+
+        private void refresh(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var iweil = bl.GetAllBuss().Select(item => new InvoiceWithEntryInfo().ToList();
+        }
+
+
+
+
+        //  currentbus = DataContext as Bus;
     }
 }
+
+

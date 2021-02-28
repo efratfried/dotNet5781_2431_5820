@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="busseswindow" Height="485" Width="1000">
+        Title="busseswindow" Height="485" Width="1000" DataContextChanged="refresh">
     <Grid x:Name="___Bus_Window_" Margin="0,0,-8,-31">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="busses_list" ItemsSource="{Binding }"  Height="29" Margin="426,70,237,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
+        <ComboBox x:Name="busses_list" ItemsSource="{Binding}"  Height="29" Margin="426,70,237,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
         <Button x:Name="start_treatment" Content="התחל טיפול" HorizontalAlignment="Left" Margin="154,373,0,0" VerticalAlignment="Top" Width="146" Click="start_treatment_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="20"/>
         <Button x:Name="start_filling_foul" Content="התחל תדלוק" HorizontalAlignment="Left" Margin="155,327,0,0" VerticalAlignment="Top" Width="146" Click="start_filling_foul_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="20"/>
         <Button x:Name="start_driving" Content="התחל נסיעה" HorizontalAlignment="Left" Margin="154,284,0,0" VerticalAlignment="Top" Width="146" Click="start_driving_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="20"/>
@@ -37,7 +37,19 @@
         <TextBlock x:Name="foul_status" HorizontalAlignment="Left" Margin="47,178,0,0" TextWrapping="Wrap" Text="{Binding }" VerticalAlignment="Top" Height="48" Width="124"/>
         <StackPanel x:Name="actions_pannel" HorizontalAlignment="Left" Height="452" Margin="792,0,0,0" Width="198" Background="#FF1C2663" VerticalAlignment="Top">
             <Button x:Name="delete_bus" Content="מחק אוטובוס" Margin="0,50,0,0" Height="53" Click="delete_bus_Click" Foreground="#FFF7F7FB" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" HorizontalContentAlignment="Center" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}"/>
-            <Button x:Name="update_bus" Content="עדכון אוטובוס"  Height="53" Click="update_bus_Click" Foreground="WhiteSmoke" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}"/>
+            <Button x:Name="update_bus" Content="עדכון אוטובוס"  Height="53" Click="update_bus_Click" Foreground="WhiteSmoke" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}">
+                <Button.Style>
+                    <Style TargetType="Button">
+                       <Style.Triggers>
+                           <Trigger Property="IsMouseOver" Value="True">
+                           <Setter Property="Foreground" Value="DimGray"/>
+                      </Trigger>
+                      </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                    
+    
+            </Button>
             <Button x:Name="add_bus" Content="הוסף אוטובוס חדש" Margin="0" Height="53" Click="add_bus_Click" Foreground="#FFF9F9FB" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}"/>
         </StackPanel>
         <Rectangle x:Name="SlidePanel" HorizontalAlignment="Left" Height="52" Margin="980,51,0,0" VerticalAlignment="Top" Width="13" Fill="#FFE8A71E" Visibility="Visible" StrokeLineJoin="Miter"/>

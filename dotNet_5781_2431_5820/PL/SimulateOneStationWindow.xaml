@@ -32,9 +32,11 @@
     </Window.Resources>
 
     <Grid Background="#FFF0F0F0">
+        
         <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" FlowDirection="RightToLeft" Margin="363,39,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Height="35" Width="249" FontSize="16" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
         <ListBox x:Name="nisayon" FlowDirection="RightToLeft"  ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="308" Margin="0,106,35.6,0" VerticalAlignment="Top" Width="436" Background="#FF0F0F0F"/>
         <Canvas HorizontalAlignment="Left" Visibility="Visible" Height="32" Margin="522,70,0,0" VerticalAlignment="Top" Width="436" Background="Black"/>
+        <Image Source="/C:/Users/user1/Downloads/busIcon1.JPG"   Margin="902,41,37.6,324.2"/>
         <Label Content="שם התחנה:" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="383,120,0,0" VerticalAlignment="Top" Width="82" FontFamily="Yu Gothic UI Semibold" Foreground="DarkBlue" FontSize="14"/>
         <Label Content="כתובת:" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="407,157,0,0" VerticalAlignment="Top" Width="58" FontFamily="Yu Gothic UI Semibold" Foreground="DarkBlue" FontSize="14"/>
         <Label Content="קוד התחנה:" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="377,198,0,0" VerticalAlignment="Top" Width="88" FontFamily="Yu Gothic UI Semibold" Foreground="DarkBlue" FontSize="14"/>

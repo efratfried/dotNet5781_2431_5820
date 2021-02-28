@@ -33,6 +33,7 @@ namespace DLAPI
         #endregion
 
         #region BusStationLine
+        IEnumerable<DO.BusStationLine> GetLineStationsListOfALine(string lineId);
         IEnumerable<DO.BusStationLine> GetBusStationLinesListThatMatchAStation(string code);
         IEnumerable<DO.BusStationLine> GetAllBusStationLines(string BusStationLineNum);
         IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate);

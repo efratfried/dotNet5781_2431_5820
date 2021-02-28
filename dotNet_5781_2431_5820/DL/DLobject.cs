@@ -60,24 +60,6 @@ namespace DL
             else
                 throw new DO.BadLicenseNumException(Bus.LicenseNum, $"bad Bus id: {Bus.LicenseNum}");
         }
-        public void UpdateBus(string Num, Action<DO.Bus> update) //method that knows to updt specific fields in Bus
-        {
-            DO.BusLine lineDO = new DO.BusLine();
-            currLine.CopyPropertiesTo(lineDO);
-            try
-            {
-                dl.UpdateLine(lineDO);
-
-            }
-            catch (DO.BadBusLicenseNumException ex)
-            {
-                throw new BO.BadBusLicenseNumException("Line Number is illegal\n", ex);
-            }
-            catch (DO.BadCodeStationException ex)
-            {
-                throw new BO.StationException("stations are illegal\n", ex);
-            }
-        }
         public void DeleteBus(string Num)
         {
             DO.Bus bus = DataSource.BussesList.Find(p => p.LicenseNum == Num);
@@ -270,6 +252,13 @@ namespace DL
         #endregion
 
         #region BusStationLine
+        public IEnumerable<DO.BusStationLine> GetLineStationsListOfALine(string lineId)//returns a "line stations" list of the wanted line
+        {
+            return from ls in DataSource.BusStationsLineList
+                   where ls.ID == lineId
+                   orderby ls.IndexInLine
+                   select ls.Clone();
+        }
         public IEnumerable<DO.BusStationLine> GetBusStationLinesListThatMatchAStation(string code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
         {
             return from ls in DataSource.BusStationsLineList

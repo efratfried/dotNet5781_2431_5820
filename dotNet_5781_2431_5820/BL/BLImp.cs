@@ -64,7 +64,7 @@ namespace BL
         }
         public IEnumerable<BO.Bus> GetBusIDList()
         {
-            return from BusDO in dl.GetBusIDList()
+            return from BusDO in dl.GetAllBusses()
                    orderby BusDO.LicenseNum
                    select BusDoBoAdapter(BusDO);
         }
@@ -259,23 +259,14 @@ namespace BL
         #endregion
 
         #region BusStationLine
-        BO.BusStationLine BusStationLineDoBoAdapter(DO.BusStationLine BusStationLineDO)
+        BO.BusStationLine BusStationLineDoBoAdapter(DO.BusStationLine BLSDO)
         {
-            BO.BusStationLine BusStationLineBO = new BO.BusStationLine();
-            string CodeStation = BusStationLineDO.BusStationNum;
-            try
-            {
-                BusStationLineDO = dl.GetBusStationLine(CodeStation);
-            }
-            catch (DO.BadBusStationLineCodeException ex)
-            {
-                string Ex = ex.ToString();
-                throw new BO.BadBusStationLineCodeException("Bus LicenseNum is illegal", Ex);
-            }
+            BO.BusStationLine BLSBO = new BO.BusStationLine();
 
-            BusStationLineDO.CopyPropertiesTo(BusStationLineBO);
+            //copy all relevant properties
+            BLSDO.CopyPropertiesTo(BLSBO);
 
-            return BusStationLineBO;
+            return BLSBO;
         }
         public BO.Station GetBusStationLine(string CodeStation)
         {
@@ -364,27 +355,31 @@ namespace BL
         #endregion
 
         #region BusLine
-        BO.BusLine BusLineDoBoAdapter(DO.BusLine BusLineDO)
+        BO.BusLine BuslineDoBoAdapter(DO.BusLine blDO)
         {
-            BO.BusLine BusLineBO = new BO.BusLine();
-            int LicenseNum = BusLineDO.BusNum;
+            BO.BusLine blBO = new BO.BusLine();
+            DO.BusLine newblDO;//before copying lineDO to lineBO, we need to ensure that lineDO is legal- legal busNumber.
+            //sometimes we get here after the user filled lineDO fields. thats why we copy the given lineDO to a new lineDO and check if it is legal.
+            int blID = blDO.ID;
+            int busNumber = blDO.BusNum;
             try
             {
-                BusLineDO = dl.GetBusLine(LicenseNum);
+                newblDO = dl.GetBusLine(busNumber);//if code is legal, returns a new lineStationDO. if not- ecxeption.
             }
-            catch (DO.BadLicenseNumException ex)
+            catch (DO.BadBusLineException ex)
             {
-                throw new BO.BadBusLineIdException("Bus LicenseNum is illegal", ex);
+                throw new BO.BadBusLineIdException("Line bus number is illegal\n", ex);
             }
 
-            BusLineDO.CopyPropertiesTo(BusLineBO);
+            newblDO.CopyPropertiesTo(blBO);//copies- only flat properties.
 
-            BusLineBO.AccidentsDuco = from sic in dl.GetAllAccidentsList(sic => sic.LicenseNum == LicenseNum)
-                                  let Accident = dl.GetAccident(sic.AccidentNum)
-                                  select (DO.Accident)Accident.CopyPropertiesToNew(typeof(DO.Accident));
+            //now we need to restart the "lineStations" list of each line.
 
+            blBO.stationsList = from lineStationDO in dl.GetLineStationsListOfALine(blID.ToString())
+                                  let lineStationBO = lineStationDoBoAdapter(lineStationDO)
+                                  select lineStationBO;
 
-            return BusLineBO;
+            return lineBO;
         }
         public IEnumerable<BO.BusLine> GetAllLinesByArea(BO.Area area)
         {
@@ -491,6 +486,7 @@ namespace BL
                 throw new BO.BadBusIdException("Bus ID is illegal", Ex);
             }
         }
+
 
         #endregion
 

@@ -21,8 +21,8 @@
             <ColumnDefinition Width="286*"/>
             <ColumnDefinition Width="287*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="add the trip" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Top" Width="169" Height="42" Background="#FFF7F7F7" Margin="58.333,99.667,58.667,0" Grid.RowSpan="2" Click="Button_Click"/>
-        <Label Content="Add the start time of the trip" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="40" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Grid.ColumnSpan="3" Margin="157,2,229.333,2" Width="407"/>
+        <Button Content="add the trip" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Top" Width="169" Height="42" Background="#FFF7F7F7" Margin="58.2,55.8,58.4,0" Click="Button_Click"/>
+        <Label Content="Add the start time of the trip" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="40" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Grid.ColumnSpan="3" Margin="180,0.4,206.6,7.6" Width="407"/>
         <TextBox x:Name="hours" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="58.2,40.4,0,0" Grid.Row="2" TextWrapping="Wrap" Text="00" VerticalAlignment="Top" Width="36" Grid.RowSpan="2" PreviewKeyDown="hours_PreviewKeyDown"/>
         <TextBox x:Name="minutes" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="126.2,40.4,0,0" Grid.Row="2" TextWrapping="Wrap" Text="00" VerticalAlignment="Top" Width="36" Grid.RowSpan="2" PreviewKeyDown="minutes_PreviewKeyDown"/>
         <TextBox x:Name="seconds" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="191.2,40.4,0,0" Grid.Row="2" TextWrapping="Wrap" Text="00" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.296,0.461" PreviewKeyDown="seconds_PreviewKeyDown" Grid.RowSpan="2"/>

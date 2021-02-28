@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class DrivingBus:BusLin
+    public class DrivingBus:BusLine
     {
         public bool finish { get; set; }
         IEnumerable<Station> StationsList;

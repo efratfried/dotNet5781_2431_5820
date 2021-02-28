@@ -73,7 +73,7 @@ namespace DL
             {
                 throw new BO.BadBusLicenseNumException("Line Number is illegal\n", ex);
             }
-            catch (DO.StationException ex)
+            catch (DO.BadCodeStationException ex)
             {
                 throw new BO.StationException("stations are illegal\n", ex);
             }
@@ -134,20 +134,6 @@ namespace DL
             }
             else
                 throw new DO.BadCodeStationException(Station.CodeStation, $"bad Station id: {Station.CodeStation}");
-        }
-        public void UpdateStation(string CodeStation, Action<DO.Station> update) //method that knows to updt specific fields in Bus
-        {
-            DO.Station stationDO;
-            //currStat.CopyPropertiesTo(stationDO);
-            try
-            {
-                stationDO = stationBoDoAdapter(currStat);
-                dl.UpdateStation(stationDO);
-            }
-            catch (DO.StationException ex)
-            {
-                throw new BO.StationException("cannot update the station, illegal value/s were inserted\n", ex);
-            }
         }
         public void DeleteStation(string CodeStation)
         {
@@ -371,7 +357,7 @@ namespace DL
         public IEnumerable<DO.User> GetAllUser(Predicate<DO.User> predicate)
         {
             return from DOUser in dl.GetAllUser(UserId)
-                   let BOUser = userDoBoAdapter(DOUser)
+                   let BOUser = userBoDoAdapter(DOUser)
                    select BOUser;
         }
         public DO.User GetUser(string Name, string password)

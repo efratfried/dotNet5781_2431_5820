@@ -53,7 +53,7 @@ namespace BLAPI
         #endregion
 
         #region user
-        BO.User userDoBoAdapter(DO.User userDO);
+        BO.User userBoDoAdapter(DO.User userDO);
         BO.User GetUser(string name, string password);
         void AddUser(BO.User user);
         DO.User userBoDoAdapter(BO.User userBO);

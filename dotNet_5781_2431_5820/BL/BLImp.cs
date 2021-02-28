@@ -356,7 +356,7 @@ namespace BL
         }
         public IEnumerable<BO.BusStationLine> GetAllBusStationLinesPerLine(int lineId)
         {
-            return from DOlineStation in dl.GetBusStationLinesListThatMatchAStation(lineId)
+            return from DOlineStation in dl.GetBusStationLinesListThatMatchAStation(lineId.ToString())
                    let BOlineStation = BusStationLineDoBoAdapter(DOlineStation)
                    select BOlineStation;
         }
@@ -395,7 +395,7 @@ namespace BL
         }
         public IEnumerable<BO.BusStationLine> GetAllLineStationsPerLine(int code)
         {
-            return from lineStation in dl.GetBusStationLinesListThatMatchAStation(code)
+            return from lineStation in dl.GetBusStationLinesListThatMatchAStation(code.ToString())
                    let line = dl.GetBusLine(lineStation.ID)
                    select line.CopyDOLineStationToBOLine(lineStation);
         }
@@ -495,7 +495,7 @@ namespace BL
         #endregion
 
         #region User
-        public BO.User userDoBoAdapter(DO.User userDO)
+        public BO.User userBoDoAdapter(DO.User userDO)
         {
             BO.User userBO = new BO.User();
             DO.User newUserDO;
@@ -679,7 +679,6 @@ namespace BL
             {//check the validation of the license num accroding to it date
                 throw new Exception("invalid license's date");
             }
-
 
             OutGoingLineDO.CopyPropertiesToNew(typeof(BO.OutGoingLine));
             try

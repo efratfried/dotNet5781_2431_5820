@@ -8,8 +8,18 @@
         mc:Ignorable="d"
         Title="Connecting" Height="485" Width="1000" WindowStartupLocation="CenterScreen" >
     <Grid x:Name="Connection_Grid">
-        
-        <Label Content="כניסת מנהל " HorizontalAlignment="Left" Margin="656,60,0,0" VerticalAlignment="Top" Height="41" Width="135" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="DarkBlue"/>
+
+        <Label Content="כניסת מנהל " HorizontalAlignment="Left" Margin="656,60,0,0" VerticalAlignment="Top" Height="41" Width="135" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="DarkBlue">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="DimGray"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
         <TextBox x:Name="manager_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="604,106,0,0" TextChanged="manager_Name_TextChanged" BorderBrush="#FF10168C"/>
         <Label Content="סיסמה" HorizontalAlignment="Left" Margin="890,144,0,0" VerticalAlignment="Top" Width="64" Foreground="DarkBlue"/>
         <Label Content="שם משתמש" HorizontalAlignment="Left" Margin="890,102,0,0" VerticalAlignment="Top" Width="77" Foreground="DarkBlue"/>
@@ -27,9 +37,19 @@
         <Label Content="סיסמה" HorizontalAlignment="Left" Margin="370,334,0,0" VerticalAlignment="Top" Width="64" Foreground="DarkBlue" />
         <Label Content="שם משתמש" HorizontalAlignment="Left" Margin="363,273,0,0" VerticalAlignment="Top" Width="90" Foreground="DarkBlue"/>
         <TextBox x:Name="NewUser_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,334,0,0" TextChanged="NewUser_password_TextChanged" BorderBrush="#FF10168C"/>
-        
-        <Button x:Name="entering" Content="כניסה"  HorizontalAlignment="Left" Height="42" Margin="483,363,0,0" VerticalAlignment="Top" Width="105" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="entering" Foreground="DarkBlue" RenderTransformOrigin="0.634,1.212" />
-        
+
+        <Button x:Name="entering" Content="כניסה"  HorizontalAlignment="Left" Height="42" Margin="483,363,0,0" VerticalAlignment="Top" Width="105" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="entering" Foreground="DarkBlue" RenderTransformOrigin="0.634,1.212" >
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="DimGray"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
 
 
     </Grid>

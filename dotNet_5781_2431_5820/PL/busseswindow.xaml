@@ -49,7 +49,6 @@
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
-
             </Button>
             <Button x:Name="add_bus" Content="הוסף אוטובוס חדש" Margin="0" Height="53" Click="add_bus_Click" Foreground="#FFF9F9FB" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}"/>
         </StackPanel>

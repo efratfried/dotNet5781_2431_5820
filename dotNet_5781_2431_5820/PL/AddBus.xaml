@@ -9,7 +9,17 @@
     <Grid Margin="0,-1,-0.4,1.2">
         <Label Content="Add bus details:" HorizontalAlignment="Stretch" Margin="285,10,-282.4,370" VerticalAlignment="Center" Height="40" FontWeight="Bold" FontSize="30" Foreground="DarkBlue" FontFamily="Narkisim" RenderTransformOrigin="0.5,0.5"/>
         <Label Content="Bus LicenseNum:" Grid.Column="0" HorizontalAlignment="Left" Margin="260,129,0,302" VerticalAlignment="Center" Foreground="DarkBlue"/>
-        <TextBox x:Name="LicenseNum" HorizontalAlignment="Left" Height="24" Margin="378,129,0,302" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown"/>
+        <TextBox x:Name="LicenseNum" HorizontalAlignment="Left" Height="24" Margin="378,129,0,302" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="16"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
         <Label Content="Foul" x:Name="foul" Grid.Column="0" HorizontalAlignment="Left" Margin="260,163,0,266" VerticalAlignment="Center" Foreground="DarkBlue"/>
         <Label Content="Km" Grid.Column="0" HorizontalAlignment="Left" Margin="264,201,0,230" VerticalAlignment="Center" Foreground="DarkBlue"/>
         <TextBox x:Name="busfoul" HorizontalAlignment="Left" Height="23" Margin="378,158,0,274" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown"/>

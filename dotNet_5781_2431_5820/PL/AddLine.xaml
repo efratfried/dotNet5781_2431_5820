@@ -22,7 +22,17 @@
             <ColumnDefinition Width="199*"/>
             <ColumnDefinition Width="182*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="AddLineButton" Content="Add the Line" HorizontalAlignment="Center" Margin="122,8,87,0" VerticalAlignment="Top" Width="211" Click="AddLineButton_Click" Background="#FFFCFCFC" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"/>
+        <Button x:Name="AddLineButton" Content="Add the Line" HorizontalAlignment="Center" Margin="122,8,87,0" VerticalAlignment="Top" Width="211" Click="AddLineButton_Click" Background="#FFFCFCFC" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="3" Content="Esti and Nov" Margin="87,33.2,0,18" Width="85" FontWeight="Light" Height="24" Grid.Row="4"/>
         <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="3" Content="R" Width="39" FontWeight="Light" Margin="156,37.2,-13.4,1" Height="37" FontSize="8" Grid.Row="4"/>
         <Grid x:Name="grid1" DataContext="{StaticResource lineViewSource}" HorizontalAlignment="Stretch" Margin="3,21.8,0,0" VerticalAlignment="Center" Height="138" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2">
@@ -40,7 +50,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,3.2" Grid.Row="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="areaComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3.6,5,0,5.2" Grid.Row="0" VerticalAlignment="Center" Width="120">
+            <ComboBox x:Name="areaComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3.6,5,0,5.2" Grid.Row="0" VerticalAlignment="Center" Width="120" SelectionChanged="areaComboBox_SelectionChanged">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>

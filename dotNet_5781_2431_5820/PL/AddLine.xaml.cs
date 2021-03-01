@@ -121,6 +121,5 @@ namespace PL
             listTrips.Add((sender as AddLineTrip).trip);
             thereIsATrip = true;//at least one trip added to this line
         }
-
     }
 }

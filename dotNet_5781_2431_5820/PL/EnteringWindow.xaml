@@ -7,8 +7,12 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="EnteringWindow" Height="485" Width="1000">
+    <Window.Background>
+        <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/background.JFIF"/>
+    </Window.Background>
     <Grid>
-        <Button x:Name="connect" Content="התחברות" HorizontalAlignment="Left" Margin="854,10,0,0" VerticalAlignment="Top" Width="85" Height="17" BorderBrush="#FF10168C" Foreground="DarkBlue" FontSize="12" Click="Button_Click">
+        <Label x:Name="Welcome" Content="Welcome to our system" Margin="192,168,194.6,168.2" FontSize="50" FontStyle="Normal" Foreground="White"/>
+        <Button x:Name="connect" Content="התחברות" HorizontalAlignment="Left" Margin="657,10,0,0" VerticalAlignment="Top" Width="327" Height="30" BorderBrush="#FF10168C" Foreground="DarkBlue" FontSize="18" Click="Button_Click">
             <Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>

@@ -29,11 +29,8 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (connect.id)
-            {
-                conecting win = new conecting(bl);
-                win.Show();
-            }
+            conecting win = new conecting();
+            win.Show();
         }
     }
 }

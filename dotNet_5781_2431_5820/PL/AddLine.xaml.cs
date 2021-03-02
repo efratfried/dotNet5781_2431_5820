@@ -78,12 +78,12 @@ namespace PL
 
         private void firstStationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            addedLine.FirstStation = (firstStationComboBox.SelectedItem as BO.Station).CodeStation;
+            addedLine.FirstStation = int.Parse((firstStationComboBox.SelectedItem as BO.Station).CodeStation);
         }
 
         private void lastStationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            addedLine.LastStation = (lastStationComboBox.SelectedItem as BO.Station).CodeStation;
+            addedLine.LastStation = int.Parse((lastStationComboBox.SelectedItem as BO.Station).CodeStation);
         }
 
         private void AddLineButton_Click(object sender, RoutedEventArgs e)
@@ -102,24 +102,12 @@ namespace PL
             this.Close();
         }
 
-        private void AddTrip_Click(object sender, RoutedEventArgs e)
+        private bool CheckEqual()
         {
-            try
+            if(lastStationComboBox.)
             {
-                AddOutGoingLine win = new AddOutGoingLine();//we sent the line to a new window we created named AddLine
-                win.Closing += AddLineTrip_Closing;
-                win.ShowDialog();
-            }
-            catch (BO.BadBusLineIdException ex)
-            {
-                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
 
-        private void AddLineTrip_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            listTrips.Add((sender as AddLineTrip).trip);
-            thereIsATrip = true;//at least one trip added to this line
+            }
         }
     }
 }

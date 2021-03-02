@@ -375,11 +375,11 @@ namespace BL
 
             //now we need to restart the "lineStations" list of each line.
 
-            blBO.stationsList = from lineStationDO in dl.GetLineStationsListOfALine(blID.ToString())
-                                  let lineStationBO = lineStationDoBoAdapter(lineStationDO)
+            blBO.stationsList = from BusStationLineDO in dl.GetBusStationLinesListOfALine(blID.ToString())
+                                  let lineStationBO = BusStationLineDoBoAdapter(BusStationLineDO)
                                   select lineStationBO;
 
-            return lineBO;
+            return BuslineBO;
         }
         public IEnumerable<BO.BusLine> GetAllLinesByArea(BO.Area area)
         {
@@ -390,9 +390,9 @@ namespace BL
         }
         public IEnumerable<BO.BusStationLine> GetAllLineStationsPerLine(int code)
         {
-            return from lineStation in dl.GetBusStationLinesListThatMatchAStation(code.ToString())
-                   let line = dl.GetBusLine(lineStation.ID)
-                   select line.CopyDOLineStationToBOLine(lineStation);
+            return from BusStationLine in dl.GetBusStationLinesListThatMatchAStation(code.ToString())
+                   let BusLine = dl.GetBusLine(BusStationLine.ID)
+                   select BusLine.CopyDOLineStationToBOLine(BusStationLine);
         }
         public IEnumerable<BO.BusLine> GetBusLines()
         {
@@ -431,7 +431,7 @@ namespace BL
         public IEnumerable<BO.BusLine> GetBusLineLicenseNumList()
         {
             return from LineDO in dl.GetAllBusLines()
-                   where LineDO.ID.CompareTo((DO.BusLine)busline) == 0//if the erea is equal to the given area
+                   where LineDO.ID.CompareTo((DO.BusLine)busLine) == 0//if the erea is equal to the given area
                    orderby LineDO.BusNumber           //order it by their bus number
                    select BusLineDoBoAdapter(LineDO);
         }
@@ -486,8 +486,6 @@ namespace BL
                 throw new BO.BadBusIdException("Bus ID is illegal", Ex);
             }
         }
-
-
         #endregion
 
         #region User

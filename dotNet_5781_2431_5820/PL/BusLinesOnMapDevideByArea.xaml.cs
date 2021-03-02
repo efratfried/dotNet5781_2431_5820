@@ -56,7 +56,7 @@ namespace PL
 
         private void cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SingleBusLine win = new SingleBusLine((sender as ComboBox).SelectedItem as BO.BusLine);
+            AddLine win = new AddLine((sender as ComboBox).SelectedItem as BO.BusLine);
             win.Show();
         }
     }

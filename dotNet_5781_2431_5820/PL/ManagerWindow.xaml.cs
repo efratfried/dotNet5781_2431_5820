@@ -30,19 +30,19 @@ namespace PL
         private void busses_Click(object sender, RoutedEventArgs e)
         {
             PL.busseswindow busseswindow= new PL.busseswindow(bl);
-            busseswindow.ShowDialog();//CANT OPEN OTHER WHEN FIRST NOT CLOSE
+            busseswindow.Show();//CANT OPEN OTHER WHEN FIRST NOT CLOSE
         }
 
         private void buslines_Click(object sender, RoutedEventArgs e)
         {
-            PL.buslineswindow busseswindow = new PL.buslineswindow(bl);
+            PL.BusLineWindow buslineswindow = new PL.BusLineWindow(bl);
             buslineswindow.Show();
         }
 
         private void Stations_Click(object sender, RoutedEventArgs e)
         {
-            PL.Stationswindow busseswindow = new PL.Stationswindow(bl);
-            Stationswindow.Show();
+            PL.BusStation stationwindow = new PL.BusStation(bl);
+            stationwindow.Show();
         }
 
     }

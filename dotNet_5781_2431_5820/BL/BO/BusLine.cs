@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class BusLine:Bus
+    public class BusLine
     {
         public int BusNum { set; get; }
         public Area Area { set; get; }

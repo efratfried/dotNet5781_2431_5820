@@ -23,7 +23,7 @@ namespace PL
     public partial class busseswindow : Window
     {
         IBL bl;
-        Bus currentbus;
+        BO.Bus currentbus;
         public busseswindow(IBL _bl)
         {
 
@@ -75,9 +75,9 @@ namespace PL
                 return;
             try
             {
-                IEnumerable<Bus> templist = bl.GetAllBuss().Cast<Bus>();
+                IEnumerable<BO.Bus> templist = bl.GetAllBuss().Cast<BO.Bus>();
 
-                currentbus = busses_list.SelectedItem as Bus;
+                currentbus = busses_list.SelectedItem as BO.Bus;
             }
             catch (BO.BadBusLineIdException ex)
             {
@@ -87,8 +87,8 @@ namespace PL
 
         private void inner_info_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            cbStudentID.DataContext = bl.GetAllStudents();
-            cbStudentID.SelectedIndex = 0; //index of the object to be selected
+            currentbusID.DataContext = bl.GetAllBuss();
+            currentbusID.SelectedIndex = 0; //index of the object to be selected
         }
 
         private void start_driving_Click(object sender, RoutedEventArgs e)

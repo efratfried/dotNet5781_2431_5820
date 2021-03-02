@@ -40,7 +40,7 @@ namespace PL
             BO.Station stat = new BO.Station();//a new Station
 
             AddStation addStationWindow = new AddStation(stat);//we sent the station Stat to a new window we created named AddStation 
-            addStationWindow.Closing += addStationWindowz_Closing;
+            addStationWindow.Closing += addStationWindow.Closing;
             addStationWindow.ShowDialog();
         }
 

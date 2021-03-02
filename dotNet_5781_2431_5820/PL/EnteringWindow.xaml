@@ -11,8 +11,9 @@
         <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/background.JFIF"/>
     </Window.Background>
     <Grid>
+        <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/login.PNG" Margin="875,10,25.6,394.2"/>
         <Label x:Name="Welcome" Content="Welcome to our system" Margin="192,168,194.6,168.2" FontSize="50" FontStyle="Normal" Foreground="White"/>
-        <Button x:Name="connect" Content="log in" HorizontalAlignment="Left" Margin="657,10,0,0" VerticalAlignment="Top" Width="327" Height="30" BorderBrush="#FF10168C" Foreground="DarkBlue" FontSize="18" Click="Button_Click">
+        <Button x:Name="connect" Content="log in" HorizontalAlignment="Left" Margin="896,10,0,0" VerticalAlignment="Top" Width="51" Height="51" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="18" Click="Button_Click" Background="{x:Null}">
             <Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>

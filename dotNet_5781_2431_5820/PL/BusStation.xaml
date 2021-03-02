@@ -1,31 +1,93 @@
-﻿<Window x:Class="PL.BusStation"
+﻿<Window x:Name="StationsWin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
-         xmlns:BO="clr-namespace:BO;assembly=BL"
+        xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.StationsWindow"
         mc:Ignorable="d"
-        Title="BusStation" Height="485" Width="1000">
-    <Grid x:Name="BusStation_Grid">
-        <StackPanel x:Name="actions_pannel" HorizontalAlignment="Left" Height="452" Margin="792,0,0,0" VerticalAlignment="Top" Width="198">
-            <Button x:Name="delete_station" Content="delete station" Margin="0,8" Height="29" Click="delete_bus_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" >
-              
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" Value="DimGray"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            
-        <Button x:Name="update_station" Content="update station"  Height="29" Click="update_bus_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0"/>
-        <Button x:Name="add_station" Content="add a new statoion" Margin="0,8" Height="29" Click="add_bus_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0"/>
-        </StackPanel>
-        <StackPanel x:Name="BusStationsList" HorizontalAlignment="Left" Height="399" Margin="456,28,0,0" VerticalAlignment="Top" Width="310"/>
-        
+        Title="StationsWindow" Height="450" Width="1034" Icon= "kavimIcon.png" >
+    <Window.Background>
+        <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/background.JFIF"/>
+    </Window.Background>
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="36*"/>
+            <RowDefinition Height="248*"/>
+            <RowDefinition Height="61*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="144*"/>
+            <ColumnDefinition Width="143*"/>
+            <ColumnDefinition Width="136*"/>
+            <ColumnDefinition Width="86*"/>
+            <ColumnDefinition Width="228*"/>
+            <ColumnDefinition Width="141*"/>
+            <ColumnDefinition Width="149*"/>
+        </Grid.ColumnDefinitions>
+        <ComboBox x:Name="StationComboBox" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="0,4.8,0,0" VerticalAlignment="Top" Width="279" SelectionChanged="CBChosenStat_SelectionChanged" FontWeight="Bold" Height="21" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" />
+        <Label Content="Chosen station" HorizontalAlignment="Left" Margin="41,0.8,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="24" Width="99" Grid.Row="1"   />
+
+        <Grid x:Name="gridOneStation"  HorizontalAlignment="Left" Margin="64,24.8,0,0" VerticalAlignment="Top" Width="356" Height="157" Grid.ColumnSpan="3" Grid.Row="2"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="47.6"/>
+                <ColumnDefinition Width="26"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Address:" Grid.Column="0" Margin="4,3,16.4,4.2" Grid.Row="0"  Grid.ColumnSpan="2"/>
+            <TextBox x:Name="addressTextBox" Grid.Column="2"  Height="23" Margin="6.6,4,-3,4.2" Grid.Row="0" Text="{Binding Address, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" />
+            <Label Content="Code:" Grid.Column="0"  Margin="4,3.8,0,3.2" Grid.Row="1" />
+            <TextBox x:Name="codeTextBox" Grid.Column="2"  Height="23" Margin="6.6,3.8,-3,5.2" Grid.Row="1" Text="{Binding Code, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="278"  IsEnabled="False" Grid.ColumnSpan="3"/>
+            <Label Content="Latitude" Grid.Column="0"  Margin="5,2.4,0.4,3.8" Grid.Row="4" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="lattitudeTextBox" Grid.Column="2"  Height="23" Margin="4.6,3.4,-1,4.8" Grid.Row="4" Text="{Binding Lattitude, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="278" Grid.ColumnSpan="3" PreviewKeyDown="lattitudeTextBox_PreviewKeyDown"/>
+            <Label Content="Longitude:" Grid.Column="0"  Margin="4,2.6,0.4,3.6" Grid.Row="3"  Grid.ColumnSpan="2"/>
+            <TextBox x:Name="longitudeTextBox" Grid.Column="2"  Height="23" Margin="5.6,3.6,-2,4.6" Grid.Row="3" Text="{Binding Longitude, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3" PreviewKeyDown="longitudeTextBox_PreviewKeyDown" />
+            <Label Content="Name:" Grid.Column="0"  Margin="3,2.8,0,3.4" Grid.Row="2"  Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="2"  Height="24" Margin="5.6,2.8,-2,4.4" Grid.Row="2" Text="{Binding Name, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3"/>
+            <Label x:Name="Disable_access" Content="Disable access" Margin="-18,2.2,0,-28.2" Grid.Row="5"  Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
+            <TextBox x:Name="Disable_accessTextBox" Grid.Column="2"  Height="23" Margin="5.4,5.2,-1,-28.2" Grid.Row="5" Text="{Binding Address, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" />
+
+        </Grid>
+        <DataGrid x:Name="linesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="4.4,7.8,22.2,33.2" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Horizontal" FontFamily="Tahoma"  Foreground="Navy" FontWeight="bold" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="3"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="busNumberColumn"    Binding="{Binding BusNumber}"   Header="Bus Number" Width="SizeToHeader"  />
+                <DataGridTextColumn x:Name="areaColumn"         Binding="{Binding Area}"    Header="Area" Width="100"  />
+                <DataGridTextColumn x:Name="firstStationColumn" Binding="{Binding FirstStation}" Header="First Station" Width="100" />
+                <DataGridTextColumn x:Name="lastStationColumn"  Binding="{Binding LastStation}" Header="Last Station" Width="100" />
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btDeleteStationFromThisLine" Content="DeleteStation" ToolTip="Delete the current station from the path of this bus" Click="btDeleteStationFromThisLine_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+
+        </DataGrid>
+        <Button x:Name="BTUpdate" Content="Update station" HorizontalAlignment="Left" Margin="20,13.8,0,0" VerticalAlignment="Center" Width="104" Click="BTUpdate_Click" Grid.Column="1" Grid.Row="3" />
+        <Button x:Name="BTDelete" Content="Delete station" HorizontalAlignment="Center" Margin="135.8,22.8,227.6,8" VerticalAlignment="Center" Width="87" Click="BTDelete_Click" Grid.ColumnSpan="3" Grid.Column="2" Grid.Row="3" />
+        <Button x:Name="BTAdd"    Content="Add station"    HorizontalAlignment="Left" Margin="6.5,13.8,0,0" VerticalAlignment="Center" Width="81" Click="BTAdd_Click" Grid.Column="5" Grid.Row="3"  />
+        <Label Content="All the lines that pass in this station:" HorizontalAlignment="Left" Margin="4.4,4.8,0,0" VerticalAlignment="Bottom" Grid.Column="4" Height="24" Width="230" Grid.Row="1" Grid.ColumnSpan="2" />
+        <Label Content="~Stations Information~ " HorizontalAlignment="Stretch"  VerticalAlignment="Center" Height="41" Width="451" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="0" Margin="143,0,0,0"/>
+        <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="6" Content="Esti and Nov" Margin="43.6,18.8,0,18" Width="84" FontWeight="Light" Height="24" Grid.Row="3"/>
+        <Label Content="Longitude   : 34.3-35.5 " HorizontalAlignment="Left" Margin="143,210.8,0,0" VerticalAlignment="Top" Width="133"  FontSize="10" Foreground="YellowGreen" Height="22" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
+        <Label Content="Latitude     :      31-33.3" HorizontalAlignment="Left" Margin="143,181.8,0,0" VerticalAlignment="Top" Width="136" Height="29"  FontSize="10" Foreground="YellowGreen" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
+
+
     </Grid>
 </Window>

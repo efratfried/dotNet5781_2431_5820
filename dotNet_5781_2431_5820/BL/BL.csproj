@@ -58,7 +58,6 @@
     <Compile Include="BO\Exception.cs" />
     <Compile Include="BO\FollowingStations.cs" />
     <Compile Include="BO\HelpFunctions.cs" />
-    <Compile Include="BO\ListedBus.cs" />
     <Compile Include="BO\OutGoingLine.cs" />
     <Compile Include="BO\Station.cs" />
     <Compile Include="BO\Tools.cs" />

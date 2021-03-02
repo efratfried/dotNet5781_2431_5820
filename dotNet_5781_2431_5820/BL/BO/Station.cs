@@ -19,7 +19,7 @@ namespace BO
 
         internal static void CopyPropertiesTo(DO.Station stationDO)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();..
         }
     }
 }

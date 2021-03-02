@@ -22,28 +22,35 @@ namespace PL
     {
         IBL bl = BLFactory.GetBL("1");
 
-        public Window1()
+        public Window1(PO.User user)
         {
             InitializeComponent();
+            username.DataContext = user.UserName;
         }
 
         private void busses_Click(object sender, RoutedEventArgs e)
         {
             PL.busseswindow busseswindow= new PL.busseswindow(bl);
-            busseswindow.Show();//CANT OPEN OTHER WHEN FIRST NOT CLOSE
+            busseswindow.ShowDialog();//CANT OPEN OTHER WHEN FIRST NOT CLOSE
         }
 
         private void buslines_Click(object sender, RoutedEventArgs e)
         {
             PL.BusLineWindow buslineswindow = new PL.BusLineWindow(bl);
-            buslineswindow.Show();
+            buslineswindow.ShowDialog();
         }
 
         private void Stations_Click(object sender, RoutedEventArgs e)
         {
             PL.BusStation stationwindow = new PL.BusStation(bl);
-            stationwindow.Show();
+            stationwindow.ShowDialog();
         }
 
+        private void log_out_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            conecting win1 = new conecting();
+            win1.ShowDialog();
+        }
     }
 }

@@ -41,8 +41,6 @@ namespace PL
         }
 
         /*
-         זה נראה לי מתאים דבר ראשון להפוך לקומבו בוקס ולא לליסט בוקס 
-        בנוסף זו פונקציה שלדעתי מתאימה אבל צריך לשרמט אותה.
          void RefreshAllRegisteredCoursesGrid()
         {
             studentCourseDataGrid.DataContext = bl.GetAllCoursesPerStudent(curStu.ID);

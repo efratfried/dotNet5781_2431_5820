@@ -83,7 +83,8 @@
       <DependentUpon>EnteringWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PO\BusLine.cs" />
-    <Compile Include="PO\ListedBus.cs" />
+    <Compile Include="PO\Station.cs" />
+    <Compile Include="PO\User.cs" />
     <Compile Include="SimulateOneStationWindow.xaml.cs">
       <DependentUpon>SimulateOneStationWindow.xaml</DependentUpon>
     </Compile>

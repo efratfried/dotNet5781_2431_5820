@@ -33,7 +33,7 @@
         <TextBox x:Name="user_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,156,0,0" TextChanged="user_password_TextChanged" BorderBrush="#FF10168C"/>
        
 
-        <Label Content=" sign in" HorizontalAlignment="Left" Margin="112,219,0,0" VerticalAlignment="Top" Height="41" Width="198" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="DarkBlue"/>
+        <Label Content=" sign in" HorizontalAlignment="Left" Margin="160,216,0,0" VerticalAlignment="Top" Height="41" Width="198" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="DarkBlue"/>
         <TextBox x:Name="Newuser_name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,277,0,0" TextChanged="Newuser_namePassword_TextChanged" BorderBrush="#FF10168C"/>
         <TextBox x:Name="NewUser_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,334,0,0" TextChanged="NewUser_password_TextChanged" BorderBrush="#FF10168C"/>
             <Button x:Name="entering" Content="entering"  HorizontalAlignment="Left" Height="42" Margin="483,363,0,0" VerticalAlignment="Top" Width="105" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="entering" Foreground="DarkBlue" RenderTransformOrigin="0.634,1.212" >

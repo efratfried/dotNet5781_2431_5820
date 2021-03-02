@@ -18,7 +18,7 @@ namespace DLAPI
         DO.Bus GetBus(string Num);
         void AddBus(DO.Bus Bus);
         void UpdateBus(DO.Bus Bus);
-        void UpdateBus(string Num, Action<DO.Bus> update); //method that knows to updt specific fields in Person
+        //void UpdateBus(string Num, Action<DO.Bus> update); //method that knows to updt specific fields in Person
         void DeleteBus(string Num);
         #endregion
 

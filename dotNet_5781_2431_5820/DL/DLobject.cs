@@ -272,8 +272,8 @@ namespace DL
         }
         public IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate)
         {
-            return from DOlineStation in dl.GetLineStationsListOfALine(lineId)
-                   let BOlineStation = lineStationDoBoAdapter(DOlineStation)
+            return from DOBusStationLine in dl.GetBusStationLinessListOfALine(lineId)
+                   let BOlineStation = BusStationLineDoBoAdapter(DOBusStationLine)
                    select BOlineStation;
         }
         public IEnumerable<object> GetBusStationsLineListWithSelectedFields(Func<DO.BusStationLine, object> generate)

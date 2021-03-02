@@ -49,6 +49,7 @@ namespace PL
             lastStationComboBox.DataContext = bl.GetAllStations().ToList();//ObserListOfStations;
         }
 
+      
         private void busNumberTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e == null)

@@ -37,9 +37,9 @@
         <ListBox x:Name="nisayon" FlowDirection="RightToLeft"  ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="308" Margin="0,106,35.6,0" VerticalAlignment="Top" Width="436" Background="#FF0F0F0F"/>
         <Canvas HorizontalAlignment="Left" Visibility="Visible" Height="32" Margin="522,70,0,0" VerticalAlignment="Top" Width="436" Background="Black"/>
         <Image Source="/C:/Users/user1/Downloads/busIcon1.JPG"   Margin="902,41,37.6,324.2"/>
-        <Label Content="שם התחנה:" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="383,120,0,0" VerticalAlignment="Top" Width="82" FontFamily="Yu Gothic UI Semibold" Foreground="DarkBlue" FontSize="14"/>
-        <Label Content="כתובת:" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="407,157,0,0" VerticalAlignment="Top" Width="58" FontFamily="Yu Gothic UI Semibold" Foreground="DarkBlue" FontSize="14"/>
-        <Label Content="קוד התחנה:" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="377,198,0,0" VerticalAlignment="Top" Width="88" FontFamily="Yu Gothic UI Semibold" Foreground="DarkBlue" FontSize="14"/>
+        <Label Content="Station name:" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="383,120,0,0" VerticalAlignment="Top" Width="82" FontFamily="Yu Gothic UI Semibold" Foreground="DarkBlue" FontSize="14"/>
+        <Label Content="adress:" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="407,157,0,0" VerticalAlignment="Top" Width="58" FontFamily="Yu Gothic UI Semibold" Foreground="DarkBlue" FontSize="14"/>
+        <Label Content="station code:" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="377,198,0,0" VerticalAlignment="Top" Width="88" FontFamily="Yu Gothic UI Semibold" Foreground="DarkBlue" FontSize="14"/>
         <TextBlock x:Name="statName"  FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="130,120,0,0" TextWrapping="Wrap" Text="{Binding Path= station.Name}" VerticalAlignment="Top" Height="22" Width="234"/>
         <TextBlock x:Name="statAdress"  FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="126,157,0,0" TextWrapping="Wrap" Text="{Binding Path= station.Name}" VerticalAlignment="Top" Height="31" Width="238"/>
         <TextBlock x:Name="statCode"  FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="159,198,0,0" TextWrapping="Wrap" Text="{Binding Path= station.Name}" VerticalAlignment="Top" Height="32" Width="205"/>

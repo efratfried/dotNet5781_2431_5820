@@ -7,6 +7,7 @@
          xmlns:BO="clr-namespace:BO;assembly=BL"
         mc:Ignorable="d"
         Title="busseswindow" Height="485" Width="1000" DataContextChanged="refresh">
+    
     <Grid x:Name="___Bus_Window_" Margin="0,0,-8,-31">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -14,12 +15,12 @@
         </Grid.ColumnDefinitions>
 
         <ComboBox x:Name="busses_list" ItemsSource="{Binding}"  Height="29" Margin="426,70,237,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
-        <Button x:Name="start_treatment" Content="התחל טיפול" HorizontalAlignment="Left" Margin="154,373,0,0" VerticalAlignment="Top" Width="146" Click="start_treatment_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="20"/>
-        <Button x:Name="start_filling_foul" Content="התחל תדלוק" HorizontalAlignment="Left" Margin="155,327,0,0" VerticalAlignment="Top" Width="146" Click="start_filling_foul_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="20"/>
-        <Button x:Name="start_driving" Content="התחל נסיעה" HorizontalAlignment="Left" Margin="154,284,0,0" VerticalAlignment="Top" Width="146" Click="start_driving_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="20"/>
+        <Button x:Name="start_treatment" Content="start treat" HorizontalAlignment="Left" Margin="154,373,0,0" VerticalAlignment="Top" Width="146" Click="start_treatment_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="20"/>
+        <Button x:Name="start_filling_foul" Content="strat refuiling" HorizontalAlignment="Left" Margin="155,327,0,0" VerticalAlignment="Top" Width="146" Click="start_filling_foul_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="20"/>
+        <Button x:Name="start_driving" Content="start driving" HorizontalAlignment="Left" Margin="154,284,0,0" VerticalAlignment="Top" Width="146" Click="start_driving_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="20"/>
 
         <TabControl x:Name="inner_info" HorizontalAlignment="Left" Height="269" Margin="426,141,0,0" VerticalAlignment="Top" Width="337" SelectionChanged="inner_info_SelectionChanged">
-            <TabItem x:Name="accident" Header="תיעוד תאונות" Foreground="DarkBlue" BorderBrush="#FF10168C">
+            <TabItem x:Name="accident" Header="accident ducoments" Foreground="DarkBlue" BorderBrush="#FF10168C">
                 <Grid x:Name="Bus_Ducoments" Background="#FFE5E5E5" Margin="0,0,0,-4" RenderTransformOrigin="0.479,0.505">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="18*"/>
@@ -28,22 +29,23 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="16*"/>
                         <ColumnDefinition Width="31*"/>
-                        <ColumnDefinition Width="285*"/>
+                        <ColumnDefinition Width="103*"/>
+                        <ColumnDefinition Width="181*"/>
                     </Grid.ColumnDefinitions>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="treats" Header="תיעוד טיפולים" Foreground="DarkBlue" BorderBrush="#FF10168C">
+            <TabItem x:Name="treats" Header="treats ducoments" Foreground="DarkBlue" BorderBrush="#FF10168C">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem x:Name="last_drives" Header="תיעוד נסיעות" Margin="-2,-2,-2,0" Foreground="DarkBlue" BorderBrush="#FF10168C">
+            <TabItem x:Name="last_drives" Header="treat driving" Margin="-2,-2,-2,0" Foreground="DarkBlue" BorderBrush="#FF10168C">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
         <TextBlock x:Name="aviability_status" HorizontalAlignment="Left" Margin="47,109,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="48" Width="124" RenderTransformOrigin="0.487,0.292"/>
         <TextBlock x:Name="foul_status" HorizontalAlignment="Left" Margin="47,178,0,0" TextWrapping="Wrap" Text="{Binding }" VerticalAlignment="Top" Height="48" Width="124"/>
         <StackPanel x:Name="actions_pannel" HorizontalAlignment="Left" Height="452" Margin="792,0,0,0" Width="198" Background="#FF1C2663" VerticalAlignment="Top">
-            <Button x:Name="delete_bus" Content="מחק אוטובוס" Margin="0,50,0,0" Height="53" Click="delete_bus_Click" Foreground="#FFF7F7FB" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" HorizontalContentAlignment="Center" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}"/>
-            <Button x:Name="update_bus" Content="עדכון אוטובוס"  Height="53" Click="update_bus_Click" Foreground="WhiteSmoke" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}">
+            <Button x:Name="delete_bus" Content="delete bus" Margin="0,50,0,0" Height="53" Click="delete_bus_Click" Foreground="#FFF7F7FB" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" HorizontalContentAlignment="Center" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}"/>
+            <Button x:Name="update_bus" Content="update bus"  Height="53" Click="update_bus_Click" Foreground="WhiteSmoke" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -54,7 +56,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button x:Name="add_bus" Content="הוסף אוטובוס חדש" Margin="0" Height="53" Click="add_bus_Click" Foreground="#FFF9F9FB" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}"/>
+            <Button x:Name="add_bus" Content="add a new bus" Margin="0" Height="53" Click="add_bus_Click" Foreground="#FFF9F9FB" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}"/>
         </StackPanel>
         <Rectangle x:Name="SlidePanel" HorizontalAlignment="Left" Height="52" Margin="980,51,0,0" VerticalAlignment="Top" Width="13" Fill="PaleGreen" Visibility="Visible" StrokeLineJoin="Miter"/>
         <Rectangle HorizontalAlignment="Left" Height="7" VerticalAlignment="Top" Width="990" Fill="PaleGreen" Visibility="Visible" StrokeLineJoin="Miter"/>

@@ -22,7 +22,7 @@
                 <RowDefinition Height="32"/>
                 <RowDefinition Height="32"/>
             </Grid.RowDefinitions>
-            <Label Content="     כתובת" Grid.Column="0" HorizontalAlignment="Left" Margin="0,3,0,32.6" Grid.Row="0" Foreground="White" BorderBrush="#FF10168C" Grid.ColumnSpan="2" Width="101" FontWeight="Bold" FontSize="14" Grid.RowSpan="2">
+            <Label Content="     adress" Grid.Column="0" HorizontalAlignment="Left" Margin="0,3,0,32.6" Grid.Row="0" Foreground="White" BorderBrush="#FF10168C" Grid.ColumnSpan="2" Width="101" FontWeight="Bold" FontSize="14" Grid.RowSpan="2">
                 <Label.Style>
                     <Style TargetType="Label">
                         <Style.Triggers>
@@ -34,15 +34,15 @@
                 </Label.Style>
             </Label>
             <TextBox x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="0,3,-19.4,0" Grid.Row="0" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" FontFamily="Tahoma"  Foreground="Navy" TextChanged="addressTextBox_TextChanged"/>
-            <Label Content="  מספר תחנה" Grid.Column="0" HorizontalAlignment="Left" Margin="0,3.2,0,31.6" Grid.Row="1" VerticalAlignment="Center" Foreground="White" BorderBrush="#FF10168C" Height="30" Width="94" FontSize="14" Grid.RowSpan="2" FontWeight="Bold"/>
+            <Label Content="  station num" Grid.Column="0" HorizontalAlignment="Left" Margin="0,3.2,0,31.6" Grid.Row="1" VerticalAlignment="Center" Foreground="White" BorderBrush="#FF10168C" Height="30" Width="94" FontSize="14" Grid.RowSpan="2" FontWeight="Bold"/>
             <TextBox x:Name="codeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="0.2,3.2,-19.4,0" Grid.Row="1" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" PreviewKeyDown="codeTextBox_PreviewKeyDown" FontFamily="Tahoma"  Foreground="Navy" TextChanged="codeTextBox_TextChanged"/>
-            <Label Content="    קו רוחב:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,1.4,0,31.6" Grid.Row="2" VerticalAlignment="Center" Foreground="White" BorderBrush="#FF10168C" Height="31" Width="101" FontSize="14" Grid.ColumnSpan="2" Grid.RowSpan="2" FontWeight="Bold"/>
+            <Label Content="    latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,1.4,0,31.6" Grid.Row="2" VerticalAlignment="Center" Foreground="White" BorderBrush="#FF10168C" Height="31" Width="101" FontSize="14" Grid.ColumnSpan="2" Grid.RowSpan="2" FontWeight="Bold"/>
             <TextBox x:Name="lattitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="0.2,0.4,-19.4,7.6" Grid.Row="2" Text="{Binding Lattitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="lattitudeTextBox_PreviewKeyDown" FontFamily="Tahoma"  Foreground="Navy" TextChanged="lattitudeTextBox_TextChanged"/>
-            <Label Content="     קו אורך:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,0.4,0,4.6" Grid.Row="3" VerticalAlignment="Center" Foreground="White" BorderBrush="#FF10168C" Height="27" Width="94" FontSize="14" FontWeight="Bold"/>
+            <Label Content="     logtitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,0.4,0,4.6" Grid.Row="3" VerticalAlignment="Center" Foreground="White" BorderBrush="#FF10168C" Height="27" Width="94" FontSize="14" FontWeight="Bold"/>
             <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="0.2,0.4,-19.4,9.6" Grid.Row="3" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="longitudeTextBox_PreviewKeyDown" FontFamily="Tahoma"  Foreground="Navy" TextChanged="longitudeTextBox_TextChanged"/>
-            <Label Content="   שם תחנה:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,0.4,0,-0.4" Grid.Row="4" VerticalAlignment="Center" Foreground="White" BorderBrush="#FF10168C" Height="32" Width="104" FontSize="14" Grid.ColumnSpan="2" FontWeight="Bold"/>
+            <Label Content="   station name:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,0.4,0,-0.4" Grid.Row="4" VerticalAlignment="Center" Foreground="White" BorderBrush="#FF10168C" Height="32" Width="104" FontSize="14" Grid.ColumnSpan="2" FontWeight="Bold"/>
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="0.2,31.4,-19.4,9.6" Grid.Row="3" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy" TextChanged="nameTextBox_TextChanged" Grid.RowSpan="2" FontWeight="Bold"/>
         </Grid>
-        <Button x:Name="AddStationButton" Content="הוסף תחנה" HorizontalAlignment="Left" Margin="322,322,0,0" VerticalAlignment="Top" Width="128" Click="AddStationButton_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="29" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="AddStationButton" Content="add station" HorizontalAlignment="Left" Margin="322,322,0,0" VerticalAlignment="Top" Width="128" Click="AddStationButton_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="29" FontSize="14" FontWeight="Bold"/>
     </Grid>
 </Window>

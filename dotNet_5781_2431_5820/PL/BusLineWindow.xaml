@@ -30,10 +30,10 @@
             <ColumnDefinition Width="105*"/>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="BTUpdate" Content="Update line" HorizontalAlignment="Left" Margin="0.6,12.2,0,0" VerticalAlignment="Top" Width="121" Click="BTUpdate_Click"  Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4"/>
-        <Button x:Name="BTDelete" Content="Delete line" HorizontalAlignment="Left" Margin="15.2,12.2,0,0" VerticalAlignment="Top" Width="86" Click="BTDelete_Click"   Grid.Column="5" Grid.Row="4"/>
-        <Button x:Name="BTAdd"    Content="Add line"    HorizontalAlignment="Left" Margin="39.2,12.2,0,0" VerticalAlignment="Top" Width="98" Click="BTAdd_Click"   Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="CBCurrentLine" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="26.6,5.6,0,0" VerticalAlignment="Top" Width="119" SelectionChanged="ComboBox_SelectionChanged" Grid.Column="1" FontWeight="Bold" Height="21" Grid.ColumnSpan="2" Grid.Row="1"/>
+        <Button x:Name="BusLineUpdate" Content="Update line" HorizontalAlignment="Left" Margin="0.6,12.2,0,0" VerticalAlignment="Top" Width="121" Click="BTUpdate_Click"  Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4"/>
+        <Button x:Name="BusLineDelete" Content="Delete line" HorizontalAlignment="Left" Margin="15.2,12.2,0,0" VerticalAlignment="Top" Width="86" Click="BTDelete_Click"   Grid.Column="5" Grid.Row="4"/>
+        <Button x:Name="BusLineAdd"    Content="Add line"    HorizontalAlignment="Left" Margin="39.2,12.2,0,0" VerticalAlignment="Top" Width="98" Click="BTAdd_Click"   Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="BusLineComboBox" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="26.6,5.6,0,0" VerticalAlignment="Top" Width="119" SelectionChanged="ComboBox_SelectionChanged" Grid.Column="1" FontWeight="Bold" Height="21" Grid.ColumnSpan="2" Grid.Row="1"/>
         <Label Content="selected line:" HorizontalAlignment="Left" Margin="44,2.6,0,0" VerticalAlignment="Top" Width="93" FontFamily="Tahoma"  Foreground="Navy" Grid.ColumnSpan="2" RenderTransformOrigin="0.55,1.493" Height="24" Grid.Row="1"/>
         <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="4,0.4,30,18.8" RowDetailsVisibilityMode="VisibleWhenSelected" FontFamily="Tahoma"  Foreground="Navy" Grid.Column="4"  LoadingRow="lineStationDataGrid_LoadingRow" GridLinesVisibility="Horizontal"  HorizontalGridLinesBrush="LightGray"  FontWeight="bold" Grid.ColumnSpan="7" Grid.Row="2" Grid.RowSpan="2" SelectionChanged="lineStationDataGrid_SelectionChanged"  >
             <DataGrid.Columns>

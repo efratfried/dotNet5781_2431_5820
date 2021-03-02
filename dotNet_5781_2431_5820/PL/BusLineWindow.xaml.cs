@@ -22,7 +22,7 @@ namespace PL
     public partial class BusLineWindow : Window
     {
         IBL bl;
-        BO.BusLine currLine;
+        PO.BusLine MyBusLine;
         //BO.Line saveTheCurrentDetails;//a line to save the original details of the bus in case the update is illegal:
 
         public BusLineWindow(IBL _bl)
@@ -32,53 +32,59 @@ namespace PL
             bl = _bl;
 
             areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
-            CBCurrentLine.DisplayMemberPath = "BusNumber";//show only specific Property of object
-            CBCurrentLine.SelectedValuePath = "LineId";//selection return only specific Property of object
-            CBCurrentLine.SelectedIndex = 0; //index of the object to be selected
+            BusLineComboBox.DisplayMemberPath = "BusNumber";//show only specific Property of object
+            BusLineComboBox.SelectedValuePath = "LineId";//selection return only specific Property of object
+            BusLineComboBox.SelectedIndex = 0; //index of the object to be selected
             RefreshAllLinesComboBox();
-
             lineStationDataGrid.IsReadOnly = true;
         }
 
         void RefreshAllLinesComboBox()//refresh the combobox each time the user changes the selection 
         {
-            CBCurrentLine.DataContext = bl.GetBusLines();//ObserListOfLines;
+            IEnumerable<PO.BusLine> buslines = bl.GetBusLines().Cast<PO.BusLine>();
+            BusLineComboBox.ItemsSource = buslines;
         }
 
         void RefreshAllLineStationsOfLineGrid()
         {
             IEnumerable<PO.BusLine> busLines;
-            lineStationDataGrid.DataContext = bl.GetAllLineStationsPerLine(currLine.BusLineId);
+            lineStationDataGrid.DataContext = bl.GetAllLineStationsPerLine(MyBusLine.LicenseNum);
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            currLine = (CBCurrentLine.SelectedItem as BO.BusLine);
+            MyBusLine = BusLineComboBox.SelectedItem as PO.BusLine;
 
-            gridOneLine.DataContext = currLine;
+            gridOneLine.DataContext = MyBusLine;
 
-            if (currLine != null)
+            if (MyBusLine != null)
             {
                 RefreshAllLineStationsOfLineGrid();
             }
         }
 
-        private void BTUpdate_Click(object sender, RoutedEventArgs e)
+        private void BusLineUpdate_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (currLine != null && busNumberTextBox.Text != "" && firstStationTextBox.Text != "" && lastStationTextBox.Text != "")
+                if (MyBusLine != null && busNumberTextBox.Text != "" && firstStationTextBox.Text != "" && lastStationTextBox.Text != "")
                 {
-                    BO.BusLine NewLine = new BO.BusLine();//a local line, to save the changes that the user made in line's fields.
+                    UpdateWindow win = new UpdateWindow();
+                    win.Show();
+                    MyBusLine.BusNum = int.Parse(busNumberTextBox.Text);
+                    MyBusLine.FirstStation = firstStationTextBox.Text;
+                    MyBusLine.LastStation = lastStationTextBox.Text;
+                    MyBusLine.Area = areaComboBox.;
+                    /*PO.BusLine NewLine;//a local line, to save the changes that the user made in line's fields.
                     NewLine.BusNum = int.Parse(busNumberTextBox.Text);
                     NewLine.Area = (BO.Area)(areaComboBox.SelectedIndex);
                     NewLine.FirstStation = int.Parse(firstStationTextBox.Text);
-                    NewLine.LastStation = int.Parse(lastStationTextBox.Text);
+                    NewLine.LastStation = int.Parse(lastStationTextBox.Text);*/
 
                     if (NewLine != null)
                         bl.UpdateBusLinePersonalDetails(NewLine);
 
-                    currLine = NewLine;//if succeded, change currLine fields to be as the line. if not- dont do that.
+                    MyBusLine = NewLine;//if succeded, change currLine fields to be as the line. if not- dont do that.
                     RefreshAllLinesComboBox();//refresh the combo box to save the changes!!!
                 }
                 else//if not all fields are full
@@ -97,16 +103,16 @@ namespace PL
             }
         }
 
-        private void BTDelete_Click(object sender, RoutedEventArgs e)
+        private void BusLineDelete_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult res = MessageBox.Show("Delete selected line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.No)
                 return;
             try
             {
-                if (currLine != null)
+                if (MyBusLine != null)
                 {
-                    bl.DeleteBusLine( currLine.BusNum);
+                    bl.DeleteBusLine(MyBusLine.BusNum);
 
                     RefreshAllLineStationsOfLineGrid();
                     RefreshAllLinesComboBox();
@@ -118,7 +124,7 @@ namespace PL
             }
         }
 
-        private void BTAdd_Click(object sender, RoutedEventArgs e)
+        private void BusLineAdd_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -167,7 +173,7 @@ namespace PL
             try
             {
                 BO.BusStationLine lineStationBO = ((sender as Button).DataContext as BO.BusStationLine);
-                bl.DeleteBusStationLine(lineStationBO.BusStationNum, currLine.BusNum);
+                bl.DeleteBusStationLine(lineStationBO.BusStationNum, MyBusLine.BusNum);
                 RefreshAllLineStationsOfLineGrid();
             }
             catch (BO.BadBusStationLineCodeException ex)

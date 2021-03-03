@@ -168,7 +168,14 @@ namespace PL
 
         private void aviability_status_TextBlock(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if(aviability_status_TextBlock)
+            if(currentbus.sts)
+        }
+
+        private void foul_status_TextBlock(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            BO.Bus b = currentbus as BO.Bus;
+
+            bl.foul_Status(currentbus);
         }
 
         /* private void refresh(object sender, DependencyPropertyChangedEventArgs e)

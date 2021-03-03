@@ -44,7 +44,7 @@
             </TabItem>
         </TabControl>
         <TextBlock x:Name="aviability_status" HorizontalAlignment="Left" Margin="47,109,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="48" Width="124" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
-        <TextBlock x:Name="foul_status" HorizontalAlignment="Left" Margin="47,178,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="48" Width="124"/>
+        <TextBlock x:Name="foul_status" HorizontalAlignment="Left" Margin="47,178,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="48" Width="124" DataContextChanged="foul_status_TextBlock"/>
         <StackPanel x:Name="actions_pannel" HorizontalAlignment="Left" Height="452" Margin="792,0,0,0" Width="198" Background="#FF1C2663" VerticalAlignment="Top">
             <Button x:Name="delete_bus" Content="delete bus" Margin="0,50,0,0" Height="53" Click="delete_bus_Click" Foreground="#FFF7F7FB" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" HorizontalContentAlignment="Center" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}"/>
             <Button x:Name="update_bus" Content="update bus"  Height="53" Click="update_bus_Click" Foreground="WhiteSmoke" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}">

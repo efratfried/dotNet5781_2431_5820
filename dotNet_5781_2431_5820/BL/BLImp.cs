@@ -9,7 +9,7 @@ using BO;
 
 namespace BL
 {
-    class BLImp : IBL ,IQueryable//internal
+    class BLImp : IBL, IQueryable//internal
     {
         IDL dl = DLFactory.GetDL();
         static Random rand = new Random();
@@ -139,11 +139,51 @@ namespace BL
                 throw new BO.BadBusIdException("Bus ID is illegal", Ex);
             }
         }
+        public BO.Foul_Status foul_Status(BO.Bus bus)
+        {
+                if (bus.foul == 0)
+                {
+                bus.Foul_Status = Foul_Status.empty;
+                }
 
-        #endregion Bus
+                if (bus.foul == 600)
+                {//as we check in some websisites
+                bus.Foul_Status = Foul_Status.full_tank;
+                }
 
-        #region Station
-        BO.Station StationDoBoAdapter(DO.Station StationDO)
+                if (bus.foul < 400 && bus.foul > 200)
+                {
+                bus.Foul_Status = Foul_Status.avrage;
+                }
+
+                if (bus.foul < 300 && bus.foul > 0)
+                {
+                bus.Foul_Status = Foul_Status.low;
+                }
+                return bus.Foul_Status;
+        }
+        public BO.Status status(BO.Bus bus)
+        {
+            if (bus.KM > 20000 || bus.foul < 100)
+            {
+                bus.Status = Status.UnAvailable;
+            }
+            else if (bus.drivingBusesDuco.Last().finish == false)
+            {
+                bus.Status = Status.OnDrive;
+            }
+            else
+            {
+                bus.Status = Status.Available;
+            }
+            return bus.Status;
+        }
+
+
+#endregion Bus
+
+#region Station
+BO.Station StationDoBoAdapter(DO.Station StationDO)
         {
             BO.Station StationBO = new BO.Station();
             string CodeStation = StationDO.CodeStation;

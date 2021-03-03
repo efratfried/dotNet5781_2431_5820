@@ -16,6 +16,8 @@ namespace BLAPI
         void UpdateBusPersonalDetails(BO.Bus bus);
         void DeleteBus(string id);
         void AddBus(BO.Bus bus);
+        BO.Foul_Status foul_Status(BO.Bus bus);
+        BO.Status status(BO.Bus bus);
 
         #endregion
 

@@ -20,6 +20,7 @@ namespace DLAPI
         void UpdateBus(DO.Bus Bus);
         //void UpdateBus(string Num, Action<DO.Bus> update); //method that knows to updt specific fields in Person
         void DeleteBus(string Num);
+      
         #endregion
 
         #region BusLine

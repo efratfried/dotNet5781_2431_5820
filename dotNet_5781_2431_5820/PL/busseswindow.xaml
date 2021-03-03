@@ -58,7 +58,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button x:Name="add_bus" Content="add a new bus" Margin="0" Height="53" Click="add_bus_Click" Foreground="#FFF9F9FB" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}"/>
+            <Button x:Name="add_bus" Content="add a new bus" Margin="0" Height="53" Click="add_bus_Click" Foreground="#FFF9F9FB" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}" FontFamily="Segoe UI" />
         </StackPanel>
         <Rectangle x:Name="SlidePanel" HorizontalAlignment="Left" Height="52" Margin="980,51,0,0" VerticalAlignment="Top" Width="13" Fill="PaleGreen" Visibility="Visible" StrokeLineJoin="Miter"/>
         <Rectangle HorizontalAlignment="Left" Height="7" VerticalAlignment="Top" Width="990" Fill="PaleGreen" Visibility="Visible" StrokeLineJoin="Miter"/>

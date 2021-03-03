@@ -1,0 +1,57 @@
+﻿<Application x:Class="PL.App"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:local="clr-namespace:PL"
+            StartupUri="AppUser.xaml">
+    
+    <Application.Resources>
+        <Style x:Key="commonStyle"
+           TargetType="Control">
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+        <Style  TargetType="Button" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="BorderThickness" Value="0,0,0,3"/>
+            <Setter Property="BorderBrush" Value="#FF7EC700"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+
+        <Style  TargetType="Label" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+
+
+        <Style TargetType="ComboBox" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="VerticalAlignment" Value="Center">
+            </Setter>
+            <Setter Property="FontWeight" Value="Bold">
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBox" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="VerticalAlignment" Value="Center">
+            </Setter>
+            <Setter Property="FontWeight" Value="Bold">
+            </Setter>
+        </Style>
+
+
+
+        <Style x:Key="ButtonTrigger" TargetType="Button" BasedOn="{StaticResource ButtonCommonStyle}">
+
+
+            <Setter Property="Content" Value="Yes!" />
+            <Setter Property="Foreground" Value="Green" />
+
+        </Style>
+
+
+    </Application.Resources>
+</Application>

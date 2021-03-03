@@ -7,13 +7,14 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="EnteringWindow" Height="485" Width="1000">
-    <Window.Background>
-        <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/background.JFIF"/>
-    </Window.Background>
-    <Grid>
-        <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/login.PNG" Margin="875,10,25.6,394.2"/>
-        <Label x:Name="Welcome" Content="Welcome to our system" Margin="192,168,194.6,168.2" FontSize="50" FontStyle="Normal" Foreground="White"/>
-        <Button x:Name="connect" Content="log in" HorizontalAlignment="Left" Margin="896,10,0,0" VerticalAlignment="Top" Width="51" Height="51" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="18" Click="Button_Click" Background="{x:Null}">
+    <Grid Margin="0,0,267.6,99.2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="149*"/>
+        </Grid.RowDefinitions>
+        <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG" Margin="-54,0,-299,-293" Grid.RowSpan="2"/>
+        <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/login.PNG" Margin="896,-140,-221,150" Grid.RowSpan="2"/>
+        <Button x:Name="connect" Content="log in" HorizontalAlignment="Left" Margin="896,10,-221,0" VerticalAlignment="Top" Width="51" Height="51" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="18" Click="Button_Click" Background="{x:Null}" Grid.RowSpan="2">
             <Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>
@@ -24,6 +25,9 @@
                 </Style>
             </Button.Style>
         </Button>
+        <MediaElement LoadedBehavior="Play" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/The Travego Coach - Official Trailer _ Mercedes-Benz Buses.mp4" Margin="73,-59,-170,-161" Grid.RowSpan="2"/>
+
+
 
     </Grid>
 </Window>

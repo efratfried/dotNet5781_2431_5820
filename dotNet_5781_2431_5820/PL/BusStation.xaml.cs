@@ -45,16 +45,14 @@ namespace PL
         }
 
         private void RefreshAllLinesOfStationGrid()
-        {
-            IEnumerable<PO.Station> MyBusinstation = bl.GetBusLines().SelectMany(busl=>busl.stationsList.Contains(MyStation)).Cast<PO.Station>();
+        {          
+            IEnumerable<PO.Station> MyBusinstation = bl.GetAllLinesPerStation(int.Parse(MyStation.CodeStation)).Cast<PO.Station>().ToList();
             linesDataGrid.ItemsSource = MyBusinstation;
-
-            linesDataGrid.DataContext = bl.GetAllLinesPerStation(MyStation.Code);
         }
 
         private void StationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MyStation = (StationComboBox.SelectedItem as BO.Station);
+            MyStation = StationComboBox.SelectedItem as PO.Station;
             gridOneStation.DataContext = MyStation;
 
             if (MyStation != null)
@@ -63,38 +61,44 @@ namespace PL
             }
         }
 
-        private void BTUpdate_Click(object sender, RoutedEventArgs e)
+        private void StationUpdate_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                PO.Station s = MyStation;
                 if (addressTextBox.Text != "" && nameTextBox.Text != "" && longitudeTextBox.Text != "" && lattitudeTextBox.Text != "")
-                {
-                    BO.Station newStat = new BO.Station();//a local station, to save the changes that the user made in station's fields.
-                    newStat.Code = MyStation.Code;
-                    newStat.Address = addressTextBox.Text;
-                    newStat.Name = nameTextBox.Text;
-                    newStat.Longitude = double.Parse(longitudeTextBox.Text);
-                    newStat.Lattitude = double.Parse(lattitudeTextBox.Text);
-                    if (newStat != null)
-                        bl.UpdateStationDetails(newStat);
+                {                     
+                    
+                    //BO.Station newStat = new BO.Station();//a local station, to save the changes that the user made in station's fields.
+                    s.CodeStation = MyStation.CodeStation;
+                    s.Adress.Address = addressTextBox.Text;
+                    s.StationName = nameTextBox.Text;
+                    s.longitude = double.Parse(longitudeTextBox.Text);
+                    s.Latitude = double.Parse(lattitudeTextBox.Text);
+                    if (s != null)
+                    {
+                        BO.Station temp = Convert;
 
-                    MyStation = newStat;//if succeded, change MyStation fields to be as the new stat. if not- dont do that.
+                        bl.UpdateStationPersonalDetails(s);
+                    }
+                        
+
+                    MyStation = s;//if succeded, change MyStation fields to be as the new stat. if not- dont do that.
                     RefreshAllStationsComboBox();//to save the changes
                 }
                 else//if not all fields are full
                 {
-                    throw new BO.StationException("cannot update the station since not all fields were filled");
+                    throw new BO.BadStationException("cannot update the station since not all fields were filled");
                 }
 
             }
-            catch (BO.StationException ex)
+            catch (BO.BadStationException ex)
             {
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-
-        private void BTDelete_Click(object sender, RoutedEventArgs e)
+        private void StationDelete_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult res = MessageBox.Show("Delete selected station?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.No)
@@ -103,20 +107,19 @@ namespace PL
             {
                 if (MyStation != null)
                 {
-                    bl.DeleteStation(MyStation.Code);
+                    bl.DeleteStation(MyStation.CodeStation);
 
                     RefreshAllLinesOfStationGrid();
                     RefreshAllStationsComboBox();
                 }
             }
-            catch (BO.StationException ex)
+            catch (BO.BadStationException ex)
             {
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-
-        private void BTAdd_Click(object sender, RoutedEventArgs e)
+        private void StationAdd_Click(object sender, RoutedEventArgs e)
         {
             BO.Station stat = new BO.Station();//a new Station
 
@@ -125,20 +128,21 @@ namespace PL
             addStationWindow.ShowDialog();
         }
 
-
         private void addStationWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try
             {
                 if (!(sender as AddStation).AllFieldsWereFilled)
-                    throw new BO.StationException("cannot add the station since not all fields were filled");
+                { //if not all the fields are full
+                    throw new BO.BadStationException("cannot add the station since not all fields were filled"); 
+                }
 
                 BO.Station newStationBO = (sender as AddStation).addedStat;
-                bl.AddStationToList(newStationBO);
+                bl.AddStation(newStationBO);
 
                 RefreshAllStationsComboBox();
             }
-            catch (BO.StationException ex)
+            catch (BO.BadStationException ex)
             {
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -148,11 +152,11 @@ namespace PL
         {
             try
             {
-                BO.Line lineBO = ((sender as Button).DataContext as BO.Line);
-                bl.DeleteStationFromLine(MyStation.Code, lineBO.LineId);
+                BO.BusLine lineBO = ((sender as Button).DataContext as BO.BusLine);
+                bl.DeleteStationFromLine(lineBO, MyStation.CodeStation);
                 RefreshAllLinesOfStationGrid();
             }
-            catch (BO.LineStationException ex)
+            catch (BO.BadBusStationLineCodeException ex)
             {
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -187,7 +191,6 @@ namespace PL
 
             //no other keys are allowed
             e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
-
         }
 
         private void lattitudeTextBox_PreviewKeyDown(object sender, KeyEventArgs e)

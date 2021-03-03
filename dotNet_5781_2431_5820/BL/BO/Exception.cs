@@ -182,16 +182,16 @@ namespace BO
     public class BadBusStationLineCodeException : Exception
     {
         public string BusID;
-        public string BusStationNum;
-        public BadBusStationLineCodeException(string BID, string LID) : base() { BusID = BID; BusStationNum = LID; }
+        public string StationNum;
+        public BadBusStationLineCodeException(string BID, string LID) : base() { BusID = BID; StationNum = LID; }
         public BadBusStationLineCodeException(string BID, string LID, string message) :
             base(message)
-        { BusID = BID; BusStationNum = LID; }
+        { BusID = BID; StationNum = LID; }
         public BadBusStationLineCodeException(string BID, string LID, string message, Exception innerException) :
             base(message, innerException)
-        { BusID = BID; BusStationNum = LID; }
+        { BusID = BID; StationNum = LID; }
 
-        public override string ToString() => base.ToString() + $", bad Bus id: {BusID} and Station id: {BusStationNum}";
+        public override string ToString() => base.ToString() + $", bad Bus id: {BusID} and Station id: {StationNum}";
     }
     [Serializable]
     public class BadUserName_PasswordException : Exception

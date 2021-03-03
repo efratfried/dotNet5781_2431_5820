@@ -8,6 +8,7 @@ namespace BO
 {
     public class BusLine
     {
+        public int ID { set; get; }
         public int BusNum { set; get; }
         public Area Area { set; get; }
         public int FirstStation { set; get; }

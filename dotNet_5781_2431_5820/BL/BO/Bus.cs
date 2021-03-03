@@ -15,7 +15,7 @@ namespace BO
         public Foul_Status Foul_Status { get; set; }
         public Status Status { get; set; }
         public Firm Firm { get; set; }
-        public IEnumerable <DO.Accident> AccidentsDuco { get; set; }
+        public IEnumerable <BO.Accident> AccidentsDuco { get; set; }
         public IEnumerable<Treat> TreatsDuco { get; set; }
         public IEnumerable<DrivingBus> drivingBusesDuco { get; set; }
         public override string ToString() => this.ToStringProperty();

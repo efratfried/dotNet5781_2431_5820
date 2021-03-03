@@ -23,12 +23,26 @@ namespace PL
     public partial class busseswindow : Window
     {
         IBL bl;
-        BO.Bus currentbus;
+        PO.Bus currentbus;
         public busseswindow(IBL _bl)
         {
-
             InitializeComponent();
-            busses_list.ItemsSource =;
+            Refreshbusses_listComboBox();
+          
+
+            void Refreshbusses_listComboBox()//refresh the combobox each time the user changes the selection 
+            {
+                IEnumerable<PO.Bus> bus = bl.GetAllBuss().Cast<PO.Bus>();
+                currentbus = bus.FirstOrDefault();
+                busses_list.ItemsSource = bus;
+
+            }
+
+            /*void RefreshAllLineStationsOfLineGrid()
+            {
+                IEnumerable<PO.BusLine> busLines;
+                lineStationDataGrid.DataContext = bl.GetAllBuss();
+            }*/
             //   RefreshAllBussesComboBox();
 
 
@@ -68,14 +82,13 @@ namespace PL
     */
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int id;
             if (busses_list.SelectedIndex < 0)
                 return;
             try
             {
                 IEnumerable<BO.Bus> templist = bl.GetAllBuss().Cast<BO.Bus>();
 
-                currentbus = busses_list.SelectedItem as BO.Bus;
+                currentbus = busses_list.SelectedItem as PO.Bus;
             }
             catch (BO.BadBusLineIdException ex)
             {
@@ -85,20 +98,45 @@ namespace PL
 
         private void inner_info_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            currentbusID.DataContext = bl.GetAllBuss();
-            currentbusID.SelectedIndex = 0; //index of the object to be selected
+            try
+            {
+                if (inner_info.SelectedItem == accident)
+                {
+                    BO.Bus bus = bl.GetBus(currentbus.LicenseNum.ToString());
+                    inner_info.DataContext = bus.AccidentsDuco;
+                }
+
+                if (inner_info.SelectedItem == treats)
+                {
+                    BO.Bus bus = bl.GetBus(currentbus.LicenseNum.ToString());
+                    inner_info.DataContext = bus.TreatsDuco;
+                }
+
+                if (inner_info.SelectedItem == last_drives)
+                {
+                    BO.Bus bus = bl.GetBus(currentbus.LicenseNum.ToString());
+                    inner_info.DataContext = bus.drivingBusesDuco;
+                }
+                else
+                {
+                    throw new BO.BadBusLineIdException("you didnt choose a duocment");
+                }
+            }
+            catch (BO.BadBusLineIdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            //currentbusID.DataContext = bl.GetAllBuss();
+            //currentbusID.SelectedIndex = 0; //index of the object to be selected
         }
 
         private void start_driving_Click(object sender, RoutedEventArgs e)
         {
-            while ()
-            {
                 delete_bus.IsEnabled = false;
                 update_bus.IsEnabled = false;
                 start_driving.IsEnabled = false;
                 start_filling_foul.IsEnabled = false;
-                start_treatment.IsEnabled = false;
-            }
+                start_treatment.IsEnabled = false;           
         }
 
         private void start_filling_foul_Click(object sender, RoutedEventArgs e)
@@ -128,10 +166,15 @@ namespace PL
 
         }
 
-        private void refresh(object sender, DependencyPropertyChangedEventArgs e)
+        private void aviability_status_TextBlock(object sender, DependencyPropertyChangedEventArgs e)
         {
-            var iweil = bl.GetAllBuss().Select(item => new InvoiceWithEntryInfo().ToList();
+            if(aviability_status_TextBlock)
         }
+
+        /* private void refresh(object sender, DependencyPropertyChangedEventArgs e)
+         {
+             var iweil = bl.GetAllBuss().Select(item => new InvoiceWithEntryInfo().ToList();
+         }*/
 
 
 

@@ -16,6 +16,7 @@ namespace BLAPI
         void UpdateBusPersonalDetails(BO.Bus bus);
         void DeleteBus(string id);
         void AddBus(BO.Bus bus);
+
         #endregion
 
         #region Station
@@ -24,11 +25,12 @@ namespace BLAPI
         BO.Station GetStation(string BusStationLineNum);
         void AddStation(BO.Station station);
         void UpdateStationPersonalDetails(BO.Station station);
-        void DeleteStation(BO.Station station);
+        void DeleteStation(string code);
 
         #endregion
 
         #region BusStationLine
+        void DeleteStationFromLine(BO.BusLine busline, string code);
         IEnumerable<BO.BusStationLine> GetAllBusStationLines();
        // IEnumerable<BO.BusStationLine> GetBusStationLinesBy(Predicate<BO.BusStationLine> predicate);
         IEnumerable<BO.BusStationLine> GetBusStationLineList(string BusStationLineNum);
@@ -46,7 +48,7 @@ namespace BLAPI
         IEnumerable<BO.BusLine> GetBusLines();
         IEnumerable<BO.BusLine> GetBusLineIDList();
         //IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate);
-        IEnumerable<BO.BusStationLine> GetAllLineStationsPerLine(int LineId);
+        IEnumerable<BO.BusLine> GetAllLinesPerStation(int code);
         void UpdateBusLinePersonalDetails(BO.BusLine busLine);
         void DeleteBusLine(int Num);
         void AddBusLine(BO.BusLine busLine);
@@ -69,6 +71,11 @@ namespace BLAPI
         void UpdateOutGoingLinePersonalDetails(BO.OutGoingLine outgoingline);
         void DeleteOutGoingLine(BO.OutGoingLine outgoingline);
         void AddOutGoingLine(BO.Bus outgoingline);
+        #endregion
+        #region Accident
+        BO.Bus GetAccident(BO.Bus bus,int num);
+        IEnumerable<BO.Bus> GetAccidentBy(Predicate<BO.Bus> predicate);
+        void AddAccident(BO.Bus bus);
         #endregion
     }
 }

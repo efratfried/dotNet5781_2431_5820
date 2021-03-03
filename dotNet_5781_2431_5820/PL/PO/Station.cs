@@ -20,7 +20,7 @@ namespace PO
         public string CodeStation { get => (string)GetValue(CodeStationProperty); set => SetValue(CodeStationProperty, value); }
         public bool DisableAccess { get => (bool)GetValue(DisableAccessProperty); set => SetValue(DisableAccessProperty, value); }
         public double Latitude { get => (double)GetValue(LatitudeProperty); set => SetValue(LatitudeProperty, value); }
-        public double firlongitudem { get => (double)GetValue(longitudeProperty); set => SetValue(longitudeProperty, value); }
+        public double longitude { get => (double)GetValue(longitudeProperty); set => SetValue(longitudeProperty, value); }
     }
 }
 

@@ -28,11 +28,13 @@ namespace PO
         static readonly DependencyProperty KMProperty = DependencyProperty.Register("foul", typeof(string), typeof(Bus));
         static readonly DependencyProperty foulProperty = DependencyProperty.Register("Status", typeof(int), typeof(Bus));
         static readonly DependencyProperty FirmProperty = DependencyProperty.Register("Firm", typeof(string), typeof(Bus));
+        static readonly DependencyProperty AccidentProperty = DependencyProperty.Register("Accident", typeof(BO.Accident), typeof(Bus));
         public int LicenseNum { get => (int)GetValue(LicenseNumProperty); set => SetValue(LicenseNumProperty, value); }
         public DateTime LicenseDate { get => (DateTime)GetValue(LicenseDateProperty); set => SetValue(LicenseDateProperty, value); }
         public BO.Status Status { get => (BO.Status)GetValue(StatusProperty); set => SetValue(StatusProperty, value); }
         public double KM { get => (double)GetValue(KMProperty); set => SetValue(KMProperty, value); }
         public double foul { get => (int)GetValue(foulProperty); set => SetValue(foulProperty, value); }
         public BO.Firm firm { get => (BO.Firm)GetValue(FirmProperty); set => SetValue(FirmProperty, value); }
+        public BO.Accident Accident { get => (BO.Accident)GetValue(AccidentProperty); set => SetValue(FirmProperty, value); }
     }
 }

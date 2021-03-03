@@ -13,6 +13,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
+      
 
         <ComboBox x:Name="busses_list" ItemsSource="{Binding}"  Height="29" Margin="426,70,237,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
         <Button x:Name="start_treatment" Content="start treat" HorizontalAlignment="Left" Margin="154,373,0,0" VerticalAlignment="Top" Width="146" Click="start_treatment_Click" Foreground="DarkBlue" BorderBrush="#FF10168C" Height="20"/>
@@ -21,7 +22,7 @@
 
         <TabControl x:Name="inner_info" HorizontalAlignment="Left" Height="269" Margin="426,141,0,0" VerticalAlignment="Top" Width="337" SelectionChanged="inner_info_SelectionChanged">
             <TabItem x:Name="accident" Header="accident ducoments" Foreground="DarkBlue" BorderBrush="#FF10168C">
-                <Grid x:Name="Bus_Ducoments" Background="#FFE5E5E5" Margin="0,0,0,-4" RenderTransformOrigin="0.479,0.505">
+                <Grid x:Name="Bus_Ducoments" Background="#FFE5E5E5"  Margin="0,0,0,-4" RenderTransformOrigin="0.479,0.505" DataContext="{Binding}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="18*"/>
                         <RowDefinition Height="227*"/>
@@ -32,7 +33,8 @@
                         <ColumnDefinition Width="103*"/>
                         <ColumnDefinition Width="181*"/>
                     </Grid.ColumnDefinitions>
-                </Grid>
+                </Grid >
+
             </TabItem>
             <TabItem x:Name="treats" Header="treats ducoments" Foreground="DarkBlue" BorderBrush="#FF10168C">
                 <Grid Background="#FFE5E5E5"/>
@@ -41,8 +43,8 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
-        <TextBlock x:Name="aviability_status" HorizontalAlignment="Left" Margin="47,109,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="48" Width="124" RenderTransformOrigin="0.487,0.292"/>
-        <TextBlock x:Name="foul_status" HorizontalAlignment="Left" Margin="47,178,0,0" TextWrapping="Wrap" Text="{Binding }" VerticalAlignment="Top" Height="48" Width="124"/>
+        <TextBlock x:Name="aviability_status" HorizontalAlignment="Left" Margin="47,109,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="48" Width="124" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
+        <TextBlock x:Name="foul_status" HorizontalAlignment="Left" Margin="47,178,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="48" Width="124"/>
         <StackPanel x:Name="actions_pannel" HorizontalAlignment="Left" Height="452" Margin="792,0,0,0" Width="198" Background="#FF1C2663" VerticalAlignment="Top">
             <Button x:Name="delete_bus" Content="delete bus" Margin="0,50,0,0" Height="53" Click="delete_bus_Click" Foreground="#FFF7F7FB" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" HorizontalContentAlignment="Center" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}"/>
             <Button x:Name="update_bus" Content="update bus"  Height="53" Click="update_bus_Click" Foreground="WhiteSmoke" Background="{x:Null}" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Medium" FontSize="14" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}">

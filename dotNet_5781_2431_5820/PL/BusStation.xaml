@@ -79,15 +79,14 @@
 
 
         </DataGrid>
-        <Button x:Name="BTUpdate" Content="Update station" HorizontalAlignment="Left" Margin="20,13.8,0,0" VerticalAlignment="Center" Width="104" Click="BTUpdate_Click" Grid.Column="1" Grid.Row="3" />
-        <Button x:Name="BTDelete" Content="Delete station" HorizontalAlignment="Center" Margin="135.8,22.8,227.6,8" VerticalAlignment="Center" Width="87" Click="BTDelete_Click" Grid.ColumnSpan="3" Grid.Column="2" Grid.Row="3" />
-        <Button x:Name="BTAdd"    Content="Add station"    HorizontalAlignment="Left" Margin="6.5,13.8,0,0" VerticalAlignment="Center" Width="81" Click="BTAdd_Click" Grid.Column="5" Grid.Row="3"  />
+        <Button x:Name="StationUpdate" Content="Update station" HorizontalAlignment="Left" Margin="20,13.8,0,0" VerticalAlignment="Center" Width="104" Click="BTUpdate_Click" Grid.Column="1" Grid.Row="3" />
+        <Button x:Name="StationDelete" Content="Delete station" HorizontalAlignment="Center" Margin="135.8,22.8,227.6,8" VerticalAlignment="Center" Width="87" Click="BTDelete_Click" Grid.ColumnSpan="3" Grid.Column="2" Grid.Row="3" />
+        <Button x:Name="StationAdd"    Content="Add station"    HorizontalAlignment="Left" Margin="6.5,13.8,0,0" VerticalAlignment="Center" Width="81" Click="BTAdd_Click" Grid.Column="5" Grid.Row="3"  />
         <Label Content="All the lines that pass in this station:" HorizontalAlignment="Left" Margin="4.4,4.8,0,0" VerticalAlignment="Bottom" Grid.Column="4" Height="24" Width="230" Grid.Row="1" Grid.ColumnSpan="2" />
         <Label Content="~Stations Information~ " HorizontalAlignment="Stretch"  VerticalAlignment="Center" Height="41" Width="451" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="0" Margin="143,0,0,0"/>
         <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="6" Content="Esti and Nov" Margin="43.6,18.8,0,18" Width="84" FontWeight="Light" Height="24" Grid.Row="3"/>
         <Label Content="Longitude   : 34.3-35.5 " HorizontalAlignment="Left" Margin="143,210.8,0,0" VerticalAlignment="Top" Width="133"  FontSize="10" Foreground="YellowGreen" Height="22" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
         <Label Content="Latitude     :      31-33.3" HorizontalAlignment="Left" Margin="143,181.8,0,0" VerticalAlignment="Top" Width="136" Height="29"  FontSize="10" Foreground="YellowGreen" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
-
 
     </Grid>
 </Window>

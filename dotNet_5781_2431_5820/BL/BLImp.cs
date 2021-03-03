@@ -9,7 +9,7 @@ using BO;
 
 namespace BL
 {
-    class BLImp : IBL //internal
+    class BLImp : IBL ,IQueryable//internal
     {
         IDL dl = DLFactory.GetDL();
         static Random rand = new Random();
@@ -33,7 +33,7 @@ namespace BL
 
             BusBO.AccidentsDuco = from sic in dl.GetAllAccidentsList(sic => sic.LicenseNum == LicenseNum)
                                   let Accident = dl.GetAccident(sic.AccidentNum)
-                                  select (DO.Accident)Accident.CopyPropertiesToNew(typeof(DO.Accident));
+                                  select (BO.Accident)Accident.CopyPropertiesToNew(typeof(BO.Accident));
 
 
             return BusBO;
@@ -351,7 +351,23 @@ namespace BL
                    let BOlineStation = BusStationLineDoBoAdapter(DOlineStation)
                    select BOlineStation;
         }
+        public void DeleteStationFromLine(BO.BusLine busline, string code)
+        {
+            try
+            {
+                if(busline.stationsList.Contains(code)==false)
+                {
+                    throw new BO.BadBusStationLineCodeException(busline.ID.ToString(),code);
+                }
 
+                dl.DeleteBusStationLine(code);
+            }
+            catch
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusStationLineCodeException("Bus LicenseNum does not exist or it is not a Bus", Ex);
+            }
+        }
         #endregion
 
         #region BusLine
@@ -388,17 +404,17 @@ namespace BL
                    orderby LineDO.BusNum           //order it by their bus number
                    select BusLineDoBoAdapter(LineDO);
         }
-        public IEnumerable<BO.BusStationLine> GetAllLineStationsPerLine(int code)
+        public IEnumerable<BO.BusLine> GetAllLinesPerStation(int code)
         {
-            return from BusStationLine in dl.GetBusStationLinesListThatMatchAStation(code.ToString())
-                   let BusLine = dl.GetBusLine(BusStationLine.ID)
-                   select BusLine.CopyDOLineStationToBOLine(BusStationLine);
+            return from lineStation in dl.GetBusStationLinesListThatMatchAStation(code.ToString())
+                   let line = dl.GetBusLine(int.Parse(lineStation.ID))
+                   select line.CopyDOLineStationToBOLine(lineStation);
         }
         public IEnumerable<BO.BusLine> GetBusLines()
         {
             return from BusLineDO in dl.GetAllBusLines()
                    orderby BusLineDO.ID
-                   select BusLineDoBoAdapter(BusLineDO);
+                   select BuslineDoBoAdapter(BusLineDO);
         }
         public BO.BusLine GetBusLine(int LicenseNum)
         {
@@ -422,12 +438,14 @@ namespace BL
             //       select Bus;
             return from BusLineDO in dl.GetAllBusLines()
                    orderby BusLineDO.IsDeleted
-                   select BusLineDoBoAdapter(BusLineDO);
+                   select BuslineDoBoAdapter(BusLineDO);
         }
-       /* public IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate)
+       /public IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate)
         {
-            throw new NotImplementedException();
-        }*/
+            return from BusLineDO in dl.GetAllBusLines()
+                   where BusLineDO.
+                   select BuslineDoBoAdapter(BusLineDO);
+        }
         public IEnumerable<BO.BusLine> GetBusLineLicenseNumList()
         {
             return from LineDO in dl.GetAllBusLines()
@@ -688,5 +706,31 @@ namespace BL
           }
 
         #endregion OutGoingLine
+
+        #region Accident
+
+        /*BO.Bus GetAccident(BO.Bus bus, int num)
+        {
+            DO.Accident AccidentDO;
+            try
+            {
+                AccidentDO = dl.GetAccident(num);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("the given accident didnt accured in this bus", Ex);
+            }
+            return BusDoBoAdapter(AccidentDO as );
+        }*/
+        IEnumerable<BO.Bus> GetAccidentBy(Predicate<BO.Bus> predicate)
+        {
+
+        }
+        void AddAccident(BO.Bus bus)
+        {
+
+        }
+        #endregion
     }
 }

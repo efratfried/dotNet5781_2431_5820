@@ -35,6 +35,8 @@ namespace BL
                                   let Accident = dl.GetAccident(sic.AccidentNum)
                                   select (BO.Accident)Accident.CopyPropertiesToNew(typeof(BO.Accident));
 
+            BusBO.Status = status(BusBO);
+            BusBO.Foul_Status = foul_Status(BusBO);
 
             return BusBO;
         }

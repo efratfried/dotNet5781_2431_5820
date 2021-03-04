@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="AddLine" Height="450" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/background.JFIF"/>
+        <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
     </Window.Background>
 
     <Grid>
@@ -25,7 +25,7 @@
             <ColumnDefinition Width="199*"/>
             <ColumnDefinition Width="182*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="AddLineButton" Content="Add the Line" HorizontalAlignment="Center" Margin="73,41,136,0" VerticalAlignment="Top" Width="211" Click="AddLineButton_Click" Background="#FFFCFCFC" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" FontSize="14" FontWeight="Bold" Foreground="DarkBlue">
+        <Button x:Name="AddLineButton" Content="Add the Line" HorizontalAlignment="Center" Margin="73,41,136,0" VerticalAlignment="Top" Width="211" Click="AddLineButton_Click" Background="#FFFCFCFC" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" FontSize="14" FontWeight="Bold" Foreground="Black">
             <Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>
@@ -50,7 +50,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,3.2" Grid.Row="0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White"/>
+            <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,3.2" Grid.Row="0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black"/>
             <ComboBox x:Name="areaComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3.6,5,0,5.2" Grid.Row="0" VerticalAlignment="Center" Width="120" SelectionChanged="areaComboBox_SelectionChanged">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -58,13 +58,13 @@
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label Content="Bus Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.8,0,3.4" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White"/>
+            <Label Content="Bus Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.8,0,3.4" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black"/>
             <TextBox x:Name="busNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3.6,3.8,0,4.4" Grid.Row="1" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown"/>
-            <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.6,0,4.4" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White"/>
+            <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.6,0,4.4" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black"/>
             <ComboBox x:Name="firstStationComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="4.6,5.6,-1.2,5.4" Grid.Row="2" VerticalAlignment="Center" Width="319" SelectionChanged="firstStationComboBox_SelectionChanged" Grid.ColumnSpan="3"/>
-            <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.6,0,4.4" Grid.Row="3" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White"/>
+            <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.6,0,4.4" Grid.Row="3" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black"/>
             <ComboBox x:Name="lastStationComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="4.6,5.6,-1.2,5.4" Grid.Row="3" VerticalAlignment="Center" Width="319" SelectionChanged="lastStationComboBox_SelectionChanged" Grid.ColumnSpan="3"/>
         </Grid>
-        <Label Content="Add line details:" HorizontalAlignment="Stretch" Margin="3,31,0,16.2" VerticalAlignment="Center" Height="40" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5"/>
+        <Label Content="Add line details:" Foreground="White" BorderBrush="Black" Height="47" FontSize="32" Margin="21,23,195,17.2" Grid.ColumnSpan="3" Grid.RowSpan="2" />
     </Grid>
 </Window>

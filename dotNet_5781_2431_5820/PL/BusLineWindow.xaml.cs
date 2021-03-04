@@ -69,7 +69,7 @@ namespace PL
             {
                 if (MyBusLine != null && busNumberTextBox.Text != "" && firstStationTextBox.Text != "" && lastStationTextBox.Text != "")
                 {
-                    UpdateWindow win = new UpdateWindow();
+                    UpdateBusLineWindow win = new UpdateBusLineWindow();
                     win.Show();
                     MyBusLine.BusNum = int.Parse(busNumberTextBox.Text);
                     MyBusLine.FirstStation = firstStationTextBox.Text;
@@ -81,10 +81,10 @@ namespace PL
                     NewLine.FirstStation = int.Parse(firstStationTextBox.Text);
                     NewLine.LastStation = int.Parse(lastStationTextBox.Text);*/
 
-                    if (NewLine != null)
-                        bl.UpdateBusLinePersonalDetails(NewLine);
+                    if (MyBusLine != null)
+                        bl.UpdateBusLinePersonalDetails(MyBusLine);
 
-                    MyBusLine = NewLine;//if succeded, change currLine fields to be as the line. if not- dont do that.
+                    MyBusLine = MyBusLine;//if succeded, change currLine fields to be as the line. if not- dont do that.
                     RefreshAllLinesComboBox();//refresh the combo box to save the changes!!!
                 }
                 else//if not all fields are full

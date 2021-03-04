@@ -68,5 +68,9 @@ namespace PL
             areaComboBox.SelectedItem = areaComboBox;
         }
 
+        private void AddLineButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

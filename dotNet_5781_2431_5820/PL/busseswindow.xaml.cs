@@ -29,13 +29,15 @@ namespace PL
             InitializeComponent();
             Refreshbusses_listComboBox();
           
-
-            void Refreshbusses_listComboBox()//refresh the combobox each time the user changes the selection 
+             void Refreshbusses_listComboBox()//refresh the combobox each time the user changes the selection 
             {
                 IEnumerable<PO.Bus> bus = bl.GetAllBuss().Cast<PO.Bus>();
                 currentbus = bus.FirstOrDefault();
                 busses_list.ItemsSource = bus;
-
+                Licensenumbus.DataContext = currentbus.LicenseNum;
+                foul_status.DataContext = currentbus.foul;
+                km_.DataContext = currentbus.KM;
+                aviability_status.DataContext = currentbus.Status;
             }
 
             /*void RefreshAllLineStationsOfLineGrid()
@@ -151,31 +153,36 @@ namespace PL
 
         private void update_bus_Click(object sender, RoutedEventArgs e)
         {
-            SlidePanel.Height = update_bus.Height;
 
         }
 
         private void delete_bus_Click(object sender, RoutedEventArgs e)
         {
-            SlidePanel.Height = delete_bus.Height;
+            try
+            {
+                bl.DeleteBus(currentbus.LicenseNum.ToString());
+                Refreshbusses_listComboBox();
+            }
+            catch (BO.BadBusIdException ex)
+            {
+                MessageBox.Show(ex.Message + ex.InnerException, "Could'nt delete the bus", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void add_bus_Click(object sender, RoutedEventArgs e)
         {
-            SlidePanel.Height = add_bus.Height;
+            AddBus ab = new AddBus();
+            ab.ShowDialog();
 
         }
 
         private void aviability_status_TextBlock(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if(currentbus.sts)
+       //     if(currentbus.sts)
         }
 
         private void foul_status_TextBlock(object sender, DependencyPropertyChangedEventArgs e)
         {
-            BO.Bus b = currentbus as BO.Bus;
-
-            bl.foul_Status(currentbus);
         }
 
         /* private void refresh(object sender, DependencyPropertyChangedEventArgs e)

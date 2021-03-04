@@ -12,9 +12,18 @@
             <RowDefinition Height="29*"/>
             <RowDefinition Height="149*"/>
         </Grid.RowDefinitions>
-        <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG" Margin="-54,0,-299,-293" Grid.RowSpan="2"/>
+        <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG" Margin="-106,-142,-403,-244" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="15.283"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
 
-        <Button x:Name="connect" Content="log in" HorizontalAlignment="Left" Margin="936,10,-255,0" VerticalAlignment="Top" Width="45" Height="46" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="18" Click="Button_Click" Background="{x:Null}">
+        <Button x:Name="connect" Content="log in" HorizontalAlignment="Left" Margin="924,-5,-237,0" VerticalAlignment="Top" Width="39" Height="38" BorderBrush="{x:Null}" Foreground="{x:Null}" FontSize="18" Click="Button_Click" Background="{x:Null}">
             <Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>
@@ -26,7 +35,7 @@
             </Button.Style>
         </Button>
         <MediaElement LoadedBehavior="Play" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/The Travego Coach - Official Trailer _ Mercedes-Benz Buses.mp4" Margin="76,-59,-173,-161" Grid.RowSpan="2" />
-        <Image x:Name="login" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logout.PNG" Margin="891,10,-299,0" RenderTransformOrigin="0.548,0.483" Height="48" VerticalAlignment="Top" />
+        <Image x:Name="login" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logout.PNG" Margin="885,-4,-272,0" RenderTransformOrigin="0.548,0.483" Height="38" VerticalAlignment="Top" />
         <Label x:Name="Welcone" Content="Welcome to Path Finder" FontSize="60" Margin="136,201.6,-114,10" Grid.Row="1" Foreground="White" FontWeight="Bold" FontFamily="Century Gothic"/>
     </Grid>
 </Window>

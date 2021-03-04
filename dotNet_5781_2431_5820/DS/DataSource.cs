@@ -595,7 +595,6 @@ namespace DS
                     LicenseDate = new DateTime(2018, 7, 8),
                     KM = 100000,
                     foul = 80.2,
-                    Status = Status.Available
                 },
                 new Bus
                 {
@@ -603,7 +602,7 @@ namespace DS
                     LicenseDate = new DateTime(2020, 10, 22),
                     KM = 10000,
                     foul = 50.3,
-                    Status = Status.Available
+                   // Status = Status.Available
                 },
                 new Bus
                 {
@@ -611,7 +610,7 @@ namespace DS
                     LicenseDate = new DateTime(2015, 12, 1),
                     KM = 120000,
                     foul = 23.5,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -619,7 +618,7 @@ namespace DS
                     LicenseDate = new DateTime(2019, 11, 3),
                     KM = 15000,
                     foul = 45.9,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -627,7 +626,7 @@ namespace DS
                     LicenseDate = new DateTime(2010, 10, 16),
                     KM = 200540,
                     foul = 10,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -635,7 +634,7 @@ namespace DS
                     LicenseDate = new DateTime(2013, 7, 27),
                     KM = 151234,
                     foul = 67,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -643,7 +642,7 @@ namespace DS
                     LicenseDate = new DateTime(2020, 4, 14),
                     KM = 4567,
                     foul = 22.6,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -651,7 +650,7 @@ namespace DS
                     LicenseDate = new DateTime(2018, 3, 14),
                     KM = 40980,
                     foul = 0,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -659,7 +658,7 @@ namespace DS
                     LicenseDate = new DateTime(2019, 5, 17),
                     KM = 20003,
                     foul = 50,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -667,7 +666,7 @@ namespace DS
                     LicenseDate = new DateTime(2016, 4, 19),
                     KM = 80450,
                     foul = 27.6,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -675,7 +674,7 @@ namespace DS
                     LicenseDate = new DateTime(1999, 12, 17),
                     KM = 300000,
                     foul = 0,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -683,7 +682,7 @@ namespace DS
                     LicenseDate = new DateTime(2019, 11, 18),
                     KM = 15330,
                     foul = 39.6,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -691,7 +690,7 @@ namespace DS
                     LicenseDate = new DateTime(2020, 9, 28),
                     KM = 2500,
                     foul = 17.8,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -699,7 +698,7 @@ namespace DS
                     LicenseDate = new DateTime(2020, 1, 12),
                     KM = 89045,
                     foul = 34.8,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -707,7 +706,7 @@ namespace DS
                     LicenseDate = new DateTime(2019, 8, 18),
                     KM = 54098,
                     foul = 43.9,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -715,7 +714,7 @@ namespace DS
                     LicenseDate = new DateTime(2018, 6, 26),
                     KM = 101089,
                     foul = 11.4,
-                    Status = Status.Available
+                    // = Status.Available
                 },
                 new Bus
                 {
@@ -723,7 +722,7 @@ namespace DS
                     LicenseDate = new DateTime(2017, 10, 6),
                     KM = 109670,
                     foul = 28.7,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -731,7 +730,7 @@ namespace DS
                     LicenseDate = new DateTime(2019, 8, 19),
                     KM = 57892,
                     foul = 38.2,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -739,7 +738,7 @@ namespace DS
                     LicenseDate = new DateTime(2016, 5, 15),
                     KM = 178954,
                     foul = 11.2,
-                    Status = Status.Available
+                    //Status = Status.Available
                 },
                 new Bus
                 {
@@ -747,7 +746,7 @@ namespace DS
                     LicenseDate = new DateTime(2020, 12, 29),
                     KM = 0,
                     foul = 50,
-                    Status = Status.Available
+                    //Status = Status.Available
                 }
             #endregion
             };

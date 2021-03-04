@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL"
         mc:Ignorable="d"
-        Title="Connecting" Height="485" Width="1000" WindowStartupLocation="CenterScreen" >
+        Title="Connecting" Height="485" Width="1000" WindowStartupLocation="CenterScreen" Icon="logo1.png" >
     <Grid x:Name="Connection_Grid">
 
         <Label Content="manager login" HorizontalAlignment="Left" Margin="630,60,0,0" VerticalAlignment="Top" Height="41" Width="187" FontWeight="Bold" FontStyle="Normal" FontSize="20">
@@ -27,15 +27,15 @@
         <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/user_icon.PNG" Margin="876,106,73.6,326.2"/>
         <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/user_icon.PNG" Margin="356,277,593.6,155.2"/>
         <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/user_icon.PNG" Margin="356,106,593.6,326.2"/>
-        <Label Content="user login " HorizontalAlignment="Left" Margin="137,60,0,0" VerticalAlignment="Top" Height="41" Width="161" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="DarkBlue" />
+        <Label Content="user login " HorizontalAlignment="Left" Margin="137,60,0,0" VerticalAlignment="Top" Height="41" Width="161" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black" />
         <TextBox x:Name="user_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,108,0,0" TextChanged="user_Name_TextChanged" BorderBrush="#FF10168C"/>
         <TextBox x:Name="user_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,156,0,0" TextChanged="user_password_TextChanged" BorderBrush="#FF10168C"/>
-       
 
-        <Label Content=" sign in" HorizontalAlignment="Left" Margin="160,216,0,0" VerticalAlignment="Top" Height="41" Width="198" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="DarkBlue"/>
+
+        <Label Content=" sign in" HorizontalAlignment="Left" Margin="160,220,0,0" VerticalAlignment="Top" Height="41" Width="80" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black"/>
         <TextBox x:Name="Newuser_name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,277,0,0" TextChanged="Newuser_namePassword_TextChanged" BorderBrush="#FF10168C"/>
         <TextBox x:Name="NewUser_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="248" Margin="87,334,0,0" TextChanged="NewUser_password_TextChanged" BorderBrush="#FF10168C"/>
-            <Button x:Name="entering" Content="entering"  HorizontalAlignment="Left" Height="42" Margin="483,363,0,0" VerticalAlignment="Top" Width="105" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="entering" Foreground="DarkBlue" RenderTransformOrigin="0.634,1.212" >
+        <Button x:Name="entering" Content="entering"  HorizontalAlignment="Left" Height="42" Margin="483,363,0,0" VerticalAlignment="Top" Width="105"  FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black" Click="entering"  RenderTransformOrigin="0.634,1.212" >
             <Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>

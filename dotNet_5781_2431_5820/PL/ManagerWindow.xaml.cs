@@ -26,23 +26,30 @@ namespace PL
         {
             InitializeComponent();
             username.DataContext = user.UserName;
+            SlidePanel.Opacity = 0.0;
         }
 
         private void busses_Click(object sender, RoutedEventArgs e)
         {
+            SlidePanel.Opacity = 1;
+            SlidePanel.Height = busses.Height;
             PL.busseswindow busseswindow= new PL.busseswindow(bl);
             busseswindow.ShowDialog();//CANT OPEN OTHER WHEN FIRST NOT CLOSE
         }
 
         private void buslines_Click(object sender, RoutedEventArgs e)
         {
+            SlidePanel.Opacity = 1;
+            SlidePanel.Height = buslines.Height;
             PL.BusLineWindow buslineswindow = new PL.BusLineWindow(bl);
             buslineswindow.ShowDialog();
         }
 
         private void Stations_Click(object sender, RoutedEventArgs e)
         {
-            PL.BusStation stationwindow = new PL.BusStation(bl);
+            SlidePanel.Opacity = 1;
+            SlidePanel.Height = Stations.Height;
+            PL.StationsWindow stationwindow = new StationsWindow(bl);
             stationwindow.ShowDialog();
         }
 

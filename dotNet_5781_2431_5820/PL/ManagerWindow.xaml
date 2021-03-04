@@ -8,10 +8,14 @@
         mc:Ignorable="d"
         Title="ManagerWindow" Height="600" Width="1200">
     <Grid x:Name="Main_Window" Margin="-223,-69,-126,-77" Background="#FFF7F7F7">
+
+        <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/road.JFIF" Margin="-18,-8,273.6,-80.6"/>
+
+        <Rectangle Fill="Orange" HorizontalAlignment="Left" Height="716" Stroke="Orange" VerticalAlignment="Top" Width="298" Margin="1244,0,0,0"/>
         <StackPanel x:Name="The_items_opening_window" HorizontalAlignment="Left" Height="567" VerticalAlignment="Top" Width="1189" Margin="55,72,0,0" Background="White"  />
-        <Button x:Name="busses" Content="busses" HorizontalAlignment="Left" Margin="1246,172,0,0" VerticalAlignment="Top" Width="296" Height="77" Click="busses_Click" FontSize="20" Foreground="DarkBlue" BorderBrush="DarkBlue">
+        <Button x:Name="busses" Content="Busses" HorizontalAlignment="Left" Margin="1246,251,0,0" VerticalAlignment="Top" Width="300" Height="77" FontWeight="Bold" Click="busses_Click" FontSize="28" Foreground="White" Background="Black">
             <Button.Style>
-                <Style TargetType="Button">
+                <Style TargetType="{x:Type Button}">
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Foreground" Value="DimGray"/>
@@ -20,11 +24,12 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="Stations"  Content="תחנות" HorizontalAlignment="Left" Margin="1244,336,0,0" VerticalAlignment="Top" Width="297" Height="77" Click="Stations_Click" FontSize="20" Foreground="DarkBlue" BorderBrush="DarkBlue"/>
-        <Button x:Name="buslines"  Content="BusLines" HorizontalAlignment="Left" Margin="1244,254,0,0" VerticalAlignment="Top" Width="297" Height="77" Click="buslines_Click" FontSize="20" Foreground="DarkBlue" BorderBrush="DarkBlue"/>
-        <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/user_icon.PNG"  Margin="1336,0,66.6,0" VerticalAlignment="Top" Height="47"/>
-        <Label Content="hello" FontSize="32" Margin="1223,52,235.6,607.4" Foreground="DarkBlue" FontWeight="Bold"/>
-        <TextBox x:Name="username" DataContext="{Binding}"  HorizontalAlignment="Left" Height="57" Margin="1321,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="167" IsReadOnly="True" FontSize="32" Foreground="DarkBlue" FontWeight="Bold" TextChanged="username_TextChanged"/>
-        <Button x:Name="log_out" Content="log out" Height="60" Margin="0,0,1365.6,656.4" FontSize="25" Foreground="DarkBlue" FontWeight="Bold" Click="log_out_Click"/>
+        <Button x:Name="Stations"  Content="Stations" HorizontalAlignment="Left" Margin="1244,437,0,0" VerticalAlignment="Top" Width="297" Height="77" Click="Stations_Click" FontSize="28" Foreground="White" Background="Black" FontWeight="Bold"/>
+        <Button x:Name="buslines"  Content="BusLines" HorizontalAlignment="Left" Margin="1244,344,0,0" VerticalAlignment="Top" Width="297" Height="77" Click="buslines_Click" FontSize="28" Foreground="White" Background="Black" FontWeight="Bold"/>
+        <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/user_icon2.PNG"  Margin="1291,24,43.6,0" VerticalAlignment="Top" Height="99"/>
+        <Label Content="hello" FontSize="32" Margin="1291,145,167.6,515.4" Foreground="Black" FontWeight="Bold"/>
+        <TextBox x:Name="username" DataContext="{Binding}"  HorizontalAlignment="Left" Height="57" Margin="1378,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="121" IsReadOnly="True" FontSize="32" Foreground="DarkBlue" FontWeight="Bold" TextChanged="username_TextChanged"/>
+        <Button x:Name="log_out" Content="log out" Height="60" Margin="0,0,1365.6,656.4" FontSize="25" Foreground="Black" FontWeight="Bold" Click="log_out_Click"/>
+        <Rectangle x:Name="SlidePanel" HorizontalAlignment="Left" Height="77" Margin="1534,250,0,0" VerticalAlignment="Top" Width="8" Fill="White" Visibility="Visible" StrokeLineJoin="Miter"/>
     </Grid>
 </Window>

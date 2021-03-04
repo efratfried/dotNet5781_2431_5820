@@ -73,8 +73,8 @@
     <Compile Include="busseswindow.xaml.cs">
       <DependentUpon>busseswindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BusStation.xaml.cs">
-      <DependentUpon>BusStation.xaml</DependentUpon>
+    <Compile Include="StationsWindow.xaml.cs">
+      <DependentUpon>StationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="conecting.xaml.cs">
       <DependentUpon>conecting.xaml</DependentUpon>
@@ -161,7 +161,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BusStation.xaml">
+    <Page Include="StationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

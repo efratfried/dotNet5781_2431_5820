@@ -67,11 +67,11 @@ namespace PL
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
 
-            TimeSpan tsCurrentTime = tsStartTime + stopwatch.Elapsed;
-            string timmerText = tsCurrentTime.ToString().Substring(0, 8);
+            TimeSpan CurrentTime = tsStartTime + stopwatch.Elapsed;
+            string timmerText = CurrentTime.ToString().Substring(0, 8);
             this.timerTextBlock.Text = timmerText;
             //לממש את הפונקציה!
-            nisayon.ItemsSource = BL.GetLineTimingPerStation(station, tsCurrentTime).ToList();
+            nisayon.ItemsSource = BL.GetLineTimingPerStation(station, CurrentTime).ToList();
             //lineTimingList = new ObservableCollection<BO.LineTiming>(BL.GetLineTimingPerStation(station, tsCurrentTime)); //התצוגה תתעדכן כי זה אובזרוובל קוללקשיין
         }
 

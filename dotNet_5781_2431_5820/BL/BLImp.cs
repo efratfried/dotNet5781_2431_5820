@@ -183,8 +183,8 @@ namespace BL
 
 #endregion Bus
 
-#region Station
-BO.Station StationDoBoAdapter(DO.Station StationDO)
+        #region Station
+        BO.Station StationDoBoAdapter(DO.Station StationDO)
         {
             BO.Station StationBO = new BO.Station();
             string CodeStation = StationDO.CodeStation;
@@ -295,6 +295,10 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
                 string Ex = ex.ToString();
                 throw new BO.BadStationException("station num is illegal", Ex);
             }
+        }
+        public TimeSpan GetLineTimingPerStation(BO.Station station, TimeSpan CurrentTime)
+        {
+
         }
 
         #endregion
@@ -543,6 +547,7 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
                 throw new BO.BadBusIdException("Bus ID is illegal", Ex);
             }
         }
+
         #endregion
 
         #region User

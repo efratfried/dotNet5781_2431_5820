@@ -91,6 +91,9 @@
     <Compile Include="UpdateBusLineWindow.xaml.cs">
       <DependentUpon>UpdateBusLineWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateStation.xaml.cs">
+      <DependentUpon>UpdateStation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\DeepCopyUtilities.cs" />
     <Compile Include="ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
@@ -183,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateStation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

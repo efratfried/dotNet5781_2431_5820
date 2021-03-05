@@ -28,6 +28,7 @@ namespace BLAPI
         void AddStation(BO.Station station);
         void UpdateStationPersonalDetails(BO.Station station);
         void DeleteStation(string code);
+        TimeSpan GetLineTimingPerStation(BO.Station station, TimeSpan CurrentTime);
 
         #endregion
 
@@ -54,6 +55,7 @@ namespace BLAPI
         void UpdateBusLinePersonalDetails(BO.BusLine busLine);
         void DeleteBusLine(int Num);
         void AddBusLine(BO.BusLine busLine);
+        
         #endregion
 
         #region user

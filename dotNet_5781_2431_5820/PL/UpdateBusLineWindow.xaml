@@ -58,7 +58,7 @@
                     </ComboBox.ItemsPanel>
                 </ComboBox>
                 <Label Content="Bus Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.8,0,3.4" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White"/>
-                <TextBox x:Name="busNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3.6,3.8,0,4.4" Grid.Row="1" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown"/>
+                <TextBox x:Name="busNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3.6,3.8,0,4.4" Grid.Row="1" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown" TextChanged="busNumberTextBox_TextChanged"/>
                 <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.6,0,4.4" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White"/>
                 <ComboBox x:Name="firstStationComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="4.6,5.6,-1.2,5.4" Grid.Row="2" VerticalAlignment="Center" Width="319" SelectionChanged="firstStationComboBox_SelectionChanged" Grid.ColumnSpan="3"/>
                 <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.6,0,4.4" Grid.Row="3" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White"/>

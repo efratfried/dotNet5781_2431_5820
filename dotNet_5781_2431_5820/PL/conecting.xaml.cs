@@ -73,5 +73,25 @@ namespace PL
         {
 
         }
+
+        private void NewUser_password_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Newuser_namePassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void user_password_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void user_Name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

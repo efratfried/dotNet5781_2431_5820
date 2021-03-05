@@ -103,12 +103,22 @@ namespace PL
             this.Close();
         }
 
-      /*  private bool CheckEqual()
+        private void areaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(lastStationComboBox.)
-            {
 
-            }
-        }*/
+        }
+
+        private void busNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        /*  private bool CheckEqual()
+          {
+              if(lastStationComboBox.)
+              {
+
+              }
+          }*/
     }
 }

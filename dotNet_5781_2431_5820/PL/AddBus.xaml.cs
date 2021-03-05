@@ -65,5 +65,20 @@ namespace PL
         {
             addbus.Firm = (BO.Firm)(firm.SelectedIndex);
         }
+
+        private void LicenseNum_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void busfoul_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void busKM_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

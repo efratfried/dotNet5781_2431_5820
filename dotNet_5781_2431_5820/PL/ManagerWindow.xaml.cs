@@ -49,7 +49,7 @@ namespace PL
         {
             SlidePanel.Opacity = 1;
             SlidePanel.Height = Stations.Height;
-            PL.StationsWindow stationwindow = new StationsWindow(bl);
+            PL.StationsWindow1 stationwindow = new StationsWindow1(bl);
             stationwindow.ShowDialog();
         }
 
@@ -58,6 +58,11 @@ namespace PL
             this.Close();
             conecting win1 = new conecting();
             win1.ShowDialog();
+        }
+
+        private void username_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

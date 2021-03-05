@@ -18,11 +18,11 @@ namespace PL
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class ManagerWindow : Window
     {
         IBL bl = BLFactory.GetBL("1");
 
-        public Window1(PO.User user)
+        public ManagerWindow(PO.User user)
         {
             InitializeComponent();
             username.DataContext = user.UserName;

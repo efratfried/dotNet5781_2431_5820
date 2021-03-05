@@ -11,20 +11,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
 using BLAPI;
+using ViewModel;
+
 
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for StationsWindow.xaml
+    /// Interaction logic for StationsWindow1.xaml
     /// </summary>
-    public partial class StationsWindow : Window
+    public partial class StationsWindow1 : Window
     {
-        IBL bl;
+
+        public IBL bl;
         PO.Station MyStation;
 
-        public StationsWindow(IBL _bl)
+        public StationsWindow1(IBL _bl)
         {
             InitializeComponent();
             bl = _bl;
@@ -45,7 +47,7 @@ namespace PL
         }
 
         private void RefreshAllLinesOfStationGrid()
-        {          
+        {
             IEnumerable<PO.Station> MyBusinstation = bl.GetAllLinesPerStation(int.Parse(MyStation.CodeStation)).Cast<PO.Station>().ToList();
             linesDataGrid.ItemsSource = MyBusinstation;
         }
@@ -67,8 +69,8 @@ namespace PL
             {
                 PO.Station s = MyStation;
                 if (addressTextBox.Text != "" && nameTextBox.Text != "" && longitudeTextBox.Text != "" && lattitudeTextBox.Text != "")
-                {                     
-                    
+                {
+
                     //BO.Station newStat = new BO.Station();//a local station, to save the changes that the user made in station's fields.
                     s.CodeStation = MyStation.CodeStation;
                     s.Adress.Address = addressTextBox.Text;
@@ -77,11 +79,11 @@ namespace PL
                     s.Latitude = double.Parse(lattitudeTextBox.Text);
                     if (s != null)
                     {
-                        BO.Station temp = Convert;
-
-                        bl.UpdateStationPersonalDetails(s);
+                        BO.Station temp = new BO.Station();
+                        s.DeepCopyTo(temp);
+                        bl.UpdateStationPersonalDetails(temp);
                     }
-                        
+
 
                     MyStation = s;//if succeded, change MyStation fields to be as the new stat. if not- dont do that.
                     RefreshAllStationsComboBox();//to save the changes
@@ -134,7 +136,7 @@ namespace PL
             {
                 if (!(sender as AddStation).AllFieldsWereFilled)
                 { //if not all the fields are full
-                    throw new BO.BadStationException("cannot add the station since not all fields were filled"); 
+                    throw new BO.BadStationException("cannot add the station since not all fields were filled");
                 }
 
                 BO.Station newStationBO = (sender as AddStation).addedStat;
@@ -222,6 +224,11 @@ namespace PL
 
             //no other keys are allowed
             e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
+
+        }
+
+        private void CBChosenStat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
     }

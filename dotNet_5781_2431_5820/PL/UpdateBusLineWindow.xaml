@@ -35,7 +35,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Grid x:Name="grid1" DataContext="{StaticResource lineViewSource}" HorizontalAlignment="Stretch" Margin="3,21.8,0,0" VerticalAlignment="Center" Height="138" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2">
+            <Grid x:Name="grid1" HorizontalAlignment="Stretch" Margin="3,21.8,0,0" VerticalAlignment="Center" Height="138" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>

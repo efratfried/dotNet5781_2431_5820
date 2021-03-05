@@ -7,7 +7,9 @@
         xmlns:BO="clr-namespace:BO;assembly=BL" xmlns:BLAPI="clr-namespace:BLAPI;assembly=BL" 
         mc:Ignorable="d"
         Title="BusLinesWindow" Height="450" Width="1134" FontFamily="Tahoma"  Foreground="White">
-
+    <Window.Background>
+        <ImageBrush ImageSource="/C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/bgmore.JPG"/>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="86*"/>
@@ -27,16 +29,18 @@
             <ColumnDefinition Width="62*"/>
             <ColumnDefinition Width="102*"/>
             <ColumnDefinition Width="130*"/>
-            <ColumnDefinition Width="105*"/>
+            <ColumnDefinition Width="97*"/>
+            <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-
-        <Button x:Name="BusLineUpdate" Content="Update line" HorizontalAlignment="Left" Margin="0.6,12.2,0,0" VerticalAlignment="Top" Width="121" Click="BTUpdate_Click"  Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4"/>
-        <Button x:Name="BusLineDelete" Content="Delete line" HorizontalAlignment="Left" Margin="15.2,12.2,0,0" VerticalAlignment="Top" Width="86" Click="BTDelete_Click"   Grid.Column="5" Grid.Row="4"/>
-        <Button x:Name="BusLineAdd"    Content="Add line"    HorizontalAlignment="Left" Margin="39.2,12.2,0,0" VerticalAlignment="Top" Width="98" Click="BTAdd_Click"   Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="BusLineComboBox" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="26.6,5.6,0,0" VerticalAlignment="Top" Width="119" SelectionChanged="ComboBox_SelectionChanged" Grid.Column="1" FontWeight="Bold" Height="21" Grid.ColumnSpan="2" Grid.Row="1"/>
-        <Label Content="selected line:" HorizontalAlignment="Left" Margin="44,2.6,0,0" VerticalAlignment="Top" Width="93" FontFamily="Tahoma"  Foreground="Navy" Grid.ColumnSpan="2" RenderTransformOrigin="0.55,1.493" Height="24" Grid.Row="1"/>
-        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="4,0.4,30,18.8" RowDetailsVisibilityMode="VisibleWhenSelected" FontFamily="Tahoma"  Foreground="Navy" Grid.Column="4"  LoadingRow="lineStationDataGrid_LoadingRow" GridLinesVisibility="Horizontal"  HorizontalGridLinesBrush="LightGray"  FontWeight="bold" Grid.ColumnSpan="7" Grid.Row="2" Grid.RowSpan="2" SelectionChanged="lineStationDataGrid_SelectionChanged"  >
+        <Image Source="/C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/busicon.PNG" Grid.ColumnSpan="2" Margin="69,39,0.4,132.2" Grid.RowSpan="3"/>
+        <Button x:Name="BusLineUpdate" Content="Update line" HorizontalAlignment="Left" Margin="0.6,12.8,0,0" VerticalAlignment="Top" Width="121" Click="BTUpdate_Click"  Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4"/>
+        <Button x:Name="BusLineDelete" Content="Delete line" HorizontalAlignment="Left" Margin="15.566,12.8,0,0" VerticalAlignment="Top" Width="86" Click="BTDelete_Click"   Grid.Column="5" Grid.Row="4"/>
+        <Button x:Name="BusLineAdd"    Content="Add line"    HorizontalAlignment="Left" Margin="39.766,12.8,0,0" VerticalAlignment="Top" Width="98" Click="BTAdd_Click"   Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="BusLineComboBox" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="27.6,55.4,0,0" VerticalAlignment="Top" Width="128" SelectionChanged="ComboBox_SelectionChanged" Grid.Column="1" FontWeight="Bold" Height="29" Grid.ColumnSpan="3" Grid.Row="2"/>
+        <Label Content="selected line:" HorizontalAlignment="Left" Margin="41,55.4,0,0" VerticalAlignment="Top" Width="127" FontWeight="Bold" FontSize="14" Foreground="Black" Grid.ColumnSpan="2" RenderTransformOrigin="0.55,1.493" Height="29" Grid.Row="2"/>
+        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="4.366,0.4,21.5,19.2" RowDetailsVisibilityMode="VisibleWhenSelected" FontFamily="Tahoma"  Foreground="Black" Grid.Column="4"  LoadingRow="lineStationDataGrid_LoadingRow" GridLinesVisibility="Horizontal"  HorizontalGridLinesBrush="LightGray"  FontWeight="bold" Grid.ColumnSpan="7" Grid.Row="2" Grid.RowSpan="2" SelectionChanged="lineStationDataGrid_SelectionChanged"  >
             <DataGrid.Columns>
+
                 <DataGridTextColumn x:Name="lineStationIndexColumn" Binding="{Binding LineStationIndex}" Header="Line Station Index" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="codeColumn" Binding="{Binding Code}" Header="Code" Width="80"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="240"/>
@@ -53,7 +57,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Grid x:Name="gridOneLine" HorizontalAlignment="Left" Margin="44,16.4,0,0" VerticalAlignment="Top" Grid.ColumnSpan="4" Height="122" Width="221" Grid.Row="2">
+        <Grid x:Name="gridOneLine" HorizontalAlignment="Left" Margin="41,110.4,0,0" VerticalAlignment="Top" Grid.ColumnSpan="4" Height="122" Width="221" Grid.Row="2" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -67,14 +71,14 @@
             </Grid.RowDefinitions>
             <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontFamily="Tahoma" />
             <ComboBox x:Name ="areaComboBox" Grid.Column="1" HorizontalAlignment="Left"  Height="23" Margin="2.6,3.6,0,3.8" Grid.Row="1" SelectedItem="{Binding Area}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy"/>
-            <Label Content="Bus Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontFamily="Tahoma" />
+            <Label Content="Bus Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="1,3,0,3.4" Grid.Row="0" VerticalAlignment="Center" FontFamily="Tahoma" />
             <TextBox x:Name="busNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.6,4,0,3.4" Grid.Row="0" Text="{Binding BusNumber, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy" PreviewKeyDown="busNumberTextBox_PreviewKeyDown"/>
             <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontFamily="Tahoma"  />
             <TextBox x:Name="firstStationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="2.6,3.2,0,3.2" Grid.Row="2" Text="{Binding FirstStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy" PreviewKeyDown="firstStationTextBox_PreviewKeyDown"/>
             <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontFamily="Tahoma"  />
             <TextBox x:Name="lastStationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.6,3.8,0,3.6" Grid.Row="3" Text="{Binding LastStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma" PreviewKeyDown="lastStationTextBox_PreviewKeyDown"/>
         </Grid>
-        <Label Content="All the station of the line:" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center" Margin="0,9.6,108.2,0" VerticalAlignment="Top" Height="22" Width="207" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-        <Label Content="         ~Lines Information~ " HorizontalAlignment="Left" Margin="10,15,0,15.4" VerticalAlignment="Center" Height="56" Width="714" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" Grid.Column="4" Grid.ColumnSpan="7"/>
+        <Label Content="All the station of the line:" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center" Margin="0.366,9.6,107.834,0" VerticalAlignment="Top" Height="22" Width="207" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <Label Content="         Lines Information " HorizontalAlignment="Left" Margin="104.366,15,0,15.4" VerticalAlignment="Center" Height="56" Width="305" FontWeight="Bold" FontSize="30" Foreground="black" FontFamily="Narkisim" Grid.Column="4" Grid.ColumnSpan="3"/>
     </Grid>
 </Window>

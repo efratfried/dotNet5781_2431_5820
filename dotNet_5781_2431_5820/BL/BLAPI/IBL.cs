@@ -33,13 +33,13 @@ namespace BLAPI
 
         #region BusStationLine
         void DeleteStationFromLine(BO.BusLine busline, string code);
-        IEnumerable<BO.BusStationLine> GetAllBusStationLines();
+        IEnumerable<BO.BusStationLine> GetAllBusStationLines(int num);
        // IEnumerable<BO.BusStationLine> GetBusStationLinesBy(Predicate<BO.BusStationLine> predicate);
         IEnumerable<BO.BusStationLine> GetBusStationLineList(string BusStationLineNum);
         BO.Station GetBusStationLine(string StationNum);
         void AddBusStationLine(BO.BusStationLine BusstationLine);
         void UpdateBusStationLinePersonalDetails(BO.BusStationLine BusstationLine);
-        void DeleteBusStationLine(BO.BusStationLine bus_station_line);
+        void DeleteBusStationLine(string num);
         IEnumerable<BO.BusStationLine> GetAllBusStationLinesPerLine(int lineId);
 
         #endregion

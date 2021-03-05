@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using ViewModel;
 using BLAPI;
 
 namespace PL
@@ -48,7 +48,7 @@ namespace PL
         void RefreshAllLineStationsOfLineGrid()
         {
             IEnumerable<PO.BusLine> busLines;
-            lineStationDataGrid.DataContext = bl.GetAllLineStationsPerLine(MyBusLine.LicenseNum);
+            lineStationDataGrid.DataContext = bl.GetAllBusStationLinesPerLine(MyBusLine.BusNum);
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -69,20 +69,20 @@ namespace PL
             {
                 if (MyBusLine != null && busNumberTextBox.Text != "" && firstStationTextBox.Text != "" && lastStationTextBox.Text != "")
                 {
-                    UpdateBusLineWindow win = new UpdateBusLineWindow();
+                    UpdateBusLineWindow win = new UpdateBusLineWindow(MyBusLine);
                     win.Show();
                     MyBusLine.BusNum = int.Parse(busNumberTextBox.Text);
                     MyBusLine.FirstStation = firstStationTextBox.Text;
                     MyBusLine.LastStation = lastStationTextBox.Text;
-                    MyBusLine.Area = areaComboBox.;
-                    /*PO.BusLine NewLine;//a local line, to save the changes that the user made in line's fields.
-                    NewLine.BusNum = int.Parse(busNumberTextBox.Text);
-                    NewLine.Area = (BO.Area)(areaComboBox.SelectedIndex);
-                    NewLine.FirstStation = int.Parse(firstStationTextBox.Text);
-                    NewLine.LastStation = int.Parse(lastStationTextBox.Text);*/
+                    areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
+
 
                     if (MyBusLine != null)
-                        bl.UpdateBusLinePersonalDetails(MyBusLine);
+                    {
+                        BO.BusLine bln=new BO.BusLine();
+                        MyBusLine.DeepCopyTo(bln);
+                        bl.UpdateBusLinePersonalDetails(bln);
+                    }
 
                     MyBusLine = MyBusLine;//if succeded, change currLine fields to be as the line. if not- dont do that.
                     RefreshAllLinesComboBox();//refresh the combo box to save the changes!!!
@@ -149,7 +149,7 @@ namespace PL
                     throw new BO.BadBusLineIdException("cannot add the line, add at least one trip of the line!");
 
                 BO.BusLine newLineBO = (sender as AddLine).addedLine;
-                bl.AddBusLine(newLineBO, (sender as AddLine).listTrips);
+                bl.AddBusLine(newLineBO);
 
                 RefreshAllLinesComboBox();
             }
@@ -173,7 +173,7 @@ namespace PL
             try
             {
                 BO.BusStationLine lineStationBO = ((sender as Button).DataContext as BO.BusStationLine);
-                bl.DeleteBusStationLine(lineStationBO.BusStationNum, MyBusLine.BusNum);
+                bl.DeleteBusStationLine(lineStationBO.BusStationNum);
                 RefreshAllLineStationsOfLineGrid();
             }
             catch (BO.BadBusStationLineCodeException ex)

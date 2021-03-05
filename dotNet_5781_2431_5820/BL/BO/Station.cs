@@ -17,9 +17,9 @@ namespace BO
         public double longitude { get; set; }
         public override string ToString() => this.ToStringProperty();
 
-        internal static void CopyPropertiesTo(DO.Station stationDO)
-        {
-            throw new NotImplementedException();..
-        }
+        //internal static void CopyPropertiesTo(DO.Station stationDO)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

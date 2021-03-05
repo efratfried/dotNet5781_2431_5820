@@ -63,18 +63,12 @@
     <Compile Include="AddStation.xaml.cs">
       <DependentUpon>AddStation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BusLinesOnMapDevideByArea.xaml.cs">
-      <DependentUpon>BusLinesOnMapDevideByArea.xaml</DependentUpon>
-    </Compile>
     <Compile Include="BusLineWindow.xaml.cs">
       <DependentUpon>BusLineWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PO\Bus.cs" />
     <Compile Include="busseswindow.xaml.cs">
       <DependentUpon>busseswindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="StationsWindow.xaml.cs">
-      <DependentUpon>StationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="conecting.xaml.cs">
       <DependentUpon>conecting.xaml</DependentUpon>
@@ -87,6 +81,9 @@
     <Compile Include="PO\User.cs" />
     <Compile Include="SimulateOneStationWindow.xaml.cs">
       <DependentUpon>SimulateOneStationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StationsWindow1.xaml.cs">
+      <DependentUpon>StationsWindow1.xaml</DependentUpon>
     </Compile>
     <Compile Include="UpdateBus.xaml.cs">
       <DependentUpon>UpdateBus.xaml</DependentUpon>
@@ -101,6 +98,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MainWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -148,10 +146,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BusLinesOnMapDevideByArea.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="BusLineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -164,10 +158,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StationsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="conecting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SimulateOneStationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationsWindow1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -103,12 +103,12 @@ namespace PL
             this.Close();
         }
 
-        private bool CheckEqual()
+      /*  private bool CheckEqual()
         {
             if(lastStationComboBox.)
             {
 
             }
-        }
+        }*/
     }
 }

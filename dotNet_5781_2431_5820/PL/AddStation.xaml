@@ -10,8 +10,8 @@
         <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
     </Window.Background>
     <Grid>
-        <Label x:Name="addstationdetails" Content="Add station details" Foreground="White" BorderBrush="Black" Height="47" FontSize="32" Margin="21,26,479.6,382.2"/>
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="271,101,0,0" VerticalAlignment="Top" Height="162" Width="221">
+        <Label x:Name="addstationdetails" Content="Add station details" Foreground="White" BorderBrush="Black" Height="47" FontSize="32" Margin="248,32,252.6,376.2"/>
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="271,141,0,0" VerticalAlignment="Top" Height="162" Width="221">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="100"/>

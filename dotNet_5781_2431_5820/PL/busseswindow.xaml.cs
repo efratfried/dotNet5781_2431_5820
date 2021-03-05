@@ -29,16 +29,7 @@ namespace PL
             InitializeComponent();
             Refreshbusses_listComboBox();
           
-             void Refreshbusses_listComboBox()//refresh the combobox each time the user changes the selection 
-            {
-                IEnumerable<PO.Bus> bus = bl.GetAllBuss().Cast<PO.Bus>();
-                currentbus = bus.FirstOrDefault();
-                busses_list.ItemsSource = bus;
-                Licensenumbus.DataContext = currentbus.LicenseNum;
-                foul_status.DataContext = currentbus.foul;
-                km_.DataContext = currentbus.KM;
-                aviability_status.DataContext = currentbus.Status;
-            }
+             
 
             /*void RefreshAllLineStationsOfLineGrid()
             {
@@ -82,6 +73,16 @@ namespace PL
             }
         }
     */
+        private void Refreshbusses_listComboBox()//refresh the combobox each time the user changes the selection 
+        {
+            IEnumerable<PO.Bus> bus = bl.GetAllBuss().Cast<PO.Bus>();
+            currentbus = bus.FirstOrDefault();
+            busses_list.ItemsSource = bus;
+            Licensenumbus.DataContext = currentbus.LicenseNum;
+            foul_status.DataContext = currentbus.foul;
+            km_.DataContext = currentbus.KM;
+            aviability_status.DataContext = currentbus.Status;
+        }
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (busses_list.SelectedIndex < 0)

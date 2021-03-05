@@ -6,10 +6,14 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="AddBus" Height="485" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
+    </Window.Background>
     <Grid Margin="0,-3,-0.4,3.2">
-        <Label Content="Add bus details:" HorizontalAlignment="Stretch" Margin="285,10,-282.4,370" VerticalAlignment="Center" Height="40" FontWeight="Bold" FontSize="30" Foreground="DarkBlue" FontFamily="Narkisim" RenderTransformOrigin="0.5,0.5"/>
-        <Label Content="Bus LicenseNum:" Grid.Column="0" HorizontalAlignment="Left" Margin="260,129,0,302" VerticalAlignment="Center" Foreground="DarkBlue"/>
-        <TextBox x:Name="LicenseNum" HorizontalAlignment="Left" Height="24" Margin="378,129,0,302" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown">
+       
+        <Label Content="Add bus details" HorizontalAlignment="Stretch" Margin="285,28,312,387" VerticalAlignment="Center" Height="40" FontWeight="Bold" FontSize="30" Foreground="White" FontFamily="Narkisim" RenderTransformOrigin="0.5,0.5"/>
+        <Label Content="Bus LicenseNum:" Grid.Column="0" HorizontalAlignment="Left" Margin="260,129,0,302" VerticalAlignment="Center" Foreground="Black"/>
+        <TextBox x:Name="LicenseNum" HorizontalAlignment="Left" Height="24" Margin="378,129,0,302" Text="{Binding LicenseNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown">
             <TextBox.Style>
                 <Style TargetType="TextBox">
                     <Style.Triggers>
@@ -20,24 +24,14 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <Label Content="Foul" x:Name="foul" Grid.Column="0" HorizontalAlignment="Left" Margin="260,163,0,266" VerticalAlignment="Center" Foreground="DarkBlue"/>
-        <Label Content="Km" Grid.Column="0" HorizontalAlignment="Left" Margin="264,201,0,230" VerticalAlignment="Center" Foreground="DarkBlue"/>
-        <TextBox x:Name="busfoul" HorizontalAlignment="Left" Height="23" Margin="378,158,0,274" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown"/>
-        <TextBox x:Name="busKM" HorizontalAlignment="Left" Height="23" Margin="378,196,0,236" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown"/>
-        <Button x:Name="AddLineDetails" Content="Add Line Details" Margin="453,397,41,28" Foreground="DarkBlue" Height="30" Width="300" Click="AddLineDetails_Click_1">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="DimGray"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button x:Name="AddBus" Content="Add Bus" Margin="38,397,456,28" Foreground="DarkBlue" Height="30" Width="300" Click="AddBus_Click"/>
+        <Label Content="Foul" x:Name="foul" Grid.Column="0" HorizontalAlignment="Left" Margin="260,163,0,266" VerticalAlignment="Center" Foreground="Black"/>
+        <Label Content="Km" Grid.Column="0" HorizontalAlignment="Left" Margin="264,201,0,230" VerticalAlignment="Center" Foreground="Black"/>
+        <TextBox x:Name="busfoul" HorizontalAlignment="Left" Height="23" Margin="378,158,0,274" Text="{Binding busfoul, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown"/>
+        <TextBox x:Name="busKM" HorizontalAlignment="Left" Height="23" Margin="378,196,0,236" Text="{Binding busKM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown"/>
+        <Button x:Name="AddLineDetails" Content="Add Line Details" Margin="453,397,41,28" Foreground="Black" FontWeight="Bold" Height="30" BorderBrush="Black" Width="300" Click="AddLineDetails_Click_1"/>
+        <Button x:Name="Add" Content=" Add Bus " Margin="38,397,456,28" Foreground="black" Height="30" Width="300" BorderBrush="Black" Click="AddBus_Click"/>
         <DatePicker x:Name="LicenseDate" HorizontalAlignment="Left" Margin="549,129,0,0" VerticalAlignment="Top"/>
-        <Label Content="Firm" Grid.Column="0" HorizontalAlignment="Left" Margin="264,234,0,197" VerticalAlignment="Center" Foreground="DarkBlue"/>
+        <Label Content="Firm" Grid.Column="0" HorizontalAlignment="Left" Margin="264,234,0,197" VerticalAlignment="Center" Foreground="Black"/>
         <ComboBox x:Name="firm" HorizontalAlignment="Left" Margin="378,234,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="firm_SelectionChanged"/>
 
     </Grid>

@@ -13,7 +13,7 @@ namespace PO
         public Access Me { protected set; get; }
     #endregion*/
 
-    public abstract class User : DependencyObject
+    public class User : DependencyObject
     {
         static readonly DependencyProperty UserNameProperty = DependencyProperty.Register("UserName", typeof(string), typeof(User));
         static readonly DependencyProperty PasswordProperty = DependencyProperty.Register("Password", typeof(string), typeof(User));

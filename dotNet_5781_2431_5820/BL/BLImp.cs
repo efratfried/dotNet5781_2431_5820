@@ -9,7 +9,7 @@ using BO;
 
 namespace BL
 {
-    class BLImp : IBL, IQueryable//internal
+    class BLImp : IBL//internal
     {
         IDL dl = DLFactory.GetDL();
         static Random rand = new Random();
@@ -89,7 +89,7 @@ namespace BL
         {
             //Update DO.Bus            
             DO.Bus BusDO = new DO.Bus();
-            Bus.CopyPropertiesTo(BusDO);
+            bus.CopyPropertiesTo(BusDO);
             try
             {
                 dl.UpdateBus(BusDO);
@@ -114,7 +114,6 @@ namespace BL
         }
         public void AddBus(BO.Bus bus)
         {
-
             DO.Bus BusDO = new DO.Bus();
             if (bus.LicenseNum.Length != 7 && bus.LicenseNum.Length != 8)
             {
@@ -247,7 +246,7 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
         {
             //Update DO.Bus            
             DO.Station StationDO = new DO.Station();
-            Station.CopyPropertiesTo(StationDO);
+            station.CopyPropertiesTo(StationDO);
             try
             {
                 dl.UpdateStation(StationDO);
@@ -324,9 +323,9 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
             }
             return StationDoBoAdapter(BusStationLineDO);
         }
-        public IEnumerable<BO.BusStationLine> GetAllBusStationLines()
+        public IEnumerable<BO.BusStationLine> GetAllBusStationLines(int num)
         {
-            return from BusStationLineDO in dl.GetBusStationLineList()
+            return from BusStationLineDO in dl.GetBusStationLineList(b => b.ID == num.ToString())
                    orderby BusStationLineDO.ID
                    select BusStationLineDoBoAdapter(BusStationLineDO);
         }
@@ -360,10 +359,9 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
             }
         }
         public void UpdateBusStationLinePersonalDetails(BO.BusStationLine bus_station_num)
-        {
-            //Update DO.Bus            
+        {            
             DO.BusStationLine BusStationLineDO = new DO.BusStationLine();
-            BusStationLine.CopyPropertiesTo(BusStationLineDO);
+            bus_station_num.CopyPropertiesTo(BusStationLineDO);
             try
             {
                 dl.UpdateBusStationLine(BusStationLineDO);
@@ -374,11 +372,11 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
                 throw new BO.BadBusStationLineCodeException("Bus's LicenseNum is illegal", Ex);
             }
         }
-        public void DeleteBusStationLine(BO.BusStationLine bus_station_line)
+        public void DeleteBusStationLine(string num)
         {
             try
             {
-                string BusStationLine = bus_station_line.ToString();
+                string BusStationLine = num;
                 dl.DeleteBusStationLine(BusStationLine);
             }
             catch (DO.BadCodeStationException ex)
@@ -397,14 +395,14 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
         {
             try
             {
-                if(busline.stationsList.Contains(code)==false)
+               /* if(busline.stationsList.Contains(code)==false)
                 {
                     throw new BO.BadBusStationLineCodeException(busline.ID.ToString(),code);
-                }
+                }*/
 
                 dl.DeleteBusStationLine(code);
             }
-            catch
+            catch(DO.BadStationNumException ex)
             {
                 string Ex = ex.ToString();
                 throw new BO.BadBusStationLineCodeException("Bus LicenseNum does not exist or it is not a Bus", Ex);
@@ -418,7 +416,7 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
             BO.BusLine blBO = new BO.BusLine();
             DO.BusLine newblDO;//before copying lineDO to lineBO, we need to ensure that lineDO is legal- legal busNumber.
             //sometimes we get here after the user filled lineDO fields. thats why we copy the given lineDO to a new lineDO and check if it is legal.
-            int blID = blDO.ID;
+           // int blID = blDO.ID;
             int busNumber = blDO.BusNum;
             try
             {
@@ -433,18 +431,18 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
 
             //now we need to restart the "lineStations" list of each line.
 
-            blBO.stationsList = from BusStationLineDO in dl.GetBusStationLinesListOfALine(blID.ToString())
-                                  let lineStationBO = BusStationLineDoBoAdapter(BusStationLineDO)
-                                  select lineStationBO;
+            //blBO.stationsList = from BusStationLineDO in dl.GetBusStationLinesListOfALine(blID.ToString())
+            //                      let lineStationBO = BusStationLineDoBoAdapter(BusStationLineDO)
+            //                      select lineStationBO;
 
-            return BuslineBO;
+            return blBO;
         }
         public IEnumerable<BO.BusLine> GetAllLinesByArea(BO.Area area)
         {
             return from LineDO in dl.GetAllBusLines()
                    where LineDO.Area.CompareTo((DO.Area)area) == 0//if the erea is equal to the given area
                    orderby LineDO.BusNum           //order it by their bus number
-                   select BusLineDoBoAdapter(LineDO);
+                   select BuslineDoBoAdapter(LineDO);
         }
         public IEnumerable<BO.BusLine> GetAllLinesPerStation(int code)
         {
@@ -470,7 +468,7 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
             {
                 throw new BO.BadBusLineIdException("Buss' LicenseNum does not exist or it is not a Bus", ex);
             }
-            return BusLineDoBoAdapter(BusLineDO);
+            return BuslineDoBoAdapter(BusLineDO);
         }
         public IEnumerable<BO.BusLine> GetBusLineIDList()
         {
@@ -482,18 +480,27 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
                    orderby BusLineDO.IsDeleted
                    select BuslineDoBoAdapter(BusLineDO);
         }
-       /public IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate)
+
+       public IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate)
         {
-            return from BusLineDO in dl.GetAllBusLines()
-                   where BusLineDO.
-                   select BuslineDoBoAdapter(BusLineDO);
+
+            List<BO.BusLine> busLines = new List<BusLine>();
+            List<DO.BusLine> busLines1 = dl.GetAllBusLines().ToList();
+            for (int i = 0; i < busLines1.Count; i++)
+            {
+                busLines.Add(BuslineDoBoAdapter(busLines1[i]));
+             //  busLines1[i].CopyPropertiesTo(busLines[i]);
+            }
+            return from l in busLines
+                   where predicate(l)
+                   select l;
         }
         public IEnumerable<BO.BusLine> GetBusLineLicenseNumList()
         {
             return from LineDO in dl.GetAllBusLines()
-                   where LineDO.ID.CompareTo((DO.BusLine)busLine) == 0//if the erea is equal to the given area
-                   orderby LineDO.BusNumber           //order it by their bus number
-                   select BusLineDoBoAdapter(LineDO);
+                   //where LineDO.ID.CompareTo((DO.BusLine)busLine) == 0
+                   orderby LineDO.BusNum           //order it by their bus number
+                   select BuslineDoBoAdapter(LineDO);
         }
         public void UpdateBusLinePersonalDetails(BO.BusLine BusLine)
         {
@@ -523,17 +530,7 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
         }
         public void AddBusLine(BO.BusLine busline)
         {
-
             DO.BusLine BusLineDO = new DO.BusLine();
-            if (busline.LicenseNum.Length != 7 && busline.LicenseNum.Length != 8) 
-            {
-                throw new Exception("invalid license num lengh");
-            }
-
-            if ((busline.LicenseDate.Year < 2018 && busline.LicenseNum.Length != 7) || (busline.LicenseDate.Year >= 2018 && busline.LicenseDate < DateTime.Now && busline.LicenseNum.Length != 8))
-            {//check the validation of the license num accroding to it date
-                throw new Exception("invalid license's date");
-            }
 
             BusLineDO.CopyPropertiesToNew(typeof(BO.BusLine));
             try
@@ -586,7 +583,7 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
             {
                 throw new BO.BadUserName_PasswordException("The user with this password wasn't found\n", ex);
             }
-            return userDoBoAdapter(userDO);
+            return userBoDoAdapter(userDO);
         }
 
         /// <summary>
@@ -624,7 +621,7 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
         public IEnumerable<BO.User> GetAllUsers()
         {
             return from item in dl.GetAllUser()
-                   select userDoBoAdapter(item);
+                   select userBoDoAdapter(item);
         }
 
         #endregion
@@ -687,7 +684,7 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
             return from item in dl.GetOutGoingLineListWithSelectedFields((OutGoingLineDO) =>
             {
                 try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                return new BO.OutGoingLine() { id = OutGoingLineDO.ID };
+               return new BO.OutGoingLine() { /*id=  OutGoingLineDO.ID*/ };
             })
                    let OutGoingLineBO = item as BO.OutGoingLine
                    //orderby Bus.LicenseNum
@@ -723,7 +720,7 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
         public void AddOutGoingLine(BO.Bus OutGoingLine)
         {
 
-            DO.Bus OutGoingLineDO = new DO.Bus();
+            DO.OutGoingLine OutGoingLineDO = new DO.OutGoingLine();
             if (OutGoingLine.LicenseNum.Length != 7 && OutGoingLine.LicenseNum.Length != 8)
             {
                 throw new Exception("invalid license num lengh");
@@ -737,7 +734,7 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
             OutGoingLineDO.CopyPropertiesToNew(typeof(BO.OutGoingLine));
             try
             {
-                dl.AddOutGoingLine(OutGoingLineDO );
+                dl.AddOutGoingLine(OutGoingLineDO);
             }
             catch (DO.BadLicenseNumException ex)
             {
@@ -765,13 +762,38 @@ BO.Station StationDoBoAdapter(DO.Station StationDO)
             }
             return BusDoBoAdapter(AccidentDO as );
         }*/
-        IEnumerable<BO.Bus> GetAccidentBy(Predicate<BO.Bus> predicate)
+      /*  IEnumerable<BO.Bus> GetAccidentBy(Predicate<BO.Bus> predicate)
         {
 
-        }
+        }*/
         void AddAccident(BO.Bus bus)
         {
 
+        }
+
+        public void DeleteStation(string code)
+        {
+            throw new NotImplementedException();
+        }
+
+        DO.User IBL.userBoDoAdapter(User userBO)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Bus GetAccident(Bus bus, int num)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Bus> GetAccidentBy(Predicate<Bus> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IBL.AddAccident(Bus bus)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

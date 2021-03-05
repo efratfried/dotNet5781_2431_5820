@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLAPI;
+using ViewModel;
 namespace PL
 {
     /// <summary>
@@ -45,9 +46,9 @@ namespace PL
                 updatebus.firm = (BO.Firm)firm.SelectedItem;
                 updatebus.KM = double.Parse(km_.Text);
                 updatebus.foul = double.Parse(foul_status.Text);
-                BO.Bus b = updatebus as BO.Bus;
-
-                bL.UpdateBusPersonalDetails(updatebus);
+                BO.Bus b=new BO.Bus();
+                updatebus.DeepCopyTo(b);              
+                bL.UpdateBusPersonalDetails(b);
             }
 
             MessageBoxResult res = MessageBox.Show("update bus details?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);

@@ -25,7 +25,7 @@
             <ColumnDefinition Width="199*"/>
             <ColumnDefinition Width="182*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="AddLineButton" Content="Add the Line" HorizontalAlignment="Center" Margin="73,41,136,0" VerticalAlignment="Top" Width="211" Click="AddLineButton_Click" Background="#FFFCFCFC" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" FontSize="14" FontWeight="Bold" Foreground="Black">
+        <Button x:Name="AddLineButton" Content="Add the Line" HorizontalAlignment="Center" Margin="73,6.2,136,0" VerticalAlignment="Top" Width="211" Click="AddLineButton_Click" Background="#FFFCFCFC" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" FontSize="14" FontWeight="Bold" Foreground="Black">
             <Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>
@@ -36,7 +36,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Grid x:Name="grid1" DataContext="{StaticResource lineViewSource}" HorizontalAlignment="Stretch" Margin="3,21.8,0,0" VerticalAlignment="Center" Height="138" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2">
+        <Grid x:Name="grid1" HorizontalAlignment="Stretch" Margin="3,54.8,0,64.8" VerticalAlignment="Center" Height="138" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -62,9 +62,9 @@
             <TextBox x:Name="busNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3.6,3.8,0,4.4" Grid.Row="1" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown"/>
             <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.6,0,4.4" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black"/>
             <ComboBox x:Name="firstStationComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="4.6,5.6,-1.2,5.4" Grid.Row="2" VerticalAlignment="Center" Width="319" SelectionChanged="firstStationComboBox_SelectionChanged" Grid.ColumnSpan="3"/>
-            <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.6,0,4.4" Grid.Row="3" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black"/>
-            <ComboBox x:Name="lastStationComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="4.6,5.6,-1.2,5.4" Grid.Row="3" VerticalAlignment="Center" Width="319" SelectionChanged="lastStationComboBox_SelectionChanged" Grid.ColumnSpan="3"/>
+            <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,7.2,0,0.6" Grid.Row="3" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="black"/>
+            <ComboBox x:Name="lastStationComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="4.8,11.2,-6.2,3.6" Grid.Row="3" VerticalAlignment="Center" Width="319" SelectionChanged="lastStationComboBox_SelectionChanged" Grid.ColumnSpan="3"/>
         </Grid>
-        <Label Content="Add line details:" Foreground="White" BorderBrush="Black" Height="47" FontSize="32" Margin="21,23,195,17.2" Grid.ColumnSpan="3" Grid.RowSpan="2" />
+        <Label Content="Add line details:" Foreground="White" BorderBrush="Black" Height="47" FontSize="32" Margin="75,30,103,10.2" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" />
     </Grid>
 </Window>

@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="/C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/bgmore.JPG"/>
     </Window.Background>
     <Grid>
-        <Grid x:Name="UpdateStationDetails" Margin="10,92,349.6,103">
+        <Grid x:Name="UpdateStationDetails" Margin="10,92,312.6,103.2" >
             <Label x:Name="Upadress" Content="adress" Margin="11,124,561,100.2" Height="36" FontSize="18" FontWeight="Bold"/>
             <TextBlock x:Name="UpdateAdress" Margin="165,124,289,101.2" Height="35" Width="180"/>
             <Label x:Name="Uplatitude" Content="latitude" Margin="11,204,530,20.2" Height="36" FontSize="18" FontWeight="Bold"/>

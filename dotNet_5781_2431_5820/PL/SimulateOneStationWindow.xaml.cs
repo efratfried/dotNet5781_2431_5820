@@ -71,7 +71,7 @@ namespace PL
             string timmerText = CurrentTime.ToString().Substring(0, 8);
             this.timerTextBlock.Text = timmerText;
             //לממש את הפונקציה!
-            nisayon.ItemsSource = BL.GetLineTimingPerStation(station, CurrentTime).ToList();
+            //nisayon.ItemsSource = BL.GetLineTimingPerStation(station, CurrentTime);
             //lineTimingList = new ObservableCollection<BO.LineTiming>(BL.GetLineTimingPerStation(station, tsCurrentTime)); //התצוגה תתעדכן כי זה אובזרוובל קוללקשיין
         }
 

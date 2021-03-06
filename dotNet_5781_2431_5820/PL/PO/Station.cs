@@ -15,6 +15,7 @@ namespace PO
         static readonly DependencyProperty DisableAccessProperty = DependencyProperty.Register("DisableAccess", typeof(bool), typeof(Station));
         static readonly DependencyProperty LatitudeProperty = DependencyProperty.Register("Latitude", typeof(double), typeof(Station));
         static readonly DependencyProperty longitudeProperty = DependencyProperty.Register("longitude", typeof(double), typeof(Station));
+        
         public string StationName { get => (string)GetValue(StationNameProperty); set => SetValue(StationNameProperty, value); }
         public BO.Adress Adress { get => (BO.Adress)GetValue(AdressProperty); set => SetValue(AdressProperty, value); }
         public string CodeStation { get => (string)GetValue(CodeStationProperty); set => SetValue(CodeStationProperty, value); }

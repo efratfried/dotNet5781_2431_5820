@@ -11,8 +11,8 @@
     </Window.Background>
     <Grid Margin="1,2,-1.4,-2">
         <ComboBox x:Name="firm" Background="LightGray" HorizontalAlignment="Left" Margin="47,176,0,0" Text="{Binding  Path=firm}" VerticalAlignment="Top" Height="31" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock" SelectionChanged="firm_SelectionChanged"/>
-        <TextBlock x:Name="foul_status" Background="LightGray" HorizontalAlignment="Left" Margin="47,223,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="29" Width="120" DataContextChanged="foul_status_TextBlock"/>
-        <TextBlock x:Name="km_"  Background="LightGray" HorizontalAlignment="Left" Margin="47,134,0,0" TextWrapping="Wrap" Text="{Binding}"  VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
+        <TextBlock x:Name="foul_status" Background="LightGray" HorizontalAlignment="Left" Margin="47,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="120" DataContextChanged="foul_status_TextBlock"><Run FontWeight="Bold"/></TextBlock>
+        <TextBlock x:Name="km_"  Background="LightGray" HorizontalAlignment="Left" Margin="47,134,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
         <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/km.png" Margin="172,130,537.6,248"/>
         <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/drive abialability.PNG" Margin="167,93,531.6,295"/>
         <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/foul.PNG" Margin="148,223,503.6,168"/>

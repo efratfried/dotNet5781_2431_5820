@@ -13,7 +13,7 @@ namespace BL
     {
         IDL dl = DLFactory.GetDL();
         static Random rand = new Random();
-
+      
         #region Bus
         BO.Bus BusDoBoAdapter(DO.Bus BusDO)
         {
@@ -298,7 +298,7 @@ namespace BL
         }
         public TimeSpan GetLineTimingPerStation(BO.Station station, TimeSpan CurrentTime)
         {
-
+            return CurrentTime;//need fix
         }
 
         #endregion

@@ -54,7 +54,7 @@ namespace DLAPI
         DO.Station GetStation(string StationCode);
         void AddStation(DO.Station station);
         void UpdateStation(DO.Station station);
-        void DeleteStation(string NuStationCodem);
+        void DeleteStation(DO.Station station);
         #endregion
 
       /*  #region DrivingBus

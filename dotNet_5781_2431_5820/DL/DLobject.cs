@@ -347,7 +347,7 @@ namespace DL
         }
         public IEnumerable<DO.User> GetAllUser(Predicate<DO.User> predicate)
         {
-            return from DOUser in dl.GetAllUser(UserId)
+            return from DOUser in dl.GetAllUser()
                    let BOUser = userBoDoAdapter(DOUser)
                    select BOUser;
         }

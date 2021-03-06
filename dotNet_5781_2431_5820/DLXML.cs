@@ -5,14 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using DLAbusI;
+using DLAPI;
 using DO;
 //using DO;
 
 namespace DL
 {
-    sealed class DLXML : LicenseNumL    //internal
+    sealed class DLXML : IDL
     {
+        
         #region singelton
         static readonly DLXML instance = new DLXML();
         static DLXML() { }// static ctor to ensure instance init is done just before first usage

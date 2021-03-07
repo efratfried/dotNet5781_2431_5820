@@ -80,7 +80,7 @@ namespace DLAPI
         IEnumerable<DO.DrivingBus> GetAllDrivingsBusLists();
         DO.DrivingBus GetDrivingBus(string Num);
         IEnumerable<DO.DrivingBus> GetDrivingsListList(Predicate<DO.DrivingBus> predicate);
-        IEnumerable<object> GetDrivingsListListWithSelectedFields(Func<DrivingBus, object> generate);
+        IEnumerable<object> GetDrivingsListListWithSelectedFields(Func<DO.DrivingBus, object> generate);
         void AddDrivingsList(DO.DrivingBus OutGoingLine);
         void UpdateDrivingBus(DO.DrivingBus OutGoingLine);
         void DeleteDrivingBus(string Num); // removes only OutGoingLine, does not remove the appropriate Bus...

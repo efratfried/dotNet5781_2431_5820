@@ -24,12 +24,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLAPI", "DLAPI\DLAPI.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS", "DS\DS.csproj", "{42DAD1BE-B611-4CB9-BB1B-FA81D32BD988}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLXML", "DLXML", "{EC8D2394-BFA5-4A7C-8114-89C3B185D887}"
-	ProjectSection(SolutionItems) = preProject
-		DLXML.cs = DLXML.cs
-		XMLTools.cs = XMLTools.cs
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{AB4FD8AD-0D7D-46D4-B415-BB2E4B345D38}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLXML", "DLXML\DLXML.csproj", "{2DE4EBDF-FF56-4CB4-85E4-1880963D5A16}"
@@ -83,9 +77,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{EC8D2394-BFA5-4A7C-8114-89C3B185D887} = {39FDEF2F-3BBB-4949-A5AA-766451C4F1B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2875C04-3F90-4F35-BE97-59F7787D3587}

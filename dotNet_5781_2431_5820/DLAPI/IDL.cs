@@ -55,17 +55,12 @@ namespace DLAPI
         void UpdateStation(DO.Station station);
         void DeleteStation(string codeStation);
         #endregion
-
-       /*#region DrivingBus
-        IEnumerable<DO.DrivingsList> GetOutGoingLineList(Predicate<DO.DrivingsList> predicate);
-
-        #endregion*/
       
         #region User
         IEnumerable<DO.User> GetAllUser();
         IEnumerable<DO.User> GetAllUser(Predicate<DO.User> predicate);
         DO.User GetUser(string Name,string pass);
-        void AddUser(DO.User User);
+        void AddUser(DO.User user);
         IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate);
         void UpdateUser(DO.User User);
         void DeleteUser(string Name,string password);
@@ -82,12 +77,12 @@ namespace DLAPI
         //#endregion
 
         #region drivingbus
-        IEnumerable<DrivingBus> GetAllDrivingsBusLists();
+        IEnumerable<DO.DrivingBus> GetAllDrivingsBusLists();
         DO.DrivingBus GetDrivingBus(string Num);
-        IEnumerable<DrivingBus> GetDrivingsListList(Predicate<DrivingBus> predicate);
+        IEnumerable<DO.DrivingBus> GetDrivingsListList(Predicate<DO.DrivingBus> predicate);
         IEnumerable<object> GetDrivingsListListWithSelectedFields(Func<DrivingBus, object> generate);
-        void AddDrivingsList(DrivingBus OutGoingLine);
-        void UpdateDrivingBus(DrivingBus OutGoingLine);
+        void AddDrivingsList(DO.DrivingBus OutGoingLine);
+        void UpdateDrivingBus(DO.DrivingBus OutGoingLine);
         void DeleteDrivingBus(string Num); // removes only OutGoingLine, does not remove the appropriate Bus...
         #endregion
 

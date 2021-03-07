@@ -10,7 +10,7 @@ using BO;
 namespace BL
 {
     class BLImp : IBL//internal
-    {
+    {    
         IDL dl = DLFactory.GetDL();
         static Random rand = new Random();
       

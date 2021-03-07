@@ -10,7 +10,7 @@ namespace DO
     {
         public string UserName { set; get; }
         public string Password { set; get; }
-        public Access Me { protected set; get; }
+        public Access Me { set; get; }
         public override string ToString()
         {
             return this.ToStringProperty();

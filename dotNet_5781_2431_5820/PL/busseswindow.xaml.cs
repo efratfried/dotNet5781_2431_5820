@@ -186,10 +186,6 @@ namespace PL
         {
         }
 
-        /* private void refresh(object sender, DependencyPropertyChangedEventArgs e)
-         {
-             var iweil = bl.GetAllBuss().Select(item => new InvoiceWithEntryInfo().ToList();
-         }*/
 
 
 

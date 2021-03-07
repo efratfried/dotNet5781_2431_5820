@@ -48,7 +48,7 @@ namespace PL
         void RefreshAllLineStationsOfLineGrid()
         {
             IEnumerable<PO.BusLine> busLines;
-            lineStationDataGrid.DataContext = bl.GetAllBusStationLinesPerLine(MyBusLine.BusNum);
+        //    lineStationDataGrid.DataContext = bl.GetAllBusStationLinesPerLine(MyBusLine.BusNum);
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

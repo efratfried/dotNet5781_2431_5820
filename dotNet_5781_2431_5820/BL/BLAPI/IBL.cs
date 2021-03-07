@@ -41,7 +41,7 @@ namespace BLAPI
         void AddBusStationLine(BO.BusStationLine BusstationLine);
         void UpdateBusStationLinePersonalDetails(BO.BusStationLine BusstationLine);
         void DeleteBusStationLine(string num);
-        IEnumerable<BO.BusStationLine> GetAllBusStationLinesPerLine(int lineId);
+       // IEnumerable<BO.BusStationLine> GetAllBusStationLinesPerLine(int lineId);
 
         #endregion
 
@@ -51,13 +51,13 @@ namespace BLAPI
         IEnumerable<BO.BusLine> GetBusLines();
         IEnumerable<BO.BusLine> GetBusLineIDList();
         //IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate);
-        IEnumerable<BO.BusLine> GetAllLinesPerStation(int code);
+        //IEnumerable<BO.BusLine> GetAllLinesPerStation(int code);
         void UpdateBusLinePersonalDetails(BO.BusLine busLine);
         void DeleteBusLine(int Num);
         void AddBusLine(BO.BusLine busLine);
         
         #endregion
-
+        /*
         #region user
         BO.User userBoDoAdapter(DO.User userDO);
         BO.User GetUser(string name, string password);
@@ -80,6 +80,6 @@ namespace BLAPI
         BO.Bus GetAccident(BO.Bus bus,int num);
         IEnumerable<BO.Bus> GetAccidentBy(Predicate<BO.Bus> predicate);
         void AddAccident(BO.Bus bus);
-        #endregion
+        #endregion*/
     }
 }

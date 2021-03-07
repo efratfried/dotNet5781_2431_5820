@@ -73,8 +73,8 @@
     <Compile Include="conecting.xaml.cs">
       <DependentUpon>conecting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EnteringWindow.xaml.cs">
-      <DependentUpon>EnteringWindow.xaml</DependentUpon>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PO\BusLine.cs" />
     <Compile Include="PO\Station.cs" />
@@ -94,14 +94,13 @@
     <Compile Include="UpdateStation.xaml.cs">
       <DependentUpon>UpdateStation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\DeepCopyUtilities.cs" />
     <Compile Include="ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\MainWindow.cs" />
+    <Compile Include="ViewModel\DeepCopyUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -165,7 +164,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EnteringWindow.xaml">
+    <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

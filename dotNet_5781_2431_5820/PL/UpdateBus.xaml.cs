@@ -27,14 +27,14 @@ namespace PL
         {
             InitializeComponent();          
             updatebus = bus;
-            aviability_status.Text = updatebus.Status.ToString();
+            //aviability_status.Text = updatebus.Status.ToString();
             km_.Text = updatebus.KM.ToString();
             foul_status.Text = updatebus.foul.ToString();
             firm.SelectedItem = updatebus.firm;
             Licensenum.Text = bus.LicenseNum.ToString();
 
             Licensenum.IsEnabled = true;
-            aviability_status.IsEnabled = true;
+            //aviability_status.IsEnabled = true;
         }
 
         

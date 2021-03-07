@@ -10,14 +10,14 @@
         <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
     </Window.Background>
     <Grid Margin="1,2,-1.4,-2">
-        <ComboBox x:Name="firm" Background="LightGray" HorizontalAlignment="Left" Margin="47,176,0,0" Text="{Binding  Path=firm}" VerticalAlignment="Top" Height="31" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock" SelectionChanged="firm_SelectionChanged"/>
-        <TextBlock x:Name="foul_status" Background="LightGray" HorizontalAlignment="Left" Margin="47,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="120" DataContextChanged="foul_status_TextBlock"><Run FontWeight="Bold"/></TextBlock>
-        <TextBlock x:Name="km_"  Background="LightGray" HorizontalAlignment="Left" Margin="47,134,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
+        <ComboBox x:Name="firm" Background="LightGray" HorizontalAlignment="Left" Margin="47,176,0,0" Text="{Binding  Path=firm}" VerticalAlignment="Top" Height="31" Width="120" RenderTransformOrigin="0.487,0.292" SelectionChanged="firm_SelectionChanged"/>
+        <TextBlock x:Name="foul_status" Background="LightGray" HorizontalAlignment="Left" Margin="47,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="120" FontWeight="Bold"/>
+        <TextBlock x:Name="km_"  Background="LightGray" HorizontalAlignment="Left" Margin="47,134,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" />
         <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/km.png" Margin="172,130,537.6,248"/>
         <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/drive abialability.PNG" Margin="167,93,531.6,295"/>
         <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/foul.PNG" Margin="148,223,503.6,168"/>
         <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/firm.PNG" Margin="188,177,548.6,213"/>
-        <TextBlock x:Name="aviability_status" HorizontalAlignment="Left" Margin="47,93,0,0"  Background="LightGray" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
+        <!--<TextBlock x:Name="aviability_status" HorizontalAlignment="Left" Margin="47,93,0,0"  Background="LightGray" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" />-->
         <Label Content="Update bus details" Foreground="White" BorderBrush="Black" Height="60" FontSize="32" Margin="47,10,442.6,350" />
         <TextBlock x:Name="Licensenum" FontSize="24" Foreground="black" FontWeight="Bold" Margin="477,275,132,103" Text="{Binding Path=LicenseNum}"/>
         <Button x:Name="update_bus" Content="update"  FontSize="24" Foreground="black" FontWeight="Bold" Height="Auto" Margin="632,349,32.6,32" Click="button_update_click" RenderTransformOrigin="0.501,0.5"/>

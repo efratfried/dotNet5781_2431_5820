@@ -43,14 +43,14 @@ namespace PL
         {
             IEnumerable<PO.Station> station = bl.GetAllStations().Cast<PO.Station>();
             StationComboBox.ItemsSource = station;
-            RefreshAllLinesOfStationGrid();
+            //RefreshAllLinesOfStationGrid();
         }
 
-        private void RefreshAllLinesOfStationGrid()
+        /*private void RefreshAllLinesOfStationGrid()
         {
             IEnumerable<PO.Station> MyBusinstation = bl.GetAllLinesPerStation(int.Parse(MyStation.CodeStation)).Cast<PO.Station>().ToList();
             linesDataGrid.ItemsSource = MyBusinstation;
-        }
+        }*/
 
         private void StationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -59,7 +59,7 @@ namespace PL
 
             if (MyStation != null)
             {
-                RefreshAllLinesOfStationGrid();
+                //RefreshAllLinesOfStationGrid();
             }
         }
 
@@ -111,7 +111,7 @@ namespace PL
                 {
                     bl.DeleteStation(MyStation.CodeStation);
 
-                    RefreshAllLinesOfStationGrid();
+                    //RefreshAllLinesOfStationGrid();
                     RefreshAllStationsComboBox();
                 }
             }
@@ -156,7 +156,7 @@ namespace PL
             {
                 BO.BusLine lineBO = ((sender as Button).DataContext as BO.BusLine);
                 bl.DeleteStationFromLine(lineBO, MyStation.CodeStation);
-                RefreshAllLinesOfStationGrid();
+                //RefreshAllLinesOfStationGrid();
             }
             catch (BO.BadBusStationLineCodeException ex)
             {

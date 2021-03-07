@@ -8,3 +8,15 @@
 		<oracle namespace="DL_O" class="DLDbOracle">DLOracle</oracle>
 	</dl-packages>
 </config>
+
+<!---
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<dl>Data</dl>
+	<dl-packages>
+		<data>DLObject</data>
+<xml namespace="DL" class="DLXML">DLXMl</xml>
+<oracle namespace="DL_O" class="DLDbOracle">DLOracle</oracle>
+</dl-packages>
+</config>
+-->

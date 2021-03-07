@@ -35,10 +35,9 @@ namespace DLAPI
 
         #region BusStationLine
         IEnumerable<DO.BusStationLine> GetLineStationsListOfALine(string lineId);
-        IEnumerable<DO.BusStationLine> GetBusStationLinesListThatMatchAStation(string code);
         IEnumerable<DO.BusStationLine> GetAllBusStationLines(string BusStationLineNum);
         IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate);
-        void AddBusStationLine(string StationID, string BusStationeNum);
+        void AddBusStationLine(DO.BusStationLine busStationLine);
         void UpdateBusStationLine(DO.BusStationLine StationeNum);
         DO.BusStationLine GetBusStationLine(string Id);
         void DeleteBusStationLine( string StationeNum);
@@ -54,14 +53,14 @@ namespace DLAPI
         DO.Station GetStation(string StationCode);
         void AddStation(DO.Station station);
         void UpdateStation(DO.Station station);
-        void DeleteStation(DO.Station station);
+        void DeleteStation(string codeStation);
         #endregion
 
-      /*  #region DrivingBus
-        IEnumerable<DO.OutGoingLine> GetOutGoingLineList(Predicate<DO.OutGoingLine> predicate);
+       /*#region DrivingBus
+        IEnumerable<DO.DrivingsList> GetOutGoingLineList(Predicate<DO.DrivingsList> predicate);
 
         #endregion*/
-
+      
         #region User
         IEnumerable<DO.User> GetAllUser();
         IEnumerable<DO.User> GetAllUser(Predicate<DO.User> predicate);
@@ -69,28 +68,27 @@ namespace DLAPI
         void AddUser(DO.User User);
         IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate);
         void UpdateUser(DO.User User);
-        void UpdateUser(string Name, Action<DO.User> update); //method that knows to updt specific fields in Person
         void DeleteUser(string Name,string password);
         #endregion
 
-        #region UserDrive
-        IEnumerable<DO.UserDrive> GetAllUserDrive();
-        IEnumerable<DO.UserDrive> GetAllUserDrive(Predicate<DO.UserDrive> predicate);
-        DO.UserDrive GetUserDrive(string Num);
-        void AddUserDrive(DO.UserDrive UserDrive);
-        void UpdateUserDrive(DO.UserDrive UserDrive);
-        void UpdateUserDrive(string Num, Action<DO.UserDrive> update); //method that knows to updt specific fields in Person
-        void DeleteUserDrive(string Num);
-        #endregion
+        //#region UserDrive
+        //IEnumerable<DO.UserDrive> GetAllUserDrive();
+        //IEnumerable<DO.UserDrive> GetAllUserDrive(Predicate<DO.UserDrive> predicate);
+        //DO.UserDrive GetUserDrive(string Num);
+        //void AddUserDrive(DO.UserDrive UserDrive);
+        //void UpdateUserDrive(DO.UserDrive UserDrive);
+        //void UpdateUserDrive(string Num, Action<DO.UserDrive> update); //method that knows to updt specific fields in Person
+        //void DeleteUserDrive(string Num);
+        //#endregion
 
-        #region OutGoingLine
-        IEnumerable<DO.OutGoingLine> GetAllOutGoingLines();
-        DO.OutGoingLine GetOutGoingLine(string Num);
-        IEnumerable<DO.OutGoingLine> GetOutGoingLineList(Predicate<DO.OutGoingLine> predicate);
-        IEnumerable<object> GetOutGoingLineListWithSelectedFields(Func<DO.OutGoingLine, object> generate);
-        void AddOutGoingLine(DO.OutGoingLine OutGoingLine);
-        void UpdateOutGoingLine(DO.OutGoingLine OutGoingLine);
-        void DeleteOutGoingLine(string Num); // removes only OutGoingLine, does not remove the appropriate Bus...
+        #region drivingbus
+        IEnumerable<DrivingBus> GetAllDrivingsBusLists();
+        DO.DrivingBus GetDrivingBus(string Num);
+        IEnumerable<DrivingBus> GetDrivingsListList(Predicate<DrivingBus> predicate);
+        IEnumerable<object> GetDrivingsListListWithSelectedFields(Func<DrivingBus, object> generate);
+        void AddDrivingsList(DrivingBus OutGoingLine);
+        void UpdateDrivingBus(DrivingBus OutGoingLine);
+        void DeleteDrivingBus(string Num); // removes only OutGoingLine, does not remove the appropriate Bus...
         #endregion
 
         #region Accident
@@ -101,6 +99,6 @@ namespace DLAPI
         void AddAccident(DO.Accident Accident);
         void UpdateAccident(DO.Accident Accident);
         void DeleteAccident(int Accidentnum); // removes only Accident, does not remove the appropriate Person...
-        #endregion
+        #endregion*/
     }
 }

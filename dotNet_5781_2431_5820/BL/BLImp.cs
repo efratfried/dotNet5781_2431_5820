@@ -301,6 +301,7 @@ namespace BL
             return CurrentTime;//need fix
         }
 
+
         #endregion
 
         #region BusStationLine
@@ -484,7 +485,6 @@ namespace BL
                    orderby BusLineDO.IsDeleted
                    select BuslineDoBoAdapter(BusLineDO);
         }
-
        public IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate)
         {
 

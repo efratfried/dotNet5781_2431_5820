@@ -55,8 +55,19 @@ namespace BLAPI
         void UpdateBusLinePersonalDetails(BO.BusLine busLine);
         void DeleteBusLine(int Num);
         void AddBusLine(BO.BusLine busLine);
-        
+
         #endregion
+
+        #region followingStation
+        BO.FollowingStations GetFollowingStation(string code1,string code2);
+        IEnumerable<BO.FollowingStations> GetAllFollowingStations();
+        IEnumerable<BO.FollowingStations> GetFollowingStationSBy(Predicate<BO.FollowingStations> predicate);
+        void UpdateFollowingStationPersonalDetails(BO.FollowingStations FollowingStation);
+        void DeleteFollowingStation(string code); //delete station completely
+        void DeleteFollowingStations(BO.FollowingStations followingStation);//delete station from line
+        void AddFollowingStation(string code1, string code2);
+        #endregion
+
         /*
         #region user
         BO.User userBoDoAdapter(DO.User userDO);

@@ -39,16 +39,9 @@
             </Setter>
         </Style>
 
-
-
         <Style x:Key="ButtonTrigger" TargetType="Button" BasedOn="{StaticResource ButtonCommonStyle}">
-
-
             <Setter Property="Content" Value="Yes!" />
             <Setter Property="Foreground" Value="Green" />
-
         </Style>
-
-
     </Application.Resources>
 </Application>

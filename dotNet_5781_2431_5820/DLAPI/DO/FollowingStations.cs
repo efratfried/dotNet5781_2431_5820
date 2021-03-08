@@ -8,10 +8,12 @@ namespace DO
 {
     public class FollowingStations
     {//info between to folowing station 
-        public int FirstStationCode { set; get; }
-        public int SecondStationCode { set; get; }
+        public string FirstStationCode { set; get; }
+        public string SecondStationCode { set; get; }
+        public string FirstStationName { set; get; }
+        public string SecondStationName { set; get; }
         public double Distance { set; get; }
-        public TimeSpan AaverageDrivingTime { set; get; }
+        public TimeSpan AverageDrivingTime { set; get; }
         public TimeSpan WalkingTime { set; get; }
         public override string ToString()
         {

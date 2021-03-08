@@ -23,7 +23,7 @@ namespace DS
         public static List<Accident> AccidentsList;
         public static List<Treat> TreatsList;
         public static List<DrivingBus> DrivingsList;
-
+        public static List<FollowingStations> followingStations;
 
         static DataSource()
         {

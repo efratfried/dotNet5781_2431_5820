@@ -95,5 +95,18 @@ namespace DLAPI
         void UpdateAccident(DO.Accident Accident);
         void DeleteAccident(int Accidentnum); // removes only Accident, does not remove the appropriate Person...
         #endregion*/
+
+        #region FollowingStation
+        IEnumerable<DO.FollowingStations> GetAllFollowingStationss();
+        IEnumerable<object> GetAllFollowingStationsListWithSelectedFields(Func<DO.FollowingStations, object> generate);
+        //IEnumerable<DO.Bus> GetBusIDList();
+      //  IEnumerable<object> GetAllFollowingStationListWithSelectedFields(Func<DO.FollowingStations, object> generate);
+        DO.FollowingStations GetFollowingStation(string code);
+        void AddFollowingStations(DO.FollowingStations FollowingStations);
+        void UpdateFollowingStations(DO.FollowingStations FollowingStations);
+        //void UpdateBus(string Num, Action<DO.Bus> update); //method that knows to updt specific fields in Person
+        void DeleteFollowingStation(DO.FollowingStations followingstation);
+        void DeleteFollowingStation(string code);
+        #endregion
     }
 }

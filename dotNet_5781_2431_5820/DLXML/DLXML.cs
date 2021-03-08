@@ -31,6 +31,7 @@ namespace DL
         string UserPath = @"UserXml.xml"; //XElement
         string AccidentPath = @"AccidentXml.xml"; //XMLSerializer
         //string UserDrivePath = @"UserLineXml.xml"; //XMLSerializer
+        string FollowingStationsPath = "@FollowingStationssXml.xml";
 
         #endregion
 
@@ -759,6 +760,139 @@ namespace DL
                 throw new DO.BadLicenseNumException(Accidentnum.ToString(), $"wrong outgoingline's ID : {Accidentnum}");
 
             XMLTools.SaveListToXMLSerializer(AccidentsList, AccidentPath);
+        }
+        #endregion
+
+        #region FollowingStations
+        public DO.FollowingStations GetFollowingStation(string code)
+        {
+            XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
+            FollowingStations s = (from station in FollowingSElem.Elements()
+                        where (station.Element("station code").Value) == code
+                        select new FollowingStations()
+                        {
+                            FirstStationCode=(station.Element("FirstStationCode").Value),
+                            SecondStationCode= (station.Element("SecondStationCode").Value),
+                            FirstStationName= (station.Element("SecondStationName").Value),
+                            SecondStationName= (station.Element("SecondStationName").Value),
+                            Distance = double.Parse(station.Element("distance").Value),
+                            AverageDrivingTime = TimeSpan.Parse(station.Element("DrivingTimeBetween").Value),
+                            WalkingTime = TimeSpan.Parse(station.Element("DrivingTimeBetween").Value),
+                        }
+                        ).FirstOrDefault();
+
+            if (s == null)
+                throw new DO.BadBusStationLineCodeException(code, $"wrong station's code: {code}");
+            return s;
+        }
+        public IEnumerable<DO.FollowingStations> GetAllFollowingStationss(Predicate<DO.FollowingStations> predicate)
+        {
+            List<FollowingStations> FollowingStationss = XMLTools.LoadListFromXMLSerializer<FollowingStations>(FollowingStationsPath);
+
+            return from fs in FollowingStationss
+                   select fs;
+        }
+        public IEnumerable<DO.FollowingStations> GetAllFollowingStationss()
+        {
+            XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
+
+            return (from fs in FollowingSElem.Elements()
+                    select new FollowingStations()
+                    {
+                        FirstStationCode = (fs.Element("FirstStationCode").Value),
+                        SecondStationCode = (fs.Element("SecondStationCode").Value),
+                        FirstStationName = (fs.Element("SecondStationName").Value),
+                        SecondStationName = (fs.Element("SecondStationName").Value),
+                        Distance = double.Parse(fs.Element("distance").Value),
+                        AverageDrivingTime = TimeSpan.Parse(fs.Element("DrivingTimeBetween").Value),
+                        WalkingTime= TimeSpan.Parse(fs.Element("DrivingTimeBetween").Value),
+                    }
+                   );
+        }
+        public IEnumerable<object> GetAllFollowingStationsListWithSelectedFields(Func<DO.FollowingStations, object> generate)
+        {
+            List<FollowingStations> FollowingStationss = XMLTools.LoadListFromXMLSerializer<FollowingStations>(FollowingStationsPath);
+            return from fs in FollowingStationss
+                   select fs;
+        }
+        public void AddFollowingStations(DO.FollowingStations FollowingStations)
+        {
+            XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
+
+            XElement followings = (from fs in FollowingSElem.Elements()
+                             where (fs.Element("station's code").Value) == FollowingStations.FirstStationCode
+                             select fs).FirstOrDefault();
+            
+            if (followings != null)
+                throw new DO.BadBusStationLineCodeException(FollowingStations.FirstStationCode, FollowingStations.SecondStationCode, "wrong stations's code");
+
+            XElement fsElem = new XElement("following_station",
+                                   new XElement("FirstStationCode", FollowingStations.FirstStationCode.ToString()),
+                                   new XElement("SecondStationCode", FollowingStations.SecondStationCode.ToString()),
+                                   new XElement("FirstStationName", FollowingStations.FirstStationName.ToString()),
+                                   new XElement("SecondStationName", FollowingStations.SecondStationName.ToString()),
+                                   new XElement("distance", FollowingStations.Distance.ToString()),
+                                   new XElement("DrivingTimeBetween", FollowingStations.AverageDrivingTime),
+                                   new XElement("WalkingTime", FollowingStations.WalkingTime));
+
+            FollowingSElem.Add(fsElem);
+
+            XMLTools.SaveListToXMLElement(fsElem, FollowingStationsPath);
+        }
+        public void DeleteFollowingStation(DO.FollowingStations followingstation)
+        {
+            XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
+
+            XElement fsElem = (from fs in FollowingSElem.Elements()
+                             where (fs.Element("LicenseNum").Value) == followingstation.ToString()
+                               select fs).FirstOrDefault();
+
+            if (fsElem != null)
+            {
+                fsElem.Remove();
+                XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
+            }
+            else
+                throw new DO.BadBusLineException(followingstation.FirstStationCode, followingstation.SecondStationCode, $"wrong stations's codes: {followingstation.FirstStationCode},{followingstation.SecondStationCode}");
+        }
+        public void DeleteFollowingStation(string code)
+        {
+            XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
+
+            XElement fsElem = (from fs in FollowingSElem.Elements()
+                             where (fs.Element("LicenseNum").Value) == code
+                               select fs).FirstOrDefault();
+
+            if (fsElem != null)
+            { 
+                fsElem.Remove();
+                XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
+            }
+            else
+                throw new DO.BadStationNumException(code, $"bad station's code: {code}");
+        }
+        public void UpdateFollowingStations(DO.FollowingStations FollowingStations)
+        {
+            XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
+
+            XElement fsElem = (from fs in FollowingSElem.Elements()
+                            where (fs.Element("LicenseNum").Value) == FollowingStations.ToString()
+                            select fs).FirstOrDefault();
+
+            if (fsElem != null)
+            {
+                fsElem.Element("FirstStationCode").Value = FollowingStations.FirstStationCode.ToString();
+                fsElem.Element("SecondStationCode").Value = FollowingStations.SecondStationCode.ToString();
+                fsElem.Element("FirstStationName").Value = FollowingStations.FirstStationName.ToString();
+                fsElem.Element("SecondStationName").Value = FollowingStations.SecondStationName.ToString();
+                fsElem.Element("distance").Value = FollowingStations.Distance.ToString();
+                fsElem.Element("AverageDrivingTime").Value = FollowingStations.AverageDrivingTime.ToString();
+                fsElem.Element("WalkingTime").Value = FollowingStations.WalkingTime.ToString();
+
+                XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
+            }
+            else
+                throw new DO.BadBusLineException(FollowingStations.FirstStationCode, FollowingStations.SecondStationCode, $"bad Bus's LicenseNum: {FollowingStations.FirstStationCode},{FollowingStations.SecondStationCode}");
         }
         #endregion
     }

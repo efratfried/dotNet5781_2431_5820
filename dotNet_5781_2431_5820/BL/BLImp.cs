@@ -413,6 +413,7 @@ namespace BL
                 throw new BO.BadBusStationLineCodeException("Bus LicenseNum does not exist or it is not a Bus", Ex);
             }
         }
+
         #endregion
 
         #region BusLine
@@ -684,17 +685,17 @@ namespace BL
         {
             throw new NotImplementedException();
         }*/
-     /*   public IEnumerable<BO.OutGoingLine> GetOutGoingLineLicenseNumList()
-        {
-           // return from item in dl.GetOutGoingLineListWithSelectedFields((OutGoingLineDO) =>
-            {
-                try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-               return new BO.OutGoingLine() { /*id=  OutGoingLineDO.ID*//* };
-            })
-                   let OutGoingLineBO = item as BO.OutGoingLine
-                   //orderby Bus.LicenseNum
-                   select OutGoingLineBO;
-        }*/
+        /*   public IEnumerable<BO.OutGoingLine> GetOutGoingLineLicenseNumList()
+           {
+              // return from item in dl.GetOutGoingLineListWithSelectedFields((OutGoingLineDO) =>
+               {
+                   try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
+                  return new BO.OutGoingLine() { /*id=  OutGoingLineDO.ID*//* };
+               })
+                      let OutGoingLineBO = item as BO.OutGoingLine
+                      //orderby Bus.LicenseNum
+                      select OutGoingLineBO;
+           }*/
         /*public void UpdateOutGoingLinePersonalDetails(BO.OutGoingLine OutGoingLine)
         {
             //Update DO.Bus            
@@ -767,10 +768,10 @@ namespace BL
             }
             return BusDoBoAdapter(AccidentDO as );
         }*/
-      /*  IEnumerable<BO.Bus> GetAccidentBy(Predicate<BO.Bus> predicate)
-        {
+        /*  IEnumerable<BO.Bus> GetAccidentBy(Predicate<BO.Bus> predicate)
+          {
 
-        }*/
+          }*/
         /*void AddAccident(BO.Bus bus)
         {
 
@@ -801,5 +802,127 @@ namespace BL
             throw new NotImplementedException();
         }
         #endregion*/
+
+        #region FollowingStation
+        BO.FollowingStations FollowingSDoBoAdapter(DO.FollowingStations fsDO)
+        {
+            BO.FollowingStations fsBO = new BO.FollowingStations();
+            string code = fsDO.FirstStationCode;
+            try
+            {
+                fsDO = dl.GetFollowingStation(code);
+            }
+            catch (DO.BadBusLineException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("wring details", Ex);
+            }
+
+            fsDO.CopyPropertiesTo(fsBO);
+
+            return fsBO;
+        }
+        public BO.FollowingStations GetFollowingStation(string code1, string code2)
+        {
+            DO.FollowingStations fsDO;
+            try
+            {
+                fsDO = dl.GetFollowingStation(code1);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("station's codes are wrong", Ex);
+            }
+            return FollowingSDoBoAdapter(fsDO);
+        }
+        public IEnumerable<BO.FollowingStations> GetAllFollowingStations()
+        {
+            return from fsDO in dl.GetAllFollowingStationss()
+                   orderby fsDO.FirstStationCode
+                   select FollowingSDoBoAdapter(fsDO);
+        }
+        public IEnumerable<BO.FollowingStations> GetFollowingStationSBy(Predicate<BO.FollowingStations> predicate)
+        {
+
+            List<BO.FollowingStations> fs = new List<FollowingStations>();
+            List<DO.FollowingStations> fs1 = dl.GetAllFollowingStationss().ToList();
+            for (int i = 0; i < fs1.Count; i++)
+            {
+                fs.Add(FollowingSDoBoAdapter(fs1[i]));
+                //  busLines1[i].CopyPropertiesTo(busLines[i]);
+            }
+            return from f in fs
+                   where predicate(f)
+                   select f;
+        }
+        public void UpdateFollowingStationPersonalDetails(BO.FollowingStations FollowingStation)
+        {
+            DO.FollowingStations fsDO = new DO.FollowingStations();
+            FollowingStation.CopyPropertiesTo(fsDO);
+            try
+            {
+                dl.UpdateFollowingStations(fsDO);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("wrong details", Ex);
+            }
+        }
+        public void DeleteFollowingStation(string code)
+        {
+            try
+            {
+                dl.DeleteFollowingStation(code);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("deleting failed", Ex);
+            }
+        }
+        public void DeleteFollowingStations(BO.FollowingStations followingStation)
+        {
+            DO.FollowingStations fsDO = new DO.FollowingStations();
+            followingStation.CopyPropertiesTo(fsDO);
+            try
+            {
+                dl.DeleteFollowingStation(fsDO);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("deleting failed", Ex);
+            }
+        }
+        public void AddFollowingStation(string code1, string code2)
+        {
+            DO.FollowingStations fsDO = new DO.FollowingStations();
+            if (code1.Length<=0 || code1.Length>6 && code2.Length <0 || code2.Length>6)
+            {
+                throw new Exception("invalid station num lengh");
+            }
+
+            fsDO.CopyPropertiesToNew(typeof(BO.FollowingStations));
+            try
+            {
+                dl.AddFollowingStations(fsDO);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("wrong details", Ex);
+            }
+        }
+        public double DistanceBetweenTwoStations()
+        {
+
+        }
+        public TimeSpan DrivingTimeBetweenTwoStations()
+        {
+
+        }
+        #endregion
     }
 }

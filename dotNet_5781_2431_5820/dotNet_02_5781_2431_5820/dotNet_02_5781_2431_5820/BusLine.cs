@@ -280,7 +280,6 @@ namespace dotNet_02_5781_2431_5820.git
             }
             return -1;//if the busline wasnt found.
         }
-
         //the indexer for busline
 
         public int CompareTo(object obj)

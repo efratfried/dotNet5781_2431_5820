@@ -63,8 +63,14 @@
     <Compile Include="AddStation.xaml.cs">
       <DependentUpon>AddStation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddStationToLine.xaml.cs">
+      <DependentUpon>AddStationToLine.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BusLineWindow.xaml.cs">
       <DependentUpon>BusLineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FollowingStationsDistace.xaml.cs">
+      <DependentUpon>FollowingStationsDistace.xaml</DependentUpon>
     </Compile>
     <Compile Include="PO\Bus.cs" />
     <Compile Include="busseswindow.xaml.cs">
@@ -148,7 +154,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddStationToLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BusLineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FollowingStationsDistace.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

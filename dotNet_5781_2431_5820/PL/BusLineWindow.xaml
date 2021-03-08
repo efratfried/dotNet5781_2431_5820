@@ -26,27 +26,27 @@
             <ColumnDefinition Width="189*"/>
             <ColumnDefinition Width="126*"/>
             <ColumnDefinition Width="114*"/>
-            <ColumnDefinition Width="62*"/>
             <ColumnDefinition Width="102*"/>
             <ColumnDefinition Width="130*"/>
-            <ColumnDefinition Width="97*"/>
-            <ColumnDefinition Width="7*"/>
+
+
         </Grid.ColumnDefinitions>
         <Image Source="/C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/busicon.PNG" Grid.ColumnSpan="2" Margin="69,39,0.4,132.2" Grid.RowSpan="3"/>
-        <Button x:Name="BusLineUpdate" Content="Update line" HorizontalAlignment="Left" Margin="0.6,12.8,0,0" VerticalAlignment="Top" Width="121" Click="BusLineUpdate_Click" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4"/>
-        <Button x:Name="BusLineDelete" Content="Delete line" HorizontalAlignment="Left" Margin="15.566,12.8,0,0" VerticalAlignment="Top" Width="86" Click="BusLineDelete_Click" Grid.Column="5" Grid.Row="4"/>
-        <Button x:Name="BusLineAdd"    Content="Add line"    HorizontalAlignment="Left" Margin="39.766,12.8,0,0" VerticalAlignment="Top" Width="98" Click="BusLineAdd_Click" Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="BusLineComboBox" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="27.6,55.4,0,0" VerticalAlignment="Top" Width="128" SelectionChanged="ComboBox_SelectionChanged" Grid.Column="1" FontWeight="Bold" Height="29" Grid.ColumnSpan="3" Grid.Row="2"/>
+        <Button x:Name="BusLineUpdate" Content="Update line" HorizontalAlignment="Left" Margin="0.6,12.8,0,0" VerticalAlignment="Top" Width="121" Click="BusLineUpdate_Click" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" BorderBrush="Black"/>
+        <Button x:Name="BusLineDelete" BorderBrush="Black" Content="Delete line" HorizontalAlignment="Left" Margin="104.8,12.8,0,0" VerticalAlignment="Top" Width="86" Click="BusLineDelete_Click" Grid.Column="4" Grid.Row="4"/>
+        <Button x:Name="BusLineAdd" BorderBrush="Black" Content="Add line" HorizontalAlignment="Left" Margin="75.4,12.8,0,0" VerticalAlignment="Top" Width="98" Click="BusLineAdd_Click" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="2"/>
+        <Button x:Name="addstationtoline" Content="Add station to line" BorderBrush="Black" FontWeight="Bold" Foreground="Black" VerticalAlignment="Top" Grid.Column="6" Margin="112.4,12.8,26.2,0" Grid.Row="4" Grid.ColumnSpan="2" Click="AddStationToLine_Click"/>
+        <ComboBox x:Name="BusLineComboBox" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="10,55.4,0,0" VerticalAlignment="Top" Width="128" SelectionChanged="ComboBox_SelectionChanged" Grid.Column="1" FontWeight="Bold" Height="29" Grid.ColumnSpan="2" Grid.Row="2"/>
         <Label Content="selected line:" HorizontalAlignment="Left" Margin="41,55.4,0,0" VerticalAlignment="Top" Width="127" FontWeight="Bold" FontSize="14" Foreground="Black" Grid.ColumnSpan="2" RenderTransformOrigin="0.55,1.493" Height="29" Grid.Row="2"/>
-        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="4.366,0.4,21.5,19.2" RowDetailsVisibilityMode="VisibleWhenSelected" FontFamily="Tahoma"  Foreground="Black" Grid.Column="4"  LoadingRow="lineStationDataGrid_LoadingRow" GridLinesVisibility="Horizontal"  HorizontalGridLinesBrush="LightGray"  FontWeight="bold" Grid.ColumnSpan="7" Grid.Row="2" Grid.RowSpan="2" SelectionChanged="lineStationDataGrid_SelectionChanged"  >
+        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="4.366,0.4,21.5,19.2" RowDetailsVisibilityMode="VisibleWhenSelected" FontFamily="Tahoma"  Foreground="Black" Grid.Column="4"  LoadingRow="lineStationDataGrid_LoadingRow" GridLinesVisibility="Horizontal"  HorizontalGridLinesBrush="LightGray"  FontWeight="bold" Grid.ColumnSpan="7" Grid.Row="2" Grid.RowSpan="2"  Width="1000"  SelectionChanged="lineStationDataGrid_SelectionChanged"  >
             <DataGrid.Columns>
 
                 <DataGridTextColumn x:Name="lineStationIndexColumn" Binding="{Binding LineStationIndex}" Header="Line Station Index" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="codeColumn" Binding="{Binding Code}" Header="Code" Width="80"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="240"/>
                 <DataGridTextColumn x:Name="distanceColumn" Binding="{Binding Distance}" Header="Distance in km" Width="100"/>
-                <DataGridTextColumn x:Name="timeColumn" Binding="{Binding Time}" Header="Time" Width="100"/>
-
+                <DataGridTextColumn x:Name="timeColumn" Binding="{Binding AverageDrivingTime}" Header="Time" Width="100"/>
+                <DataGridTextColumn x:Name="walkingtimecolumn" Binding="{Binding WalkingTime}" Header="Walking time" Width="100"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

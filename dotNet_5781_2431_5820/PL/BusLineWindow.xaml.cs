@@ -270,6 +270,19 @@ namespace PL
         {
 
         }
+
+        private void AddStationToLine_Click(object sender, RoutedEventArgs e)
+        {
+            if(lineStationIndexColumn.ToString()!="")
+            {
+                AddStationToLine win = new AddStationToLine();
+                win.Show();
+            }
+            else
+            {
+                MessageBoxResult res = MessageBox.Show("Please press on a station?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            }
+        }
     }
 
 

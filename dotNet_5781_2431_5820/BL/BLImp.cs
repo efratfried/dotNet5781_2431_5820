@@ -899,7 +899,7 @@ namespace BL
         public void AddFollowingStation(string code1, string code2)
         {
             DO.FollowingStations fsDO = new DO.FollowingStations();
-            if (code1.Length<=0 || code1.Length>6 && code2.Length <0 || code2.Length>6)
+            if (code1.Length <= 0 || code1.Length > 6 && code2.Length < 0 || code2.Length > 6) 
             {
                 throw new Exception("invalid station num lengh");
             }
@@ -915,13 +915,29 @@ namespace BL
                 throw new BO.BadBusIdException("wrong details", Ex);
             }
         }
-        public double DistanceBetweenTwoStations()
+        public double DistancefromPriviouStation(string station1 ,string station2)
         {
-
+            DO.Station st1 = dl.GetStation(station1);
+            DO.Station st2 = dl.GetStation(station2);
+            //returns the distance by equation sqrt( (x-x)^2+(y-y)^2)
+            double Distance = Math.Sqrt((Math.Pow(st1.longitude - st2.longitude, 2) + (Math.Pow(st1.Latitude - st2.Latitude, 2))));
+            return Distance;
         }
-        public TimeSpan DrivingTimeBetweenTwoStations()
+        public TimeSpan DrivingTimeBetweenTwoStations(string station1, string station2)
         {
-
+            double Dis = DistancefromPriviouStation( station1,station2);
+            Dis = Dis * 60 / 75;//75 km per hour is a avrage of the able speed on the road for busses - 50 in the city and 100 out of the city
+            int dis = Convert.ToInt32(Dis);//dont care to loose a little bit info because it is not exact but evaluieted time
+            TimeSpan dt = new TimeSpan(dis);
+            return dt;
+        }
+        public TimeSpan WalkingTimeBetweenTwoStations(string station1,string station2)
+        {
+            double Dis = DistancefromPriviouStation(station1, station2);
+            Dis = Dis * 60 /4 ;//75 km per hour is a avrage of the able speed on the road for busses - 50 in the city and 100 out of the city
+            int dis = Convert.ToInt32(Dis);//dont care to loose a little bit info because it is not exact but evaluieted time
+            TimeSpan dt = new TimeSpan(dis);
+            return dt;
         }
         #endregion
     }

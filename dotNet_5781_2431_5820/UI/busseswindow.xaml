@@ -1,0 +1,72 @@
+﻿<Window x:Class="PL.busseswindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+         xmlns:BO="clr-namespace:BO;assembly=BL"
+        mc:Ignorable="d"
+        Title="busseswindow" Height="485" Width="1000">
+
+    <Grid x:Name="___Bus_Window_" Margin="0,0,-8,-31">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+
+        <ComboBox x:Name="busses_list" ItemsSource="{Binding}"  Height="29" Margin="426,70,237,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
+        <Button x:Name="start_treatment" Content="start treat" HorizontalAlignment="Left" Margin="154,373,0,0" VerticalAlignment="Top" Width="146" Click="start_treatment_Click" Foreground="black" BorderBrush="Black" Height="20"/>
+        <Button x:Name="start_filling_foul" Content="strat refuiling" HorizontalAlignment="Left" Margin="155,327,0,0" VerticalAlignment="Top" Width="146" Click="start_filling_foul_Click" Foreground="black" BorderBrush="Black" Height="20"/>
+        <Button x:Name="start_driving" Content="start driving" HorizontalAlignment="Left" Margin="154,284,0,0" VerticalAlignment="Top" Width="146" Click="start_driving_Click" Foreground="black" BorderBrush="Black" Height="20"/>
+
+        <TabControl x:Name="inner_info" HorizontalAlignment="Left" Height="269" Margin="426,141,0,0" VerticalAlignment="Top" Width="337" SelectionChanged="inner_info_SelectionChanged">
+            <TabItem x:Name="accident" Header="accident ducoments" Foreground="Black" BorderBrush="Black">
+                <Grid x:Name="Bus_Ducoments" Background="#FFE5E5E5"  Margin="0,0,0,-4" RenderTransformOrigin="0.479,0.505" DataContext="{Binding}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="18*"/>
+                        <RowDefinition Height="227*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="16*"/>
+                        <ColumnDefinition Width="31*"/>
+                        <ColumnDefinition Width="103*"/>
+                        <ColumnDefinition Width="181*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+
+            </TabItem>
+            <TabItem x:Name="treats" Header="treats ducoments" Foreground="Black" BorderBrush="Black">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem x:Name="last_drives" Header="treat driving" Margin="-2,-2,-2,0" Foreground="Black" BorderBrush="Black">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <TextBlock x:Name="firm" Background="LightGray" HorizontalAlignment="Left" Margin="47,176,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="31" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
+        <TextBlock x:Name="foul_status" Background="LightGray" HorizontalAlignment="Left" Margin="47,223,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="29" Width="120" DataContextChanged="foul_status_TextBlock"/>
+        <TextBlock x:Name="km_"  Background="LightGray" HorizontalAlignment="Left" Margin="47,134,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
+        <StackPanel x:Name="actions_pannel" HorizontalAlignment="Left" Height="452" Margin="792,0,0,0" Width="198" Background="Orange" VerticalAlignment="Top">
+            <Button x:Name="delete_bus" Content="delete bus" Margin="0,150,0.4,0" Height="53" Click="delete_bus_Click" Foreground="#FFF7F7FB" Background="DarkSlateGray" FontWeight="Bold" BorderThickness="0.5,0.5,0.5,0.75" HorizontalContentAlignment="Center" FontSize="18" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="DimGray"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button x:Name="update_bus" Content="update bus"  Height="53" Click="update_bus_Click" Foreground="WhiteSmoke" Background="DarkSlateGray" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Bold" FontSize="18" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}" Margin="0,10,0.4,0" />
+            <Button x:Name="add_bus" Content="add a new bus" Margin="0,10,0.4,0" Height="53" Click="add_bus_Click" Foreground="#FFF9F9FB" Background="DarkSlateGray" BorderThickness="0.5,0.5,0.5,0.75" FontWeight="Bold" FontSize="18" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}" FontFamily="Segoe UI" />
+        </StackPanel>
+        <Rectangle HorizontalAlignment="Left" Height="7" VerticalAlignment="Top" Width="990" Fill="Black" Visibility="Visible" StrokeLineJoin="Miter"/>
+        <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/busicon.png" Margin="850,32,71.6,394.2"/>
+        <TextBox x:Name="Licensenumbus" Margin="848,107,67.6,354.2" Height="25" Background="Transparent" DataContext="{Binding}" FontSize="20" BorderBrush="Transparent" FontWeight="Bold"/>
+        <Image x:Name="firm_" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/foul.png" Margin="176,229,755.6,237.2"/>
+        <Image x:Name="foul_" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/firm.png" Margin="196,184,781.6,283.2"/>
+        <Image x:Name="abialability" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/drive abialability.png" Margin="167,97,752.6,367.2"/>
+        <Image x:Name="km" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/km.png" Margin="167,139,752.6,325.2"/>
+        <TextBlock x:Name="aviability_status" HorizontalAlignment="Left" Margin="47,93,0,0"  Background="LightGray" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
+    </Grid>
+</Window>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="PL.AddStationToLine"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="AddStationToLine" Height="400" Width="600">
+    <Window.Background>
+        <ImageBrush ImageSource="/C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/bgmore.JPG"/>
+    </Window.Background>
+    <Grid Margin="0,0,760.6,0.2">
+
+        <Label x:Name="addstationtoline" Content="Add a station to line" FontSize="28" FontWeight="Bold" Foreground="White" Margin="159,20,-452,299.2" Height="51"/>
+        <ComboBox x:Name="stationList" Margin="267,136,-475,206.2" Height="28" />
+        <Label x:Name="station_list" Content="Choose a station:" FontSize="18" FontWeight="Bold" Foreground="Black" Margin="89,136,-267,192.2" Height="42"/>
+        <Button x:Name="addstation" Content="Add station" Margin="230,313,-350,27.2" BorderBrush="black" FontSize="14" Click="addstation_Click"/>
+    </Grid>
+</Window>

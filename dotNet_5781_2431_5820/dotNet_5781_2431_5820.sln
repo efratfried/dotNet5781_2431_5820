@@ -12,9 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotNet_5781_3a_2431_5820", "dotNet_5781_3a_2431_5820\dotNet_5781_3a_2431_5820.csproj", "{355A4A95-C0ED-4424-86B6-AACF054BFDC7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{39FDEF2F-3BBB-4949-A5AA-766451C4F1B8}"
-	ProjectSection(SolutionItems) = preProject
-		config.xml = config.xml
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLobject", "DL\DLobject.csproj", "{10CCBC35-3674-4290-AE37-C082F4B4DB44}"
 EndProject
@@ -27,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{AB4FD8AD-0D7D-46D4-B415-BB2E4B345D38}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLXML", "DLXML\DLXML.csproj", "{2DE4EBDF-FF56-4CB4-85E4-1880963D5A16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{9FB071F1-383C-47E3-9702-B1929BC63FEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +73,10 @@ Global
 		{2DE4EBDF-FF56-4CB4-85E4-1880963D5A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DE4EBDF-FF56-4CB4-85E4-1880963D5A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DE4EBDF-FF56-4CB4-85E4-1880963D5A16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FB071F1-383C-47E3-9702-B1929BC63FEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FB071F1-383C-47E3-9702-B1929BC63FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FB071F1-383C-47E3-9702-B1929BC63FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FB071F1-383C-47E3-9702-B1929BC63FEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

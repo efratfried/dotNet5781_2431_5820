@@ -11,77 +11,42 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BLAPI;
+
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for AddBus.xaml
+    /// Interaction logic for AddOutGoingLine.xaml
     /// </summary>
-    public partial class AddBus : Window
+    public partial class AddOutGoingLine : Window
     {
-        IBL bL;
-        public BO.Bus addbus;
-        public bool AllFieldsWereFilled = false;
-        public bool thereIsATrip = false;
-        public AddBus()
+        public BO.OutGoingLine trip;
+        public bool isTimeLegal = false;
+        public AddOutGoingLine()
         {
             InitializeComponent();
         }
-
-        private void AddLineDetails_Click(object sender, RoutedEventArgs e)
-        {
-            AddLine al = new AddLine(bL);
-            al.ShowDialog();
-        }
-
-        private void AddBus_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (LicenseNum.Text != "" && LicenseDate.SelectedDate != null && busKM.Text != "" && busfoul.Text != "" && firm.SelectedItem != null)
-                {
-                    AllFieldsWereFilled = true;
-                    addbus.LicenseNum = LicenseNum.Text;
-                    addbus.LicenseDate = DateTime.Parse(LicenseDate.SelectedDate.ToString());
-                    addbus.KM = double.Parse(busKM.Text);
-                    addbus.foul = double.Parse(busfoul.Text);
-                    addbus.Firm = (BO.Firm)(firm.SelectedIndex);
-                }
+                if (int.Parse(hours.Text) > 23 || int.Parse(minutes.Text) > 59 || int.Parse(seconds.Text) > 59)
+                    throw new BO.BadBusLineIdException("cannot add the trip, illegal time format");
+
+                TimeSpan ts = new TimeSpan(int.Parse(hours.Text), int.Parse(minutes.Text), int.Parse(seconds.Text));
+                trip = new BO.OutGoingLine();
+                trip.Startime = ts;
+                //the other fields are not restarted yet!!!
+                this.Close();
             }
-            catch(BO.BadBusIdException ex)
+            catch (BO.BadBusLineIdException ex)
             {
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            MessageBoxResult res = MessageBox.Show("Add line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (res == MessageBoxResult.No)
-                return;
-
-            this.Close();
         }
 
-        private void firm_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void hours_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            addbus.Firm = (BO.Firm)(firm.SelectedIndex);
-        }
-
-        private void LicenseNum_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void busfoul_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void busKM_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void LicenseNumTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
+            hours.MaxLength = 2;
             if (e == null)
             {
                 return;
@@ -102,10 +67,15 @@ namespace PL
                     return;
                 }
             }
+
+            //no other keys are allowed
+            e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
+
         }
 
-        private void foulTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void minutes_PreviewKeyDown(object sender, KeyEventArgs e)
         {
+            minutes.MaxLength = 2;
             if (e == null)
             {
                 return;
@@ -126,10 +96,15 @@ namespace PL
                     return;
                 }
             }
+
+            //no other keys are allowed
+            e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
+
         }
 
-        private void KMTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void seconds_PreviewKeyDown(object sender, KeyEventArgs e)
         {
+            seconds.MaxLength = 2;
             if (e == null)
             {
                 return;
@@ -150,6 +125,10 @@ namespace PL
                     return;
                 }
             }
+
+            //no other keys are allowed
+            e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
+
         }
     }
 }

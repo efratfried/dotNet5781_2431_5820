@@ -11,16 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BLAPI;
 
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for FollowingStationsDistace.xaml
+    /// Interaction logic for UpdateStation.xaml
     /// </summary>
-    public partial class FollowingStationsDistace : Window
+    public partial class UpdateStation : Window
     {
-        public FollowingStationsDistace()
+        public UpdateStation()
         {
             InitializeComponent();
         }

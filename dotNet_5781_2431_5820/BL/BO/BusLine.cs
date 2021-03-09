@@ -15,8 +15,8 @@ namespace BO
         public int LastStation { set; get; }
         public BusLine MyBusLine { set; get; }
         public bool IsDeleted { set; get; }
-        public IEnumerable<BusLine> BussesList { get; set; }
-        public IEnumerable<Station> stationsList { get; set; }
+       // public IEnumerable<BusLine> BussesList { get; set; }
+        public IEnumerable<BusStationLine> stationsList { get; set; }
         public override string ToString() => this.ToStringProperty();
     }
 }

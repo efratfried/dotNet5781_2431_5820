@@ -551,7 +551,7 @@ namespace BL
 
         #endregion
 
-        #region User
+       /* #region User
         public BO.User userBoDoAdapter(DO.User userDO)
         {
             BO.User userBO = new BO.User();
@@ -630,7 +630,7 @@ namespace BL
                    select userBoDoAdapter(item);
         }
 
-        #endregion
+        #endregion*/
 
         /*#region OutGoingLine
         BO.OutGoingLine OutGoingLineDoBoAdapter(DO.OutGoingLine OutGoingLineDO)

@@ -21,24 +21,25 @@ namespace PL
     {
         IBL bl;
         BO.FollowingStations tempFS;
-        BO.BusLine tempBL;
+        PO.BusLine tempBL;
 
-        public AddStationToLine(BO.FollowingStations FStations, BO.BusLine bs)
+        public AddStationToLine(BO.FollowingStations FStations, PO.BusLine bs)
         {
             InitializeComponent();
             tempBL = bs;
             tempFS = FStations;
-            IEnumerable<BO.Station> s = bl.GetAllStations().Where(sf => bs.stationsList.Contains(sf) == false);
-            stationList.ItemsSource = s;
+           // IEnumerable<BO.BusStationLine> s = bl.GetAllBusStationLines(bs.BusNum).Where(sf => bs.stationsList.Contains(sf) == false);
+            //stationList.ItemsSource = s;
         }
 
         private void addstation_Click(object sender, RoutedEventArgs e)
         {
             if(stationList.SelectedItem!=null)
             {
-                    BO.Station AddedS = stationList.SelectedItem as BO.Station;
-                    BO.FollowingStations first = bl.GetFollowingStation(AddedS.CodeStation, tempFS.FirstStationCode);
-                    BO.FollowingStations second = bl.GetFollowingStation(AddedS.CodeStation, tempFS.FirstStationCode);
+                    BO.BusStationLine AddedS = stationList.SelectedItem as BO.BusStationLine;
+                    BO.FollowingStations first = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.FirstStationCode);
+                    BO.FollowingStations second = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.FirstStationCode);
+
                 if (first != null && second != null)
                 {
                     //nothing happens because the bond is already exist
@@ -53,16 +54,30 @@ namespace PL
                   
                 catch (BO.BadOpenWindow)
                     {
-                        FollowingStationsDistace win = new FollowingStationsDistace(first, second);
-                        win.Show();
+                        MessageBoxResult res = MessageBox.Show("Could not open the window!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-                tempBL.stationsList.
+
+                /*int index = findIndex(tempFS);
+                List<BO.BusStationLine> B=tempBL.stationsList.ToList();
+                B.Insert(index, AddedS);
+                tempBL.stationsList=B.AsEnumerable();*/
             }
             else
             {
-                MessageBoxResult res = MessageBox.Show("Please choose on a station?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult res = MessageBox.Show("Please choose on a station!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+       /* public int findIndex(BO.FollowingStations FS)
+        {//tools func
+            BO.Station sta1 = bl.GetStation(FS.FirstStationCode);
+            BO.Station sta2 = bl.GetStation(FS.SecondStationCode);
+            int indexfirst = tempBL.stationsList.ToList().IndexOf(sta1);
+            int indexsecond = tempBL.stationsList.ToList().IndexOf(sta2);
+            if (indexfirst > indexsecond)
+                return indexsecond;
+            else
+                return indexfirst;
+        }*/
     }
 }

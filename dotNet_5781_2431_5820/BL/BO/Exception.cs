@@ -209,10 +209,10 @@ namespace BO
     [Serializable]
     public class BadOpenWindow : Exception
     {
-        public bool succeed;
-        public BadOpenWindow(bool s) : base(s) { }
-        public BadOpenWindow(bool message, Exception innerException) :
-            base(message.ToString(), innerException) => succeed = ((DO.BadOpenWindow)innerException).succeed;
+        public string succeed;
+        public BadOpenWindow(string s) : base(s) { }
+        public BadOpenWindow(string message, Exception innerException) :
+            base(message.ToString(), innerException) => succeed = ((DO.BadOpenWindow)innerException).s;
 
         public override string ToString()
         {

@@ -20,7 +20,7 @@ namespace PL
     /// </summary>
     public partial class FollowingStationsDistace : Window
     {
-        public FollowingStationsDistace()
+        public FollowingStationsDistace(BO.FollowingStations first, BO.FollowingStations second)
         {
             InitializeComponent();
         }

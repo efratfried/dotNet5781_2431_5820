@@ -69,14 +69,14 @@ namespace BLAPI
         #endregion
 
         
-        #region user
+        /*#region user
         BO.User userBoDoAdapter(DO.User userDO);
         BO.User GetUser(string name, string password);
         void AddUser(BO.User user);
         //DO.User userBoDoAdapter(BO.User userBO);
         IEnumerable<BO.User> GetAllUsers();
 
-        #endregion
+        #endregion*/
         /*
         #region outgoingline
         BO.OutGoingLine GetOutGoingLine(string id);

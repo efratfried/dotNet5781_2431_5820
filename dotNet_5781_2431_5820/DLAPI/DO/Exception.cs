@@ -80,9 +80,9 @@ namespace DO
     }
     public class BadOpenWindow : Exception
     {
-        public bool s;
-        public BadOpenWindow(bool L) : base() => s = L;
-        public BadOpenWindow(bool L, string message) :
+        public string s;
+        public BadOpenWindow(string L) : base() => s = L;
+        public BadOpenWindow(string L, string message) :
             base(message) => s = L;
 
         public override string ToString() => base.ToString() + $", couldnt open the wanted window :";

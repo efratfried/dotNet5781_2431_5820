@@ -22,7 +22,7 @@ namespace PL
     {
         IBL bl;
         PO.BusLine MyBusLine;
-        PO.Station MyStation;
+        BO.BusStationLine MybusStation;
        
         //BO.Line saveTheCurrentDetails;//a line to save the original details of the bus in case the update is illegal:
 

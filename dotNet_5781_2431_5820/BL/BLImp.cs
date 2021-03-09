@@ -846,9 +846,9 @@ namespace BL
         }
         public IEnumerable<BO.FollowingStations> GetFollowingStationSBy(Predicate<BO.FollowingStations> predicate)
         {
-
             List<BO.FollowingStations> fs = new List<FollowingStations>();
             List<DO.FollowingStations> fs1 = dl.GetAllFollowingStationss().ToList();
+
             for (int i = 0; i < fs1.Count; i++)
             {
                 fs.Add(FollowingSDoBoAdapter(fs1[i]));

@@ -22,31 +22,31 @@ namespace DL
 
         #region DS XML Files
 
-        string BususPath = @"BusesXml.xml"; //XElement
+        static string BususPath = @"BusesXml.xml"; //XElement
 
-        string BusLinesbusPath = @"BusLinesXml.xml"; //XMLSerializer
-        string StationsPath = @"StationsXml.xml"; //XMLSerializer
-        string DrivingBussbusath = @"DrivingBusesXml.xml"; //XMLSerializer
+        static string BusLinesbusPath = @"BusLinesXml.xml"; //XMLSerializer
+        static  string StationsPath = @"StationsXml.xml"; //XMLSerializer
+        static string DrivingBussbusath = @"DrivingBusesXml.xml"; //XMLSerializer
         //string OutGoingBusesPath = @"OutGoingBusesXml.xml"; //XMLSerializer
-        string BusStationLinePath = @"BusStationLineXml.xml"; //XMLSerializer
-        string UserPath = @"UserXml.xml"; //XElement
-        string AccidentPath = @"AccidentXml.xml"; //XMLSerializer
+        static string BusStationLinePath = @"BusStationLineXml.xml"; //XMLSerializer
+        static string UserPath = @"UserXml.xml"; //XElement
+        static string AccidentPath = @"AccidentXml.xml"; //XMLSerializer
         //string UserDrivePath = @"UserLineXml.xml"; //XMLSerializer
-        string FollowingStationsPath = "@FollowingStationssXml.xml";
+         static string FollowingStationsPath = "@FollowingStationssXml.xml";
 
         public static List<Bus> BussesList;
         public static List<Station> StationsList;
         public static List<BusLine> BusLinesList;
-        public static List<BusStationLine> BusStationsLineList;
+        public static  List<BusStationLine> BusStationsLineList;
         public static List<OutGoingLine> OutGoingLinesList;
         public static List<User> UsersList;
         //public static List<UserDrive> UserDrivesList;
         public static List<Accident> AccidentsList;
         public static List<Treat> TreatsList;
         public static List<DrivingBus> DrivingsList;
-        public static List<FollowingStations> followingStations;
+        public  List<FollowingStations> followingStations;
 
-        static void InitAllLists()
+         public static void InitAllLists()
         {
             StationsList = new List<Station>
             {
@@ -603,7 +603,8 @@ namespace DL
                 #endregion
             };
 
-            BussesList = new List<Bus>();
+            BussesList = new List<Bus>()
+            {
 
 
             new Bus
@@ -766,8 +767,8 @@ namespace DL
                     //Status = Status.Available
                 },
 
-            
 
+                };
 
 
             XMLTools.SaveListToXMLSerializer(StationsList, StationsPath);

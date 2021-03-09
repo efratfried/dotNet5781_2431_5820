@@ -7,25 +7,18 @@
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
         Title="EnteringWindow" Height="485" Width="1000">
+    <Window.Background>
+        <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
+    </Window.Background>
     <Grid Margin="6,0,261.6,99.2">
         <Grid.RowDefinitions>
             <RowDefinition Height="29*"/>
             <RowDefinition Height="149*"/>
         </Grid.RowDefinitions>
-        <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG" Margin="-106,-142,-403,-244" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="15.283"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
 
-        <Button x:Name="connect" HorizontalAlignment="Left" Margin="924,-5,-237,0" VerticalAlignment="Top" Width="39" Height="38" FontSize="18" Click="Button_Click" Background="Transparent">
+        <Button x:Name="connect" HorizontalAlignment="Left" Margin="922,8,-235,0" VerticalAlignment="Top" BorderBrush="Transparent" Width="39" Height="38" FontSize="18" Click="Button_Click" Background="Transparent">
             <Button.Style>
-                <Style TargetType="Button">
+                <Style TargetType="{x:Type Button}">
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Foreground" Value="DimGray"/>
@@ -35,7 +28,7 @@
             </Button.Style>
         </Button>
         <!-- <MediaElement LoadedBehavior="Play" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/The Travego Coach - Official Trailer _ Mercedes-Benz Buses.mp4" Margin="76,-59,-173,-161" Grid.RowSpan="2" />-->
-        <Image x:Name="login" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logout.PNG" Margin="759,25,-146,293" RenderTransformOrigin="0.548,0.483" Grid.RowSpan="2" />
+        <Image x:Name="login" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logout.PNG" Margin="883,8,-272,12.4" RenderTransformOrigin="0.548,0.483" />
         <Label x:Name="Welcone" Content="Welcome to Path Finder" FontSize="60" Margin="136,201.6,-114,10" Grid.Row="1" Foreground="White" FontWeight="Bold" FontFamily="Century Gothic"/>
     </Grid>
 </Window>

@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
 using BLAPI;
 
 namespace PL
@@ -23,6 +22,8 @@ namespace PL
     {
         IBL bl;
         PO.BusLine MyBusLine;
+        PO.Station MyStation;
+       
         //BO.Line saveTheCurrentDetails;//a line to save the original details of the bus in case the update is illegal:
 
         public BusLineWindow(IBL _bl)
@@ -273,10 +274,20 @@ namespace PL
 
         private void AddStationToLine_Click(object sender, RoutedEventArgs e)
         {
-            if(lineStationIndexColumn.ToString()!="")
-            {
-                AddStationToLine win = new AddStationToLine();
-                win.Show();
+ 
+            if(lineStationDataGrid.SelectedItem!=null)
+            {              
+                    BO.FollowingStations s = lineStationDataGrid.SelectedItem as BO.FollowingStations;
+                try
+                {
+                    BO.FollowingStations tempS =bl.GetFollowingStation(s.FirstStationCode,s.SecondStationCode);
+                    AddStationToLine win = new AddStationToLine(tempS, MyBusLine);
+                    win.Show();
+                }
+                catch(BO.BadStationNumException)
+                {
+                    MessageBoxResult res = MessageBox.Show("The Station doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                }              
             }
             else
             {

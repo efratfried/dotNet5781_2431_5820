@@ -206,4 +206,18 @@ namespace BO
             return Message + "\n";
         }
     }
+    [Serializable]
+    public class BadOpenWindow : Exception
+    {
+        public bool succeed;
+        public BadOpenWindow(bool s) : base(s) { }
+        public BadOpenWindow(bool message, Exception innerException) :
+            base(message.ToString(), innerException) => succeed = ((DO.BadOpenWindow)innerException).succeed;
+
+        public override string ToString()
+        {
+            return Message + "\n";
+        }
+    }
+
 }

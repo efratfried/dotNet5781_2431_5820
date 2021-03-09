@@ -78,6 +78,15 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad License num : {License}";
     }
+    public class BadOpenWindow : Exception
+    {
+        public bool s;
+        public BadOpenWindow(bool L) : base() => s = L;
+        public BadOpenWindow(bool L, string message) :
+            base(message) => s = L;
+
+        public override string ToString() => base.ToString() + $", couldnt open the wanted window :";
+    }
     public class beyondTimeLimitLineException : Exception
     {
         public DateTime Time;

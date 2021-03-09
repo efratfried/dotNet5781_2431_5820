@@ -12,7 +12,7 @@
     <Grid Margin="0,0,760.6,0.2">
 
         <Label x:Name="addstationtoline" Content="Add a station to line" FontSize="28" FontWeight="Bold" Foreground="White" Margin="159,20,-452,299.2" Height="51"/>
-        <ComboBox x:Name="stationList" Margin="267,136,-475,206.2" Height="28" />
+        <ComboBox x:Name="stationList" Margin="267,136,-475,206.2" Height="28" ItemsSource="{Binding}"/>
         <Label x:Name="station_list" Content="Choose a station:" FontSize="18" FontWeight="Bold" Foreground="Black" Margin="89,136,-267,192.2" Height="42"/>
         <Button x:Name="addstation" Content="Add station" Margin="230,313,-350,27.2" BorderBrush="black" FontSize="14" Click="addstation_Click"/>
     </Grid>

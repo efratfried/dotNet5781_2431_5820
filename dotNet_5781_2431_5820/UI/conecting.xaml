@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL"
         mc:Ignorable="d"
-        Title="Connecting" Height="485" Width="1000" WindowStartupLocation="CenterScreen" Icon="logo1.png" >
+        Title="Connecting" Height="485" Width="1000" WindowStartupLocation="CenterScreen" >
     <Grid x:Name="Connection_Grid">
 
         <Label Content="manager login" HorizontalAlignment="Left" Margin="630,60,0,0" VerticalAlignment="Top" Height="41" Width="187" FontWeight="Bold" FontStyle="Normal" FontSize="20">

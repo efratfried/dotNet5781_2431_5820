@@ -68,16 +68,16 @@ namespace BLAPI
         void AddFollowingStation(string code1, string code2);
         #endregion
 
-        /*
+        
         #region user
         BO.User userBoDoAdapter(DO.User userDO);
         BO.User GetUser(string name, string password);
         void AddUser(BO.User user);
-        DO.User userBoDoAdapter(BO.User userBO);
+        //DO.User userBoDoAdapter(BO.User userBO);
         IEnumerable<BO.User> GetAllUsers();
 
         #endregion
-
+        /*
         #region outgoingline
         BO.OutGoingLine GetOutGoingLine(string id);
         IEnumerable<BO.OutGoingLine> GetAllOutGoingLines();
@@ -86,7 +86,8 @@ namespace BLAPI
         void UpdateOutGoingLinePersonalDetails(BO.OutGoingLine outgoingline);
         void DeleteOutGoingLine(BO.OutGoingLine outgoingline);
         void AddOutGoingLine(BO.Bus outgoingline);
-        #endregion
+        #endregion*/
+        /*
         #region Accident
         BO.Bus GetAccident(BO.Bus bus,int num);
         IEnumerable<BO.Bus> GetAccidentBy(Predicate<BO.Bus> predicate);

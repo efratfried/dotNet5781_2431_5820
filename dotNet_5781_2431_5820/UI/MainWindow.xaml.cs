@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using PL;
 namespace UI
 {
     /// <summary>
@@ -20,8 +21,8 @@ namespace UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //conecting win = new conecting();
-            //win.ShowDialog();
+            conecting win = new conecting(bl);
+            win.ShowDialog();
         }
         public void iocn()
         {//C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL

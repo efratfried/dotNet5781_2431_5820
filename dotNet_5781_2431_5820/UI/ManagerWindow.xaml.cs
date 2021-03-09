@@ -56,7 +56,7 @@ namespace PL
         private void log_out_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            conecting win1 = new conecting();
+            conecting win1 = new conecting(bl);
             win1.ShowDialog();
         }
 

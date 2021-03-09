@@ -551,7 +551,7 @@ namespace BL
 
         #endregion
 
-        /*#region User
+        #region User
         public BO.User userBoDoAdapter(DO.User userDO)
         {
             BO.User userBO = new BO.User();
@@ -772,7 +772,9 @@ namespace BL
           {
 
           }*/
-        /*void AddAccident(BO.Bus bus)
+        /*
+        #region Accident
+        void AddAccident(BO.Bus bus)
         {
 
         }

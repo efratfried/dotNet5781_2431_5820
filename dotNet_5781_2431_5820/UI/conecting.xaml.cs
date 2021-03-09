@@ -21,12 +21,12 @@ namespace PL
      {
         IBL bl;
         BO.User _user;
-        public conecting()
+        public conecting(IBL bl1)
         {
             InitializeComponent();
+            bl = bl1;
         }
-
-        /*private void entering(object sender, RoutedEventArgs e)
+        private void entering(object sender, RoutedEventArgs e)
         {
             if (manager_Name.Text.Length!=0 && manager_password.Text.Length!=0)
             {
@@ -56,10 +56,8 @@ namespace PL
             else
             {
                 //MessageBox.Show(ex.Message + ex.InnerException, "wrong password", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-               
-          
-        }*/
+            }          
+        }
 
         private void manager_passowrd_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -87,11 +85,6 @@ namespace PL
         }
 
         private void user_Name_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void entering(object sender, RoutedEventArgs e)
         {
 
         }

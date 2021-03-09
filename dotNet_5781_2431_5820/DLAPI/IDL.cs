@@ -56,7 +56,7 @@ namespace DLAPI
         void DeleteStation(string codeStation);
         #endregion
       
-       /* #region User
+       #region User
         IEnumerable<DO.User> GetAllUser();
         IEnumerable<DO.User> GetAllUser(Predicate<DO.User> predicate);
         DO.User GetUser(string Name,string pass);
@@ -64,7 +64,7 @@ namespace DLAPI
         IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate);
         void UpdateUser(DO.User User);
         void DeleteUser(string Name,string password);
-        #endregion*/
+        #endregion
 
         //#region UserDrive
         //IEnumerable<DO.UserDrive> GetAllUserDrive();

@@ -29,26 +29,24 @@ namespace PL
         }
         private void entering(object sender, RoutedEventArgs e)
         {
-            ManagerWindow win = new ManagerWindow();
-            win.ShowDialog();
-            /*if (manager_Name.Text.Length!=0 && manager_password.Text.Length!=0)
+            if (manager_Name.Text.Length!=0 && manager_password.Text.Length!=0)
             {
-                PO.User MyUser = new PO.User();
-                //BO.User B= bl.GetUser(manager_Name.Text, manager_password.Text);//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();
-                //B.DeepCopyTo(MyUser);
+               PO.User MyUser = new PO.User();
+                user= bl.GetUser(manager_Name.Text, manager_password.Text);//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();
+                user.DeepCopyTo(MyUser);
 
                 if (MyUser != null)
                 {
                     try
                     {
-                        if (MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Manager || MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger)
+                        if (MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Manager) //|| MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger)
                         {
                             ManagerWindow win = new ManagerWindow(MyUser);
                             win.ShowDialog();
                         }
                         else
                         {
-                            MessageBoxResult res = MessageBox.Show("The Station doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         }
                     }
                     catch (BO.BadUserName_PasswordException ex)
@@ -58,13 +56,13 @@ namespace PL
                 }
                 else
                 {
-                    MessageBoxResult res = MessageBox.Show("The Station doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 }
             }
             else
             {
-                MessageBoxResult res = MessageBox.Show("The Station doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            } */
+                MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            } 
         }
 
         private void manager_passowrd_TextChanged(object sender, TextChangedEventArgs e)

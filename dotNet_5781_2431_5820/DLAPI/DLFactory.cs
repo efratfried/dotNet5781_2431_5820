@@ -90,8 +90,7 @@ namespace DLAPI
         }
         private static void DoNothing()
         {
-            IDL DAL;
-
+            IDL DAL;           
         }
     }
 }

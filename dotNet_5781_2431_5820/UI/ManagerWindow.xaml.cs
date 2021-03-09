@@ -22,10 +22,10 @@ namespace PL
     {
         IBL bl = BLFactory.GetBL("1");
 
-        public ManagerWindow(/*PO.User user*/)
+        public ManagerWindow(PO.User user)
         {
             InitializeComponent();
-            //username.DataContext = user.UserName;
+            username.DataContext = user.UserName;
             SlidePanel.Opacity = 0.0;
         }
 

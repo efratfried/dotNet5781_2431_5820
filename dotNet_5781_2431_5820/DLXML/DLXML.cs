@@ -471,7 +471,7 @@ namespace DL
 
          #endregion*/
 
-        /*  #region User
+         #region User
         public IEnumerable<DO.User> GetAllUser()
         {
             XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
@@ -479,10 +479,11 @@ namespace DL
             return (from user in UserRootElem.Elements()
                     select new User()
                     {
-                        UserName = (user.Element("Name").Value),
-                        Password = (user.Element("Password").Value),
+                        Me = (Access)Enum.Parse(typeof(Access), user.Element("Me").Value),
+                        UserName = (user.Element("UserName").Value),
+                        Password = (user.Element("Password").Value)
                     }
-                   );
+                   ) ;
         }
         public IEnumerable<DO.User> GetAllUser(Predicate<User> predicate)
         {
@@ -498,6 +499,7 @@ namespace DL
                           where (user.Element("Name").Value) == Name
                           select new User()
                           {
+                              Me = (Access)Enum.Parse(typeof(Access), user.Element("Me").Value),
                               UserName = (user.Element("name").Value),
                               Password = (user.Element("password").Value),
                           }
@@ -520,8 +522,10 @@ namespace DL
 
             XElement EserElem = new XElement("user",
                                    new XElement("name", user.UserName),
-                                   new XElement("password", user.Password));
+                                   new XElement("password", user.Password),
+                                   new XElement("Me",user.Me));
             UserRootElem.Add(EserElem);
+            
 
             XMLTools.SaveListToXMLElement(UserRootElem, UserPath);
         }
@@ -562,7 +566,7 @@ namespace DL
 
             XMLTools.SaveListToXMLSerializer(UsersList, UserPath);
         }
-        #endregion*/
+        #endregion
 
         #region DrivingBus
         public IEnumerable<DrivingBus> GetAllDrivingsBusLists()

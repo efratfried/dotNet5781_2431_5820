@@ -551,7 +551,7 @@ namespace BL
 
         #endregion
 
-       /* #region User
+        #region User
         public BO.User userBoDoAdapter(DO.User userDO)
         {
             BO.User userBO = new BO.User();
@@ -630,9 +630,9 @@ namespace BL
                    select userBoDoAdapter(item);
         }
 
-        #endregion*/
-
-        /*#region OutGoingLine
+        #endregion
+        /*
+        #region OutGoingLine
         BO.OutGoingLine OutGoingLineDoBoAdapter(DO.OutGoingLine OutGoingLineDO)
         {
             BO.OutGoingLine OutGoingLineBO = new BO.OutGoingLine();
@@ -681,11 +681,12 @@ namespace BL
                    orderby OutGoingLineDO.ID
                    select OutGoingLineDoBoAdapter(OutGoingLineDO);
         }
+        #endregion OutGoingLine
         /*public IEnumerable<BO.OutGoingLine> GetOutGoingLinesBy(Predicate<BO.OutGoingLine> predicate)
         {
             throw new NotImplementedException();
-        }*/
-        /*   public IEnumerable<BO.OutGoingLine> GetOutGoingLineLicenseNumList()
+        }
+          public IEnumerable<BO.OutGoingLine> GetOutGoingLineLicenseNumList()
            {
               // return from item in dl.GetOutGoingLineListWithSelectedFields((OutGoingLineDO) =>
                {
@@ -750,7 +751,7 @@ namespace BL
 
           }
 
-        #endregion OutGoingLine
+        
 
         /*#region Accident
 

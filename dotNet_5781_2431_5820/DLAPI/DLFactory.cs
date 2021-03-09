@@ -88,5 +88,10 @@ namespace DLAPI
                 throw new DLConfigException($"Class {dlNameSpace}.{dlClass} is not a singleton", ex);
             }
         }
+        private static void DoNothing()
+        {
+            IDL DAL;
+
+        }
     }
 }

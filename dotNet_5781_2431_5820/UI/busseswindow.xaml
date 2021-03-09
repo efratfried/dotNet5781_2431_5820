@@ -14,7 +14,7 @@
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox x:Name="busses_list" ItemsSource="{Binding}"  Height="29" Margin="426,70,237,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
+        <ComboBox x:Name="busses_list" ItemsSource="{Binding}"  Height="29" Margin="426,70,236.6,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
         <Button x:Name="start_treatment" Content="start treat" HorizontalAlignment="Left" Margin="154,373,0,0" VerticalAlignment="Top" Width="146" Click="start_treatment_Click" Foreground="black" BorderBrush="Black" Height="20"/>
         <Button x:Name="start_filling_foul" Content="strat refuiling" HorizontalAlignment="Left" Margin="155,327,0,0" VerticalAlignment="Top" Width="146" Click="start_filling_foul_Click" Foreground="black" BorderBrush="Black" Height="20"/>
         <Button x:Name="start_driving" Content="start driving" HorizontalAlignment="Left" Margin="154,284,0,0" VerticalAlignment="Top" Width="146" Click="start_driving_Click" Foreground="black" BorderBrush="Black" Height="20"/>

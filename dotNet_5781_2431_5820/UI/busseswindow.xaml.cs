@@ -31,11 +31,11 @@ namespace PL
           
              
 
-            /*void RefreshAllLineStationsOfLineGrid()
+            void RefreshAllLineStationsOfLineGrid()
             {
                 IEnumerable<PO.BusLine> busLines;
-                lineStationDataGrid.DataContext = bl.GetAllBuss();
-            }*/
+                Bus_Ducoments.DataContext = bl.GetAllBuss();
+            }
             //   RefreshAllBussesComboBox();
 
 

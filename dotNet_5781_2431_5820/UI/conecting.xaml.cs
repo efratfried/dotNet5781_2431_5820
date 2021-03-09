@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLAPI;
+using PO;
 namespace PL
 {
     /// <summary>
@@ -20,7 +21,7 @@ namespace PL
      public partial class conecting : Window
      {
         IBL bl;
-        BO.User _user;
+        BO.User user;
         public conecting(IBL bl1)
         {
             InitializeComponent();
@@ -28,35 +29,42 @@ namespace PL
         }
         private void entering(object sender, RoutedEventArgs e)
         {
-            if (manager_Name.Text.Length!=0 && manager_password.Text.Length!=0)
+            ManagerWindow win = new ManagerWindow();
+            win.ShowDialog();
+            /*if (manager_Name.Text.Length!=0 && manager_password.Text.Length!=0)
             {
                 PO.User MyUser = new PO.User();
-                BO.User B= bl.GetUser(manager_Name.Text, manager_password.Text);//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();
-                B.DeepCopyTo(MyUser);
+                //BO.User B= bl.GetUser(manager_Name.Text, manager_password.Text);//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();
+                //B.DeepCopyTo(MyUser);
 
-                if(MyUser!=null)
+                if (MyUser != null)
                 {
-                    if(MyUser.Password==manager_password.Text && MyUser.Me == BO.Access.Manager || MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger)
+                    try
                     {
-                        ManagerWindow win = new ManagerWindow(MyUser);
-                        win.ShowDialog();
+                        if (MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Manager || MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger)
+                        {
+                            ManagerWindow win = new ManagerWindow(MyUser);
+                            win.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBoxResult res = MessageBox.Show("The Station doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        }
                     }
-                    //else if()
-                    //else
-                    //{                  
-                    //    //MessageBox.Show(ex.Message + ex.InnerException, "wrong password", MessageBoxButton.OK, MessageBoxImage.Error);
-                    //}
-
+                    catch (BO.BadUserName_PasswordException ex)
+                    {
+                        MessageBox.Show(ex.Message + ex.InnerException, "wrong details", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
                 {
-                    //MessageBox.Show(ex.Message + ex.InnerException, "wrong password", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBoxResult res = MessageBox.Show("The Station doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 }
             }
             else
             {
-                //MessageBox.Show(ex.Message + ex.InnerException, "wrong password", MessageBoxButton.OK, MessageBoxImage.Error);
-            }          
+                MessageBoxResult res = MessageBox.Show("The Station doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            } */
         }
 
         private void manager_passowrd_TextChanged(object sender, TextChangedEventArgs e)

@@ -8,23 +8,22 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using DLAPI;
 using DO;
-//using DO;
+
 namespace DL
 {
     sealed class DLXML : IDL
     {
         #region singelton
         static readonly DLXML instance = new DLXML();
-        static DLXML() { }// static ctor to ensure instance init is done just before first usage
-        DLXML() { } // default => busrivate
-        public static DLXML Instance { get => instance; }// The busublic Instance busrobusty to use
+        static DLXML() {}// static ctor to ensure instance init is done just before first usage
+        DLXML() { } // default => private
+        public static DLXML Instance { get => instance; }// The public Instance property to use
          
         #endregion
 
         #region DS XML Files
 
         static string BususPath = @"BusesXml.xml"; //XElement
-
         static string BusLinesbusPath = @"BusLinesXml.xml"; //XMLSerializer
         static  string StationsPath = @"StationsXml.xml"; //XMLSerializer
         static string DrivingBussbusath = @"DrivingBusesXml.xml"; //XMLSerializer
@@ -35,22 +34,19 @@ namespace DL
         //string UserDrivePath = @"UserLineXml.xml"; //XMLSerializer
          static string FollowingStationsPath = "@FollowingStationssXml.xml";
 
-       /* public static List<Bus> BussesList;
-        public static List<Station> StationsList;
-        public static List<BusLine> BusLinesList;
-        public static  List<BusStationLine> BusStationsLineList;
-        public static List<OutGoingLine> OutGoingLinesList;
-        public static List<User> UsersList;
-        //public static List<UserDrive> UserDrivesList;
-        public static List<Accident> AccidentsList;
-        public static List<Treat> TreatsList;
-        public static List<DrivingBus> DrivingsList;
-        public  List<FollowingStations> followingStations;*/
-
-         
+        /* public static List<Bus> BussesList;
+         public static List<Station> StationsList;
+         public static List<BusLine> BusLinesList;
+         public static  List<BusStationLine> BusStationsLineList;
+         public static List<OutGoingLine> OutGoingLinesList;
+         public static List<User> UsersList;
+         //public static List<UserDrive> UserDrivesList;
+         public static List<Accident> AccidentsList;
+         public static List<Treat> TreatsList;
+         public static List<DrivingBus> DrivingsList;
+         public List<FollowingStations> followingStations;*/
 
         #endregion
-
         #region Bus
         public DO.Bus GetBus(string LicenseNum)
         {
@@ -768,7 +764,7 @@ namespace DL
 
             DO.Accident a = AccidentsList.Find(accident => accident.AccidentNum == Accidentnum);
 
-            if (a.AccidentNum != null)
+            if (a.AccidentNum!=0)
             {
                 AccidentsList.Remove(a);
             }
@@ -911,5 +907,6 @@ namespace DL
                 throw new DO.BadBusLineException(FollowingStations.FirstStationCode, FollowingStations.SecondStationCode, $"bad Bus's LicenseNum: {FollowingStations.FirstStationCode},{FollowingStations.SecondStationCode}");
         }
         #endregion
+
     }
 }

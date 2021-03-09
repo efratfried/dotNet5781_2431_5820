@@ -750,6 +750,23 @@ namespace DS
                 }
             #endregion
             };
+           /* UsersList = new List<User>
+            {
+                #region users
+                new User
+                {
+                    UserName="Efrat",
+                    Password="A1",
+                    Me= Access.Manager                 
+                },
+                  new User
+                {
+                    UserName="Tamar",
+                    Password="TP",
+                    Me= Access.Manager
+                }
+                #endregion
+            };*/
         }
     }
 }

@@ -12,7 +12,7 @@ namespace DLAPI
     {
         #region Bus
         IEnumerable<DO.Bus> GetAllBusses();
-        IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate);
+        //IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate);
         //IEnumerable<DO.Bus> GetBusIDList();
         IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate);
         DO.Bus GetBus(string Num);
@@ -58,7 +58,7 @@ namespace DLAPI
       
        #region User
         IEnumerable<DO.User> GetAllUser();
-        IEnumerable<DO.User> GetAllUser(Predicate<DO.User> predicate);
+       // IEnumerable<DO.User> GetAllUser(Predicate<DO.User> predicate);
         DO.User GetUser(string Name,string pass);
         void AddUser(DO.User user);
         IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate);

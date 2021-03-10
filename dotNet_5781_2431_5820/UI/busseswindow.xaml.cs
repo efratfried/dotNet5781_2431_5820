@@ -26,16 +26,10 @@ namespace PL
         PO.Bus currentbus;
         public busseswindow(IBL _bl)
         {
-            InitializeComponent();
+            InitializeComponent();           
+            bl = _bl;
             Refreshbusses_listComboBox();
-          
-             
 
-            void RefreshAllLineStationsOfLineGrid()
-            {
-                IEnumerable<PO.BusLine> busLines;
-                Bus_Ducoments.DataContext = bl.GetAllBuss();
-            }
             //   RefreshAllBussesComboBox();
 
 
@@ -75,60 +69,76 @@ namespace PL
     */
         private void Refreshbusses_listComboBox()//refresh the combobox each time the user changes the selection 
         {
-            IEnumerable<PO.Bus> bus = bl.GetAllBuss().Cast<PO.Bus>();
-            currentbus = bus.FirstOrDefault();
-            busses_list.ItemsSource = bus;
-            Licensenumbus.DataContext = currentbus.LicenseNum;
-            foul_status.DataContext = currentbus.foul;
-            km_.DataContext = currentbus.KM;
-            aviability_status.DataContext = currentbus.Status;
+            List<BO.Bus> buses = bl.GetAllBuss().ToList();
+            List<PO.Bus> buses1 = new List<PO.Bus>();
+            for (int i = 0; i < buses.Count; i++)
+            {
+                PO.Bus buses2 = new PO.Bus();
+                buses[i].DeepCopyTo(buses2);
+
+               buses1.Add(buses2);
+            }
+            busses_list.ItemsSource = buses1;
+            busses_list.DisplayMemberPath = "LicenseNum";
+            busses_list.SelectedIndex = 0;
+
+            //currentbus = buses1.FirstOrDefault();
+           
+            //Licensenumbus.DataContext = currentbus.LicenseNum;
+            //foul_status.DataContext = currentbus.foul;
+            //km_.DataContext = currentbus.KM;
+            //aviability_status.DataContext = currentbus.Status;
         }
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (busses_list.SelectedIndex < 0)
-                return;
-            try
-            {
-                IEnumerable<BO.Bus> templist = bl.GetAllBuss().Cast<BO.Bus>();
+            currentbus = (PO.Bus)busses_list.SelectedItem;
+            ___Bus_Window_.DataContext = currentbus;
 
-                currentbus = busses_list.SelectedItem as PO.Bus;
-            }
-            catch (BO.BadBusLineIdException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //inner_info.
+            //if (busses_list.SelectedIndex < 0)
+            //    return;
+            //try
+            //{
+            //    IEnumerable<BO.Bus> templist = bl.GetAllBuss().Cast<BO.Bus>();
+
+            //    currentbus = busses_list.SelectedItem as PO.Bus;
+            //}
+            //catch (BO.BadBusLineIdException ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void inner_info_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
-            {
-                if (inner_info.SelectedItem == accident)
-                {
-                    BO.Bus bus = bl.GetBus(currentbus.LicenseNum.ToString());
-                    inner_info.DataContext = bus.AccidentsDuco;
-                }
+            //try
+            //{
+            //    if (inner_info.SelectedItem == accident)
+            //    {
+            //        BO.Bus bus = bl.GetBus(currentbus.LicenseNum.ToString());
+            //        inner_info.DataContext = bus.AccidentsDuco;
+            //    }
 
-                if (inner_info.SelectedItem == treats)
-                {
-                    BO.Bus bus = bl.GetBus(currentbus.LicenseNum.ToString());
-                    inner_info.DataContext = bus.TreatsDuco;
-                }
+            //    if (inner_info.SelectedItem == treats)
+            //    {
+            //        BO.Bus bus = bl.GetBus(currentbus.LicenseNum.ToString());
+            //        inner_info.DataContext = bus.TreatsDuco;
+            //    }
 
-                if (inner_info.SelectedItem == last_drives)
-                {
-                    BO.Bus bus = bl.GetBus(currentbus.LicenseNum.ToString());
-                    inner_info.DataContext = bus.drivingBusesDuco;
-                }
-                else
-                {
-                    throw new BO.BadBusLineIdException("you didnt choose a duocment");
-                }
-            }
-            catch (BO.BadBusLineIdException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //    if (inner_info.SelectedItem == last_drives)
+            //    {
+            //        BO.Bus bus = bl.GetBus(currentbus.LicenseNum.ToString());
+            //        inner_info.DataContext = bus.drivingBusesDuco;
+            //    }
+            //    else
+            //    {
+            //        throw new BO.BadBusLineIdException("you didnt choose a duocment");
+            //    }
+            //}
+            //catch (BO.BadBusLineIdException ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
             //currentbusID.DataContext = bl.GetAllBuss();
             //currentbusID.SelectedIndex = 0; //index of the object to be selected
         }

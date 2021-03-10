@@ -564,7 +564,7 @@ namespace BL
             }
             catch (DO.BadUserName_PasswordException ex)
             {
-                throw new BO.BadUserName_PasswordException("ERROR!\n", ex);
+                throw new BO.BadUserName_PasswordException( "ERROR!\n", ex);
             }
             newUserDO.CopyPropertiesTo(userBO);
 

@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace PO
 {
-    public abstract class Station : DependencyObject
+    public class Station : DependencyObject
     {
         static readonly DependencyProperty StationNameProperty = DependencyProperty.Register("StationName", typeof(string), typeof(Station));
         static readonly DependencyProperty AdressProperty = DependencyProperty.Register("Adress", typeof(BO.Adress), typeof(Station));

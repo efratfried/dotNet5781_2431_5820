@@ -63,10 +63,10 @@
         <Rectangle HorizontalAlignment="Left" Height="7" VerticalAlignment="Top" Width="990" Fill="Black" Visibility="Visible" StrokeLineJoin="Miter"/>
         <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/busicon.png" Margin="850,32,71.6,394.2"/>
         <TextBox x:Name="Licensenumbus" Margin="848,107,67.6,354.2" Height="25" Background="Transparent" DataContext="{Binding}" FontSize="20" BorderBrush="Transparent" FontWeight="Bold"/>
-        <Image x:Name="firm_" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/foul.png" Margin="176,229,755.6,237.2"/>
-        <Image x:Name="foul_" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/firm.png" Margin="196,184,781.6,283.2"/>
-        <Image x:Name="abialability" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/drive abialability.png" Margin="167,97,752.6,367.2"/>
-        <Image x:Name="km" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/km.png" Margin="167,139,752.6,325.2"/>
+        <Image x:Name="firm_" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/foul.png" Margin="176,229,755.6,237.2"/>
+        <Image x:Name="foul_" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/firm.png" Margin="196,184,781.6,283.2"/>
+        <Image x:Name="abialability" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/drive abialability.png" Margin="167,97,752.6,367.2"/>
+        <Image x:Name="km" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/km.png" Margin="167,139,752.6,325.2"/>
         <TextBlock x:Name="aviability_status" HorizontalAlignment="Left" Margin="47,93,0,0"  Background="LightGray" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
     </Grid>
 </Window>

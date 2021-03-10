@@ -10,11 +10,11 @@
     <!--  <Window.Background>
         <ImageBrush ImageSource="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/road.JFIF‬"/>
     </Window.Background>-->
-    <Grid x:Name="Main_Window" Margin="0,0,-6.4,-76.6" Background="#FFF7F7F7">
+    <Grid x:Name="Main_Window" Margin="0,0,-6.4,-3.6" Background="#FFF7F7F7">
 
-        <Rectangle Fill="Orange" HorizontalAlignment="Left" Height="600" Stroke="Orange" VerticalAlignment="Top" Width="193" Margin="1007,0,0,0"/>
-        <StackPanel x:Name="The_items_opening_window" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="997" Margin="10,-3,0,0" Background="White"  />
-        <Button x:Name="busses" Content="Busses" HorizontalAlignment="Left" Margin="1012,247,0,0" VerticalAlignment="Top" Width="188" Height="60" FontWeight="Bold" Click="busses_Click" FontSize="28" Foreground="White" Background="DarkSlateGray">
+        <Rectangle Fill="Orange" HorizontalAlignment="Left" Height="574" Stroke="Orange" VerticalAlignment="Top" Width="193" Margin="1007,0,0,0"/>
+        <StackPanel x:Name="The_items_opening_window" HorizontalAlignment="Left" Width="1002" Background="White"  />
+        <Button x:Name="busses" Content="Busses" HorizontalAlignment="Left" Margin="1012,207,0,0" VerticalAlignment="Top" Width="188" Height="60" FontWeight="Bold" Click="busses_Click" FontSize="28" Foreground="White" Background="DarkSlateGray">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Style.Triggers>
@@ -25,14 +25,14 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="Stations"  Content="Stations" HorizontalAlignment="Left" Margin="1012,377,0,0" VerticalAlignment="Top" Width="188" Height="60" Click="Stations_Click" FontSize="28" Foreground="White" Background="DarkSlateGray" FontWeight="Bold"/>
-        <Button x:Name="buslines"  Content="BusLines" HorizontalAlignment="Left" Margin="1010,312,0,0" VerticalAlignment="Top" Width="190" Height="60" Click="buslines_Click" FontSize="28" Foreground="White" Background="DarkSlateGray" FontWeight="Bold"/>
+        <Button x:Name="Stations"  Content="Stations" HorizontalAlignment="Left" Margin="1012,337,0,0" VerticalAlignment="Top" Width="188" Height="60" Click="Stations_Click" FontSize="28" Foreground="White" Background="DarkSlateGray" FontWeight="Bold"/>
+        <Button x:Name="buslines"  Content="BusLines" HorizontalAlignment="Left" Margin="1010,272,0,0" VerticalAlignment="Top" Width="190" Height="60" Click="buslines_Click" FontSize="28" Foreground="White" Background="DarkSlateGray" FontWeight="Bold"/>
         <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/user_icon2.PNG"  Margin="984,20,-50,0" VerticalAlignment="Top" Height="143"/>
         <Label Content="hello" FontSize="32" Margin="1012,181,97,408" Foreground="Black" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" />
         <TextBox x:Name="username" DataContext="{Binding}"  HorizontalAlignment="Left" Height="44" Margin="1103,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsReadOnly="True" FontSize="32" Foreground="Black" FontWeight="Bold" TextChanged="username_TextChanged" Background="Transparent" BorderBrush="Transparent"/>
-        <Button x:Name="log_out" Margin="4,0,1123,583" FontSize="25" Background="Transparent" FontWeight="Bold" Click="log_out_Click" BorderBrush="Transparent"/>
-        <Rectangle x:Name="SlidePanel" HorizontalAlignment="Left" Height="60" Margin="1177,247,0,0" VerticalAlignment="Top" Width="13" Fill="White" Visibility="Visible" StrokeLineJoin="Miter"/>
-        <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logoutdoor.PNG" Margin="7,-1,1124,594" RenderTransformOrigin="0.5,0.5">
+        <Button x:Name="log_out" Margin="4,0,1123,496" FontSize="25" Background="Transparent" FontWeight="Bold" Click="log_out_Click" BorderBrush="Transparent"/>
+        <Rectangle x:Name="SlidePanel" HorizontalAlignment="Left" Height="60" Margin="1177,207,0,0" VerticalAlignment="Top" Width="13" Fill="White" Visibility="Visible" StrokeLineJoin="Miter"/>
+        <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logoutdoor.PNG" Margin="17,-40,1149,449" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -42,6 +42,5 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-
     </Grid>
 </Window>

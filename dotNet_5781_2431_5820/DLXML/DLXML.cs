@@ -15,10 +15,12 @@ namespace DL
     {
         #region singelton
         static readonly DLXML instance = new DLXML();
-        static DLXML() {}// static ctor to ensure instance init is done just before first usage
+        
+        static DLXML() { }
+
+        // static ctor to ensure instance init is done just before first usage
         DLXML() { } // default => private
-        public static DLXML Instance { get => instance; }// The public Instance property to use
-         
+        public static DLXML Instance { get => instance; }// The public Instance property to use        
         #endregion
 
         #region DS XML Files
@@ -34,6 +36,9 @@ namespace DL
         //string UserDrivePath = @"UserLineXml.xml"; //XMLSerializer
          static string FollowingStationsPath = "@FollowingStationssXml.xml";
 
+        
+        public static List<User> UsersList;
+
         /*List<DO.User> list1 = DS.DataSource.Users;
         file = new FileStream(@"..\..\..\bin\xml\UserXml.xml", FileMode.Create);
         x = new XmlSerializer(list1.GetType());
@@ -45,7 +50,7 @@ namespace DL
          public static List<BusLine> BusLinesList;
          public static  List<BusStationLine> BusStationsLineList;
          public static List<OutGoingLine> OutGoingLinesList;
-         public static List<User> UsersList;
+
          //public static List<UserDrive> UserDrivesList;
          public static List<Accident> AccidentsList;
          public static List<Treat> TreatsList;
@@ -71,16 +76,16 @@ namespace DL
                         ).FirstOrDefault();
 
             if (bus1 == null)
-                throw new DO.BadBusLicenseNumException(LicenseNum.ToString(), $"bad Bus License Num: {LicenseNum}");
+                throw new DO.BadBusLicenseNumException(LicenseNum, $"bad Bus License Num: {LicenseNum}");
             return bus1;
         }
-        public IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate)
+       /* public IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate)
         {
             List<Bus> BussesList = XMLTools.LoadListFromXMLSerializer<Bus>(BususPath);
 
             return from bs in BussesList
                    select bs;
-        }
+        }*/
         public IEnumerable<DO.Bus> GetAllBusses()
         {
             XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
@@ -169,7 +174,7 @@ namespace DL
 
             if (bus != null)
             {
-                bus.Element("LicenseNum").Value = Bus.LicenseNum.ToString();
+                bus.Element("LicenseNum").Value = Bus.LicenseNum;
                 bus.Element("Foul").Value = Bus.foul.ToString();
                 bus.Element("KM").Value = Bus.KM.ToString();
                 bus.Element("LicenseDate").Value = Bus.LicenseDate.ToString();
@@ -502,12 +507,12 @@ namespace DL
         {
             XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
             User user1 = (from user in UserRootElem.Elements()
-                          where (user.Element("Name").Value) == Name
+                          where (user.Element("UserName").Value) == Name
                           select new User()
                           {
                               Me = (Access)Enum.Parse(typeof(Access), user.Element("Me").Value),
-                              UserName = (user.Element("name").Value),
-                              Password = (user.Element("password").Value),
+                              UserName = (user.Element("UserName").Value),
+                              Password = (user.Element("Password").Value),
                           }
                         ).FirstOrDefault();
 

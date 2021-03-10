@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace PO
 {
-    public abstract class BusLine : DependencyObject
+    public class BusLine : DependencyObject
     {
         static readonly DependencyProperty BusNumProperty = DependencyProperty.Register("BusNum", typeof(int), typeof(BusLine));
         static readonly DependencyProperty FirstStationProperty = DependencyProperty.Register("FirstStation", typeof(int), typeof(BusLine));

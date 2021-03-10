@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using DLAPI;
 using DO;
-using DS;
+//using DS;
 namespace DL
 {
     sealed class DLXML : IDL
@@ -34,7 +34,7 @@ namespace DL
         //string UserDrivePath = @"UserLineXml.xml"; //XMLSerializer
          static string FollowingStationsPath = "@FollowingStationssXml.xml";
 
-        L/*ist<DO.User> list1 = DS.DataSource.Users;
+        /*List<DO.User> list1 = DS.DataSource.Users;
         file = new FileStream(@"..\..\..\bin\xml\UserXml.xml", FileMode.Create);
         x = new XmlSerializer(list1.GetType());
         x.Serialize(file, list1);

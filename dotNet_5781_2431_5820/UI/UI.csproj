@@ -101,6 +101,12 @@
     <Compile Include="UpdateStation.xaml.cs">
       <DependentUpon>UpdateStation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserBusLineWindow.xaml.cs">
+      <DependentUpon>UserBusLineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserStationWindow.xaml.cs">
+      <DependentUpon>UserStationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
@@ -176,6 +182,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UserBusLineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserStationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -218,6 +232,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="bgmore.jpg" />
     <Content Include="road.jfif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

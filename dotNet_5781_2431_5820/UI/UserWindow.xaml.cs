@@ -50,5 +50,17 @@ namespace UI
             conecting win1 = new conecting(bl);
             win1.ShowDialog();
         }
+
+        private void username_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
+
+        private void simulation_Click(object sender, RoutedEventArgs e)
+        {
+            SlidePanel.Opacity = 1;
+            SlidePanel.Height = Stations.Height;
+            //PL.SimulateOneStationWindow simulation = new PL.SimulateOneStationWindow(bl);
+            //simulation.ShowDialog();
+        }
     }
 }

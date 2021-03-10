@@ -750,7 +750,7 @@ namespace DS
                 }
             #endregion
             };
-           /* UsersList = new List<User>
+            UsersList = new List<User>
             {
                 #region users
                 new User
@@ -766,7 +766,7 @@ namespace DS
                     Me= Access.Manager
                 }
                 #endregion
-            };*/
+            };
         }
     }
 }

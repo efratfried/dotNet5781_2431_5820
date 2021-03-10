@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLAPI;
 using PO;
+using UI;
 namespace PL
 {
     /// <summary>
@@ -44,14 +45,45 @@ namespace PL
                             ManagerWindow win = new ManagerWindow(MyUser);
                             win.ShowDialog();
                         }
+
                         else
                         {
                             MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         }
                     }
-                    catch (BO.BadUserName_PasswordException ex)
+                    catch (BO.BadOpenWindow ex)
                     {
-                        MessageBox.Show(ex.Message + ex.InnerException, "wrong details", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(ex.Message + ex.InnerException, "couldn't open the window", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                }
+            }
+            else if (user_Name.Text.Length != 0 && user_password.Text.Length != 0)
+            {
+                PO.User MyUser = new PO.User();
+                user = bl.GetUser(user_Name.Text, user_password.Text);//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();
+                user.DeepCopyTo(MyUser);
+                if (MyUser != null)
+                {
+                    try
+                    {
+                        if (MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger) //|| MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger)
+                        {
+                            UserWindow win = new UserWindow(MyUser);
+                            win.ShowDialog();
+                        }
+
+                        else
+                        {
+                            MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        }
+                    }
+                    catch (BO.BadOpenWindow ex)
+                    {
+                        MessageBox.Show(ex.Message + ex.InnerException, "couldn't open the window", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 else
@@ -62,8 +94,10 @@ namespace PL
             else
             {
                 MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            } 
+            }
         }
+        
+
 
         private void manager_passowrd_TextChanged(object sender, TextChangedEventArgs e)
         {

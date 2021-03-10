@@ -31,52 +31,73 @@ namespace PL
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bl = _bl;
-
-            areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
-            BusLineComboBox.DisplayMemberPath = "BusNumber";//show only specific Property of object
-            BusLineComboBox.SelectedValuePath = "LineId";//selection return only specific Property of object
-            BusLineComboBox.SelectedIndex = 0; //index of the object to be selected
+            RefreshAllLineStationsOfLineGrid();
             RefreshAllLinesComboBox();
+            //area.DisplayMemberPath = "Area";
+            //BusLineComboBox.DisplayMemberPath = "BusNumber";//show only specific Property of object
+            //BusLineComboBox.SelectedValuePath = "LineId";//selection return only specific Property of object
+            //BusLineComboBox.SelectedIndex = 0; //index of the object to be selected
+            
             lineStationDataGrid.IsReadOnly = true;
         }
 
         void RefreshAllLinesComboBox()//refresh the combobox each time the user changes the selection 
         {
-            IEnumerable<PO.BusLine> buslines = bl.GetBusLines().Cast<PO.BusLine>();
-            BusLineComboBox.ItemsSource = buslines;
+            List<BO.BusLine> busLes = bl.GetBusLines().ToList();
+            List<PO.BusLine> busLes1 = new List<PO.BusLine>();
+            for (int i = 0; i < busLes.Count; i++)
+            {
+                PO.BusLine busLes2 = new PO.BusLine();
+                busLes[i].DeepCopyTo(busLes2);
+
+                busLes1.Add(busLes2);
+            }
+            BusLineComboBox.ItemsSource = busLes1;
+            BusLineComboBox.DisplayMemberPath = "BusNum";
+            BusLineComboBox.SelectedIndex = 0;
+
+            // IEnumerable<PO.BusLine> buslines = bl.GetBusLines().Cast<PO.BusLine>();
+            // BusLineComboBox.ItemsSource = buslines;
         }
+        
 
         void RefreshAllLineStationsOfLineGrid()
         {
-            IEnumerable<PO.BusLine> busLines;
-        //    lineStationDataGrid.DataContext = bl.GetAllBusStationLinesPerLine(MyBusLine.BusNum);
+            //IEnumerable<PO.BusLine> busLines;
+            lineStationDataGrid.DataContext = bl.GetBusStationLineList(MyBusLine.BusNum.ToString());
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MyBusLine = BusLineComboBox.SelectedItem as PO.BusLine;
+            /*
+             currentbus = (PO.Bus)busses_list.SelectedItem;
+            ___Bus_Window_.DataContext = currentbus;*/
+            MyBusLine = (PO.BusLine)BusLineComboBox.SelectedItem;
+            BusLines.DataContext = MyBusLine;          
+
+           /* MyBusLine = BusLineComboBox.SelectedItem as PO.BusLine;
 
             gridOneLine.DataContext = MyBusLine;
 
             if (MyBusLine != null)
             {
                 RefreshAllLineStationsOfLineGrid();
-            }
+            }*/
         }
 
         private void BusLineUpdate_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (MyBusLine != null && busNumberTextBox.Text != "" && firstStationTextBox.Text != "" && lastStationTextBox.Text != "")
+                if ( firstStationTextBox.Text != "" && lastStationTextBox.Text != "")
                 {
                     UpdateBusLineWindow win = new UpdateBusLineWindow(MyBusLine);
                     win.Show();
-                    MyBusLine.BusNum = int.Parse(busNumberTextBox.Text);
-                    MyBusLine.FirstStation = firstStationTextBox.Text;
-                    MyBusLine.LastStation = lastStationTextBox.Text;
+                    
+                    MyBusLine.FirstStation = int.Parse(firstStationTextBox.Text);
+                    MyBusLine.LastStation = int.Parse(lastStationTextBox.Text);
                     areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
-
+                    
 
                     if (MyBusLine != null)
                     {
@@ -293,6 +314,11 @@ namespace PL
             {
                 MessageBoxResult res = MessageBox.Show("Please press on a station?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
             }
+        }
+
+        private void area_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 

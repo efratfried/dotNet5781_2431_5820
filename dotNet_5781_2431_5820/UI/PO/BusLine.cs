@@ -18,8 +18,8 @@ namespace PO
         static readonly DependencyProperty IDProperty = DependencyProperty.Register("ID", typeof(int), typeof(BusLine));
 
         public int BusNum { get => (int)GetValue(BusNumProperty); set => SetValue(BusNumProperty, value); }
-        public string FirstStation { get => (string)GetValue(FirstStationProperty); set => SetValue(FirstStationProperty, value); }
-        public string LastStation { get => (string)GetValue(LastStationProperty); set => SetValue(LastStationProperty, value); }
+        public int FirstStation { get => (int)GetValue(FirstStationProperty); set => SetValue(FirstStationProperty, value); }
+        public int LastStation { get => (int)GetValue(LastStationProperty); set => SetValue(LastStationProperty, value); }
         public bool IsDeleted { get => (bool)GetValue(IsDeletedProperty); set => SetValue(IsDeletedProperty, value); }
         public BO.BusLine MyBusLine { get => (BO.BusLine)GetValue(MyBusLineProperty); set => SetValue(MyBusLineProperty, value); }
         public BO.Area Area { get => (BO.Area)GetValue(AreaProperty); set => SetValue(AreaProperty, value); }

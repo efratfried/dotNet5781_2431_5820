@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,15 +24,17 @@ namespace PL
         IBL bl;
         PO.BusLine MyBusLine;
         BO.BusStationLine MybusStation;
+        public ObservableCollection<PO.BusLine> ts;
        
         //BO.Line saveTheCurrentDetails;//a line to save the original details of the bus in case the update is illegal:
-
+        
         public BusLineWindow(IBL _bl)
         {
+            ts = new ObservableCollection<PO.BusLine>();
             InitializeComponent();
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bl = _bl;
-            RefreshAllLineStationsOfLineGrid();
+            
             RefreshAllLinesComboBox();
             //area.DisplayMemberPath = "Area";
             //BusLineComboBox.DisplayMemberPath = "BusNumber";//show only specific Property of object
@@ -44,45 +47,32 @@ namespace PL
         void RefreshAllLinesComboBox()//refresh the combobox each time the user changes the selection 
         {
             List<BO.BusLine> busLes = bl.GetBusLines().ToList();
-            List<PO.BusLine> busLes1 = new List<PO.BusLine>();
             for (int i = 0; i < busLes.Count; i++)
             {
                 PO.BusLine busLes2 = new PO.BusLine();
                 busLes[i].DeepCopyTo(busLes2);
 
-                busLes1.Add(busLes2);
+                ts.Add(busLes2);
             }
-            BusLineComboBox.ItemsSource = busLes1;
+            BusLineComboBox.ItemsSource = ts;
             BusLineComboBox.DisplayMemberPath = "BusNum";
             BusLineComboBox.SelectedIndex = 0;
 
             // IEnumerable<PO.BusLine> buslines = bl.GetBusLines().Cast<PO.BusLine>();
             // BusLineComboBox.ItemsSource = buslines;
         }
-        
-
+                
         void RefreshAllLineStationsOfLineGrid()
         {
             //IEnumerable<PO.BusLine> busLines;
-            lineStationDataGrid.DataContext = bl.GetBusStationLineList(MyBusLine.BusNum.ToString());
+            lineStationDataGrid.DataContext = bl.GetBusStationLineList(MyBusLine.ID.ToString());
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            /*
-             currentbus = (PO.Bus)busses_list.SelectedItem;
-            ___Bus_Window_.DataContext = currentbus;*/
+        {          
             MyBusLine = (PO.BusLine)BusLineComboBox.SelectedItem;
-            BusLines.DataContext = MyBusLine;          
-
-           /* MyBusLine = BusLineComboBox.SelectedItem as PO.BusLine;
-
-            gridOneLine.DataContext = MyBusLine;
-
-            if (MyBusLine != null)
-            {
-                RefreshAllLineStationsOfLineGrid();
-            }*/
+            BusLines.DataContext = MyBusLine;
+            RefreshAllLineStationsOfLineGrid();
         }
 
         private void BusLineUpdate_Click(object sender, RoutedEventArgs e)
@@ -96,9 +86,8 @@ namespace PL
                     
                     MyBusLine.FirstStation = int.Parse(firstStationTextBox.Text);
                     MyBusLine.LastStation = int.Parse(lastStationTextBox.Text);
-                    areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
+                    //areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
                     
-
                     if (MyBusLine != null)
                     {
                         BO.BusLine bln=new BO.BusLine();
@@ -106,7 +95,6 @@ namespace PL
                         bl.UpdateBusLinePersonalDetails(bln);
                     }
 
-                    MyBusLine = MyBusLine;//if succeded, change currLine fields to be as the line. if not- dont do that.
                     RefreshAllLinesComboBox();//refresh the combo box to save the changes!!!
                 }
                 else//if not all fields are full
@@ -150,8 +138,8 @@ namespace PL
         {
             try
             {
-                AddLine addLineWindow = new AddLine(bl);//we sent the line to a new window we created named AddLine
-                addLineWindow.Closing += addLineWindow_Closing;
+                AddLine addLineWindow = new AddLine(bl,this);//we sent the line to a new window we created named AddLine
+               // addLineWindow.Closing += addLineWindow_Closing;
                 addLineWindow.ShowDialog();
             }
             catch (BO.BadBusLineIdException ex)

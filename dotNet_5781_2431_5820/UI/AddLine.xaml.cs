@@ -26,11 +26,13 @@ namespace PL
         public List<BO.OutGoingLine> listTrips = new List<BO.OutGoingLine>();
         public bool AllFieldsWereFilled = false;
         public bool thereIsATrip = false;
+        public BusLineWindow BS;
 
-        public AddLine(IBL _bl)
+        public AddLine(IBL _bl, BusLineWindow _BS)
         {
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            BS = _BS;
             bl = _bl;
             addedLine = new BO.BusLine();
             DataContext = addedLine;
@@ -89,18 +91,41 @@ namespace PL
 
         private void AddLineButton_Click(object sender, RoutedEventArgs e)
         {
+
+            BO.BusLine bn=new BO.BusLine();
+            PO.BusLine pl=new PO.BusLine();
+            
+
             if (busNumberTextBox.Text != "")
             {
-                AllFieldsWereFilled = true;
-                addedLine.BusNum = int.Parse(busNumberTextBox.Text);
-                addedLine.Area = (BO.Area)areaComboBox.SelectedIndex;
+                bn.Area= (BO.Area)areaComboBox.SelectedIndex;
+                bn.BusNum= int.Parse(busNumberTextBox.Text);
+                bn.FirstStation;
+                bn.ID;
+                bn.LastStation;
+                bn.stationsList;
             }
-
+            
             MessageBoxResult res = MessageBox.Show("Add line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (res == MessageBoxResult.No)
-                return;
-
-            this.Close();
+            switch (res)
+            {
+                case MessageBoxResult.None:
+                    break;
+                case MessageBoxResult.OK:
+                    this.Close();
+                    break;
+                case MessageBoxResult.Cancel:
+                    break;
+                case MessageBoxResult.Yes:
+                    bl.AddBusLine(bn);
+                    bl.GetBusLine(bn.ID).DeepCopyTo(pl);
+                    BS.ts.Add(pl);
+                    break;
+                case MessageBoxResult.No:
+                    break;
+                default:
+                    break;
+            }           
         }
 
         private void areaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

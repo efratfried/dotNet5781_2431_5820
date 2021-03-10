@@ -767,6 +767,25 @@ namespace DS
                 }
                 #endregion
             };
+            BusStationsLineList = new List<BusStationLine>
+            {
+                      
+                new BusStationLine
+                {
+                    ID="3",
+                    BusStationNum="73",
+                    IndexInLine=0,
+                    NumOfPassingLines=1
+                },
+            new BusStationLine
+            {
+                ID = "3",
+                BusStationNum = "76",
+                IndexInLine = 1,
+                NumOfPassingLines = 2
+            }
+            };
+
         }
     }
 }

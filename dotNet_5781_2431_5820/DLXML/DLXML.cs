@@ -17,6 +17,7 @@ namespace DL
         static readonly DLXML instance = new DLXML();
         
         static DLXML() { }
+    
 
         // static ctor to ensure instance init is done just before first usage
         DLXML() { } // default => private
@@ -38,7 +39,7 @@ namespace DL
 
         
         public static List<User> UsersList;
-
+        public static List<BusStationLine> BusStationsLineList;
         /*List<DO.User> list1 = DS.DataSource.Users;
         file = new FileStream(@"..\..\..\bin\xml\UserXml.xml", FileMode.Create);
         x = new XmlSerializer(list1.GetType());
@@ -48,7 +49,7 @@ namespace DL
         /* public static List<Bus> BussesList;
          public static List<Station> StationsList;
          public static List<BusLine> BusLinesList;
-         public static  List<BusStationLine> BusStationsLineList;
+        
          public static List<OutGoingLine> OutGoingLinesList;
 
          //public static List<UserDrive> UserDrivesList;
@@ -345,6 +346,7 @@ namespace DL
         {
             List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
             return from bs in BusStationsLineList
+                   where predicate(bs)
                    select bs;
         }
         public DO.BusStationLine GetBusStationLine(string Id)
@@ -399,6 +401,7 @@ namespace DL
         {
             List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
             return from bs in StationsList
+                     where predicate(bs)
                    select bs;
         }
         public DO.Station GetStation(string code)

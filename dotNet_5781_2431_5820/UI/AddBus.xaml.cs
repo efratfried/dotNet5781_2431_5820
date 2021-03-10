@@ -27,11 +27,11 @@ namespace PL
         {
             InitializeComponent();
         }
-
+        
         private void AddLineDetails_Click(object sender, RoutedEventArgs e)
         {
-            AddLine al = new AddLine(bL);
-            al.ShowDialog();
+            //AddLine al = new AddLine(bL);
+            //al.ShowDialog();
         }
 
         private void AddBus_Click(object sender, RoutedEventArgs e)

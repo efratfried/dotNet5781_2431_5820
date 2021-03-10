@@ -43,11 +43,10 @@
             <DataGrid.Columns>
 
                 <DataGridTextColumn x:Name="lineStationIndexColumn" Binding="{Binding LineStationIndex}" Header="Line Station Index" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="codeColumn" Binding="{Binding Code}" Header="Code" Width="80"/>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="240"/>
-                <DataGridTextColumn x:Name="distanceColumn" Binding="{Binding Distance}" Header="Distance in km" Width="100"/>
-                <DataGridTextColumn x:Name="timeColumn" Binding="{Binding AverageDrivingTime}" Header="Time" Width="100"/>
-                <DataGridTextColumn x:Name="walkingtimecolumn" Binding="{Binding WalkingTime}" Header="Walking time" Width="100"/>
+                <DataGridTextColumn x:Name="codeColumn" Binding="{Binding ID}" Header="Code" Width="150"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding BusStationNum}" Header="Name" Width="100"/>
+                <DataGridTextColumn x:Name="distanceColumn" Binding="{Binding IndexInLine}" Header="Index in line" Width="100"/>
+                <DataGridTextColumn x:Name="timeColumn" Binding="{Binding NumOfPassingLines}" Header="number of passing lines" Width="160"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

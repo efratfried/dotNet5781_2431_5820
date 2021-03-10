@@ -340,14 +340,16 @@ namespace BL
         }*/
         public IEnumerable<BO.BusStationLine> GetBusStationLineList(string BusStationLineNum)
         {
-            return from item in dl.GetBusStationsLineListWithSelectedFields((BusStationLineDO) =>
-            {
-                try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                return new BO.BusStationLine() { ID = BusStationLineDO.ID };
-            })
-                   let BusStationLineBo = item as BO.BusStationLine
-                   //orderby Bus.LicenseNum
-                   select BusStationLineBo;
+            return from l in dl.GetBusStationLineList(i => i.ID.ToString() == BusStationLineNum)
+                   select BusStationLineDoBoAdapter(l);
+            //return from item in dl.GetBusStationsLineListWithSelectedFields((BusStationLineDO) =>
+            //{
+            //    try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
+            //    return new BO.BusStationLine() { ID = BusStationLineDO.ID };
+            //})
+            //       let BusStationLineBo = item as BO.BusStationLine
+            //       //orderby Bus.LicenseNum
+            //       select BusStationLineBo;
         }
         public void AddBusStationLine(BusStationLine busStationLine)
         {

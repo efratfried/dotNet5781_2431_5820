@@ -36,8 +36,9 @@ namespace DL
         static string AccidentPath = @"AccidentXml.xml"; //XMLSerializer
         //string UserDrivePath = @"UserLineXml.xml"; //XMLSerializer
          static string FollowingStationsPath = "@FollowingStationssXml.xml";
+        //static string runningNumbersPath = "@RunningNumbers.xml";
 
-        
+
         //public static List<User> UsersList;
         //public static List<BusStationLine> BusStationsLineList;
         /*List<DO.User> list1 = DS.DataSource.Users;
@@ -942,6 +943,35 @@ namespace DL
             }
             else
                 throw new DO.BadBusLineException(FollowingStations.FirstStationCode, FollowingStations.SecondStationCode, $"bad Bus's LicenseNum: {FollowingStations.FirstStationCode},{FollowingStations.SecondStationCode}");
+        }
+        #endregion
+
+        #region Running Numbers
+        private long GetAndUpdateRunningNumber(Type type)
+        {
+            XElement RunningNumbersRootElem = XMLTools.LoadListFromXMLElement(runningNumbersPath);
+
+            XElement run_ = (from run in RunningNumbersRootElem.Elements()
+                             select run).FirstOrDefault();
+
+            long returnedVal = 0;
+            if (run_ != null)
+            {
+                if (type == typeof(BusLine))
+                {
+                    returnedVal = long.Parse(run_.Element("BusLine_Running").Value);
+                    run_.Element("BusLine_Running").Value = (returnedVal + 1).ToString();
+                }
+                else
+                {
+                    returnedVal = long.Parse(run_.Element("Station_Running").Value);
+                    run_.Element("Station_Running").Value = (returnedVal + 1).ToString();
+                }
+
+                XMLTools.SaveListToXMLElement(RunningNumbersRootElem, runningNumbersPath);
+            }
+
+            return returnedVal;
         }
         #endregion
 

@@ -18,7 +18,7 @@
 
         <!-- <MediaElement LoadedBehavior="Play" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/The Travego Coach - Official Trailer _ Mercedes-Benz Buses.mp4" Margin="76,-59,-173,-161" Grid.RowSpan="2" />-->
 
-        <Button x:Name="connect" HorizontalAlignment="Left" Margin="895,8,-249,0" VerticalAlignment="Top" BorderBrush="Transparent" Width="80" Height="56" FontSize="18" Click="Button_Click" Background="Transparent" Grid.RowSpan="2">
+        <Button x:Name="connect" HorizontalAlignment="Left" Margin="902,2,-243,0" VerticalAlignment="Top" BorderBrush="Transparent" Width="67" Height="51" FontSize="18" Click="Button_Click" Background="Transparent">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Style.Triggers>

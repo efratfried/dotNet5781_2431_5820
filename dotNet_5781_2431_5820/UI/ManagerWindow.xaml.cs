@@ -25,7 +25,7 @@ namespace PL
         public ManagerWindow(PO.User user)
         {
             InitializeComponent();
-            username.DataContext = user.UserName;
+            username.Text = user.UserName;
             SlidePanel.Opacity = 0.0;
         }
 

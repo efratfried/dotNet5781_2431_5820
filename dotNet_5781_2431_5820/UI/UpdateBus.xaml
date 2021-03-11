@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="UpdateBus" Height="450" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
+        <ImageBrush ImageSource="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
     </Window.Background>
     <Grid Margin="1,2,-1.4,-2">
         <ComboBox x:Name="firm" Background="LightGray" HorizontalAlignment="Left" Margin="47,176,0,0" Text="{Binding  Path=firm}" VerticalAlignment="Top" Height="31" Width="120" RenderTransformOrigin="0.487,0.292" SelectionChanged="firm_SelectionChanged"/>

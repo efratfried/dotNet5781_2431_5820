@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="AddBus" Height="485" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
+        <ImageBrush ImageSource="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
     </Window.Background>
     <Grid Margin="0,-3,-0.4,3.2">
        

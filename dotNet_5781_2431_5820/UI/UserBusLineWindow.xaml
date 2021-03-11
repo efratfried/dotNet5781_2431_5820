@@ -67,6 +67,6 @@
             <TextBox x:Name="lastStationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.6,3.8,0,3.6" Grid.Row="3" Text="{Binding LastStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma" PreviewKeyDown="lastStationTextBox_PreviewKeyDown"/>
         </Grid>
         <Label Content="All the station of the line:" Grid.Column="1" HorizontalAlignment="Center" Margin="192.4,9.8,300.6,0" VerticalAlignment="Top" Height="28" Width="255" Grid.ColumnSpan="4" FontSize="14" FontWeight="Bold" Foreground="White" Grid.Row="2"/>
-        <Label Content="         Lines Information " HorizontalAlignment="Left" Margin="104.366,15,0,15.4" VerticalAlignment="Center" Height="56" Width="305" FontWeight="Bold" FontSize="30" Foreground="black" FontFamily="Narkisim" Grid.Column="4" Grid.ColumnSpan="3"/>
+        <Label Content="         Lines Information " HorizontalAlignment="Left" Margin="96.4,12,0,25.6" VerticalAlignment="Center" Height="56" Width="305" FontWeight="Bold" FontSize="30" Foreground="black" FontFamily="Narkisim" Grid.Column="1" Grid.ColumnSpan="3"/>
     </Grid>
 </Window>

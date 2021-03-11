@@ -25,6 +25,7 @@ namespace PL
         public ManagerWindow(PO.User user)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             username.Text = user.UserName;
             SlidePanel.Opacity = 0.0;
         }

@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ManagerWindow" Height="600" Width="1200">
+
     <!--  <Window.Background>
         <ImageBrush ImageSource="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/road.JFIF‬"/>
     </Window.Background>-->
@@ -28,8 +29,8 @@
         <Button x:Name="Stations"  Content="Stations" HorizontalAlignment="Left" Margin="1012,371,0,0" VerticalAlignment="Top" Width="188" Height="60" Click="Stations_Click" FontSize="28" Foreground="White" Background="DarkSlateGray" FontWeight="Bold"/>
         <Button x:Name="buslines"  Content="BusLines" HorizontalAlignment="Left" Margin="1010,306,0,0" VerticalAlignment="Top" Width="190" Height="60" Click="buslines_Click" FontSize="28" Foreground="White" Background="DarkSlateGray" FontWeight="Bold"/>
         <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/user_icon2.PNG"  Margin="986,21,-25,0" VerticalAlignment="Top" Height="120"/>
-        <Label Content="   hello" FontSize="20" Margin="1007,165,116,356" Foreground="Black" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" />
-        <TextBox x:Name="username" DataContext="{Binding}"  HorizontalAlignment="Left" Height="34" Margin="1096,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="99" IsReadOnly="True" FontSize="20" Foreground="Black" FontWeight="Bold" Background="Transparent" BorderBrush="Transparent"/>
+        <Label Content="  hello" FontSize="20" Margin="1007,161,116,362" Foreground="Black" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" />
+        <TextBox x:Name="username" DataContext="{Binding}"  HorizontalAlignment="Left" Height="34" Margin="1084,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="99" IsReadOnly="True" FontSize="20" Foreground="Black" FontWeight="Bold" Background="Transparent" BorderBrush="Transparent"/>
         <Button x:Name="log_out" Margin="4,0,1123,496" FontSize="25" Background="Transparent" FontWeight="Bold" Click="log_out_Click" BorderBrush="Transparent"/>
         <Rectangle x:Name="SlidePanel" HorizontalAlignment="Left" Height="60" Margin="1177,241,0,0" VerticalAlignment="Top" Width="13" Fill="White" Visibility="Visible" StrokeLineJoin="Miter"/>
         <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logoutdoor.PNG" Margin="17,-40,1149,449" RenderTransformOrigin="0.5,0.5">

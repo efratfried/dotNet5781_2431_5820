@@ -26,7 +26,8 @@ namespace PL
         PO.Bus currentbus;
         public busseswindow(IBL _bl)
         {
-            InitializeComponent();           
+            InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bl = _bl;
             Refreshbusses_listComboBox();
 
@@ -39,6 +40,11 @@ namespace PL
             // studentCourseDataGrid.IsReadOnly = true;
             // courseDataGrid.IsReadOnly = true;
 
+        }
+        void RefreshBusDetailsGrid()
+        {
+            //IEnumerable<PO.BusLine> busLines;
+            BusDetailsGrid.DataContext = bl.GetBus(currentbus.LicenseNum);
         }
 
         /*

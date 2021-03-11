@@ -32,7 +32,7 @@ namespace PL
         {
             ts = new ObservableCollection<PO.BusLine>();
             InitializeComponent();
-            //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bl = _bl;
             
             RefreshAllLinesComboBox();

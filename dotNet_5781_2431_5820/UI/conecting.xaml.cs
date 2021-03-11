@@ -26,6 +26,7 @@ namespace PL
         public conecting(IBL bl1)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bl = bl1;
         }
         private void entering(object sender, RoutedEventArgs e)

@@ -474,7 +474,7 @@ namespace BL
             }
             catch (DO.BadLicenseNumException ex)
             {
-                throw new BO.BadBusLineIdException("Buss' LicenseNum does not exist or it is not a Bus", ex);
+                throw new BO.BadBusLineIdException("Bus's LicenseNum does not exist or it is not a Bus", ex);
             }
             return BuslineDoBoAdapter(BusLineDO);
         }
@@ -539,7 +539,7 @@ namespace BL
         {
             DO.BusLine BusLineDO = new DO.BusLine();
 
-            BusLineDO.CopyPropertiesToNew(typeof(BO.BusLine));
+            busline.CopyPropertiesTo(BusLineDO);
             try
             {
                 dl.AddBusLine(BusLineDO);

@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="AddLine" Height="450" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
+        <ImageBrush ImageSource="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
     </Window.Background>
 
     <Grid>
@@ -59,7 +59,7 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
             <Label Content="Bus Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.8,0,3.4" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black"/>
-            <TextBox x:Name="busNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3.6,3.8,0,4.4" Grid.Row="1" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown" TextChanged="busNumberTextBox_TextChanged"/>
+            <TextBox x:Name="busNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.8,7,0,6" Grid.Row="1" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown" TextChanged="busNumberTextBox_TextChanged"/>
             <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.6,0,4.4" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black"/>
             <ComboBox x:Name="firstStationComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="4.6,5.6,-1.2,5.4" Grid.Row="2" VerticalAlignment="Center" Width="319" SelectionChanged="firstStationComboBox_SelectionChanged" Grid.ColumnSpan="3"/>
             <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,7.2,0,0.6" Grid.Row="3" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="black"/>

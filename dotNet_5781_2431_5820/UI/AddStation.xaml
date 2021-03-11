@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="AddStation" Height="485" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
+        <ImageBrush ImageSource="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
     </Window.Background>
     <Grid>
         <Label x:Name="addstationdetails" Content="Add station details" Foreground="White" BorderBrush="Black" Height="47" FontSize="32" Margin="248,32,252.6,376.2"/>

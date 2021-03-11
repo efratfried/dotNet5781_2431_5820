@@ -38,8 +38,8 @@ namespace DL
          static string FollowingStationsPath = "@FollowingStationssXml.xml";
 
         
-        public static List<User> UsersList;
-        public static List<BusStationLine> BusStationsLineList;
+        //public static List<User> UsersList;
+        //public static List<BusStationLine> BusStationsLineList;
         /*List<DO.User> list1 = DS.DataSource.Users;
         file = new FileStream(@"..\..\..\bin\xml\UserXml.xml", FileMode.Create);
         x = new XmlSerializer(list1.GetType());
@@ -195,7 +195,7 @@ namespace DL
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
 
-            DO.BusLine stu = ListBusLines.Find(bus => bus.BusNum == LicenseNum);
+            DO.BusLine stu = ListBusLines.Find(bus => bus.ID == LicenseNum);
             if (stu != null)
                 return stu; //no need to Clone()
             else
@@ -405,10 +405,21 @@ namespace DL
                    select bs;
         }
         public DO.Station GetStation(string code)
+        /*       List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
+
+        DO.BusLine stu = ListBusLines.Find(bus => bus.ID == LicenseNum);
+        if (stu != null)
+            return stu; //no need to Clone()
+        else
+            throw new DO.BadBusLicenseNumException(LicenseNum.ToString(), $"bad BusLine LicenseNum: {LicenseNum}");*/
         {
             List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
-
-            return ListStations.FirstOrDefault(c => c.CodeStation == code.ToString()); //no need to Clone()
+            DO.Station stu = ListStations.Find(s => s.CodeStation == code);
+            if (stu != null)
+                return stu; //no need to Clone()
+            else
+                throw new DO.BadStationNumException(code, $"bad station code: {code}");
+            /*return ListStations.FirstOrDefault(c => c.CodeStation == code.ToString()); //no need to Clone()*/
 
             //if not exist throw excebustion etc.
         }

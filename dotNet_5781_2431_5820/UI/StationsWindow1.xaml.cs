@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLAPI;
-
+using UI;
 namespace PL
 {
     /// <summary>
@@ -20,46 +21,57 @@ namespace PL
     /// </summary>
     public partial class StationsWindow1 : Window
     {
-
         public IBL bl;
         PO.Station MyStation;
-
+        public ObservableCollection<PO.Station> stationlist;
         public StationsWindow1(IBL _bl)
         {
+            stationlist = new ObservableCollection<PO.Station>();
             InitializeComponent();
             bl = _bl;
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            StationComboBox.DisplayMemberPath = "Name";//show only specific Property of object
-            StationComboBox.SelectedValuePath = "Code";//selection return only specific Property of object
-            StationComboBox.SelectedIndex = 0; //index of the object to be selected
+            //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            //StationComboBox.DisplayMemberPath = "StationName";//show only specific Property of object
+            //StationComboBox.SelectedValuePath = "CodeStation";//selection return only specific Property of object
+           // StationComboBox.SelectedItem=""
+            //StationComboBox.SelectedIndex = 0; //index of the object to be selected
             RefreshAllStationsComboBox();
+            RefreshAllLinesOfStationGrid();
 
-            linesDataGrid.IsReadOnly = true;
+            //linesDataGrid = true;
         }
 
         private void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 
         {
-            IEnumerable<PO.Station> station = bl.GetAllStations().Cast<PO.Station>();
-            StationComboBox.ItemsSource = station;
-            //RefreshAllLinesOfStationGrid();
+            List<BO.Station> sta = bl.GetAllStations().ToList();
+            List<PO.Station> sta1 = new List<PO.Station>();
+            for (int i = 0; i < sta.Count; i++)
+            {
+                PO.Station sta2 = new PO.Station();
+                sta[i].DeepCopyTo(sta2);
+
+                sta1.Add(sta2);
+            }
+            StationComboBox.ItemsSource = sta1;
+            //StationComboBox.DisplayMemberPath = "CodeStation";
+            StationComboBox.DisplayMemberPath = "StationName";
+            StationComboBox.SelectedIndex = 0;
         }
 
-        /*private void RefreshAllLinesOfStationGrid()
+        private void RefreshAllLinesOfStationGrid()
         {
-            IEnumerable<PO.Station> MyBusinstation = bl.GetAllLinesPerStation(int.Parse(MyStation.CodeStation)).Cast<PO.Station>().ToList();
-            linesDataGrid.ItemsSource = MyBusinstation;
-        }*/
+            linesDataGrid.DataContext = bl.GetBusStationLineList(MyStation.CodeStation);
+        }
 
         private void StationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MyStation = StationComboBox.SelectedItem as PO.Station;
-            gridOneStation.DataContext = MyStation;
-
-            if (MyStation != null)
-            {
-                //RefreshAllLinesOfStationGrid();
-            }
+            MyStation = (PO.Station)StationComboBox.SelectedItem;
+            StationComboBox.DataContext = MyStation;
+            RefreshAllLinesOfStationGrid();
         }
+       /* private void RefreshgridOneStation()
+        {
+            gridOneStation.DataContext = bl.GetStation(MyStation.CodeStation);
+        }*/
 
         private void StationUpdate_Click(object sender, RoutedEventArgs e)
         {
@@ -225,7 +237,7 @@ namespace PL
 
         }
 
-        private void CBChosenStat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void addressTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }

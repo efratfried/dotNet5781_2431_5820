@@ -100,10 +100,10 @@ namespace PL
             {
                 bn.Area= (BO.Area)areaComboBox.SelectedIndex;
                 bn.BusNum= int.Parse(busNumberTextBox.Text);
-                bn.FirstStation;
-                bn.ID;
-                bn.LastStation;
-                bn.stationsList;
+                bn.ID=301;
+               // bn.ID;
+               // bn.LastStation;
+                //bn.stationsList;
             }
             
             MessageBoxResult res = MessageBox.Show("Add line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);

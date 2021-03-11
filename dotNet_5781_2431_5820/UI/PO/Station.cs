@@ -4,20 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
+using BLAPI;
+using UI;
 namespace PO
 {
     public class Station : DependencyObject
     {
         static readonly DependencyProperty StationNameProperty = DependencyProperty.Register("StationName", typeof(string), typeof(Station));
-        static readonly DependencyProperty AdressProperty = DependencyProperty.Register("Adress", typeof(BO.Adress), typeof(Station));
+        static readonly DependencyProperty AddressProperty = DependencyProperty.Register("Address", typeof(String), typeof(Station));
         static readonly DependencyProperty CodeStationProperty = DependencyProperty.Register("CodeStation", typeof(string), typeof(Station));
         static readonly DependencyProperty DisableAccessProperty = DependencyProperty.Register("DisableAccess", typeof(bool), typeof(Station));
         static readonly DependencyProperty LatitudeProperty = DependencyProperty.Register("Latitude", typeof(double), typeof(Station));
         static readonly DependencyProperty longitudeProperty = DependencyProperty.Register("longitude", typeof(double), typeof(Station));
         
         public string StationName { get => (string)GetValue(StationNameProperty); set => SetValue(StationNameProperty, value); }
-        public BO.Adress Adress { get => (BO.Adress)GetValue(AdressProperty); set => SetValue(AdressProperty, value); }
+        public string Address { get => (string)GetValue(AddressProperty); set => SetValue(AddressProperty, value); }
         public string CodeStation { get => (string)GetValue(CodeStationProperty); set => SetValue(CodeStationProperty, value); }
         public bool DisableAccess { get => (bool)GetValue(DisableAccessProperty); set => SetValue(DisableAccessProperty, value); }
         public double Latitude { get => (double)GetValue(LatitudeProperty); set => SetValue(LatitudeProperty, value); }

@@ -36,12 +36,13 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Grid x:Name="grid1" HorizontalAlignment="Stretch" Margin="3,54.8,0,64.8" VerticalAlignment="Center" Height="138" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2">
+        <Grid x:Name="grid1" HorizontalAlignment="Stretch" Margin="3,33.8,0,25.8" VerticalAlignment="Center" Height="198" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="34*"/>
-                <ColumnDefinition Width="31*"/>
+                <ColumnDefinition Width="102*"/>
+                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="74*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -50,21 +51,23 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,3.2" Grid.Row="0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black"/>
-            <ComboBox x:Name="areaComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3.6,5,0,5.2" Grid.Row="0" VerticalAlignment="Center" Width="120" SelectionChanged="areaComboBox_SelectionChanged">
+            <Label Content="Area:" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black" Margin="3,16,96.8,67.8" Grid.Row="3" Grid.RowSpan="2"/>
+            <ComboBox x:Name="areaComboBox" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="96,16,0,5.8" Grid.Row="3" VerticalAlignment="Center" Width="120" SelectionChanged="areaComboBox_SelectionChanged" Grid.ColumnSpan="2">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label Content="Bus Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.8,0,3.4" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black"/>
-            <TextBox x:Name="busNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.8,7,0,6" Grid.Row="1" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown" TextChanged="busNumberTextBox_TextChanged"/>
-            <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.6,0,4.4" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black"/>
-            <ComboBox x:Name="firstStationComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="4.6,5.6,-1.2,5.4" Grid.Row="2" VerticalAlignment="Center" Width="319" SelectionChanged="firstStationComboBox_SelectionChanged" Grid.ColumnSpan="3"/>
-            <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,7.2,0,0.6" Grid.Row="3" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="black"/>
-            <ComboBox x:Name="lastStationComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="4.8,11.2,-6.2,3.6" Grid.Row="3" VerticalAlignment="Center" Width="319" SelectionChanged="lastStationComboBox_SelectionChanged" Grid.ColumnSpan="3"/>
+            <Label Content="ID:"  VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black" Grid.RowSpan="3" Margin="3,16.2,143.4,41.4" Grid.Row="1"/>
+            <TextBox x:Name="IDtextbox"  Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown" TextChanged="busNumberTextBox_TextChanged" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="94,14.2,2.8,45.2" Grid.Row="1" Height="23"/>
+            <Label Content="Bus Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,0.2,0,26" Grid.Row="4" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black"/>
+            <TextBox x:Name="busNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="98,0.2,0,31.2" Grid.Row="4" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown" TextChanged="busNumberTextBox_TextChanged" Grid.ColumnSpan="3"/>
+            <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,39.2,0,-1.8" Grid.Row="4" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="Black"/>
+            <ComboBox x:Name="firstStationComboBox" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="98,32.2,-0.2,1.6" Grid.Row="4" VerticalAlignment="Center" Width="319" SelectionChanged="firstStationComboBox_SelectionChanged" Grid.ColumnSpan="5"/>
+            <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,78.2,0,-40" Grid.Row="4" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White"/>
+            <ComboBox x:Name="lastStationComboBox" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="98,48.4,-0.2,-68.8" Grid.Row="4" VerticalAlignment="Center" Width="319" SelectionChanged="lastStationComboBox_SelectionChanged" Grid.ColumnSpan="5"/>
         </Grid>
-        <Label Content="Add line details:" Foreground="White" BorderBrush="Black" Height="47" FontSize="32" Margin="75,30,103,10.2" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" />
+        <Label Content="Add line details:" Foreground="White"  FontWeight="Bold" BorderBrush="Black" Height="47" FontSize="32" Margin="75,30,86,10.2" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" />
     </Grid>
 </Window>

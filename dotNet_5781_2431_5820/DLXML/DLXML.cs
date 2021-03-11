@@ -195,7 +195,7 @@ namespace DL
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
 
-            DO.BusLine stu = ListBusLines.Find(bus => bus.ID == LicenseNum);
+            DO.BusLine stu = ListBusLines.Find(bus => bus.BusNum == LicenseNum);
             if (stu != null)
                 return stu; //no need to Clone()
             else
@@ -392,6 +392,14 @@ namespace DL
             List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
             return from bs in BusStationsLineList
                    select bs;
+        }
+        public IEnumerable<DO.BusStationLine> GetLineStationsListThatMatchAStation(int code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
+        {
+            List<BusStationLine> listLineStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+
+            return from ls in listLineStations
+                   where ls.BusStationNum == code.ToString()
+                   select ls;
         }
 
         #endregion BusStationLine

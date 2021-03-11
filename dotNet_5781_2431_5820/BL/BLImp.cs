@@ -181,7 +181,7 @@ namespace BL
         }
 
 
-#endregion Bus
+        #endregion Bus
 
         #region Station
         BO.Station StationDoBoAdapter(DO.Station StationDO)
@@ -196,7 +196,7 @@ namespace BL
             catch (DO.BadCodeStationException ex)
             {
                 string Ex = ex.ToString();
-                throw new BO.BadStationException("Bus LicenseNum is illegal", Ex);
+                throw new BO.BadStationException("wring station's code", Ex);
             }
 
             StationDO.CopyPropertiesTo(StationBO);
@@ -210,7 +210,7 @@ namespace BL
             {
                 StationDO = dl.GetStation(CodeStation);
             }
-            catch (DO.BadLicenseNumException ex)
+            catch (DO.BadStationNumException ex)
             {
                 string Ex = ex.ToString();
                 throw new BO.BadStationException("Station's code don't exist or it is not a station", Ex);
@@ -290,7 +290,7 @@ namespace BL
             {
                 dl.AddStation(StationDO);
             }
-            catch (DO.BadLicenseNumException ex)
+            catch (DO.BadStationNumException ex)
             {
                 string Ex = ex.ToString();
                 throw new BO.BadStationException("station num is illegal", Ex);
@@ -425,7 +425,7 @@ namespace BL
             DO.BusLine newblDO;//before copying lineDO to lineBO, we need to ensure that lineDO is legal- legal busNumber.
             //sometimes we get here after the user filled lineDO fields. thats why we copy the given lineDO to a new lineDO and check if it is legal.
            // int blID = blDO.ID;
-            int busNumber = blDO.BusNum;
+            int busNumber = blDO.ID;
             try
             {
                 newblDO = dl.GetBusLine(busNumber);//if code is legal, returns a new lineStationDO. if not- ecxeption.
@@ -444,6 +444,12 @@ namespace BL
             //                      select lineStationBO;
 
             return blBO;
+        }
+        public IEnumerable<BO.BusLine> GetAllLinesPerStation(int code)
+        {
+            return from lineStation in dl.GetLineStationsListThatMatchAStation(code)
+                   let line = dl.GetBusLine(int.Parse(lineStation.ID))
+                   select line.CopyDOLineStationToBOLine(lineStation);
         }
         public IEnumerable<BO.BusLine> GetAllLinesByArea(BO.Area area)
         {

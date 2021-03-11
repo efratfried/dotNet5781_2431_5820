@@ -21,8 +21,9 @@ namespace PL
     /// </summary>
     public partial class StationsWindow1 : Window
     {
-        public IBL bl;
+        IBL bl;
         PO.Station MyStation;
+        BO.BusLine MyBusLine;
         public ObservableCollection<PO.Station> stationlist;
         public StationsWindow1(IBL _bl)
         {
@@ -35,43 +36,47 @@ namespace PL
            // StationComboBox.SelectedItem=""
             //StationComboBox.SelectedIndex = 0; //index of the object to be selected
             RefreshAllStationsComboBox();
+            linesDataGrid.IsReadOnly = true;
             RefreshAllLinesOfStationGrid();
 
             //linesDataGrid = true;
         }
 
-        private void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 
+        void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 
         {
             List<BO.Station> sta = bl.GetAllStations().ToList();
-            List<PO.Station> sta1 = new List<PO.Station>();
+            //List<PO.Station> sta1 = new List<PO.Station>();
             for (int i = 0; i < sta.Count; i++)
             {
                 PO.Station sta2 = new PO.Station();
                 sta[i].DeepCopyTo(sta2);
 
-                sta1.Add(sta2);
+                stationlist.Add(sta2);
             }
-            StationComboBox.ItemsSource = sta1;
+            StationComboBox.ItemsSource = stationlist;
             //StationComboBox.DisplayMemberPath = "CodeStation";
             StationComboBox.DisplayMemberPath = "StationName";
             StationComboBox.SelectedIndex = 0;
         }
-
-        private void RefreshAllLinesOfStationGrid()
+        /* void RefreshgridOneStation()
         {
-            linesDataGrid.DataContext = bl.GetBusStationLineList(MyStation.CodeStation);
+            gridOneStation.DataContext = bl.GetStation(MyStation.CodeStation);
+         }*/
+        void RefreshAllLinesOfStationGrid()
+        {
+            // lineStationDataGrid.DataContext = bl.GetBusStationLineList(MyBusLine.ID.ToString());
+            linesDataGrid.DataContext = bl.GetAllLinesPerStation(int.Parse(MyStation.CodeStation));
         }
 
         private void StationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        {/**  MyBusLine = (PO.BusLine)BusLineComboBox.SelectedItem;
+            BusLines.DataContext = MyBusLine;
+            RefreshAllLineStationsOfLineGrid();*/
             MyStation = (PO.Station)StationComboBox.SelectedItem;
-            StationComboBox.DataContext = MyStation;
+            MainGrid.DataContext = MyStation;
             RefreshAllLinesOfStationGrid();
         }
-       /* private void RefreshgridOneStation()
-        {
-            gridOneStation.DataContext = bl.GetStation(MyStation.CodeStation);
-        }*/
+
 
         private void StationUpdate_Click(object sender, RoutedEventArgs e)
         {
@@ -83,7 +88,7 @@ namespace PL
 
                     //BO.Station newStat = new BO.Station();//a local station, to save the changes that the user made in station's fields.
                     s.CodeStation = MyStation.CodeStation;
-                    s.Adress.Address = addressTextBox.Text;
+                    s.Address = addressTextBox.Text;
                     s.StationName = nameTextBox.Text;
                     s.longitude = double.Parse(longitudeTextBox.Text);
                     s.Latitude = double.Parse(lattitudeTextBox.Text);

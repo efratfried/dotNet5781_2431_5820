@@ -55,6 +55,7 @@ namespace BLAPI
         void UpdateBusLinePersonalDetails(BO.BusLine busLine);
         void DeleteBusLine(int Num);
         void AddBusLine(BO.BusLine busLine);
+        IEnumerable<BO.BusLine> GetAllLinesPerStation(int code);
 
         #endregion
 

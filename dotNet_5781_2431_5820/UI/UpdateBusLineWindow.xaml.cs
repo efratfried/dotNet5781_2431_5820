@@ -26,7 +26,7 @@ namespace PL
             InitializeComponent();
             TempBusLine = MybusLine;
             areaComboBox.DataContext = TempBusLine.Area;
-            busNumberTextBox.Text = TempBusLine.BusNum.ToString();
+           // busNumberTextBox.Text = TempBusLine.BusNum.ToString();
             firstStationComboBox.DataContext = TempBusLine.FirstStation;
             lastStationComboBox.DataContext = TempBusLine.LastStation;
         }

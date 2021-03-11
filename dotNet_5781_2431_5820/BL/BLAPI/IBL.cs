@@ -29,6 +29,7 @@ namespace BLAPI
         void UpdateStationPersonalDetails(BO.Station station);
         void DeleteStation(string code);
         TimeSpan GetLineTimingPerStation(BO.Station station, TimeSpan CurrentTime);
+        IEnumerable<BO.Station> GetStationLicenseNumList();
 
         #endregion
 

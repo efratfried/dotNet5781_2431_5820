@@ -23,7 +23,7 @@ namespace PL
     {
         IBL bl;
         PO.Station MyStation;
-        BO.BusLine MyBusLine;
+        //BO.BusLine MyBusLine;
         public ObservableCollection<PO.Station> stationlist;
         //public ObservableCollection<PO.BusLine> busLines;
         public StationsWindow1(IBL _bl)
@@ -93,6 +93,7 @@ namespace PL
                     s.StationName = nameTextBox.Text;
                     s.longitude = double.Parse(longitudeTextBox.Text);
                     s.Latitude = double.Parse(lattitudeTextBox.Text);
+                    s.DisableAccess = Disable_access.Content.ToString()=="yes";
                     if (s != null)
                     {
                         BO.Station temp = new BO.Station();
@@ -141,7 +142,7 @@ namespace PL
         {
             PO.Station stat = new PO.Station();//a new Station
 
-            AddStation addStationWindow = new AddStation(,bl);//we sent the station Stat to a new window we created named AddStation 
+            AddStation addStationWindow = new AddStation(bl);//we sent the station Stat to a new window we created named AddStation 
             addStationWindow.ShowDialog();
             addStationWindow.Closing += addStationWindow_Closing;
             

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace PL
         public PO.Station adds=new PO.Station();
         public BO.BusStationLine bs=new BO.BusStationLine();
         public bool AllFieldsWereFilled = false;
+        public ObservableCollection<bool> disable;
 
         public AddStation(IBL _bl)
         {
@@ -32,6 +34,21 @@ namespace PL
             bl = _bl;
             InitializeComponent();            
             //adds = Stat;            
+        }
+        
+        void RefreshDisable_Access_ComboBox()//refresh the combobox each time the user changes the selection 
+        {
+            List<String> disac = new List<string> { "yes", "no" };
+
+            Disable_Access.ItemsSource = disac; //bl.GetStationLicenseNumList();
+                                             // Disable_Access.DisplayMemberPath = "DisableAccess";
+            //Disable_Access.DataContext = disable;
+            //Disable_Access.DisplayMemberPath = "DisableAccess";
+            Disable_Access.SelectedIndex = 0;
+        }
+        private void Disable_Access_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            addedStat.DisableAccess = (bool)(Disable_Access.SelectedItem);
         }
 
         private void addressTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -50,11 +67,11 @@ namespace PL
                 adds.Address = addressTextBox.Text;
                 adds.longitude = double.Parse(longitudeTextBox.Text);
                 adds.Latitude = double.Parse(lattitudeTextBox.Text);
-                
+                adds.DisableAccess = (string)Disable_Access.SelectedItem=="yes";
                 adds.DeepCopyTo(addedStat);
                 bl.AddStation(addedStat);
-               // adds.DeepCopyTo(bs);
-                //bl.AddBusStationLine(bs);
+                adds.DeepCopyTo(bs);
+                bl.AddBusStationLine(bs);
                 this.Close();
             }
         }
@@ -154,21 +171,6 @@ namespace PL
             e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
         }
 
-        private void codeTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void lattitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void longitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void codeTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e == null)
@@ -240,5 +242,22 @@ namespace PL
                 }
             }
         }
+
+        /* List<BO.BusLine> busLes = bl.GetBusLines().ToList();
+for (int i = 0; i < busLes.Count; i++)
+{
+PO.BusLine busLes2 = new PO.BusLine();
+busLes[i].DeepCopyTo(busLes2);
+
+ts.Add(busLes2);
+}
+BusLineComboBox.ItemsSource = ts;
+BusLineComboBox.DisplayMemberPath = "BusNum";
+BusLineComboBox.SelectedIndex = 0;
+
+// IEnumerable<PO.BusLine> buslines = bl.GetBusLines().Cast<PO.BusLine>();
+// BusLineComboBox.ItemsSource = buslines;*/
+    
+    
     }
 }

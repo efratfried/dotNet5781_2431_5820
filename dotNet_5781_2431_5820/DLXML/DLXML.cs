@@ -480,7 +480,6 @@ namespace DL
             }
             else
             {
-
                 StationsList.Remove(station1);
             }
             XMLTools.SaveListToXMLSerializer(StationsList, StationsPath);

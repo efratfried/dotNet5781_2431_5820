@@ -23,7 +23,7 @@
             <TextBlock x:Name="Updatename" Margin="165,85,289,140.2" Height="35" Width="180"/>
         </Grid>
         <Label x:Name="updatestation" Content="Update Station's details" FontSize="32" FontWeight="Bold" Foreground="White" Margin="10,10,-10.4,357"/>
-        <Button x:Name="Updatedetails" Content="Update station" Margin="702,395,89.6,30.2" FontSize="20" FontWeight="Bold" BorderBrush="Black" Foreground="White"/>
-        <Image Source="/C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/bus-stop-pointer.png" Margin="553,201,-66.4,60.2"/>
+        <Button x:Name="Updatedetails" Content="Update station" Margin="702,395,89.6,10.2" FontSize="20" FontWeight="Bold" BorderBrush="Black" BorderThickness="2.5" Background="Transparent" Foreground="White"/>
+        <Image Source="/C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/bus-stop-pointer.png" Margin="553,195,-66.4,66.2"/>
     </Grid>
 </Window>

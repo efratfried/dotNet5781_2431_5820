@@ -65,13 +65,15 @@ namespace PL
             else if (user_Name.Text.Length != 0 && user_password.Text.Length != 0)
             {
                 PO.User MyUser = new PO.User();
-                user = bl.GetUser(user_Name.Text, user_password.Text);//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();
-                user.DeepCopyTo(MyUser);
-                if (MyUser != null)
+                
+                user = bl.GetAllUsers().Where(user1 => user1.UserName == user_Name.Text && user1.Password == user_password.Text).FirstOrDefault();//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();
+               
+                if (user != null)
                 {
                     try
                     {
-                        if (MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger) //|| MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger)
+                        user.DeepCopyTo(MyUser);
+                        if (MyUser.Password == user_password.Text && MyUser.Me == BO.Access.Passnger) //|| MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger)
                         {
                             UserWindow win = new UserWindow(MyUser);
                             win.ShowDialog();
@@ -79,7 +81,7 @@ namespace PL
 
                         else
                         {
-                            MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            MessageBoxResult res = MessageBox.Show("You are'nt a pasanger", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         }
                     }
                     catch (BO.BadOpenWindow ex)
@@ -96,15 +98,19 @@ namespace PL
             {
                
                 PO.User MyUser = new PO.User();
-               
-                //user = bl.GetUser(Newuser_name.Text, NewUser_password.Text);//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();
-                user.DeepCopyTo(MyUser);
-                bl.AddUser(user);
 
-                if (MyUser != null)
+                user = bl.GetAllUsers().Where(user1 => user1.UserName == Newuser_name.Text && user1.Password == NewUser_password.Text).FirstOrDefault();//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();            
+
+                if (user != null)
+                {
+                    MessageBoxResult res = MessageBox.Show("The user already exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                }
+                else
                 {
                     try
                     {
+                        user.DeepCopyTo(MyUser);
+                        bl.AddUser(user);
                         if (MyUser.Password == NewUser_password.Text && MyUser.Me == BO.Access.Passnger) //|| MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger)
                         {
                             UserWindow win = new UserWindow(MyUser);
@@ -113,17 +119,13 @@ namespace PL
 
                         else
                         {
-                            MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            MessageBoxResult res = MessageBox.Show("Couldn't add the user", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         }
                     }
                     catch (BO.BadOpenWindow ex)
                     {
                         MessageBox.Show(ex.Message + ex.InnerException, "couldn't open the window", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                }
-                else
-                {
-                    MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 }
             }
             else

@@ -30,18 +30,18 @@
 
 
         </Grid.ColumnDefinitions>
-        <Image Source="/C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/busicon.PNG" Grid.ColumnSpan="2" Margin="69,39,0.4,132.2" Grid.RowSpan="3"/>
+        <Image Source="/C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/busicon.PNG" Margin="15,39,1.6,0.2" Grid.RowSpan="2"/>
         <ComboBox x:Name="BusLineComboBox" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="116,55.8,0,0" VerticalAlignment="Top" Width="128" SelectionChanged="ComboBox_SelectionChanged" FontWeight="Bold" Height="29" Grid.ColumnSpan="2" Grid.Row="2"/>
         <Label Content="selected line:" HorizontalAlignment="Left" Margin="23,55.8,0,86.4" Width="95" FontWeight="Bold" FontSize="14" Foreground="Black" Grid.ColumnSpan="2" RenderTransformOrigin="0.55,1.493" Grid.Row="2"/>
         <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10.4,43.8,9.6,31.2" RowDetailsVisibilityMode="VisibleWhenSelected" FontFamily="Tahoma"  Foreground="Black" Grid.Column="1"  LoadingRow="lineStationDataGrid_LoadingRow" GridLinesVisibility="Horizontal"  HorizontalGridLinesBrush="LightGray"  FontWeight="bold" Grid.ColumnSpan="4" Grid.Row="2" Grid.RowSpan="3"  SelectionChanged="lineStationDataGrid_SelectionChanged">
             <DataGrid.Columns>
 
                 <DataGridTextColumn x:Name="lineStationIndexColumn" Binding="{Binding LineStationIndex}" Header="Line Station Index" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="codeColumn" Binding="{Binding Code}" Header="Code" Width="80"/>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="240"/>
+                <DataGridTextColumn x:Name="codeColumn" Binding="{Binding Code}" Header="     Code" Width="80"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="                      Name" Width="200"/>
                 <DataGridTextColumn x:Name="distanceColumn" Binding="{Binding Distance}" Header="Distance in km" Width="100"/>
-                <DataGridTextColumn x:Name="timeColumn" Binding="{Binding AverageDrivingTime}" Header="Time" Width="100"/>
-                <DataGridTextColumn x:Name="walkingtimecolumn" Binding="{Binding WalkingTime}" Header="Walking time" Width="100"/>
+                <DataGridTextColumn x:Name="timeColumn" Binding="{Binding AverageDrivingTime}" Header="        Time" Width="100"/>
+                <DataGridTextColumn x:Name="walkingtimecolumn" Binding="{Binding WalkingTime}" Header="  Walking time" Width="100"/>
 
             </DataGrid.Columns>
         </DataGrid>
@@ -66,7 +66,7 @@
             <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontFamily="Tahoma" FontWeight="bold" />
             <TextBox x:Name="lastStationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.6,3.8,0,3.6" Grid.Row="3" Text="{Binding LastStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma" PreviewKeyDown="lastStationTextBox_PreviewKeyDown"/>
         </Grid>
-        <Label Content="All the station of the line:" Grid.Column="1" HorizontalAlignment="Center" Margin="192.4,9.8,300.6,0" VerticalAlignment="Top" Height="28" Width="255" Grid.ColumnSpan="4" FontSize="14" FontWeight="Bold" Foreground="White" Grid.Row="2"/>
+        <Label Content="All the station of the line:" Grid.Column="1" HorizontalAlignment="Center" Margin="10.4,33.4,77.8,0" VerticalAlignment="Top" Height="39" Width="271" Grid.ColumnSpan="2" FontSize="18" FontWeight="Bold" Foreground="White" Grid.Row="1" Grid.RowSpan="2"/>
         <Label Content="         Lines Information " HorizontalAlignment="Left" Margin="96.4,12,0,25.6" VerticalAlignment="Center" Height="56" Width="305" FontWeight="Bold" FontSize="30" Foreground="black" FontFamily="Narkisim" Grid.Column="1" Grid.ColumnSpan="3"/>
     </Grid>
 </Window>

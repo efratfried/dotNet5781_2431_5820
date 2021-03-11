@@ -590,11 +590,12 @@ namespace DS
             {
                 #region Busses_List
                 new Bus
-                {
+                {//public enum Firm { Toyota, Mersedes, Hunda, Temsa, Saularis }
                     LicenseNum ="'12343576",
                     LicenseDate = new DateTime(2018, 7, 8),
                     KM = 100000,
                     foul = 80.2,
+                    Firm=Firm.Toyota,
                 },
                 new Bus
                 {
@@ -603,6 +604,7 @@ namespace DS
                     KM = 10000,
                     foul = 50.3,
                    // Status = Status.Available
+                   Firm=Firm.Hunda,
                 },
                 new Bus
                 {
@@ -611,6 +613,7 @@ namespace DS
                     KM = 120000,
                     foul = 23.5,
                     //Status = Status.Available
+                    Firm=Firm.Mersedes,
                 },
                 new Bus
                 {
@@ -619,6 +622,7 @@ namespace DS
                     KM = 15000,
                     foul = 45.9,
                     //Status = Status.Available
+                    Firm=Firm.Temsa,
                 },
                 new Bus
                 {
@@ -635,6 +639,7 @@ namespace DS
                     KM = 151234,
                     foul = 67,
                     //Status = Status.Available
+                     Firm=Firm.Toyota,
                 },
                 new Bus
                 {
@@ -643,6 +648,7 @@ namespace DS
                     KM = 4567,
                     foul = 22.6,
                     //Status = Status.Available
+                     Firm=Firm.Toyota,
                 },
                 new Bus
                 {
@@ -651,6 +657,7 @@ namespace DS
                     KM = 40980,
                     foul = 0,
                     //Status = Status.Available
+                    Firm=Firm.Hunda,
                 },
                 new Bus
                 {
@@ -659,6 +666,7 @@ namespace DS
                     KM = 20003,
                     foul = 50,
                     //Status = Status.Available
+                    Firm=Firm.Hunda,
                 },
                 new Bus
                 {
@@ -667,6 +675,7 @@ namespace DS
                     KM = 80450,
                     foul = 27.6,
                     //Status = Status.Available
+                    Firm=Firm.Mersedes,
                 },
                 new Bus
                 {
@@ -675,6 +684,7 @@ namespace DS
                     KM = 300000,
                     foul = 0,
                     //Status = Status.Available
+                    Firm=Firm.Mersedes,
                 },
                 new Bus
                 {
@@ -683,6 +693,7 @@ namespace DS
                     KM = 15330,
                     foul = 39.6,
                     //Status = Status.Available
+                    Firm=Firm.Mersedes,
                 },
                 new Bus
                 {
@@ -691,6 +702,7 @@ namespace DS
                     KM = 2500,
                     foul = 17.8,
                     //Status = Status.Available
+                     Firm=Firm.Temsa,
                 },
                 new Bus
                 {
@@ -699,6 +711,7 @@ namespace DS
                     KM = 89045,
                     foul = 34.8,
                     //Status = Status.Available
+                     Firm=Firm.Temsa,
                 },
                 new Bus
                 {
@@ -707,6 +720,7 @@ namespace DS
                     KM = 54098,
                     foul = 43.9,
                     //Status = Status.Available
+                     Firm=Firm.Temsa,
                 },
                 new Bus
                 {
@@ -715,6 +729,7 @@ namespace DS
                     KM = 101089,
                     foul = 11.4,
                     // = Status.Available
+                    Firm=Firm.Hunda,
                 },
                 new Bus
                 {
@@ -723,6 +738,7 @@ namespace DS
                     KM = 109670,
                     foul = 28.7,
                     //Status = Status.Available
+                    Firm=Firm.Hunda,
                 },
                 new Bus
                 {
@@ -731,6 +747,7 @@ namespace DS
                     KM = 57892,
                     foul = 38.2,
                     //Status = Status.Available
+                    Firm=Firm.Mersedes,
                 },
                 new Bus
                 {
@@ -739,6 +756,7 @@ namespace DS
                     KM = 178954,
                     foul = 11.2,
                     //Status = Status.Available
+                    Firm=Firm.Mersedes,
                 },
                 new Bus
                 {
@@ -747,6 +765,7 @@ namespace DS
                     KM = 0,
                     foul = 50,
                     //Status = Status.Available
+                    Firm=Firm.Mersedes,
                 }
             #endregion
             };

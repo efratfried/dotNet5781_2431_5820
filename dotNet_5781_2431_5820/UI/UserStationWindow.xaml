@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="UserStationWindow" Height="450" Width="800">
+        Title="UserStationWindow" Height="450" Width="1000">
     <Window.Background>
         <ImageBrush ImageSource="bgmore.jpg"/>
     </Window.Background>
@@ -25,10 +25,10 @@
             <ColumnDefinition Width="141*"/>
             <ColumnDefinition Width="149*"/>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="StationComboBox" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="28.8,3.8,0,0" VerticalAlignment="Top" Width="238" SelectionChanged="CBChosenStat_SelectionChanged" FontWeight="Bold" Height="21" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" />
-        <Label Content="Chosen station" HorizontalAlignment="Left" Margin="26,0.8,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="24" Width="114" Grid.Row="1" Grid.ColumnSpan="2"   />
+        <ComboBox x:Name="StationComboBox" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="111,35.8,0,0" VerticalAlignment="Top" Width="282" SelectionChanged="CBChosenStat_SelectionChanged" FontWeight="Bold" Height="21" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="2" />
+        <Label Content="Chosen station" HorizontalAlignment="Left" Margin="10,34.8,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="24" Width="101" Grid.Row="1" Grid.RowSpan="2"   />
 
-        <Grid x:Name="gridOneStation"  HorizontalAlignment="Left" Margin="41,25,0,0" VerticalAlignment="Top" Width="379" Height="157" Grid.ColumnSpan="4" Grid.Row="2"  >
+        <Grid x:Name="gridOneStation"  HorizontalAlignment="Left" Margin="10,24.8,0,0" VerticalAlignment="Top" Width="410" Height="157" Grid.ColumnSpan="5" Grid.Row="2"  >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="47.6"/>
                 <ColumnDefinition Width="26"/>
@@ -44,34 +44,31 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Address:" Grid.Column="0" Margin="4,3,16.4,4.2" Grid.Row="0"  Grid.ColumnSpan="2"/>
-            <TextBox x:Name="addressTextBox" Grid.Column="2"  Height="23" Margin="6.6,4,-3,4.2" Grid.Row="0" Text="{Binding address, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" />
-            <Label Content="Code:" Grid.Column="0"  Margin="4,3.8,0,3.2" Grid.Row="1" />
-            <TextBox x:Name="codeTextBox" Grid.Column="2"  Height="23" Margin="6.6,3.8,-3,5.2" Grid.Row="1" Text="{Binding Code, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="278"  IsEnabled="False" Grid.ColumnSpan="3"/>
-            <Label Content="Latitude" Grid.Column="0"  Margin="5,2.4,0.4,3.8" Grid.Row="4" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="lattitudeTextBox" Grid.Column="2"  Height="23" Margin="4.6,3.4,-1,4.8" Grid.Row="4" Text="{Binding Lattitude, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="278" Grid.ColumnSpan="3" PreviewKeyDown="lattitudeTextBox_PreviewKeyDown"/>
-            <Label Content="Longitude:" Grid.Column="0"  Margin="4,2.6,0.4,3.6" Grid.Row="3"  Grid.ColumnSpan="2"/>
-            <TextBox x:Name="longitudeTextBox" Grid.Column="2"  Height="23" Margin="5.6,3.6,-2,4.6" Grid.Row="3" Text="{Binding Longitude, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3" PreviewKeyDown="longitudeTextBox_PreviewKeyDown" />
-            <Label Content="Name:" Grid.Column="0"  Margin="3,2.4,0,28.8" Grid.Row="2"  Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="28" Grid.RowSpan="2"/>
-            <TextBox x:Name="nameTextBox" Grid.Column="2"  Height="24" Margin="5.6,2.8,-2,4.4" Grid.Row="2" Text="{Binding Name, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3"/>
-            <Label x:Name="Disable_access" Content="Disable access" Margin="3,2.2,0,-40.2" Grid.Row="5"  Grid.ColumnSpan="4" HorizontalAlignment="Left" Width="88" Height="38"/>
-            <TextBox x:Name="Disable_accessTextBox" Grid.Column="2"  Height="23" Margin="5.4,5.2,-1,-28.2" Grid.Row="5" Text="{Binding Disable_access, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" />
+            <Label Content="Address:" Grid.Column="0" Margin="0,25,4.6,16.4" Grid.Row="0"  Grid.ColumnSpan="2" FontSize="14" Foreground="Black" FontWeight="Bold" Grid.RowSpan="2"/>
+            <TextBox x:Name="addressTextBox" Grid.Column="2"  Height="23" Margin="32.4,25,25.6,25.2" Grid.Row="0" Text="{Binding address, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Grid.RowSpan="2" />
+            <Label Content="Code:" Grid.Column="0"  Margin="0,19.2,14.6,71.4" FontSize="14" Foreground="Black" FontWeight="Bold" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="1"/>
+            <TextBox x:Name="codeTextBox" Grid.Column="2"  Height="23" Margin="32.4,9.6,25.6,68.2" Text="{Binding Code, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="278"  IsEnabled="False" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2"/>
+            <Label Content="Latitude" Grid.Column="0"  Margin="0,41.6,4.6,13.4" Grid.Row="2" Grid.ColumnSpan="2" FontSize="14" Foreground="Black" FontWeight="Bold"/>
+            <TextBox x:Name="lattitudeTextBox" Grid.Column="2"  Height="23" Margin="32.4,40.4,25.6,18.6" Grid.Row="2" Text="{Binding Lattitude, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="278" Grid.ColumnSpan="3" PreviewKeyDown="lattitudeTextBox_PreviewKeyDown"/>
+            <Label Content="Longitude:" Grid.Column="0"  Margin="0,9.6,4.6,42.4"  Grid.ColumnSpan="2" FontSize="14" Foreground="Black" FontWeight="Bold" Grid.Row="2"/>
+            <TextBox x:Name="longitudeTextBox" Grid.Column="2"  Height="23" Margin="32.4,10.4,25.6,48.6" Text="{Binding Longitude, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3" PreviewKeyDown="longitudeTextBox_PreviewKeyDown" Grid.Row="2" />
+            <Label x:Name="Disable_access" Content="Disable access" Margin="-2,71.6,0,-16.6" Grid.Row="2"  Grid.ColumnSpan="4" HorizontalAlignment="Left" Width="108" FontSize="14" Foreground="Black" FontWeight="Bold" Grid.RowSpan="4"/>
+            <TextBox x:Name="Disable_accessTextBox" Grid.Column="2"  Height="23" Margin="32.4,71.6,25.6,-10.6" Grid.Row="2" Text="{Binding Disable_access, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Grid.RowSpan="4" />
 
         </Grid>
-        <DataGrid x:Name="linesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="4.4,7.8,22.2,33.2" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Horizontal" FontFamily="Tahoma"  Foreground="Black" FontWeight="bold" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="3"  >
+        <DataGrid x:Name="linesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="41.2,35.8,33.6,41.2" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Horizontal" FontFamily="Tahoma"  Foreground="Black" FontWeight="bold" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2"  >
             <DataGrid.Columns>
+                <DataGridTextColumn x:Name="BusID" Binding="{Binding ID}" Header="           ID" Width="100"/>
                 <DataGridTextColumn x:Name="busNumberColumn"    Binding="{Binding BusNumber}"   Header="Bus Number" Width="SizeToHeader"  />
-                <DataGridTextColumn x:Name="areaColumn"         Binding="{Binding Area}"    Header="Area" Width="100"  />
-                <DataGridTextColumn x:Name="firstStationColumn" Binding="{Binding FirstStation}" Header="First Station" Width="100" />
-                <DataGridTextColumn x:Name="lastStationColumn"  Binding="{Binding LastStation}" Header="Last Station" Width="100" />
+                <DataGridTextColumn x:Name="areaColumn"         Binding="{Binding Area}"    Header="         Area" Width="100"  />
+                <DataGridTextColumn x:Name="firstStationColumn" Binding="{Binding FirstStation}" Header="  First Station" Width="100" />
+                <DataGridTextColumn x:Name="lastStationColumn"  Binding="{Binding LastStation}" Header="   Last Station" Width="100" />
 
             </DataGrid.Columns>
 
         </DataGrid>
-        <Label Content="All the lines that pass in this station:" FontWeight="Bold" FontSize="14" Foreground="White" HorizontalAlignment="Left" Margin="6.4,0,0,0.2" VerticalAlignment="Bottom" Grid.Column="4" Height="31" Width="249" Grid.Row="1" Grid.ColumnSpan="2" />
+        <Label Content="All the lines that pass in this station:" FontWeight="Bold" FontSize="14" Foreground="White" HorizontalAlignment="Left" Margin="45.2,0,0,0.2" VerticalAlignment="Bottom" Grid.Column="3" Height="31" Width="249" Grid.Row="1" Grid.ColumnSpan="2" />
         <Label Content="Stations Information " HorizontalAlignment="Stretch"  VerticalAlignment="Center" Height="41" Width="451" FontWeight="Bold" FontSize="30" Foreground="Black" FontFamily="Narkisim" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="0" Margin="143,0,0,0"/>
-        <Label Content="Longitude   : 34.3-35.5 " HorizontalAlignment="Left" Margin="32.4,242.8,0,0" VerticalAlignment="Top" Width="133"  FontSize="10" Foreground="black" Height="22" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"/>
-        <Label Content="Latitude     :      31-33.3" HorizontalAlignment="Left" Margin="32.4,225.8,0,0" VerticalAlignment="Top" Width="144" Height="29"  FontSize="10" Foreground="black" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>

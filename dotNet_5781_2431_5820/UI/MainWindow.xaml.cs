@@ -11,7 +11,7 @@ namespace UI
     public partial class MainWindow : Window
     {
         IBL bl = BLFactory.GetBL("1");//we create an "object" of IBL interface in order to use BL functions and classes
-
+        
         public MainWindow()
         {
             InitializeComponent();

@@ -9,7 +9,7 @@
         Title="Connecting" Height="485" Width="1000" WindowStartupLocation="CenterScreen" >
     <Grid x:Name="Connection_Grid">
 
-        <Label Content="manager login" HorizontalAlignment="Left" Margin="630,60,0,0" VerticalAlignment="Top" Height="41" Width="187" FontWeight="Bold" FontStyle="Normal" FontSize="20">
+        <Label Content="manager login" HorizontalAlignment="Left" Margin="630,60,0,0" VerticalAlignment="Top" Height="41" Width="156" FontWeight="Bold" FontStyle="Normal" FontSize="20">
             <Label.Style>
                 <Style TargetType="Label">
                     <Style.Triggers>

@@ -24,7 +24,7 @@ namespace UI
         public UserWindow(PO.User user)
         {
             InitializeComponent();
-            username.DataContext = user.UserName;
+            username.Text = user.UserName;
             SlidePanel.Opacity = 0.0;
         }
 

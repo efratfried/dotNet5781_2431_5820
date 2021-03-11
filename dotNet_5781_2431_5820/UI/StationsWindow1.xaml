@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="StationsWindow1" Height="485" Width="1000">
     <Window.Background>
-        <ImageBrush ImageSource="C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/bgmore.JPG"/>
+        <ImageBrush ImageSource="bgmore.JPG"/>
     </Window.Background>
 
     <Grid x:Name="MainGrid">

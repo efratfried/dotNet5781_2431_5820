@@ -31,10 +31,10 @@ namespace PL
         }
         private void entering(object sender, RoutedEventArgs e)
         {
-            if (manager_Name.Text.Length!=0 && manager_password.Text.Length!=0)
+            if (manager_Name.Text.Length != 0 && manager_password.Text.Length != 0)
             {
-               PO.User MyUser = new PO.User();
-                user= bl.GetUser(manager_Name.Text, manager_password.Text);//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();
+                PO.User MyUser = new PO.User();
+                user = bl.GetUser(manager_Name.Text, manager_password.Text);//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();
                 user.DeepCopyTo(MyUser);
 
                 if (MyUser != null)
@@ -72,6 +72,40 @@ namespace PL
                     try
                     {
                         if (MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger) //|| MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger)
+                        {
+                            UserWindow win = new UserWindow(MyUser);
+                            win.ShowDialog();
+                        }
+
+                        else
+                        {
+                            MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        }
+                    }
+                    catch (BO.BadOpenWindow ex)
+                    {
+                        MessageBox.Show(ex.Message + ex.InnerException, "couldn't open the window", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                }
+            }
+            else if (Newuser_name.Text.Length != 0 && NewUser_password.Text.Length != 0)
+            {
+               
+                PO.User MyUser = new PO.User();
+               
+                //user = bl.GetUser(Newuser_name.Text, NewUser_password.Text);//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();
+                user.DeepCopyTo(MyUser);
+                bl.AddUser(user);
+
+                if (MyUser != null)
+                {
+                    try
+                    {
+                        if (MyUser.Password == NewUser_password.Text && MyUser.Me == BO.Access.Passnger) //|| MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger)
                         {
                             UserWindow win = new UserWindow(MyUser);
                             win.ShowDialog();

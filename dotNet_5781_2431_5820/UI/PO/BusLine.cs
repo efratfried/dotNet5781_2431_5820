@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace PO
 {
@@ -16,6 +17,7 @@ namespace PO
         static readonly DependencyProperty MyBusLineProperty = DependencyProperty.Register("MyBusLine", typeof(BusLine), typeof(BusLine));
         static readonly DependencyProperty AreaProperty = DependencyProperty.Register("Area", typeof(BO.Area), typeof(BusLine));
         static readonly DependencyProperty IDProperty = DependencyProperty.Register("ID", typeof(int), typeof(BusLine));
+        //static readonly ObservableCollection(PO.BusLine) StationList=ObservableCollection(PO.BusLine)
 
         public int BusNum { get => (int)GetValue(BusNumProperty); set => SetValue(BusNumProperty, value); }
         public int FirstStation { get => (int)GetValue(FirstStationProperty); set => SetValue(FirstStationProperty, value); }

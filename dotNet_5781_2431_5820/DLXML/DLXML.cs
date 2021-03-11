@@ -202,6 +202,7 @@ namespace DL
             else
                 throw new DO.BadBusLicenseNumException(LicenseNum.ToString(), $"bad BusLine LicenseNum: {LicenseNum}");
         }
+        
         public void AddBusLine(DO.BusLine BusLine)
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
@@ -414,13 +415,6 @@ namespace DL
                    select bs;
         }
         public DO.Station GetStation(string code)
-        /*       List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
-
-        DO.BusLine stu = ListBusLines.Find(bus => bus.ID == LicenseNum);
-        if (stu != null)
-            return stu; //no need to Clone()
-        else
-            throw new DO.BadBusLicenseNumException(LicenseNum.ToString(), $"bad BusLine LicenseNum: {LicenseNum}");*/
         {
             List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
             DO.Station stu = ListStations.Find(s => s.CodeStation == code);

@@ -273,11 +273,13 @@ namespace BL
         {
             //the random number in in the begining
             DO.Station StationDO = new DO.Station();
- 
-            double rochav = (rand.NextDouble() * rand.NextDouble()) % 2.4 + 31;
-            double orech = (rand.NextDouble() * rand.NextDouble()) % 1.4 + 34.3;
-
-            if (station.Latitude!=rochav || station.longitude!=orech)
+            bool exist = bool.Parse((GetAllStations().Contains(station)).ToString());
+            if(exist)
+            {/** Content="Longitude   : 34.3-35.5 "
+         Content="Latitude     :      31-33.3"*/
+                throw new Exception("The wanted station is already exist in the data");
+            }
+            if (station.Latitude > 33.3 || station.Latitude < 31 || station.longitude < 33.3 || station.longitude > 35.5) 
             {
                 throw new Exception("the cordinates are wrong");
             }
@@ -458,12 +460,6 @@ namespace BL
                    orderby LineDO.BusNum           //order it by their bus number
                    select BuslineDoBoAdapter(LineDO);
         }
-       /* public IEnumerable<BO.BusLine> GetAllLinesPerStation(int code)
-        {
-            return from lineStation in dl.GetBusStationLinesListThatMatchAStation(code.ToString())
-                   let line = dl.GetBusLine(int.Parse(lineStation.ID))
-                   select line.CopyDOLineStationToBOLine(lineStation);
-        }*/
         public IEnumerable<BO.BusLine> GetBusLines()
         {
             return from BusLineDO in dl.GetAllBusLines()

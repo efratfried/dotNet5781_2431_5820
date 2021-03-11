@@ -132,8 +132,6 @@ namespace PL
             }
         }
         
-
-
         private void manager_passowrd_TextChanged(object sender, TextChangedEventArgs e)
         {
 

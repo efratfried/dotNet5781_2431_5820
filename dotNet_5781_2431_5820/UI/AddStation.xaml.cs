@@ -20,15 +20,18 @@ namespace PL
     /// </summary>
     public partial class AddStation : Window
     {
-        public BO.Station addedStat;
+        IBL bl;
+        public BO.Station addedStat=new BO.Station();
+        public PO.Station adds=new PO.Station();
+        public BO.BusStationLine bs=new BO.BusStationLine();
         public bool AllFieldsWereFilled = false;
 
-        public AddStation(BO.Station Stat)
+        public AddStation(IBL _bl)
         {
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            InitializeComponent();
-            addedStat = Stat;
-            DataContext = addedStat;
+            bl = _bl;
+            InitializeComponent();            
+            //adds = Stat;            
         }
 
         private void addressTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -39,8 +42,21 @@ namespace PL
         private void AddStationButton_Click(object sender, RoutedEventArgs e)
         {
             if (addressTextBox.Text != "" && codeTextBox.Text != "0" && lattitudeTextBox.Text != "0" && longitudeTextBox.Text != "0" && nameTextBox.Text != "")
+            {
                 AllFieldsWereFilled = true;
-            this.Close();
+
+                adds.StationName = nameTextBox.Text;
+                adds.CodeStation = codeTextBox.Text;
+                adds.Address = addressTextBox.Text;
+                adds.longitude = double.Parse(longitudeTextBox.Text);
+                adds.Latitude = double.Parse(lattitudeTextBox.Text);
+                
+                adds.DeepCopyTo(addedStat);
+                bl.AddStation(addedStat);
+               // adds.DeepCopyTo(bs);
+                //bl.AddBusStationLine(bs);
+                this.Close();
+            }
         }
 
         private void nameTextBox_TextChanged(object sender, TextChangedEventArgs e)

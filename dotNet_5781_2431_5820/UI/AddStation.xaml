@@ -46,5 +46,7 @@
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="0.2,16.467,-19.4,9.6" Grid.Row="4" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy" TextChanged="nameTextBox_TextChanged" Grid.RowSpan="2" FontWeight="Bold"/>
         </Grid>
         <Button x:Name="AddStationButton" Content="add station" Background="Transparent" BorderThickness="2.5" HorizontalAlignment="Left" Margin="326,379,0,0" VerticalAlignment="Top" Width="128" Click="AddStationButton_Click" Foreground="White" BorderBrush="Black" Height="46" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Longitude   : 34.3-35.5 " HorizontalAlignment="Left" Margin="4.4,251,0,0" VerticalAlignment="Top" Width="133"  FontSize="12" Foreground="White" Height="24" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"/>
+        <Label Content="Latitude     :      31-33.3" HorizontalAlignment="Left" Margin="4.4,230,0,0" VerticalAlignment="Top" Width="136" Height="29"  FontSize="12" Foreground="White" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2"/>
     </Grid>
 </Window>

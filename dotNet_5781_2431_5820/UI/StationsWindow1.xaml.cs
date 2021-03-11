@@ -25,6 +25,7 @@ namespace PL
         PO.Station MyStation;
         BO.BusLine MyBusLine;
         public ObservableCollection<PO.Station> stationlist;
+        //public ObservableCollection<PO.BusLine> busLines;
         public StationsWindow1(IBL _bl)
         {
             stationlist = new ObservableCollection<PO.Station>();
@@ -138,11 +139,12 @@ namespace PL
 
         private void StationAdd_Click(object sender, RoutedEventArgs e)
         {
-            BO.Station stat = new BO.Station();//a new Station
+            PO.Station stat = new PO.Station();//a new Station
 
-            AddStation addStationWindow = new AddStation(stat);//we sent the station Stat to a new window we created named AddStation 
-            addStationWindow.Closing += addStationWindow_Closing;
+            AddStation addStationWindow = new AddStation(,bl);//we sent the station Stat to a new window we created named AddStation 
             addStationWindow.ShowDialog();
+            addStationWindow.Closing += addStationWindow_Closing;
+            
         }
 
         private void addStationWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)

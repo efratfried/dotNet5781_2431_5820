@@ -27,10 +27,11 @@ namespace DLAPI
         DO.BusLine GetBusLine(int id);
         IEnumerable<DO.BusLine> GetAllBusLines();
         IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object,object> generate);
-        void AddBusLine(DO.BusLine BusLine);
+        int AddBusLine(DO.BusLine BusLine);
         void UpdateBusLine(DO.BusLine newLine);
         //void UpdateBusLine(string id, Action<DO.BusLine> update); //method that knows to updt specific fields in Student
         void DeleteBusLine(string id); // removes only Student, does not remove the appropriate Person...
+        IEnumerable<DO.BusLine> GetLineStationsListThatMatchAStation(int code);
         #endregion
 
         #region BusStationLine
@@ -43,7 +44,7 @@ namespace DLAPI
         void DeleteBusStationLine( string StationeNum);
         void DeleteBusStationLineFromAllStations(string StationID);
         IEnumerable<object> GetBusStationsLineListWithSelectedFields(Func<DO.BusStationLine, object> generate);
-        IEnumerable<DO.BusStationLine> GetLineStationsListThatMatchAStation(int code);
+       
 
         #endregion
 

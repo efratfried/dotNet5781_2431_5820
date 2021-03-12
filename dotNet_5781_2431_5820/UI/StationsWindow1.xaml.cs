@@ -38,7 +38,7 @@ namespace PL
             //StationComboBox.SelectedIndex = 0; //index of the object to be selected
             RefreshAllStationsComboBox();
             linesDataGrid.IsReadOnly = true;
-            RefreshAllLinesOfStationGrid();
+           
 
             //linesDataGrid = true;
         }
@@ -58,6 +58,7 @@ namespace PL
             //StationComboBox.DisplayMemberPath = "CodeStation";
             StationComboBox.DisplayMemberPath = "StationName";
             StationComboBox.SelectedIndex = 0;
+
         }
         /* void RefreshgridOneStation()
         {
@@ -66,8 +67,9 @@ namespace PL
         void RefreshAllLinesOfStationGrid()
         {
             // lineStationDataGrid.DataContext = bl.GetBusStationLineList(MyBusLine.ID.ToString());
-            linesDataGrid.DataContext = bl.GetAllLinesPerStation(int.Parse(MyStation.CodeStation));
+            linesDataGrid.ItemsSource = bl.GetAllLinesPerStation(int.Parse(MyStation.CodeStation));
         }
+
 
         private void StationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {/**  MyBusLine = (PO.BusLine)BusLineComboBox.SelectedItem;

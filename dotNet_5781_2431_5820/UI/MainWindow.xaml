@@ -36,7 +36,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Foreground" Value="DimGray"/>
-                            </Trigger>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                     <Grid>
                         <Ellipse Stroke="Transparent"  
@@ -63,6 +63,6 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Image x:Name="login" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logout.PNG" Margin="918,6,0,14.6" RenderTransformOrigin="0.548,0.483" />
+        <Image x:Name="login" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logout.PNG" Margin="918,6,0.4,0" RenderTransformOrigin="0.548,0.483" Height="53" VerticalAlignment="Top" />
     </Grid>
 </Window>

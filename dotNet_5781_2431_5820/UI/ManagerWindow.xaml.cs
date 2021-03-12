@@ -40,7 +40,7 @@ namespace PL
 
         private void buslines_Click(object sender, RoutedEventArgs e)
         {
-            SlidePanel.Opacity = 1;
+            SlidePanel.Opacity = 2;
             SlidePanel.Height = buslines.Height;
             PL.BusLineWindow buslineswindow = new PL.BusLineWindow(bl);
             buslineswindow.ShowDialog();
@@ -48,7 +48,7 @@ namespace PL
 
         private void Stations_Click(object sender, RoutedEventArgs e)
         {
-            SlidePanel.Opacity = 1;
+            SlidePanel.Opacity = 3;
             SlidePanel.Height = Stations.Height;
             PL.StationsWindow1 stationwindow = new StationsWindow1(bl);
             stationwindow.ShowDialog();

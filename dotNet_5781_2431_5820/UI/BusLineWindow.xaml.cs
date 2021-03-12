@@ -65,7 +65,7 @@ namespace PL
         void RefreshAllLineStationsOfLineGrid()
         {
             //IEnumerable<PO.BusLine> busLines;
-            lineStationDataGrid.DataContext = bl.GetBusStationLineList(MyBusLine.ID.ToString());
+            lineStationDataGrid.ItemsSource = bl.GetBusStationLineList(MyBusLine.ID.ToString());
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -273,11 +273,6 @@ namespace PL
 
             //no other keys are allowed
             e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
-
-        }
-
-        private void lineStationDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
         }
 

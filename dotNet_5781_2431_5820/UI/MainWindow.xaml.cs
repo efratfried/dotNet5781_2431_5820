@@ -3,6 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using PL;
+using System.Windows.Threading;
 namespace UI
 {
     /// <summary>
@@ -16,6 +17,20 @@ namespace UI
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
+            timer.Start();
+        }
+        void timer_Tick(object sender, EventArgs e)
+        {
+            if (mePlayer.Source != null)
+            {
+                if (mePlayer.NaturalDuration.HasTimeSpan)
+                    lblStatus.Content = String.Format("{0} / {1}", mePlayer.Position.ToString(@"mm\:ss"), mePlayer.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
+            }
+            else
+                lblStatus.Content = "No file selected...";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -427,7 +427,7 @@ namespace BL
             DO.BusLine newblDO;//before copying lineDO to lineBO, we need to ensure that lineDO is legal- legal busNumber.
             //sometimes we get here after the user filled lineDO fields. thats why we copy the given lineDO to a new lineDO and check if it is legal.
            // int blID = blDO.ID;
-            int busNumber = blDO.ID;
+            int busNumber = blDO.BusNum;
             try
             {
                 newblDO = dl.GetBusLine(busNumber);//if code is legal, returns a new lineStationDO. if not- ecxeption.

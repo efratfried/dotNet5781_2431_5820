@@ -68,16 +68,21 @@ namespace PL
                 MessageBoxResult res = MessageBox.Show("Please choose on a station!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-       /* public int findIndex(BO.FollowingStations FS)
-        {//tools func
-            BO.Station sta1 = bl.GetStation(FS.FirstStationCode);
-            BO.Station sta2 = bl.GetStation(FS.SecondStationCode);
-            int indexfirst = tempBL.stationsList.ToList().IndexOf(sta1);
-            int indexsecond = tempBL.stationsList.ToList().IndexOf(sta2);
-            if (indexfirst > indexsecond)
-                return indexsecond;
-            else
-                return indexfirst;
-        }*/
+
+        private void stationList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        /* public int findIndex(BO.FollowingStations FS)
+{//tools func
+    BO.Station sta1 = bl.GetStation(FS.FirstStationCode);
+    BO.Station sta2 = bl.GetStation(FS.SecondStationCode);
+    int indexfirst = tempBL.stationsList.ToList().IndexOf(sta1);
+    int indexsecond = tempBL.stationsList.ToList().IndexOf(sta2);
+    if (indexfirst > indexsecond)
+        return indexsecond;
+    else
+        return indexfirst;
+}*/
     }
 }

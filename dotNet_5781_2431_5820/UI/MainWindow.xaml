@@ -16,8 +16,8 @@
             <RowDefinition Height="149*"/>
         </Grid.RowDefinitions>
 
-        <!-- <MediaElement LoadedBehavior="Play" Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/The Travego Coach - Official Trailer _ Mercedes-Benz Buses.mp4" Margin="76,-59,-173,-161" Grid.RowSpan="2" />-->
-
+        <MediaElement LoadedBehavior="Play" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/The Travego Coach - Official Trailer _ Mercedes-Benz Buses.mp4" Margin="87,-32,77,-27.4" Grid.RowSpan="2" Name="mePlayer"/>
+        <Label Name="lblStatus" Content="Not playing..." HorizontalContentAlignment="Center" Margin="5" />
         <!--<Button x:Name="connect" HorizontalAlignment="Left" Margin="902,2,-243,0" VerticalAlignment="Top" BorderBrush="Transparent" Width="67" Height="51" FontSize="18" Click="Button_Click" Background="Transparent">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -29,7 +29,7 @@
                 </Style>
             </Button.Style>
         </Button>-->
-        <Label x:Name="Welcone" Content="Welcome to Path Finder" FontSize="60" Margin="129,211.6,-107,0" Grid.Row="1" Foreground="White" FontWeight="Bold" FontFamily="Century Gothic"/>
+        <Label x:Name="Welcone" Content="Welcome to Path Finder" FontSize="60" Margin="129,211.4,138,90.6" Grid.Row="1" Foreground="White" FontWeight="Bold" FontFamily="Century Gothic"/>
         <Button x:Name="content" Margin="920,0,0,10.6" Click="Button_Click">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}" >

@@ -83,10 +83,11 @@ namespace PL
         {
             try
             {
-                PO.Station s = MyStation;
-                if (addressTextBox.Text != "" && nameTextBox.Text != "" && longitudeTextBox.Text != "" && lattitudeTextBox.Text != "")
+                UpdateStation win = new UpdateStation(bl,MyStation);
+                win.Show();
+                //PO.Station s = MyStation;
+                /*if (addressTextBox.Text != "" && nameTextBox.Text != "" && longitudeTextBox.Text != "" && lattitudeTextBox.Text != "")
                 {
-
                     //BO.Station newStat = new BO.Station();//a local station, to save the changes that the user made in station's fields.
                     s.CodeStation = MyStation.CodeStation;
                     s.Address = addressTextBox.Text;
@@ -108,12 +109,12 @@ namespace PL
                 else//if not all fields are full
                 {
                     throw new BO.BadStationException("cannot update the station since not all fields were filled");
-                }
+                }*/
 
             }
-            catch (BO.BadStationException ex)
+            catch (BO.BadOpenWindow ex)
             {
-                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message + ex.InnerException, "couldnt open the window", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

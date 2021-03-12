@@ -10,17 +10,19 @@
         <ImageBrush ImageSource="C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/bgmore.JPG"/>
     </Window.Background>
     <Grid>
-        <Grid x:Name="UpdateStationDetails" Margin="10,92,312.6,103.2" >
-            <Label x:Name="Upadress" Content="adress" Margin="11,124,561,100.2" Height="36" FontSize="18" FontWeight="Bold"/>
-            <TextBlock x:Name="UpdateAdress" Margin="165,124,289,101.2" Height="35" Width="180"/>
-            <Label x:Name="Uplatitude" Content="latitude" Margin="11,204,530,20.2" Height="36" FontSize="18" FontWeight="Bold"/>
-            <TextBlock x:Name="Updatelatitude" Margin="165,205,289,20.2" Height="35" Width="180"/>
-            <Label x:Name="Uplongtitude" Content="longtitude" Margin="10,164,512,61.2" Height="35" FontSize="18" FontWeight="Bold"/>
-            <TextBlock x:Name="Updatelingtitude" Margin="165,169,289,56.2" Height="35" Width="180"/>
-            <Label x:Name="Upcode" Content="code" Margin="11,41,0,181.2" Height="38" HorizontalAlignment="Left" Width="62" FontSize="18" FontWeight="Bold"/>
-            <TextBlock x:Name="Updatecode" Margin="165,49,289,176.2" Height="35" Width="180"/>
-            <Label x:Name="Upname" Content="name" Margin="10,84,561,140.2" Height="36" FontSize="18" FontWeight="Bold"/>
-            <TextBlock x:Name="Updatename" Margin="165,85,289,140.2" Height="35" Width="180"/>
+        <Grid x:Name="UpdateStationDetails" Margin="10,92,314.6,-36.8" Height="400">
+            <Label x:Name="Upadress" Content="adress" Margin="10,106,562,258" Height="36" FontSize="18" FontWeight="Bold"/>
+            <TextBox x:Name="UpdateAdress" Margin="183,106,308,259" Height="35" Width="180" Background="White"/>
+            <Label x:Name="Uplatitude" Content="latitude" Margin="10,195,531,169" Height="36" FontSize="18" FontWeight="Bold"/>
+            <TextBox x:Name="Updatelatitude" Margin="183,190,308,175" Height="35" Width="180" Background="White"/>
+            <Label x:Name="Uplongtitude" Content="longtitude" Margin="10,147,512,218" Height="35" FontSize="18" FontWeight="Bold"/>
+            <TextBox x:Name="Updatelingtitude" Margin="183,147,308,218" Height="35" Width="180" Background="White"/>
+            <Label x:Name="Upcode" Content="code" Margin="11,27,0,335" Height="38" HorizontalAlignment="Left" Width="62" FontSize="18" FontWeight="Bold"/>
+            <TextBox x:Name="Updatecode" IsReadOnly="True" Margin="183,26,308,338" Height="35" Width="180" Background="White" DataContext="{Binding}"/>
+            <Label x:Name="Upname" Content="name" Margin="10,65,561,299" Height="36" FontSize="18" FontWeight="Bold"/>
+            <TextBox x:Name="Updatename" Margin="183,64,308,300" Height="35" Width="180" Background="White"/>
+            <Label x:Name="UpDis" Content="Disable Access" Height="36" FontSize="18" FontWeight="Bold" Margin="0,234,531,130"/>
+            <ComboBox x:Name="UpDisableAccess" Margin="183,234,308,130" DataContext="{Binding}"/>
         </Grid>
         <Label x:Name="updatestation" Content="Update Station's details" FontSize="32" FontWeight="Bold" Foreground="White" Margin="10,10,-10.4,357"/>
         <Button x:Name="Updatedetails" Content="Update station" Margin="702,395,89.6,10.2" FontSize="20" FontWeight="Bold" BorderBrush="Black" BorderThickness="2.5" Background="Transparent" Foreground="White"/>

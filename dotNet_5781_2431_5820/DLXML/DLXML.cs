@@ -864,9 +864,9 @@ namespace DL
                                        new XElement("FirstStationCode", FollowingStations.FirstStationCode.ToString()),
                                        new XElement("SecondStationCode", FollowingStations.SecondStationCode.ToString()),
                                        //new XElement("FirstStationName", FollowingStations.FirstStationName.ToString()),
-                                      // new XElement("SecondStationName", FollowingStations.SecondStationName.ToString()),
+                                       // new XElement("SecondStationName", FollowingStations.SecondStationName.ToString()),
                                        new XElement("Distance", FollowingStations.Distance.ToString()),
-                                       new XElement("AverageDrivingTime", FollowingStations.AverageDrivingTime.ToString()),
+                                       new XElement("AverageDrivingTime", FollowingStations.AverageDrivingTime.ToString()));
                                        //new XElement("WalkingTime", FollowingStations.WalkingTime.ToString()));
 
                 FollowingSElem.Add(fsElem);

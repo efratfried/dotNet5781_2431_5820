@@ -40,7 +40,7 @@ namespace UI
         }
         public void iocn()
         {//C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL
-            Uri iconUri = new Uri("C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logo1.ico", UriKind.RelativeOrAbsolute);
+            Uri iconUri = new Uri("logo1.ico", UriKind.RelativeOrAbsolute);
 
             this.Icon = BitmapFrame.Create(iconUri);
         }

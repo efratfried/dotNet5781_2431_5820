@@ -23,13 +23,19 @@ namespace PL
         public BO.Bus addbus;
         public bool AllFieldsWereFilled = false;
         public bool thereIsATrip = false;
-        public AddBus()
+        public AddBus(IBL _bL)
         {
             InitializeComponent();
+            bL = _bL;
         }
         
         private void AddLineDetails_Click(object sender, RoutedEventArgs e)
         {
+            if(LicenseNum.Text!=""&& busfoul.Text!=""&& busKM.Text!=""&& firm.SelectedItem!=null)
+            {
+                
+
+            }
             //AddLine al = new AddLine(bL);
             //al.ShowDialog();
         }

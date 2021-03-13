@@ -427,7 +427,7 @@ namespace BL
             DO.BusLine newblDO;//before copying lineDO to lineBO, we need to ensure that lineDO is legal- legal busNumber.
             //sometimes we get here after the user filled lineDO fields. thats why we copy the given lineDO to a new lineDO and check if it is legal.
            // int blID = blDO.ID;
-            int busNumber = blDO.BusNum;
+            int busNumber = blDO.ID;
             try
             {
                 newblDO = dl.GetBusLine(busNumber);//if code is legal, returns a new lineStationDO. if not- ecxeption.
@@ -449,9 +449,8 @@ namespace BL
         }
         public IEnumerable<BO.BusLine> GetAllLinesPerStation(int code)
         {
-            return from lineStation in dl.GetLineStationsListThatMatchAStation(code)
-                   let line = dl.GetBusLine(int.Parse(lineStation.ID))
-                   select line.CopyDOLineStationToBOLine(lineStation);
+            return from lineStation in dl.GetLineStationsListThatMatchAStation(code)         
+                   select BuslineDoBoAdapter(lineStation);
         }
         public IEnumerable<BO.BusLine> GetAllLinesByArea(BO.Area area)
         {
@@ -526,25 +525,43 @@ namespace BL
             }
         }
         public void DeleteBusLine(int ID)
-        {
+        {//delete all the stations
             try
             {
                 string id = ID.ToString();
-                dl.DeleteBus(id);
+                dl.DeleteBusLine(id);
+                dl.DeleteBusStationLine(id);
             }
             catch (DO.BadLicenseNumException ex)
             {
                 throw new BO.BadBusLineIdException("BusLine's ID does not exist or it is not a Bus", ex);
             }
         }
+        
         public void AddBusLine(BO.BusLine busline)
         {
             DO.BusLine BusLineDO = new DO.BusLine();
 
             busline.CopyPropertiesTo(BusLineDO);
+
             try
             {
-                dl.AddBusLine(BusLineDO);
+                DO.BusStationLine first = new DO.BusStationLine();
+                DO.BusStationLine second = new DO.BusStationLine();
+               
+                busline.ID =  dl.AddBusLine(BusLineDO);
+                first.BusStationNum = busline.FirstStation.ToString();
+                second.BusStationNum = busline.LastStation.ToString();
+                first.IndexInLine = 0;
+                second.IndexInLine = 1;
+                first.ID = busline.ID.ToString();
+                second.ID =busline.ID.ToString();
+                dl.AddBusStationLine(first);
+                dl.AddBusStationLine(second);
+                DO.FollowingStations fs = new DO.FollowingStations();
+                fs.FirstStationCode = first.BusStationNum;
+                fs.SecondStationCode = second.BusStationNum;
+                dl.AddFollowingStations(fs); 
             }
             catch (DO.BadLicenseNumException ex)
             {

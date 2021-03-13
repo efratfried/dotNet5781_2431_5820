@@ -38,7 +38,7 @@ namespace DL
          static string FollowingStationsPath = "@FollowingStationssXml.xml";
         static string runningNumbersPath = "@RunningNumbers.xml";
 
-
+        public List<FollowingStations> followingStations=new List<FollowingStations>();
         //public static List<User> UsersList;
         //public static List<BusStationLine> BusStationsLineList;
         /*List<DO.User> list1 = DS.DataSource.Users;
@@ -196,24 +196,24 @@ namespace DL
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
 
-            DO.BusLine stu = ListBusLines.Find(bus => bus.BusNum == LicenseNum);
+            DO.BusLine stu = ListBusLines.Find(bus => bus.ID == LicenseNum);
             if (stu != null)
                 return stu; //no need to Clone()
             else
                 throw new DO.BadBusLicenseNumException(LicenseNum.ToString(), $"bad BusLine LicenseNum: {LicenseNum}");
         }
         
-        public void AddBusLine(DO.BusLine BusLine)
+        public int AddBusLine(DO.BusLine BusLine)
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
-
-            if (ListBusLines.FirstOrDefault(s => s.BusNum == BusLine.BusNum) != null)
-                throw new DO.BadBusLicenseNumException(BusLine.BusNum.ToString(), "Dubuslicate BusLine LicenseNum");
+            BusLine.ID = ListBusLines.Max(I => I.ID)+1;
+            //if (ListBusLines.FirstOrDefault(s => s.BusNum == BusLine.BusNum) != null)
+               // throw new DO.BadBusLicenseNumException(BusLine.BusNum.ToString(), "Duplicate BusLine LicenseNum");
 
             ListBusLines.Add(BusLine); //no need to Clone()
 
             XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);
-
+            return BusLine.ID;
         }
         public IEnumerable<DO.BusLine> GetAllBusLines()
         {
@@ -370,19 +370,9 @@ namespace DL
         }
         public void DeleteBusStationLine(string stationNum)
         {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BusStationLinePath);
-
-            XElement bus1 = (from busstationline in BussRootElem.Elements()
-                             where (busstationline.Element("BusStationNum").Value) == stationNum
-                             select busstationline).FirstOrDefault();
-
-            if (bus1 != null)
-            {
-                bus1.Remove();
-                XMLTools.SaveListToXMLElement(BussRootElem, BusStationLinePath);
-            }
-            else
-                throw new DO.BadBusStationLineCodeException(stationNum, $"bad Bus's LicenseNum: {stationNum}");
+            List<BusStationLine> BussRootElem = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+            BussRootElem.RemoveAll(l => l.ID == stationNum);
+            XMLTools.SaveListToXMLSerializer(BussRootElem, BusStationLinePath);
         }
         public void DeleteBusStationLineFromAllStations(string StationID)
         {
@@ -395,13 +385,14 @@ namespace DL
             return from bs in BusStationsLineList
                    select bs;
         }
-        public IEnumerable<DO.BusStationLine> GetLineStationsListThatMatchAStation(int code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
+        public IEnumerable<DO.BusLine> GetLineStationsListThatMatchAStation(int code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
         {
             List<BusStationLine> listLineStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
 
             return from ls in listLineStations
                    where ls.BusStationNum == code.ToString()
-                   select ls;
+                   let p = GetBusLine(int.Parse(ls.ID))
+                   select p;
         }
 
         #endregion BusStationLine
@@ -860,27 +851,28 @@ namespace DL
         }
         public void AddFollowingStations(DO.FollowingStations FollowingStations)
         {
+            //XMLTools.SaveListToXMLSerializer(followingStations, FollowingStationsPath);
             XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
 
             XElement followings = (from fs in FollowingSElem.Elements()
-                                   where (fs.Element("station's code").Value) == FollowingStations.FirstStationCode
+                                   where (fs.Element("FirstStationCode").Value) == FollowingStations.FirstStationCode && fs.Element("SecondStationCode").Value == FollowingStations.SecondStationCode
                                    select fs).FirstOrDefault();
 
-            if (followings != null)
-                throw new DO.BadBusStationLineCodeException(FollowingStations.FirstStationCode, FollowingStations.SecondStationCode, "wrong stations's code");
+            if (followings == null)
+            {
+                XElement fsElem = new XElement("FollowingStations",
+                                       new XElement("FirstStationCode", FollowingStations.FirstStationCode.ToString()),
+                                       new XElement("SecondStationCode", FollowingStations.SecondStationCode.ToString()),
+                                       //new XElement("FirstStationName", FollowingStations.FirstStationName.ToString()),
+                                       // new XElement("SecondStationName", FollowingStations.SecondStationName.ToString()),
+                                       new XElement("Distance", FollowingStations.Distance.ToString()),
+                                       new XElement("AverageDrivingTime", FollowingStations.AverageDrivingTime.ToString()));
+                                       //new XElement("WalkingTime", FollowingStations.WalkingTime.ToString()));
 
-            XElement fsElem = new XElement("following_station",
-                                   new XElement("FirstStationCode", FollowingStations.FirstStationCode.ToString()),
-                                   new XElement("SecondStationCode", FollowingStations.SecondStationCode.ToString()),
-                                   new XElement("FirstStationName", FollowingStations.FirstStationName.ToString()),
-                                   new XElement("SecondStationName", FollowingStations.SecondStationName.ToString()),
-                                   new XElement("distance", FollowingStations.Distance.ToString()),
-                                   new XElement("DrivingTimeBetween", FollowingStations.AverageDrivingTime),
-                                   new XElement("WalkingTime", FollowingStations.WalkingTime));
+                FollowingSElem.Add(fsElem);
 
-            FollowingSElem.Add(fsElem);
-
-            XMLTools.SaveListToXMLElement(fsElem, FollowingStationsPath);
+                XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
+            }
         }
         public void DeleteFollowingStation(DO.FollowingStations followingstation)
         {

@@ -60,7 +60,7 @@
             <TextBox x:Name="Disable_accessTextBox" Grid.Column="2"  Height="23" Margin="37.4,113,8.8,12" Grid.Row="2" Text="{Binding DisableAccess, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Width="278" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" />
 
         </Grid>
-        <DataGrid x:Name="linesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="4.4,7.8,22.2,33.2" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Horizontal" FontFamily="Tahoma"  Foreground="Black" FontWeight="bold" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="3"  >
+        <DataGrid x:Name="linesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="4.4,7.8,22.2,33.2" RowDetailsVisibilityMode="VisibleWhenSelected" ItemsSource="{Binding}" GridLinesVisibility="Horizontal" FontFamily="Tahoma"  Foreground="Black" FontWeight="bold" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="3"  >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="IDColumn" Binding="{Binding ID}" Header="   ID" Width="50" />
                 <DataGridTextColumn x:Name="busNumberColumn"    Binding="{Binding BusNumber}"   Header="Bus Number" Width="SizeToHeader"  />

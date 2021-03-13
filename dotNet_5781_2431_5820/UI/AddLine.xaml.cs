@@ -30,7 +30,7 @@ namespace PL
 
         public AddLine(IBL _bl, BusLineWindow _BS)
         {
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             BS = _BS;
             bl = _bl;
@@ -38,20 +38,18 @@ namespace PL
             DataContext = addedLine;
 
             areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
+
+            firstStationComboBox.ItemsSource = bl.GetAllStations();//ObserListOfStations;
+            lastStationComboBox.ItemsSource = bl.GetAllStations();//ObserListOfStations;
             areaComboBox.SelectedIndex = 0; //index of the object to be selected
-
-            firstStationComboBox.DisplayMemberPath = "Name";//show only specific Property of object
-            firstStationComboBox.SelectedValuePath = "Code";//selection return only specific Property of object
+            firstStationComboBox.DisplayMemberPath = "StationName";//show only specific Property of object
+            //firstStationComboBox.SelectedValuePath = "Code";//selection return only specific Property of object
             firstStationComboBox.SelectedIndex = 0; //index of the object to be selected
-            lastStationComboBox.DisplayMemberPath = "Name";//show only specific Property of object
-            lastStationComboBox.SelectedValuePath = "Code";//selection return only specific Property of object
+            lastStationComboBox.DisplayMemberPath = "StationName";//show only specific Property of object
+            //lastStationComboBox.SelectedValuePath = "Code";//selection return only specific Property of object
             lastStationComboBox.SelectedIndex = 0; //index of the object to be selected
-
-            firstStationComboBox.DataContext = bl.GetAllStations().ToList();//ObserListOfStations;
-            lastStationComboBox.DataContext = bl.GetAllStations().ToList();//ObserListOfStations;
         }
-
-      
+    
         private void busNumberTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e == null)
@@ -99,9 +97,14 @@ namespace PL
                // bn = bl.GetBusLine(int.Parse(busNumberTextBox.Text));
                 bn.Area= (BO.Area)areaComboBox.SelectedIndex;
                 bn.BusNum= int.Parse(busNumberTextBox.Text);
-                bn.ID=int.Parse(IDtextbox.Text);
-                bn.FirstStation = int.Parse(firstStationComboBox.SelectedItem.ToString());
-                bn.LastStation=int.Parse(lastStationComboBox.SelectedItem.ToString());
+                //bn.ID=int.Parse(IDtextbox.Text);
+                bn.FirstStation = int.Parse(((BO.Station)firstStationComboBox.SelectedItem).CodeStation);
+                bn.LastStation=int.Parse(((BO.Station)lastStationComboBox.SelectedItem).CodeStation);
+
+               if(bn.FirstStation== bn.LastStation)
+                {
+                    MessageBox.Show("ERROR", "Verification", MessageBoxButton.OK);
+                }
                 //bn.stationsList
             }
             else

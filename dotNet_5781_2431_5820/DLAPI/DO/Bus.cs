@@ -12,7 +12,6 @@ namespace DO
         public DateTime LicenseDate { get; set; }
         public double KM { get; set; }
         public double foul { get; set; }
-        //public Status Status { get; set; }
         public Firm Firm { get; set; }
         public override string ToString()
         {

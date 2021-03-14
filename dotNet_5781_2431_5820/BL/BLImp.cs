@@ -30,14 +30,8 @@ namespace BL
             }
 
             BusDO.CopyPropertiesTo(BusBO);
-
-            /*BusBO.AccidentsDuco = from sic in dl.GetAllAccidentsList(sic => sic.LicenseNum == LicenseNum)
-                                  let Accident = dl.GetAccident(sic.AccidentNum)
-                                  select (BO.Accident)Accident.CopyPropertiesToNew(typeof(BO.Accident));*/
-
             BusBO.Status = status(BusBO);
             BusBO.Foul_Status = foul_Status(BusBO);
-
             return BusBO;
         }
         public BO.Bus GetBus(string LicenseNum)
@@ -56,10 +50,6 @@ namespace BL
         }
         public IEnumerable<BO.Bus> GetAllBuss()
         {
-            //return from item in dl.GetBusListWithSelectedFields( (stud) => { return GetBus(stud.ID); } )
-            //       let Bus = item as BO.Bus
-            //       orderby Bus.ID
-            //       select Bus;
             return from BusDO in dl.GetAllBusses()
                    orderby BusDO.LicenseNum
                    select BusDoBoAdapter(BusDO);
@@ -165,13 +155,16 @@ namespace BL
         }
         public BO.Status status(BO.Bus bus)
         {
-            if (bus.KM > 20000 || bus.foul < 100)
+            if (/*bus.KM > 20000 ||*/ bus.foul < 200)
             {
                 bus.Status = Status.UnAvailable;
             }
-            else if (bus.drivingBusesDuco.Last().finish == false)
+            else if (bus.drivingBusesDuco!=null)
             {
-                bus.Status = Status.OnDrive;
+                if (bus.drivingBusesDuco.Last().finish == false)
+                {
+                    bus.Status = Status.OnDrive;
+                }
             }
             else
             {

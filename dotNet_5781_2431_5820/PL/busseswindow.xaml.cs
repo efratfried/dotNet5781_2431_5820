@@ -26,10 +26,9 @@ namespace PL
         PO.Bus currentbus;
         public busseswindow(IBL _bl)
         {
+            bl = _bl;
             InitializeComponent();
             Refreshbusses_listComboBox();
-          
-             
 
             /*void RefreshAllLineStationsOfLineGrid()
             {
@@ -37,7 +36,6 @@ namespace PL
                 lineStationDataGrid.DataContext = bl.GetAllBuss();
             }*/
             //   RefreshAllBussesComboBox();
-
 
             // cbStudentID.DisplayMemberPath = "Name";//show only specific Property of object
             //  cbStudentID.SelectedValuePath = "ID";//selection return only specific Property of object
@@ -82,6 +80,7 @@ namespace PL
             foul_status.DataContext = currentbus.foul;
             km_.DataContext = currentbus.KM;
             aviability_status.DataContext = currentbus.Status;
+            firm.DataContext= currentbus.firm;
         }
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -142,21 +141,6 @@ namespace PL
                 start_treatment.IsEnabled = false;           
         }
 
-        private void start_filling_foul_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void start_treatment_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void update_bus_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void delete_bus_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -172,8 +156,8 @@ namespace PL
 
         private void add_bus_Click(object sender, RoutedEventArgs e)
         {
-            AddBus ab = new AddBus();
-            ab.ShowDialog();
+            //UI.AddBus ab = new AddBus(bl);
+            //ab.ShowDialog();
 
         }
 

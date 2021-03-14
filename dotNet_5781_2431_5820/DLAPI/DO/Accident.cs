@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DO
-{ 
-        public class Accident
-    {      
+{
+    public class Accident
+    {
         public string LicenseNum { get; set; }
         public DateTime AccidentDate { get; set; }
-        public int AccidentNum{ get; set; }
+        public int AccidentNum { get; set; }
     }
 }

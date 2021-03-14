@@ -20,15 +20,14 @@ namespace PL
     public partial class AddBus : Window
     {
         IBL bL;
-        public BO.Bus addbus;
+        public BO.Bus addbus = new BO.Bus();
         public bool AllFieldsWereFilled = false;
         public bool thereIsATrip = false;
         public PO.Bus Mybus=new PO.Bus();
-        public AddBus()
+        public AddBus(IBL _bL)
         {
             InitializeComponent();
-
-         
+            bL = _bL;
             LicenseNum.Text = "";
             LicenseDate.Text = "";
             //firm.SelectedItem = (BO.Firm)addbus.Firm;
@@ -53,8 +52,7 @@ namespace PL
                     Mybus.KM = double.Parse(busKM.Text);
                     Mybus.foul = double.Parse(busfoul.Text);
                     Mybus.firm = (BO.Firm)(firm.SelectedIndex);
-
-                    Mybus.DeepCopyTo(Add);
+                    Mybus.DeepCopyTo(addbus);
                     bL.AddBus(addbus);
                     this.Close();
                 }

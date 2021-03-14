@@ -72,8 +72,8 @@ namespace DL
                             foul = Double.Parse(bus.Element("foul").Value),
                             KM = Int32.Parse(bus.Element("KM").Value),
                             LicenseDate = DateTime.Parse(bus.Element("LicenseDate").Value),
-                            // Status = (Status)Enum.Parse(typeof(Status), bus.Element("Status").Value),
                             Firm = (Firm)Enum.Parse(typeof(Firm), bus.Element("Firm").Value)
+                            //Status is a property in bo made by a function
                         }
                         ).FirstOrDefault();
 
@@ -99,8 +99,8 @@ namespace DL
                         foul = Double.Parse(bus.Element("foul").Value),
                         KM = Int32.Parse(bus.Element("KM").Value),
                         LicenseDate = DateTime.Parse(bus.Element("LicenseDate").Value),
-                        // Status = (Status)Enum.Parse(typeof(Status), bus.Element("Status").Value),
                         Firm = (Firm)Enum.Parse(typeof(Firm), bus.Element("Firm").Value)
+                        //Status is a property in bo made by a function
                     }
                    );
         }
@@ -115,8 +115,8 @@ namespace DL
                        foul = Double.Parse(bus.Element("foul").Value),
                        KM = Int32.Parse(bus.Element("KM").Value),
                        LicenseDate = DateTime.Parse(bus.Element("LicenseDate").Value),
-                       //Status = (Status)Enum.Parse(typeof(Status), bus.Element("Status").Value),
                        Firm = (Firm)Enum.Parse(typeof(Firm), bus.Element("Firm").Value)
+                       //Status is a property in bo made by a function
                    }
                    where predicate(bus1)
                    select bus1;
@@ -141,11 +141,10 @@ namespace DL
             XElement BusElem = new XElement("Bus",
                                    new XElement("LicenseNum", Bus.LicenseNum.ToString()),
                                    new XElement("foul", Bus.foul.ToString()),
-                                   // new XElement("Status", Bus.Status.ToString()),
                                    new XElement("KM", Bus.KM.ToString()),
                                    new XElement("Firm", Bus.Firm.ToString()),
                                    new XElement("LicenseDate", Bus.LicenseDate));
-
+                                  //Status is a property in bo made by a function
             BussRootElem.Add(BusElem);
 
             XMLTools.SaveListToXMLElement(BussRootElem, BususPath);
@@ -180,8 +179,8 @@ namespace DL
                 bus.Element("Foul").Value = Bus.foul.ToString();
                 bus.Element("KM").Value = Bus.KM.ToString();
                 bus.Element("LicenseDate").Value = Bus.LicenseDate.ToString();
-                //bus.Element("Status").Value = Bus.Status.ToString();
                 bus.Element("Firm").Value = Bus.Firm.ToString();
+                //Status is a property in bo made by a function
 
                 XMLTools.SaveListToXMLElement(BussRootElem, BususPath);
             }

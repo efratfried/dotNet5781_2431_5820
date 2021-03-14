@@ -92,10 +92,9 @@ namespace PL
 
             BO.BusLine bn=new BO.BusLine();
             PO.BusLine pl=new PO.BusLine();
-            
-
-            if (busNumberTextBox.Text != "")
+            if (busNumberTextBox.Text != ""&& IDtextbox.Text!=""&& areaComboBox.SelectedItem!=null&& firstStationComboBox.SelectedItem!=null&& lastStationComboBox.SelectedItem!=null)
             {
+               // bn = bl.GetBusLine(int.Parse(busNumberTextBox.Text));
                 bn.Area= (BO.Area)areaComboBox.SelectedIndex;
                 bn.BusNum= int.Parse(busNumberTextBox.Text);
                 //bn.ID=int.Parse(IDtextbox.Text);
@@ -107,6 +106,10 @@ namespace PL
                     MessageBox.Show("ERROR", "Verification", MessageBoxButton.OK);
                 }
                 //bn.stationsList
+            }
+            else
+            {
+
             }
             
             MessageBoxResult res = MessageBox.Show("Add line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);

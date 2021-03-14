@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="BusLinesWindow" Height="450" Width="1134" FontFamily="Tahoma"  Foreground="White">
     <Window.Background>
-        <ImageBrush ImageSource="C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/bgmore.JPG"/>
+        <ImageBrush ImageSource="bgmore.JPG"/>
     </Window.Background>
     <Grid x:Name="BusLines">
         <Grid.RowDefinitions>
@@ -31,7 +31,7 @@
 
 
         </Grid.ColumnDefinitions>
-        <Image Source="C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/busicon.PNG" Grid.ColumnSpan="2" Margin="69,39,0.4,132.2" Grid.RowSpan="3"/>
+        <Image Source="busicon.PNG" Grid.ColumnSpan="2" Margin="69,39,0.4,132.2" Grid.RowSpan="3"/>
         <Button x:Name="BusLineUpdate" Content="Update line" FontWeight="Bold" HorizontalAlignment="Left" Margin="0.6,12.8,0,0" VerticalAlignment="Top" Width="121" Click="BusLineUpdate_Click" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" BorderBrush="Black"/>
         <Button x:Name="BusLineDelete" BorderBrush="Black" Content="Delete line" FontWeight="Bold" HorizontalAlignment="Left" Margin="104.8,12.8,0,0" VerticalAlignment="Top" Width="86" Click="BusLineDelete_Click" Grid.Column="4" Grid.Row="4"/>
         <Button x:Name="BusLineAdd" BorderBrush="Black" Content="Add line" FontWeight="Bold" HorizontalAlignment="Left" Margin="75.4,12.8,0,0" VerticalAlignment="Top" Width="98" Click="BusLineAdd_Click" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="2"/>

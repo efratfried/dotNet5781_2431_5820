@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="AddBus" Height="485" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
+        <ImageBrush ImageSource="bgmore.JPG"/>
     </Window.Background>
     <Grid x:Name="maingrid" Margin="0,-3,-0.4,3.2">
         <Label Content="Add bus details" HorizontalAlignment="Stretch" Margin="285,28,312,387" VerticalAlignment="Center" Height="40" FontWeight="Bold" FontSize="30" Foreground="White" FontFamily="Narkisim" RenderTransformOrigin="0.5,0.5"/>

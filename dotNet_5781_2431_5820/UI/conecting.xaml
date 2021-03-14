@@ -21,12 +21,12 @@
         </Label>
         <TextBox x:Name="manager_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="604,106,0,0" TextChanged="manager_Name_TextChanged" BorderBrush="#FF10168C"/>
         <TextBox x:Name="manager_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="604,156,0,0" TextChanged="manager_passowrd_TextChanged" BorderBrush="#FF10168C"/>
-        <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/password.PNG" Margin="876,156,73.6,276.2"/>
-        <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/password.PNG" Margin="356,334,593.6,98.2"/>
-        <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/password.PNG" Margin="356,156,593.6,276.2"/>
-        <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/user.PNG" Margin="876,106,73.6,326.2"/>
-        <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/user.PNG" Margin="356,277,593.6,155.2"/>
-        <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/user.PNG" Margin="356,106,593.6,326.2"/>
+        <Image Source="password.PNG" Margin="876,156,73.6,276.2"/>
+        <Image Source="password.PNG" Margin="356,334,593.6,98.2"/>
+        <Image Source="password.PNG" Margin="356,156,593.6,276.2"/>
+        <Image Source="user.PNG" Margin="876,106,73.6,326.2"/>
+        <Image Source="user.PNG" Margin="356,277,593.6,155.2"/>
+        <Image Source="user.PNG" Margin="356,106,593.6,326.2"/>
         <Label Content="user login " HorizontalAlignment="Left" Margin="137,60,0,0" VerticalAlignment="Top" Height="41" Width="161" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black" />
         <TextBox x:Name="user_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,108,0,0" TextChanged="user_Name_TextChanged" BorderBrush="#FF10168C"/>
         <TextBox x:Name="user_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,156,0,0" TextChanged="user_password_TextChanged" BorderBrush="#FF10168C"/>

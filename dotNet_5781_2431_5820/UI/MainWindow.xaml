@@ -16,7 +16,7 @@
             <RowDefinition Height="149*"/>
         </Grid.RowDefinitions>
 
-        <MediaElement LoadedBehavior="Play" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/The Travego Coach - Official Trailer _ Mercedes-Benz Buses.mp4" Margin="87,-32,77,-27.4" Grid.RowSpan="2" Name="mePlayer"/>
+        <MediaElement LoadedBehavior="Play" Source="The Travego Coach - Official Trailer _ Mercedes-Benz Buses.mp4" Margin="87,-32,77,-27.4" Grid.RowSpan="2" Name="mePlayer"/>
         <Label Name="lblStatus" Content="Not playing..." HorizontalContentAlignment="Center" Margin="5" />
         <!--<Button x:Name="connect" HorizontalAlignment="Left" Margin="902,2,-243,0" VerticalAlignment="Top" BorderBrush="Transparent" Width="67" Height="51" FontSize="18" Click="Button_Click" Background="Transparent">
             <Button.Style>
@@ -63,6 +63,6 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Image x:Name="login" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logout.PNG" Margin="918,6,0.4,0" RenderTransformOrigin="0.548,0.483" Height="53" VerticalAlignment="Top" />
+        <Image x:Name="login" Source="logout.PNG" Margin="918,6,0.4,0" RenderTransformOrigin="0.548,0.483" Height="53" VerticalAlignment="Top" />
     </Grid>
 </Window>

@@ -155,22 +155,25 @@ namespace PL
                 update_bus.IsEnabled = false;
                 start_driving.IsEnabled = false;
                 start_filling_foul.IsEnabled = false;
-                start_treatment.IsEnabled = false;           
+                start_treatment.IsEnabled = false;
+            AddOutGoingLine o = new AddOutGoingLine();
+            o.Show();
         }
 
         private void start_filling_foul_Click(object sender, RoutedEventArgs e)
         {
-
+            aviability_status.Text = "UnAvailable";
         }
 
         private void start_treatment_Click(object sender, RoutedEventArgs e)
         {
-
+            aviability_status.Text = "UnAvailable";
         }
 
         private void update_bus_Click(object sender, RoutedEventArgs e)
         {
-
+            UpdateBus upbus = new UpdateBus(currentbus);
+            upbus.ShowDialog();
         }
 
         private void delete_bus_Click(object sender, RoutedEventArgs e)

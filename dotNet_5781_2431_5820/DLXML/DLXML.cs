@@ -526,13 +526,13 @@ namespace DL
             if (user1 == null)
                 throw new DO.BadUserName_PasswordException(Name, pass, $"wrong user's name or password: {Name},{pass}");
             return user1;
-        }
+            
         public void AddUser(DO.User user)
         {
             XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
 
             XElement user1 = (from User in UserRootElem.Elements()
-                              where (User.Element("user's name").Value) == user.UserName
+                              where ((User.Element("user's name").Value) == user.UserName && (User.Element("user's password").Value)==user.Password
                               select User).FirstOrDefault();
 
             if (user1 != null)

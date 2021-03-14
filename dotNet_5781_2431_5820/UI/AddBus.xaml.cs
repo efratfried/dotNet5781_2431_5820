@@ -23,15 +23,18 @@ namespace PL
         public BO.Bus addbus;
         public bool AllFieldsWereFilled = false;
         public bool thereIsATrip = false;
+        public PO.Bus Mybus;
         public AddBus()
         {
             InitializeComponent();
+            firm.ItemsSource = Enum.GetValues(typeof(BO.Firm));
+            firm.SelectedIndex = 0; //index of the object to be selected
         }
         
         private void AddLineDetails_Click(object sender, RoutedEventArgs e)
         {
-            //AddLine al = new AddLine(bL);
-            //al.ShowDialog();
+           // AddLine al = new AddLine(bL,);
+           // al.ShowDialog();
         }
 
         private void AddBus_Click(object sender, RoutedEventArgs e)
@@ -62,7 +65,7 @@ namespace PL
 
         private void firm_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            addbus.Firm = (BO.Firm)(firm.SelectedIndex);
+          
         }
 
         private void LicenseNum_TextChanged(object sender, TextChangedEventArgs e)

@@ -233,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="bgmore.jpg" />
+    <Resource Include="background.PNG" />
     <Content Include="road.jfif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

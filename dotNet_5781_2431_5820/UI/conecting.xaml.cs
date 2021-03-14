@@ -95,8 +95,7 @@ namespace PL
                 }
             }
             else if (Newuser_name.Text.Length != 0 && NewUser_password.Text.Length != 0)
-            {
-               
+            {              
                 PO.User MyUser = new PO.User();
 
                 user = bl.GetAllUsers().Where(user1 => user1.UserName == Newuser_name.Text && user1.Password == NewUser_password.Text).FirstOrDefault();//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();            

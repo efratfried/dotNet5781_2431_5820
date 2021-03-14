@@ -31,8 +31,9 @@ namespace PL
             foul_status.Text = updatebus.foul.ToString();
             firm.SelectedItem = updatebus.firm;
             Licensenum.Text = bus.LicenseNum.ToString();
-
-            Licensenum.IsEnabled = true;
+            firm.ItemsSource = Enum.GetValues(typeof(BO.Firm));
+            firm.SelectedIndex = 0;
+            Licensenum.IsReadOnly = true;
             //aviability_status.IsEnabled = true;
         }
 
@@ -59,7 +60,12 @@ namespace PL
 
         private void firm_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            updatebus.firm = (BO.Firm)firm.SelectedItem;
+            
+        }
+
+        private void Licensenum_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Licensenum.Text = updatebus.LicenseNum;
         }
     }
 }

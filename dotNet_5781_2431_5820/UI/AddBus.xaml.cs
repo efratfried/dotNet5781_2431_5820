@@ -51,7 +51,7 @@ namespace PL
                     Mybus.LicenseDate = DateTime.Parse(LicenseDate.SelectedDate.ToString());
                     Mybus.KM = double.Parse(busKM.Text);
                     Mybus.foul = double.Parse(busfoul.Text);
-                    Mybus.firm = (BO.Firm)(firm.SelectedIndex);
+                    Mybus.Firm = (BO.Firm)(firm.SelectedItem);
                     Mybus.DeepCopyTo(addbus);
                     bL.AddBus(addbus);
                     this.Close();

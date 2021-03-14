@@ -53,10 +53,7 @@ namespace PL
 
             //הוספנו מעצמינו
             //  LBLineTiming.DataContext = lineTimingList;
-
-
             timerworker.RunWorkerAsync();
-
         }
         private void Window_Closing(object sender, CancelEventArgs e)
         {
@@ -66,7 +63,6 @@ namespace PL
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-
             TimeSpan CurrentTime = tsStartTime + stopwatch.Elapsed;
             string timmerText = CurrentTime.ToString().Substring(0, 8);
             this.timerTextBlock.Text = timmerText;
@@ -86,7 +82,6 @@ namespace PL
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // stationViewSource.Source = [generic data source]

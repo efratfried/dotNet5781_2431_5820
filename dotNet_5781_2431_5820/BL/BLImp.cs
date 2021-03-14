@@ -114,12 +114,8 @@ namespace BL
             {//check the validation of the license num accroding to it date
                 throw new Exception("invalid license's date");
             }
-
-            bus.KM = 0;
-            bus.foul = 0;
-            bus.Status = Status.UnAvailable;
-
-            BusDO.CopyPropertiesToNew(typeof(BO.Bus));
+            bus.CopyPropertiesTo(BusDO);
+            //BusDO.CopyPropertiesToNew(typeof(BO.Bus));
             try
             {
                 dl.AddBus(BusDO);
@@ -326,7 +322,7 @@ namespace BL
         public IEnumerable<BO.BusStationLine> GetAllBusStationLines(int num)
         {
             return from BusStationLineDO in dl.GetBusStationLineList(b => b.ID == num.ToString())
-                   orderby BusStationLineDO.ID
+                   orderby BusStationLineDO.IndexInLine
                    select BusStationLineDoBoAdapter(BusStationLineDO);
         }
        /* public IEnumerable<BO.BusStationLine> GetBusStationLinesBy(Predicate<BO.BusStationLine> predicate)
@@ -348,16 +344,20 @@ namespace BL
         }
         public void AddBusStationLine(BusStationLine busStationLine)
         {
-            DO.BusStationLine BusStationLineDO = new DO.BusStationLine();
-            BusStationLineDO.CopyPropertiesToNew(typeof(BO.BusStationLine));
+            DO.BusStationLine BusStationLineDO = new DO.BusStationLine();           
             try
             {
+                foreach (DO.BusStationLine item in dl.GetBusStationLineList(i => i.ID == busStationLine.ID && i.IndexInLine >= busStationLine.IndexInLine).ToList())
+                {
+                    item.IndexInLine++;
+                    dl.UpdateBusStationLine(item);                    
+                }
                 dl.AddBusStationLine(BusStationLineDO);
             }
             catch (DO.BadBusStationLineCodeException ex)
             {
                 string Ex = ex.ToString();
-                throw new BO.BadBusStationLineCodeException("Bus Station Line ID is illegal", Ex);
+                throw new BO.BadBusStationLineCodeException("The details of the bus station are'nt wrong", Ex);
             }
         }
         public void UpdateBusStationLinePersonalDetails(BO.BusStationLine bus_station_num)
@@ -916,10 +916,10 @@ namespace BL
         public void AddFollowingStation(string code1, string code2)
         {
             DO.FollowingStations fsDO = new DO.FollowingStations();
-            if (code1.Length <= 0 || code1.Length > 6 && code2.Length < 0 || code2.Length > 6) 
+           /* if (code1.Length <= 0 || code1.Length > 6 && code2.Length < 0 || code2.Length > 6) 
             {
                 throw new Exception("invalid station num lengh");
-            }
+            }*/
 
             fsDO.CopyPropertiesToNew(typeof(BO.FollowingStations));
             try

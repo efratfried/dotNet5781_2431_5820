@@ -28,15 +28,15 @@ namespace PL
         //public ObservableCollection<PO.BusLine> busLines;
         public StationsWindow1(IBL _bl)
         {
-            stationlist = new ObservableCollection<PO.Station>();
             InitializeComponent();
+            stationlist = new ObservableCollection<PO.Station>();
+           
             bl = _bl;
-            //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            //StationComboBox.DisplayMemberPath = "StationName";//show only specific Property of object
-            //StationComboBox.SelectedValuePath = "CodeStation";//selection return only specific Property of object
-           // StationComboBox.SelectedItem=""
-            //StationComboBox.SelectedIndex = 0; //index of the object to be selected
             RefreshAllStationsComboBox();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            
+
+
             linesDataGrid.IsReadOnly = true;
            
 
@@ -67,7 +67,7 @@ namespace PL
         void RefreshAllLinesOfStationGrid()
         {
             // lineStationDataGrid.DataContext = bl.GetBusStationLineList(MyBusLine.ID.ToString());
-            linesDataGrid.ItemsSource = bl.GetAllLinesPerStation(int.Parse(MyStation.CodeStation));
+           
         }
 
 
@@ -75,9 +75,13 @@ namespace PL
         {/**  MyBusLine = (PO.BusLine)BusLineComboBox.SelectedItem;
             BusLines.DataContext = MyBusLine;
             RefreshAllLineStationsOfLineGrid();*/
-            MyStation = (PO.Station)StationComboBox.SelectedItem;
-            MainGrid.DataContext = MyStation;
-            RefreshAllLinesOfStationGrid();
+            PO.Station MyStation1 = (PO.Station)StationComboBox.SelectedItem;
+            MainGrid.DataContext = MyStation1;
+           // RefreshAllLinesOfStationGrid();
+           if(MyStation1.CodeStation!=null)
+            {
+                linesDataGrid.DataContext = bl.GetAllLinesPerStation(int.Parse(MyStation1.CodeStation));
+            }      
         }
 
 

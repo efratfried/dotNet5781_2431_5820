@@ -136,7 +136,7 @@ namespace DL
                              select bus).FirstOrDefault();
 
             if (bus1 != null)
-                throw new DO.BadBusLicenseNumException(Bus.LicenseNum, "Dubuslicate Bus LicenseNum");
+                throw new DO.BadBusLicenseNumException(Bus.LicenseNum, "Duplicate Bus LicenseNum");
 
             XElement BusElem = new XElement("Bus",
                                    new XElement("LicenseNum", Bus.LicenseNum.ToString()),
@@ -341,6 +341,7 @@ namespace DL
         {//returns all members in list
             List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
             return from bs in BusStationsLineList
+                  
                    select bs;
         }
         public IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate)

@@ -22,32 +22,40 @@ namespace PL
         PO.Bus updatebus=new PO.Bus();
         IBL bL;
         public bool AllFieldsWereFilled = false;
-        public UpdateBus(PO.Bus bus)
+        public UpdateBus(PO.Bus bus,IBL _bl)
         {
-            InitializeComponent();          
+            InitializeComponent();
+            bL = _bl;
             updatebus = bus;
-            //aviability_status.Text = updatebus.Status.ToString();
+           
             km_.Text = updatebus.KM.ToString();
             foul_status.Text = updatebus.foul.ToString();
-            firm.SelectedItem = updatebus.firm;
+            firm.SelectedItem = updatebus.Firm;
             Licensenum.Text = bus.LicenseNum.ToString();
             firm.ItemsSource = Enum.GetValues(typeof(BO.Firm));
             firm.SelectedIndex = 0;
             Licensenum.IsReadOnly = true;
-            //aviability_status.IsEnabled = true;
+            aviability_status.IsReadOnly = true;
         }
-
-        
+       
         private void button_update_click(object sender, RoutedEventArgs e)
         {
             if (firm.SelectedItem!= null && km_.Text!="" && foul_status.Text!="")
             {
                 AllFieldsWereFilled = true;
-                updatebus.firm = (BO.Firm)firm.SelectedItem;
+                updatebus.Firm = (BO.Firm)firm.SelectedItem;
                 updatebus.KM = double.Parse(km_.Text);
                 updatebus.foul = double.Parse(foul_status.Text);
                 BO.Bus b=new BO.Bus();
-                updatebus.DeepCopyTo(b);              
+                updatebus.DeepCopyTo(b);
+
+                switch (updatebus.foul )
+                {
+                    case 0:
+
+                    default:
+                        break;
+                }
                 bL.UpdateBusPersonalDetails(b);
             }
 

@@ -17,9 +17,9 @@
         <Image Source="drive abialability.PNG" Margin="167,93,531.6,295"/>
         <Image Source="foul.PNG" Margin="148,223,503.6,168"/>
         <Image Source="firm.PNG" Margin="188,177,548.6,213"/>
-        <TextBox x:Name="aviability_status" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="47,93,0,0"  Background="Transparent" TextWrapping="Wrap" Text="{Binding Path=Status}" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" />
+        <TextBox x:Name="aviability_status" IsReadOnly="True" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="47,93,0,0"  Background="Transparent" TextWrapping="Wrap" Text="{Binding Path=Status}" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" />
         <Label Content="Update bus details" Foreground="White" BorderBrush="Black" Height="60" FontSize="32" Margin="47,10,442.6,350" />
-        <TextBox x:Name="Licensenum" FontSize="18" Background="Transparent" BorderThickness="2.5" BorderBrush="Black" Foreground="black" FontWeight="Bold" Margin="506,252,162,126" Text="{Binding Path=LicenseNum}" IsReadOnly="True" TextChanged="Licensenum_TextChanged"/>
+        <TextBox x:Name="Licensenum" FontSize="18" Background="Transparent" Foreground="black" FontWeight="Bold" Margin="502,252,166,126" Text="{Binding Path=LicenseNum}" IsReadOnly="True" TextChanged="Licensenum_TextChanged"/>
         <Button x:Name="update_bus" Content="update" Background="Transparent" FontSize="24" Foreground="black" FontWeight="Bold" Height="Auto" Margin="632,349,33,23" Click="button_update_click" RenderTransformOrigin="0.501,0.5" BorderBrush="Black" BorderThickness="2.5"/>
         <Image  Source="background.PNG" Margin="468,42,131,173"/>
         <Image  Source="busicon.png" Margin="463,50,126,181" RenderTransformOrigin="0.5,0.5">

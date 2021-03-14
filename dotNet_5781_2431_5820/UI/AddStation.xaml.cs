@@ -31,17 +31,19 @@ namespace PL
         public AddStation(IBL _bl)
         {
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            InitializeComponent();
             bl = _bl;
-            InitializeComponent();            
-            //adds = Stat;            
+              //adds = Stat;            
         }
         
         void RefreshDisable_Access_ComboBox()//refresh the combobox each time the user changes the selection 
         {
-            List<String> disac = new List<string> { "yes", "no" };
+            List<string> disac = new List<string> { "yes", "no" };
 
-            Disable_Access.ItemsSource = disac; //bl.GetStationLicenseNumList();
-                                             // Disable_Access.DisplayMemberPath = "DisableAccess";
+            Disable_Access.Items.Add(disac[0]);
+            Disable_Access.Items.Add(disac[1]);
+            //bl.GetStationLicenseNumList();
+            // Disable_Access.DisplayMemberPath = "DisableAccess";
             //Disable_Access.DataContext = disable;
             //Disable_Access.DisplayMemberPath = "DisableAccess";
             Disable_Access.SelectedIndex = 0;

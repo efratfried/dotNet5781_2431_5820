@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
         Title="EnteringWindow" Height="485" Width="1000">
+    
     <Window.Background>
         <ImageBrush ImageSource="bgmore.JPG"/>
     </Window.Background>
@@ -15,9 +16,11 @@
             <RowDefinition Height="29*"/>
             <RowDefinition Height="149*"/>
         </Grid.RowDefinitions>
+        <MediaElement Name="mePlayer" Source="c:\users\user1\source\repos\efratfried\dotnet5781_2431_5820\dotnet_5781_2431_5820\ui\the travego coach - official trailer _ mercedes-benz buses.mp4" Margin="-44,0,-30,-0.4" Grid.RowSpan="2"/>
 
-        <MediaElement LoadedBehavior="Play" Source="The Travego Coach - Official Trailer _ Mercedes-Benz Buses.mp4" Margin="87,-32,77,-27.4" Grid.RowSpan="2" Name="mePlayer"/>
-        <Label Name="lblStatus" Content="Not playing..." HorizontalContentAlignment="Center" Margin="5" />
+
+        <!--<MediaElement LoadedBehavior="Play" Source="The Travego Coach - Official Trailer _ Mercedes-Benz Buses.mp4" Margin="87,-32,77,-27.4" Grid.RowSpan="2" Name="mePlayer"/>-->
+        <Label Name="lblStatus" HorizontalContentAlignment="Center" Margin="5" />
         <!--<Button x:Name="connect" HorizontalAlignment="Left" Margin="902,2,-243,0" VerticalAlignment="Top" BorderBrush="Transparent" Width="67" Height="51" FontSize="18" Click="Button_Click" Background="Transparent">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

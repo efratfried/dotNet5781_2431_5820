@@ -19,7 +19,7 @@ namespace PL
     /// </summary>
     public partial class UpdateBus : Window
     {       
-        PO.Bus updatebus;
+        PO.Bus updatebus=new PO.Bus();
         IBL bL;
         public bool AllFieldsWereFilled = false;
         public UpdateBus(PO.Bus bus)

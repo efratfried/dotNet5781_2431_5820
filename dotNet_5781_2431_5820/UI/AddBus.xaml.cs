@@ -23,10 +23,16 @@ namespace PL
         public BO.Bus addbus;
         public bool AllFieldsWereFilled = false;
         public bool thereIsATrip = false;
-        public PO.Bus Mybus;
+        public PO.Bus Mybus=new PO.Bus();
         public AddBus()
         {
             InitializeComponent();
+
+         
+            LicenseNum.Text = "";
+            LicenseDate.Text = "";
+            //firm.SelectedItem = (BO.Firm)addbus.Firm;
+            busKM.Text = "";
             firm.ItemsSource = Enum.GetValues(typeof(BO.Firm));
             firm.SelectedIndex = 0; //index of the object to be selected
         }
@@ -39,21 +45,22 @@ namespace PL
 
         private void AddBus_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
                 if (LicenseNum.Text != "" && LicenseDate.SelectedDate != null && busKM.Text != "" && busfoul.Text != "" && firm.SelectedItem != null)
                 {
                     AllFieldsWereFilled = true;
-                    addbus.LicenseNum = LicenseNum.Text;
-                    addbus.LicenseDate = DateTime.Parse(LicenseDate.SelectedDate.ToString());
-                    addbus.KM = double.Parse(busKM.Text);
-                    addbus.foul = double.Parse(busfoul.Text);
-                    addbus.Firm = (BO.Firm)(firm.SelectedIndex);
+                    Mybus.LicenseNum = LicenseNum.Text;
+                    Mybus.LicenseDate = DateTime.Parse(LicenseDate.SelectedDate.ToString());
+                    Mybus.KM = double.Parse(busKM.Text);
+                    Mybus.foul = double.Parse(busfoul.Text);
+                    Mybus.firm = (BO.Firm)(firm.SelectedIndex);
+
+                    Mybus.DeepCopyTo(Add);
+                    bL.AddBus(addbus);
+                    this.Close();
                 }
-            }
-            catch(BO.BadBusIdException ex)
-            {
-                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                 else
+                 {
+                MessageBoxResult m = MessageBox.Show("You didnt fill all the details", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
             }
 
             MessageBoxResult res = MessageBox.Show("Add line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);

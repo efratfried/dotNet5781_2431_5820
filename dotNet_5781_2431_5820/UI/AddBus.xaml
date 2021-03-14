@@ -12,7 +12,7 @@
     <Grid x:Name="maingrid" Margin="0,-3,-0.4,3.2">
         <Label Content="Add bus details" HorizontalAlignment="Stretch" Margin="285,28,312,387" VerticalAlignment="Center" Height="40" FontWeight="Bold" FontSize="30" Foreground="White" FontFamily="Narkisim" RenderTransformOrigin="0.5,0.5"/>
         <Label Content="Bus LicenseNum:" Grid.Column="0" HorizontalAlignment="Left" Margin="251,170,0,256" VerticalAlignment="Center" Foreground="Black" FontSize="14" FontWeight="Bold" Height="29"/>
-        <TextBox x:Name="LicenseNum" HorizontalAlignment="Left" Height="24" Margin="378,170,0,261" Text="{Binding LicenseNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="LicenseNumTextBox_PreviewKeyDown" TextChanged="LicenseNum_TextChanged" >
+        <TextBox x:Name="LicenseNum" HorizontalAlignment="Left" Height="24" Margin="378,170,0,261" Text="{Binding Path=LicenseNum}" VerticalAlignment="Center" Width="120" PreviewKeyDown="LicenseNumTextBox_PreviewKeyDown" TextChanged="LicenseNum_TextChanged" >
             <TextBox.Style>
                 <Style TargetType="TextBox">
                     <Style.Triggers>
@@ -25,8 +25,28 @@
         </TextBox>
         <Label Content="Foul" x:Name="foul" FontSize="14" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left" Margin="260,203,0,225" VerticalAlignment="Center" Foreground="Black" Height="27"/>
         <Label Content="Km" Grid.Column="0" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Margin="260,233,0,195" VerticalAlignment="Center" Foreground="Black" Height="27"/>
-        <TextBox x:Name="busfoul" HorizontalAlignment="Left" Height="23" Margin="378,203,0,229" Text="{Binding busfoul, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="foulTextBox_PreviewKeyDown" TextChanged="busfoul_TextChanged"/>
-        <TextBox x:Name="busKM" HorizontalAlignment="Left" Height="23" Margin="378,233,0,199" Text="{Binding busKM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="KMTextBox_PreviewKeyDown" TextChanged="busKM_TextChanged"/>
+        <TextBox x:Name="busfoul" HorizontalAlignment="Left" Height="23" Margin="378,203,0,229" Text="{Binding foul , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="foulTextBox_PreviewKeyDown" TextChanged="busfoul_TextChanged">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="16"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox x:Name="busKM" HorizontalAlignment="Left" Height="23" Margin="378,233,0,199" Text="{Binding KM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="KMTextBox_PreviewKeyDown" TextChanged="busKM_TextChanged">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="16"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
         <Button x:Name="AddLineDetails" Content="Add Line Details" Background="Transparent" BorderThickness="2.5" Margin="453,397,41,28" Foreground="Black" FontSize="14" FontWeight="Bold" Height="30" BorderBrush="Black" Width="300" Click="AddLineDetails_Click"/>
         <Button x:Name="Add" Content=" Add Bus" FontSize="14"  Background="Transparent" BorderThickness="2.5" FontWeight="Bold" Margin="38,397,456,28" Foreground="black" Height="30" Width="300" BorderBrush="Black" Click="AddBus_Click"/>
         <DatePicker x:Name="LicenseDate" HorizontalAlignment="Left" Margin="549,170,0,0" VerticalAlignment="Top" Height="29" Width="129"/>

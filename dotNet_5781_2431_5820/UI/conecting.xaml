@@ -28,13 +28,13 @@
         <Image Source="user.PNG" Margin="356,277,593.6,155.2"/>
         <Image Source="user.PNG" Margin="356,106,593.6,326.2"/>
         <Label Content="user login " HorizontalAlignment="Left" Margin="137,60,0,0" VerticalAlignment="Top" Height="41" Width="161" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black" />
-        <TextBox x:Name="user_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,108,0,0" TextChanged="user_Name_TextChanged" BorderBrush="#FF10168C"/>
-        <TextBox x:Name="user_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,156,0,0" TextChanged="user_password_TextChanged" BorderBrush="#FF10168C"/>
+        <TextBox x:Name="user_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,108,0,0" TextChanged="user_Name_TextChanged" BorderBrush="Black"/>
+        <TextBox x:Name="user_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,156,0,0" TextChanged="user_password_TextChanged" BorderBrush="Black"/>
 
 
         <Label Content=" sign in" HorizontalAlignment="Left" Margin="160,220,0,0" VerticalAlignment="Top" Height="41" Width="80" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black"/>
-        <TextBox x:Name="Newuser_name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,277,0,0" TextChanged="Newuser_namePassword_TextChanged" BorderBrush="#FF10168C"/>
-        <TextBox x:Name="NewUser_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,334,0,0" TextChanged="NewUser_password_TextChanged" BorderBrush="#FF10168C"/>
+        <TextBox x:Name="Newuser_name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,277,0,0" TextChanged="Newuser_namePassword_TextChanged" BorderBrush="Black" Text="{Binding UserName}"/>
+        <TextBox x:Name="NewUser_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,334,0,0" TextChanged="NewUser_password_TextChanged" BorderBrush="Black" Text="{Binding Password}"/>
         <Button x:Name="entering_" Content=" entering "   HorizontalAlignment="Left" Height="42" Margin="483,363,0,0" VerticalAlignment="Top" Width="105"  FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black" Click="entering"  RenderTransformOrigin="0.634,1.212" >
             <Button.Style>
                 <Style TargetType="Button">

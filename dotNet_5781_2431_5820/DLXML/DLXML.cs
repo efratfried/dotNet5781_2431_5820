@@ -501,7 +501,7 @@ namespace DL
                         UserName = (user.Element("UserName").Value),
                         Password = (user.Element("Password").Value)
                     }
-                   ) ;
+                   );
         }
         public IEnumerable<DO.User> GetAllUser(Predicate<User> predicate)
         {
@@ -526,13 +526,13 @@ namespace DL
             if (user1 == null)
                 throw new DO.BadUserName_PasswordException(Name, pass, $"wrong user's name or password: {Name},{pass}");
             return user1;
-            
+        } 
         public void AddUser(DO.User user)
         {
             XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
 
             XElement user1 = (from User in UserRootElem.Elements()
-                              where ((User.Element("user's name").Value) == user.UserName && (User.Element("user's password").Value)==user.Password
+                              where ((User.Element("UserName").Value) == user.UserName && (User.Element("Password").Value)==user.Password)
                               select User).FirstOrDefault();
 
             if (user1 != null)
@@ -547,7 +547,7 @@ namespace DL
 
             XMLTools.SaveListToXMLElement(UserRootElem, UserPath);
         }
-        public IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate)
+            public IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate)
         {
             List<User> UsersList = XMLTools.LoadListFromXMLSerializer<User>(UserPath);
             return from user in UsersList

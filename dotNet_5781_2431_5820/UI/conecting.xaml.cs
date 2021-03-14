@@ -22,12 +22,13 @@ namespace PL
      public partial class conecting : Window
      {
         IBL bl;
-        BO.User user;
+        BO.User user=new BO.User();
         public conecting(IBL bl1)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bl = bl1;
+
         }
         private void entering(object sender, RoutedEventArgs e)
         {
@@ -97,7 +98,7 @@ namespace PL
             else if (Newuser_name.Text.Length != 0 && NewUser_password.Text.Length != 0)
             {              
                 PO.User MyUser = new PO.User();
-
+                BO.User temp = new BO.User();
                 user = bl.GetAllUsers().Where(user1 => user1.UserName == Newuser_name.Text && user1.Password == NewUser_password.Text).FirstOrDefault();//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();            
 
                 if (user != null)
@@ -106,10 +107,11 @@ namespace PL
                 }
                 else
                 {
-                    try
-                    {
-                        user.DeepCopyTo(MyUser);
-                        bl.AddUser(user);
+                    MyUser.UserName = Newuser_name.Text;
+                    MyUser.Password = NewUser_password.Text;
+                        //user.DeepCopyTo(MyUser);
+                        MyUser.DeepCopyTo(temp);
+                        bl.AddUser(temp);
                         if (MyUser.Password == NewUser_password.Text && MyUser.Me == BO.Access.Passnger) //|| MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger)
                         {
                             UserWindow win = new UserWindow(MyUser);
@@ -120,11 +122,6 @@ namespace PL
                         {
                             MessageBoxResult res = MessageBox.Show("Couldn't add the user", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         }
-                    }
-                    catch (BO.BadOpenWindow ex)
-                    {
-                        MessageBox.Show(ex.Message + ex.InnerException, "couldn't open the window", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
                 }
             }
             else

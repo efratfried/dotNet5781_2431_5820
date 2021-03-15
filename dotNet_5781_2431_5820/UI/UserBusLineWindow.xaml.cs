@@ -24,7 +24,7 @@ namespace UI
     {
         IBL bl;
         PO.BusLine MyBusLine;
-        //BO.BusStationLine MybusStation;
+        BO.BusStationLine MybusStation;
         public ObservableCollection<PO.BusLine> ts;
         public UserBusLineWindow(IBL _bl)
         {
@@ -162,5 +162,6 @@ namespace UI
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
+
     }
 }

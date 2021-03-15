@@ -26,13 +26,13 @@ namespace PL
     public partial class SimulateOneStationWindow : Window
     {
         IBL BL;
-        BO.Station station;
+        PO.Station station;
         ObservableCollection<BO.OutGoingLine> OutGoingLineList;
         Stopwatch stopwatch;
         BackgroundWorker timerworker;
         TimeSpan tsStartTime;
         bool isTimerRun;
-        public SimulateOneStationWindow(IBL _bl, Station _stat)
+        public SimulateOneStationWindow(IBL _bl, PO.Station _stat)
         {
             InitializeComponent();
             Closing += Window_Closing;
@@ -40,7 +40,7 @@ namespace PL
             station = _stat;
             // gridOneStation.DataContext =station;
             statName.Text = _stat.StationName;
-            statCode.Text = _stat.CodeStation.ToString();
+            statCode.Text = _stat.CodeStation;
             statAdress.Text = _stat.Address;
             stopwatch = new Stopwatch();
             timerworker = new BackgroundWorker();
@@ -85,6 +85,16 @@ namespace PL
             System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // stationViewSource.Source = [generic data source]
+        }
+
+        private void statName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void nisayon_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

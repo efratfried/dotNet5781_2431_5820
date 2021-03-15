@@ -37,14 +37,14 @@
     <Grid Margin="0,-16,3.6,0.2" Background="Transparent">
 
         <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" FlowDirection="RightToLeft" Margin="363,39,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Height="35" Width="249" FontSize="16" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
-        <ListBox x:Name="nisayon" FlowDirection="RightToLeft"  ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="308" Margin="0,106,35.6,0" VerticalAlignment="Top" Width="436" Background="#FF0F0F0F"/>
-        <Canvas HorizontalAlignment="Left" Visibility="Visible" Height="32" Margin="522,70,0,0" VerticalAlignment="Top" Width="433" Background="Black"/>
-        <Label Content=":station name" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="341,120,0,0" VerticalAlignment="Top" Width="124" FontFamily="Yu Gothic UI Semibold" Foreground="White" FontWeight="Bold" FontSize="18"/>
-        <Label Content=":adress" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="407,157,0,0" VerticalAlignment="Top" Width="58" FontFamily="Yu Gothic UI Semibold" Foreground="White" FontWeight="Bold" FontSize="18"/>
-        <Label Content=":station code" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="363,198,0,0" VerticalAlignment="Top" Width="102" FontFamily="Yu Gothic UI Semibold" Foreground="White" FontWeight="Bold" FontSize="18"/>
-        <TextBlock x:Name="statName"  FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="78,120,0,0" TextWrapping="Wrap" Text="{Binding Path= station.Name}" VerticalAlignment="Top" Height="32" Width="234"/>
-        <TextBlock x:Name="statAdress"  FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="79,157,0,0" TextWrapping="Wrap" Text="{Binding Path= station.Name}" VerticalAlignment="Top" Height="31" Width="215"/>
-        <TextBlock x:Name="statCode"  FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="79,198,0,0" TextWrapping="Wrap" Text="{Binding Path= station.Name}" VerticalAlignment="Top" Height="32" Width="205"/>
+        <ListBox x:Name="nisayon" FlowDirection="RightToLeft"  ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="308" Margin="0,106,35,0" VerticalAlignment="Top" Width="436" Background="#FF0F0F0F" SelectionChanged="nisayon_SelectionChanged"/>
+        <Canvas HorizontalAlignment="Left" Visibility="Visible" Height="32" Margin="519,69,0,0" VerticalAlignment="Top" Width="436" Background="Black"/>
+        <Label Content=":station name" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="304,120,0,0" VerticalAlignment="Top" Width="161" FontFamily="Yu Gothic UI Semibold" Foreground="White" FontWeight="Bold" FontSize="18"/>
+        <Label Content=":adress" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="354,157,0,0" VerticalAlignment="Top" Width="111" FontFamily="Yu Gothic UI Semibold" Foreground="White" FontWeight="Bold" FontSize="18"/>
+        <Label Content=":station code" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="349,198,0,0" VerticalAlignment="Top" Width="116" FontFamily="Yu Gothic UI Semibold" Foreground="White" FontWeight="Bold" FontSize="18"/>
+        <TextBox x:Name="statName"  Background="Transparent" BorderBrush="Transparent" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="78,120,0,0" TextWrapping="Wrap" Text="{Binding StationName}" VerticalAlignment="Top" Height="32" Width="234" TextChanged="statName_TextChanged"/>
+        <TextBox x:Name="statAdress" Background="Transparent" BorderBrush="Transparent" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="79,157,0,0" TextWrapping="Wrap" Text="{Binding Address}" VerticalAlignment="Top" Height="31" Width="233"/>
+        <TextBox x:Name="statCode" Background="Transparent" BorderBrush="Transparent" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="79,198,0,0" TextWrapping="Wrap" Text="{Binding CodeStation}" VerticalAlignment="Top" Height="32" Width="234"/>
 
     </Grid>
 </Window>

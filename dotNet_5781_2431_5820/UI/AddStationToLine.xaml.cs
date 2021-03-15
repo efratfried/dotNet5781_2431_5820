@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,16 +23,51 @@ namespace PL
         IBL bl;
         BO.FollowingStations tempFS;
         PO.BusLine tempBL;
-
+        public ObservableCollection<PO.Station> ts;
         public AddStationToLine(BO.FollowingStations FStations, PO.BusLine bs)
         {
-            InitializeComponent();
+            InitializeComponent();          
             tempBL = bs;
             tempFS = FStations;
-           // IEnumerable<BO.BusStationLine> s = bl.GetAllBusStationLines(bs.BusNum).Where(sf => bs.stationsList.Contains(sf) == false);
+            refreshstationList();
+            // IEnumerable<BO.BusStationLine> s = bl.GetAllBusStationLines(bs.BusNum).Where(sf => bs.stationsList.Contains(sf) == false);
             //stationList.ItemsSource = s;
         }
+       void  refreshstationList()
+        {//getting all the existing stations + all the line's station ,checking which are the same & not adding them to the combobox list
+            
+            List<BO.Station> station = GetAllStations().ToList();
+            List<BO.BusStationLine> bs = GetAllBusStationLines(tempBL.BusNum).ToList();
+            List<BO.Station> s = new List<BO.Station>();//=station.Where(i=>i.CodeStation!=bs)
+            bool flag = false;
+            for (int i = 0; i < station.Count; i++)
+            {
+                for (int j = 0; j < bs.Count; j++)
+                {
+                    if (station[i].CodeStation == bs[j].BusStationNum)
+                    {
+                        flag = true;
+                    }
+                    else { }
+                }
+                if (flag == false)
+                {
+                    s.Add(station[i]);
+                }
+                else { }
+            }
+            List<BO.Station> b = List < BO.Station > GetAllAddAbleStations(tempBL);
 
+            for (int i = 0; i < b.Count; i++)
+            {
+                PO.Station station2 = new PO.Station();
+                b[i].DeepCopyTo(station2);
+
+                ts.Add(station2);
+            }
+            stationList.ItemsSource = ts;
+            stationList.DisplayMemberPath = "StationName";
+        }
         private void addstation_Click(object sender, RoutedEventArgs e)
         {
             if(stationList.SelectedItem!=null)

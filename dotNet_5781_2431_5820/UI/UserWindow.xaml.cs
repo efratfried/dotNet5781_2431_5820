@@ -21,6 +21,7 @@ namespace UI
     public partial class UserWindow : Window
     {
         IBL bl = BLFactory.GetBL("1");
+        PO.Station s = new PO.Station();
         public UserWindow(PO.User user)
         {
             InitializeComponent();
@@ -59,8 +60,8 @@ namespace UI
         {
             SlidePanel.Opacity = 1;
             SlidePanel.Height = Stations.Height;
-            //PL.SimulateOneStationWindow simulation = new PL.SimulateOneStationWindow(bl);
-            //simulation.ShowDialog();
+            PL.SimulateOneStationWindow simulation = new PL.SimulateOneStationWindow(bl,s);
+            simulation.ShowDialog();
         }
     }
 }

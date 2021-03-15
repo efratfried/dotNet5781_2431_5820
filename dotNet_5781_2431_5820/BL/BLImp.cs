@@ -5,6 +5,8 @@ using DLAPI;
 using BLAPI;
 using System.Threading;
 using BO;
+using PO;
+using UI;
 //using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace BL
@@ -823,7 +825,7 @@ namespace BL
             catch (DO.BadBusLineException ex)
             {
                 string Ex = ex.ToString();
-                throw new BO.BadBusIdException("wring details", Ex);
+                throw new BO.BadBusIdException("wrong details", Ex);
             }
 
             fsDO.CopyPropertiesTo(fsBO);
@@ -923,12 +925,13 @@ namespace BL
                 throw new BO.BadBusIdException("wrong details", Ex);
             }
         }
+        
         public double DistancefromPriviouStation(string station1 ,string station2)
         {
             DO.Station st1 = dl.GetStation(station1);
             DO.Station st2 = dl.GetStation(station2);
             //returns the distance by equation sqrt( (x-x)^2+(y-y)^2)
-            double Distance = Math.Sqrt((Math.Pow(st1.longitude - st2.longitude, 2) + (Math.Pow(st1.Latitude - st2.Latitude, 2))));
+            double Distance = Math.Sqrt((Math.Pow(st1.longitude - st2.longitude, 2) + (Math.Pow(st1.Latitude - st2.Latitude, 2))));//the minimal distance between two station
             return Distance;
         }
         public TimeSpan DrivingTimeBetweenTwoStations(string station1, string station2)

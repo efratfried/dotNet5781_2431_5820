@@ -10,8 +10,8 @@ namespace BO
     {
         public string ID { set; get; }
         public string BusStationNum { set; get; }
-        public int IndexInLine { set; get; }
-        public int NumOfPassingLines { set; get; }
+        public int IndexInLine { set; get; }//index on the line
+        //public int NumOfPassingLines { set; get; }
         public override string ToString() => this.ToStringProperty();
     }
 }

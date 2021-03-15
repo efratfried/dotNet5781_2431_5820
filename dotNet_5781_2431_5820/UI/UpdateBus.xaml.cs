@@ -22,32 +22,39 @@ namespace PL
         PO.Bus updatebus=new PO.Bus();
         IBL bL;
         public bool AllFieldsWereFilled = false;
-        public UpdateBus(PO.Bus bus)
+        public UpdateBus(PO.Bus bus,IBL _bl)
         {
-            InitializeComponent();          
+            InitializeComponent();
+            bL = _bl;
             updatebus = bus;
-            //aviability_status.Text = updatebus.Status.ToString();
+           
             km_.Text = updatebus.KM.ToString();
             foul_status.Text = updatebus.foul.ToString();
-            firm.SelectedItem = updatebus.firm;
+            firm.SelectedItem = updatebus.Firm;
             Licensenum.Text = bus.LicenseNum.ToString();
             firm.ItemsSource = Enum.GetValues(typeof(BO.Firm));
             firm.SelectedIndex = 0;
             Licensenum.IsReadOnly = true;
-            //aviability_status.IsEnabled = true;
+            aviability_status.Text = updatebus.Status.ToString();
+            aviability_status.IsReadOnly = true;
         }
-
-        
+       
         private void button_update_click(object sender, RoutedEventArgs e)
         {
             if (firm.SelectedItem!= null && km_.Text!="" && foul_status.Text!="")
             {
                 AllFieldsWereFilled = true;
-                updatebus.firm = (BO.Firm)firm.SelectedItem;
+                updatebus.Firm = (BO.Firm)firm.SelectedItem;
                 updatebus.KM = double.Parse(km_.Text);
                 updatebus.foul = double.Parse(foul_status.Text);
+
                 BO.Bus b=new BO.Bus();
-                updatebus.DeepCopyTo(b);              
+                updatebus.DeepCopyTo(b);
+                updatebus.Status = bL.status(b);
+                b.DeepCopyTo(updatebus);
+               
+                aviability_status.Text = updatebus.Status.ToString();
+
                 bL.UpdateBusPersonalDetails(b);
             }
 
@@ -66,6 +73,42 @@ namespace PL
         private void Licensenum_TextChanged(object sender, TextChangedEventArgs e)
         {
             Licensenum.Text = updatebus.LicenseNum;
+        }
+
+        private void aviability_status_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void foul_status_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+           /* if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }*/
+        }
+
+        private void km__TextChanged(object sender, TextChangedEventArgs e)
+        {
+            /*if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }*/
         }
     }
 }

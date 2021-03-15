@@ -136,7 +136,7 @@ namespace DL
                              select bus).FirstOrDefault();
 
             if (bus1 != null)
-                throw new DO.BadBusLicenseNumException(Bus.LicenseNum, "Dubuslicate Bus LicenseNum");
+                throw new DO.BadBusLicenseNumException(Bus.LicenseNum, "Duplicate Bus LicenseNum");
 
             XElement BusElem = new XElement("Bus",
                                    new XElement("LicenseNum", Bus.LicenseNum.ToString()),
@@ -341,6 +341,7 @@ namespace DL
         {//returns all members in list
             List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
             return from bs in BusStationsLineList
+                  
                    select bs;
         }
         public IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate)
@@ -488,11 +489,11 @@ namespace DL
 
          #endregion*/
 
-         #region User
+        #region User
         public IEnumerable<DO.User> GetAllUser()
-        {
+        {           
             XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
-
+            
             return (from user in UserRootElem.Elements()
                     select new User()
                     {
@@ -538,8 +539,8 @@ namespace DL
                 throw new DO.BadUserName_PasswordException(user.UserName, "wrong user's name");
 
             XElement EserElem = new XElement("user",
-                                   new XElement("name", user.UserName),
-                                   new XElement("password", user.Password),
+                                   new XElement("UserName", user.UserName),
+                                   new XElement("Password", user.Password),
                                    new XElement("Me",user.Me));
             UserRootElem.Add(EserElem);
             

@@ -114,12 +114,8 @@ namespace BL
             {//check the validation of the license num accroding to it date
                 throw new Exception("invalid license's date");
             }
-
-            bus.KM = 0;
-            bus.foul = 0;
-            bus.Status = Status.UnAvailable;
-
-            BusDO.CopyPropertiesToNew(typeof(BO.Bus));
+            bus.CopyPropertiesTo(BusDO);
+            //BusDO.CopyPropertiesToNew(typeof(BO.Bus));
             try
             {
                 dl.AddBus(BusDO);
@@ -137,17 +133,17 @@ namespace BL
                 bus.Foul_Status = Foul_Status.empty;
                 }
 
-                if (bus.foul == 600)
+                if (bus.foul == 100)
                 {//as we check in some websisites
                 bus.Foul_Status = Foul_Status.full_tank;
                 }
 
-                if (bus.foul < 400 && bus.foul > 200)
+                if (bus.foul < 100 && bus.foul > 50)
                 {
                 bus.Foul_Status = Foul_Status.avrage;
                 }
 
-                if (bus.foul < 300 && bus.foul > 0)
+                if (bus.foul < 50 && bus.foul > 0)
                 {
                 bus.Foul_Status = Foul_Status.low;
                 }
@@ -155,7 +151,7 @@ namespace BL
         }
         public BO.Status status(BO.Bus bus)
         {
-            if (/*bus.KM > 20000 ||*/ bus.foul < 200)
+            if (bus.KM > 300000 || bus.foul < 0)
             {
                 bus.Status = Status.UnAvailable;
             }
@@ -326,7 +322,7 @@ namespace BL
         public IEnumerable<BO.BusStationLine> GetAllBusStationLines(int num)
         {
             return from BusStationLineDO in dl.GetBusStationLineList(b => b.ID == num.ToString())
-                   orderby BusStationLineDO.ID
+                   orderby BusStationLineDO.IndexInLine
                    select BusStationLineDoBoAdapter(BusStationLineDO);
         }
        /* public IEnumerable<BO.BusStationLine> GetBusStationLinesBy(Predicate<BO.BusStationLine> predicate)
@@ -348,16 +344,20 @@ namespace BL
         }
         public void AddBusStationLine(BusStationLine busStationLine)
         {
-            DO.BusStationLine BusStationLineDO = new DO.BusStationLine();
-            BusStationLineDO.CopyPropertiesToNew(typeof(BO.BusStationLine));
+            DO.BusStationLine BusStationLineDO = new DO.BusStationLine();           
             try
             {
+                foreach (DO.BusStationLine item in dl.GetBusStationLineList(i => i.ID == busStationLine.ID && i.IndexInLine >= busStationLine.IndexInLine).ToList())
+                {
+                    item.IndexInLine++;
+                    dl.UpdateBusStationLine(item);                    
+                }
                 dl.AddBusStationLine(BusStationLineDO);
             }
             catch (DO.BadBusStationLineCodeException ex)
             {
                 string Ex = ex.ToString();
-                throw new BO.BadBusStationLineCodeException("Bus Station Line ID is illegal", Ex);
+                throw new BO.BadBusStationLineCodeException("The details of the bus station are'nt wrong", Ex);
             }
         }
         public void UpdateBusStationLinePersonalDetails(BO.BusStationLine bus_station_num)
@@ -569,20 +569,11 @@ namespace BL
         public BO.User userBoDoAdapter(DO.User userDO)
         {
             BO.User userBO = new BO.User();
-            DO.User newUserDO;
-            string name = userDO.UserName;
-            string password = userDO.Password;
-            try
-            {
-                newUserDO = dl.GetUser(name, password);
-            }
-            catch (DO.BadUserName_PasswordException ex)
-            {
-                throw new BO.BadUserName_PasswordException( "ERROR!\n", ex);
-            }
+            DO.User newUserDO= userDO;
+
             newUserDO.CopyPropertiesTo(userBO);
 
-            userDO.CopyPropertiesTo(userBO);
+            //userDO.CopyPropertiesTo(userBO);
 
             return userBO;
         }
@@ -614,7 +605,7 @@ namespace BL
         {
             try
             {
-                dl.AddUser(userBoDoAdapter(user));
+                dl.AddUser(userDoBOAdapter(user));
             }
             catch (DO.BadUserName_PasswordException ex)
             {
@@ -627,7 +618,7 @@ namespace BL
         /// </summary>
         /// <param name="userBO"></param>
         /// <returns></returns>
-        private DO.User userBoDoAdapter(BO.User userBO)
+       private DO.User userDoBOAdapter(BO.User userBO)
         {
             DO.User userDO = new DO.User();
             userBO.CopyPropertiesTo(userDO);
@@ -916,10 +907,10 @@ namespace BL
         public void AddFollowingStation(string code1, string code2)
         {
             DO.FollowingStations fsDO = new DO.FollowingStations();
-            if (code1.Length <= 0 || code1.Length > 6 && code2.Length < 0 || code2.Length > 6) 
+           /* if (code1.Length <= 0 || code1.Length > 6 && code2.Length < 0 || code2.Length > 6) 
             {
                 throw new Exception("invalid station num lengh");
-            }
+            }*/
 
             fsDO.CopyPropertiesToNew(typeof(BO.FollowingStations));
             try

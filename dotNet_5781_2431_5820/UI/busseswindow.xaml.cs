@@ -171,7 +171,7 @@ namespace PL
 
         private void update_bus_Click(object sender, RoutedEventArgs e)
         {
-            UpdateBus upbus = new UpdateBus(currentbus);
+            UpdateBus upbus = new UpdateBus(currentbus,bl);
             upbus.ShowDialog();
         }
 
@@ -190,7 +190,7 @@ namespace PL
 
         private void add_bus_Click(object sender, RoutedEventArgs e)
         {
-            AddBus ab = new AddBus();
+            AddBus ab = new AddBus(bl);
             ab.ShowDialog();
 
         }

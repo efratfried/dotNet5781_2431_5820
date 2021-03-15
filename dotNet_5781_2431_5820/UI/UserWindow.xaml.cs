@@ -32,7 +32,7 @@ namespace UI
         {
             SlidePanel.Opacity = 1;
             SlidePanel.Height = buslines.Height;
-            PL.BusLineWindow buslineswindow = new PL.BusLineWindow(bl);
+            UserBusLineWindow buslineswindow = new UserBusLineWindow(bl);
             buslineswindow.ShowDialog();
         }
 
@@ -40,7 +40,7 @@ namespace UI
         {
             SlidePanel.Opacity = 1;
             SlidePanel.Height = Stations.Height;
-            PL.StationsWindow1 stationwindow = new StationsWindow1(bl);
+            UserStationWindow stationwindow = new UserStationWindow(bl);
             stationwindow.ShowDialog();
         }
 

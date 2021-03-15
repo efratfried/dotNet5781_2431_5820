@@ -51,7 +51,7 @@ namespace PL
                     Mybus.LicenseDate = DateTime.Parse(LicenseDate.SelectedDate.ToString());
                     Mybus.KM = double.Parse(busKM.Text);
                     Mybus.foul = double.Parse(busfoul.Text);
-                    Mybus.firm = (BO.Firm)(firm.SelectedIndex);
+                    Mybus.Firm = (BO.Firm)(firm.SelectedItem);
                     Mybus.DeepCopyTo(addbus);
                     bL.AddBus(addbus);
                     this.Close();
@@ -75,17 +75,41 @@ namespace PL
 
         private void LicenseNum_TextChanged(object sender, TextChangedEventArgs e)
         {
+          /*  if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
 
+            {
+                e.Handled = true;
+            }*/
         }
 
         private void busfoul_TextChanged(object sender, TextChangedEventArgs e)
         {
+           /* if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
 
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }*/
         }
 
         private void busKM_TextChanged(object sender, TextChangedEventArgs e)
         {
+           /* if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
 
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }*/
         }
 
         private void LicenseNumTextBox_PreviewKeyDown(object sender, KeyEventArgs e)

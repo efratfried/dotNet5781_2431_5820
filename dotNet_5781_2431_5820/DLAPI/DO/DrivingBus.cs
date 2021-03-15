@@ -13,6 +13,7 @@ namespace DO
         public TimeSpan AstimateTimeOut { get; set; }
         public TimeSpan ActualTimeOut { get; set; }
         public string LastestStation { get; set; }
+        public TimeSpan LineFrequencyTime { get; set; }
         public TimeSpan TimePassFromLastestStation { get; set; }
         public TimeSpan AstimateArrive { get; set; }
         //public string DriverID { get; set; }

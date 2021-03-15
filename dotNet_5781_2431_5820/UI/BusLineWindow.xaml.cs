@@ -25,16 +25,19 @@ namespace PL
         PO.BusLine MyBusLine;
         BO.BusStationLine MybusStation;
         public ObservableCollection<PO.BusLine> ts;
+        public ObservableCollection<BO.BusStationLine> bs;
        
         //BO.Line saveTheCurrentDetails;//a line to save the original details of the bus in case the update is illegal:
         
         public BusLineWindow(IBL _bl)
-        {
-            ts = new ObservableCollection<PO.BusLine>();
+        {     
             InitializeComponent();
+            ts = new ObservableCollection<PO.BusLine>();
+         
             //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bl = _bl;
-            
+           // List<BO.BusStationLine> BSL1 = bl.GetBusStationLineList();
+          
             RefreshAllLinesComboBox();
             //area.DisplayMemberPath = "Area";
             //BusLineComboBox.DisplayMemberPath = "BusNumber";//show only specific Property of object
@@ -58,14 +61,19 @@ namespace PL
             BusLineComboBox.DisplayMemberPath = "BusNum";
             BusLineComboBox.SelectedIndex = 0;
 
+         
             // IEnumerable<PO.BusLine> buslines = bl.GetBusLines().Cast<PO.BusLine>();
             // BusLineComboBox.ItemsSource = buslines;
         }
                 
         void RefreshAllLineStationsOfLineGrid()
         {
-            //IEnumerable<PO.BusLine> busLines;
-            lineStationDataGrid.ItemsSource = bl.GetBusStationLineList(MyBusLine.ID.ToString());
+            bs = new ObservableCollection<BO.BusStationLine>();
+            foreach (var item in bl.GetBusStationLineList(MyBusLine.ID.ToString()))
+            {
+                bs.Add(item);
+            }
+            lineStationDataGrid.ItemsSource = bs;
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -183,8 +191,13 @@ namespace PL
             try
             {
                 BO.BusStationLine lineStationBO = ((sender as Button).DataContext as BO.BusStationLine);
-                bl.DeleteBusStationLine(lineStationBO.BusStationNum);
-                RefreshAllLineStationsOfLineGrid();
+                bl.DeleteBusStationLine(lineStationBO.BusStationNum, int.Parse(lineStationBO.ID), lineStationBO.IndexInLine);
+
+                bs.Clear();
+                foreach (var item in bl.GetBusStationLineList(lineStationBO.ID))
+                {
+                    bs.Add(item);
+                }
             }
             catch (BO.BadBusStationLineCodeException ex)
             {
@@ -280,12 +293,15 @@ namespace PL
         {
  
             if(lineStationDataGrid.SelectedItem!=null)
-            {              
-                    BO.FollowingStations s = lineStationDataGrid.SelectedItem as BO.FollowingStations;
+            {
+                BO.BusStationLine bs = lineStationDataGrid.SelectedItem as BO.BusStationLine;                
+                BO.BusStationLine bs1 = this.bs[bs.IndexInLine + 1];
+                // BO.FollowingStations s = lineStationDataGrid.SelectedItem as BO.FollowingStations;
                 try
                 {
-                    BO.FollowingStations tempS =bl.GetFollowingStation(s.FirstStationCode,s.SecondStationCode);
-                    AddStationToLine win = new AddStationToLine(tempS, MyBusLine);
+                    BO.FollowingStations tempS =bl.GetFollowingStation(bs.BusStationNum,bs1.BusStationNum);
+                    AddStationToLine win = new AddStationToLine(bl,tempS, MyBusLine,bs.IndexInLine+1,this);
+
                     win.Show();
                 }
                 catch(BO.BadStationNumException)
@@ -295,7 +311,7 @@ namespace PL
             }
             else
             {
-                MessageBoxResult res = MessageBox.Show("Please press on a station?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult res = MessageBox.Show("Please press on a station", "Error", MessageBoxButton.OK);
             }
         }
 

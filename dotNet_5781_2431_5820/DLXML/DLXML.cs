@@ -176,7 +176,7 @@ namespace DL
             if (bus != null)
             {
                 bus.Element("LicenseNum").Value = Bus.LicenseNum;
-                bus.Element("Foul").Value = Bus.foul.ToString();
+                bus.Element("foul").Value = Bus.foul.ToString();
                 bus.Element("KM").Value = Bus.KM.ToString();
                 bus.Element("LicenseDate").Value = Bus.LicenseDate.ToString();
                 bus.Element("Firm").Value = Bus.Firm.ToString();
@@ -360,7 +360,7 @@ namespace DL
                                    {
                                        BusStationNum = (busstationline.Element("BusStationNum").Value),
                                        IndexInLine = int.Parse((busstationline.Element("IndexInLine").Value)),
-                                       NumOfPassingLines = int.Parse((busstationline.Element("NumOfPassingLines").Value)),
+                                       //NumOfPassingLines = int.Parse((busstationline.Element("NumOfPassingLines").Value)),
                                    }
                         ).FirstOrDefault();
 
@@ -368,10 +368,10 @@ namespace DL
                 throw new DO.BadBusStationLineCodeException(bus1.ID, $"bad Bus station line License Num: {Id}");
             return bus1;
         }
-        public void DeleteBusStationLine(string stationNum)
+        public void DeleteBusStationLine(string id,string LineNum)
         {
             List<BusStationLine> BussRootElem = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
-            BussRootElem.RemoveAll(l => l.ID == stationNum);
+            BussRootElem.RemoveAt(BussRootElem.FindIndex(l => l.ID == id && l.BusStationNum==LineNum));
             XMLTools.SaveListToXMLSerializer(BussRootElem, BusStationLinePath);
         }
         public void DeleteBusStationLineFromAllStations(string StationID)
@@ -591,33 +591,34 @@ namespace DL
         {
             XElement DrivingsListRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
 
-            return (from outgoingline in DrivingsListRootElem.Elements()
+            return (from p in DrivingsListRootElem.Elements()
                     select new DrivingBus()
                     {
-                        ID = int.Parse(outgoingline.Element("Id").Value),
-                        LicenseNum = ((outgoingline.Element("LicenseNum").Value)),
-                        AstimateTimeOut = TimeSpan.Parse((outgoingline.Element("AstimateTimeOut").Value)),
-                        ActualTimeOut = TimeSpan.Parse((outgoingline.Element("ActualTimeOut").Value)),
-                        LastestStation = (outgoingline.Element("LastestStation").Value),
-                        TimePassFromLastestStation = TimeSpan.Parse((outgoingline.Element("TimePassFromLastestStation").Value)),
-                        AstimateArrive = TimeSpan.Parse((outgoingline.Element("AstimateArrive").Value)),
+                        ID = int.Parse(p.Element("Id").Value),
+                        LineFrequencyTime = TimeSpan.Parse((p.Element("LineFrequencyTime").Value)),
+
+                        AstimateTimeOut = TimeSpan.ParseExact(p.Element("AstimateTimeOut").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                        ActualTimeOut = TimeSpan.ParseExact(p.Element("ActualTimeOut").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                        LastestStation = (p.Element("LastestStation").Value),
+                        TimePassFromLastestStation = TimeSpan.ParseExact(p.Element("TimePassFromLastestStation").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                        AstimateArrive = TimeSpan.ParseExact(p.Element("AstimateArrive").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture)
                     }
                    );
         }
         public DrivingBus GetDrivingBus(string Num)
         {
             XElement DrivingsListRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
-            DrivingBus drivingb1 = (from drivingb in DrivingsListRootElem.Elements()
-                                    where (drivingb.Element("LicensNum").Value) == Num
+            DrivingBus drivingb1 = (from p in DrivingsListRootElem.Elements()
+                                    where (p.Element("Id").Value) == Num
                                     select new DrivingBus()
                                     {
-                                        ID = int.Parse((drivingb.Element("Id").Value)),
-                                        LicenseNum = ((drivingb.Element("LicenseNum").Value)),
-                                        AstimateTimeOut = TimeSpan.Parse((drivingb.Element("AstimateTimeOut").Value)),
-                                        ActualTimeOut = TimeSpan.Parse((drivingb.Element("ActualTimeOut").Value)),
-                                        LastestStation = (drivingb.Element("LastestStation").Value),
-                                        TimePassFromLastestStation = TimeSpan.Parse((drivingb.Element("TimePassFromLastestStation").Value)),
-                                        AstimateArrive = TimeSpan.Parse((drivingb.Element("AstimateArrive").Value)),
+                                        ID = int.Parse(p.Element("Id").Value),
+                                        LineFrequencyTime = TimeSpan.Parse((p.Element("LineFrequencyTime").Value)),
+                                        AstimateTimeOut = TimeSpan.ParseExact(p.Element("AstimateTimeOut").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                                        ActualTimeOut = TimeSpan.ParseExact(p.Element("ActualTimeOut").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                                        LastestStation = (p.Element("LastestStation").Value),
+                                        TimePassFromLastestStation = TimeSpan.ParseExact(p.Element("TimePassFromLastestStation").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                                        AstimateArrive = TimeSpan.ParseExact(p.Element("AstimateArrive").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture)
                                     }
                         ).FirstOrDefault();
 
@@ -671,7 +672,9 @@ namespace DL
                 bus.Element("LastestStation").Value = OutGoingLine.LastestStation;
                 bus.Element("TimePassFromLastestStation").Value = OutGoingLine.TimePassFromLastestStation.ToString();
                 bus.Element("AstimateArrive").Value = OutGoingLine.AstimateArrive.ToString();
-                bus.Element("LicenseNum").Value = OutGoingLine.LicenseNum.ToString();
+                bus.Element("LineFrequencyTime").Value = OutGoingLine.LineFrequencyTime.ToString();
+             
+                //bus.Element("LicenseNum").Value = OutGoingLine.LicenseNum.ToString();
 
                 XMLTools.SaveListToXMLElement(DrivingBRootElem, DrivingBussbusath);
             }
@@ -798,25 +801,26 @@ namespace DL
         #endregion
 
         #region FollowingStations
-        public DO.FollowingStations GetFollowingStation(string code)
+        public DO.FollowingStations GetFollowingStation(string code1,string code2)
         {
             XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
             FollowingStations s = (from station in FollowingSElem.Elements()
-                                   where (station.Element("station code").Value) == code
+                                   where (station.Element("FirstStationCode").Value) == code1 && (station.Element("SecondStationCode").Value)==code2
                                    select new FollowingStations()
                                    {
                                        FirstStationCode = (station.Element("FirstStationCode").Value),
                                        SecondStationCode = (station.Element("SecondStationCode").Value),
-                                       FirstStationName = (station.Element("SecondStationName").Value),
-                                       SecondStationName = (station.Element("SecondStationName").Value),
-                                       Distance = double.Parse(station.Element("distance").Value),
-                                       AverageDrivingTime = TimeSpan.Parse(station.Element("DrivingTimeBetween").Value),
-                                       WalkingTime = TimeSpan.Parse(station.Element("DrivingTimeBetween").Value),
+                                       //FirstStationName = (station.Element("SecondStationName").Value),
+                                       //SecondStationName = (station.Element("SecondStationName").Value),
+                                       Distance = double.Parse(station.Element("Distance").Value),
+                                                                            
+                                       AverageDrivingTime = TimeSpan.ParseExact(station.Element("AverageDrivingTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                                      // WalkingTime = TimeSpan.ParseExact(station.Element("WalkingTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                                    }
                         ).FirstOrDefault();
 
             if (s == null)
-                throw new DO.BadBusStationLineCodeException(code, $"wrong station's code: {code}");
+                throw new DO.BadBusStationLineCodeException(code1+code2, $"wrong station's code: {code1 + code2}");
             return s;
         }
         public IEnumerable<DO.FollowingStations> GetAllFollowingStationss(Predicate<DO.FollowingStations> predicate)
@@ -922,7 +926,7 @@ namespace DL
                 fsElem.Element("SecondStationName").Value = FollowingStations.SecondStationName.ToString();
                 fsElem.Element("distance").Value = FollowingStations.Distance.ToString();
                 fsElem.Element("AverageDrivingTime").Value = FollowingStations.AverageDrivingTime.ToString();
-                fsElem.Element("WalkingTime").Value = FollowingStations.WalkingTime.ToString();
+                //fsElem.Element("WalkingTime").Value = FollowingStations.WalkingTime.ToString();
 
                 XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
             }

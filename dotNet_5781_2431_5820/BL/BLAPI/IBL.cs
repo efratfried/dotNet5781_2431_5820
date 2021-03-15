@@ -41,7 +41,7 @@ namespace BLAPI
         BO.Station GetBusStationLine(string StationNum);
         void AddBusStationLine(BO.BusStationLine BusstationLine);
         void UpdateBusStationLinePersonalDetails(BO.BusStationLine BusstationLine);
-        void DeleteBusStationLine(string num);
+        void DeleteBusStationLine(string num, int ID, int index);
        // IEnumerable<BO.BusStationLine> GetAllBusStationLinesPerLine(int lineId);
 
         #endregion

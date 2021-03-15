@@ -794,18 +794,24 @@ namespace DS
                     ID="3",
                     BusStationNum="73",
                     IndexInLine=0,
-                    NumOfPassingLines=1
+                    //NumOfPassingLines=1
                 },
             new BusStationLine
             {
                 ID = "3",
                 BusStationNum = "76",
                 IndexInLine = 1,
-                NumOfPassingLines = 2
+                //NumOfPassingLines = 2
             }
             };
 
+
+            /**    public string ID { set; get; }
+        public TimeSpan Startime { set; get; }
+        public TimeSpan Prequency { set; get; }
+        public TimeSpan EndTime { set; get; }*/
         }
+           
     }
 }
 

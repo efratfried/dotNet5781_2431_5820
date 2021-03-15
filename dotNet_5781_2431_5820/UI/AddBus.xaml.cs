@@ -98,17 +98,11 @@ namespace PL
         }
 
         private void busKM_TextChanged(object sender, TextChangedEventArgs e)
-        {
-           /* if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-
+        {/*PreviewTextInput= "NumberValidationTextBox"*/
+            /* private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
             {
-                e.Handled = true;
-            }
-
-            // only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
+                Regex regex = new Regex("[^0-9]$");
+                e.Handled = regex.IsMatch(e.Text);
             }*/
         }
 

@@ -20,12 +20,18 @@ namespace PL
     /// </summary>
     public partial class AddStationToLine : Window
     {
+        PL.BusLineWindow bw;
         IBL bl;
         BO.FollowingStations tempFS;
         PO.BusLine tempBL;
-        public ObservableCollection<PO.Station> ts;
-        public AddStationToLine(BO.FollowingStations FStations, PO.BusLine bs)
+        int i;
+        public ObservableCollection<PO.Station> ts=new ObservableCollection<PO.Station>();
+        public AddStationToLine(IBL _bl,BO.FollowingStations FStations, PO.BusLine bs,int index ,PL.BusLineWindow busl)
         {
+            
+            bl = _bl;
+            bw = busl;
+            i = index;
             InitializeComponent();          
             tempBL = bs;
             tempFS = FStations;
@@ -33,17 +39,18 @@ namespace PL
             // IEnumerable<BO.BusStationLine> s = bl.GetAllBusStationLines(bs.BusNum).Where(sf => bs.stationsList.Contains(sf) == false);
             //stationList.ItemsSource = s;
         }
-       void  refreshstationList()
+       void refreshstationList()
         {//getting all the existing stations + all the line's station ,checking which are the same & not adding them to the combobox list
             
-            List<BO.Station> station = GetAllStations().ToList();
-            List<BO.BusStationLine> bs = GetAllBusStationLines(tempBL.BusNum).ToList();
+            List<BO.Station> station = bl.GetAllStations().ToList();
+            List<BO.BusStationLine> bs = bl.GetAllBusStationLines(tempBL.BusNum).ToList();
             List<BO.Station> s = new List<BO.Station>();//=station.Where(i=>i.CodeStation!=bs)
-            bool flag = false;
+           
             for (int i = 0; i < station.Count; i++)
-            {
+            { 
+               bool flag = false;
                 for (int j = 0; j < bs.Count; j++)
-                {
+                {                  
                     if (station[i].CodeStation == bs[j].BusStationNum)
                     {
                         flag = true;
@@ -52,16 +59,15 @@ namespace PL
                 }
                 if (flag == false)
                 {
-                    s.Add(station[i]);
+                    s.Add(station[i]);                   
                 }
                 else { }
             }
-            List<BO.Station> b = List < BO.Station > GetAllAddAbleStations(tempBL);
 
-            for (int i = 0; i < b.Count; i++)
+            for (int i = 0; i < s.Count; i++)
             {
                 PO.Station station2 = new PO.Station();
-                b[i].DeepCopyTo(station2);
+                s[i].DeepCopyTo(station2);
 
                 ts.Add(station2);
             }
@@ -72,27 +78,40 @@ namespace PL
         {
             if(stationList.SelectedItem!=null)
             {
-                    BO.BusStationLine AddedS = stationList.SelectedItem as BO.BusStationLine;
-                    BO.FollowingStations first = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.FirstStationCode);
-                    BO.FollowingStations second = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.FirstStationCode);
 
-                if (first != null && second != null)
+                BO.BusStationLine AddedS = new BO.BusStationLine();
+                PO.Station s= stationList.SelectedItem as PO.Station;
+                AddedS.BusStationNum = s.CodeStation;
+                AddedS.IndexInLine = i;
+                AddedS.ID = tempBL.ID.ToString();
+                // BO.FollowingStations first = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.FirstStationCode);
+                //BO.FollowingStations second = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.SecondStationCode);
+                
+                bl.AddBusStationLine(AddedS);
+                bl.AddFollowingStation(tempFS.FirstStationCode.ToString(), AddedS.BusStationNum);
+                bl.AddFollowingStation(AddedS.BusStationNum, tempFS.SecondStationCode.ToString());
+                bw.bs.Clear();
+                foreach (var item in bl.GetBusStationLineList(tempBL.ID.ToString()))
                 {
-                    //nothing happens because the bond is already exist
+                    bw.bs.Add(item);
                 }
-                else//we are trying to make two new following stations & to savet 
-                {
-                   try
-                    {//in the FollowingStationsDistace window we are going to take care of the new two following stations
-                        FollowingStationsDistace win = new FollowingStationsDistace(first, second);
-                        win.Show();
-                    }
-                  
-                catch (BO.BadOpenWindow)
-                    {
-                        MessageBoxResult res = MessageBox.Show("Could not open the window!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
+                /* if ( != null && second != null)
+                 {
+                     //nothing happens because the bond is already exist
+                 }
+                 else//we are trying to make two new following stations & to savet 
+                 {
+                    try
+                     {//in the FollowingStationsDistace window we are going to take care of the new two following stations
+                         FollowingStationsDistace win = new FollowingStationsDistace(first, second);
+                         win.Show();
+                     }
+
+                 catch (BO.BadOpenWindow)
+                     {
+                         MessageBoxResult res = MessageBox.Show("Could not open the window!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                     }
+                 }*/
 
                 /*int index = findIndex(tempFS);
                 List<BO.BusStationLine> B=tempBL.stationsList.ToList();

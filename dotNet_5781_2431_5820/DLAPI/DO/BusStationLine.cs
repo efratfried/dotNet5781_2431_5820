@@ -11,7 +11,8 @@ namespace DO
         public  string ID { set; get; }
         public string BusStationNum { set; get; }
         public int IndexInLine { set; get; }
-        public int NumOfPassingLines { set; get; }
+
+        //public TimeSpan WalkingTime { set; get; }
         public override string ToString()
         {
             return this.ToStringProperty();

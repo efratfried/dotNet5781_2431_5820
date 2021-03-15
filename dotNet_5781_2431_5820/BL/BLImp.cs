@@ -5,8 +5,6 @@ using DLAPI;
 using BLAPI;
 using System.Threading;
 using BO;
-using PO;
-using UI;
 //using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace BL
@@ -333,8 +331,20 @@ namespace BL
         }*/
         public IEnumerable<BO.BusStationLine> GetBusStationLineList(string BusStationLineNum)
         {
-            return from l in dl.GetBusStationLineList(i => i.ID.ToString() == BusStationLineNum)
-                   select BusStationLineDoBoAdapter(l);
+            List<BO.BusStationLine> bsl=new List<BusStationLine>();
+            List<DO.BusStationLine> bs = dl.GetBusStationLineList(i => i.ID.ToString() == BusStationLineNum).OrderBy(i=>i.IndexInLine).ToList();
+            for (int i = 0; i < bs.Count; i++)
+            {
+                BO.BusStationLine b = new BO.BusStationLine();
+                bs[i].CopyPropertiesTo(b);
+                bsl.Add(b);
+            }
+            for (int i = 0; i < bs.Count-1; i++)
+            {
+                bsl[i].Distance = dl.GetFollowingStation(bs[i].BusStationNum, bs[i + 1].BusStationNum).Distance;
+                bsl[i].AverageDrivingTime = dl.GetFollowingStation(bs[i].BusStationNum, bs[i + 1].BusStationNum).AverageDrivingTime;
+            }
+            return bsl;
             //return from item in dl.GetBusStationsLineListWithSelectedFields((BusStationLineDO) =>
             //{
             //    try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
@@ -354,6 +364,7 @@ namespace BL
                     item.IndexInLine++;
                     dl.UpdateBusStationLine(item);                    
                 }
+                busStationLine.CopyPropertiesTo(BusStationLineDO);
                 dl.AddBusStationLine(BusStationLineDO);
             }
             catch (DO.BadBusStationLineCodeException ex)
@@ -376,13 +387,28 @@ namespace BL
                 throw new BO.BadBusStationLineCodeException("Bus's LicenseNum is illegal", Ex);
             }
         }
-        public void DeleteBusStationLine(string num)
+        public void DeleteBusStationLine(string num, int ID, int index)
         {
             try
             {
+                List<DO.BusStationLine >bs = dl.GetBusStationLineList(i => i.ID == ID.ToString()).ToList();
+                foreach (DO.BusStationLine item in dl.GetBusStationLineList(i => i.ID == ID .ToString()&& i.IndexInLine >index).ToList())
+                {
+                    item.IndexInLine--;
+                    dl.UpdateBusStationLine(item);
+                }
+                DO.FollowingStations f = new DO.FollowingStations();
+                
+                int number = int.Parse(bs[index - 1].BusStationNum);
+                int number1 = int.Parse(bs[index + 1].BusStationNum);
+                f.FirstStationCode = number.ToString();
+                f.SecondStationCode = number1.ToString();
+                AddFollowingStation(f.FirstStationCode, f.SecondStationCode);
+
                 string BusStationLine = num;
-                dl.DeleteBusStationLine(BusStationLine);
+                dl.DeleteBusStationLine(ID.ToString(),BusStationLine);
             }
+
             catch (DO.BadCodeStationException ex)
             {
                 string Ex = ex.ToString();
@@ -404,7 +430,7 @@ namespace BL
                     throw new BO.BadBusStationLineCodeException(busline.ID.ToString(),code);
                 }*/
 
-                dl.DeleteBusStationLine(code);
+               // dl.DeleteBusStationLine(code);
             }
             catch(DO.BadStationNumException ex)
             {
@@ -525,7 +551,7 @@ namespace BL
             {
                 string id = ID.ToString();
                 dl.DeleteBusLine(id);
-                dl.DeleteBusStationLine(id);
+              //  dl.DeleteBusStationLine(id);
             }
             catch (DO.BadLicenseNumException ex)
             {
@@ -817,16 +843,6 @@ namespace BL
         BO.FollowingStations FollowingSDoBoAdapter(DO.FollowingStations fsDO)
         {
             BO.FollowingStations fsBO = new BO.FollowingStations();
-            string code = fsDO.FirstStationCode;
-            try
-            {
-                fsDO = dl.GetFollowingStation(code);
-            }
-            catch (DO.BadBusLineException ex)
-            {
-                string Ex = ex.ToString();
-                throw new BO.BadBusIdException("wrong details", Ex);
-            }
 
             fsDO.CopyPropertiesTo(fsBO);
 
@@ -837,7 +853,7 @@ namespace BL
             DO.FollowingStations fsDO;
             try
             {
-                fsDO = dl.GetFollowingStation(code1);
+                fsDO = dl.GetFollowingStation(code1,code2);
             }
             catch (DO.BadLicenseNumException ex)
             {
@@ -909,12 +925,10 @@ namespace BL
         public void AddFollowingStation(string code1, string code2)
         {
             DO.FollowingStations fsDO = new DO.FollowingStations();
-           /* if (code1.Length <= 0 || code1.Length > 6 && code2.Length < 0 || code2.Length > 6) 
-            {
-                throw new Exception("invalid station num lengh");
-            }*/
+            fsDO.FirstStationCode = code1;
+            fsDO.SecondStationCode = code2;
+            
 
-            fsDO.CopyPropertiesToNew(typeof(BO.FollowingStations));
             try
             {
                 dl.AddFollowingStations(fsDO);

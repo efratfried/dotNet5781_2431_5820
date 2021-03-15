@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class DrivingBus:BusLine
+    public class DrivingBus
     {
         public bool finish { get; set; }
         IEnumerable<Station> StationsList;
         protected int ID { get; set; }//key one
-        public int LicenseNum { get; set; }//key two 
+        //public int LicenseNum { get; set; }//key two 
         public TimeSpan AstimateTimeOut { get; set; }
+        public TimeSpan LineFrequencyTime { get; set; }
         public TimeSpan ActualTimeOut { get; set; }
         public string LastestStation { get; set; }
         public TimeSpan TimePassFromLastestStation { get; set; }

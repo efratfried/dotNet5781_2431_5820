@@ -41,10 +41,12 @@
         <Label Content="selected line:" HorizontalAlignment="Left" Margin="19,55.4,0,0" VerticalAlignment="Top" Width="101" FontWeight="Bold" FontSize="14" Foreground="Black" RenderTransformOrigin="0.55,1.493" Height="29" Grid.Row="2"/>
         <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="4.366,0.4,21.5,19.2" RowDetailsVisibilityMode="VisibleWhenSelected" FontFamily="Tahoma"  Foreground="Black" Grid.Column="4"  LoadingRow="lineStationDataGrid_LoadingRow" GridLinesVisibility="Horizontal"  HorizontalGridLinesBrush="LightGray"  FontWeight="bold" Grid.ColumnSpan="7" Grid.Row="2" Grid.RowSpan="2"  Width="1000" >
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="codeColumn" Binding="{Binding ID}" Header="                ID" Width="150"/>
+            
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding BusStationNum}" Header="        Code" Width="100"/>
                 <DataGridTextColumn x:Name="distanceColumn" Binding="{Binding IndexInLine}" Header="  Index in line" Width="100"/>
-                <DataGridTextColumn x:Name="timeColumn" Binding="{Binding NumOfPassingLines}" Header=" number of passing lines" Width="160"/>
+               
+                <DataGridTextColumn x:Name="distance" Binding="{Binding Distance}" Header="     Distance" Width="100"/>
+                <DataGridTextColumn x:Name="timeB" Binding="{Binding AverageDrivingTime}" Header=" Driving time between Privious station" Width="auto"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

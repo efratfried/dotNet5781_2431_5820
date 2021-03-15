@@ -12,15 +12,15 @@ namespace UI
     public partial class MainWindow : Window
     {
         IBL bl = BLFactory.GetBL("1");//we create an "object" of IBL interface in order to use BL functions and classes
-        
+        DispatcherTimer timer = new DispatcherTimer();
         public MainWindow()
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
+        
         }
         void timer_Tick(object sender, EventArgs e)
         {
@@ -28,6 +28,7 @@ namespace UI
             {
                 if (mePlayer.NaturalDuration.HasTimeSpan)
                     lblStatus.Content = String.Format("{0} / {1}", mePlayer.Position.ToString(@"mm\:ss"), mePlayer.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
+
             }
             else
                 lblStatus.Content = "No file selected...";
@@ -35,8 +36,11 @@ namespace UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //timer.Stop();
+            //mePlayer.Stop();
             conecting win = new conecting(bl);
             win.ShowDialog();
+           
         }
         public void iocn()
         {//C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL

@@ -41,7 +41,7 @@ namespace DLAPI
         void AddBusStationLine(DO.BusStationLine busStationLine);
         void UpdateBusStationLine(DO.BusStationLine StationeNum);
         DO.BusStationLine GetBusStationLine(string Id);
-        void DeleteBusStationLine( string StationeNum);
+        void DeleteBusStationLine(string id, string LineNum);
         void DeleteBusStationLineFromAllStations(string StationID);
         IEnumerable<object> GetBusStationsLineListWithSelectedFields(Func<DO.BusStationLine, object> generate);
        
@@ -103,7 +103,7 @@ namespace DLAPI
         IEnumerable<object> GetAllFollowingStationsListWithSelectedFields(Func<DO.FollowingStations, object> generate);
         //IEnumerable<DO.Bus> GetBusIDList();
       //  IEnumerable<object> GetAllFollowingStationListWithSelectedFields(Func<DO.FollowingStations, object> generate);
-        DO.FollowingStations GetFollowingStation(string code);
+        DO.FollowingStations GetFollowingStation(string code1,string code2);
         void AddFollowingStations(DO.FollowingStations FollowingStations);
         void UpdateFollowingStations(DO.FollowingStations FollowingStations);
         //void UpdateBus(string Num, Action<DO.Bus> update); //method that knows to updt specific fields in Person

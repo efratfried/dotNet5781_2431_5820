@@ -75,17 +75,41 @@ namespace PL
 
         private void LicenseNum_TextChanged(object sender, TextChangedEventArgs e)
         {
+          /*  if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
 
+            {
+                e.Handled = true;
+            }*/
         }
 
         private void busfoul_TextChanged(object sender, TextChangedEventArgs e)
         {
+           /* if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
 
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }*/
         }
 
         private void busKM_TextChanged(object sender, TextChangedEventArgs e)
         {
+           /* if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
 
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }*/
         }
 
         private void LicenseNumTextBox_PreviewKeyDown(object sender, KeyEventArgs e)

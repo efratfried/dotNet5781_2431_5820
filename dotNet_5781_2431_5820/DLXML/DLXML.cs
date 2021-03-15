@@ -491,9 +491,9 @@ namespace DL
 
          #region User
         public IEnumerable<DO.User> GetAllUser()
-        {
+        {           
             XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
-
+            
             return (from user in UserRootElem.Elements()
                     select new User()
                     {

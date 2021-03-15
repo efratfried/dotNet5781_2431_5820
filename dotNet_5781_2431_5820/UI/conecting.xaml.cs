@@ -66,16 +66,20 @@ namespace PL
             else if (user_Name.Text.Length != 0 && user_password.Text.Length != 0)
             {
                 PO.User MyUser = new PO.User();
-                
-                user = bl.GetAllUsers().Where(user1 => user1.UserName == user_Name.Text && user1.Password == user_password.Text).FirstOrDefault();//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();
+                BO.User temp = new BO.User();
+                user = bl.GetAllUsers().Where(user1 => user1.UserName == user_Name.Text).FirstOrDefault();//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();
                
                 if (user != null)
                 {
                     try
                     {
+                        
                         user.DeepCopyTo(MyUser);
+                        MyUser.UserName = user_Name.Text;
+                        MyUser.Password = user_password.Text;
                         if (MyUser.Password == user_password.Text && MyUser.Me == BO.Access.Passnger) //|| MyUser.Password == manager_password.Text && MyUser.Me == BO.Access.Passnger)
                         {
+                            
                             UserWindow win = new UserWindow(MyUser);
                             win.ShowDialog();
                         }
@@ -90,6 +94,7 @@ namespace PL
                         MessageBox.Show(ex.Message + ex.InnerException, "couldn't open the window", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
+                
                 else
                 {
                     MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -99,7 +104,7 @@ namespace PL
             {              
                 PO.User MyUser = new PO.User();
                 BO.User temp = new BO.User();
-                user = bl.GetAllUsers().Where(user1 => user1.UserName == Newuser_name.Text && user1.Password == NewUser_password.Text).FirstOrDefault();//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();            
+                user = bl.GetAllUsers().Where(user2 => user2.UserName == Newuser_name.Text).FirstOrDefault();//.Where(me => me.UserName == manager_Name.Text).Cast<PO.User>().ToList().First();            
 
                 if (user != null)
                 {
@@ -126,7 +131,7 @@ namespace PL
             }
             else
             {
-                MessageBoxResult res = MessageBox.Show("The user doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult res = MessageBox.Show("Please enter name & password", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
             }
         }
         

@@ -133,17 +133,17 @@ namespace BL
                 bus.Foul_Status = Foul_Status.empty;
                 }
 
-                if (bus.foul == 600)
+                if (bus.foul == 100)
                 {//as we check in some websisites
                 bus.Foul_Status = Foul_Status.full_tank;
                 }
 
-                if (bus.foul < 400 && bus.foul > 200)
+                if (bus.foul < 100 && bus.foul > 50)
                 {
                 bus.Foul_Status = Foul_Status.avrage;
                 }
 
-                if (bus.foul < 300 && bus.foul > 0)
+                if (bus.foul < 50 && bus.foul > 0)
                 {
                 bus.Foul_Status = Foul_Status.low;
                 }
@@ -151,7 +151,7 @@ namespace BL
         }
         public BO.Status status(BO.Bus bus)
         {
-            if (/*bus.KM > 20000 ||*/ bus.foul < 200)
+            if (bus.KM > 300000 || bus.foul < 0)
             {
                 bus.Status = Status.UnAvailable;
             }
@@ -569,20 +569,11 @@ namespace BL
         public BO.User userBoDoAdapter(DO.User userDO)
         {
             BO.User userBO = new BO.User();
-            DO.User newUserDO;
-            string name = userDO.UserName;
-            string password = userDO.Password;
-            try
-            {
-                newUserDO = dl.GetUser(name, password);
-            }
-            catch (DO.BadUserName_PasswordException ex)
-            {
-                throw new BO.BadUserName_PasswordException( "ERROR!\n", ex);
-            }
+            DO.User newUserDO= userDO;
+
             newUserDO.CopyPropertiesTo(userBO);
 
-            userDO.CopyPropertiesTo(userBO);
+            //userDO.CopyPropertiesTo(userBO);
 
             return userBO;
         }
@@ -614,7 +605,7 @@ namespace BL
         {
             try
             {
-                dl.AddUser(userBoDoAdapter(user));
+                dl.AddUser(userDoBOAdapter(user));
             }
             catch (DO.BadUserName_PasswordException ex)
             {
@@ -627,7 +618,7 @@ namespace BL
         /// </summary>
         /// <param name="userBO"></param>
         /// <returns></returns>
-        private DO.User userBoDoAdapter(BO.User userBO)
+       private DO.User userDoBOAdapter(BO.User userBO)
         {
             DO.User userDO = new DO.User();
             userBO.CopyPropertiesTo(userDO);

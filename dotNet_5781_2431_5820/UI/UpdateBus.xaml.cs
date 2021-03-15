@@ -35,6 +35,7 @@ namespace PL
             firm.ItemsSource = Enum.GetValues(typeof(BO.Firm));
             firm.SelectedIndex = 0;
             Licensenum.IsReadOnly = true;
+            aviability_status.Text = updatebus.Status.ToString();
             aviability_status.IsReadOnly = true;
         }
        
@@ -46,16 +47,14 @@ namespace PL
                 updatebus.Firm = (BO.Firm)firm.SelectedItem;
                 updatebus.KM = double.Parse(km_.Text);
                 updatebus.foul = double.Parse(foul_status.Text);
+
                 BO.Bus b=new BO.Bus();
                 updatebus.DeepCopyTo(b);
+                updatebus.Status = bL.status(b);
+                b.DeepCopyTo(updatebus);
+               
+                aviability_status.Text = updatebus.Status.ToString();
 
-                switch (updatebus.foul )
-                {
-                    case 0:
-
-                    default:
-                        break;
-                }
                 bL.UpdateBusPersonalDetails(b);
             }
 
@@ -74,6 +73,42 @@ namespace PL
         private void Licensenum_TextChanged(object sender, TextChangedEventArgs e)
         {
             Licensenum.Text = updatebus.LicenseNum;
+        }
+
+        private void aviability_status_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void foul_status_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+           /* if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }*/
+        }
+
+        private void km__TextChanged(object sender, TextChangedEventArgs e)
+        {
+            /*if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }*/
         }
     }
 }

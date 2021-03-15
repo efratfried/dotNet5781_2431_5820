@@ -489,7 +489,7 @@ namespace DL
 
          #endregion*/
 
-         #region User
+        #region User
         public IEnumerable<DO.User> GetAllUser()
         {           
             XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
@@ -539,8 +539,8 @@ namespace DL
                 throw new DO.BadUserName_PasswordException(user.UserName, "wrong user's name");
 
             XElement EserElem = new XElement("user",
-                                   new XElement("name", user.UserName),
-                                   new XElement("password", user.Password),
+                                   new XElement("UserName", user.UserName),
+                                   new XElement("Password", user.Password),
                                    new XElement("Me",user.Me));
             UserRootElem.Add(EserElem);
             

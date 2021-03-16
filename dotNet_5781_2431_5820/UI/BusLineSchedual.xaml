@@ -10,37 +10,38 @@
     <Window.Resources>
         <CollectionViewSource x:Key="lineTripViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:OutGoingLine}, CreateList=True}"/>
         <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:BusLine}, CreateList=True}"/>
-        </Window.Resources>
-        <Window.Background>
+    </Window.Resources>
+    <Window.Background>
         <ImageBrush ImageSource="bgmore.jpg"/>
     </Window.Background>
-    <Grid x:Name="MainGrid" DataContext="{StaticResource lineTripViewSource}">
-        <ComboBox x:Name="LineList" ItemsSource="{Binding Path=BusNum}" HorizontalAlignment="Left" Margin="118,92,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbLine_SelectionChanged"/>
-
-        <DataGrid x:Name="BusLineSchedual1" AutoGenerateColumns="False" EnableRowVirtualization="True" BorderThickness="1" ItemsSource="{Binding}" Margin="352,92,119.6,142" RowDetailsVisibilityMode="VisibleWhenSelected" BorderBrush="Black" Foreground="Black" FontWeight="bold">
+    <Grid x:Name="MainGrid" DataContext="{StaticResource lineTripViewSource}" Margin="0,0,-0.4,-3">
+        <ComboBox x:Name="LineList" ItemsSource="{Binding Path=BusNum}" HorizontalAlignment="Left" Margin="113,92,0,0" VerticalAlignment="Top" Width="115" SelectionChanged="cbLine_SelectionChanged"/>
+        <Label x:Name="choosealine" Content="Choose a line:" FontSize="14" FontWeight="Bold" Margin="10,92,481,297"/>
+        <DataGrid x:Name="BusLineSchedual1" AutoGenerateColumns="False" EnableRowVirtualization="True" BorderThickness="1" ItemsSource="{Binding}" Margin="352,92,134,170" RowDetailsVisibilityMode="VisibleWhenSelected" BorderBrush="Black" Foreground="Black" FontWeight="bold">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="startAtColumn" Binding="{Binding Startime}" Header="         Start At" Width="120"/>
+                <DataGridTextColumn x:Name="startAtColumn" Binding="{Binding Startime}" Header="       Start At" Width="120"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid x:Name="StationDetails" DataContext="{StaticResource lineViewSource}" HorizontalAlignment="Left" Margin="118,136,0,0" VerticalAlignment="Top" Height="122" Width="205">
+        <Grid x:Name="StationDetails" DataContext="{StaticResource lineViewSource}" HorizontalAlignment="Left" Margin="20,131,0,0" VerticalAlignment="Top" Height="122" Width="218">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" MinHeight="50.4"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Area:" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBlock x:Name="areaLabel" Text="{Binding}" HorizontalAlignment="Left" Margin="25.6,8,-48.2,9.6" Grid.Row="0" VerticalAlignment="Center" Width="89" Grid.Column="1"/>
-            <Label Content="First Station:" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBlock x:Name="firstStationLabel" Text="{Binding FirstStation}" Grid.Column="1" HorizontalAlignment="Left" Margin="25.6,8.8,-45,11.2" Grid.Row="2" VerticalAlignment="Center" Width="89"/>
-            <Label Content="Last Station:" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBlock x:Name="lastStationLabel" Text="{Binding LastStation}" Grid.Column="1" HorizontalAlignment="Left" Margin="25.6,8,-43.4,9.6" Grid.Row="3" VerticalAlignment="Center" Width="89"/>
+            <Label Content="Area:" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Left" Margin="0,19,0,24.8" Grid.Row="0" VerticalAlignment="Center" FontSize="14" Height="29" Width="45"/>
+            <TextBlock x:Name="areaLabel" Background="White" Text="{Binding}" HorizontalAlignment="Left" Margin="0,22,0,34" Grid.Row="0" VerticalAlignment="Center" Width="118" Height="24" Grid.Column="1"/>
+            <Label Content="First Station:" Grid.Column="0" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Margin="-2,56,0,36.4" VerticalAlignment="Center" Height="34" Grid.RowSpan="4" Width="93"/>
+            <TextBlock x:Name="firstStationLabel" Background="White" Text="{Binding FirstStation}" Grid.Column="1" HorizontalAlignment="Left" Margin="0.8,56,0,0.8" VerticalAlignment="Center" Width="117" Height="24" Grid.RowSpan="2"/>
+            <Label Content="Last Station:" Grid.Column="0" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Margin="-2,8.4,0,8.4" Grid.Row="3" VerticalAlignment="Center" Height="28" Width="91"/>
+            <TextBlock x:Name="lastStationLabel" Background="White" Text="{Binding LastStation}" HorizontalAlignment="Left" Margin="1,12.8,0,8" Grid.Row="3" VerticalAlignment="Center" Width="118" Height="24" Grid.Column="1"/>
         </Grid>
-        <Label Content="        BusLine Schedual" HorizontalAlignment="Stretch" Margin="20,10,220.6,0" VerticalAlignment="Top" Width="353" FontWeight="Bold" FontSize="30" Foreground="Black"/>
+        <Label Content=" BusLine Schedual" HorizontalAlignment="Stretch" Margin="10,10,318,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="30" Foreground="Black"/>
     </Grid>
 </Window>

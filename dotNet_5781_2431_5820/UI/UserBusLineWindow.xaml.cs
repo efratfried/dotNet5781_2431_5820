@@ -163,5 +163,9 @@ namespace UI
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
 
+        private void lineStationDataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

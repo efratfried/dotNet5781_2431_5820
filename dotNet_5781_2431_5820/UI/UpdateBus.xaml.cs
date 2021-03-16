@@ -36,7 +36,6 @@ namespace PL
             firm.SelectedIndex = 0;
             Licensenum.IsReadOnly = true;
             aviability_status.Text = updatebus.Status.ToString();
-            aviability_status.IsReadOnly = true;
         }
        
         private void button_update_click(object sender, RoutedEventArgs e)
@@ -75,10 +74,6 @@ namespace PL
             Licensenum.Text = updatebus.LicenseNum;
         }
 
-        private void aviability_status_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
 
         private void foul_status_TextChanged(object sender, TextChangedEventArgs e)
         {

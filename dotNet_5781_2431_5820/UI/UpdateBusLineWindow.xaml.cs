@@ -20,13 +20,16 @@ namespace PL
     /// </summary>
     public partial class UpdateBusLineWindow : Window
     {
+        IBL bl;
         PO.BusLine TempBusLine;
-        public UpdateBusLineWindow(PO.BusLine MybusLine)
+        public UpdateBusLineWindow(PO.BusLine MybusLine,IBL _bl)
         {
+            bl = _bl;
             InitializeComponent();
             TempBusLine = MybusLine;
-            areaComboBox.DataContext = TempBusLine.Area;
-           // busNumberTextBox.Text = TempBusLine.BusNum.ToString();
+            areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
+            areaComboBox.SelectedIndex = 0;
+            //busNumberTextBox.Text = TempBusLine.BusNum.ToString();
             firstStationComboBox.DataContext = TempBusLine.FirstStation;
             lastStationComboBox.DataContext = TempBusLine.LastStation;
         }
@@ -64,25 +67,15 @@ namespace PL
                     }*/
         private void areaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //need to check what to do.
-            areaComboBox.SelectedItem = areaComboBox;
         }
-
-        private void AddLineButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void lastStationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
-
         private void firstStationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
-
         private void busNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -113,6 +106,48 @@ namespace PL
             //no other keys are allowed
             e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
 
+        }
+        private void UpdateLineButton_Click(object sender, RoutedEventArgs e)
+        {
+            BO.BusLine bs = new BO.BusLine();
+            PO.BusLine pl = new PO.BusLine();
+            if (busNumberTextBox.Text != "" && areaComboBox.SelectedItem != null)/*firstStationComboBox.Text != "" &&  && lastStationComboBox.SelectedItem != null*/
+            {
+                TempBusLine.Area = (BO.Area)areaComboBox.SelectedIndex;
+                TempBusLine.BusNum = int.Parse(busNumberTextBox.Text);
+
+               // TempBusLine.FirstStation = int.Parse(((BO.Station)firstStationComboBox.SelectedItem).CodeStation);
+               // TempBusLine.LastStation = int.Parse(((BO.Station)lastStationComboBox.SelectedItem).CodeStation);
+
+               /* if (TempBusLine.FirstStation == TempBusLine.LastStation)
+                {
+                    MessageBox.Show("ERROR", "Verification", MessageBoxButton.OK);
+                }*/
+                //bn.stationsList
+            }
+            else
+            {
+
+            }
+            TempBusLine.DeepCopyTo(bs);
+            MessageBoxResult res = MessageBox.Show("Update line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            switch (res)
+            {
+                case MessageBoxResult.None:
+                    break;
+                case MessageBoxResult.OK:
+                    this.Close();
+                    break;
+                case MessageBoxResult.Cancel:
+                    break;
+                case MessageBoxResult.Yes:
+                    bl.UpdateBusLinePersonalDetails(bs);
+                    break;
+                case MessageBoxResult.No:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

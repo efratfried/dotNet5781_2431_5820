@@ -107,12 +107,15 @@ namespace BL
             DO.Bus BusDO = new DO.Bus();
             if (bus.LicenseNum.Length != 7 && bus.LicenseNum.Length != 8)
             {
-                throw new Exception("invalid license num lengh");
+
+                string Ex = "The lengh of the License isnt corrent";
+                throw new BO.BadBusIdException("Incorrect details", Ex);
             }
 
             if ((bus.LicenseDate.Year < 2018 && bus.LicenseNum.Length != 7) || (bus.LicenseDate.Year >= 2018 && bus.LicenseDate < DateTime.Now && bus.LicenseNum.Length != 8))
             {//check the validation of the license num accroding to it date
-                throw new Exception("invalid license's date");
+                string Ex = "the date or the license number don't match";
+                throw new BO.BadBusIdException("Incorrect details", Ex);
             }
             bus.CopyPropertiesTo(BusDO);
             //BusDO.CopyPropertiesToNew(typeof(BO.Bus));
@@ -264,8 +267,7 @@ namespace BL
             DO.Station StationDO = new DO.Station();
             bool exist = bool.Parse((GetAllStations().Contains(station)).ToString());
             if(exist)
-            {/** Content="Longitude   : 34.3-35.5 "
-         Content="Latitude     :      31-33.3"*/
+            {
                 throw new Exception("The wanted station is already exist in the data");
             }
             if (station.Latitude > 33.3 || station.Latitude < 31 || station.longitude < 33.3 || station.longitude > 35.5) 
@@ -276,7 +278,7 @@ namespace BL
             {
                 throw new Exception("incorrect station's code");
             }
-            StationDO.CopyPropertiesToNew(typeof(BO.Station));
+            station.CopyPropertiesTo(StationDO);
             try
             {
                 dl.AddStation(StationDO);

@@ -85,40 +85,9 @@ namespace PL
 
         private void BusLineUpdate_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if ( firstStationTextBox.Text != "" && lastStationTextBox.Text != "")
-                {
-                    UpdateBusLineWindow win = new UpdateBusLineWindow(MyBusLine);
-                    win.Show();
-                    
-                    MyBusLine.FirstStation = int.Parse(firstStationTextBox.Text);
-                    MyBusLine.LastStation = int.Parse(lastStationTextBox.Text);
-                    //areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
-                    
-                    if (MyBusLine != null)
-                    {
-                        BO.BusLine bln=new BO.BusLine();
-                        MyBusLine.DeepCopyTo(bln);
-                        bl.UpdateBusLinePersonalDetails(bln);
-                    }
-
-                    RefreshAllLinesComboBox();//refresh the combo box to save the changes!!!
-                }
-                else//if not all fields are full
-                {
-                    throw new BO.BadBusLineIdException("cannot update the line since not all fields were filled");
-                }
-
-            }
-            catch (BO.BadBusLineIdException ex)
-            {
-                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (BO.BadStationException ex)
-            {
-                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                MyBusLine = (PO.BusLine)BusLineComboBox.SelectedItem;
+                UpdateBusLineWindow win = new UpdateBusLineWindow(MyBusLine,bl);
+                win.Show();
         }
 
         private void BusLineDelete_Click(object sender, RoutedEventArgs e)

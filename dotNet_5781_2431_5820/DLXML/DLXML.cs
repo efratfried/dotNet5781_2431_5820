@@ -238,7 +238,7 @@ namespace DL
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
 
-            DO.BusLine stu = ListBusLines.Find(bus => bus.BusNum == BusLine.BusNum);
+            DO.BusLine stu = ListBusLines.Find(bus => bus.ID == BusLine.ID);
             if (stu != null)
             {
                 ListBusLines.Remove(stu);

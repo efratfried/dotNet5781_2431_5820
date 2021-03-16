@@ -53,13 +53,22 @@ namespace PL
                     Mybus.foul = double.Parse(busfoul.Text);
                     Mybus.Firm = (BO.Firm)(firm.SelectedItem);
                     Mybus.DeepCopyTo(addbus);
-                    bL.AddBus(addbus);
+                    try
+                    {
+                        bL.AddBus(addbus);
+                    MessageBox.Show( "Succeed","The bus was added to the system", MessageBoxButton.OK);
                     this.Close();
+                    }
+                    catch (BO.BadLicenseIdException)
+                    {
+                        MessageBoxResult m = MessageBox.Show("The date & the License num don't match", "Error", MessageBoxButton.OK);
+                    }
                 }
-                 else
-                 {
-                MessageBoxResult m = MessageBox.Show("You didnt fill all the details", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            }
+
+                else
+                {
+                    MessageBoxResult m = MessageBox.Show("You didnt fill all the details", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                }
 
             MessageBoxResult res = MessageBox.Show("Add line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.No)

@@ -25,32 +25,35 @@ namespace PL
         public BO.Station addedStat=new BO.Station();
         public PO.Station adds=new PO.Station();
         public BO.BusStationLine bs=new BO.BusStationLine();
+        public PL.StationsWindow1 sta;
         public bool AllFieldsWereFilled = false;
-        public ObservableCollection<bool> disable;
-
-        public AddStation(IBL _bl)
+        enum MyEnum
+        {
+            yes, 
+            no
+        }
+        public AddStation(IBL _bl,PL.StationsWindow1 stationsWindow1)
         {
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             bl = _bl;
-              //adds = Stat;            
+            sta = stationsWindow1;   
+            Disable_Access.ItemsSource = Enum.GetValues(typeof(MyEnum));
+            Disable_Access.SelectedIndex = 0;
         }
         
         void RefreshDisable_Access_ComboBox()//refresh the combobox each time the user changes the selection 
         {
-            List<string> disac = new List<string> { "yes", "no" };
-
-            Disable_Access.Items.Add(disac[0]);
-            Disable_Access.Items.Add(disac[1]);
+            
             //bl.GetStationLicenseNumList();
             // Disable_Access.DisplayMemberPath = "DisableAccess";
             //Disable_Access.DataContext = disable;
             //Disable_Access.DisplayMemberPath = "DisableAccess";
-            Disable_Access.SelectedIndex = 0;
+            
         }
         private void Disable_Access_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            addedStat.DisableAccess = (bool)(Disable_Access.SelectedItem);
+            //addedStat.DisableAccess = (bool)(Disable_Access.SelectedItem);
         }
 
         private void addressTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -69,11 +72,12 @@ namespace PL
                 adds.Address = addressTextBox.Text;
                 adds.longitude = double.Parse(longitudeTextBox.Text);
                 adds.Latitude = double.Parse(lattitudeTextBox.Text);
-                adds.DisableAccess = (string)Disable_Access.SelectedItem=="yes";
+                adds.DisableAccess = (MyEnum)Disable_Access.SelectedItem == MyEnum.yes ? true : false;
+
                 adds.DeepCopyTo(addedStat);
                 bl.AddStation(addedStat);
-                adds.DeepCopyTo(bs);
-                bl.AddBusStationLine(bs);
+                bl.GetStation(addedStat.CodeStation).DeepCopyTo(adds);
+                sta.stationlist.Add(adds);
                 this.Close();
             }
         }

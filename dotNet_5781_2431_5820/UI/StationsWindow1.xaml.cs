@@ -26,11 +26,11 @@ namespace PL
         //BO.BusLine MyBusLine;
         public ObservableCollection<PO.Station> stationlist;
         //public ObservableCollection<PO.BusLine> busLines;
+
         public StationsWindow1(IBL _bl)
         {
             InitializeComponent();
             stationlist = new ObservableCollection<PO.Station>();
-           
             bl = _bl;
             RefreshAllStationsComboBox();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
@@ -149,9 +149,9 @@ namespace PL
         {
             PO.Station stat = new PO.Station();//a new Station
 
-            AddStation addStationWindow = new AddStation(bl);//we sent the station Stat to a new window we created named AddStation 
+            AddStation addStationWindow = new AddStation(bl,this);//we sent the station Stat to a new window we created named AddStation 
             addStationWindow.ShowDialog();
-            addStationWindow.Closing += addStationWindow_Closing;
+           // addStationWindow.Closing += addStationWindow_Closing;
             
         }
 

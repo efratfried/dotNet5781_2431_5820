@@ -87,12 +87,6 @@ namespace PL
             busses_list.DisplayMemberPath = "LicenseNum";
             busses_list.SelectedIndex = 0;
 
-            //currentbus = buses1.FirstOrDefault();
-           
-            //Licensenumbus.DataContext = currentbus.LicenseNum;
-            //foul_status.DataContext = currentbus.foul;
-            //km_.DataContext = currentbus.KM;
-            //aviability_status.DataContext = currentbus.Status;
         }
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

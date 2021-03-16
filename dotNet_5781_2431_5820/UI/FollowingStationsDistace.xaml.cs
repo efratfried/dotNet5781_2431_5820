@@ -33,7 +33,6 @@ namespace PL
             first1.Text = first.FirstStationCode.ToString();
             second1.Text = first.SecondStationCode.ToString();
             station = first;
-
         }
 
         private void dis1_TextChanged(object sender, TextChangedEventArgs e)

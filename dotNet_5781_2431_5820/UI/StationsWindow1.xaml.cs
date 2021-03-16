@@ -35,12 +35,7 @@ namespace PL
             RefreshAllStationsComboBox();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             
-
-
             linesDataGrid.IsReadOnly = true;
-           
-
-            //linesDataGrid = true;
         }
 
         void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 

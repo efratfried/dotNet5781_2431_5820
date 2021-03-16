@@ -36,11 +36,6 @@ namespace PL
             firm.SelectedIndex = 0; //index of the object to be selected
         }
         
-        private void AddLineDetails_Click(object sender, RoutedEventArgs e)
-        {
-           // AddLine al = new AddLine(bL,);
-           // al.ShowDialog();
-        }
 
         private void AddBus_Click(object sender, RoutedEventArgs e)
         {

@@ -179,7 +179,7 @@ namespace BL
         BO.Station StationDoBoAdapter(DO.Station StationDO)
         {
             BO.Station StationBO = new BO.Station();
-            string CodeStation = StationDO.CodeStation;
+            /*string CodeStation = StationDO.CodeStation;
             try
             {
 
@@ -189,7 +189,7 @@ namespace BL
             {
                 string Ex = ex.ToString();
                 throw new BO.BadStationException("wring station's code", Ex);
-            }
+            }*/
 
             StationDO.CopyPropertiesTo(StationBO);
 
@@ -930,7 +930,6 @@ namespace BL
             fsDO.FirstStationCode = code1;
             fsDO.SecondStationCode = code2;
             
-
             try
             {
                 dl.AddFollowingStations(fsDO);

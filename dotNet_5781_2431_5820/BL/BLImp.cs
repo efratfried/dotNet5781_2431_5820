@@ -929,7 +929,8 @@ namespace BL
             DO.FollowingStations fsDO = new DO.FollowingStations();
             fsDO.FirstStationCode = code1;
             fsDO.SecondStationCode = code2;
-            
+          
+
             try
             {
                 dl.AddFollowingStations(fsDO);

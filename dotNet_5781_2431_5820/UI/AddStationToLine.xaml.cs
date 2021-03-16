@@ -95,6 +95,19 @@ namespace PL
                 {
                     bw.bs.Add(item);
                 }
+                BO.FollowingStations ff = bl.GetFollowingStation(tempFS.FirstStationCode.ToString(), AddedS.BusStationNum);
+                BO.FollowingStations ss = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.SecondStationCode.ToString());
+                if (ff.Distance ==0)
+                {
+                    FollowingStationsDistace win = new FollowingStationsDistace(ff,bl);              
+                    win.Show();                  
+                }
+                if(ss.Distance==0)
+                {
+                    FollowingStationsDistace win = new FollowingStationsDistace(ss, bl);
+                    win.Show();
+                }
+              
                 /* if ( != null && second != null)
                  {
                      //nothing happens because the bond is already exist
@@ -103,8 +116,7 @@ namespace PL
                  {
                     try
                      {//in the FollowingStationsDistace window we are going to take care of the new two following stations
-                         FollowingStationsDistace win = new FollowingStationsDistace(first, second);
-                         win.Show();
+                        
                      }
 
                  catch (BO.BadOpenWindow)

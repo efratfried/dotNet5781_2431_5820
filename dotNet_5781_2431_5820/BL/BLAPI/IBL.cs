@@ -68,9 +68,12 @@ namespace BLAPI
         void DeleteFollowingStation(string code); //delete station completely
         void DeleteFollowingStations(BO.FollowingStations followingStation);//delete station from line
         void AddFollowingStation(string code1, string code2);
+        double DistancefromPriviouStation(string station1, string station2);
+        TimeSpan DrivingTimeBetweenTwoStations(string station1, string station2);
+        TimeSpan WalkingTimeBetweenTwoStations(string station1, string station2);
         #endregion
 
-        
+
         #region user
         BO.User userBoDoAdapter(DO.User userDO);
         BO.User GetUser(string name, string password);

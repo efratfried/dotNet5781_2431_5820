@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,41 +21,61 @@ namespace UI
     /// </summary>
     public partial class UserStationWindow : Window
     {
+        public ObservableCollection<PO.Station> ts;
+        public ObservableCollection<BO.BusLine> BS;
         public IBL bl;
         PO.Station MyStation;
         public UserStationWindow(IBL _bl)
         {
             InitializeComponent();
             bl = _bl;
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            StationComboBox.DisplayMemberPath = "Name";//show only specific Property of object
-            StationComboBox.SelectedValuePath = "Code";//selection return only specific Property of object
-            StationComboBox.SelectedIndex = 0; //index of the object to be selected
+            ts = new ObservableCollection<PO.Station>();
             RefreshAllStationsComboBox();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            // StationComboBox.DisplayMemberPath = "Name";//show only specific Property of object
+            //StationComboBox.SelectedValuePath = "Code";//selection return only specific Property of object
+            //StationComboBox.SelectedIndex = 0; //index of the object to be selected
+           
 
             linesDataGrid.IsReadOnly = true;
         }
         private void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 
         {
-            IEnumerable<PO.Station> station = bl.GetAllStations().Cast<PO.Station>();
-            StationComboBox.ItemsSource = station;
-            //RefreshAllLinesOfStationGrid();
-        }
+            List<BO.Station> sta = bl.GetAllStations().ToList();
+            for (int i = 0; i < sta.Count; i++)
+            {
+                PO.Station sta1 = new PO.Station();
+                sta[i].DeepCopyTo(sta1);
 
+                ts.Add(sta1);
+            }
+            StationComboBox.ItemsSource = ts;
+            StationComboBox.DisplayMemberPath = "StationName";
+            StationComboBox.SelectedIndex = 0;
+        }
+        private void RefreshAllLineStationsOfLineGrid(string code)
+        {
+            BS = new ObservableCollection<BO.BusLine>();
+            foreach (var item in bl.GetAllLinesPerStation(int.Parse(code)))
+            {
+                BS.Add(item);
+            }
+            linesDataGrid.ItemsSource = BS;
+        }
         /*private void RefreshAllLinesOfStationGrid()
         {
             IEnumerable<PO.Station> MyBusinstation = bl.GetAllLinesPerStation(int.Parse(MyStation.CodeStation)).Cast<PO.Station>().ToList();
             linesDataGrid.ItemsSource = MyBusinstation;
         }*/
 
-        private void StationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CBChosenStat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MyStation = StationComboBox.SelectedItem as PO.Station;
-            gridOneStation.DataContext = MyStation;
-
-            if (MyStation != null)
+            PO.Station MyStation1 = (PO.Station)StationComboBox.SelectedItem;
+            stationgrid.DataContext = MyStation1;
+            // RefreshAllLinesOfStationGrid();
+            if (MyStation1.CodeStation != null)
             {
-                //RefreshAllLinesOfStationGrid();
+                linesDataGrid.DataContext = bl.GetAllLinesPerStation(int.Parse(MyStation1.CodeStation));
             }
         }
         private void longitudeTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -117,11 +138,6 @@ namespace UI
 
             //no other keys are allowed
             e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
-
-        }
-
-        private void CBChosenStat_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
         }
     }

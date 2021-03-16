@@ -33,17 +33,9 @@ namespace PL
         {     
             InitializeComponent();
             ts = new ObservableCollection<PO.BusLine>();
-         
-            //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bl = _bl;
-           // List<BO.BusStationLine> BSL1 = bl.GetBusStationLineList();
           
-            RefreshAllLinesComboBox();
-            //area.DisplayMemberPath = "Area";
-            //BusLineComboBox.DisplayMemberPath = "BusNumber";//show only specific Property of object
-            //BusLineComboBox.SelectedValuePath = "LineId";//selection return only specific Property of object
-            //BusLineComboBox.SelectedIndex = 0; //index of the object to be selected
-            
+            RefreshAllLinesComboBox();        
             lineStationDataGrid.IsReadOnly = true;
         }
 
@@ -161,7 +153,7 @@ namespace PL
             {
                 BO.BusStationLine lineStationBO = ((sender as Button).DataContext as BO.BusStationLine);
                 bl.DeleteBusStationLine(lineStationBO.BusStationNum, int.Parse(lineStationBO.ID), lineStationBO.IndexInLine);
-
+                
                 bs.Clear();
                 foreach (var item in bl.GetBusStationLineList(lineStationBO.ID))
                 {

@@ -859,7 +859,7 @@ namespace DL
             XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
 
             XElement followings = (from fs in FollowingSElem.Elements()
-                                   where (fs.Element("FirstStationCode").Value) == FollowingStations.FirstStationCode && fs.Element("SecondStationCode").Value == FollowingStations.SecondStationCode
+                                   where (fs.Element("FirstStationCode").Value) == FollowingStations.FirstStationCode && fs.Element("SecondStationCode").Value == FollowingStations.SecondStationCode||(fs.Element("SecondStationCode").Value) == FollowingStations.FirstStationCode && fs.Element("FirstStationCode").Value == FollowingStations.SecondStationCode
                                    select fs).FirstOrDefault();
 
             if (followings == null)

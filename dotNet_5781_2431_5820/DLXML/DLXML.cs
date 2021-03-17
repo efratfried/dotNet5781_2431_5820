@@ -701,24 +701,16 @@ namespace DL
         #endregion
 
         #region Accident
-        public Accident GetAccident(int Accidentnum)
+        public DO.Accident GetAccident(int LicenseNum)
         {
-            XElement AccidentRootElem = XMLTools.LoadListFromXMLElement(AccidentPath);
-            Accident accident1 = (from accident in AccidentRootElem.Elements()
-                                  where (accident.Element("num").Value) == Accidentnum.ToString()
-                                  select new Accident()
-                                  {
-                                      LicenseNum = (accident.Element("LicenseNum").Value),
-                                      AccidentDate = DateTime.Parse((accident.Element("date").Value)),
-                                      AccidentNum = int.Parse((accident.Element("num").Value))
-                                  }
-                        ).FirstOrDefault();
+            List<Accident> accident = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
 
-            if (accident1 == null)
-                throw new DO.BadLicenseNumException(Accidentnum.ToString(), $"wrong user's name or password: {Accidentnum}");
-            return accident1;
+            DO.Accident stu = accident.Find(a => a.LicenseNum == LicenseNum.ToString());
+            if (stu != null)
+                return stu; //no need to Clone()
+            else
+                throw new DO.BadBusLicenseNumException(LicenseNum.ToString(), $"bad accident LicenseNum: {LicenseNum}");
         }
-
         public IEnumerable<Accident> GetAllAccidentsList(Predicate<Accident> predicate)
         {
             List<Accident> AccidentsList = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
@@ -727,61 +719,15 @@ namespace DL
                    select accident;
         }
 
-        public IEnumerable<Accident> GetAllAccidents()
-        {
-            XElement AccidentRootElem = XMLTools.LoadListFromXMLElement(AccidentPath);
-
-            return (from accident in AccidentRootElem.Elements()
-                    select new Accident()
-                    {
-                        LicenseNum = (accident.Element("LicenseNum").Value),
-                        AccidentDate = DateTime.Parse((accident.Element("date").Value)),
-                        AccidentNum = int.Parse((accident.Element("num").Value))
-                    }
-                   );
-        }
-
-        public IEnumerable<object> GetAccidentListWithSelectedFields(Func<Accident, object> generate)
-        {
-            List<Accident> AccidentsList = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
-            return from accident in AccidentsList
-                   select accident;
-        }
-
         public void AddAccident(Accident Accident)
         {
-            XElement AccidentRootElem = XMLTools.LoadListFromXMLElement(AccidentPath);
+                List<Accident> Accidents = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
 
-            XElement accident1 = (from accident in AccidentRootElem.Elements()
-                                  where (accident.Element("user's name").Value) == Accident.AccidentDate.ToString()
-                                  select accident).FirstOrDefault();
+                if (Accidents.FirstOrDefault(cis => (cis.LicenseNum == Accident.LicenseNum && cis.AccidentDate == Accident.AccidentDate &&cis.AccidentNum==Accident.AccidentNum)) != null)
+                    throw new DO.BadBusStationLineCodeException(Accident.LicenseNum, Accident.AccidentDate.ToString(), "accident details is already =exist");
+            Accidents.Add(Accident);
 
-            if (accident1 != null)
-                throw new DO.BadBusLicenseNumException(Accident.AccidentDate.ToString(), "date");
-
-            XElement UserElem = new XElement("accident",
-                                   new XElement("name", Accident.AccidentDate.ToString()));
-
-            AccidentRootElem.Add(AccidentRootElem);
-
-            XMLTools.SaveListToXMLElement(AccidentRootElem, AccidentPath);
-        }
-
-        public void UpdateAccident(Accident Accident)
-        {
-            List<Accident> AccidentsList = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
-
-            int index = AccidentsList.FindIndex(cis => (cis.AccidentNum == Accident.AccidentNum && cis.AccidentDate == Accident.AccidentDate && cis.LicenseNum == Accident.LicenseNum));
-
-
-            if (index != -1)
-            {
-                AccidentsList[index] = Accident;
-            }
-            else
-                throw new DO.BadLicenseNumException(Accident.AccidentNum.ToString(), "wrong accident id details");
-
-            XMLTools.SaveListToXMLSerializer(AccidentsList, AccidentPath);
+                XMLTools.SaveListToXMLSerializer(Accidents, AccidentPath);
         }
 
         public void DeleteAccident(int Accidentnum)
@@ -795,7 +741,7 @@ namespace DL
                 AccidentsList.Remove(a);
             }
             else
-                throw new DO.BadLicenseNumException(Accidentnum.ToString(), $"wrong outgoingline's ID : {Accidentnum}");
+                throw new DO.BadLicenseNumException(Accidentnum.ToString(), $"Wrong accident's ID : {Accidentnum}");
 
             XMLTools.SaveListToXMLSerializer(AccidentsList, AccidentPath);
         }

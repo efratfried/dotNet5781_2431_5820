@@ -82,22 +82,15 @@ namespace BLAPI
         IEnumerable<BO.User> GetAllUsers();
 
         #endregion*/
-        /*
+
         #region outgoingline
-        BO.OutGoingLine GetOutGoingLine(string id);
-        IEnumerable<BO.OutGoingLine> GetAllOutGoingLines();
-        IEnumerable<BO.OutGoingLine> GetOutGoingLineIDList();
-       // IEnumerable<BO.OutGoingLine> GetOutGoingLinesBy(Predicate<BO.OutGoingLine> predicate);
-        void UpdateOutGoingLinePersonalDetails(BO.OutGoingLine outgoingline);
-        void DeleteOutGoingLine(BO.OutGoingLine outgoingline);
-        void AddOutGoingLine(BO.Bus outgoingline);
-        #endregion*/
-        /*
-        #region Accident
-        BO.Bus GetAccident(BO.Bus bus,int num);
-        IEnumerable<BO.Bus> GetAccidentBy(Predicate<BO.Bus> predicate);
-        void AddAccident(BO.Bus bus);
-        #endregion*/
         IEnumerable<BO.OutGoingLine> GetAllfrequencies(int lineNum);
+        #endregion
+
+        #region Accident
+        IEnumerable<BO.Accident> GetAllAccidentsList(Predicate<DO.Accident> predicate);
+        void AddAccident(BO.Accident Accident);
+        void DeleteAccident(int Accidentnum);
+        #endregion
     }
 }

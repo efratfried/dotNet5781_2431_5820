@@ -192,4 +192,18 @@ namespace DO
 
         public override string ToString() => base.ToString() + $",wrong details : {LicenseNum}";
     }
+    public class BadAccident : Exception
+    {
+        public int id;
+        public string licensenum;
+        public BadAccident(int L, string s) : base() { id = L; licensenum = s; }
+        public BadAccident(int L, string s, string message) :
+            base(message)
+        { id = L; licensenum = s; }
+        public BadAccident(int L, string s, string message, Exception innerException) :
+            base(message, innerException)
+        { id = L; licensenum = s; }
+
+        public override string ToString() => base.ToString() + $",wrong details : {id}";
+    }
 }

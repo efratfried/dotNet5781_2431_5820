@@ -997,5 +997,69 @@ namespace BL
             return outGoingLine;
         }
         #endregion
+
+        #region Accident
+        BO.Accident AccidentDoBoAdapter(DO.Accident AccidentDO)
+        {
+            BO.Accident AccidentBO = new BO.Accident();
+            string LicenseNum = AccidentDO.LicenseNum;
+            try
+            {
+                AccidentDO = dl.GetAccident(LicenseNum);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("Wrong Accident's details", Ex);
+            }
+
+            AccidentDO.CopyPropertiesTo(AccidentBO);
+            return AccidentBO;
+        }
+        public IEnumerable<DO.Accident> GetAllAccidentsList(Predicate<DO.Accident> predicate)
+        {
+
+            List<BO.Accident> accidents = new List<Accident>();
+            List<DO.Accident> accidents1 = dl.GetAllAccidentsList(predicate).ToList();
+            for (int i = 0; i < accidents1.Count; i++)
+            {
+                accidents.Add(AccidentDoBoAdapter(accidents1[i]));
+                accidents1[i].CopyPropertiesTo(accidents[i]);
+            }
+            return from l in accidents1
+                   where predicate(l)
+                   orderby(l.AccidentDate)
+                   select l;
+        }
+        public void AddAccident(DO.Accident Accident)
+        {
+            DO.Accident AccidentDO = new DO.Accident();
+
+            Accident.CopyPropertiesTo(AccidentDO);
+
+            try
+            {
+                dl.AddAccident(AccidentDO);              
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadAccident("accident details are wrong", Ex);
+            }
+        }
+        public void DeleteAccident(int Accidentnum)
+        {
+            try
+            {
+                int id = Accidentnum;
+                dl.DeleteAccident(id);
+                //  dl.DeleteBusStationLine(id);
+            }
+            catch (DO.BadAccident ex)
+            {
+                throw new BO.BadAccident("Accident wring details", ex);
+            }
+        }
+        #endregion
     }
 }

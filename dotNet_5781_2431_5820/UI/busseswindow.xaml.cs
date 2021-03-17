@@ -38,7 +38,7 @@ namespace PL
 
             // studentCourseDataGrid.IsReadOnly = true;
             // courseDataGrid.IsReadOnly = true;
-
+            
         }
         void RefreshBusDetailsGrid()
         {
@@ -90,7 +90,7 @@ namespace PL
             busses_list.ItemsSource = buses1;
             busses_list.DisplayMemberPath = "LicenseNum";
             busses_list.SelectedIndex = 0;
-
+            Licensenumbus.Text = currentbus.LicenseNum;
         }
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

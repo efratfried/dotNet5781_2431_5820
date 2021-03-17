@@ -219,5 +219,19 @@ namespace BO
             return Message + "\n";
         }
     }
+    public class BadAccident : Exception
+    {
+        public string BusID;
+        public string LicenseNum;
+        public BadAccident(string BID, string LID) : base() { BusID = BID; LicenseNum = LID; }
+        public BadAccident(string BID, string LID, string message) :
+            base(message)
+        { BusID = BID; LicenseNum = LID; }
+        public BadAccident(string BID, string LID, string message, Exception innerException) :
+            base(message, innerException)
+        { BusID = BID; LicenseNum = LID; }
+
+        public override string ToString() => base.ToString() + $", bad accident id: {BusID} and accident number: {LicenseNum}";
+    }
 
 }

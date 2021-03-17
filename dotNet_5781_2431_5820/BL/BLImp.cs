@@ -1016,22 +1016,22 @@ namespace BL
             AccidentDO.CopyPropertiesTo(AccidentBO);
             return AccidentBO;
         }
-        public IEnumerable<DO.Accident> GetAllAccidentsList(Predicate<DO.Accident> predicate)
+        public IEnumerable<BO.Accident> GetAllAccidentsList(Predicate<BO.Accident> predicate)
         {
 
             List<BO.Accident> accidents = new List<Accident>();
-            List<DO.Accident> accidents1 = dl.GetAllAccidentsList(predicate).ToList();
+            List<DO.Accident> accidents1 = dl.GetAllAccidentsList().ToList();
             for (int i = 0; i < accidents1.Count; i++)
             {
                 accidents.Add(AccidentDoBoAdapter(accidents1[i]));
                 accidents1[i].CopyPropertiesTo(accidents[i]);
             }
-            return from l in accidents1
+            return from l in accidents
                    where predicate(l)
                    orderby(l.AccidentDate)
                    select l;
         }
-        public void AddAccident(DO.Accident Accident)
+        public void AddAccident(BO.Accident Accident)
         {
             DO.Accident AccidentDO = new DO.Accident();
 
@@ -1041,7 +1041,7 @@ namespace BL
             {
                 dl.AddAccident(AccidentDO);              
             }
-            catch (DO.BadLicenseNumException ex)
+            catch (DO.BadAccident ex)
             {
                 string Ex = ex.ToString();
                 throw new BO.BadAccident("accident details are wrong", Ex);
@@ -1057,7 +1057,7 @@ namespace BL
             }
             catch (DO.BadAccident ex)
             {
-                throw new BO.BadAccident("Accident wring details", ex);
+                throw new BO.BadAccident("Accident wring details" ,ex.ToString());
             }
         }
         #endregion

@@ -88,7 +88,8 @@ namespace BLAPI
         #endregion
 
         #region Accident
-        IEnumerable<BO.Accident> GetAllAccidentsList(Predicate<DO.Accident> predicate);
+
+        IEnumerable<BO.Accident> GetAllAccidentsList(Predicate<BO.Accident> predicate);
         void AddAccident(BO.Accident Accident);
         void DeleteAccident(int Accidentnum);
         #endregion

@@ -202,6 +202,11 @@ namespace PL
         {
         }
 
+        private void Accident_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
         //  currentbus = DataContext as Bus;
     }
 }

@@ -239,10 +239,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="תאונה.png" />
     <Resource Include="firm.png" />
     <Resource Include="foul.png" />
     <Resource Include="km.png" />
     <Resource Include="drive abialability.png" />
+    <Resource Include="logo.png" />
     <Content Include="The Travego Coach - Official Trailer _ Mercedes-Benz Buses.mp4" />
     <Resource Include="user_icon2.png" />
     <Resource Include="user.png" />

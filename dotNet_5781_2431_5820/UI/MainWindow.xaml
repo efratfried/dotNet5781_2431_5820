@@ -18,9 +18,8 @@
         </Grid.RowDefinitions>
         <MediaElement Name="mePlayer" Source="c:\users\user1\source\repos\efratfried\dotnet5781_2431_5820\dotnet_5781_2431_5820\ui\the travego coach - official trailer _ mercedes-benz buses.mp4" Margin="-44,0,-30,-0.4" Grid.RowSpan="2"/>
 
-
         <!--<MediaElement LoadedBehavior="Play" Source="The Travego Coach - Official Trailer _ Mercedes-Benz Buses.mp4" Margin="87,-32,77,-27.4" Grid.RowSpan="2" Name="mePlayer"/>-->
-        <Label Name="lblStatus" HorizontalContentAlignment="Center" Margin="5" />
+        <Label Name="lblStatus" HorizontalContentAlignment="Center" Margin="10,61.4,0,255.6" Grid.Row="1" />
         <!--<Button x:Name="connect" HorizontalAlignment="Left" Margin="902,2,-243,0" VerticalAlignment="Top" BorderBrush="Transparent" Width="67" Height="51" FontSize="18" Click="Button_Click" Background="Transparent">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
@@ -32,7 +31,6 @@
                 </Style>
             </Button.Style>
         </Button>-->
-        <Label x:Name="Welcone" Content="Welcome to Path Finder" FontSize="60" Margin="129,211.4,138,90.6" Grid.Row="1" Foreground="White" FontWeight="Bold" FontFamily="Century Gothic"/>
         <Image x:Name="login" Source="logout.PNG" Margin="918,6,0.4,0" RenderTransformOrigin="0.548,0.483" Height="53" VerticalAlignment="Top" />
         <Button x:Name="content" Margin="920,0,0,10.6" Click="Button_Click" Background="Transparent">
             <Button.Template>
@@ -67,5 +65,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+        <Image Source="logo.png" Margin="209,9.4,251,173.6" Grid.Row="1"/>
+        <Label x:Name="Welcone" Content="Welcome to Path Finder" FontSize="60" Margin="120,211.4,148,90.6" Grid.Row="1" Foreground="White" FontWeight="Bold" FontFamily="Century Gothic"/>
     </Grid>
 </Window>

@@ -16,975 +16,988 @@ namespace DL
         #region singelton
         static readonly DLXML instance = new DLXML();
 
-        static DLXML() { }
+        static DLXML()
 
-
-        // static ctor to ensure instance init is done just before first usage
-        DLXML() { } // default => private
-        public static DLXML Instance { get => instance; }// The public Instance property to use        
-        #endregion
-
-        #region DS XML Files
-
-        static string BususPath = @"BusesXml.xml"; //XElement
-        static string BusLinesbusPath = @"BusLinesXml.xml"; //XMLSerializer
-        static string StationsPath = @"StationsXml.xml"; //XMLSerializer
-        static string DrivingBussbusath = @"DrivingBusesXml.xml"; //XMLSerializer
-        //static string OutGoingBusesPath = @"OutGoingBusesXml.xml"; //XMLSerializer
-        static string BusStationLinePath = @"BusStationLineXml.xml"; //XMLSerializer
-        static string UserPath = @"UserXml.xml"; //XElement
-        static string AccidentPath = @"AccidentXml.xml"; //XMLSerializer
-                                                         //string UserDrivePath = @"UserLineXml.xml"; //XMLSerializer
-        static string FollowingStationsPath = "@FollowingStationssXml.xml";
-        static string runningNumbersPath = "@RunningNumbers.xml";
-
-        public List<FollowingStations> followingStations = new List<FollowingStations>();
-        //public static List<User> UsersList;
-        //public static List<BusStationLine> BusStationsLineList;
-        /*List<DO.User> list1 = DS.DataSource.Users;
-        file = new FileStream(@"..\..\..\bin\xml\UserXml.xml", FileMode.Create);
-        x = new XmlSerializer(list1.GetType());
-        x.Serialize(file, list1);
-            file.Close();*/
-
-        /* public static List<Bus> BussesList;
-         public static List<Station> StationsList;
-         public static List<BusLine> BusLinesList;
-        
-         public static List<OutGoingLine> OutGoingLinesList;
-
-         //public static List<UserDrive> UserDrivesList;
-         public static List<Accident> AccidentsList;
-         public static List<Treat> TreatsList;
-         public static List<DrivingBus> DrivingsList;
-         public List<FollowingStations> followingStations;*/
-
-        #endregion
-        #region Bus
-        public DO.Bus GetBus(string LicenseNum)
         {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
-            Bus bus1 = (from bus in BussRootElem.Elements()
-                        where (bus.Element("LicenseNum").Value) == LicenseNum
-                        select new Bus()
-                        {
-                            LicenseNum = (bus.Element("LicenseNum").Value),
-                            foul = Double.Parse(bus.Element("foul").Value),
-                            KM = Int32.Parse(bus.Element("KM").Value),
-                            LicenseDate = DateTime.Parse(bus.Element("LicenseDate").Value),
-                            Firm = (Firm)Enum.Parse(typeof(Firm), bus.Element("Firm").Value),
-                          
-                            //Status is a property in bo made by a function
-                        }
-                        ).FirstOrDefault();
+            public static List<Accident> AccidentsList = new List<Accident>
+            {
+                new Accident
+                {
+                    LicenseNum = "20090890",
+                    AccidentDate = new DateTime(2020, 2, 1),
+                    AccidentNum = 0,
+                }
+            };
+   
+            XMLTools.SaveListToXMLSerializer(AccidentsList, AccidentPath);
+            
 
-            if (bus1 == null)
-                throw new DO.BadBusLicenseNumException(LicenseNum, $"bad Bus License Num: {LicenseNum}");
-            return bus1;
-        }
-        /* public IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate)
-         {
-             List<Bus> BussesList = XMLTools.LoadListFromXMLSerializer<Bus>(BususPath);
+    // static ctor to ensure instance init is done just before first usage
+    DLXML() { } // default => private
+    public static DLXML Instance { get => instance; }// The public Instance property to use        
+    #endregion
 
-             return from bs in BussesList
-                    select bs;
-         }*/
-        public IEnumerable<DO.Bus> GetAllBusses()
-        {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
+    #region DS XML Files
 
-            return (from bus in BussRootElem.Elements()
+    static string BususPath = @"BusesXml.xml"; //XElement
+    static string BusLinesbusPath = @"BusLinesXml.xml"; //XMLSerializer
+    static string StationsPath = @"StationsXml.xml"; //XMLSerializer
+    static string DrivingBussbusath = @"DrivingBusesXml.xml"; //XMLSerializer
+                                                              //static string OutGoingBusesPath = @"OutGoingBusesXml.xml"; //XMLSerializer
+    static string BusStationLinePath = @"BusStationLineXml.xml"; //XMLSerializer
+    static string UserPath = @"UserXml.xml"; //XElement
+    static string AccidentPath = @"AccidentXml.xml"; //XMLSerializer
+                                                     //string UserDrivePath = @"UserLineXml.xml"; //XMLSerializer
+    static string FollowingStationsPath = "@FollowingStationssXml.xml";
+    //static string runningNumbersPath = "@RunningNumbers.xml";
+
+    //public List<FollowingStations> followingStations = new List<FollowingStations>();
+    //public static List<User> UsersList;
+    //public static List<BusStationLine> BusStationsLineList;
+    /*List<DO.User> list1 = DS.DataSource.Users;
+    file = new FileStream(@"..\..\..\bin\xml\UserXml.xml", FileMode.Create);
+    x = new XmlSerializer(list1.GetType());
+    x.Serialize(file, list1);
+        file.Close();*/
+
+    /* public static List<Bus> BussesList;
+     public static List<Station> StationsList;
+     public static List<BusLine> BusLinesList;
+
+     public static List<OutGoingLine> OutGoingLinesList;
+
+     //public static List<UserDrive> UserDrivesList;
+     public static List<Accident> AccidentsList;
+     public static List<Treat> TreatsList;
+     public static List<DrivingBus> DrivingsList;
+     public List<FollowingStations> followingStations;*/
+
+    #endregion
+    #region Bus
+    public DO.Bus GetBus(string LicenseNum)
+    {
+        XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
+        Bus bus1 = (from bus in BussRootElem.Elements()
+                    where (bus.Element("LicenseNum").Value) == LicenseNum
                     select new Bus()
                     {
                         LicenseNum = (bus.Element("LicenseNum").Value),
                         foul = Double.Parse(bus.Element("foul").Value),
                         KM = Int32.Parse(bus.Element("KM").Value),
                         LicenseDate = DateTime.Parse(bus.Element("LicenseDate").Value),
-                        Firm = (Firm)Enum.Parse(typeof(Firm), bus.Element("Firm").Value)
+                        Firm = (Firm)Enum.Parse(typeof(Firm), bus.Element("Firm").Value),
+
                         //Status is a property in bo made by a function
                     }
-                   );
-        }
-        public IEnumerable<DO.Bus> GetAllBussBy(Predicate<DO.Bus> predicate)
+                    ).FirstOrDefault();
+
+        if (bus1 == null)
+            throw new DO.BadBusLicenseNumException(LicenseNum, $"bad Bus License Num: {LicenseNum}");
+        return bus1;
+    }
+    /* public IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate)
+     {
+         List<Bus> BussesList = XMLTools.LoadListFromXMLSerializer<Bus>(BususPath);
+
+         return from bs in BussesList
+                select bs;
+     }*/
+    public IEnumerable<DO.Bus> GetAllBusses()
+    {
+        XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
+
+        return (from bus in BussRootElem.Elements()
+                select new Bus()
+                {
+                    LicenseNum = (bus.Element("LicenseNum").Value),
+                    foul = Double.Parse(bus.Element("foul").Value),
+                    KM = Int32.Parse(bus.Element("KM").Value),
+                    LicenseDate = DateTime.Parse(bus.Element("LicenseDate").Value),
+                    Firm = (Firm)Enum.Parse(typeof(Firm), bus.Element("Firm").Value)
+                    //Status is a property in bo made by a function
+                }
+               );
+    }
+    public IEnumerable<DO.Bus> GetAllBussBy(Predicate<DO.Bus> predicate)
+    {
+        XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
+
+        return from bus in BussRootElem.Elements()
+               let bus1 = new Bus()
+               {
+                   LicenseNum = (bus.Element("LicenseNum").Value),
+                   foul = Double.Parse(bus.Element("foul").Value),
+                   KM = Int32.Parse(bus.Element("KM").Value),
+                   LicenseDate = DateTime.Parse(bus.Element("LicenseDate").Value),
+                   Firm = (Firm)Enum.Parse(typeof(Firm), bus.Element("Firm").Value)
+                   //Status is a property in bo made by a function
+               }
+               where predicate(bus1)
+               select bus1;
+    }
+    public IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate)
+    {
+        List<Bus> BussesList = XMLTools.LoadListFromXMLSerializer<Bus>(BususPath);
+        return from bs in BussesList
+               select bs;
+    }
+    public void AddBus(DO.Bus Bus)
+    {
+        XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
+
+        XElement bus1 = (from bus in BussRootElem.Elements()
+                         where (bus.Element("LicenseNum").Value) == Bus.LicenseNum
+                         select bus).FirstOrDefault();
+
+        if (bus1 != null)
+            throw new DO.BadBusLicenseNumException(Bus.LicenseNum, "Duplicate Bus LicenseNum");
+
+        XElement BusElem = new XElement("Bus",
+                               new XElement("LicenseNum", Bus.LicenseNum.ToString()),
+                               new XElement("foul", Bus.foul.ToString()),
+                               new XElement("KM", Bus.KM.ToString()),
+                               new XElement("Firm", Bus.Firm.ToString()),
+                               new XElement("LicenseDate", Bus.LicenseDate));
+        //Status is a property in bo made by a function
+        BussRootElem.Add(BusElem);
+
+        XMLTools.SaveListToXMLElement(BussRootElem, BususPath);
+    }
+    public void DeleteBus(string LicenseNum)
+    {
+        XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
+
+        XElement bus1 = (from bus in BussRootElem.Elements()
+                         where (bus.Element("LicenseNum").Value) == LicenseNum
+                         select bus).FirstOrDefault();
+
+        if (bus1 != null)
         {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
-
-            return from bus in BussRootElem.Elements()
-                   let bus1 = new Bus()
-                   {
-                       LicenseNum = (bus.Element("LicenseNum").Value),
-                       foul = Double.Parse(bus.Element("foul").Value),
-                       KM = Int32.Parse(bus.Element("KM").Value),
-                       LicenseDate = DateTime.Parse(bus.Element("LicenseDate").Value),
-                       Firm = (Firm)Enum.Parse(typeof(Firm), bus.Element("Firm").Value)
-                       //Status is a property in bo made by a function
-                   }
-                   where predicate(bus1)
-                   select bus1;
+            bus1.Remove();
+            XMLTools.SaveListToXMLElement(BussRootElem, BususPath);
         }
-        public IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate)
+        else
+            throw new DO.BadBusLicenseNumException(LicenseNum, $"bad Bus's LicenseNum: {LicenseNum}");
+    }
+    public void UpdateBus(DO.Bus Bus)
+    {
+        XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
+
+        XElement bus = (from bus1 in BussRootElem.Elements()
+                        where (bus1.Element("LicenseNum").Value) == Bus.LicenseNum
+                        select bus1).FirstOrDefault();
+
+        if (bus != null)
         {
-            List<Bus> BussesList = XMLTools.LoadListFromXMLSerializer<Bus>(BususPath);
-            return from bs in BussesList
-                   select bs;
-        }
-        public void AddBus(DO.Bus Bus)
-        {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
-
-            XElement bus1 = (from bus in BussRootElem.Elements()
-                             where (bus.Element("LicenseNum").Value) == Bus.LicenseNum
-                             select bus).FirstOrDefault();
-
-            if (bus1 != null)
-                throw new DO.BadBusLicenseNumException(Bus.LicenseNum, "Duplicate Bus LicenseNum");
-
-            XElement BusElem = new XElement("Bus",
-                                   new XElement("LicenseNum", Bus.LicenseNum.ToString()),
-                                   new XElement("foul", Bus.foul.ToString()),
-                                   new XElement("KM", Bus.KM.ToString()),
-                                   new XElement("Firm", Bus.Firm.ToString()),
-                                   new XElement("LicenseDate", Bus.LicenseDate));
+            bus.Element("LicenseNum").Value = Bus.LicenseNum;
+            bus.Element("foul").Value = Bus.foul.ToString();
+            bus.Element("KM").Value = Bus.KM.ToString();
+            bus.Element("LicenseDate").Value = Bus.LicenseDate.ToString();
+            bus.Element("Firm").Value = Bus.Firm.ToString();
             //Status is a property in bo made by a function
-            BussRootElem.Add(BusElem);
 
             XMLTools.SaveListToXMLElement(BussRootElem, BususPath);
         }
-        public void DeleteBus(string LicenseNum)
+        else
+            throw new DO.BadBusLicenseNumException(Bus.LicenseNum, $"bad Bus's LicenseNum: {Bus.LicenseNum}");
+    }
+
+    #endregion Bus
+
+    #region busline
+    public DO.BusLine GetBusLine(int LicenseNum)
+    {
+        List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
+
+        DO.BusLine stu = ListBusLines.Find(bus => bus.ID == LicenseNum);
+        if (stu != null)
+            return stu; //no need to Clone()
+        else
+            throw new DO.BadBusLicenseNumException(LicenseNum.ToString(), $"bad BusLine LicenseNum: {LicenseNum}");
+    }
+
+    public int AddBusLine(DO.BusLine BusLine)
+    {
+        List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
+        BusLine.ID = ListBusLines.Max(I => I.ID) + 1;
+        //if (ListBusLines.FirstOrDefault(s => s.BusNum == BusLine.BusNum) != null)
+        // throw new DO.BadBusLicenseNumException(BusLine.BusNum.ToString(), "Duplicate BusLine LicenseNum");
+
+        ListBusLines.Add(BusLine); //no need to Clone()
+
+        XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);
+        return BusLine.ID;
+    }
+    public IEnumerable<DO.BusLine> GetAllBusLines()
+    {
+        List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
+
+        return from BusLine in ListBusLines
+               select BusLine; //no need to Clone()
+    }
+    public IEnumerable<object> GetBusLineFields(Func<int, DO.BusLine, object> generate)
+    {
+        List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
+
+        return from busline in ListBusLines
+               select generate(busline.BusNum, GetBusLine(busline.BusNum));
+    }
+    public IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object, object> generate)
+    {
+        List<BusLine> BusLinesList = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
+        return from bs in BusLinesList
+               select bs;
+    }
+    public void UpdateBusLine(DO.BusLine BusLine)
+    {
+        List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
+
+        DO.BusLine stu = ListBusLines.Find(bus => bus.ID == BusLine.ID);
+        if (stu != null)
         {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
-
-            XElement bus1 = (from bus in BussRootElem.Elements()
-                             where (bus.Element("LicenseNum").Value) == LicenseNum
-                             select bus).FirstOrDefault();
-
-            if (bus1 != null)
-            {
-                bus1.Remove();
-                XMLTools.SaveListToXMLElement(BussRootElem, BususPath);
-            }
-            else
-                throw new DO.BadBusLicenseNumException(LicenseNum, $"bad Bus's LicenseNum: {LicenseNum}");
+            ListBusLines.Remove(stu);
+            ListBusLines.Add(BusLine); //no nee to Clone()
         }
-        public void UpdateBus(DO.Bus Bus)
+        else
+            throw new DO.BadBusLicenseNumException(BusLine.BusNum.ToString(), $"bad BusLine LicenseNum: {BusLine.BusNum}");
+
+        XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);
+    }
+    public void UpdateBusLine(int LicenseNum, Action<DO.BusLine> update)
+    {
+        //throw new NotImplementedExcebustion();
+    }
+    public void DeleteBusLine(string LicenseNum)
+    {
+        List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
+
+        DO.BusLine stu = ListBusLines.Find(bus => bus.BusNum.ToString() == LicenseNum);
+
+        if (stu != null)
         {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
-
-            XElement bus = (from bus1 in BussRootElem.Elements()
-                            where (bus1.Element("LicenseNum").Value) == Bus.LicenseNum
-                            select bus1).FirstOrDefault();
-
-            if (bus != null)
-            {
-                bus.Element("LicenseNum").Value = Bus.LicenseNum;
-                bus.Element("foul").Value = Bus.foul.ToString();
-                bus.Element("KM").Value = Bus.KM.ToString();
-                bus.Element("LicenseDate").Value = Bus.LicenseDate.ToString();
-                bus.Element("Firm").Value = Bus.Firm.ToString();
-                //Status is a property in bo made by a function
-
-                XMLTools.SaveListToXMLElement(BussRootElem, BususPath);
-            }
-            else
-                throw new DO.BadBusLicenseNumException(Bus.LicenseNum, $"bad Bus's LicenseNum: {Bus.LicenseNum}");
+            ListBusLines.Remove(stu);
         }
+        else
+            throw new DO.BadBusLicenseNumException(LicenseNum.ToString(), $"bad BusLine LicenseNum: {LicenseNum}");
 
-        #endregion Bus
+        XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);
+    }
+    #endregion BusLine
 
-        #region busline
-        public DO.BusLine GetBusLine(int LicenseNum)
+    #region BusStationLine
+    public IEnumerable<DO.BusStationLine> GetBusLinesInStationList(Predicate<DO.BusStationLine> predicate)
+    {
+        List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+
+        return from sic in busStationLines
+               where predicate(sic)
+               select sic; //no need to Clone()
+    }
+    public void AddBusStationLine(BusStationLine busStationLine)
+    {
+        List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+
+        if (busStationLines.FirstOrDefault(cis => (cis.BusStationNum == busStationLine.BusStationNum.ToString() && cis.ID == busStationLine.ID.ToString())) != null)
+            throw new DO.BadBusStationLineCodeException(busStationLine.BusStationNum, busStationLine.ID.ToString(), "Bus LicenseNum is already registered to Station LicenseNum");
+        busStationLines.Add(busStationLine);
+
+        XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
+    }
+    public void UpdateBusStationLine(BusStationLine busStationLine)
+    {
+        List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+
+        int index = busStationLines.FindIndex(cis => (cis.BusStationNum == busStationLine.BusStationNum && cis.ID == busStationLine.ID));
+
+
+        if (index != -1)
         {
-            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
-
-            DO.BusLine stu = ListBusLines.Find(bus => bus.ID == LicenseNum);
-            if (stu != null)
-                return stu; //no need to Clone()
-            else
-                throw new DO.BadBusLicenseNumException(LicenseNum.ToString(), $"bad BusLine LicenseNum: {LicenseNum}");
+            busStationLines[index] = busStationLine;
         }
+        else
+            throw new DO.BadBusStationLineCodeException(busStationLine.BusStationNum, busStationLine.ID, "Bus LicenseNum is NOT registered to Station LicenseNum");
 
-        public int AddBusLine(DO.BusLine BusLine)
+        XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
+    }
+    public void DeleteBusStationLine(int LineNum, int StationCode)
+    {
+        List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+
+        DO.BusStationLine sic = busStationLines.Find(cis => (cis.BusStationNum == StationCode.ToString() && cis.ID == LineNum.ToString()));
+
+        if (sic != null)
         {
-            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
-            BusLine.ID = ListBusLines.Max(I => I.ID) + 1;
-            //if (ListBusLines.FirstOrDefault(s => s.BusNum == BusLine.BusNum) != null)
-            // throw new DO.BadBusLicenseNumException(BusLine.BusNum.ToString(), "Duplicate BusLine LicenseNum");
-
-            ListBusLines.Add(BusLine); //no need to Clone()
-
-            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);
-            return BusLine.ID;
+            busStationLines.Remove(sic);
         }
-        public IEnumerable<DO.BusLine> GetAllBusLines()
+        else
+            throw new DO.BadBusStationLineCodeException(StationCode.ToString(), LineNum.ToString(), "Bus LicenseNum is NOT registered to Station LicenseNum");
+
+        XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
+
+    }
+    public void DeleteBusLineFromAllStations(int busLinenum)
+    {
+        List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+
+        busStationLines.RemoveAll(bus => bus.ID == busLinenum.ToString());
+
+        XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
+
+    }
+    public IEnumerable<DO.BusStationLine> GetLineStationsListOfALine(string lineId)//returns a "line stations" list of the wanted line
+    {
+        List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+
+        return from bsl in BusStationsLineList
+               select bsl;
+    }
+    public IEnumerable<DO.BusStationLine> GetAllBusStationLines(string busstationline)
+    {//returns all members in list
+        List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+        return from bs in BusStationsLineList
+
+               select bs;
+    }
+    public IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate)
+    {
+        List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+        return from bs in BusStationsLineList
+               where predicate(bs)
+               select bs;
+    }
+    public DO.BusStationLine GetBusStationLine(string Id)
+    {
+        XElement BussRootElem = XMLTools.LoadListFromXMLElement(BusStationLinePath);
+        BusStationLine bus1 = (from busstationline in BussRootElem.Elements()
+                               where (busstationline.Element("ID").Value) == Id
+                               select new BusStationLine()
+                               {
+                                   BusStationNum = (busstationline.Element("BusStationNum").Value),
+                                   IndexInLine = int.Parse((busstationline.Element("IndexInLine").Value)),
+                                   //NumOfPassingLines = int.Parse((busstationline.Element("NumOfPassingLines").Value)),
+                               }
+                    ).FirstOrDefault();
+
+        if (bus1 == null)
+            throw new DO.BadBusStationLineCodeException(bus1.ID, $"bad Bus station line License Num: {Id}");
+        return bus1;
+    }
+    public void DeleteBusStationLine(string id, string LineNum)
+    {
+        List<BusStationLine> BussRootElem = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+        BussRootElem.RemoveAt(BussRootElem.FindIndex(l => l.ID == id && l.BusStationNum == LineNum));
+        XMLTools.SaveListToXMLSerializer(BussRootElem, BusStationLinePath);
+    }
+    public void DeleteBusStationLineFromAllStations(string StationID)
+    {
+        XElement BussRootElem = XMLTools.LoadListFromXMLElement(BusStationLinePath);
+        BussRootElem.RemoveAll();
+    }
+    public IEnumerable<object> GetBusStationsLineListWithSelectedFields(Func<DO.BusStationLine, object> generate)
+    {
+        List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+        return from bs in BusStationsLineList
+               select bs;
+    }
+    public IEnumerable<DO.BusLine> GetLineStationsListThatMatchAStation(int code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
+    {
+        List<BusStationLine> listLineStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+
+        return from ls in listLineStations
+               where ls.BusStationNum == code.ToString()
+               let p = GetBusLine(int.Parse(ls.ID))
+               select p;
+    }
+
+    #endregion BusStationLine
+
+    #region Station
+    public IEnumerable<DO.Station> GetAllStations(Predicate<DO.Station> predicate)
+    {
+        List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
+        return from bs in StationsList
+               where predicate(bs)
+               select bs;
+    }
+    public DO.Station GetStation(string code)
+    {
+        List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
+        DO.Station stu = ListStations.Find(s => s.CodeStation == code);
+        if (stu != null)
+            return stu; //no need to Clone()
+        else
+            throw new DO.BadStationNumException(code, $"bad station code: {code}");
+        /*return ListStations.FirstOrDefault(c => c.CodeStation == code.ToString()); //no need to Clone()*/
+
+        //if not exist throw excebustion etc.
+    }
+    public IEnumerable<DO.Station> GetAllStations()
+    {
+        List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
+
+        return from Station in ListStations
+               select Station; //no need to Clone()
+    }
+    public IEnumerable<object> GetAllStationListWithSelectedFields(Func<DO.Station, object> generate)
+    {
+        List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
+        return from bs in StationsList
+               select bs;
+    }
+    public void UpdateStation(DO.Station Station)
+    {
+        List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
+        int index = StationsList.FindIndex(i => i.CodeStation == Station.CodeStation);
+
+        if (index == -1)
         {
-            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
-
-            return from BusLine in ListBusLines
-                   select BusLine; //no need to Clone()
+            throw new DO.BadCodeStationException(Station.CodeStation, "wrong station code : { StationCode}");
         }
-        public IEnumerable<object> GetBusLineFields(Func<int, DO.BusLine, object> generate)
+        else
         {
-            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
-
-            return from busline in ListBusLines
-                   select generate(busline.BusNum, GetBusLine(busline.BusNum));
+            StationsList[index] = Station;
         }
-        public IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object, object> generate)
+        XMLTools.SaveListToXMLSerializer(StationsList, StationsPath);
+    }
+    public void AddStation(DO.Station station)
+    {
+        List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
+        DO.Station station1 = StationsList.Find(i => i.CodeStation == station.CodeStation);
+
+        if (station1 != null)
         {
-            List<BusLine> BusLinesList = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
-            return from bs in BusLinesList
-                   select bs;
+            throw new DO.BadCodeStationException(station1.CodeStation, "wrong station code : { StationCode}");
         }
-        public void UpdateBusLine(DO.BusLine BusLine)
+        else
         {
-            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
-
-            DO.BusLine stu = ListBusLines.Find(bus => bus.ID == BusLine.ID);
-            if (stu != null)
-            {
-                ListBusLines.Remove(stu);
-                ListBusLines.Add(BusLine); //no nee to Clone()
-            }
-            else
-                throw new DO.BadBusLicenseNumException(BusLine.BusNum.ToString(), $"bad BusLine LicenseNum: {BusLine.BusNum}");
-
-            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);
+            StationsList.Add(station);
         }
-        public void UpdateBusLine(int LicenseNum, Action<DO.BusLine> update)
+        XMLTools.SaveListToXMLSerializer(StationsList, StationsPath);
+    }
+    public void DeleteStation(string stationCode)
+    {
+        List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
+        DO.Station station1 = StationsList.Find(i => i.CodeStation == stationCode);
+
+        if (station1 != null)
         {
-            //throw new NotImplementedExcebustion();
+            throw new DO.BadCodeStationException(station1.CodeStation, "wrong station code : { StationCode}");
         }
-        public void DeleteBusLine(string LicenseNum)
+        else
         {
-            List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
-
-            DO.BusLine stu = ListBusLines.Find(bus => bus.BusNum.ToString() == LicenseNum);
-
-            if (stu != null)
-            {
-                ListBusLines.Remove(stu);
-            }
-            else
-                throw new DO.BadBusLicenseNumException(LicenseNum.ToString(), $"bad BusLine LicenseNum: {LicenseNum}");
-
-            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);
+            StationsList.Remove(station1);
         }
-        #endregion BusLine
+        XMLTools.SaveListToXMLSerializer(StationsList, StationsPath);
+    }
+    #endregion Station
 
-        #region BusStationLine
-        public IEnumerable<DO.BusStationLine> GetBusLinesInStationList(Predicate<DO.BusStationLine> predicate)
+    /* #region DrivingBus
+     public IEnumerable<DO.OutGoingLine> GetDrivingBussInStationList(Predicate<DO.OutGoingLine> predicate)
+     {
+       List<OutGoingLine> outgoingLines = XMLTools.LoadListFromXMLSerializer<OutGoingLine>(OutGoingBusesPath);
+
+       return from sic in outgoingLines
+          where predicate(sic)
+            select sic; //no need to Clone()
+      }
+
+     #endregion*/
+
+    #region User
+    public IEnumerable<DO.User> GetAllUser()
+    {
+        XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
+
+        return (from user in UserRootElem.Elements()
+                select new User()
+                {
+                    Me = (Access)Enum.Parse(typeof(Access), user.Element("Me").Value),
+                    UserName = (user.Element("UserName").Value),
+                    Password = (user.Element("Password").Value)
+                }
+               );
+    }
+    public IEnumerable<DO.User> GetAllUser(Predicate<User> predicate)
+    {
+        List<User> UsersList = XMLTools.LoadListFromXMLSerializer<User>(UserPath);
+
+        return from user in UsersList
+               select user;
+    }
+    public User GetUser(string Name, string pass)
+    {
+        XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
+        User user1 = (from user in UserRootElem.Elements()
+                      where (user.Element("UserName").Value) == Name
+                      select new User()
+                      {
+                          Me = (Access)Enum.Parse(typeof(Access), user.Element("Me").Value),
+                          UserName = (user.Element("UserName").Value),
+                          Password = (user.Element("Password").Value),
+                      }
+                    ).FirstOrDefault();
+
+        if (user1 == null)
+            throw new DO.BadUserName_PasswordException(Name, pass, $"wrong user's name or password: {Name},{pass}");
+        return user1;
+    }
+    public void AddUser(DO.User user)
+    {
+        XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
+
+        XElement user1 = (from User in UserRootElem.Elements()
+                          where ((User.Element("UserName").Value) == user.UserName && (User.Element("Password").Value) == user.Password)
+                          select User).FirstOrDefault();
+
+        if (user1 != null)
+            throw new DO.BadUserName_PasswordException(user.UserName, "wrong user's name");
+
+        XElement EserElem = new XElement("user",
+                               new XElement("UserName", user.UserName),
+                               new XElement("Password", user.Password),
+                               new XElement("Me", user.Me));
+        UserRootElem.Add(EserElem);
+
+
+        XMLTools.SaveListToXMLElement(UserRootElem, UserPath);
+    }
+    public IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate)
+    {
+        List<User> UsersList = XMLTools.LoadListFromXMLSerializer<User>(UserPath);
+        return from user in UsersList
+               select user;
+    }
+    public void UpdateUser(DO.User User)
+    {
+        List<User> UsersList = XMLTools.LoadListFromXMLSerializer<User>(UserPath);
+
+        int index = UsersList.FindIndex(cis => (cis.UserName == User.UserName && cis.Password == User.Password));
+
+
+        if (index != -1)
         {
-            List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
-
-            return from sic in busStationLines
-                   where predicate(sic)
-                   select sic; //no need to Clone()
+            UsersList[index] = User;
         }
-        public void AddBusStationLine(BusStationLine busStationLine)
+        else
+            throw new DO.BadUserName_PasswordException(User.UserName, User.Password, "wrong user's details");
+
+        XMLTools.SaveListToXMLSerializer(UsersList, UserPath);
+    }
+    public void DeleteUser(string Name, string password)
+    {
+        List<User> UsersList = XMLTools.LoadListFromXMLSerializer<User>(UserPath);
+
+        DO.User u = UsersList.Find(user => user.UserName == Name);
+
+        if (u.Password != null)
         {
-            List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
-
-            if (busStationLines.FirstOrDefault(cis => (cis.BusStationNum == busStationLine.BusStationNum.ToString() && cis.ID == busStationLine.ID.ToString())) != null)
-                throw new DO.BadBusStationLineCodeException(busStationLine.BusStationNum, busStationLine.ID.ToString(), "Bus LicenseNum is already registered to Station LicenseNum");
-            busStationLines.Add(busStationLine);
-
-            XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
+            UsersList.Remove(u);
         }
-        public void UpdateBusStationLine(BusStationLine busStationLine)
+        else
+            throw new DO.BadUserName_PasswordException(Name, password, $"bad BusLine LicenseNum: {Name},{password}");
+
+        XMLTools.SaveListToXMLSerializer(UsersList, UserPath);
+    }
+    #endregion
+
+    #region DrivingBus
+    public IEnumerable<DrivingBus> GetAllDrivingsBusLists()
+    {
+        XElement DrivingsListRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
+
+        return (from p in DrivingsListRootElem.Elements()
+                select new DrivingBus()
+                {
+                    ID = int.Parse(p.Element("Id").Value),
+                    LineFrequencyTime = TimeSpan.Parse((p.Element("LineFrequencyTime").Value)),
+
+                    AstimateTimeOut = TimeSpan.ParseExact(p.Element("AstimateTimeOut").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                    ActualTimeOut = TimeSpan.ParseExact(p.Element("ActualTimeOut").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                    LastestStation = (p.Element("LastestStation").Value),
+                    TimePassFromLastestStation = TimeSpan.ParseExact(p.Element("TimePassFromLastestStation").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                    AstimateArrive = TimeSpan.ParseExact(p.Element("AstimateArrive").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture)
+                }
+               );
+    }
+    public DrivingBus GetDrivingBus(string Num)
+    {
+        XElement DrivingsListRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
+        DrivingBus drivingb1 = (from p in DrivingsListRootElem.Elements()
+                                where (p.Element("Id").Value) == Num
+                                select new DrivingBus()
+                                {
+                                    ID = int.Parse(p.Element("Id").Value),
+                                    LineFrequencyTime = TimeSpan.Parse((p.Element("LineFrequencyTime").Value)),
+                                    AstimateTimeOut = TimeSpan.ParseExact(p.Element("AstimateTimeOut").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                                    ActualTimeOut = TimeSpan.ParseExact(p.Element("ActualTimeOut").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                                    LastestStation = (p.Element("LastestStation").Value),
+                                    TimePassFromLastestStation = TimeSpan.ParseExact(p.Element("TimePassFromLastestStation").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                                    AstimateArrive = TimeSpan.ParseExact(p.Element("AstimateArrive").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture)
+                                }
+                    ).FirstOrDefault();
+
+        if (drivingb1 == null)
+            throw new DO.BadBusLicenseNumException(Num, $"wrong user's name or password: {Num}");
+        return drivingb1;
+    }
+    public IEnumerable<DO.DrivingBus> GetDrivingsListList(Predicate<DO.DrivingBus> predicate)
+    {
+        List<DO.DrivingBus> DrivingsList = XMLTools.LoadListFromXMLSerializer<DO.DrivingBus>(DrivingBussbusath);
+
+        return from b in DrivingsList
+               select b;
+    }
+    public IEnumerable<object> GetDrivingsListListWithSelectedFields(Func<DrivingBus, object> generate)
+    {
+        List<DrivingBus> DrivingsList = XMLTools.LoadListFromXMLSerializer<DrivingBus>(DrivingBussbusath);
+        return from outgoingline in DrivingsList
+               select outgoingline;
+    }
+    public void AddDrivingsList(DrivingBus OutGoingLine)
+    {
+        XElement DrivingsListRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
+
+        XElement outgoingline1 = (from outgoingline in DrivingsListRootElem.Elements()
+                                  where (outgoingline.Element("user's name").Value) == OutGoingLine.ID.ToString()
+                                  select outgoingline).FirstOrDefault();
+
+        if (outgoingline1 != null)
+            throw new DO.BadBusLicenseNumException(OutGoingLine.LicenseNum, "wrong outgoingline license num");
+
+        XElement UserElem = new XElement("drivingbus",
+                               new XElement("ID", OutGoingLine.ID.ToString()));
+
+        DrivingsListRootElem.Add(outgoingline1);
+
+        XMLTools.SaveListToXMLElement(DrivingsListRootElem, DrivingBussbusath);
+    }
+    public void UpdateDrivingBus(DrivingBus OutGoingLine)
+    {
+        XElement DrivingBRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
+
+        XElement bus = (from bus1 in DrivingBRootElem.Elements()
+                        where (bus1.Element("LicenseNum").Value) == OutGoingLine.LicenseNum
+                        select bus1).FirstOrDefault();
+
+        if (bus != null)
         {
-            List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+            bus.Element("ID").Value = OutGoingLine.ID.ToString();
+            bus.Element("AstimateTimeOut").Value = OutGoingLine.ActualTimeOut.ToString();
+            bus.Element("LastestStation").Value = OutGoingLine.LastestStation;
+            bus.Element("TimePassFromLastestStation").Value = OutGoingLine.TimePassFromLastestStation.ToString();
+            bus.Element("AstimateArrive").Value = OutGoingLine.AstimateArrive.ToString();
+            bus.Element("LineFrequencyTime").Value = OutGoingLine.LineFrequencyTime.ToString();
 
-            int index = busStationLines.FindIndex(cis => (cis.BusStationNum == busStationLine.BusStationNum && cis.ID == busStationLine.ID));
+            //bus.Element("LicenseNum").Value = OutGoingLine.LicenseNum.ToString();
 
-
-            if (index != -1)
-            {
-                busStationLines[index] = busStationLine;
-            }
-            else
-                throw new DO.BadBusStationLineCodeException(busStationLine.BusStationNum, busStationLine.ID, "Bus LicenseNum is NOT registered to Station LicenseNum");
-
-            XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
+            XMLTools.SaveListToXMLElement(DrivingBRootElem, DrivingBussbusath);
         }
-        public void DeleteBusStationLine(int LineNum, int StationCode)
+        else
+            throw new DO.BadBusLicenseNumException(OutGoingLine.LicenseNum, $"bad Bus's LicenseNum: {OutGoingLine.LicenseNum}");
+    }
+    public void DeleteDrivingBus(string Num)
+    {
+        XElement DrivingBRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
+
+        XElement bus1 = (from bus in DrivingBRootElem.Elements()
+                         where (bus.Element("LicenseNum").Value) == Num
+                         select bus).FirstOrDefault();
+
+        if (bus1 != null)
         {
-            List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
-
-            DO.BusStationLine sic = busStationLines.Find(cis => (cis.BusStationNum == StationCode.ToString() && cis.ID == LineNum.ToString()));
-
-            if (sic != null)
-            {
-                busStationLines.Remove(sic);
-            }
-            else
-                throw new DO.BadBusStationLineCodeException(StationCode.ToString(), LineNum.ToString(), "Bus LicenseNum is NOT registered to Station LicenseNum");
-
-            XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
-
+            bus1.Remove();
+            XMLTools.SaveListToXMLElement(DrivingBRootElem, DrivingBussbusath);
         }
-        public void DeleteBusLineFromAllStations(int busLinenum)
+        else
+            throw new DO.BadBusLicenseNumException(Num, $"bad Bus's LicenseNum: {Num}");
+    }
+    #endregion
+
+    #region Accident
+    public DO.Accident GetAccident(string LicenseNum)
+    {
+        List<Accident> accident = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
+
+        DO.Accident stu = accident.Find(a => a.LicenseNum == LicenseNum);
+        if (stu != null)
+            return stu; //no need to Clone()
+        else
+            throw new DO.BadBusLicenseNumException(LicenseNum, $"bad accident LicenseNum: {LicenseNum}");
+    }
+    public IEnumerable<Accident> GetAllAccidentsList()
+    {
+        List<Accident> accidents = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
+
+        return from accident in accidents
+               select accident; //no need to Clone()
+    }
+
+    public void AddAccident(Accident Accident)
+    {
+        List<Accident> Accidents = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
+
+        if (Accidents.FirstOrDefault(cis => (cis.LicenseNum == Accident.LicenseNum && cis.AccidentDate == Accident.AccidentDate && cis.AccidentNum == Accident.AccidentNum)) != null)
+            throw new DO.BadBusStationLineCodeException(Accident.LicenseNum, Accident.AccidentDate.ToString(), "accident details is already =exist");
+        Accidents.Add(Accident);
+
+        XMLTools.SaveListToXMLSerializer(Accidents, AccidentPath);
+    }
+
+    public void DeleteAccident(int Accidentnum)
+    {
+        List<Accident> AccidentsList = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
+
+        DO.Accident a = AccidentsList.Find(accident => accident.AccidentNum == Accidentnum);
+
+        if (a.AccidentNum != 0)
         {
-            List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
-
-            busStationLines.RemoveAll(bus => bus.ID == busLinenum.ToString());
-
-            XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
-
+            AccidentsList.Remove(a);
         }
-        public IEnumerable<DO.BusStationLine> GetLineStationsListOfALine(string lineId)//returns a "line stations" list of the wanted line
-        {
-            List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
-
-            return from bsl in BusStationsLineList
-                   select bsl;
-        }
-        public IEnumerable<DO.BusStationLine> GetAllBusStationLines(string busstationline)
-        {//returns all members in list
-            List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
-            return from bs in BusStationsLineList
-
-                   select bs;
-        }
-        public IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate)
-        {
-            List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
-            return from bs in BusStationsLineList
-                   where predicate(bs)
-                   select bs;
-        }
-        public DO.BusStationLine GetBusStationLine(string Id)
-        {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BusStationLinePath);
-            BusStationLine bus1 = (from busstationline in BussRootElem.Elements()
-                                   where (busstationline.Element("ID").Value) == Id
-                                   select new BusStationLine()
-                                   {
-                                       BusStationNum = (busstationline.Element("BusStationNum").Value),
-                                       IndexInLine = int.Parse((busstationline.Element("IndexInLine").Value)),
-                                       //NumOfPassingLines = int.Parse((busstationline.Element("NumOfPassingLines").Value)),
-                                   }
-                        ).FirstOrDefault();
-
-            if (bus1 == null)
-                throw new DO.BadBusStationLineCodeException(bus1.ID, $"bad Bus station line License Num: {Id}");
-            return bus1;
-        }
-        public void DeleteBusStationLine(string id, string LineNum)
-        {
-            List<BusStationLine> BussRootElem = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
-            BussRootElem.RemoveAt(BussRootElem.FindIndex(l => l.ID == id && l.BusStationNum == LineNum));
-            XMLTools.SaveListToXMLSerializer(BussRootElem, BusStationLinePath);
-        }
-        public void DeleteBusStationLineFromAllStations(string StationID)
-        {
-            XElement BussRootElem = XMLTools.LoadListFromXMLElement(BusStationLinePath);
-            BussRootElem.RemoveAll();
-        }
-        public IEnumerable<object> GetBusStationsLineListWithSelectedFields(Func<DO.BusStationLine, object> generate)
-        {
-            List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
-            return from bs in BusStationsLineList
-                   select bs;
-        }
-        public IEnumerable<DO.BusLine> GetLineStationsListThatMatchAStation(int code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
-        {
-            List<BusStationLine> listLineStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
-
-            return from ls in listLineStations
-                   where ls.BusStationNum == code.ToString()
-                   let p = GetBusLine(int.Parse(ls.ID))
-                   select p;
-        }
-
-        #endregion BusStationLine
-
-        #region Station
-        public IEnumerable<DO.Station> GetAllStations(Predicate<DO.Station> predicate)
-        {
-            List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
-            return from bs in StationsList
-                   where predicate(bs)
-                   select bs;
-        }
-        public DO.Station GetStation(string code)
-        {
-            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
-            DO.Station stu = ListStations.Find(s => s.CodeStation == code);
-            if (stu != null)
-                return stu; //no need to Clone()
-            else
-                throw new DO.BadStationNumException(code, $"bad station code: {code}");
-            /*return ListStations.FirstOrDefault(c => c.CodeStation == code.ToString()); //no need to Clone()*/
-
-            //if not exist throw excebustion etc.
-        }
-        public IEnumerable<DO.Station> GetAllStations()
-        {
-            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
-
-            return from Station in ListStations
-                   select Station; //no need to Clone()
-        }
-        public IEnumerable<object> GetAllStationListWithSelectedFields(Func<DO.Station, object> generate)
-        {
-            List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
-            return from bs in StationsList
-                   select bs;
-        }
-        public void UpdateStation(DO.Station Station)
-        {
-            List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
-            int index = StationsList.FindIndex(i => i.CodeStation == Station.CodeStation);
-
-            if (index == -1)
-            {
-                throw new DO.BadCodeStationException(Station.CodeStation, "wrong station code : { StationCode}");
-            }
-            else
-            {
-                StationsList[index] = Station;
-            }
-            XMLTools.SaveListToXMLSerializer(StationsList, StationsPath);
-        }
-        public void AddStation(DO.Station station)
-        {
-            List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
-            DO.Station station1 = StationsList.Find(i => i.CodeStation == station.CodeStation);
-
-            if (station1 != null)
-            {
-                throw new DO.BadCodeStationException(station1.CodeStation, "wrong station code : { StationCode}");
-            }
-            else
-            {
-                StationsList.Add(station);
-            }
-            XMLTools.SaveListToXMLSerializer(StationsList, StationsPath);
-        }
-        public void DeleteStation(string stationCode)
-        {
-            List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
-            DO.Station station1 = StationsList.Find(i => i.CodeStation == stationCode);
-
-            if (station1 != null)
-            {
-                throw new DO.BadCodeStationException(station1.CodeStation, "wrong station code : { StationCode}");
-            }
-            else
-            {
-                StationsList.Remove(station1);
-            }
-            XMLTools.SaveListToXMLSerializer(StationsList, StationsPath);
-        }
-        #endregion Station
-
-        /* #region DrivingBus
-         public IEnumerable<DO.OutGoingLine> GetDrivingBussInStationList(Predicate<DO.OutGoingLine> predicate)
-         {
-           List<OutGoingLine> outgoingLines = XMLTools.LoadListFromXMLSerializer<OutGoingLine>(OutGoingBusesPath);
-
-           return from sic in outgoingLines
-              where predicate(sic)
-                select sic; //no need to Clone()
-          }
-
-         #endregion*/
-
-        #region User
-        public IEnumerable<DO.User> GetAllUser()
-        {
-            XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
-
-            return (from user in UserRootElem.Elements()
-                    select new User()
-                    {
-                        Me = (Access)Enum.Parse(typeof(Access), user.Element("Me").Value),
-                        UserName = (user.Element("UserName").Value),
-                        Password = (user.Element("Password").Value)
-                    }
-                   );
-        }
-        public IEnumerable<DO.User> GetAllUser(Predicate<User> predicate)
-        {
-            List<User> UsersList = XMLTools.LoadListFromXMLSerializer<User>(UserPath);
-
-            return from user in UsersList
-                   select user;
-        }
-        public User GetUser(string Name, string pass)
-        {
-            XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
-            User user1 = (from user in UserRootElem.Elements()
-                          where (user.Element("UserName").Value) == Name
-                          select new User()
-                          {
-                              Me = (Access)Enum.Parse(typeof(Access), user.Element("Me").Value),
-                              UserName = (user.Element("UserName").Value),
-                              Password = (user.Element("Password").Value),
-                          }
-                        ).FirstOrDefault();
-
-            if (user1 == null)
-                throw new DO.BadUserName_PasswordException(Name, pass, $"wrong user's name or password: {Name},{pass}");
-            return user1;
-        }
-        public void AddUser(DO.User user)
-        {
-            XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
-
-            XElement user1 = (from User in UserRootElem.Elements()
-                              where ((User.Element("UserName").Value) == user.UserName && (User.Element("Password").Value) == user.Password)
-                              select User).FirstOrDefault();
-
-            if (user1 != null)
-                throw new DO.BadUserName_PasswordException(user.UserName, "wrong user's name");
-
-            XElement EserElem = new XElement("user",
-                                   new XElement("UserName", user.UserName),
-                                   new XElement("Password", user.Password),
-                                   new XElement("Me", user.Me));
-            UserRootElem.Add(EserElem);
-
-
-            XMLTools.SaveListToXMLElement(UserRootElem, UserPath);
-        }
-        public IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate)
-        {
-            List<User> UsersList = XMLTools.LoadListFromXMLSerializer<User>(UserPath);
-            return from user in UsersList
-                   select user;
-        }
-        public void UpdateUser(DO.User User)
-        {
-            List<User> UsersList = XMLTools.LoadListFromXMLSerializer<User>(UserPath);
-
-            int index = UsersList.FindIndex(cis => (cis.UserName == User.UserName && cis.Password == User.Password));
-
-
-            if (index != -1)
-            {
-                UsersList[index] = User;
-            }
-            else
-                throw new DO.BadUserName_PasswordException(User.UserName, User.Password, "wrong user's details");
-
-            XMLTools.SaveListToXMLSerializer(UsersList, UserPath);
-        }
-        public void DeleteUser(string Name, string password)
-        {
-            List<User> UsersList = XMLTools.LoadListFromXMLSerializer<User>(UserPath);
-
-            DO.User u = UsersList.Find(user => user.UserName == Name);
-
-            if (u.Password != null)
-            {
-                UsersList.Remove(u);
-            }
-            else
-                throw new DO.BadUserName_PasswordException(Name, password, $"bad BusLine LicenseNum: {Name},{password}");
-
-            XMLTools.SaveListToXMLSerializer(UsersList, UserPath);
-        }
-        #endregion
-
-        #region DrivingBus
-        public IEnumerable<DrivingBus> GetAllDrivingsBusLists()
-        {
-            XElement DrivingsListRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
-
-            return (from p in DrivingsListRootElem.Elements()
-                    select new DrivingBus()
-                    {
-                        ID = int.Parse(p.Element("Id").Value),
-                        LineFrequencyTime = TimeSpan.Parse((p.Element("LineFrequencyTime").Value)),
-
-                        AstimateTimeOut = TimeSpan.ParseExact(p.Element("AstimateTimeOut").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
-                        ActualTimeOut = TimeSpan.ParseExact(p.Element("ActualTimeOut").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
-                        LastestStation = (p.Element("LastestStation").Value),
-                        TimePassFromLastestStation = TimeSpan.ParseExact(p.Element("TimePassFromLastestStation").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
-                        AstimateArrive = TimeSpan.ParseExact(p.Element("AstimateArrive").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture)
-                    }
-                   );
-        }
-        public DrivingBus GetDrivingBus(string Num)
-        {
-            XElement DrivingsListRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
-            DrivingBus drivingb1 = (from p in DrivingsListRootElem.Elements()
-                                    where (p.Element("Id").Value) == Num
-                                    select new DrivingBus()
-                                    {
-                                        ID = int.Parse(p.Element("Id").Value),
-                                        LineFrequencyTime = TimeSpan.Parse((p.Element("LineFrequencyTime").Value)),
-                                        AstimateTimeOut = TimeSpan.ParseExact(p.Element("AstimateTimeOut").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
-                                        ActualTimeOut = TimeSpan.ParseExact(p.Element("ActualTimeOut").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
-                                        LastestStation = (p.Element("LastestStation").Value),
-                                        TimePassFromLastestStation = TimeSpan.ParseExact(p.Element("TimePassFromLastestStation").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
-                                        AstimateArrive = TimeSpan.ParseExact(p.Element("AstimateArrive").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture)
-                                    }
-                        ).FirstOrDefault();
-
-            if (drivingb1 == null)
-                throw new DO.BadBusLicenseNumException(Num, $"wrong user's name or password: {Num}");
-            return drivingb1;
-        }
-        public IEnumerable<DO.DrivingBus> GetDrivingsListList(Predicate<DO.DrivingBus> predicate)
-        {
-            List<DO.DrivingBus> DrivingsList = XMLTools.LoadListFromXMLSerializer<DO.DrivingBus>(DrivingBussbusath);
-
-            return from b in DrivingsList
-                   select b;
-        }
-        public IEnumerable<object> GetDrivingsListListWithSelectedFields(Func<DrivingBus, object> generate)
-        {
-            List<DrivingBus> DrivingsList = XMLTools.LoadListFromXMLSerializer<DrivingBus>(DrivingBussbusath);
-            return from outgoingline in DrivingsList
-                   select outgoingline;
-        }
-        public void AddDrivingsList(DrivingBus OutGoingLine)
-        {
-            XElement DrivingsListRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
-
-            XElement outgoingline1 = (from outgoingline in DrivingsListRootElem.Elements()
-                                      where (outgoingline.Element("user's name").Value) == OutGoingLine.ID.ToString()
-                                      select outgoingline).FirstOrDefault();
-
-            if (outgoingline1 != null)
-                throw new DO.BadBusLicenseNumException(OutGoingLine.LicenseNum, "wrong outgoingline license num");
-
-            XElement UserElem = new XElement("drivingbus",
-                                   new XElement("ID", OutGoingLine.ID.ToString()));
-
-            DrivingsListRootElem.Add(outgoingline1);
-
-            XMLTools.SaveListToXMLElement(DrivingsListRootElem, DrivingBussbusath);
-        }
-        public void UpdateDrivingBus(DrivingBus OutGoingLine)
-        {
-            XElement DrivingBRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
-
-            XElement bus = (from bus1 in DrivingBRootElem.Elements()
-                            where (bus1.Element("LicenseNum").Value) == OutGoingLine.LicenseNum
-                            select bus1).FirstOrDefault();
-
-            if (bus != null)
-            {
-                bus.Element("ID").Value = OutGoingLine.ID.ToString();
-                bus.Element("AstimateTimeOut").Value = OutGoingLine.ActualTimeOut.ToString();
-                bus.Element("LastestStation").Value = OutGoingLine.LastestStation;
-                bus.Element("TimePassFromLastestStation").Value = OutGoingLine.TimePassFromLastestStation.ToString();
-                bus.Element("AstimateArrive").Value = OutGoingLine.AstimateArrive.ToString();
-                bus.Element("LineFrequencyTime").Value = OutGoingLine.LineFrequencyTime.ToString();
-
-                //bus.Element("LicenseNum").Value = OutGoingLine.LicenseNum.ToString();
-
-                XMLTools.SaveListToXMLElement(DrivingBRootElem, DrivingBussbusath);
-            }
-            else
-                throw new DO.BadBusLicenseNumException(OutGoingLine.LicenseNum, $"bad Bus's LicenseNum: {OutGoingLine.LicenseNum}");
-        }
-        public void DeleteDrivingBus(string Num)
-        {
-            XElement DrivingBRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
-
-            XElement bus1 = (from bus in DrivingBRootElem.Elements()
-                             where (bus.Element("LicenseNum").Value) == Num
-                             select bus).FirstOrDefault();
-
-            if (bus1 != null)
-            {
-                bus1.Remove();
-                XMLTools.SaveListToXMLElement(DrivingBRootElem, DrivingBussbusath);
-            }
-            else
-                throw new DO.BadBusLicenseNumException(Num, $"bad Bus's LicenseNum: {Num}");
-        }
-        #endregion
-
-        #region Accident
-        public DO.Accident GetAccident(int LicenseNum)
-        {
-            List<Accident> accident = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
-
-            DO.Accident stu = accident.Find(a => a.LicenseNum == LicenseNum.ToString());
-            if (stu != null)
-                return stu; //no need to Clone()
-            else
-                throw new DO.BadBusLicenseNumException(LicenseNum.ToString(), $"bad accident LicenseNum: {LicenseNum}");
-        }
-        public IEnumerable<Accident> GetAllAccidentsList(Predicate<Accident> predicate)
-        {
-            List<Accident> AccidentsList = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
-
-            return from accident in AccidentsList
-                   select accident;
-        }
-
-        public void AddAccident(Accident Accident)
-        {
-                List<Accident> Accidents = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
-
-                if (Accidents.FirstOrDefault(cis => (cis.LicenseNum == Accident.LicenseNum && cis.AccidentDate == Accident.AccidentDate &&cis.AccidentNum==Accident.AccidentNum)) != null)
-                    throw new DO.BadBusStationLineCodeException(Accident.LicenseNum, Accident.AccidentDate.ToString(), "accident details is already =exist");
-            Accidents.Add(Accident);
-
-                XMLTools.SaveListToXMLSerializer(Accidents, AccidentPath);
-        }
-
-        public void DeleteAccident(int Accidentnum)
-        {
-            List<Accident> AccidentsList = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
-
-            DO.Accident a = AccidentsList.Find(accident => accident.AccidentNum == Accidentnum);
-
-            if (a.AccidentNum != 0)
-            {
-                AccidentsList.Remove(a);
-            }
-            else
-                throw new DO.BadLicenseNumException(Accidentnum.ToString(), $"Wrong accident's ID : {Accidentnum}");
-
-            XMLTools.SaveListToXMLSerializer(AccidentsList, AccidentPath);
-        }
-        #endregion
-
-        #region FollowingStations
-        public DO.FollowingStations GetFollowingStation(string code1, string code2)
-        {
-            XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
-            FollowingStations s = (from station in FollowingSElem.Elements()
-                                   where (station.Element("FirstStationCode").Value) == code1 && (station.Element("SecondStationCode").Value) == code2
-                                   select new FollowingStations()
-                                   {
-                                       FirstStationCode = (station.Element("FirstStationCode").Value),
-                                       SecondStationCode = (station.Element("SecondStationCode").Value),
-                                       //FirstStationName = (station.Element("SecondStationName").Value),
-                                       //SecondStationName = (station.Element("SecondStationName").Value),
-                                       Distance = double.Parse(station.Element("Distance").Value),
-
-                                       AverageDrivingTime = TimeSpan.ParseExact(station.Element("AverageDrivingTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
-                                       // WalkingTime = TimeSpan.ParseExact(station.Element("WalkingTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
-                                   }
-                        ).FirstOrDefault();
-
-            if (s == null)
-                throw new DO.BadBusStationLineCodeException(code1 + code2, $"wrong station's code: {code1 + code2}");
-            return s;
-        }
-        public IEnumerable<DO.FollowingStations> GetAllFollowingStationss(Predicate<DO.FollowingStations> predicate)
-        {
-            List<FollowingStations> FollowingStationss = XMLTools.LoadListFromXMLSerializer<FollowingStations>(FollowingStationsPath);
-
-            return from fs in FollowingStationss
-                   select fs;
-        }
-        public IEnumerable<DO.FollowingStations> GetAllFollowingStationss()
-        {
-            XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
-
-            return (from fs in FollowingSElem.Elements()
-                    select new FollowingStations()
-                    {
-                        FirstStationCode = (fs.Element("FirstStationCode").Value),
-                        SecondStationCode = (fs.Element("SecondStationCode").Value),
-                        FirstStationName = (fs.Element("SecondStationName").Value),
-                        SecondStationName = (fs.Element("SecondStationName").Value),
-                        Distance = double.Parse(fs.Element("distance").Value),
-                        AverageDrivingTime = TimeSpan.Parse(fs.Element("DrivingTimeBetween").Value),
-                        WalkingTime = TimeSpan.Parse(fs.Element("DrivingTimeBetween").Value),
-                    }
-                   );
-        }
-        public IEnumerable<object> GetAllFollowingStationsListWithSelectedFields(Func<DO.FollowingStations, object> generate)
-        {
-            List<FollowingStations> FollowingStationss = XMLTools.LoadListFromXMLSerializer<FollowingStations>(FollowingStationsPath);
-            return from fs in FollowingStationss
-                   select fs;
-        }
-        public void AddFollowingStations(DO.FollowingStations FollowingStations)
-        {
-            //XMLTools.SaveListToXMLSerializer(followingStations, FollowingStationsPath);
-            XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
-
-            XElement followings = (from fs in FollowingSElem.Elements()
-                                   where (fs.Element("FirstStationCode").Value) == FollowingStations.FirstStationCode && fs.Element("SecondStationCode").Value == FollowingStations.SecondStationCode || (fs.Element("SecondStationCode").Value) == FollowingStations.FirstStationCode && fs.Element("FirstStationCode").Value == FollowingStations.SecondStationCode
-                                   select fs).FirstOrDefault();
-
-            if (followings == null)
-            {
-                XElement fsElem = new XElement("FollowingStations",
-                                       new XElement("FirstStationCode", FollowingStations.FirstStationCode.ToString()),
-                                       new XElement("SecondStationCode", FollowingStations.SecondStationCode.ToString()),
-                                       //new XElement("FirstStationName", FollowingStations.FirstStationName.ToString()),
-                                       // new XElement("SecondStationName", FollowingStations.SecondStationName.ToString()),
-                                       new XElement("Distance", FollowingStations.Distance.ToString()),
-                                       new XElement("AverageDrivingTime", FollowingStations.AverageDrivingTime.ToString()));
-                //new XElement("WalkingTime", FollowingStations.WalkingTime.ToString()));
-
-                FollowingSElem.Add(fsElem);
-
-                XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
-            }
-        }
-        public void DeleteFollowingStation(DO.FollowingStations followingstation)
-        {
-            XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
-
-            XElement fsElem = (from fs in FollowingSElem.Elements()
-                               where (fs.Element("LicenseNum").Value) == followingstation.ToString()
-                               select fs).FirstOrDefault();
-
-            if (fsElem != null)
-            {
-                fsElem.Remove();
-                XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
-            }
-            else
-                throw new DO.BadBusLineException(followingstation.FirstStationCode, followingstation.SecondStationCode, $"wrong stations's codes: {followingstation.FirstStationCode},{followingstation.SecondStationCode}");
-        }
-        public void DeleteFollowingStation(string code)
-        {
-            XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
-
-            XElement fsElem = (from fs in FollowingSElem.Elements()
-                               where (fs.Element("LicenseNum").Value) == code
-                               select fs).FirstOrDefault();
-
-            if (fsElem != null)
-            {
-                fsElem.Remove();
-                XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
-            }
-            else
-                throw new DO.BadStationNumException(code, $"bad station's code: {code}");
-        }
-        public void UpdateFollowingStations(DO.FollowingStations FollowingStations)
-        {
-            XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
-
-            XElement fsElem = (from fs in FollowingSElem.Elements()
+        else
+            throw new DO.BadLicenseNumException(Accidentnum.ToString(), $"Wrong accident's ID : {Accidentnum}");
+
+        XMLTools.SaveListToXMLSerializer(AccidentsList, AccidentPath);
+    }
+    #endregion
+
+    #region FollowingStations
+    public DO.FollowingStations GetFollowingStation(string code1, string code2)
+    {
+        XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
+        FollowingStations s = (from station in FollowingSElem.Elements()
+                               where (station.Element("FirstStationCode").Value) == code1 && (station.Element("SecondStationCode").Value) == code2
+                               select new FollowingStations()
+                               {
+                                   FirstStationCode = (station.Element("FirstStationCode").Value),
+                                   SecondStationCode = (station.Element("SecondStationCode").Value),
+                                   //FirstStationName = (station.Element("SecondStationName").Value),
+                                   //SecondStationName = (station.Element("SecondStationName").Value),
+                                   Distance = double.Parse(station.Element("Distance").Value),
+
+                                   AverageDrivingTime = TimeSpan.ParseExact(station.Element("AverageDrivingTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                                   // WalkingTime = TimeSpan.ParseExact(station.Element("WalkingTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                               }
+                    ).FirstOrDefault();
+
+        if (s == null)
+            throw new DO.BadBusStationLineCodeException(code1 + code2, $"wrong station's code: {code1 + code2}");
+        return s;
+    }
+    public IEnumerable<DO.FollowingStations> GetAllFollowingStationss(Predicate<DO.FollowingStations> predicate)
+    {
+        List<FollowingStations> FollowingStationss = XMLTools.LoadListFromXMLSerializer<FollowingStations>(FollowingStationsPath);
+
+        return from fs in FollowingStationss
+               select fs;
+    }
+    public IEnumerable<DO.FollowingStations> GetAllFollowingStationss()
+    {
+        XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
+
+        return (from fs in FollowingSElem.Elements()
+                select new FollowingStations()
+                {
+                    FirstStationCode = (fs.Element("FirstStationCode").Value),
+                    SecondStationCode = (fs.Element("SecondStationCode").Value),
+                    FirstStationName = (fs.Element("SecondStationName").Value),
+                    SecondStationName = (fs.Element("SecondStationName").Value),
+                    Distance = double.Parse(fs.Element("distance").Value),
+                    AverageDrivingTime = TimeSpan.Parse(fs.Element("DrivingTimeBetween").Value),
+                    WalkingTime = TimeSpan.Parse(fs.Element("DrivingTimeBetween").Value),
+                }
+               );
+    }
+    public IEnumerable<object> GetAllFollowingStationsListWithSelectedFields(Func<DO.FollowingStations, object> generate)
+    {
+        List<FollowingStations> FollowingStationss = XMLTools.LoadListFromXMLSerializer<FollowingStations>(FollowingStationsPath);
+        return from fs in FollowingStationss
+               select fs;
+    }
+    public void AddFollowingStations(DO.FollowingStations FollowingStations)
+    {
+        //XMLTools.SaveListToXMLSerializer(followingStations, FollowingStationsPath);
+        XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
+
+        XElement followings = (from fs in FollowingSElem.Elements()
                                where (fs.Element("FirstStationCode").Value) == FollowingStations.FirstStationCode && fs.Element("SecondStationCode").Value == FollowingStations.SecondStationCode || (fs.Element("SecondStationCode").Value) == FollowingStations.FirstStationCode && fs.Element("FirstStationCode").Value == FollowingStations.SecondStationCode
                                select fs).FirstOrDefault();
 
-            if (fsElem != null)
-            {
-                fsElem.Element("FirstStationCode").Value = FollowingStations.FirstStationCode.ToString();
-                fsElem.Element("SecondStationCode").Value = FollowingStations.SecondStationCode.ToString();
-                // fsElem.Element("FirstStationName").Value = FollowingStations.FirstStationName.ToString();
-                // fsElem.Element("SecondStationName").Value = FollowingStations.SecondStationName.ToString();
-                fsElem.Element("Distance").Value = FollowingStations.Distance.ToString();
-                fsElem.Element("AverageDrivingTime").Value = FollowingStations.AverageDrivingTime.ToString();
-                //fsElem.Element("WalkingTime").Value = FollowingStations.WalkingTime.ToString();
+        if (followings == null)
+        {
+            XElement fsElem = new XElement("FollowingStations",
+                                   new XElement("FirstStationCode", FollowingStations.FirstStationCode.ToString()),
+                                   new XElement("SecondStationCode", FollowingStations.SecondStationCode.ToString()),
+                                   //new XElement("FirstStationName", FollowingStations.FirstStationName.ToString()),
+                                   // new XElement("SecondStationName", FollowingStations.SecondStationName.ToString()),
+                                   new XElement("Distance", FollowingStations.Distance.ToString()),
+                                   new XElement("AverageDrivingTime", FollowingStations.AverageDrivingTime.ToString()));
+            //new XElement("WalkingTime", FollowingStations.WalkingTime.ToString()));
 
-                XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
+            FollowingSElem.Add(fsElem);
+
+            XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
+        }
+    }
+    public void DeleteFollowingStation(DO.FollowingStations followingstation)
+    {
+        XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
+
+        XElement fsElem = (from fs in FollowingSElem.Elements()
+                           where (fs.Element("LicenseNum").Value) == followingstation.ToString()
+                           select fs).FirstOrDefault();
+
+        if (fsElem != null)
+        {
+            fsElem.Remove();
+            XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
+        }
+        else
+            throw new DO.BadBusLineException(followingstation.FirstStationCode, followingstation.SecondStationCode, $"wrong stations's codes: {followingstation.FirstStationCode},{followingstation.SecondStationCode}");
+    }
+    public void DeleteFollowingStation(string code)
+    {
+        XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
+
+        XElement fsElem = (from fs in FollowingSElem.Elements()
+                           where (fs.Element("LicenseNum").Value) == code
+                           select fs).FirstOrDefault();
+
+        if (fsElem != null)
+        {
+            fsElem.Remove();
+            XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
+        }
+        else
+            throw new DO.BadStationNumException(code, $"bad station's code: {code}");
+    }
+    public void UpdateFollowingStations(DO.FollowingStations FollowingStations)
+    {
+        XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
+
+        XElement fsElem = (from fs in FollowingSElem.Elements()
+                           where (fs.Element("FirstStationCode").Value) == FollowingStations.FirstStationCode && fs.Element("SecondStationCode").Value == FollowingStations.SecondStationCode || (fs.Element("SecondStationCode").Value) == FollowingStations.FirstStationCode && fs.Element("FirstStationCode").Value == FollowingStations.SecondStationCode
+                           select fs).FirstOrDefault();
+
+        if (fsElem != null)
+        {
+            fsElem.Element("FirstStationCode").Value = FollowingStations.FirstStationCode.ToString();
+            fsElem.Element("SecondStationCode").Value = FollowingStations.SecondStationCode.ToString();
+            // fsElem.Element("FirstStationName").Value = FollowingStations.FirstStationName.ToString();
+            // fsElem.Element("SecondStationName").Value = FollowingStations.SecondStationName.ToString();
+            fsElem.Element("Distance").Value = FollowingStations.Distance.ToString();
+            fsElem.Element("AverageDrivingTime").Value = FollowingStations.AverageDrivingTime.ToString();
+            //fsElem.Element("WalkingTime").Value = FollowingStations.WalkingTime.ToString();
+
+            XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
+        }
+        else
+            throw new DO.BadBusLineException(FollowingStations.FirstStationCode, FollowingStations.SecondStationCode, $"bad Bus's LicenseNum: {FollowingStations.FirstStationCode},{FollowingStations.SecondStationCode}");
+    }
+    #endregion
+
+    /*#region Running Numbers
+    private long GetAndUpdateRunningNumber(Type type)
+    {
+        XElement RunningNumbersRootElem = XMLTools.LoadListFromXMLElement(runningNumbersPath);
+
+        XElement run_ = (from run in RunningNumbersRootElem.Elements()
+                         select run).FirstOrDefault();
+
+        long returnedVal = 0;
+        if (run_ != null)
+        {
+            if (type == typeof(BusLine))
+            {
+                returnedVal = long.Parse(run_.Element("BusLine_Running").Value);
+                run_.Element("BusLine_Running").Value = (returnedVal + 1).ToString();
             }
             else
-                throw new DO.BadBusLineException(FollowingStations.FirstStationCode, FollowingStations.SecondStationCode, $"bad Bus's LicenseNum: {FollowingStations.FirstStationCode},{FollowingStations.SecondStationCode}");
-        }
-        #endregion
-
-        /*#region Running Numbers
-        private long GetAndUpdateRunningNumber(Type type)
-        {
-            XElement RunningNumbersRootElem = XMLTools.LoadListFromXMLElement(runningNumbersPath);
-
-            XElement run_ = (from run in RunningNumbersRootElem.Elements()
-                             select run).FirstOrDefault();
-
-            long returnedVal = 0;
-            if (run_ != null)
             {
-                if (type == typeof(BusLine))
-                {
-                    returnedVal = long.Parse(run_.Element("BusLine_Running").Value);
-                    run_.Element("BusLine_Running").Value = (returnedVal + 1).ToString();
-                }
-                else
-                {
-                    returnedVal = long.Parse(run_.Element("Station_Running").Value);
-                    run_.Element("Station_Running").Value = (returnedVal + 1).ToString();
-                }
-
-                XMLTools.SaveListToXMLElement(RunningNumbersRootElem, runningNumbersPath);
+                returnedVal = long.Parse(run_.Element("Station_Running").Value);
+                run_.Element("Station_Running").Value = (returnedVal + 1).ToString();
             }
 
-            return returnedVal;
+            XMLTools.SaveListToXMLElement(RunningNumbersRootElem, runningNumbersPath);
         }
-        #endregion*/
 
-        #region LineExit
-        string LineExitXml = @"LineExit.xml";
+        return returnedVal;
+    }
+    #endregion*/
 
-        public void AddLineExit(OutGoingLine lineExit)
+    #region LineExit
+    string LineExitXml = @"LineExit.xml";
+
+    public void AddLineExit(OutGoingLine lineExit)
+    {
+        XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
+        XElement lineExit1 = (from p in element.Elements()
+                              where p.Element("BusLineID1").Value == lineExit.BusLineID1.ToString() && p.Element("LineStartTime").Value == lineExit.LineStartTime.ToString()
+                              select p).FirstOrDefault();
+        if (lineExit1 != null)
         {
-            XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
-            XElement lineExit1 = (from p in element.Elements()
-                                  where p.Element("BusLineID1").Value == lineExit.BusLineID1.ToString() && p.Element("LineStartTime").Value == lineExit.LineStartTime.ToString()
-                                  select p).FirstOrDefault();
-            if (lineExit1 != null)
-            {
-                throw new BadOutGoingLineException(lineExit.BusLineID1, lineExit.LineStartTime, "the Exit alrdy exist in the list in the same time");
-            }
-
-            XElement lineExit2 = new XElement("LineExit", new XElement("BusLineID1", lineExit.BusLineID1),
-                                   new XElement("LineStartTime", lineExit.LineStartTime.ToString()),
-                                   new XElement("LineFinishTime", lineExit.LineFinishTime.ToString()),
-                                   new XElement("LineFrequencyTime", lineExit.LineFrequencyTime.ToString()),
-                                   new XElement("LineFrequency", lineExit.LineFrequency));
-
-            element.Add(lineExit2);
-            XMLTools.SaveListToXMLElement(element, LineExitXml);
-
-            //List<LineExit> lineExits = XMLTools.LoadListFromXMLSerializer<LineExit>(LineExitXml);
-            //if (lineExits.Exists(lineExit1 => lineExit1.BusLineID1 == lineExit.BusLineID1 && lineExit1.LineStartTime == lineExit.LineStartTime))
-            //{
-            //    throw new ExceptionLineExit(lineExit.BusLineID1, lineExit.LineStartTime, "the LineExit alrdy exist in the list in the same time");
-            //}
-            //else
-            //{
-            //    lineExits.Add(lineExit);
-            //    XMLTools.SaveListToXMLSerializer(lineExits, LineExitXml);
-            //}
+            throw new BadOutGoingLineException(lineExit.BusLineID1, lineExit.LineStartTime, "the Exit alrdy exist in the list in the same time");
         }
-        public void DeleteLineExit(int lineNumber, TimeSpan StartTime)
+
+        XElement lineExit2 = new XElement("LineExit", new XElement("BusLineID1", lineExit.BusLineID1),
+                               new XElement("LineStartTime", lineExit.LineStartTime.ToString()),
+                               new XElement("LineFinishTime", lineExit.LineFinishTime.ToString()),
+                               new XElement("LineFrequencyTime", lineExit.LineFrequencyTime.ToString()),
+                               new XElement("LineFrequency", lineExit.LineFrequency));
+
+        element.Add(lineExit2);
+        XMLTools.SaveListToXMLElement(element, LineExitXml);
+
+        //List<LineExit> lineExits = XMLTools.LoadListFromXMLSerializer<LineExit>(LineExitXml);
+        //if (lineExits.Exists(lineExit1 => lineExit1.BusLineID1 == lineExit.BusLineID1 && lineExit1.LineStartTime == lineExit.LineStartTime))
+        //{
+        //    throw new ExceptionLineExit(lineExit.BusLineID1, lineExit.LineStartTime, "the LineExit alrdy exist in the list in the same time");
+        //}
+        //else
+        //{
+        //    lineExits.Add(lineExit);
+        //    XMLTools.SaveListToXMLSerializer(lineExits, LineExitXml);
+        //}
+    }
+    public void DeleteLineExit(int lineNumber, TimeSpan StartTime)
+    {
+        XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
+        XElement lineExit1 = (from p in element.Elements()
+                              where p.Element("BusLineID1").Value == lineNumber.ToString() && p.Element("LineStartTime").Value == StartTime.ToString()
+                              select p).FirstOrDefault();
+        if (lineExit1 == null)
         {
-            XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
-            XElement lineExit1 = (from p in element.Elements()
-                                  where p.Element("BusLineID1").Value == lineNumber.ToString() && p.Element("LineStartTime").Value == StartTime.ToString()
-                                  select p).FirstOrDefault();
-            if (lineExit1 == null)
-            {
-                throw new DO.BadOutGoingLineException(lineNumber, StartTime, "the Exit not found!!!");
-            }
-            lineExit1.Remove();
+            throw new DO.BadOutGoingLineException(lineNumber, StartTime, "the Exit not found!!!");
+        }
+        lineExit1.Remove();
+        XMLTools.SaveListToXMLElement(element, LineExitXml);
+    }
+    public void UpdatingLineExit(OutGoingLine lineExit)
+    {
+        XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
+        XElement lineExit1 = (from p in element.Elements()
+                              where p.Element("BusLineID1").Value == lineExit.BusLineID1.ToString() && p.Element("LineStartTime").Value == lineExit.LineStartTime.ToString()
+                              select p).FirstOrDefault();
+
+        if (lineExit1 != null)
+        {
+            lineExit1.Element("BusLineID1").Value = lineExit.BusLineID1.ToString();
+            lineExit1.Element("LineStartTime").Value = lineExit.LineStartTime.ToString();
+            lineExit1.Element("LineFinishTime").Value = lineExit.LineFinishTime.ToString();
+            lineExit1.Element("LineFrequency").Value = lineExit.LineFrequency.ToString();
+            lineExit1.Element("LineFrequencyTime").Value = lineExit.LineFrequencyTime.ToString();
             XMLTools.SaveListToXMLElement(element, LineExitXml);
         }
-        public void UpdatingLineExit(OutGoingLine lineExit)
+
+        else
         {
-            XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
-            XElement lineExit1 = (from p in element.Elements()
-                                  where p.Element("BusLineID1").Value == lineExit.BusLineID1.ToString() && p.Element("LineStartTime").Value == lineExit.LineStartTime.ToString()
-                                  select p).FirstOrDefault();
+            throw new BadOutGoingLineException(lineExit.BusLineID1, lineExit.LineStartTime, "The Exit not exist in the compny");
 
-            if (lineExit1 != null)
-            {
-                lineExit1.Element("BusLineID1").Value = lineExit.BusLineID1.ToString();
-                lineExit1.Element("LineStartTime").Value = lineExit.LineStartTime.ToString();
-                lineExit1.Element("LineFinishTime").Value = lineExit.LineFinishTime.ToString();
-                lineExit1.Element("LineFrequency").Value = lineExit.LineFrequency.ToString();
-                lineExit1.Element("LineFrequencyTime").Value = lineExit.LineFrequencyTime.ToString();
-                XMLTools.SaveListToXMLElement(element, LineExitXml);
-            }
-
-            else
-            {
-                throw new BadOutGoingLineException(lineExit.BusLineID1, lineExit.LineStartTime, "The Exit not exist in the compny");
-
-            }
         }
-        public OutGoingLine ReturnLineExit(int lineNumber, TimeSpan StartTime)
-        {
-            XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
-            OutGoingLine lineExit1 = (from p in element.Elements()
+    }
+    public OutGoingLine ReturnLineExit(int lineNumber, TimeSpan StartTime)
+    {
+        XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
+        OutGoingLine lineExit1 = (from p in element.Elements()
                                   where p.Element("BusLineID1").Value == lineNumber.ToString() && p.Element("LineStartTime").Value == StartTime.ToString()
                                   select new OutGoingLine()
                                   {
@@ -994,12 +1007,12 @@ namespace DL
                                       LineFrequencyTime = TimeSpan.ParseExact(p.Element("LineFrequencyTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                                       LineFrequency = int.Parse(p.Element("LineFrequency").Value)
                                   }).FirstOrDefault();
-            return lineExit1 ?? throw new BadOutGoingLineException(lineNumber, StartTime, "the Exit not exist in the list");
-        }
-        public OutGoingLine OneLineExitFromList(int numberLine, TimeSpan StartTime)
-        {
-            XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
-            OutGoingLine lineExit1 = (from p in element.Elements()
+        return lineExit1 ?? throw new BadOutGoingLineException(lineNumber, StartTime, "the Exit not exist in the list");
+    }
+    public OutGoingLine OneLineExitFromList(int numberLine, TimeSpan StartTime)
+    {
+        XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
+        OutGoingLine lineExit1 = (from p in element.Elements()
                                   where p.Element("BusLineID1").Value == numberLine.ToString() && p.Element("LineStartTime").Value == StartTime.ToString()
                                   select new OutGoingLine()
                                   {
@@ -1009,23 +1022,23 @@ namespace DL
                                       LineFrequencyTime = TimeSpan.ParseExact(p.Element("LineFrequencyTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                                       LineFrequency = int.Parse(p.Element("LineFrequency").Value)
                                   }).FirstOrDefault();
-            return lineExit1 ?? throw new BadOutGoingLineException(numberLine, StartTime, "the Exit not exist in the list");
-        }
-        public IEnumerable<OutGoingLine> LineExitList(int numberLine)
-        {
-            XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
-            return from p in element.Elements()
-                   where p.Element("BusLineID1").Value == numberLine.ToString()
-                   let s = new OutGoingLine()
-                   {
-                       BusLineID1 = int.Parse(p.Element("BusLineID1").Value),
-                       LineStartTime = TimeSpan.ParseExact(p.Element("LineStartTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
-                       LineFinishTime = TimeSpan.ParseExact(p.Element("LineFinishTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
-                       LineFrequencyTime = TimeSpan.ParseExact(p.Element("LineFrequencyTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
-                       LineFrequency = int.Parse(p.Element("LineFrequency").Value)
-                   }
-                   select s;
-        } 
-        #endregion
+        return lineExit1 ?? throw new BadOutGoingLineException(numberLine, StartTime, "the Exit not exist in the list");
     }
+    public IEnumerable<OutGoingLine> LineExitList(int numberLine)
+    {
+        XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
+        return from p in element.Elements()
+               where p.Element("BusLineID1").Value == numberLine.ToString()
+               let s = new OutGoingLine()
+               {
+                   BusLineID1 = int.Parse(p.Element("BusLineID1").Value),
+                   LineStartTime = TimeSpan.ParseExact(p.Element("LineStartTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                   LineFinishTime = TimeSpan.ParseExact(p.Element("LineFinishTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                   LineFrequencyTime = TimeSpan.ParseExact(p.Element("LineFrequencyTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                   LineFrequency = int.Parse(p.Element("LineFrequency").Value)
+               }
+               select s;
+    }
+    #endregion
 }
+ 

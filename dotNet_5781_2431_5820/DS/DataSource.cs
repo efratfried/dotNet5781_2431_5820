@@ -787,8 +787,7 @@ namespace DS
                 #endregion
             };
             BusStationsLineList = new List<BusStationLine>
-            {
-                      
+            {                      
                 new BusStationLine
                 {
                     ID="3",
@@ -803,6 +802,16 @@ namespace DS
                 IndexInLine = 1,
                 //NumOfPassingLines = 2
             }
+            };
+            AccidentsList = new List<Accident>()
+            {
+                new Accident
+                {
+                    LicenseNum="20090890",
+                    AccidentDate=new DateTime(2020, 2, 1),
+                    AccidentNum=0,
+                },
+
             };
 
 

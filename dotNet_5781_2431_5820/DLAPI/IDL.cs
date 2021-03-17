@@ -90,7 +90,7 @@ namespace DLAPI
 
         #region Accident
         DO.Accident GetAccident(string Num);
-        IEnumerable<DO.Accident> GetAllAccidentsList(Predicate<DO.Accident> predicate);
+        IEnumerable<DO.Accident> GetAllAccidentsList();
         void AddAccident(DO.Accident Accident);
         void DeleteAccident(int Accidentnum); // removes only Accident, does not remove the appropriate Person...
         #endregion*/

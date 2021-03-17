@@ -37,7 +37,7 @@
     <Grid Margin="0,-16,3.6,0.2" Background="Transparent">
 
         <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" FlowDirection="RightToLeft" Margin="363,39,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Height="35" Width="249" FontSize="16" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
-        <ListBox x:Name="nisayon" FlowDirection="RightToLeft"  ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="308" Margin="0,106,35,0" VerticalAlignment="Top" Width="436" Background="#FF0F0F0F" SelectionChanged="nisayon_SelectionChanged"/>
+        <ListBox x:Name="nisayon" FlowDirection="RightToLeft" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="308" Margin="0,106,35,0" VerticalAlignment="Top" Width="436" Background="#FF0F0F0F" SelectionChanged="nisayon_SelectionChanged"/>
         <Canvas HorizontalAlignment="Left" Visibility="Visible" Height="32" Margin="519,69,0,0" VerticalAlignment="Top" Width="436" Background="Black"/>
         <Label Content=":station name" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="304,120,0,0" VerticalAlignment="Top" Width="161" FontFamily="Yu Gothic UI Semibold" Foreground="White" FontWeight="Bold" FontSize="18"/>
         <Label Content=":adress" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="354,157,0,0" VerticalAlignment="Top" Width="111" FontFamily="Yu Gothic UI Semibold" Foreground="White" FontWeight="Bold" FontSize="18"/>

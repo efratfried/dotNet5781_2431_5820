@@ -19,8 +19,28 @@
                 </Style>
             </Label.Style>
         </Label>
-        <TextBox x:Name="manager_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="604,106,0,0" TextChanged="manager_Name_TextChanged" BorderBrush="#FF10168C"/>
-        <TextBox x:Name="manager_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="604,156,0,0" TextChanged="manager_passowrd_TextChanged" BorderBrush="#FF10168C"/>
+        <TextBox x:Name="manager_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="604,106,0,0" TextChanged="manager_Name_TextChanged" BorderBrush="#FF10168C">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="16"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox x:Name="manager_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="604,156,0,0" TextChanged="manager_passowrd_TextChanged" BorderBrush="#FF10168C">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="16"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
         <Image Source="password.PNG" Margin="876,156,73.6,276.2"/>
         <Image Source="password.PNG" Margin="356,334,593.6,98.2"/>
         <Image Source="password.PNG" Margin="356,156,593.6,276.2"/>
@@ -28,13 +48,53 @@
         <Image Source="user.PNG" Margin="356,277,593.6,155.2"/>
         <Image Source="user.PNG" Margin="356,106,593.6,326.2"/>
         <Label Content="user login " HorizontalAlignment="Left" Margin="137,60,0,0" VerticalAlignment="Top" Height="41" Width="161" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black" />
-        <TextBox x:Name="user_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,108,0,0" TextChanged="user_Name_TextChanged" BorderBrush="Black"/>
-        <TextBox x:Name="user_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,156,0,0" TextChanged="user_password_TextChanged" BorderBrush="Black"/>
+        <TextBox x:Name="user_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,108,0,0" TextChanged="user_Name_TextChanged" BorderBrush="Black">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="16"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox x:Name="user_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,156,0,0" TextChanged="user_password_TextChanged" BorderBrush="Black">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="16"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
 
 
         <Label Content=" sign in" HorizontalAlignment="Left" Margin="160,220,0,0" VerticalAlignment="Top" Height="41" Width="80" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black"/>
-        <TextBox x:Name="Newuser_name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,277,0,0" TextChanged="Newuser_namePassword_TextChanged" BorderBrush="Black" Text="{Binding UserName}"/>
-        <TextBox x:Name="NewUser_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,334,0,0" TextChanged="NewUser_password_TextChanged" BorderBrush="Black" Text="{Binding Password}"/>
+        <TextBox x:Name="Newuser_name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,277,0,0" TextChanged="Newuser_namePassword_TextChanged" BorderBrush="Black" Text="{Binding UserName}">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="16"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox x:Name="NewUser_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,334,0,0" TextChanged="NewUser_password_TextChanged" BorderBrush="Black" Text="{Binding Password}">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="16"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
         <Button x:Name="entering_" Content=" entering "   HorizontalAlignment="Left" Height="42" Margin="483,363,0,0" VerticalAlignment="Top" Width="105"  FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black" Click="entering"  RenderTransformOrigin="0.634,1.212" >
             <Button.Style>
                 <Style TargetType="Button">

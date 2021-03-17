@@ -72,7 +72,8 @@ namespace DL
                             foul = Double.Parse(bus.Element("foul").Value),
                             KM = Int32.Parse(bus.Element("KM").Value),
                             LicenseDate = DateTime.Parse(bus.Element("LicenseDate").Value),
-                            Firm = (Firm)Enum.Parse(typeof(Firm), bus.Element("Firm").Value)
+                            Firm = (Firm)Enum.Parse(typeof(Firm), bus.Element("Firm").Value),
+                          
                             //Status is a property in bo made by a function
                         }
                         ).FirstOrDefault();
@@ -935,7 +936,7 @@ namespace DL
         }
         #endregion
 
-        #region Running Numbers
+        /*#region Running Numbers
         private long GetAndUpdateRunningNumber(Type type)
         {
             XElement RunningNumbersRootElem = XMLTools.LoadListFromXMLElement(runningNumbersPath);
@@ -962,7 +963,7 @@ namespace DL
 
             return returnedVal;
         }
-        #endregion
+        #endregion*/
 
         #region LineExit
         string LineExitXml = @"LineExit.xml";

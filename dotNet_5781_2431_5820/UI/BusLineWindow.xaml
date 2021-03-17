@@ -50,14 +50,14 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btDeleteLineStationFromThisLine" Content="DeleteStation" ToolTip="Delete the current line station from the path of this line" Click="btDeleteLineStationFromThisLine_Click"/>
+                            <Button x:Name="btDeleteLineStationFromThisLine" Content="DeleteStation" ToolTip="Delete the current line station from the path of this line" Click="btDeleteLineStationFromThisLine_Click" Width="auto"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="updatetime"  Click="update_click" Width="150" Content="update station"/>
+                            <Button x:Name="updatetime"  Click="update_click" Content="update station" Width="auto"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

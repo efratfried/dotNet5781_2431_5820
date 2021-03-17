@@ -15,12 +15,12 @@
         </Grid.ColumnDefinitions>
 
         <ComboBox x:Name="busses_list" ItemsSource="{Binding}"  Height="29" Margin="426,70,236.6,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
-        <Button x:Name="start_treatment" Content="start treat" HorizontalAlignment="Left" Margin="154,373,0,0" VerticalAlignment="Top" Width="146" Click="start_treatment_Click" Foreground="black" BorderBrush="Black" Height="20"/>
-        <Button x:Name="start_filling_foul" Content="strat refuiling" HorizontalAlignment="Left" Margin="155,327,0,0" VerticalAlignment="Top" Width="146" Click="start_filling_foul_Click" Foreground="black" BorderBrush="Black" Height="20"/>
-        <Button x:Name="start_driving" Content="start driving" HorizontalAlignment="Left" Margin="154,284,0,0" VerticalAlignment="Top" Width="146" Click="start_driving_Click" Foreground="black" BorderBrush="Black" Height="20"/>
+        <!--<Button x:Name="start_treatment" Content="start treat" HorizontalAlignment="Left" Margin="154,373,0,0" VerticalAlignment="Top" Width="146" Click="start_treatment_Click" Foreground="black" BorderBrush="Black" Height="20"/>-->
+        <Button x:Name="start_filling_foul" Content="strat refuiling" HorizontalAlignment="Left" Margin="154,390,0,0" VerticalAlignment="Top" Width="146" Click="start_filling_foul_Click" Foreground="black" BorderBrush="Black" Height="20"/>
+        <Button x:Name="start_driving" Content="start driving" HorizontalAlignment="Left" Margin="154,344,0,0" VerticalAlignment="Top" Width="146" Click="start_driving_Click" Foreground="black" BorderBrush="Black" Height="20"/>
 
         <TabControl x:Name="inner_info" HorizontalAlignment="Left" Height="269" Margin="426,141,0,0" VerticalAlignment="Top" Width="337" SelectionChanged="inner_info_SelectionChanged">
-            <TabItem x:Name="accident" Header="accident ducoments" Foreground="Black" BorderBrush="Black">
+            <TabItem x:Name="accident" Header="accident ducoments" Foreground="Black" BorderBrush="Black" FontWeight="Bold">
                 <Grid x:Name="Bus_Ducoments" Background="#FFE5E5E5"  Margin="0,0,0,-4" RenderTransformOrigin="0.479,0.505" DataContext="{Binding Accident, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="18*"/>
@@ -35,14 +35,14 @@
                 </Grid>
 
             </TabItem>
-            <TabItem x:Name="treats" Header="treats ducoments" Foreground="Black" BorderBrush="Black">
+            <!--<TabItem x:Name="treats" Header="treats ducoments" Foreground="Black" BorderBrush="Black">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem x:Name="last_drives" Header="treat driving" Margin="-2,-2,-2,0" Foreground="Black" BorderBrush="Black">
                 <Grid Background="#FFE5E5E5"/>
-            </TabItem>
+            </TabItem>-->
         </TabControl>
-       
+
         <StackPanel x:Name="actions_pannel" HorizontalAlignment="Left" Height="452" Margin="792,0,0,0" Width="198" Background="Orange" VerticalAlignment="Top">
             <Button x:Name="delete_bus" Content="delete bus" Margin="0,150,0.4,0" Height="53" Click="delete_bus_Click" Foreground="#FFF7F7FB" Background="DarkSlateGray" FontWeight="Bold" BorderThickness="0.5,0.5,0.5,0.75" HorizontalContentAlignment="Center" FontSize="18" UseLayoutRounding="True" Padding="0" BorderBrush="{x:Null}">
                 <Button.Style>
@@ -62,10 +62,10 @@
         <Image Source="/C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/busicon.png" Margin="850,32,71.6,394.2"/>
         <TextBox x:Name="Licensenumbus" Margin="848,107,67.6,354.2" Height="25" Background="Transparent" DataContext="{Binding}" FontSize="20" BorderBrush="Transparent" FontWeight="Bold"/>
         <Grid x:Name="BusDetailsGrid">
-        <Image x:Name="foul_" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/foul.png" Margin="176,229,755.6,237.2"/>
-        <Image x:Name="firm_" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/firm.png" Margin="196,184,781.6,283.2"/>
-        <Image x:Name="abialability" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/drive abialability.png" Margin="167,97,752.6,367.2"/>
-        <Image x:Name="km" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/km.png" Margin="167,139,752.6,325.2"/>
+            <Image x:Name="foul_" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/foul.png" Margin="176,229,755.6,237.2"/>
+            <Image x:Name="firm_" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/firm.png" Margin="196,184,781.6,283.2"/>
+            <Image x:Name="abialability" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/drive abialability.png" Margin="167,97,752.6,367.2"/>
+            <Image x:Name="km" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/km.png" Margin="167,139,752.6,325.2"/>
             <TextBlock x:Name="aviability_status" HorizontalAlignment="Left" Margin="47,93,0,0"  Background="LightGray" TextWrapping="Wrap" Text="{Binding Status, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
             <TextBlock x:Name="firm" Background="LightGray" HorizontalAlignment="Left" Margin="47,176,0,0" TextWrapping="Wrap" Text="{Binding Firm, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="31" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
             <TextBlock x:Name="foul_status" Background="LightGray" HorizontalAlignment="Left" Margin="47,223,0,0" TextWrapping="Wrap" Text="{Binding foul, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="29" Width="120" DataContextChanged="foul_status_TextBlock"/>

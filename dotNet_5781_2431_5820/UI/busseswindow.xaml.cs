@@ -45,6 +45,10 @@ namespace PL
             //IEnumerable<PO.BusLine> busLines;
             BusDetailsGrid.DataContext = bl.GetBus(currentbus.LicenseNum);
         }
+       /* void refreahBus_Ducoments()
+        {
+            Bus_Ducoments.DataContext = bl.GetBus(busses_list.SelectedIndex.ToString()).AccidentsDuco;
+        }*/
 
         /*
          void RefreshAllRegisteredCoursesGrid()
@@ -148,7 +152,7 @@ namespace PL
                 update_bus.IsEnabled = false;
                 start_driving.IsEnabled = false;
                 start_filling_foul.IsEnabled = false;
-                start_treatment.IsEnabled = false;
+                //start_treatment.IsEnabled = false;
             AddOutGoingLine o = new AddOutGoingLine();
             o.Show();
         }
@@ -158,10 +162,10 @@ namespace PL
             aviability_status.Text = "UnAvailable";
         }
 
-        private void start_treatment_Click(object sender, RoutedEventArgs e)
+       /* private void start_treatment_Click(object sender, RoutedEventArgs e)
         {
             aviability_status.Text = "UnAvailable";
-        }
+        }*/
 
         private void update_bus_Click(object sender, RoutedEventArgs e)
         {
@@ -197,10 +201,6 @@ namespace PL
         private void foul_status_TextBlock(object sender, DependencyPropertyChangedEventArgs e)
         {
         }
-
-
-
-
 
         //  currentbus = DataContext as Bus;
     }

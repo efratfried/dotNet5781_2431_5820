@@ -27,12 +27,12 @@ namespace PL
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             username.Text = user.UserName;
-            SlidePanel.Opacity = 0.0;
+            SlidePanel.Opacity = 1.0;
         }
 
         private void busses_Click(object sender, RoutedEventArgs e)
         {
-            SlidePanel.Opacity = 1;
+            SlidePanel.Opacity = 1.0;
             SlidePanel.Height = busses.Height;
             PL.busseswindow busseswindow= new PL.busseswindow(bl);
             busseswindow.ShowDialog();//CANT OPEN OTHER WHEN FIRST NOT CLOSE
@@ -40,7 +40,7 @@ namespace PL
 
         private void buslines_Click(object sender, RoutedEventArgs e)
         {
-            SlidePanel.Opacity = 2;
+            SlidePanel.Opacity = 2.0;
             SlidePanel.Height = buslines.Height;
             PL.BusLineWindow buslineswindow = new PL.BusLineWindow(bl);
             buslineswindow.ShowDialog();
@@ -48,7 +48,7 @@ namespace PL
 
         private void Stations_Click(object sender, RoutedEventArgs e)
         {
-            SlidePanel.Opacity = 3;
+            SlidePanel.Opacity = 3.0;
             SlidePanel.Height = Stations.Height;
             PL.StationsWindow1 stationwindow = new StationsWindow1(bl);
             stationwindow.ShowDialog();

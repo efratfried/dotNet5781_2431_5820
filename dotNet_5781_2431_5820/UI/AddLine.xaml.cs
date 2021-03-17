@@ -43,10 +43,10 @@ namespace PL
             lastStationComboBox.ItemsSource = bl.GetAllStations();//ObserListOfStations;
             areaComboBox.SelectedIndex = 0; //index of the object to be selected
             firstStationComboBox.DisplayMemberPath = "StationName";//show only specific Property of object
-            //firstStationComboBox.SelectedValuePath = "Code";//selection return only specific Property of object
+            firstStationComboBox.SelectedValuePath = "Code";//selection return only specific Property of object
             firstStationComboBox.SelectedIndex = 0; //index of the object to be selected
             lastStationComboBox.DisplayMemberPath = "StationName";//show only specific Property of object
-            //lastStationComboBox.SelectedValuePath = "Code";//selection return only specific Property of object
+            lastStationComboBox.SelectedValuePath = "Code";//selection return only specific Property of object
             lastStationComboBox.SelectedIndex = 0; //index of the object to be selected
         }
     

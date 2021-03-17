@@ -17,7 +17,7 @@
     <Grid x:Name="MainGrid" DataContext="{StaticResource lineTripViewSource}" Margin="0,0,-0.4,-3">
         <ComboBox x:Name="BusLineList" FontSize="12" ItemsSource="{Binding}" Margin="157,88,317,308" Width="120" SelectionChanged="BusLineList_SelectionChanged" Height="auto"/>
         <!--<ComboBox x:Name="LineList" ItemsSource="{Binding BusNum}" HorizontalAlignment="Left" Margin="113,92,0,0" VerticalAlignment="Top" Width="115" SelectionChanged="cbLine_SelectionChanged"/>-->
-        <Label x:Name="frequency" Content="Choose a frequency:" Margin="4,126,443,268" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="frequency" Content="Choose a frequency:" Margin="4,126,443,252" FontSize="14" FontWeight="Bold"/>
         <ComboBox x:Name="frequencyTime" Margin="157,126,317,268"  Height="auto" ItemsSource="{Binding}" SelectionChanged="frequencyTime_SelectionChanged"/>
         <Label x:Name="choosealine" Content="Choose a line:" FontSize="14" FontWeight="Bold" Margin="4,88,481,297"/>
         <DataGrid x:Name="BusLineSchedual1" AutoGenerateColumns="False" EnableRowVirtualization="True" BorderThickness="1" ItemsSource="{Binding}" Margin="322,86,24,76" RowDetailsVisibilityMode="VisibleWhenSelected" BorderBrush="Black" Foreground="Black" FontWeight="bold" SelectionChanged="BusLineSchedual1_SelectionChanged">

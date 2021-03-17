@@ -31,9 +31,8 @@
         <Image Source="user_icon2.PNG"  Margin="986,21,-25,0" VerticalAlignment="Top" Height="120"/>
         <Label Content="  hello" FontSize="20" Margin="1024,161,99.4,361.6" Foreground="Black" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" />
         <TextBox x:Name="username" DataContext="{Binding}"  HorizontalAlignment="Left" Height="34" Margin="1088,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="99" IsReadOnly="True" FontSize="20" Foreground="Black" FontWeight="Bold" Background="Transparent" BorderBrush="Transparent"/>
-        <Button x:Name="log_out" Margin="4,0,1123,496" FontSize="25" Background="Transparent" FontWeight="Bold" Click="log_out_Click" BorderBrush="Transparent"/>
         <Rectangle x:Name="SlidePanel" HorizontalAlignment="Left" Height="60" Margin="1177,241,0,0" VerticalAlignment="Top" Width="13" Fill="White" Visibility="Visible" StrokeLineJoin="Miter"/>
-        <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logoutdoor.PNG" Margin="17,-40,1149,449" RenderTransformOrigin="0.5,0.5">
+        <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logoutdoor.PNG" Margin="9,4,1157,528" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -43,5 +42,6 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
+        <Button x:Name="log_out" Margin="4,0,1155,525" FontSize="25" Background="Transparent" FontWeight="Bold" Click="log_out_Click" BorderBrush="Transparent"/>
     </Grid>
 </Window>

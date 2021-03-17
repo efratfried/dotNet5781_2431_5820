@@ -24,7 +24,7 @@
             <ColumnDefinition Width="199*"/>
             <ColumnDefinition Width="182*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="UpdateLineButton" Content="Update the Line" HorizontalAlignment="Center" Margin="160.2,43.2,9.6,0" VerticalAlignment="Top" Width="211" Click="UpdateLineButton_Click" Background="White" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" FontSize="14" FontWeight="Bold" Foreground="Black" BorderBrush="Black">
+        <Button x:Name="UpdateLineButton" Content="Update the Line" HorizontalAlignment="Center" Margin="160.2,43.2,9.6,0" VerticalAlignment="Top" Width="211" Click="UpdateLineButton_Click" Background="Transparent" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" FontSize="14" FontWeight="Bold" Foreground="Black" BorderBrush="Black" BorderThickness="1.5">
             <Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>

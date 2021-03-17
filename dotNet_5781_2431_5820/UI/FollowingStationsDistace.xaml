@@ -9,12 +9,14 @@
     <Window.Background>
         <ImageBrush ImageSource="bgmore.JPG"/>
     </Window.Background>
-    <Grid Margin="0,0,607.6,0">
-        <Label x:Name="dis" Content="Distance" FontSize="32" FontWeight="Bold" Foreground="White" Margin="162,12,-307,300.4" Height="58" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox x:Name="dis1" Margin="190,150,-310,194.4" RenderTransformOrigin="0.812,0.166" Width="120" Height="26" Text="{Binding Distance}" TextChanged="dis1_TextChanged"/>
-        <Label x:Name="chooseS" Content="Distance" FontSize="14" FontWeight="Bold" Foreground="Black" Margin="46,150,-137,191.4" Height="29" />
-        <Button x:Name="Add" Background="Transparent" Content="Add" Height="Auto" Margin="190,325,-323,19.4" FontSize="14" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Click="Add_Click"/>
-        <TextBlock x:Name="first1" Text="{Binding FirstStationCode}" Margin="266,0,-386,242.4" Background="White" Width="120" Height="29" VerticalAlignment="Bottom"/>
-        <TextBlock x:Name="second1" Text="{Binding SecondStationCode}" Background="White" Height="29" Margin="118,99,-238,242.4" Width="120"/>
+    <Grid Margin="0,0,329.6,0.4">
+        <Label x:Name="dis" Content="Distance" FontSize="32" FontWeight="Bold" Foreground="Black" Margin="10,10,9,302" Height="58" RenderTransformOrigin="0.5,0.5"/>
+        <Label x:Name="timing" Content="Time" Margin="10,152,100,186" Background="Transparent" FontSize="14" FontWeight="Bold"/>
+        <TextBox x:Name="dis1" Margin="97,190,-53,154" RenderTransformOrigin="0.812,0.166" Width="120" Height="26"  HorizontalAlignment="Left"/>
+        <TextBox x:Name="time" Margin="97,155,-53,189"  Height="26" TextChanged="time_TextChanged"/>
+        <Label x:Name="chooseS" Content="Distance" FontSize="14" FontWeight="Bold" Foreground="Black" Margin="10,189,88,152" Height="29" />
+        <Button x:Name="Add" Background="Transparent" BorderThickness="1" Content="Add" Height="Auto" Margin="340,325,-323,19" FontSize="14" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Click="Add_Click"/>
+        <TextBlock x:Name="first1" Text="{Binding FirstStationCode}" Margin="279,0,-235,242" Background="White" Width="120" Height="29" VerticalAlignment="Bottom"/>
+        <TextBlock x:Name="second1" Text="{Binding SecondStationCode}" Background="White" Height="29" Margin="97,99,-53,242" Width="120"/>
     </Grid>
 </Window>

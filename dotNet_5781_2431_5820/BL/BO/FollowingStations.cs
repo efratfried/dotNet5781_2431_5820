@@ -13,7 +13,7 @@ namespace BO
         //public string FirstStationName { set; get; }
         //public string SecondStationName { set; get; }
         public double Distance { set; get; }
-        public TimeSpan AaverageDrivingTime { set; get; }
+        public TimeSpan AverageDrivingTime { set; get; }
         public TimeSpan WalkingTime { set; get; }
         public override string ToString() => this.ToStringProperty();
     }

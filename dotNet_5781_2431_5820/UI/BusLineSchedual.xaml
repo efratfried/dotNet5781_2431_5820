@@ -15,15 +15,18 @@
         <ImageBrush ImageSource="bgmore.jpg"/>
     </Window.Background>
     <Grid x:Name="MainGrid" DataContext="{StaticResource lineTripViewSource}" Margin="0,0,-0.4,-3">
-        <ComboBox x:Name="BusLineList" FontSize="12" ItemsSource="{Binding}" Margin="118,92,356,304" Width="120" SelectionChanged="BusLineList_SelectionChanged" Height="auto"/>
+        <ComboBox x:Name="BusLineList" FontSize="12" ItemsSource="{Binding}" Margin="157,88,317,308" Width="120" SelectionChanged="BusLineList_SelectionChanged" Height="auto"/>
         <!--<ComboBox x:Name="LineList" ItemsSource="{Binding BusNum}" HorizontalAlignment="Left" Margin="113,92,0,0" VerticalAlignment="Top" Width="115" SelectionChanged="cbLine_SelectionChanged"/>-->
+        <Label x:Name="frequency" Content="Choose a frequency:" Margin="4,126,443,268" FontSize="14" FontWeight="Bold"/>
+        <ComboBox x:Name="frequencyTime" Margin="157,126,317,268"  Height="auto" ItemsSource="{Binding}" SelectionChanged="frequencyTime_SelectionChanged"/>
         <Label x:Name="choosealine" Content="Choose a line:" FontSize="14" FontWeight="Bold" Margin="4,88,481,297"/>
-        <DataGrid x:Name="BusLineSchedual1" AutoGenerateColumns="False" EnableRowVirtualization="True" BorderThickness="1" ItemsSource="{Binding}" Margin="275,88,201,170" RowDetailsVisibilityMode="VisibleWhenSelected" BorderBrush="Black" Foreground="Black" FontWeight="bold" SelectionChanged="BusLineSchedual1_SelectionChanged">
+        <DataGrid x:Name="BusLineSchedual1" AutoGenerateColumns="False" EnableRowVirtualization="True" BorderThickness="1" ItemsSource="{Binding}" Margin="322,86,24,76" RowDetailsVisibilityMode="VisibleWhenSelected" BorderBrush="Black" Foreground="Black" FontWeight="bold" SelectionChanged="BusLineSchedual1_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="startAtColumn" Binding="{Binding Startime}" Header="       Start At" Width="120"/>
+                <DataGridTextColumn x:Name="startAtColumn" Binding="{Binding LineStartTime}" Header="       Start At" Width="120"/>
+                <DataGridTextColumn x:Name="finishAt" Binding="{Binding LineFinishTime}" Header="     Finish at" Width="120"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid x:Name="StationDetails" DataContext="{StaticResource lineViewSource}" HorizontalAlignment="Left" Margin="20,131,0,0" VerticalAlignment="Top" Height="122" Width="218">
+        <Grid x:Name="StationDetails" DataContext="{StaticResource lineViewSource}" HorizontalAlignment="Left" Margin="20,225,0,0" VerticalAlignment="Top" Height="122" Width="256">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
@@ -37,7 +40,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Area:" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Left" Margin="0,19,0,24.8" Grid.Row="0" VerticalAlignment="Center" FontSize="14" Height="29" Width="45"/>
-            <TextBlock x:Name="areaLabel" Background="White" Text="{Binding}" HorizontalAlignment="Left" Margin="0,22,0,34" Grid.Row="0" VerticalAlignment="Center" Width="118" Height="24" Grid.Column="1"/>
+            <TextBlock x:Name="areaLabel" Background="White" Text="{Binding Area}" HorizontalAlignment="Left" Margin="0,22,0,34" Grid.Row="0" VerticalAlignment="Center" Width="118" Height="24" Grid.Column="1"/>
             <Label Content="First Station:" Grid.Column="0" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Margin="-2,56,0,36.4" VerticalAlignment="Center" Height="34" Grid.RowSpan="4" Width="93"/>
             <TextBlock x:Name="firstStationLabel" Background="White" Text="{Binding FirstStation}" Grid.Column="1" HorizontalAlignment="Left" Margin="0.8,56,0,0.8" VerticalAlignment="Center" Width="117" Height="24" Grid.RowSpan="2"/>
             <Label Content="Last Station:" Grid.Column="0" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Margin="-2,8.4,0,8.4" Grid.Row="3" VerticalAlignment="Center" Height="28" Width="91"/>

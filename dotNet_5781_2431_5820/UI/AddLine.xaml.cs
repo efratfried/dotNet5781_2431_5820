@@ -127,13 +127,13 @@ namespace PL
                     bl.GetBusLine(bn.ID).DeepCopyTo(pl);
                     BS.ts.Add(pl);
                     bl.AddFollowingStation(addedLine.FirstStation.ToString(), addedLine.LastStation.ToString());
-                  /*  BO.FollowingStations chosen = bl.GetFollowingStation(addedLine.FirstStation.ToString(), addedLine.LastStation.ToString());
+                  /* BO.FollowingStations chosen = bl.GetFollowingStation(addedLine.FirstStation.ToString(), addedLine.LastStation.ToString());
                     if(chosen.Distance==0)
                     {
                         FollowingStationsDistace f = new FollowingStationsDistace(chosen, bl);
                         f.Show();
-                    }*/
-                    else { }
+                    }
+                    else { }*/
                     break;
                 case MessageBoxResult.No:
                     break;

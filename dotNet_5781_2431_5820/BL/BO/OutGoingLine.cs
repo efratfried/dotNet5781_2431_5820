@@ -7,11 +7,21 @@ using System.Threading.Tasks;
 namespace BO
 {
     public class OutGoingLine
-    {
-        protected int ID { set; get; }
-        public TimeSpan Startime { set; get; }
-        public TimeSpan Prequency { set; get; }
-        public TimeSpan EndTime { set; get; }
-        public override string ToString() => this.ToStringProperty();
+    { 
+            public int Id { get; set; }
+            public int BusLineID1 { get; set; }
+            public int LineFrequency { get; set; }
+            public string NameOfLastStation { get; set; }
+            public TimeSpan LineStartTime { get; set; }
+            public TimeSpan LineFinishTime { get; set; }
+            public TimeSpan LineFrequencyTime { get; set; }
+            /// <summary>
+            /// Frequency of the line to the current port.
+            /// </summary>
+            public List<TimeSpan> DepartureTimes = new List<TimeSpan>();
+            /// <summary>
+            /// Arrivals at the current departure point.
+            /// </summary>
+            public List<TimeSpan> TimeFinishTrval = new List<TimeSpan>();
     }
 }

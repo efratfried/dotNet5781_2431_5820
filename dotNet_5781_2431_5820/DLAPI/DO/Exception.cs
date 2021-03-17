@@ -180,4 +180,16 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad Bus id: {BusID} and Station id: {BusStationNum}";
     }
+    public class BadOutGoingLineException : Exception
+    {
+        public int LicenseNum;
+        public TimeSpan start;
+        public BadOutGoingLineException(int L, TimeSpan s) : base() {LicenseNum = L ;start = s;}
+        public BadOutGoingLineException(int L, TimeSpan s, string message) :
+            base(message) { LicenseNum = L; start = s; }
+        public BadOutGoingLineException(int L, TimeSpan s,string message, Exception innerException) :
+            base(message, innerException) { LicenseNum = L; start = s; }
+
+        public override string ToString() => base.ToString() + $",wrong details : {LicenseNum}";
+    }
 }

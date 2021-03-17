@@ -22,8 +22,8 @@ namespace UI
     public partial class BusLineSchedual : Window
     {
         IBL bl;
-        PO.BusLine MyBusLine;
-        BO.BusStationLine MybusStation;
+        //PO.BusLine MyBusLine;
+        //BO.BusStationLine MybusStation;
         public ObservableCollection<PO.BusLine> ts;
         public ObservableCollection<BO.BusStationLine> bs;
         public BusLineSchedual(IBL _bl)
@@ -48,12 +48,32 @@ namespace UI
             BusLineList.DisplayMemberPath = "BusNum";
             BusLineList.SelectedIndex = 0;
         }
+
+        void RefreshFrequenciesGrid()//refresh the combobox each time the user changes the selection 
+        {
+           /* List<BO.OutGoingLine> outG= bl.GetAllfrequencies(BusLineList.SelectedIndex).ToList();
+            for (int i = 0; i < outG.Count; i++)
+            {
+                PO. busLes2 = new PO.BusLine();
+                outG[i].DeepCopyTo(busLes2);
+
+                ts.Add(busLes2);
+            }
+            BusLineList.ItemsSource = ts;
+            BusLineList.DisplayMemberPath = "BusNum";
+            BusLineList.SelectedIndex = 0;*/
+        }
         private void BusLineSchedual1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
         private void BusLineList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void frequencyTime_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

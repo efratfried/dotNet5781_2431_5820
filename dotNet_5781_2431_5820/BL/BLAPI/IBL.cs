@@ -98,5 +98,6 @@ namespace BLAPI
         IEnumerable<BO.Bus> GetAccidentBy(Predicate<BO.Bus> predicate);
         void AddAccident(BO.Bus bus);
         #endregion*/
+        IEnumerable<BO.OutGoingLine> GetAllfrequencies(int lineNum);
     }
 }

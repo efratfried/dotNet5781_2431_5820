@@ -8,13 +8,20 @@ namespace DO
 {
     public class OutGoingLine
     {//info page in sation on line
-        public string ID { set; get; }
-        public TimeSpan Startime { set; get; }
-        public TimeSpan Prequency { set; get; }
-        public TimeSpan EndTime { set; get; }
+        public int Id { get; set; }
+        public int BusLineID1 { get; set; }
+        public TimeSpan LineStartTime { get; set; }
+        public TimeSpan LineFinishTime { get; set; }
+        public TimeSpan LineFrequencyTime { get; set; }
+        public int LineFrequency { get; set; }
         public override string ToString()
         {
-            return this.ToStringProperty();
+            return ToStringProperty();
         }
+        private string ToStringProperty()
+        {
+            throw new NotImplementedException();
+        }
+        //public DateTime Frequency { get; set; }
     }
 }

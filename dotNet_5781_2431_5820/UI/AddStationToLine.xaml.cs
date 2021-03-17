@@ -84,8 +84,8 @@ namespace PL
                 AddedS.BusStationNum = s.CodeStation;
                 AddedS.IndexInLine = i;
                 AddedS.ID = tempBL.ID.ToString();
-                // BO.FollowingStations first = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.FirstStationCode);
-                //BO.FollowingStations second = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.SecondStationCode);
+                 BO.FollowingStations first = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.FirstStationCode);
+                BO.FollowingStations second = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.SecondStationCode);
                 
                 bl.AddBusStationLine(AddedS);
                 bl.AddFollowingStation(tempFS.FirstStationCode.ToString(), AddedS.BusStationNum);
@@ -97,7 +97,7 @@ namespace PL
                 }
                 BO.FollowingStations ff = bl.GetFollowingStation(tempFS.FirstStationCode.ToString(), AddedS.BusStationNum);
                 BO.FollowingStations ss = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.SecondStationCode.ToString());
-                if (ff.Distance ==0)
+                /*if (ff.Distance ==0)
                 {
                     FollowingStationsDistace win = new FollowingStationsDistace(ff,bl);              
                     win.Show();                  
@@ -106,7 +106,7 @@ namespace PL
                 {
                     FollowingStationsDistace win = new FollowingStationsDistace(ss, bl);
                     win.Show();
-                }
+                }*/
               
                 /* if ( != null && second != null)
                  {

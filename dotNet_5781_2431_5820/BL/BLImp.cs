@@ -342,7 +342,7 @@ namespace BL
                 bsl.Add(b);
             }
             for (int i = 0; i < bs.Count-1; i++)
-            {
+            {                                     //here is the problem
                 bsl[i].Distance = dl.GetFollowingStation(bs[i].BusStationNum, bs[i + 1].BusStationNum).Distance;
                 bsl[i].AverageDrivingTime = dl.GetFollowingStation(bs[i].BusStationNum, bs[i + 1].BusStationNum).AverageDrivingTime;
             }
@@ -965,6 +965,36 @@ namespace BL
             int dis = Convert.ToInt32(Dis);//dont care to loose a little bit info because it is not exact but evaluieted time
             TimeSpan dt = new TimeSpan(dis);
             return dt;
+        }
+        #endregion
+
+        #region OutGoingLine
+        public IEnumerable<BO.OutGoingLine> GetAllfrequencies(int lineNum)
+        {
+            List<BO.OutGoingLine> outGoingLine = new List<OutGoingLine>();
+            try
+            {       
+                List<DO.OutGoingLine> outGoingLine1 = dl.LineExitList(lineNum).ToList();
+                List<BO.BusStationLine> busStationLines = GetAllBusStationLines(lineNum).ToList();
+                TimeSpan timeSpan = new TimeSpan(busStationLines.Sum(i => i.AverageDrivingTime.Hours),
+                    busStationLines.Sum(i => i.AverageDrivingTime.Minutes), 
+                    busStationLines.Sum(i => i.AverageDrivingTime.Seconds));
+
+                for (int i = 0; i < outGoingLine1.Count; i++)
+                {
+                    outGoingLine.Add(new OutGoingLine { LineStartTime = outGoingLine1[i].LineStartTime, LineFinishTime = outGoingLine1[i].LineFinishTime, Id = outGoingLine1[i].Id });
+                    for (TimeSpan j = outGoingLine1[i].LineStartTime; j < outGoingLine1[i].LineFinishTime; j += outGoingLine1[i].LineFrequencyTime)
+                    {
+                        outGoingLine[i].DepartureTimes.Add(j);
+                        outGoingLine[i].TimeFinishTrval.Add(j + timeSpan);
+                    }
+                }                
+            }
+            catch 
+            {
+
+            }
+            return outGoingLine;
         }
         #endregion
     }

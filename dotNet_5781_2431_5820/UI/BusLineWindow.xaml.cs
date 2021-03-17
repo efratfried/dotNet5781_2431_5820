@@ -52,10 +52,6 @@ namespace PL
             BusLineComboBox.ItemsSource = ts;
             BusLineComboBox.DisplayMemberPath = "BusNum";
             BusLineComboBox.SelectedIndex = 0;
-
-         
-            // IEnumerable<PO.BusLine> buslines = bl.GetBusLines().Cast<PO.BusLine>();
-            // BusLineComboBox.ItemsSource = buslines;
         }
                 
         void RefreshAllLineStationsOfLineGrid()
@@ -257,7 +253,7 @@ namespace PL
             {
                 BO.BusStationLine bs = lineStationDataGrid.SelectedItem as BO.BusStationLine;                
                 BO.BusStationLine bs1 = this.bs[bs.IndexInLine + 1];
-                // BO.FollowingStations s = lineStationDataGrid.SelectedItem as BO.FollowingStations;
+                 BO.FollowingStations s = lineStationDataGrid.SelectedItem as BO.FollowingStations;
                 try
                 {
                     BO.FollowingStations tempS =bl.GetFollowingStation(bs.BusStationNum,bs1.BusStationNum);
@@ -268,12 +264,25 @@ namespace PL
                 catch(BO.BadStationNumException)
                 {
                     MessageBoxResult res = MessageBox.Show("The Station doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                }              
+                }            
             }
             else
             {
                 MessageBoxResult res = MessageBox.Show("Please press on a station", "Error", MessageBoxButton.OK);
             }
+        }
+        private void update_click(object sender, RoutedEventArgs e)
+        {
+            
+
+            FollowingStationsDistace fss = new FollowingStationsDistace
+                (new BO.FollowingStations { FirstStationCode = ((sender as Button).DataContext as BO.BusStationLine).BusStationNum,
+                    SecondStationCode = bs[ bs.ToList().FindIndex(i => i.IndexInLine == ((sender as Button)
+                    .DataContext as BO.BusStationLine).IndexInLine + 1)].BusStationNum,
+                    AverageDrivingTime = ((sender as Button)
+                    .DataContext as BO.BusStationLine).AverageDrivingTime, Distance =
+                    ((sender as Button).DataContext as BO.BusStationLine).Distance } ,bl ,this);
+            fss.Show();
         }
 
         private void area_TextChanged(object sender, TextChangedEventArgs e)

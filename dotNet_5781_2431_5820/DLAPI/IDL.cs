@@ -110,5 +110,14 @@ namespace DLAPI
         void DeleteFollowingStation(DO.FollowingStations followingstation);
         void DeleteFollowingStation(string code);
         #endregion
+
+        #region outgoingline
+        void AddLineExit(DO.OutGoingLine lineExit);
+        void DeleteLineExit(int lineNumber, TimeSpan StartTime);
+        void UpdatingLineExit(DO.OutGoingLine lineExit);
+        DO.OutGoingLine ReturnLineExit(int lineNumber, TimeSpan StartTime);
+        DO.OutGoingLine OneLineExitFromList(int numberLine, TimeSpan StartTime);
+        IEnumerable<DO.OutGoingLine> LineExitList(int numberLine);
+        #endregion
     }
 }

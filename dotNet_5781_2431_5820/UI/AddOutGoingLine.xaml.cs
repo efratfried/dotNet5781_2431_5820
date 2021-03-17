@@ -34,7 +34,7 @@ namespace PL
 
                 TimeSpan ts = new TimeSpan(int.Parse(hours.Text), int.Parse(minutes.Text), int.Parse(seconds.Text));
                 trip = new BO.OutGoingLine();
-                trip.Startime = ts;
+                trip.LineStartTime = ts;
                 //the other fields are not restarted yet!!!
                 this.Close();
             }

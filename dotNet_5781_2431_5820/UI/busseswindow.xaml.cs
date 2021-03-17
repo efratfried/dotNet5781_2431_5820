@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BO;
+using UI;
 
 namespace PL
 {
@@ -45,37 +46,11 @@ namespace PL
             //IEnumerable<PO.BusLine> busLines;
             BusDetailsGrid.DataContext = bl.GetBus(currentbus.LicenseNum);
         }
-       /* void refreahBus_Ducoments()
+       void RefreshAccident()
         {
-            Bus_Ducoments.DataContext = bl.GetBus(busses_list.SelectedIndex.ToString()).AccidentsDuco;
-        }*/
-
-        /*
-         void RefreshAllRegisteredCoursesGrid()
-        {
-            studentCourseDataGrid.DataContext = bl.GetAllCoursesPerStudent(curStu.ID);
+            Accident.ItemsSource = bl.GetAllAccident().ToList();
         }
-
-        void RefreshAllNotRegisteredCoursesGrid()
-        {
-            List<BO.Course> listOfUnRegisteredCourses = bl.GetAllCourses().Where(c1 => bl.GetAllCoursesPerStudent(curStu.ID).All(c2 => c2.ID != c1.ID)).ToList();
-            courseDataGrid.DataContext = listOfUnRegisteredCourses;
-        }
-
-        private void cbStudentID_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            curStu = (cbStudentID.SelectedItem as BO.Student);
-            gridOneStudent.DataContext = curStu;
-
-            if (curStu != null)
-            {
-                //list of courses of selected student
-                RefreshAllRegisteredCoursesGrid();
-                //list of all courses (that selected student is not registered to it)
-                RefreshAllNotRegisteredCoursesGrid();                
-            }
-        }
-    */
+    
         private void Refreshbusses_listComboBox()//refresh the combobox each time the user changes the selection 
         {
             List<BO.Bus> buses = bl.GetAllBuss().ToList();
@@ -112,39 +87,6 @@ namespace PL
             //}
         }
 
-        private void inner_info_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //try
-            //{
-            //    if (inner_info.SelectedItem == accident)
-            //    {
-            //        BO.Bus bus = bl.GetBus(currentbus.LicenseNum.ToString());
-            //        inner_info.DataContext = bus.AccidentsDuco;
-            //    }
-
-            //    if (inner_info.SelectedItem == treats)
-            //    {
-            //        BO.Bus bus = bl.GetBus(currentbus.LicenseNum.ToString());
-            //        inner_info.DataContext = bus.TreatsDuco;
-            //    }
-
-            //    if (inner_info.SelectedItem == last_drives)
-            //    {
-            //        BO.Bus bus = bl.GetBus(currentbus.LicenseNum.ToString());
-            //        inner_info.DataContext = bus.drivingBusesDuco;
-            //    }
-            //    else
-            //    {
-            //        throw new BO.BadBusLineIdException("you didnt choose a duocment");
-            //    }
-            //}
-            //catch (BO.BadBusLineIdException ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            //currentbusID.DataContext = bl.GetAllBuss();
-            //currentbusID.SelectedIndex = 0; //index of the object to be selected
-        }
 
         private void start_driving_Click(object sender, RoutedEventArgs e)
         {
@@ -205,6 +147,12 @@ namespace PL
         private void Accident_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void add_accident_Click(object sender, RoutedEventArgs e)
+        {
+            AddAccident win = new AddAccident(currentbus,bl);
+            win.ShowDialog();
         }
 
         //  currentbus = DataContext as Bus;

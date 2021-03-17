@@ -8,9 +8,9 @@ namespace BO
 {
     public class Accident
     {
-        public int LicenseNum { get; set; }
-        public IEnumerable<DateTime> AccidentDate { get; set; }
-        public int AccidentNum { get; set; }
+        public string LicenseNum { get; set; }
+        public DateTime AccidentDate { get; set; }
+        public int AccidentNum { get; set; }//index
     }
 
 

@@ -1016,20 +1016,11 @@ namespace BL
             AccidentDO.CopyPropertiesTo(AccidentBO);
             return AccidentBO;
         }
-        public IEnumerable<BO.Accident> GetAllAccidentsList(Predicate<BO.Accident> predicate)
+        public IEnumerable<BO.Accident> GetAllAccident()
         {
-
-            List<BO.Accident> accidents = new List<Accident>();
-            List<DO.Accident> accidents1 = dl.GetAllAccidentsList().ToList();
-            for (int i = 0; i < accidents1.Count; i++)
-            {
-                accidents.Add(AccidentDoBoAdapter(accidents1[i]));
-                accidents1[i].CopyPropertiesTo(accidents[i]);
-            }
-            return from l in accidents
-                   where predicate(l)
-                   orderby(l.AccidentDate)
-                   select l;
+            return from AccidentDO in dl.GetAllAccidentsList()
+                   orderby AccidentDO.AccidentDate
+                   select AccidentDoBoAdapter(AccidentDO);
         }
         public void AddAccident(BO.Accident Accident)
         {

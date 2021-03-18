@@ -254,6 +254,23 @@ namespace BL
             try
             {
                 dl.DeleteStation(Codestation);
+                dl.DeleteFollowingStation(Codestation);
+                foreach (var item in GetAllLinesPerStation(int.Parse(Codestation)))
+                {
+
+                    List<DO.BusStationLine> busStationLines = dl.GetAllBusStationLines(item.ID.ToString()).OrderBy(i => i.IndexInLine).ToList();
+                    if (busStationLines[0].BusStationNum != Codestation
+                        && busStationLines[busStationLines.Count - 1].BusStationNum != Codestation)
+                    {
+                        DeleteBusStationLine(busStationLines[busStationLines.FindIndex(i => i.BusStationNum == Codestation)].BusStationNum,
+                           int.Parse(busStationLines[0].ID), busStationLines[busStationLines.FindIndex(i => i.BusStationNum == Codestation)].IndexInLine
+                            );
+                    }
+                    else
+                    {
+                        dl.DeleteBusStationLine(busStationLines[busStationLines.FindIndex(i => i.BusStationNum == Codestation)].BusStationNum, busStationLines[0].ID);
+                    }
+                }
             }
             catch (DO.BadCodeStationException ex)
             {
@@ -393,7 +410,7 @@ namespace BL
         {
             try
             {
-                List<DO.BusStationLine >bs = dl.GetBusStationLineList(i => i.ID == ID.ToString()).ToList();
+                List<DO.BusStationLine >bs = dl.GetBusStationLineList(i => i.ID == ID.ToString()).OrderBy(i=>i.IndexInLine).ToList();
                 foreach (DO.BusStationLine item in dl.GetBusStationLineList(i => i.ID == ID .ToString()&& i.IndexInLine >index).ToList())
                 {
                     item.IndexInLine--;

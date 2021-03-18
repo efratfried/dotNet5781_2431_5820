@@ -23,9 +23,7 @@ namespace PL
     {
         IBL bl;
         PO.Station MyStation;
-        //BO.BusLine MyBusLine;
         public ObservableCollection<PO.Station> stationlist;
-        //public ObservableCollection<PO.BusLine> busLines;
 
         public StationsWindow1(IBL _bl)
         {
@@ -50,7 +48,7 @@ namespace PL
             StationComboBox.ItemsSource = stationlist;
             //StationComboBox.DisplayMemberPath = "CodeStation";
             StationComboBox.DisplayMemberPath = "StationName";
-            StationComboBox.SelectedIndex = 0;
+            StationComboBox.SelectedIndex = -1;
 
         }
     
@@ -64,9 +62,9 @@ namespace PL
         private void StationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MyStation = (PO.Station)StationComboBox.SelectedItem;
-            MainGrid.DataContext = MyStation;
-           if(MyStation.CodeStation!=null)
+           if(MyStation!=null)
             {
+                MainGrid.DataContext = MyStation;
                 linesDataGrid.DataContext = bl.GetAllLinesPerStation(int.Parse(MyStation.CodeStation));
             }      
         }
@@ -76,8 +74,16 @@ namespace PL
         {
             try
             {
-                UpdateStation win = new UpdateStation(bl, MyStation);
-                win.Show();
+                if (MyStation==null)
+                {
+                    MessageBox.Show("please choose a station to update", "couldnt open the window", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else 
+                {
+                    UpdateStation win = new UpdateStation(bl, MyStation);
+                    win.Show();
+                }
+
             }
             catch (BO.BadOpenWindow ex)
             {
@@ -95,7 +101,7 @@ namespace PL
                 if (MyStation != null)
                 {
                     bl.DeleteStation(MyStation.CodeStation);
-                    RefreshAllStationsComboBox();
+                    stationlist.Remove(MyStation);
                 }
             }
             catch (BO.BadStationException ex)

@@ -15,8 +15,6 @@ namespace DL
     {
         #region singelton
         static readonly DLXML instance = new DLXML();
-
-        public static List<Accident> AccidentsList;
         static DLXML() { }
 
         // static ctor to ensure instance init is done just before first usage
@@ -470,8 +468,8 @@ namespace DL
         public void DeleteStation(string stationCode)
         {
             List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
-            List<BusStationLine> BusStationsList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath).Where(s=>s.BusStationNum==stationCode).ToList();
-            List<FollowingStations> FollowingStationsList = XMLTools.LoadListFromXMLSerializer<FollowingStations>(FollowingStationsPath).Where(s => s.FirstStationCode == stationCode||s.SecondStationCode==stationCode).ToList();
+       //     List<BusStationLine> BusStationsList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath).Where(s=>s.BusStationNum==stationCode).ToList();
+         //   List<FollowingStations> FollowingStationsList = XMLTools.LoadListFromXMLSerializer<FollowingStations>(FollowingStationsPath).Where(s => s.FirstStationCode == stationCode||s.SecondStationCode==stationCode).ToList();
             DO.Station station1 = StationsList.Find(i => i.CodeStation == stationCode);
 
             if (station1 == null)
@@ -480,31 +478,19 @@ namespace DL
             }
             else
             {
-                foreach(var sl in BusStationsList)
-                {
-                    DeleteBusStationLine(sl.ID,sl.BusStationNum);
-                }
-                foreach (var fs in FollowingStationsList)
-                {
-                    DeleteFollowingStation(fs);
-                }
+                //foreach(var sl in BusStationsList)
+                //{
+                //    DeleteBusStationLine(sl.ID,sl.BusStationNum);
+                //}
+                //foreach (var fs in FollowingStationsList)
+                //{
+                //    DeleteFollowingStation(fs);
+                //}
                 StationsList.Remove(station1);
             }
             XMLTools.SaveListToXMLSerializer(StationsList, StationsPath);
         }
         #endregion Station
-
-        /* #region DrivingBus
-         public IEnumerable<DO.OutGoingLine> GetDrivingBussInStationList(Predicate<DO.OutGoingLine> predicate)
-         {
-           List<OutGoingLine> outgoingLines = XMLTools.LoadListFromXMLSerializer<OutGoingLine>(OutGoingBusesPath);
-
-           return from sic in outgoingLines
-              where predicate(sic)
-                select sic; //no need to Clone()
-          }
-
-         #endregion*/
 
         #region User
         public IEnumerable<DO.User> GetAllUser()
@@ -769,17 +755,14 @@ namespace DL
         {
             XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
             FollowingStations s = (from station in FollowingSElem.Elements()
-                                   where (station.Element("FirstStationCode").Value) == code1 && (station.Element("SecondStationCode").Value) == code2
+                                   where ((station.Element("FirstStationCode").Value == code1 && (station.Element("SecondStationCode").Value)
+                                   == code2)||( station.Element("FirstStationCode").Value) == code2 && (station.Element("SecondStationCode").Value) == code1)
                                    select new FollowingStations()
                                    {
                                        FirstStationCode = (station.Element("FirstStationCode").Value),
                                        SecondStationCode = (station.Element("SecondStationCode").Value),
-                                       //FirstStationName = (station.Element("SecondStationName").Value),
-                                       //SecondStationName = (station.Element("SecondStationName").Value),
                                        Distance = double.Parse(station.Element("Distance").Value),
-
                                        AverageDrivingTime = TimeSpan.ParseExact(station.Element("AverageDrivingTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
-                                       // WalkingTime = TimeSpan.ParseExact(station.Element("WalkingTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                                    }
                         ).FirstOrDefault();
 
@@ -845,7 +828,6 @@ namespace DL
         public void DeleteFollowingStation(DO.FollowingStations followingstation)
         {
             XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
-
             XElement fsElem = (from fs in FollowingSElem.Elements()
                                where (fs.Element("LicenseNum").Value) == followingstation.ToString()
                                select fs).FirstOrDefault();
@@ -861,18 +843,8 @@ namespace DL
         public void DeleteFollowingStation(string code)
         {
             XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
-
-            XElement fsElem = (from fs in FollowingSElem.Elements()
-                               where (fs.Element("LicenseNum").Value) == code
-                               select fs).FirstOrDefault();
-
-            if (fsElem != null)
-            {
-                fsElem.Remove();
-                XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
-            }
-            else
-                throw new DO.BadStationNumException(code, $"bad station's code: {code}");
+            FollowingSElem.Elements().ToList().RemoveAll(fs => fs.Element("FirstStationCode").Value 
+            == code || fs.Element("SecondStationCode").Value == code );
         }
         public void UpdateFollowingStations(DO.FollowingStations FollowingStations)
         {

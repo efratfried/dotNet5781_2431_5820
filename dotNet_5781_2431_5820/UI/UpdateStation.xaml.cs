@@ -34,7 +34,15 @@ namespace PL
             Updatename.Text = station.StationName;
             Updatelatitude.Text = station.Latitude.ToString();
             Updatelingtitude.Text = station.longitude.ToString();
-            UpDisableAccess.ItemsSource = DisableAccess;         
+            UpDisableAccess.ItemsSource = DisableAccess;
+            if(station.DisableAccess)
+            {
+                UpDisableAccess.SelectedItem = DisableAccess[0];
+            }
+            else
+            {
+                UpDisableAccess.SelectedItem = DisableAccess[1];
+            }
         }
         void RefreshDisableAccessComboBox()//refresh the combobox each time the user changes the selection 
         {

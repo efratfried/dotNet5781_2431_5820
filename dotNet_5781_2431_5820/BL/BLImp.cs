@@ -550,8 +550,7 @@ namespace BL
         {//delete all the stations
             try
             {
-                string id = ID.ToString();
-                dl.DeleteBusLine(id);
+                dl.DeleteBusLine(ID);
               //  dl.DeleteBusStationLine(id);
             }
             catch (DO.BadLicenseNumException ex)

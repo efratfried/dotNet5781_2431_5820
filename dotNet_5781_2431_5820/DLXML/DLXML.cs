@@ -257,16 +257,17 @@ namespace DL
         public void DeleteBusLine(int BusNum)
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
-            List<BusStationLine> ListBusStationLine = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath)!!/////צריך להמשיך- צריך למחוק את כל תחנות הקו של הקו ששלחנו למחיקה
-
             DO.BusLine bls = ListBusLines.Find(bus => bus.BusNum == BusNum);
+//
+            List<BusStationLine> ListBusStationLine = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath).Where(bsl=>bsl.ID == bls.ID.ToString()).ToList();/////צריך להמשיך- צריך למחוק את כל תחנות הקו של הקו ששלחנו למחיקה
+
 
             if (bls != null)
             {
-                //foreach (var i in GetAllBusStationLines(BusNum))
-                //{
-                //    DeleteBusStationLine(i.ID, BusNum);
-                //}
+                foreach (var i in ListBusStationLine)
+                {
+                    DeleteBusStationLine(bls.ID,i.BusStationNum);
+                }
                 ListBusLines.Remove(bls);
             }
             else
@@ -311,18 +312,18 @@ namespace DL
 
             XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
         }
-        public void DeleteBusStationLine(int LineNum, int StationCode)
+        public void DeleteBusStationLine(int id, string BusStationNum)
         {
             List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
 
-            DO.BusStationLine sic = busStationLines.Find(cis => (cis.BusStationNum == StationCode.ToString() && cis.ID == LineNum.ToString()));
+            DO.BusStationLine sic = busStationLines.Find(cis => (cis.BusStationNum == BusStationNum && cis.ID == id.ToString()));
 
             if (sic != null)
             {
                 busStationLines.Remove(sic);
             }
             else
-                throw new DO.BadBusStationLineCodeException(StationCode.ToString(), LineNum.ToString(), "Bus LicenseNum is NOT registered to Station LicenseNum");
+                throw new DO.BadBusStationLineCodeException(BusStationNum, id.ToString(), "Bus LicenseNum is NOT registered to Station LicenseNum");
 
             XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
 

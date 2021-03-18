@@ -30,7 +30,7 @@ namespace DLAPI
         int AddBusLine(DO.BusLine BusLine);
         void UpdateBusLine(DO.BusLine newLine);
         //void UpdateBusLine(string id, Action<DO.BusLine> update); //method that knows to updt specific fields in Student
-        void DeleteBusLine(string id); // removes only Student, does not remove the appropriate Person...
+        void DeleteBusLine(int id); // removes only Student, does not remove the appropriate Person...
         IEnumerable<DO.BusLine> GetLineStationsListThatMatchAStation(int code);
         #endregion
 

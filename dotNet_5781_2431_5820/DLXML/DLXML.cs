@@ -254,18 +254,23 @@ namespace DL
         {
             //throw new NotImplementedExcebustion();
         }
-        public void DeleteBusLine(string LicenseNum)
+        public void DeleteBusLine(int BusNum)
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
+            List<BusStationLine> ListBusStationLine = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath)!!/////צריך להמשיך- צריך למחוק את כל תחנות הקו של הקו ששלחנו למחיקה
 
-            DO.BusLine stu = ListBusLines.Find(bus => bus.BusNum.ToString() == LicenseNum);
+            DO.BusLine bls = ListBusLines.Find(bus => bus.BusNum == BusNum);
 
-            if (stu != null)
+            if (bls != null)
             {
-                ListBusLines.Remove(stu);
+                //foreach (var i in GetAllBusStationLines(BusNum))
+                //{
+                //    DeleteBusStationLine(i.ID, BusNum);
+                //}
+                ListBusLines.Remove(bls);
             }
             else
-                throw new DO.BadBusLicenseNumException(LicenseNum.ToString(), $"bad BusLine LicenseNum: {LicenseNum}");
+                throw new DO.BadBusLicenseNumException(BusNum.ToString(), $"bad BusLine LicenseNum: {BusNum}");
 
             XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);
         }

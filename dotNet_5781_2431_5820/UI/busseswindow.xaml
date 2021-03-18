@@ -16,17 +16,17 @@
 
         <ComboBox x:Name="busses_list" ItemsSource="{Binding}"  Height="29" Margin="492,70,309.6,0" VerticalAlignment="Top" SelectionChanged="ListBox_SelectionChanged"/>
         <!--<Button x:Name="start_treatment" Content="start treat" HorizontalAlignment="Left" Margin="154,373,0,0" VerticalAlignment="Top" Width="146" Click="start_treatment_Click" Foreground="black" BorderBrush="Black" Height="20"/>-->
-        <Button x:Name="start_filling_foul" Content="strat refuiling" HorizontalAlignment="Left" Margin="154,390,0,0" VerticalAlignment="Top" Width="146" Click="start_filling_foul_Click" Foreground="black" BorderBrush="Black" Height="20"/>
-        <Button x:Name="start_driving" Content="start driving" HorizontalAlignment="Left" Margin="154,344,0,0" VerticalAlignment="Top" Width="146" Click="start_driving_Click" Foreground="black" BorderBrush="Black" Height="20"/>
-        <Button x:Name="add_accident" Content="Add accident" Height="auto" Width="146" Margin="154,286,701.6,165.2" Click="add_accident_Click"/>
-        <Label x:Name="accidentl" Content="Accident document:" FontSize="14" Margin="492,152,375.6,299.2"/>
-        <DataGrid x:Name="Accident" Margin="492,187,309.6,76.2" Width="200" SelectionChanged="Accident_SelectionChanged">
+        <Button x:Name="start_filling_foul" Content="strat refuiling" HorizontalAlignment="Left" Margin="275,368,0,0" VerticalAlignment="Top" Width="146" Click="start_filling_foul_Click" Foreground="black" BorderBrush="Black" Height="20"/>
+        <Button x:Name="start_driving" Content="start driving" HorizontalAlignment="Left" Margin="275,322,0,0" VerticalAlignment="Top" Width="146" Click="start_driving_Click" Foreground="black" BorderBrush="Black" Height="20"/>
+        <Button x:Name="add_accident" Content="Add accident" Height="auto" Margin="275,278,573.6,159.2" Click="add_accident_Click" BorderBrush="Black"/>
+        <Label x:Name="accidentl" Content="Accident document:" FontSize="14" Margin="492,136,375.6,282.2" Height="auto"/>
+        <DataGrid x:Name="Accident" Margin="492,187,291.6,76.2" SelectionChanged="Accident_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="          Date" Width="100" FontSize="14" FontWeight="Bold" Binding="{Binding AccidentDate}" />
                 <DataGridTextColumn Header="  Accident num" Width="100" FontSize="14" FontWeight="Bold" Binding="{Binding AccidentNum}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Image Source="תאונה.png" Margin="591,136,296.6,298.2"/>
+        <Image Source="תאונה.png" Margin="645,140,313.6,294.2"/>
         <!--<TabIte<m x:Name="treats" Header="treats ducoments" Foreground="Black" BorderBrush="Black">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
@@ -53,14 +53,14 @@
         </StackPanel>
         <Rectangle HorizontalAlignment="Left" Height="7" VerticalAlignment="Top" Width="990" Fill="Black" Visibility="Visible" StrokeLineJoin="Miter"/>
         <Image Source="busicon.png" Margin="854,32,67.6,394.2"/>
-        <TextBlock x:Name="Licensenumbus" Margin="854,107,67.6,351.2" Background="Transparent" Text="{Binding LicenseNum}" FontSize="16" FontWeight="Bold" Width="auto" Height="auto"/>
+        <TextBlock x:Name="Licensenumbus" Margin="854,107,67.6,342.2" Background="Transparent" Text="{Binding LicenseNum}" FontSize="16" FontWeight="Bold" Width="auto" Height="auto"/>
         <Grid x:Name="BusDetailsGrid">
-            <Image x:Name="foul_" Source="foul.png" Margin="176,229,755.6,237.2"/>
-            <Image x:Name="firm_" Source="firm.png" Margin="196,184,781.6,283.2"/>
-            <Image x:Name="abialability" Source="drive abialability.png" Margin="167,97,752.6,367.2"/>
-            <Image x:Name="km" Source="km.png" Margin="167,139,752.6,325.2"/>
+            <Image x:Name="foul_" Source="foul.png" Margin="176,229,755.6,212"/>
+            <Image x:Name="firm_" Source="firm.png" Margin="196,184,781.6,259"/>
+            <Image x:Name="abialability" Source="drive abialability.png" Margin="167,97,752.6,343"/>
+            <Image x:Name="km" Source="km.png" Margin="167,139,752.6,302"/>
             <TextBlock x:Name="aviability_status" HorizontalAlignment="Left" Margin="47,93,0,0"  Background="LightGray" TextWrapping="Wrap" Text="{Binding Status, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
-            <TextBlock x:Name="firm" Background="LightGray" HorizontalAlignment="Left" Margin="47,176,0,0" TextWrapping="Wrap" Text="{Binding Firm, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="9" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
+            <TextBlock x:Name="firm" Background="LightGray" HorizontalAlignment="Left" Margin="47,176,0,0" TextWrapping="Wrap" Text="{Binding Firm, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="29" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
             <TextBlock x:Name="foul_status" Background="LightGray" HorizontalAlignment="Left" Margin="47,223,0,0" TextWrapping="Wrap" Text="{Binding foul, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="29" Width="120" DataContextChanged="foul_status_TextBlock"/>
             <TextBlock x:Name="km_"  Background="LightGray" HorizontalAlignment="Left" Margin="47,134,0,0" TextWrapping="Wrap" Text="{Binding KM, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
         </Grid>

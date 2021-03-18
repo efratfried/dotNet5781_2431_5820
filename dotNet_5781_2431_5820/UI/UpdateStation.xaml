@@ -26,6 +26,6 @@
         </Grid>
         <Label x:Name="updatestation" Content="Update Station's details" FontSize="32" FontWeight="Bold" Foreground="White" Margin="10,10,-10.4,357"/>
         <Button x:Name="Updatedetails" Content="Update station" Margin="702,395,89.6,10.2" FontSize="20" FontWeight="Bold" BorderBrush="Black" BorderThickness="2.5" Background="Transparent" Foreground="White"/>
-        <Image Source="bus-stop-pointer.png" Margin="553,195,-66.4,66.2"/>
+        <Image Source="bus-stop-pointer.png" Margin="718,196,110.6,65.2"/>
     </Grid>
 </Window>

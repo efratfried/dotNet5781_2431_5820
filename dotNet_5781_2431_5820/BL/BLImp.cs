@@ -254,7 +254,7 @@ namespace BL
             try
             {
                 dl.DeleteStation(Codestation);
-                dl.DeleteFollowingStation(Codestation);
+               /* dl.DeleteFollowingStation(Codestation);
                 foreach (var item in GetAllLinesPerStation(int.Parse(Codestation)))
                 {
 
@@ -270,7 +270,7 @@ namespace BL
                     {
                         dl.DeleteBusStationLine(busStationLines[busStationLines.FindIndex(i => i.BusStationNum == Codestation)].BusStationNum, busStationLines[0].ID);
                     }
-                }
+                }*/
             }
             catch (DO.BadCodeStationException ex)
             {

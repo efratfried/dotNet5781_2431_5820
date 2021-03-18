@@ -31,15 +31,14 @@ namespace UI
             bl = _bl;
             licensenum.Text = bus.LicenseNum;
             accidentDate.Text = "";
-
             B = bus;
         }
 
         private void Addaccident_Click(object sender, RoutedEventArgs e)
         {
-            if(accidentDate.SelectedDate!=null)
+            if(accidentDate.DisplayDate != null)
             {
-               BO.Accident a = bl.GetAllAccident().Where(i => i.AccidentDate == accidentDate.SelectedDate.Value).First();
+               BO.Accident a = bl.GetAllAccident().ToList().Find(i => i.AccidentDate == accidentDate.DisplayDate);
 
                 if (a!=null)
                 {                   
@@ -49,13 +48,14 @@ namespace UI
                 {
                     BO.Accident ac = new BO.Accident()
                     {
-                        AccidentDate =  DateTime.Parse(accidentDate.SelectedDate.ToString()),
+                        AccidentDate =  DateTime.Parse(accidentDate.DisplayDate.ToString()),
                         LicenseNum = B.LicenseNum,
-                        AccidentNum = a.AccidentNum + 1
+                       // AccidentNum = a.AccidentNum + 1
 
                     };
-
+                   /* ac.AccidentDate.TimeOfDay = DayOfWeek.Saturday.ToString()*/ 
                     bl.AddAccident(ac);
+
                     MessageBox.Show("Succeed", "Verification", MessageBoxButton.OK);
                     this.Close();
                 }

@@ -450,10 +450,10 @@ namespace BL
             DO.BusLine newblDO;//before copying lineDO to lineBO, we need to ensure that lineDO is legal- legal busNumber.
             //sometimes we get here after the user filled lineDO fields. thats why we copy the given lineDO to a new lineDO and check if it is legal.
            // int blID = blDO.ID;
-            int busNumber = blDO.ID;
+            int ID = blDO.ID;
             try
             {
-                newblDO = dl.GetBusLine(busNumber);//if code is legal, returns a new lineStationDO. if not- ecxeption.
+                newblDO = dl.GetBusLine(ID);//if code is legal, returns a new lineStationDO. if not- ecxeption.
             }
             catch (DO.BadBusLineException ex)
             {
@@ -488,17 +488,16 @@ namespace BL
                    orderby BusLineDO.ID
                    select BuslineDoBoAdapter(BusLineDO);
         }
-        public BO.BusLine GetBusLine(int LicenseNum)
+        public BO.BusLine GetBusLine(int ID)
         {
             DO.BusLine BusLineDO;
             try
             {
-                int licensenum = LicenseNum;
-                BusLineDO = dl.GetBusLine(licensenum);
+                BusLineDO = dl.GetBusLine(ID);
             }
             catch (DO.BadLicenseNumException ex)
             {
-                throw new BO.BadBusLineIdException("Bus's LicenseNum does not exist or it is not a Bus", ex);
+                throw new BO.BadBusLineIdException("Bus's ID does not exist or it is not a Bus", ex);
             }
             return BuslineDoBoAdapter(BusLineDO);
         }
@@ -983,7 +982,7 @@ namespace BL
                 for (int i = 0; i < outGoingLine1.Count; i++)
                 {
                     outGoingLine.Add(new OutGoingLine { LineStartTime = outGoingLine1[i].LineStartTime, LineFinishTime = outGoingLine1[i].LineFinishTime, Id = outGoingLine1[i].Id });
-                    for (TimeSpan j = outGoingLine1[i].LineStartTime; j < outGoingLine1[i].LineFinishTime; j += outGoingLine1[i].LineFrequencyTime)
+                    for (TimeSpan j = outGoingLine1[i].LineStartTime; j <= outGoingLine1[i].LineFinishTime; j += outGoingLine1[i].LineFrequencyTime)
                     {
                         outGoingLine[i].DepartureTimes.Add(j);
                         outGoingLine[i].TimeFinishTrval.Add(j + timeSpan);

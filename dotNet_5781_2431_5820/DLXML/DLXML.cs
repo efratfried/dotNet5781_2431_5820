@@ -192,15 +192,15 @@ namespace DL
         #endregion Bus
 
         #region busline
-        public DO.BusLine GetBusLine(int LicenseNum)
+        public DO.BusLine GetBusLine(int ID)
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
 
-            DO.BusLine stu = ListBusLines.Find(bus => bus.ID == LicenseNum);
+            DO.BusLine stu = ListBusLines.Find(bus => bus.ID == ID);
             if (stu != null)
                 return stu; //no need to Clone()
             else
-                throw new DO.BadBusLicenseNumException(LicenseNum.ToString(), $"bad BusLine LicenseNum: {LicenseNum}");
+                throw new DO.BadBusLicenseNumException(ID.ToString(), $"bad BusLine LicenseNum: {ID}");
         }
 
         public int AddBusLine(DO.BusLine BusLine)
@@ -722,7 +722,8 @@ namespace DL
         public void AddAccident(Accident Accident)
         {
             List<Accident> Accidents = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
-
+            Accident.AccidentNum = Accidents[Accidents.Count - 1].AccidentNum;
+            Accident.AccidentNum++;
             if (Accidents.FirstOrDefault(cis => (cis.LicenseNum == Accident.LicenseNum && cis.AccidentDate == Accident.AccidentDate && cis.AccidentNum == Accident.AccidentNum)) != null)
                 throw new DO.BadBusStationLineCodeException(Accident.LicenseNum, Accident.AccidentDate.ToString(), "accident details is already =exist");
             Accidents.Add(Accident);
@@ -918,14 +919,14 @@ namespace DL
         {
             XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
             XElement lineExit1 = (from p in element.Elements()
-                                  where p.Element("BusLineID1").Value == lineExit.BusLineID1.ToString() && p.Element("LineStartTime").Value == lineExit.LineStartTime.ToString()
+                                  where p.Element("Id").Value == lineExit.BusLineID1.ToString() && p.Element("LineStartTime").Value == lineExit.LineStartTime.ToString()
                                   select p).FirstOrDefault();
             if (lineExit1 != null)
             {
                 throw new BadOutGoingLineException(lineExit.BusLineID1, lineExit.LineStartTime, "the Exit alrdy exist in the list in the same time");
             }
 
-            XElement lineExit2 = new XElement("LineExit", new XElement("BusLineID1", lineExit.BusLineID1),
+            XElement lineExit2 = new XElement("LineExit", new XElement("Id", lineExit.BusLineID1),
                                    new XElement("LineStartTime", lineExit.LineStartTime.ToString()),
                                    new XElement("LineFinishTime", lineExit.LineFinishTime.ToString()),
                                    new XElement("LineFrequencyTime", lineExit.LineFrequencyTime.ToString()),
@@ -949,7 +950,7 @@ namespace DL
         {
             XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
             XElement lineExit1 = (from p in element.Elements()
-                                  where p.Element("BusLineID1").Value == lineNumber.ToString() && p.Element("LineStartTime").Value == StartTime.ToString()
+                                  where p.Element("Id").Value == lineNumber.ToString() && p.Element("LineStartTime").Value == StartTime.ToString()
                                   select p).FirstOrDefault();
             if (lineExit1 == null)
             {
@@ -962,12 +963,12 @@ namespace DL
         {
             XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
             XElement lineExit1 = (from p in element.Elements()
-                                  where p.Element("BusLineID1").Value == lineExit.BusLineID1.ToString() && p.Element("LineStartTime").Value == lineExit.LineStartTime.ToString()
+                                  where p.Element("Id").Value == lineExit.Id.ToString() && p.Element("LineStartTime").Value == lineExit.LineStartTime.ToString()
                                   select p).FirstOrDefault();
 
             if (lineExit1 != null)
             {
-                lineExit1.Element("BusLineID1").Value = lineExit.BusLineID1.ToString();
+                lineExit1.Element("Id").Value = lineExit.Id.ToString();
                 lineExit1.Element("LineStartTime").Value = lineExit.LineStartTime.ToString();
                 lineExit1.Element("LineFinishTime").Value = lineExit.LineFinishTime.ToString();
                 lineExit1.Element("LineFrequency").Value = lineExit.LineFrequency.ToString();
@@ -977,7 +978,7 @@ namespace DL
 
             else
             {
-                throw new BadOutGoingLineException(lineExit.BusLineID1, lineExit.LineStartTime, "The Exit not exist in the compny");
+                throw new BadOutGoingLineException(lineExit.Id, lineExit.LineStartTime, "The Exit not exist in the compny");
 
             }
         }
@@ -985,10 +986,10 @@ namespace DL
         {
             XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
             OutGoingLine lineExit1 = (from p in element.Elements()
-                                      where p.Element("BusLineID1").Value == lineNumber.ToString() && p.Element("LineStartTime").Value == StartTime.ToString()
+                                      where p.Element("Id").Value == lineNumber.ToString() && p.Element("LineStartTime").Value == StartTime.ToString()
                                       select new OutGoingLine()
                                       {
-                                          BusLineID1 = int.Parse(p.Element("BusLineID1").Value),
+                                          Id = int.Parse(p.Element("Id").Value),
                                           LineStartTime = TimeSpan.ParseExact(p.Element("LineStartTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                                           LineFinishTime = TimeSpan.ParseExact(p.Element("LineFinishTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                                           LineFrequencyTime = TimeSpan.ParseExact(p.Element("LineFrequencyTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
@@ -1000,10 +1001,10 @@ namespace DL
         {
             XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
             OutGoingLine lineExit1 = (from p in element.Elements()
-                                      where p.Element("BusLineID1").Value == numberLine.ToString() && p.Element("LineStartTime").Value == StartTime.ToString()
+                                      where p.Element("Id").Value == numberLine.ToString() && p.Element("LineStartTime").Value == StartTime.ToString()
                                       select new OutGoingLine()
                                       {
-                                          BusLineID1 = int.Parse(p.Element("BusLineID1").Value),
+                                          Id = int.Parse(p.Element("Id").Value),
                                           LineStartTime = TimeSpan.ParseExact(p.Element("LineStartTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                                           LineFinishTime = TimeSpan.ParseExact(p.Element("LineFinishTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                                           LineFrequencyTime = TimeSpan.ParseExact(p.Element("LineFrequencyTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
@@ -1015,16 +1016,17 @@ namespace DL
         {
             XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
             return from p in element.Elements()
-                   where p.Element("BusLineID1").Value == numberLine.ToString()
-                   let s = new OutGoingLine()
+                   where p.Element("Id").Value == numberLine.ToString()
+                   select new OutGoingLine()
                    {
-                       BusLineID1 = int.Parse(p.Element("BusLineID1").Value),
+                       Id = int.Parse(p.Element("Id").Value),
                        LineStartTime = TimeSpan.ParseExact(p.Element("LineStartTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                        LineFinishTime = TimeSpan.ParseExact(p.Element("LineFinishTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                        LineFrequencyTime = TimeSpan.ParseExact(p.Element("LineFrequencyTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                        LineFrequency = int.Parse(p.Element("LineFrequency").Value)
-                   }
-                   select s;
+                   }; 
+
+
         }
         #endregion
     }

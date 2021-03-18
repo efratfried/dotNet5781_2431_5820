@@ -21,19 +21,19 @@ namespace PL
     public partial class UpdateStation : Window
     {
         IBL bl;
-        PO.Station station;
+        PO.Station station=new PO.Station();
         public ObservableCollection<string> Disable_Access;
         public UpdateStation(IBL _bl,PO.Station s)
         {
             InitializeComponent();
-            Updatecode.Text = s.CodeStation;
-            UpdateAdress.Text = s.Address;
-            Updatename.Text = s.StationName;
-            Updatelatitude.Text = s.Latitude.ToString();
-            Updatelingtitude.Text = s.longitude.ToString();
-            UpDisableAccess.Text = s.DisableAccess.ToString();
             bl = _bl;
             station = s;
+            Updatecode.Text = station.CodeStation;
+            UpdateAdress.Text = station.Address;
+            Updatename.Text = station.StationName;
+            Updatelatitude.Text = station.Latitude.ToString();
+            Updatelingtitude.Text = station.longitude.ToString();
+            UpDisableAccess.ItemsSource = station.DisableAccess.ToString();         
         }
         void RefreshDisableAccessComboBox()//refresh the combobox each time the user changes the selection 
         {
@@ -76,5 +76,9 @@ namespace PL
             }
         }
 
+        private void Updatecode_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

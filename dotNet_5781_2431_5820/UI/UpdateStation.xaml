@@ -12,17 +12,17 @@
     <Grid>
         <Grid x:Name="UpdateStationDetails" Margin="10,92,314.6,-36.8" Height="400">
             <Label x:Name="Upadress" Foreground="White" Content="adress" Margin="11,106,561,258" Height="36" FontSize="18" FontWeight="Bold"/>
-            <TextBox x:Name="UpdateAdress" Margin="183,106,308,259" Height="35" Width="180" Background="White"/>
+            <TextBox x:Name="UpdateAdress" Margin="183,106,308,259" Height="35" Width="180" Background="White" Text="{Binding Address}"/>
             <Label x:Name="Uplatitude" Foreground="White" Content="latitude" Margin="11,195,530,169" Height="36" FontSize="18" FontWeight="Bold"/>
-            <TextBox x:Name="Updatelatitude" Margin="183,190,308,175" Height="35" Width="180" Background="White"/>
+            <TextBox x:Name="Updatelatitude" Margin="183,190,308,175" Height="35" Width="180" Background="White" Text="{Binding Latitude}"/>
             <Label x:Name="Uplongtitude" Foreground="White" Content="longtitude" Margin="11,147,511,218" Height="35" FontSize="18" FontWeight="Bold"/>
-            <TextBox x:Name="Updatelingtitude" Margin="183,147,308,218" Height="35" Width="180" Background="White"/>
+            <TextBox x:Name="Updatelingtitude" Margin="183,147,308,218" Height="35" Width="180" Background="White" Text="{Binding longitude}"/>
             <Label x:Name="Upcode" Foreground="White" Content="code" Margin="11,27,0,335" Height="38" HorizontalAlignment="Left" Width="62" FontSize="18" FontWeight="Bold"/>
-            <TextBox x:Name="Updatecode" IsReadOnly="True" Margin="183,26,308,338" Height="35" Width="180" Background="White" DataContext="{Binding}"/>
+            <TextBox x:Name="Updatecode" IsReadOnly="True" Margin="183,26,308,338" Height="35" Width="180" Background="White" Text="{Binding CodeStation}"/>
             <Label x:Name="Upname" Foreground="White" Content="name" Margin="11,65,560,299" Height="36" FontSize="18" FontWeight="Bold"/>
-            <TextBox x:Name="Updatename" Margin="183,64,308,300" Height="35" Width="180" Background="White"/>
+            <TextBox x:Name="Updatename" Margin="183,64,308,300" Height="35" Width="180" Background="White" Text="{Binding StationName}"/>
             <Label x:Name="UpDis" Foreground="White" Content="Disable Access" Height="36" FontSize="18" FontWeight="Bold" Margin="11,234,520,130"/>
-            <ComboBox x:Name="UpDisableAccess" Margin="183,234,308,130" DataContext="{Binding}"/>
+            <ComboBox x:Name="UpDisableAccess" Margin="183,234,308,130" ItemsSource="{Binding DisableAccess}"/>
         </Grid>
         <Label x:Name="updatestation" Content="Update Station's details" FontSize="32" FontWeight="Bold" Foreground="White" Margin="10,10,-10.4,357"/>
         <Button x:Name="Updatedetails" Content="Update station" Margin="702,395,89.6,10.2" FontSize="20" FontWeight="Bold" BorderBrush="Black" BorderThickness="2.5" Background="Transparent" Foreground="White"/>

@@ -30,8 +30,8 @@ namespace PL
             areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
             areaComboBox.SelectedIndex = 0;
             //busNumberTextBox.Text = TempBusLine.BusNum.ToString();
-            firstStationComboBox.DataContext = TempBusLine.FirstStation;
-            lastStationComboBox.DataContext = TempBusLine.LastStation;
+            //firstStationComboBox.ItemsSource ;
+            //lastStationComboBox.ItemsSource ;
         }
 
         /*try

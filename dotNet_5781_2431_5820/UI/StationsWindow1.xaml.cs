@@ -70,12 +70,12 @@ namespace PL
         {/**  MyBusLine = (PO.BusLine)BusLineComboBox.SelectedItem;
             BusLines.DataContext = MyBusLine;
             RefreshAllLineStationsOfLineGrid();*/
-            PO.Station MyStation1 = (PO.Station)StationComboBox.SelectedItem;
-            MainGrid.DataContext = MyStation1;
+            MyStation = (PO.Station)StationComboBox.SelectedItem;
+            MainGrid.DataContext = MyStation;
            // RefreshAllLinesOfStationGrid();
-           if(MyStation1.CodeStation!=null)
+           if(MyStation.CodeStation!=null)
             {
-                linesDataGrid.DataContext = bl.GetAllLinesPerStation(int.Parse(MyStation1.CodeStation));
+                linesDataGrid.DataContext = bl.GetAllLinesPerStation(int.Parse(MyStation.CodeStation));
             }      
         }
 
@@ -84,7 +84,7 @@ namespace PL
         {
             try
             {
-                UpdateStation win = new UpdateStation(bl,MyStation);
+                UpdateStation win = new UpdateStation(bl, MyStation);
                 win.Show();
                 //PO.Station s = MyStation;
                 /*if (addressTextBox.Text != "" && nameTextBox.Text != "" && longitudeTextBox.Text != "" && lattitudeTextBox.Text != "")

@@ -6,27 +6,57 @@
         xmlns:local="clr-namespace:UI"
          xmlns:BO="clr-namespace:BO;assembly=BL"
         mc:Ignorable="d"
-        Title="BusLineSchedual" Height="450" Width="600">
+        Title="BusLineSchedual" Height="450" Width="800">
     <Window.Resources>
-        <CollectionViewSource x:Key="lineTripViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:OutGoingLine}, CreateList=True}"/>
-        <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:BusLine}, CreateList=True}"/>
+
+        <ControlTemplate x:Key = "ButtonTemplate1" TargetType = "Button">
+            <Grid>
+
+                <Ellipse x:Name = "ButtonEllipse" Height = "50" Width = "70" >
+                    <Ellipse.Fill>
+                        <LinearGradientBrush StartPoint = "0,0.2" EndPoint = "0.2,1.4">
+                            <!--<GradientStop Offset = "0" Color = "Red" />
+                            <GradientStop Offset = "1" Color = "Orange" />-->
+                            <GradientStop Offset="0.0" Color="#90DDDD" />
+                            <GradientStop Offset="1.0" Color="#5BFFFF" />
+                        </LinearGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <ContentPresenter Content = "{TemplateBinding Content}" 
+               HorizontalAlignment = "Center" VerticalAlignment = "Center" />
+            </Grid>
+        </ControlTemplate>
     </Window.Resources>
     <Window.Background>
         <ImageBrush ImageSource="bgmore.jpg"/>
     </Window.Background>
-    <Grid x:Name="MainGrid" DataContext="{StaticResource lineTripViewSource}" Margin="0,0,-0.4,-3">
-        <ComboBox x:Name="BusLineList" FontSize="12" ItemsSource="{Binding}" Margin="157,88,317,308" Width="120" SelectionChanged="BusLineList_SelectionChanged" Height="auto"/>
+    <Grid x:Name="MainGrid"  Margin="0,0,-0.4,-3">
+        <ComboBox x:Name="BusLineComboBox" FontSize="12" ItemsSource="{Binding}" Margin="156,88,518,308" Width="120" SelectionChanged="ComboBox_SelectionChanged" Height="auto" RenderTransformOrigin="0.148,0.5"/>
         <!--<ComboBox x:Name="LineList" ItemsSource="{Binding BusNum}" HorizontalAlignment="Left" Margin="113,92,0,0" VerticalAlignment="Top" Width="115" SelectionChanged="cbLine_SelectionChanged"/>-->
-        <Label x:Name="frequency" Content="Choose a frequency:" Margin="4,126,443,252" FontSize="14" FontWeight="Bold"/>
-        <ComboBox x:Name="frequencyTime" Margin="157,126,317,268"  Height="auto" ItemsSource="{Binding}" SelectionChanged="frequencyTime_SelectionChanged"/>
-        <Label x:Name="choosealine" Content="Choose a line:" FontSize="14" FontWeight="Bold" Margin="4,88,481,297"/>
-        <DataGrid x:Name="BusLineSchedual1" AutoGenerateColumns="False" EnableRowVirtualization="True" BorderThickness="1" ItemsSource="{Binding}" Margin="322,86,24,76" RowDetailsVisibilityMode="VisibleWhenSelected" BorderBrush="Black" Foreground="Black" FontWeight="bold" SelectionChanged="BusLineSchedual1_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="startAtColumn" Binding="{Binding LineStartTime}" Header="       Start At" Width="120"/>
-                <DataGridTextColumn x:Name="finishAt" Binding="{Binding LineFinishTime}" Header="     Finish at" Width="120"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Grid x:Name="StationDetails" DataContext="{StaticResource lineViewSource}" HorizontalAlignment="Left" Margin="20,225,0,0" VerticalAlignment="Top" Height="122" Width="256">
+        <Label x:Name="frequency" Content="Choose a frequency:" Margin="476,15,166,363" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="choosealine" Content="Choose a line:" FontSize="14" FontWeight="Bold" Margin="4,88,676,297"/>
+        <ListView x:Name="travl"  HorizontalAlignment="Left" Margin="37,500,0,0" Width="124" ItemsSource="{Binding}" DisplayMemberPath="{Binding DepartureTimes}" Grid.Column="1" Height="150" VerticalAlignment="Top" >
+        </ListView>
+        <Label Content="לוז יציאות" Grid.Column="1" HorizontalAlignment="Left" Margin="185,467,0,0" VerticalAlignment="Top" Height="29" Width="74"/>
+        <Label Content="זמני הגעה ליעד" Grid.Column="1" HorizontalAlignment="Left" Margin="53,467,0,0" VerticalAlignment="Top" Width="102" Height="26"/>
+        <Label Content="יגיע לתחנה בעוד" Grid.Column="1" HorizontalAlignment="Left" Margin="861,466,0,0" VerticalAlignment="Top" Width="129"/>
+        <ListView x:Name="TCS" HorizontalAlignment="Left" Height="100" Margin="373,188,0,0" VerticalAlignment="Top" Width="103" RenderTransformOrigin="0.547,0.227" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView x:Name="PCS" HorizontalAlignment="Left" Height="100" Margin="531,188,0,0" VerticalAlignment="Top" Width="97" RenderTransformOrigin="0.547,0.227">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid x:Name="StationDetails" HorizontalAlignment="Left" Margin="20,225,0,0" VerticalAlignment="Top" Height="122" Width="256">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
@@ -40,12 +70,50 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Area:" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Left" Margin="0,19,0,24.8" Grid.Row="0" VerticalAlignment="Center" FontSize="14" Height="29" Width="45"/>
-            <TextBlock x:Name="areaLabel" Background="White" Text="{Binding Area}" HorizontalAlignment="Left" Margin="0,22,0,34" Grid.Row="0" VerticalAlignment="Center" Width="118" Height="24" Grid.Column="1"/>
+            <TextBlock x:Name="Area" Background="White" Text="{Binding Area}" HorizontalAlignment="Left" Margin="0,22,0,34" Grid.Row="0" VerticalAlignment="Center" Width="118" Height="24" Grid.Column="1"/>
             <Label Content="First Station:" Grid.Column="0" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Margin="-2,56,0,36.4" VerticalAlignment="Center" Height="34" Grid.RowSpan="4" Width="93"/>
             <TextBlock x:Name="firstStationLabel" Background="White" Text="{Binding FirstStation}" Grid.Column="1" HorizontalAlignment="Left" Margin="0.8,56,0,0.8" VerticalAlignment="Center" Width="117" Height="24" Grid.RowSpan="2"/>
             <Label Content="Last Station:" Grid.Column="0" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Margin="-2,8.4,0,8.4" Grid.Row="3" VerticalAlignment="Center" Height="28" Width="91"/>
             <TextBlock x:Name="lastStationLabel" Background="White" Text="{Binding LastStation}" HorizontalAlignment="Left" Margin="1,12.8,0,8" Grid.Row="3" VerticalAlignment="Center" Width="118" Height="24" Grid.Column="1"/>
         </Grid>
         <Label Content=" BusLine Schedual" HorizontalAlignment="Stretch" Margin="10,10,318,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="30" Foreground="Black"/>
+        <ListView x:Name="Frequency" HorizontalAlignment="Left" Height="71" Margin="373,60,0,0" VerticalAlignment="Top" Width="370" SelectionChanged="Frequency_SelectionChanged" >
+            <ListView.View >
+                <GridView>
+                    <GridViewColumn x:Name="StartTime" Header="זמן התחלה" Width="90">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="6,-1,-6,-1" Text="{Binding  LineStartTime  }"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn x:Name="FinishTime" Header="זמן סיום" Width="90">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="6,-1,-6,-1" Text ="{Binding LineFinishTime }"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn  Header="תדירות" Width="90">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="6,-1,-6,-1" Text ="{Binding LineFrequencyTime }"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn  Header="מחיקה" Width="90">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button  Margin="6,-1,-6,-1" Template= "{StaticResource ButtonTemplate1 }" Content="מחיקה" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView >
+            </ListView.View >
+        </ListView>
     </Grid>
 </Window>

@@ -53,10 +53,7 @@ namespace PL
             StationComboBox.SelectedIndex = 0;
 
         }
-        /* void RefreshgridOneStation()
-        {
-            gridOneStation.DataContext = bl.GetStation(MyStation.CodeStation);
-         }*/
+    
         void RefreshAllLinesOfStationGrid()
         {
             // lineStationDataGrid.DataContext = bl.GetBusStationLineList(MyBusLine.ID.ToString());

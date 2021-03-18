@@ -470,14 +470,24 @@ namespace DL
         public void DeleteStation(string stationCode)
         {
             List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
+            List<BusStationLine> BusStationsList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath).Where(s=>s.BusStationNum==stationCode).ToList();
+            List<FollowingStations> FollowingStationsList = XMLTools.LoadListFromXMLSerializer<FollowingStations>(FollowingStationsPath).Where(s => s.FirstStationCode == stationCode||s.SecondStationCode==stationCode).ToList();
             DO.Station station1 = StationsList.Find(i => i.CodeStation == stationCode);
 
-            if (station1 != null)
+            if (station1 == null)
             {
                 throw new DO.BadCodeStationException(station1.CodeStation, "wrong station code : { StationCode}");
             }
             else
             {
+                foreach(var sl in BusStationsList)
+                {
+                    DeleteBusStationLine(sl.ID,sl.BusStationNum);
+                }
+                foreach (var fs in FollowingStationsList)
+                {
+                    DeleteFollowingStation(fs);
+                }
                 StationsList.Remove(station1);
             }
             XMLTools.SaveListToXMLSerializer(StationsList, StationsPath);

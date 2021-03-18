@@ -28,11 +28,10 @@ namespace PL
         public ObservableCollection<PO.Station> ts=new ObservableCollection<PO.Station>();
         public AddStationToLine(IBL _bl,BO.FollowingStations FStations, PO.BusLine bs,int index ,PL.BusLineWindow busl)
         {
-            
+            InitializeComponent();
             bl = _bl;
             bw = busl;
             i = index;
-            InitializeComponent();          
             tempBL = bs;
             tempFS = FStations;
             refreshstationList();
@@ -84,8 +83,8 @@ namespace PL
                 AddedS.BusStationNum = s.CodeStation;
                 AddedS.IndexInLine = i;
                 AddedS.ID = tempBL.ID.ToString();
-                 BO.FollowingStations first = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.FirstStationCode);
-                BO.FollowingStations second = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.SecondStationCode);
+               //  BO.FollowingStations first = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.FirstStationCode);
+               // BO.FollowingStations second = bl.GetFollowingStation(AddedS.BusStationNum, tempFS.SecondStationCode);
                 
                 bl.AddBusStationLine(AddedS);
                 bl.AddFollowingStation(tempFS.FirstStationCode.ToString(), AddedS.BusStationNum);

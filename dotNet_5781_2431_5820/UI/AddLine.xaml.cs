@@ -79,12 +79,12 @@ namespace PL
 
         private void firstStationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            addedLine.FirstStation = int.Parse((firstStationComboBox.SelectedItem as BO.Station).CodeStation);
+      //      addedLine.FirstStation = int.Parse((firstStationComboBox.SelectedItem as BO.Station).CodeStation);
         }
 
         private void lastStationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            addedLine.LastStation = int.Parse((lastStationComboBox.SelectedItem as BO.Station).CodeStation);
+         //   addedLine.LastStation = int.Parse((lastStationComboBox.SelectedItem as BO.Station).CodeStation);
         }
 
         private void AddLineButton_Click(object sender, RoutedEventArgs e)

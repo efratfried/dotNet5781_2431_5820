@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="busseswindow" Height="485" Width="1000">
 
-    <Grid x:Name="___Bus_Window_" Margin="0,0,-8,-31">
+    <Grid x:Name="___Bus_Window_" Margin="0,0,-8,-9">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
@@ -60,7 +60,7 @@
             <Image x:Name="abialability" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/drive abialability.png" Margin="167,97,752.6,367.2"/>
             <Image x:Name="km" Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/km.png" Margin="167,139,752.6,325.2"/>
             <TextBlock x:Name="aviability_status" HorizontalAlignment="Left" Margin="47,93,0,0"  Background="LightGray" TextWrapping="Wrap" Text="{Binding Status, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
-            <TextBlock x:Name="firm" Background="LightGray" HorizontalAlignment="Left" Margin="47,176,0,0" TextWrapping="Wrap" Text="{Binding Firm, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="31" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
+            <TextBlock x:Name="firm" Background="LightGray" HorizontalAlignment="Left" Margin="47,176,0,0" TextWrapping="Wrap" Text="{Binding Firm, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="9" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
             <TextBlock x:Name="foul_status" Background="LightGray" HorizontalAlignment="Left" Margin="47,223,0,0" TextWrapping="Wrap" Text="{Binding foul, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="29" Width="120" DataContextChanged="foul_status_TextBlock"/>
             <TextBlock x:Name="km_"  Background="LightGray" HorizontalAlignment="Left" Margin="47,134,0,0" TextWrapping="Wrap" Text="{Binding KM, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" DataContextChanged="aviability_status_TextBlock"/>
         </Grid>

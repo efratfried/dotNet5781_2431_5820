@@ -13,7 +13,7 @@
     <Grid x:Name="BusLines">
         <Grid.RowDefinitions>
             <RowDefinition Height="86*"/>
-            <RowDefinition Height="31*"/>
+            <RowDefinition Height="9*"/>
             <RowDefinition Height="158*"/>
             <RowDefinition Height="94*"/>
             <RowDefinition Height="51*"/>

@@ -26,7 +26,7 @@ namespace dotNet_02_5781_2431_5820
             MyArea = (Area)(rndArea.Next() % 7);
             CodeStation = Code++;
             
-            double rochav = (rnd1.NextDouble() + rnd1.NextDouble()) % 2.4 + 31;
+            double rochav = (rnd1.NextDouble() + rnd1.NextDouble()) % 2.4 + 9;
             double orech = (rnd1.NextDouble() + rnd1.NextDouble()) % 1.4 + 34.3;
             this.BusStopLocation.SetLocation(orech, rochav, flag); //check the ctor if zero doesnt do any problems.
         }

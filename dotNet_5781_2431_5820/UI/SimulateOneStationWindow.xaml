@@ -43,7 +43,7 @@
         <Label Content=":adress" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="354,157,0,0" VerticalAlignment="Top" Width="111" FontFamily="Yu Gothic UI Semibold" Foreground="White" FontWeight="Bold" FontSize="18"/>
         <Label Content=":station code" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="349,198,0,0" VerticalAlignment="Top" Width="116" FontFamily="Yu Gothic UI Semibold" Foreground="White" FontWeight="Bold" FontSize="18"/>
         <TextBox x:Name="statName"  Background="Transparent" BorderBrush="Transparent" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="78,120,0,0" TextWrapping="Wrap" Text="{Binding StationName}" VerticalAlignment="Top" Height="32" Width="234" TextChanged="statName_TextChanged"/>
-        <TextBox x:Name="statAdress" Background="Transparent" BorderBrush="Transparent" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="79,157,0,0" TextWrapping="Wrap" Text="{Binding Address}" VerticalAlignment="Top" Height="31" Width="233"/>
+        <TextBox x:Name="statAdress" Background="Transparent" BorderBrush="Transparent" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="79,157,0,0" TextWrapping="Wrap" Text="{Binding Address}" VerticalAlignment="Top" Height="9" Width="233"/>
         <TextBox x:Name="statCode" Background="Transparent" BorderBrush="Transparent" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="79,198,0,0" TextWrapping="Wrap" Text="{Binding CodeStation}" VerticalAlignment="Top" Height="32" Width="234"/>
 
     </Grid>

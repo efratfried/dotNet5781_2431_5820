@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="bgmore.JPG"/>
     </Window.Background>
     <Grid Margin="1,2,-1.4,-2">
-        <ComboBox x:Name="firm" Background="White" HorizontalAlignment="Left" FontSize="18" FontWeight="bold" Margin="47,176,0,0" ItemsSource="{Binding Path=Firm}" VerticalAlignment="Top" Height="31" Width="120" RenderTransformOrigin="0.487,0.292" SelectionChanged="firm_SelectionChanged"/>
+        <ComboBox x:Name="firm" Background="White" HorizontalAlignment="Left" FontSize="18" FontWeight="bold" Margin="47,176,0,0" ItemsSource="{Binding Path=Firm}" VerticalAlignment="Top" Height="9" Width="120" RenderTransformOrigin="0.487,0.292" SelectionChanged="firm_SelectionChanged"/>
         <TextBox x:Name="foul_status" FontSize="18" Background="White" HorizontalAlignment="Left" Margin="47,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="120" FontWeight="Bold" TextChanged="foul_status_TextChanged"/>
         <TextBox x:Name="km_"  FontSize="18" FontWeight="bold" Background="White" HorizontalAlignment="Left" Margin="47,134,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" TextChanged="km__TextChanged" />
         <Image Source="km.png" Margin="172,130,537.6,248"/>

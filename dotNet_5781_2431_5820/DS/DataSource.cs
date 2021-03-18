@@ -39,7 +39,7 @@ namespace DS
                           CodeStation = "73",
                           StationName = "שדרות גולדה מאיר/המשורר אצ''ג",
                           Address = "רחוב:שדרות גולדה מאיר  עיר: ירושלים ",
-                          Latitude = 31.825302,
+                          Latitude = 9.825302,
                           longitude = 35.188624,
                           DisableAccess=true
                         },
@@ -48,7 +48,7 @@ namespace DS
                             CodeStation = "76",
                             StationName = "בית ספר צור באהר בנות/אלמדינה אלמונוורה",
                             Address = "רחוב:אל מדינה אל מונאוורה  עיר: ירושלים",
-                            Latitude = 31.738425,
+                            Latitude = 9.738425,
                             longitude = 35.228765,
                             DisableAccess=true,
                         },
@@ -57,7 +57,7 @@ namespace DS
                             CodeStation = "77",
                             StationName = "בית ספר אבן רשד/אלמדינה אלמונוורה",
                             Address = "רחוב:אל מדינה אל מונאוורה  עיר: ירושלים ",
-                            Latitude = 31.738676,
+                            Latitude = 9.738676,
                             longitude = 35.226704,
                             DisableAccess=true
                         },
@@ -66,7 +66,7 @@ namespace DS
                             CodeStation = "78",
                             StationName = "שרי ישראל/יפו",
                             Address = "רחוב:שדרות שרי ישראל 15 עיר: ירושלים",
-                            Latitude = 31.789128,
+                            Latitude = 9.789128,
                             longitude = 35.206146,
                             DisableAccess=true
                         },
@@ -75,7 +75,7 @@ namespace DS
                             CodeStation = "83",
                             StationName = "בטן אלהווא/חוש אל מרג",
                             Address = "רחוב:בטן אל הווא  עיר: ירושלים",
-                            Latitude = 31.766358,
+                            Latitude = 9.766358,
                             longitude = 35.240417,
                             DisableAccess=true
                         },
@@ -84,7 +84,7 @@ namespace DS
                             CodeStation = "84",
                             StationName = "מלכי ישראל/הטורים",
                             Address = " רחוב:מלכי ישראל 77 עיר: ירושלים ",
-                            Latitude = 31.790758,
+                            Latitude = 9.790758,
                             longitude = 35.209791,
                             DisableAccess=true
                         },
@@ -93,7 +93,7 @@ namespace DS
                             CodeStation = "85",
                             StationName = "בית ספר לבנים/אלמדארס",
                             Address = "רחוב:אלמדארס  עיר: ירושלים",
-                            Latitude = 31.768643,
+                            Latitude = 9.768643,
                             longitude = 35.238509,
                             DisableAccess=true
                         },
@@ -102,7 +102,7 @@ namespace DS
                             CodeStation = "86",
                             StationName = "מגרש כדורגל/אלמדארס",
                             Address = "רחוב:אלמדארס  עיר: ירושלים",
-                            Latitude = 31.769899,
+                            Latitude = 9.769899,
                             longitude = 35.23973,
                             DisableAccess=false
                         },
@@ -111,7 +111,7 @@ namespace DS
                             CodeStation = "88",
                             StationName = "בית ספר לבנות/בטן אלהוא",
                             Address = " רחוב:בטן אל הווא  עיר: ירושלים",
-                            Latitude = 31.767064,
+                            Latitude = 9.767064,
                             longitude = 35.238443,
                             DisableAccess=false
                         },
@@ -120,7 +120,7 @@ namespace DS
                             CodeStation = "89",
                             StationName = "דרך בית לחם הישה/ואדי קדום",
                             Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים ",
-                            Latitude = 31.765863,
+                            Latitude = 9.765863,
                             longitude = 35.247198,
                             DisableAccess=false
                         },
@@ -129,7 +129,7 @@ namespace DS
                             CodeStation = "90",
                             StationName = "גולדה/הרטום",
                             Address = "רחוב:דרך בית לחם הישנה  עיר: ירושלים",
-                            Latitude = 31.799804,
+                            Latitude = 9.799804,
                             longitude = 35.213021,
                             DisableAccess=true
                         },
@@ -138,7 +138,7 @@ namespace DS
                             CodeStation = "91",
                             StationName = "דרך בית לחם הישה/ואדי קדום",
                             Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים ",
-                            Latitude = 31.765717,
+                            Latitude = 9.765717,
                             longitude = 35.247102,
                             DisableAccess=true
                         },
@@ -147,7 +147,7 @@ namespace DS
                             CodeStation = "93",
                             StationName = "חוש סלימה 1",
                             Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים",
-                            Latitude = 31.767265,
+                            Latitude = 9.767265,
                             longitude = 35.246594,
                             DisableAccess=true
                         },
@@ -156,7 +156,7 @@ namespace DS
                             CodeStation = "94",
                             StationName = "דרך בית לחם הישנה ב",
                             Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים",
-                            Latitude = 31.767084,
+                            Latitude = 9.767084,
                             longitude = 35.246655,
                             DisableAccess=true
                         },
@@ -165,8 +165,8 @@ namespace DS
                             CodeStation = "95",
                             StationName = "דרך בית לחם הישנה א",
                             Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים",
-                            Latitude = 31.768759,
-                            longitude = 31.768759,
+                            Latitude = 9.768759,
+                            longitude = 9.768759,
                             DisableAccess=false
                         },
                         new Station
@@ -174,7 +174,7 @@ namespace DS
                             CodeStation = "97",
                             StationName = "שכונת בזבז 2",
                             Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים",
-                            Latitude = 31.77002,
+                            Latitude = 9.77002,
                             longitude = 35.24348,
                             DisableAccess=false
                         },
@@ -183,7 +183,7 @@ namespace DS
                             CodeStation = "102",
                             StationName = "גולדה/שלמה הלוי",
                             Address = " רחוב:שדרות גולדה מאיר  עיר: ירושלים",
-                            Latitude = 31.8003,
+                            Latitude = 9.8003,
                             longitude = 35.208257,
                             DisableAccess=false
                         },
@@ -192,7 +192,7 @@ namespace DS
                             CodeStation = "103",
                             StationName = "גולדה/הרטום",
                             Address = " רחוב:שדרות גולדה מאיר  עיר: ירושלים",
-                            Latitude = 31.8,
+                            Latitude = 9.8,
                             longitude = 35.214106,
                             DisableAccess=true
                         },
@@ -201,7 +201,7 @@ namespace DS
                             CodeStation = "105",
                             StationName = "גבעת משה",
                             Address = " רחוב:גבעת משה 2 עיר: ירושלים",
-                            Latitude = 31.797708,
+                            Latitude = 9.797708,
                             longitude = 35.217133,
                             DisableAccess=true
                         },
@@ -210,7 +210,7 @@ namespace DS
                             CodeStation = "106",
                             StationName = "גבעת משה",
                             Address = " רחוב:גבעת משה 3 עיר: ירושלים",
-                            Latitude = 31.797535,
+                            Latitude = 9.797535,
                             longitude = 35.217057,
                             DisableAccess=true
                         },
@@ -220,7 +220,7 @@ namespace DS
                             CodeStation = "108",
                             StationName = "עזרת תורה/עלי הכהן",
                             Address = "  רחוב:עזרת תורה 25 עיר: ירושלים",
-                            Latitude = 31.797535,
+                            Latitude = 9.797535,
                             longitude = 35.213728,
                             DisableAccess=false
                         },
@@ -229,7 +229,7 @@ namespace DS
                             CodeStation = "109",
                             StationName = "עזרת תורה/דורש טוב",
                             Address = "  רחוב:עזרת תורה 21 עיר: ירושלים ",
-                            Latitude = 31.796818,
+                            Latitude = 9.796818,
                             longitude = 35.212936,
                              DisableAccess=false
                         },
@@ -238,7 +238,7 @@ namespace DS
                             CodeStation = "110",
                             StationName = "עזרת תורה/דורש טוב",
                             Address = " רחוב:עזרת תורה 12 עיר: ירושלים",
-                            Latitude = 31.796129,
+                            Latitude = 9.796129,
                             longitude = 35.212698,
                              DisableAccess=false
                         },
@@ -247,7 +247,7 @@ namespace DS
                             CodeStation = "111",
                             StationName = "יעקובזון/עזרת תורה",
                             Address = "  רחוב:יעקובזון 1 עיר: ירושלים",
-                            Latitude = 31.794631,
+                            Latitude = 9.794631,
                             longitude = 35.21161,
                              DisableAccess=true
                         },
@@ -256,7 +256,7 @@ namespace DS
                             CodeStation = "112",
                             StationName = "יעקובזון/עזרת תורה",
                             Address = " רחוב:יעקובזון  עיר: ירושלים",
-                            Latitude = 31.79508,
+                            Latitude = 9.79508,
                             longitude = 35.211684,
                             DisableAccess=true
                         },
@@ -266,7 +266,7 @@ namespace DS
                             CodeStation = "113",
                             StationName = "זית רענן/אוהל יהושע",
                             Address = "  רחוב:זית רענן 1 עיר: ירושלים",
-                            Latitude = 31.796255,
+                            Latitude = 9.796255,
                             longitude = 35.211065,
                             DisableAccess=true
                         },
@@ -275,7 +275,7 @@ namespace DS
                             CodeStation = "115",
                             StationName = "זית רענן/תורת חסד",
                             Address = " רחוב:זית רענן  עיר: ירושלים",
-                            Latitude = 31.798423,
+                            Latitude = 9.798423,
                             longitude = 35.209575,
                             DisableAccess=true
                         },
@@ -284,7 +284,7 @@ namespace DS
                             CodeStation = "116",
                             StationName = "זית רענן/תורת חסד",
                             Address = "  רחוב:הרב סורוצקין 48 עיר: ירושלים ",
-                            Latitude = 31.798689,
+                            Latitude = 9.798689,
                             longitude = 35.208878,
                             DisableAccess=true
                         },
@@ -293,7 +293,7 @@ namespace DS
                             CodeStation = "117",
                             StationName = "קרית הילד/סורוצקין",
                             Address = "  רחוב:הרב סורוצקין  עיר: ירושלים",
-                            Latitude = 31.799165,
+                            Latitude = 9.799165,
                             longitude = 35.206918,
                             DisableAccess=true
                         },
@@ -301,8 +301,8 @@ namespace DS
                         {
                             CodeStation = "119",
                             StationName = "סורוצקין/שנירר",
-                            Address = "  רחוב:הרב סורוצקין 31 עיר: ירושלים",
-                            Latitude = 31.797829,
+                            Address = "  רחוב:הרב סורוצקין 9 עיר: ירושלים",
+                            Latitude = 9.797829,
                             longitude = 35.205601,
                             DisableAccess=true
                         },
@@ -311,7 +311,7 @@ namespace DS
                             CodeStation = "1485",
                             StationName = "שדרות נווה יעקוב/הרב פרדס ",
                             Address = "רחוב: שדרות נווה יעקוב  עיר:ירושלים ",
-                            Latitude = 31.840063,
+                            Latitude = 9.840063,
                             longitude = 35.240062,
                             DisableAccess=true
 
@@ -321,7 +321,7 @@ namespace DS
                             CodeStation = "1486",
                             StationName = "מרכז קהילתי /שדרות נווה יעקוב",
                             Address = "רחוב:שדרות נווה יעקוב ירושלים עיר:ירושלים ",
-                            Latitude = 31.838481,
+                            Latitude = 9.838481,
                             longitude = 35.23972,
                             DisableAccess=false
                         },
@@ -330,7 +330,7 @@ namespace DS
                             CodeStation = "1487",
                             StationName = " מסוף 700 /שדרות נווה יעקוב ",
                             Address = "חוב:שדרות נווה יעקב 7 עיר: ירושלים  ",
-                            Latitude = 31.837748,
+                            Latitude = 9.837748,
                             longitude = 35.231598,
                             DisableAccess=false
                         },
@@ -339,7 +339,7 @@ namespace DS
                             CodeStation = "1488",
                             StationName = " הרב פרדס/אסטורהב ",
                             Address = "רחוב:מעגלות הרב פרדס  עיר: ירושלים רציף  ",
-                            Latitude = 31.840279,
+                            Latitude = 9.840279,
                             longitude = 35.246272,
                             DisableAccess=false
                         },
@@ -348,7 +348,7 @@ namespace DS
                             CodeStation = "1490",
                             StationName = "הרב פרדס/צוקרמן ",
                             Address = "רחוב:מעגלות הרב פרדס 24 עיר: ירושלים   ",
-                            Latitude = 31.843598,
+                            Latitude = 9.843598,
                             longitude = 35.243639,
                             DisableAccess=true
                         },
@@ -357,7 +357,7 @@ namespace DS
                             CodeStation = "1491",
                             StationName = "ברזיל ",
                             Address = "רחוב:ברזיל 14 עיר: ירושלים",
-                            Latitude = 31.766256,
+                            Latitude = 9.766256,
                             longitude = 35.173,
                              DisableAccess=true
                         },
@@ -366,7 +366,7 @@ namespace DS
                             CodeStation = "1492",
                             StationName = "בית וגן/הרב שאג ",
                             Address = "רחוב:בית וגן 61 עיר: ירושלים ",
-                            Latitude = 31.76736,
+                            Latitude = 9.76736,
                             longitude = 35.184771,
                              DisableAccess=true
                         },
@@ -375,7 +375,7 @@ namespace DS
                             CodeStation = "1493",
                             StationName = "בית וגן/עוזיאל ",
                             Address = "רחוב:בית וגן 21 עיר: ירושלים    ",
-                            Latitude = 31.770543,
+                            Latitude = 9.770543,
                             longitude = 35.183999,
                              DisableAccess=true
                         },
@@ -384,7 +384,7 @@ namespace DS
                             CodeStation = "1494",
                             StationName = " קרית יובל/שמריהו לוין ",
                             Address = "רחוב:ארתור הנטקה  עיר: ירושלים    ",
-                            Latitude = 31.768465,
+                            Latitude = 9.768465,
                             longitude = 35.178701,
                              DisableAccess=true
                         },
@@ -393,7 +393,7 @@ namespace DS
                             CodeStation = "1510",
                             StationName = " קורצ'אק / רינגלבלום ",
                             Address = "רחוב:יאנוש קורצ'אק 7 עיר: ירושלים",
-                            Latitude = 31.759534,
+                            Latitude = 9.759534,
                             longitude = 35.173688,
                              DisableAccess=true
                         },
@@ -402,7 +402,7 @@ namespace DS
                             CodeStation = "1511",
                             StationName = " טהון/גולומב ",
                             Address = "רחוב:יעקב טהון  עיר: ירושלים     ",
-                            Latitude = 31.761447,
+                            Latitude = 9.761447,
                             longitude = 35.175929
                         },
                         new Station
@@ -410,7 +410,7 @@ namespace DS
                             CodeStation = "1512",
                             StationName = "הרב הרצוג/שח''ל ",
                             Address = "רחוב:הרב הרצוג  עיר: ירושלים רציף",
-                            Latitude = 31.761447,
+                            Latitude = 9.761447,
                             longitude = 35.199936,
                              DisableAccess=false
                         },
@@ -419,7 +419,7 @@ namespace DS
                             CodeStation = "1514",
                             StationName = "פרץ ברנשטיין/נזר דוד ",
                             Address = "רחוב:הרב הרצוג  עיר: ירושלים רציף",
-                            Latitude = 31.759186,
+                            Latitude = 9.759186,
                             longitude = 35.189336,
                             DisableAccess=false
                         },
@@ -428,7 +428,7 @@ namespace DS
                              CodeStation = "1518",
                              StationName = "פרץ ברנשטיין/נזר דוד",
                              Address = " רחוב:פרץ ברנשטיין 56 עיר: ירושלים ",
-                             Latitude = 31.759121,
+                             Latitude = 9.759121,
                              longitude = 35.189178,
                              DisableAccess=false
                          },
@@ -437,7 +437,7 @@ namespace DS
                           CodeStation = "1522",
                           StationName = "מוזיאון ישראל/רופין",
                           Address = "  רחוב:דרך רופין  עיר: ירושלים ",
-                          Latitude = 31.774484,
+                          Latitude = 9.774484,
                           longitude = 35.204882,
                           DisableAccess=false
                       },
@@ -447,7 +447,7 @@ namespace DS
                          CodeStation = "1523",
                          StationName = "הרצוג/טשרניחובסקי",
                          Address = "   רחוב:הרב הרצוג  עיר: ירושלים  ",
-                         Latitude = 31.769652,
+                         Latitude = 9.769652,
                          longitude = 35.208248,
                          DisableAccess=true
                      },
@@ -456,7 +456,7 @@ namespace DS
                           CodeStation = "1524",
                           StationName = "רופין/שד' הזז",
                           Address = "    רחוב:הרב הרצוג  עיר: ירושלים   ",
-                          Latitude = 31.769652,
+                          Latitude = 9.769652,
                           longitude = 35.208248,
                            DisableAccess=true
                       },
@@ -465,7 +465,7 @@ namespace DS
                             CodeStation = "121",
                             StationName = "מרכז סולם/סורוצקין ",
                             Address = " רחוב:הרב סורוצקין 13 עיר: ירושלים",
-                            Latitude = 31.796033,
+                            Latitude = 9.796033,
                             longitude = 35.206094,
                              DisableAccess=true
                         },
@@ -474,7 +474,7 @@ namespace DS
                             CodeStation = "123",
                             StationName = "אוהל דוד/סורוצקין ",
                             Address = "  רחוב:הרב סורוצקין 9 עיר: ירושלים",
-                            Latitude = 31.794958,
+                            Latitude = 9.794958,
                             longitude = 35.205216,
                              DisableAccess=true
                         },
@@ -483,7 +483,7 @@ namespace DS
                             CodeStation = "122",
                             StationName = "מרכז סולם/סורוצקין ",
                             Address = "  רחוב:הרב סורוצקין 28 עיר: ירושלים",
-                            Latitude = 31.79617,
+                            Latitude = 9.79617,
                             longitude = 35.206158,
                              DisableAccess=true
                         }
@@ -568,7 +568,7 @@ namespace DS
                 new BusLine
                 {
                     ID = 9,
-                    BusNum = 31,
+                    BusNum = 9,
                     Area = Area.Jerusalem,
                     FirstStation = 88,
                     LastStation = 89,

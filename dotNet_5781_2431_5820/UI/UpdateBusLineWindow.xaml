@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="UpdateWindow" Height="450" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="C:\Users\user1\source\repos\efratfried\dotNet5781_2431_5820\dotNet_5781_2431_5820\PL/bgmore.JPG"/>
+        <ImageBrush ImageSource="bgmore.JPG"/>
     </Window.Background>
 
     <Grid>
@@ -35,13 +35,13 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Grid x:Name="grid1" HorizontalAlignment="Stretch" Margin="20,39.8,175,31" VerticalAlignment="Center" Height="138" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2">
+        <Grid x:Name="grid1" HorizontalAlignment="Stretch" Margin="20,39.8,175,9" VerticalAlignment="Center" Height="138" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="87.04"/>
                 <ColumnDefinition Width="12.16"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="34*"/>
-                <ColumnDefinition Width="31*"/>
+                <ColumnDefinition Width="9*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

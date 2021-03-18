@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="AddLine" Height="450" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
+        <ImageBrush ImageSource="bgmore.JPG"/>
     </Window.Background>
 
     <Grid>
@@ -72,7 +72,7 @@
                 </TextBox.Style>
             </TextBox>
             <Label Content="Bus Number:" Foreground="White" Grid.Column="0" HorizontalAlignment="Left" Margin="0,0.2,0,26" Grid.Row="4" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"/>
-            <TextBox x:Name="busNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="98,0.2,0,31.2" Grid.Row="4" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown" TextChanged="busNumberTextBox_TextChanged" Grid.ColumnSpan="3">
+            <TextBox x:Name="busNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="98,0.2,0,9.2" Grid.Row="4" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown" TextChanged="busNumberTextBox_TextChanged" Grid.ColumnSpan="3">
                 <TextBox.Style>
                     <Style TargetType="TextBox">
                         <Style.Triggers>

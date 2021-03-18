@@ -20,6 +20,7 @@ namespace PL
     /// </summary>
     public partial class UpdateStation : Window
     {
+        List<string> DisableAccess = new List<string>() { "yes", "no" };
         IBL bl;
         PO.Station station=new PO.Station();
         public ObservableCollection<string> Disable_Access;
@@ -28,17 +29,15 @@ namespace PL
             InitializeComponent();
             bl = _bl;
             station = s;
-            Updatecode.Text = station.CodeStation;
+            Updatecode.Text =station.CodeStation;
             UpdateAdress.Text = station.Address;
             Updatename.Text = station.StationName;
             Updatelatitude.Text = station.Latitude.ToString();
             Updatelingtitude.Text = station.longitude.ToString();
-            UpDisableAccess.ItemsSource = station.DisableAccess.ToString();         
+            UpDisableAccess.ItemsSource = DisableAccess;         
         }
         void RefreshDisableAccessComboBox()//refresh the combobox each time the user changes the selection 
         {
-            List<string> DisableAccess = new List<string>() { "yes", "no" };
-            //List<PO.Station> sta1 = new List<PO.Station>();
             for (int i = 0; i < DisableAccess.Count; i++)
             {
                 string DisableAccess1 = "";
@@ -77,6 +76,11 @@ namespace PL
         }
 
         private void Updatecode_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void UpDisableAccess_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

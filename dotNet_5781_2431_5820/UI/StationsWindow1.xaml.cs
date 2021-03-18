@@ -34,14 +34,12 @@ namespace PL
             bl = _bl;
             RefreshAllStationsComboBox();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            
             linesDataGrid.IsReadOnly = true;
         }
 
         void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 
         {
             List<BO.Station> sta = bl.GetAllStations().ToList();
-            //List<PO.Station> sta1 = new List<PO.Station>();
             for (int i = 0; i < sta.Count; i++)
             {
                 PO.Station sta2 = new PO.Station();
@@ -67,12 +65,9 @@ namespace PL
 
 
         private void StationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {/**  MyBusLine = (PO.BusLine)BusLineComboBox.SelectedItem;
-            BusLines.DataContext = MyBusLine;
-            RefreshAllLineStationsOfLineGrid();*/
+        {
             MyStation = (PO.Station)StationComboBox.SelectedItem;
             MainGrid.DataContext = MyStation;
-           // RefreshAllLinesOfStationGrid();
            if(MyStation.CodeStation!=null)
             {
                 linesDataGrid.DataContext = bl.GetAllLinesPerStation(int.Parse(MyStation.CodeStation));
@@ -86,32 +81,6 @@ namespace PL
             {
                 UpdateStation win = new UpdateStation(bl, MyStation);
                 win.Show();
-                //PO.Station s = MyStation;
-                /*if (addressTextBox.Text != "" && nameTextBox.Text != "" && longitudeTextBox.Text != "" && lattitudeTextBox.Text != "")
-                {
-                    //BO.Station newStat = new BO.Station();//a local station, to save the changes that the user made in station's fields.
-                    s.CodeStation = MyStation.CodeStation;
-                    s.Address = addressTextBox.Text;
-                    s.StationName = nameTextBox.Text;
-                    s.longitude = double.Parse(longitudeTextBox.Text);
-                    s.Latitude = double.Parse(lattitudeTextBox.Text);
-                    s.DisableAccess = Disable_access.Content.ToString()=="yes";
-                    if (s != null)
-                    {
-                        BO.Station temp = new BO.Station();
-                        s.DeepCopyTo(temp);
-                        bl.UpdateStationPersonalDetails(temp);
-                    }
-
-
-                    MyStation = s;//if succeded, change MyStation fields to be as the new stat. if not- dont do that.
-                    RefreshAllStationsComboBox();//to save the changes
-                }
-                else//if not all fields are full
-                {
-                    throw new BO.BadStationException("cannot update the station since not all fields were filled");
-                }*/
-
             }
             catch (BO.BadOpenWindow ex)
             {
@@ -129,8 +98,6 @@ namespace PL
                 if (MyStation != null)
                 {
                     bl.DeleteStation(MyStation.CodeStation);
-
-                    //RefreshAllLinesOfStationGrid();
                     RefreshAllStationsComboBox();
                 }
             }
@@ -145,9 +112,7 @@ namespace PL
             PO.Station stat = new PO.Station();//a new Station
 
             AddStation addStationWindow = new AddStation(bl,this);//we sent the station Stat to a new window we created named AddStation 
-            addStationWindow.ShowDialog();
-           // addStationWindow.Closing += addStationWindow_Closing;
-            
+            addStationWindow.ShowDialog();            
         }
 
         private void addStationWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -158,10 +123,8 @@ namespace PL
                 { //if not all the fields are full
                     throw new BO.BadStationException("cannot add the station since not all fields were filled");
                 }
-
                 BO.Station newStationBO = (sender as AddStation).addedStat;
                 bl.AddStation(newStationBO);
-
                 RefreshAllStationsComboBox();
             }
             catch (BO.BadStationException ex)
@@ -176,7 +139,6 @@ namespace PL
             {
                 BO.BusLine lineBO = ((sender as Button).DataContext as BO.BusLine);
                 bl.DeleteStationFromLine(lineBO, MyStation.CodeStation);
-                //RefreshAllLinesOfStationGrid();
             }
             catch (BO.BadBusStationLineCodeException ex)
             {

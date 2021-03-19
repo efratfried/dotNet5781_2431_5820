@@ -12,7 +12,7 @@ namespace DO
         public string BusStationNum { set; get; }
         public int IndexInLine { set; get; }
 
-        //public TimeSpan WalkingTime { set; get; }
+        public TimeSpan WalkingTime { set; get; }
         public override string ToString()
         {
             return this.ToStringProperty();

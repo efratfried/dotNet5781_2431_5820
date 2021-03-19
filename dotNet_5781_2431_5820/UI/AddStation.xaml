@@ -10,21 +10,21 @@
         <ImageBrush ImageSource="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
     </Window.Background>
     <Grid>
-        <Label x:Name="addstationdetails" Content="Add station details" Foreground="White" BorderBrush="Black" Height="47" FontSize="32" Margin="248,32,252.6,376.2"/>
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="271,141,0,0" VerticalAlignment="Top" Height="200" Width="221">
+        <Label x:Name="addstationdetails" Content="Add station details:" Foreground="White"  FontWeight="Bold" BorderBrush="Transparent" Height="47" FontSize="32" Margin="10,0,275.6,408.2"/>
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" Height="200" Width="359">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="153.6"/>
+                <ColumnDefinition Width="168"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="32"/>
                 <RowDefinition Height="32"/>
                 <RowDefinition Height="32"/>
                 <RowDefinition Height="14.933"/>
-                <RowDefinition Height="17.067"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="32"/>
             </Grid.RowDefinitions>
-            <Label Content="     adress" Grid.Column="0" HorizontalAlignment="Left" Margin="-53,3,0,1" Grid.Row="0" Foreground="Black" BorderBrush="Transparent" Width="101" FontWeight="Bold" FontSize="14">
+            <Label Content="Address" Grid.Column="0" HorizontalAlignment="Left" Margin="1,4,0,32.6" Grid.Row="0" Foreground="Black" BorderBrush="Transparent" Width="101" FontWeight="Bold" FontSize="14" Grid.RowSpan="2">
                 <Label.Style>
                     <Style TargetType="Label">
                         <Style.Triggers>
@@ -35,20 +35,20 @@
                     </Style>
                 </Label.Style>
             </Label>
-            <TextBox x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="0.2,3,-19.4,0" Grid.Row="0" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" FontFamily="Tahoma"  Foreground="Navy" TextChanged="addressTextBox_TextChanged"/>
-            <Label Content="  station code" Grid.Column="0" HorizontalAlignment="Right" Margin="-42,3,34.8,9.8" Grid.Row="1" VerticalAlignment="Center" Foreground="Black" BorderBrush="Transparent" Height="30" Width="108" FontSize="14" Grid.RowSpan="2" FontWeight="Bold"/>
-            <TextBox x:Name="codeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="0.2,3.2,-19.4,0" Grid.Row="1" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" PreviewKeyDown="codeTextBox_PreviewKeyDown" FontFamily="Tahoma"  Foreground="Navy"/>
-            <Label Content="    latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="-50,2,0,15" Grid.Row="2" VerticalAlignment="Center" Foreground="Black" BorderBrush="Transparent" Height="9" Width="101" FontSize="14" Grid.RowSpan="2" FontWeight="Bold"/>
-            <TextBox x:Name="lattitudeTextBox" Grid.Column="1" Height="24" Margin="0.2,1,-19.4,7.8" Grid.Row="2" Text="{Binding Lattitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" PreviewKeyDown="lattitudeTextBox_PreviewKeyDown" FontFamily="Tahoma"  Foreground="Navy"/>
-            <Label Content="     logtitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="-54,1.2,0,4.6" Grid.Row="3" VerticalAlignment="Center" Foreground="Black" BorderBrush="Transparent" Height="27" Width="94" FontSize="14" FontWeight="Bold" Grid.RowSpan="2"/>
-            <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="0.2,0.4,-19.4,9.6" Grid.Row="3" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="longitudeTextBox_PreviewKeyDown" FontFamily="Tahoma"  Foreground="Navy" Grid.RowSpan="2"/>
-            <Label Content="   station name:" Grid.Column="0" Foreground="White" HorizontalAlignment="Left" Margin="-46,17,0,0.6" Grid.Row="4" VerticalAlignment="Center" BorderBrush="Transparent" Height="32" Width="126" FontSize="14" FontWeight="Bold" Grid.RowSpan="2"/>
-            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="0.2,16.467,-19.4,9.6" Grid.Row="4" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy" TextChanged="nameTextBox_TextChanged" Grid.RowSpan="2" FontWeight="Bold"/>
-            <Label Content="Disable access" HorizontalAlignment="Left" Margin="-14,9,0,-25.2" Grid.Row="5" VerticalAlignment="Center" Foreground="Black" BorderBrush="Transparent" Height="27" Width="94" FontSize="14" FontWeight="Bold"/>
-            <ComboBox x:Name="Disable_Access" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="0.2,33,-19.4,-21.2" Width="120" SelectionChanged="Disable_Access_SelectionChanged" FontWeight="Bold" Grid.Row="5" Grid.Column="1"/>
+            <TextBox x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="1.6,3,0,0" Grid.Row="0" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" FontFamily="Tahoma"  Foreground="Navy" TextChanged="addressTextBox_TextChanged"/>
+            <Label Content="station code" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0.2,45.4,2.6" Grid.Row="1" VerticalAlignment="Center" Foreground="Black" BorderBrush="Transparent" Height="30" Width="108" FontSize="14" FontWeight="Bold"/>
+            <TextBox x:Name="codeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="1.6,3.2,0,0" Grid.Row="1" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" PreviewKeyDown="codeTextBox_PreviewKeyDown" FontFamily="Tahoma"  Foreground="Navy"/>
+            <Label Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="1,1.4,0,32.4" Grid.Row="2" VerticalAlignment="Center" Foreground="Black" BorderBrush="Transparent" Height="35" Width="101" FontSize="14" FontWeight="Bold" Grid.RowSpan="2"/>
+            <TextBox x:Name="lattitudeTextBox" Grid.Column="1" Height="24" Margin="1.6,1.4,47.2,7.4" Grid.Row="2" Text="{Binding Lattitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" PreviewKeyDown="lattitudeTextBox_PreviewKeyDown" FontFamily="Tahoma"  Foreground="Navy"/>
+            <Label Content="Logtitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="1,32.4,0,7" Grid.Row="2" VerticalAlignment="Center" Foreground="Black" BorderBrush="Transparent" Height="27" Width="94" FontSize="14" FontWeight="Bold" Grid.RowSpan="3"/>
+            <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="1.6,1.6,0,10" Grid.Row="3" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="longitudeTextBox_PreviewKeyDown" FontFamily="Tahoma"  Foreground="Navy" Grid.RowSpan="2"/>
+            <Label Content="Station's name:" Grid.Column="0" Foreground="Black" HorizontalAlignment="Left" Margin="1,0.6,0,1" Grid.Row="4" VerticalAlignment="Center" BorderBrush="Transparent" Height="32" Width="119" FontSize="14" FontWeight="Bold" Grid.RowSpan="2"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="1.6,0,0,9.8" Grid.Row="5" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy" TextChanged="nameTextBox_TextChanged" FontWeight="Bold"/>
+            <Label Content="Disable access" HorizontalAlignment="Left" Margin="1,33,0,-27.2" Grid.Row="5" VerticalAlignment="Center" Foreground="Black" BorderBrush="Transparent" Height="27" Width="108" FontSize="14" FontWeight="Bold"/>
+            <ComboBox x:Name="Disable_Access" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="1.6,33,0,-21.2" Width="120" SelectionChanged="Disable_Access_SelectionChanged" FontWeight="Bold" Grid.Row="5" Grid.Column="1"/>
         </Grid>
-        <Button x:Name="AddStationButton" Content="add station" Background="Transparent" BorderThickness="2.5" HorizontalAlignment="Left" Margin="326,379,0,0" VerticalAlignment="Top" Width="128" Click="AddStationButton_Click" Foreground="White" BorderBrush="Black" Height="46" FontSize="20" FontWeight="Bold"/>
-        <Label Content="Longitude   : 34.3-35.5 " HorizontalAlignment="Left" Margin="4.4,251,0,0" VerticalAlignment="Top" Width="133"  FontSize="12" Foreground="White" Height="24" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"/>
-        <Label Content="Latitude     :      9-33.3" HorizontalAlignment="Left" Margin="4.4,230,0,0" VerticalAlignment="Top" Width="136" Height="29"  FontSize="12" Foreground="White" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2"/>
+        <Button x:Name="AddStationButton" Content="add station" Background="Transparent" BorderThickness="2.5" HorizontalAlignment="Left" Margin="656,399,0,0" VerticalAlignment="Top" Width="128" Click="AddStationButton_Click" Foreground="White" BorderBrush="Black" Height="46" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Longitude   : 34.3-35.5 " HorizontalAlignment="Left" Margin="336,215,0,0" VerticalAlignment="Top" Width="159"  FontSize="14" Foreground="White" Height="31"/>
+        <Label Content="Latitude      : 31.3-33.3" HorizontalAlignment="Left" Margin="336,195,0,0" VerticalAlignment="Top" Width="148" Height="29"  FontSize="14" Foreground="White"/>
     </Grid>
 </Window>

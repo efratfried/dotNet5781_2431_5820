@@ -62,7 +62,7 @@
         <DataGrid x:Name="linesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="41.2,35.8,33.6,41.2" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Horizontal" FontFamily="Tahoma"  Foreground="Black" FontWeight="bold" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2"  >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="BusID" Binding="{Binding ID}" Header="           ID" Width="100"/>
-                <DataGridTextColumn x:Name="busNumberColumn"    Binding="{Binding BusNumber}"   Header="Bus Number" Width="SizeToHeader"  />
+                <DataGridTextColumn x:Name="busNumberColumn"    Binding="{Binding BusNum}"   Header="Bus Number" Width="SizeToHeader"  />
                 <DataGridTextColumn x:Name="areaColumn"         Binding="{Binding Area}"    Header="         Area" Width="100"  />
                 <DataGridTextColumn x:Name="firstStationColumn" Binding="{Binding FirstStation}" Header="  First Station" Width="100" />
                 <DataGridTextColumn x:Name="lastStationColumn"  Binding="{Binding LastStation}" Header="   Last Station" Width="100" />

@@ -26,6 +26,7 @@ namespace UI
         PO.BusLine MyBusLine;
         BO.BusStationLine MybusStation;
         public ObservableCollection<PO.BusLine> ts;
+        public ObservableCollection<BO.BusStationLine> bs;
         public UserBusLineWindow(IBL _bl)
         {
             ts = new ObservableCollection<PO.BusLine>();

@@ -15,6 +15,7 @@ namespace BO
         public int NumOfPassingLines { set; get; }
         public double Distance { set; get; }
         public TimeSpan AverageDrivingTime { set; get; }
+        public TimeSpan WalkingTime { set; get; }
         public override string ToString() => this.ToStringProperty();
     }
 }

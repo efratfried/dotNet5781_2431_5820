@@ -58,7 +58,14 @@ namespace DL
          public List<FollowingStations> followingStations;*/
 
         #endregion
+
         #region Bus
+        /// <summary>
+        /// this function gets the bus's license num & checks if it axist ,case it is it return & match apear in the xml file with all the bus's details
+        /// else there is an exception.
+        /// </summary>
+        /// <param name="LicenseNum"></param>
+        /// <returns></returns>
         public DO.Bus GetBus(string LicenseNum)
         {
             XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
@@ -80,13 +87,10 @@ namespace DL
                 throw new DO.BadBusLicenseNumException(LicenseNum, $"bad Bus License Num: {LicenseNum}");
             return bus1;
         }
-        /* public IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate)
-         {
-             List<Bus> BussesList = XMLTools.LoadListFromXMLSerializer<Bus>(BususPath);
-
-             return from bs in BussesList
-                    select bs;
-         }*/
+        /// <summary>
+        /// that function return all the exist buss in the xml file with all their details
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.Bus> GetAllBusses()
         {
             XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
@@ -103,6 +107,11 @@ namespace DL
                     }
                    );
         }
+        /// <summary>
+        /// this function gets a predifate & return accroding to it the correct bus.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public IEnumerable<DO.Bus> GetAllBussBy(Predicate<DO.Bus> predicate)
         {
             XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
@@ -120,12 +129,22 @@ namespace DL
                    where predicate(bus1)
                    select bus1;
         }
+        /// <summary>
+        /// this func gets a generate variable ,it gets all the buss list & return the wanted bus
+        /// </summary>
+        /// <param name="generate"></param>
+        /// <returns></returns>
         public IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate)
         {
             List<Bus> BussesList = XMLTools.LoadListFromXMLSerializer<Bus>(BususPath);
             return from bs in BussesList
                    select bs;
         }
+        /// <summary>
+        /// this function gets an accurance of a bus ,checks if this bus is already exist in the list if not it add it to the bus's list/file with all it's fields.
+        /// else exception .
+        /// </summary>
+        /// <param name="Bus"></param>
         public void AddBus(DO.Bus Bus)
         {
             XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
@@ -148,6 +167,11 @@ namespace DL
 
             XMLTools.SaveListToXMLElement(BussRootElem, BususPath);
         }
+        /// <summary>
+        /// this finction gets a license num of a bus ,checks if it exist already in the bus's list if it does so it earesed it
+        /// else exception.
+        /// </summary>
+        /// <param name="LicenseNum"></param>
         public void DeleteBus(string LicenseNum)
         {
             XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
@@ -164,6 +188,11 @@ namespace DL
             else
                 throw new DO.BadBusLicenseNumException(LicenseNum, $"bad Bus's LicenseNum: {LicenseNum}");
         }
+        /// <summary>
+        /// this function gets a bus's accurance ,first checks if it exist if it does we can update the bus's fields.
+        /// else exception
+        /// </summary>
+        /// <param name="Bus"></param>
         public void UpdateBus(DO.Bus Bus)
         {
             XElement BussRootElem = XMLTools.LoadListFromXMLElement(BususPath);
@@ -190,6 +219,13 @@ namespace DL
         #endregion Bus
 
         #region busline
+        /// <summary>
+        /// the function gets the id of the bus line (it's checks by the id because this is a runinug number ,which means that each line has a different id)
+        /// ,checks if it exist if it does so it returns it.
+        /// else exception.
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         public DO.BusLine GetBusLine(int ID)
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
@@ -200,6 +236,12 @@ namespace DL
             else
                 throw new DO.BadBusLicenseNumException(ID.ToString(), $"bad BusLine LicenseNum: {ID}");
         }
+        /// <summary>
+        /// the function gets an accuarance of a busline. no need to check if it exist because we want to add a new accurance so the id will be any way different.
+        /// & reuttn the busline's id.
+        /// </summary>
+        /// <param name="BusLine"></param>
+        /// <returns></returns>
 
         public int AddBusLine(DO.BusLine BusLine)
         {
@@ -213,6 +255,10 @@ namespace DL
             XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);
             return BusLine.ID;
         }
+        /// <summary>
+        /// the funtion return all hte exist buslines accroding to the xml file.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.BusLine> GetAllBusLines()
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
@@ -220,6 +266,11 @@ namespace DL
             return from BusLine in ListBusLines
                    select BusLine; //no need to Clone()
         }
+        /// <summary>
+        /// the function gets a generate variable & returns the wanted busline's num.
+        /// </summary>
+        /// <param name="generate"></param>
+        /// <returns></returns>
         public IEnumerable<object> GetBusLineFields(Func<int, DO.BusLine, object> generate)
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
@@ -227,12 +278,22 @@ namespace DL
             return from busline in ListBusLines
                    select generate(busline.BusNum, GetBusLine(busline.BusNum));
         }
+        /// <summary>
+        /// the function gets a generate variable & returns the wanted busline
+        /// </summary>
+        /// <param name="generate"></param>
+        /// <returns></returns>
         public IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object, object> generate)
         {
             List<BusLine> BusLinesList = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
             return from bs in BusLinesList
                    select bs;
         }
+        /// <summary>
+        /// the function gets an accurance of a busline,check if it exist.
+        /// if it does so we can update ut's fields ,else exception.
+        /// </summary>
+        /// <param name="BusLine"></param>
         public void UpdateBusLine(DO.BusLine BusLine)
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
@@ -248,10 +309,19 @@ namespace DL
 
             XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);
         }
+        /// <summary>
+        /// no use in this function
+        /// </summary>
+        /// <param name="LicenseNum"></param>
+        /// <param name="update"></param>
         public void UpdateBusLine(int LicenseNum, Action<DO.BusLine> update)
         {
             //throw new NotImplementedExcebustion();
         }
+        /// <summary>
+        /// the function gets the 
+        /// </summary>
+        /// <param name="BusNum"></param>
         public void DeleteBusLine(int BusNum)
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
@@ -276,6 +346,11 @@ namespace DL
         #endregion BusLine
 
         #region BusStationLine
+        /// <summary>
+        /// the function gets a predicate variable so it returns frin the hwole busstationline list the wanted busstation line.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public IEnumerable<DO.BusStationLine> GetBusLinesInStationList(Predicate<DO.BusStationLine> predicate)
         {
             List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
@@ -284,6 +359,11 @@ namespace DL
                    where predicate(sic)
                    select sic; //no need to Clone()
         }
+        /// <summary>
+        /// the function gets an accurance of a busstationline ,checks if it is already exist.
+        /// if not it add the wanted busstationline. else exception.
+        /// </summary>
+        /// <param name="busStationLine"></param>
         public void AddBusStationLine(BusStationLine busStationLine)
         {
             List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
@@ -294,6 +374,11 @@ namespace DL
 
             XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
         }
+        /// <summary>
+        /// the function gets an accurance of a busstationline check if it already exist in the busstationline list.
+        /// if it does exception , else we can update it fields.
+        /// </summary>
+        /// <param name="busStationLine"></param>
         public void UpdateBusStationLine(BusStationLine busStationLine)
         {
             List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
@@ -310,6 +395,12 @@ namespace DL
 
             XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
         }
+        /// <summary>
+        /// the function gets the id & the busstation num of the busstationline & chcks by those 2 variables if it exist.
+        /// if it does so we delete that ,else exception. the deleting in specific to a specific line.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="BusStationNum"></param>
         public void DeleteBusStationLine(int id, string BusStationNum)
         {
             List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
@@ -326,6 +417,10 @@ namespace DL
             XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
 
         }
+        /// <summary>
+        /// the function gets only the busstationline num because we need to delete it from all the lines.
+        /// </summary>
+        /// <param name="busLinenum"></param>
         public void DeleteBusLineFromAllStations(int busLinenum)
         {
             List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
@@ -335,6 +430,11 @@ namespace DL
             XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
 
         }
+        /// <summary>
+        /// the function gets the line id to return all it's busstationline. (it wouldnt return null because when we add a busline there are at least 3 busstationlines).
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <returns></returns>
         public IEnumerable<DO.BusStationLine> GetLineStationsListOfALine(string lineId)//returns a "line stations" list of the wanted line
         {
             List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
@@ -342,6 +442,11 @@ namespace DL
             return from bsl in BusStationsLineList
                    select bsl;
         }
+        /// <summary>
+        /// the function returns all the existig busstationlines.
+        /// </summary>
+        /// <param name="busstationline"></param>
+        /// <returns></returns>
         public IEnumerable<DO.BusStationLine> GetAllBusStationLines(string busstationline)
         {//returns all members in list
             List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
@@ -349,6 +454,11 @@ namespace DL
 
                    select bs;
         }
+        /// <summary>
+        /// the function gets a predicate that accroding to it ,it return all the wanted busstationlines.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public IEnumerable<DO.BusStationLine> GetBusStationLineList(Predicate<DO.BusStationLine> predicate)
         {
             List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
@@ -356,6 +466,12 @@ namespace DL
                    where predicate(bs)
                    select bs;
         }
+        /// <summary>
+        /// the function gets the id of a busstationline checks if it already exist.
+        /// if it is,it return it,else exceptiom.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public DO.BusStationLine GetBusStationLine(string Id)
         {
             XElement BussRootElem = XMLTools.LoadListFromXMLElement(BusStationLinePath);
@@ -373,23 +489,42 @@ namespace DL
                 throw new DO.BadBusStationLineCodeException(bus1.ID, $"bad Bus station line License Num: {Id}");
             return bus1;
         }
+        /// <summary>
+        /// the function gets the id & the line's num os we can delete the wanted busstationline from the specific busstationline.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="LineNum"></param>
         public void DeleteBusStationLine(string id, string LineNum)
         {
             List<BusStationLine> BussRootElem = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
             BussRootElem.RemoveAt(BussRootElem.FindIndex(l => l.ID == id && l.BusStationNum == LineNum));
             XMLTools.SaveListToXMLSerializer(BussRootElem, BusStationLinePath);
         }
+        /// <summary>
+        /// gets the busstaiton line num to delete it from the entire busstation list.
+        /// </summary>
+        /// <param name="StationID"></param>
         public void DeleteBusStationLineFromAllStations(string StationID)
         {
             XElement BussRootElem = XMLTools.LoadListFromXMLElement(BusStationLinePath);
             BussRootElem.RemoveAll();
         }
+        /// <summary>
+        /// the function gets a generate variable & reutrn accroding to it the wanted accurance
+        /// </summary>
+        /// <param name="generate"></param>
+        /// <returns></returns>
         public IEnumerable<object> GetBusStationsLineListWithSelectedFields(Func<DO.BusStationLine, object> generate)
         {
             List<BusStationLine> BusStationsLineList = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
             return from bs in BusStationsLineList
                    select bs;
         }
+        /// <summary>
+        /// get the station code & reutnr all the match stations
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public IEnumerable<DO.BusLine> GetLineStationsListThatMatchAStation(int code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
         {
             List<BusStationLine> listLineStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
@@ -403,6 +538,11 @@ namespace DL
         #endregion BusStationLine
 
         #region Station
+        /// <summary>
+        /// the function gets a predicate variable & returns the wanted accurance of the station from the station list.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public IEnumerable<DO.Station> GetAllStations(Predicate<DO.Station> predicate)
         {
             List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
@@ -410,6 +550,11 @@ namespace DL
                    where predicate(bs)
                    select bs;
         }
+        /// <summary>
+        /// the function gets a station code, checks if it exist if it is ,it return the wanted station, else exception.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public DO.Station GetStation(string code)
         {
             List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
@@ -422,6 +567,10 @@ namespace DL
 
             //if not exist throw excebustion etc.
         }
+        /// <summary>
+        /// the function reutrn all the existing stations in the list.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.Station> GetAllStations()
         {
             List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
@@ -429,12 +578,22 @@ namespace DL
             return from Station in ListStations
                    select Station; //no need to Clone()
         }
+        /// <summary>
+        /// the function gtes a generate variable & reutrn the wanted accurance form the entire station's list.
+        /// </summary>
+        /// <param name="generate"></param>
+        /// <returns></returns>
         public IEnumerable<object> GetAllStationListWithSelectedFields(Func<DO.Station, object> generate)
         {
             List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
             return from bs in StationsList
                    select bs;
         }
+        /// <summary>
+        /// the function gets an accurance of a station ,checks if it already exsist ,if it does so we can update it's details.
+        /// else exception
+        /// </summary>
+        /// <param name="Station"></param>
         public void UpdateStation(DO.Station Station)
         {
             List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
@@ -450,6 +609,11 @@ namespace DL
             }
             XMLTools.SaveListToXMLSerializer(StationsList, StationsPath);
         }
+        /// <summary>
+        /// the function get an accurance of a station,cheacks if it already exsist in the list.
+        /// if it does - exception. else we can add it to the list.
+        /// </summary>
+        /// <param name="station"></param>
         public void AddStation(DO.Station station)
         {
             List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
@@ -465,6 +629,11 @@ namespace DL
             }
             XMLTools.SaveListToXMLSerializer(StationsList, StationsPath);
         }
+        /// <summary>
+        /// the function gets the code of the station & checks if it alreadt exist if it does so we can delete it.
+        /// else exception.
+        /// </summary>
+        /// <param name="stationCode"></param>
         public void DeleteStation(string stationCode)
         {
             List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
@@ -493,6 +662,10 @@ namespace DL
         #endregion Station
 
         #region User
+        /// <summary>
+        /// the fnuction gets all the users from the file & return all it data
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.User> GetAllUser()
         {
             XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
@@ -506,6 +679,11 @@ namespace DL
                     }
                    );
         }
+        /// <summary>
+        /// the function gets a predicate & return accroding to it the match wanted accurance.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public IEnumerable<DO.User> GetAllUser(Predicate<User> predicate)
         {
             List<User> UsersList = XMLTools.LoadListFromXMLSerializer<User>(UserPath);
@@ -513,6 +691,13 @@ namespace DL
             return from user in UsersList
                    select user;
         }
+        /// <summary>
+        /// the function gets the user's name & password & checks if it exsist in the system if it does so it return it.
+        /// else exception.
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="pass"></param>
+        /// <returns></returns>
         public User GetUser(string Name, string pass)
         {
             XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
@@ -530,6 +715,11 @@ namespace DL
                 throw new DO.BadUserName_PasswordException(Name, pass, $"wrong user's name or password: {Name},{pass}");
             return user1;
         }
+        /// <summary>
+        /// the function gets an accurance of user,checks if it exsist if it does so it throw an exception.
+        /// else we can add the user to the user's list with all it data.
+        /// </summary>
+        /// <param name="user"></param>
         public void AddUser(DO.User user)
         {
             XElement UserRootElem = XMLTools.LoadListFromXMLElement(UserPath);
@@ -550,12 +740,22 @@ namespace DL
 
             XMLTools.SaveListToXMLElement(UserRootElem, UserPath);
         }
+        /// <summary>
+        /// the function gets a generate variable & returns the wanted accurance from the entire list.
+        /// </summary>
+        /// <param name="generate"></param>
+        /// <returns></returns>
         public IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate)
         {
             List<User> UsersList = XMLTools.LoadListFromXMLSerializer<User>(UserPath);
             return from user in UsersList
                    select user;
         }
+        /// <summary>
+        /// the function gets an accurance of user,checks if it exsist if it does so we can update it's details.
+        /// else exception.
+        /// </summary>
+        /// <param name="User"></param>
         public void UpdateUser(DO.User User)
         {
             List<User> UsersList = XMLTools.LoadListFromXMLSerializer<User>(UserPath);
@@ -572,6 +772,12 @@ namespace DL
 
             XMLTools.SaveListToXMLSerializer(UsersList, UserPath);
         }
+        /// <summary>
+        /// the function gets the user's name & password ,check if there is a match if it is so we delete the accurance
+        /// else exception.
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="password"></param>
         public void DeleteUser(string Name, string password)
         {
             List<User> UsersList = XMLTools.LoadListFromXMLSerializer<User>(UserPath);
@@ -590,6 +796,10 @@ namespace DL
         #endregion
 
         #region DrivingBus
+        /// <summary>
+        /// the function return all the driving busses
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DrivingBus> GetAllDrivingsBusLists()
         {
             XElement DrivingsListRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
@@ -608,6 +818,12 @@ namespace DL
                     }
                    );
         }
+        /// <summary>
+        /// the function gets a drivingbus's id & checks if it exsiist if it does so it return all it's fields.
+        /// else exception.
+        /// </summary>
+        /// <param name="Num"></param>
+        /// <returns></returns>
         public DrivingBus GetDrivingBus(string Num)
         {
             XElement DrivingsListRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
@@ -629,6 +845,11 @@ namespace DL
                 throw new DO.BadBusLicenseNumException(Num, $"wrong user's name or password: {Num}");
             return drivingb1;
         }
+        /// <summary>
+        /// the function get a predicate variable & return the wanted accurance accroding to the predicate.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public IEnumerable<DO.DrivingBus> GetDrivingsListList(Predicate<DO.DrivingBus> predicate)
         {
             List<DO.DrivingBus> DrivingsList = XMLTools.LoadListFromXMLSerializer<DO.DrivingBus>(DrivingBussbusath);
@@ -636,12 +857,22 @@ namespace DL
             return from b in DrivingsList
                    select b;
         }
+        /// <summary>
+        /// the function gets a generate variable & return the wanted accurance driving bus accroding to the variable.
+        /// </summary>
+        /// <param name="generate"></param>
+        /// <returns></returns>
         public IEnumerable<object> GetDrivingsListListWithSelectedFields(Func<DrivingBus, object> generate)
         {
             List<DrivingBus> DrivingsList = XMLTools.LoadListFromXMLSerializer<DrivingBus>(DrivingBussbusath);
             return from outgoingline in DrivingsList
                    select outgoingline;
         }
+        /// <summary>
+        /// the function gets an accurance of drivingbus checks if it already exsist, if it does so we cant add it & exception.
+        /// else we can add it with all it's fields.
+        /// </summary>
+        /// <param name="OutGoingLine"></param>
         public void AddDrivingsList(DrivingBus OutGoingLine)
         {
             XElement DrivingsListRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
@@ -660,6 +891,11 @@ namespace DL
 
             XMLTools.SaveListToXMLElement(DrivingsListRootElem, DrivingBussbusath);
         }
+        /// <summary>
+        /// the function  gets an accurance of driving bus ,checks if it already exsist if it does so we can update it's fiels
+        /// else exception.
+        /// </summary>
+        /// <param name="OutGoingLine"></param>
         public void UpdateDrivingBus(DrivingBus OutGoingLine)
         {
             XElement DrivingBRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
@@ -684,6 +920,11 @@ namespace DL
             else
                 throw new DO.BadBusLicenseNumException(OutGoingLine.LicenseNum, $"bad Bus's LicenseNum: {OutGoingLine.LicenseNum}");
         }
+        /// <summary>
+        /// the function gets the drivingbus num ,checks if it exsist if it does so we can dalete it.
+        /// else exception.
+        /// </summary>
+        /// <param name="Num"></param>
         public void DeleteDrivingBus(string Num)
         {
             XElement DrivingBRootElem = XMLTools.LoadListFromXMLElement(DrivingBussbusath);
@@ -703,6 +944,13 @@ namespace DL
         #endregion
 
         #region Accident
+        /// <summary>
+        /// the function gets the licensenum of the bus that did the accident 
+        /// & return if the license num exsist the other accident's data.
+        /// else exception.
+        /// </summary>
+        /// <param name="LicenseNum"></param>
+        /// <returns></returns>
         public DO.Accident GetAccident(string LicenseNum)
         {
             List<Accident> accident = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
@@ -713,6 +961,10 @@ namespace DL
             else
                 throw new DO.BadBusLicenseNumException(LicenseNum, $"bad accident LicenseNum: {LicenseNum}");
         }
+        /// <summary>
+        /// the function return all the accident of all  the list
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Accident> GetAllAccidentsList()
         {
             List<Accident> accidents = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
@@ -720,7 +972,12 @@ namespace DL
             return from accident in accidents
                    select accident; //no need to Clone()
         }
-
+        /// <summary>
+        /// the function gets an accurance of accident ,check if it already exsist.
+        /// if it does so we can add it , else yes. 
+        /// we check accroding to the bus's licensenum & the date & num of the accident that they are all have the same accurance.
+        /// </summary>
+        /// <param name="Accident"></param>
         public void AddAccident(Accident Accident)
         {
             List<Accident> Accidents = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
@@ -732,7 +989,11 @@ namespace DL
 
             XMLTools.SaveListToXMLSerializer(Accidents, AccidentPath);
         }
-
+        /// <summary>
+        /// the function gets an accurance of accident & checks if it already exsist ,if it is it deleted.
+        /// else exception.
+        /// </summary>
+        /// <param name="Accidentnum"></param>
         public void DeleteAccident(int Accidentnum)
         {
             List<Accident> AccidentsList = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
@@ -751,6 +1012,14 @@ namespace DL
         #endregion
 
         #region FollowingStations
+        /// <summary>
+        /// the function gets two codes of busstationline ,checks if they are match to one of the items in the followingstation file  -that ine of them match the first station & the other the seconf.
+        /// if it does so we return the match accurance in the followingstation file.
+        /// else exception.
+        /// </summary>
+        /// <param name="code1"></param>
+        /// <param name="code2"></param>
+        /// <returns></returns>
         public DO.FollowingStations GetFollowingStation(string code1, string code2)
         {
             XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
@@ -770,6 +1039,11 @@ namespace DL
                 throw new DO.BadBusStationLineCodeException(code1 + code2, $"wrong station's code: {code1 + code2}");
             return s;
         }
+        /// <summary>
+        /// the function gets a predicate variable of followingstation type & returns the wanted accurance accroding to the predicate
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public IEnumerable<DO.FollowingStations> GetAllFollowingStationss(Predicate<DO.FollowingStations> predicate)
         {
             List<FollowingStations> FollowingStationss = XMLTools.LoadListFromXMLSerializer<FollowingStations>(FollowingStationsPath);
@@ -777,6 +1051,10 @@ namespace DL
             return from fs in FollowingStationss
                    select fs;
         }
+        /// <summary>
+        /// the function returns all the exists followingstations in the mxl file.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.FollowingStations> GetAllFollowingStationss()
         {
             XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
@@ -794,12 +1072,23 @@ namespace DL
                     }
                    );
         }
+        /// <summary>
+        /// the function gets a generate variable & returns the wanted accurance accroding to the variable.
+        /// </summary>
+        /// <param name="generate"></param>
+        /// <returns></returns>
         public IEnumerable<object> GetAllFollowingStationsListWithSelectedFields(Func<DO.FollowingStations, object> generate)
         {
             List<FollowingStations> FollowingStationss = XMLTools.LoadListFromXMLSerializer<FollowingStations>(FollowingStationsPath);
             return from fs in FollowingStationss
                    select fs;
         }
+        /// <summary>
+        /// the function gets a followingstation accurance ,check if it already exsist, the check is by checking the first & last stations codes straight & backwards 
+        /// if it does so we cant add the accurance.
+        /// else yes.
+        /// </summary>
+        /// <param name="FollowingStations"></param>
         public void AddFollowingStations(DO.FollowingStations FollowingStations)
         {
             //XMLTools.SaveListToXMLSerializer(followingStations, FollowingStationsPath);
@@ -825,6 +1114,12 @@ namespace DL
                 XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
             }
         }
+        /// <summary>
+        /// the function gets an accurance of followingstation type ,check if it already exsist in the followingstations file.
+        /// if it does we can delete it.
+        /// else exception.
+        /// </summary>
+        /// <param name="followingstation"></param>
         public void DeleteFollowingStation(DO.FollowingStations followingstation)
         {
             XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
@@ -840,12 +1135,23 @@ namespace DL
             else
                 throw new DO.BadBusLineException(followingstation.FirstStationCode, followingstation.SecondStationCode, $"wrong stations's codes: {followingstation.FirstStationCode},{followingstation.SecondStationCode}");
         }
+        /// <summary>
+        /// the function gets a code & check if there is a mtch in the followingstations xml file ,if it match to the first/second stations
+        /// if it does so we earse it from all the file.
+        /// else exception.
+        /// </summary>
+        /// <param name="code"></param>
         public void DeleteFollowingStation(string code)
         {
             XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
             FollowingSElem.Elements().ToList().RemoveAll(fs => fs.Element("FirstStationCode").Value 
             == code || fs.Element("SecondStationCode").Value == code );
         }
+        /// <summary>
+        /// the function gets a followingstation accurance if this accurance exsist so we can update it;s fields. the check is by over on all the file checking if there is a mtch of the first/last station's codes.
+        /// else exception.
+        /// </summary>
+        /// <param name="FollowingStations"></param>
         public void UpdateFollowingStations(DO.FollowingStations FollowingStations)
         {
             XElement FollowingSElem = XMLTools.LoadListFromXMLElement(FollowingStationsPath);
@@ -871,38 +1177,14 @@ namespace DL
         }
         #endregion
 
-        /*#region Running Numbers
-        private long GetAndUpdateRunningNumber(Type type)
-        {
-            XElement RunningNumbersRootElem = XMLTools.LoadListFromXMLElement(runningNumbersPath);
-
-            XElement run_ = (from run in RunningNumbersRootElem.Elements()
-                             select run).FirstOrDefault();
-
-            long returnedVal = 0;
-            if (run_ != null)
-            {
-                if (type == typeof(BusLine))
-                {
-                    returnedVal = long.Parse(run_.Element("BusLine_Running").Value);
-                    run_.Element("BusLine_Running").Value = (returnedVal + 1).ToString();
-                }
-                else
-                {
-                    returnedVal = long.Parse(run_.Element("Station_Running").Value);
-                    run_.Element("Station_Running").Value = (returnedVal + 1).ToString();
-                }
-
-                XMLTools.SaveListToXMLElement(RunningNumbersRootElem, runningNumbersPath);
-            }
-
-            return returnedVal;
-        }
-        #endregion*/
-
         #region LineExit
         string LineExitXml = @"LineExit.xml";
-
+        /// <summary>
+        /// the function gets an outgoingline accurance ,checks if it already exsist, if it does so we cant add the wanted one & throw an exception.
+        /// else yes.
+        /// the checking is by the busline's id & it start time.
+        /// </summary>
+        /// <param name="lineExit"></param>
         public void AddLineExit(OutGoingLine lineExit)
         {
             XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
@@ -934,6 +1216,13 @@ namespace DL
             //    XMLTools.SaveListToXMLSerializer(lineExits, LineExitXml);
             //}
         }
+        /// <summary>
+        /// th efunction gets an accurance of outgoing line ,check if it already exsist.
+        /// if it is so we can delete it. else exception.
+        /// the check is by the busline's id & it's start time.
+        /// </summary>
+        /// <param name="lineNumber"></param>
+        /// <param name="StartTime"></param>
         public void DeleteLineExit(int lineNumber, TimeSpan StartTime)
         {
             XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
@@ -947,6 +1236,12 @@ namespace DL
             lineExit1.Remove();
             XMLTools.SaveListToXMLElement(element, LineExitXml);
         }
+        /// <summary>
+        /// the function gets an accurance of outgoingline ,checks if it already exsist in the outgoingline xml file.
+        /// if it is we can update it's fields. else exception.
+        /// the chack id by the busline's id & it's start time.
+        /// </summary>
+        /// <param name="lineExit"></param>
         public void UpdatingLineExit(OutGoingLine lineExit)
         {
             XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
@@ -970,6 +1265,13 @@ namespace DL
 
             }
         }
+        /// <summary>
+        /// the function gets the busline's num & it start time if there is a match in the xml file so we return the wanted outgoingline with all it's fields.
+        /// else exception.
+        /// </summary>
+        /// <param name="lineNumber"></param>
+        /// <param name="StartTime"></param>
+        /// <returns></returns>
         public OutGoingLine ReturnLineExit(int lineNumber, TimeSpan StartTime)
         {
             XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
@@ -985,6 +1287,13 @@ namespace DL
                                       }).FirstOrDefault();
             return lineExit1 ?? throw new BadOutGoingLineException(lineNumber, StartTime, "the Exit not exist in the list");
         }
+        /// <summary>
+        /// the function gets the line num & it start time if there is a match in the outgoingline's xml file with both the variables so we return thr match accurance.
+        /// else exception.
+        /// </summary>
+        /// <param name="numberLine"></param>
+        /// <param name="StartTime"></param>
+        /// <returns></returns>
         public OutGoingLine OneLineExitFromList(int numberLine, TimeSpan StartTime)
         {
             XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
@@ -1000,6 +1309,11 @@ namespace DL
                                       }).FirstOrDefault();
             return lineExit1 ?? throw new BadOutGoingLineException(numberLine, StartTime, "the Exit not exist in the list");
         }
+        /// <summary>
+        /// the function gets the line's num & reutnr all it's exits by it's num.
+        /// </summary>
+        /// <param name="numberLine"></param>
+        /// <returns></returns>
         public IEnumerable<OutGoingLine> LineExitList(int numberLine)
         {
             XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);

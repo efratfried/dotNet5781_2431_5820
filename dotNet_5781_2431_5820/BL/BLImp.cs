@@ -15,6 +15,13 @@ namespace BL
         static Random rand = new Random();
       
         #region Bus
+        /// <summary>
+        /// this is a convert function. each of the bus's functions use that convert function.
+        /// the function gets an accurance of DO.bus & return na accurance of BO.bus by sending to the lower layout &  copyProperties.
+        /// the function send the license num of the bus ,if the licensenum is found in the lower layout os the copy is done. else exception.
+        /// </summary>
+        /// <param name="BusDO"></param>
+        /// <returns></returns>
         BO.Bus BusDoBoAdapter(DO.Bus BusDO)
         {
             BO.Bus BusBO = new BO.Bus();
@@ -34,6 +41,12 @@ namespace BL
             BusBO.Foul_Status = foul_Status(BusBO);
             return BusBO;
         }
+        /// <summary>
+        /// the function gets a bus's licensenum ,send it to DO -if it's param found so ew return the the BO bus by sending to the convertfunction
+        /// else exception.
+        /// </summary>
+        /// <param name="LicenseNum"></param>
+        /// <returns></returns>
         public BO.Bus GetBus(string LicenseNum)
         {
             DO.Bus BusDO;
@@ -48,22 +61,39 @@ namespace BL
             }
             return BusDoBoAdapter(BusDO);
         }
+        /// <summary>
+        /// the function returns the whole exsisting buss in the xml file by sending to the DO layout & after ot the convertfunction.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BO.Bus> GetAllBuss()
         {
             return from BusDO in dl.GetAllBusses()
                    orderby BusDO.LicenseNum
                    select BusDoBoAdapter(BusDO);
         }
+        /// <summary>
+        /// the function returns the licensnum list of all the busses by sending to the DO layout & order it by theirs licensenums.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BO.Bus> GetBusIDList()
         {
             return from BusDO in dl.GetAllBusses()
                    orderby BusDO.LicenseNum
                    select BusDoBoAdapter(BusDO);
         }
+        /// <summary>
+        /// this function isn't using.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public IEnumerable<BO.Bus> GetBussBy(Predicate<BO.Bus> predicate)
         {
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// the function returns the licensenums of the entire busses.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BO.Bus> GetBusLicenseNumList()
         {
             return from item in dl.GetAllBusListWithSelectedFields((BusDO) =>
@@ -75,6 +105,11 @@ namespace BL
                    //orderby Bus.LicenseNum
                    select BusBO;
         }
+        /// <summary>
+        /// the function get an accurance of BO.Bus ,check if it exsist.if it does so we can update it's fields by copying & sending the accurance to the DO.Updatebus.
+        /// else exception.
+        /// </summary>
+        /// <param name="bus"></param>
         public void UpdateBusPersonalDetails(BO.Bus bus)
         {
             //Update DO.Bus            
@@ -90,6 +125,11 @@ namespace BL
                 throw new BO.BadBusIdException("Bus's LicenseNum is illegal", Ex);
             }
         }
+        /// <summary>
+        /// the function gets a bus's licensenum -send it ot the DO layout, if it exsist it baing earesed.
+        /// else exception.
+        /// </summary>
+        /// <param name="LicenseNum"></param>
         public void DeleteBus(string LicenseNum)
         {
             try
@@ -102,6 +142,14 @@ namespace BL
                 throw new BO.BadBusIdException("Bus LicenseNum does not exist or it is not a Bus", Ex);
             }
         }
+        /// <summary>
+        /// the function gets an accurance of a BO.Bus checks the validation of it's licensenum - case it's inncorrect -exception.
+        /// case the date & the lengh of the licensenum are'nt synchronised - exception.
+        /// the adding is by copy & sending the accurance to the DO layout.
+        /// if it already exsist -exception.
+        /// else add it.
+        /// </summary>
+        /// <param name="bus"></param>
         public void AddBus(BO.Bus bus)
         {
             DO.Bus BusDO = new DO.Bus();
@@ -129,6 +177,12 @@ namespace BL
                 throw new BO.BadBusIdException("Bus ID is illegal", Ex);
             }
         }
+        /// <summary>
+        /// the function gets an accurance of BO.Bus -checks the bus's foul & accroding to the results so it's foul status.
+        /// which accroding to that the bus's avilibility status is decieded.
+        /// </summary>
+        /// <param name="bus"></param>
+        /// <returns></returns>
         public BO.Foul_Status foul_Status(BO.Bus bus)
         {
                 if (bus.foul == 0)
@@ -152,6 +206,11 @@ namespace BL
                 }
                 return bus.Foul_Status;
         }
+        /// <summary>
+        /// the funtion deciede the aviability status of the bus accroding to it's foul status & how much km it's already pass.
+        /// </summary>
+        /// <param name="bus"></param>
+        /// <returns></returns>
         public BO.Status status(BO.Bus bus)
         {
             if (bus.KM > 300000 || bus.foul < 0)
@@ -176,6 +235,11 @@ namespace BL
         #endregion Bus
 
         #region Station
+        /// <summary>
+        /// the function is a convert function which all the station's functions are using it.
+        /// </summary>
+        /// <param name="StationDO"></param>
+        /// <returns></returns>
         BO.Station StationDoBoAdapter(DO.Station StationDO)
         {
             BO.Station StationBO = new BO.Station();
@@ -195,6 +259,13 @@ namespace BL
 
             return StationBO;
         }
+        /// <summary>
+        /// the function gets the code of a station,send it to the DO layout which checks if it exsist.
+        /// if it is so this function return it & send it to the convert function.
+        /// else excetion.
+        /// </summary>
+        /// <param name="CodeStation"></param>
+        /// <returns></returns>
         public BO.Station GetStation(string CodeStation)
         {
             DO.Station StationDO;
@@ -209,6 +280,11 @@ namespace BL
             }
             return StationDoBoAdapter(StationDO);
         }
+        /// <summary>
+        /// the function returns all the exsisting stations by returning from the DO layout - & send it to the convert function.
+        /// the stations will by order by theirs codes
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BO.Station> GetAllStations()
         {
             //return from item in dl.GetBusListWithSelectedFields( (stud) => { return GetBus(stud.ID); } )
@@ -223,6 +299,10 @@ namespace BL
         {
             throw new NotImplementedException();
         }*/
+       /// <summary>
+       /// the function returns all the codes of the stations. by sending to the DO layout. 
+       /// </summary>
+       /// <returns></returns>
         public IEnumerable<BO.Station> GetStationLicenseNumList()
         {
             return from item in dl.GetAllStationListWithSelectedFields((StationDO) =>
@@ -231,9 +311,14 @@ namespace BL
                 return new BO.Station() { CodeStation = StationDO.CodeStation };
             })
                    let StationBO = item as BO.Station
-                   //orderby Bus.LicenseNum
+                   //orderby StationBO.CodeStation
                    select StationBO;
         }
+        /// <summary>
+        /// the function gets an accurance of BO.Station ,copy  send it to the DO layout. there it checks if it exsist if it is os we can uupdate it's feils.
+        /// else exception.
+        /// </summary>
+        /// <param name="station"></param>
         public void UpdateStationPersonalDetails(BO.Station station)
         {
             //Update DO.Bus            
@@ -249,6 +334,12 @@ namespace BL
                 throw new BO.BadStationNumException("Station num is illegal", Ex);
             }
         }
+        /// <summary>
+        /// the function gets the station's code -that code is sent to the DO layout which checks if it already exsist .
+        /// if it is so we can earese it .
+        /// else exception.
+        /// </summary>
+        /// <param name="Codestation"></param>
         public void DeleteStation(string Codestation)
         {
             try
@@ -278,6 +369,12 @@ namespace BL
                 throw new BO.BadStationException("station's code does not exist or it is not a correct code", Ex);
             }
         }
+        /// <summary>
+        /// the function gets an accurance of BO.Statin send it to check if it already exsist.
+        /// if it is so exception.
+        /// else we cana add it. but we first check the validation of the entered coordinates  ,the station's code.
+        /// </summary>
+        /// <param name="station"></param>
         public void AddStation(BO.Station station)
         {
             //the random number in in the begining
@@ -306,6 +403,12 @@ namespace BL
                 throw new BO.BadStationException("station num is illegal", Ex);
             }
         }
+        /// <summary>
+        /// the function gets an accurance of BO.Station & the currenttime & return it.
+        /// </summary>
+        /// <param name="station"></param>
+        /// <param name="CurrentTime"></param>
+        /// <returns></returns>
         public TimeSpan GetLineTimingPerStation(BO.Station station, TimeSpan CurrentTime)
         {
             return CurrentTime;//need fix
@@ -315,6 +418,12 @@ namespace BL
         #endregion
 
         #region BusStationLine
+        /// <summary>
+        /// this is the convert function which all the busstationline's function use.
+        /// it convert from DO.Busstationline to BO.Busstationline.
+        /// </summary>
+        /// <param name="BLSDO"></param>
+        /// <returns></returns>
         BO.BusStationLine BusStationLineDoBoAdapter(DO.BusStationLine BLSDO)
         {
             BO.BusStationLine BLSBO = new BO.BusStationLine();
@@ -324,6 +433,13 @@ namespace BL
 
             return BLSBO;
         }
+        /// <summary>
+        /// the function gets a BusStatoinLine's code ,check if it exsist by sending it to the DO layout.
+        /// if it exsist so we return the match accurance.
+        /// else exception.
+        /// </summary>
+        /// <param name="CodeStation"></param>
+        /// <returns></returns>
         public BO.Station GetBusStationLine(string CodeStation)
         {
             DO.Station BusStationLineDO;
@@ -338,6 +454,11 @@ namespace BL
             }
             return StationDoBoAdapter(BusStationLineDO);
         }
+        /// <summary>
+        /// the function gets the id of the BusLine & returns all it's BusStatopnLines (at least 2) 
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public IEnumerable<BO.BusStationLine> GetAllBusStationLines(int num)
         {
             return from BusStationLineDO in dl.GetBusStationLineList(b => b.ID == num.ToString())
@@ -348,6 +469,14 @@ namespace BL
         {//need fill field 
             throw new NotImplementedException();
         }*/
+       /// <summary>
+       /// the function gets a BusStationLine code, send & check if it exsist.
+       /// case it is so we get all it's accurance in the busstationline xml file.
+       /// than we get all the distance & the driving time between each 2 following stations -busstationline.
+       /// return the new list with the new details of the BusStationLine.
+       /// </summary>
+       /// <param name="BusStationLineNum"></param>
+       /// <returns></returns>
         public IEnumerable<BO.BusStationLine> GetBusStationLineList(string BusStationLineNum)
         {
             List<BO.BusStationLine> bsl=new List<BusStationLine>();
@@ -359,7 +488,7 @@ namespace BL
                 bsl.Add(b);
             }
             for (int i = 0; i < bs.Count-1; i++)
-            {                                     //here is the problem
+            {                                  
                 bsl[i].Distance = dl.GetFollowingStation(bs[i].BusStationNum, bs[i + 1].BusStationNum).Distance;
                 bsl[i].AverageDrivingTime = dl.GetFollowingStation(bs[i].BusStationNum, bs[i + 1].BusStationNum).AverageDrivingTime;
             }
@@ -373,6 +502,12 @@ namespace BL
             //       //orderby Bus.LicenseNum
             //       select BusStationLineBo;
         }
+        /// <summary>
+        /// the function gets an accurance of BusStationLine ,send & check in the DO layout if it exsist & return all it's accurance by their's id & index on the line.
+        /// we calculate the index on the line by a running num.
+        /// if the accurance is already exsist so there is an exception.
+        /// </summary>
+        /// <param name="busStationLine"></param>
         public void AddBusStationLine(BusStationLine busStationLine)
         {
             DO.BusStationLine BusStationLineDO = new DO.BusStationLine();           
@@ -392,6 +527,12 @@ namespace BL
                 throw new BO.BadBusStationLineCodeException("The details of the bus station are'nt wrong", Ex);
             }
         }
+        /// <summary>
+        /// the function gets an accurance of BusStationLine copy & send it to the DO layout -check if it exsist.
+        /// case it is so we can update it's fields.
+        /// else exception.
+        /// </summary>
+        /// <param name="bus_station_num"></param>
         public void UpdateBusStationLinePersonalDetails(BO.BusStationLine bus_station_num)
         {            
             DO.BusStationLine BusStationLineDO = new DO.BusStationLine();
@@ -406,6 +547,17 @@ namespace BL
                 throw new BO.BadBusStationLineCodeException("Bus's LicenseNum is illegal", Ex);
             }
         }
+        /// <summary>
+        /// the function gets the BusStationLine's id,index in line.
+        /// with those we check if it exsist by looking fot the correct match in the xml files which has the 2 arguments.
+        /// case it isnt exsist -exception.
+        /// else we can delete it by sending to the DO layout it's BusStationNum. we also update the all the busstationlines that after the wanted one to be insexinline -1.
+        /// than we add the new couple of the followingstatons - the one before the wanted one ,& the one which next.
+        /// if the wanted busstationline isnt exsist -exception.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="ID"></param>
+        /// <param name="index"></param>
         public void DeleteBusStationLine(string num, int ID, int index)
         {
             try
@@ -440,6 +592,7 @@ namespace BL
                    let BOlineStation = BusStationLineDoBoAdapter(DOlineStation)
                    select BOlineStation;
         }*/
+
         public void DeleteStationFromLine(BO.BusLine busline, string code)
         {
             try
@@ -459,7 +612,7 @@ namespace BL
         }
 
         #endregion
-
+        //here
         #region BusLine
         BO.BusLine BuslineDoBoAdapter(DO.BusLine blDO)
         {
@@ -681,180 +834,6 @@ namespace BL
         }
 
         #endregion
-        /*
-        #region OutGoingLine
-        BO.OutGoingLine OutGoingLineDoBoAdapter(DO.OutGoingLine OutGoingLineDO)
-        {
-            BO.OutGoingLine OutGoingLineBO = new BO.OutGoingLine();
-            string LicenseNum = OutGoingLineDO.ID;
-            try
-            {
-                OutGoingLineDO = dl.GetOutGoingLine(LicenseNum);
-            }
-            catch (DO.BadLicenseNumException ex)
-            {
-                string Ex = ex.ToString();
-                throw new BO.BadBusIdException("Bus LicenseNum is illegal", Ex);
-            }
-
-            OutGoingLineDO.CopyPropertiesTo(OutGoingLineBO);
-
-            return OutGoingLineBO;
-        }
-        public BO.OutGoingLine GetOutGoingLine(string LicenseNum)
-        {
-            DO.OutGoingLine OutGoingLineDO;
-            try
-            {
-                OutGoingLineDO = dl.GetOutGoingLine(LicenseNum);
-            }
-            catch (DO.BadLicenseNumException ex)
-            {
-                string Ex = ex.ToString();
-                throw new BO.BadBusIdException("Buss' LicenseNum does not exist or it is not a Bus", Ex);
-            }
-            return OutGoingLineDoBoAdapter(OutGoingLineDO);
-        }
-        public IEnumerable<BO.OutGoingLine> GetAllOutGoingLines()
-        {
-            //return from item in dl.GetBusListWithSelectedFields( (stud) => { return GetBus(stud.ID); } )
-            //       let Bus = item as BO.Bus
-            //       orderby Bus.ID
-            //       select Bus;
-            return from OutGoingLineDO in dl.GetAllOutGoingLines()
-                   orderby OutGoingLineDO.ID
-                   select OutGoingLineDoBoAdapter(OutGoingLineDO);
-        }
-        public IEnumerable<BO.OutGoingLine> GetOutGoingLineIDList()
-        {
-            return from OutGoingLineDO in dl.GetAllOutGoingLines()
-                   orderby OutGoingLineDO.ID
-                   select OutGoingLineDoBoAdapter(OutGoingLineDO);
-        }
-        #endregion OutGoingLine
-        /*public IEnumerable<BO.OutGoingLine> GetOutGoingLinesBy(Predicate<BO.OutGoingLine> predicate)
-        {
-            throw new NotImplementedException();
-        }
-          public IEnumerable<BO.OutGoingLine> GetOutGoingLineLicenseNumList()
-           {
-              // return from item in dl.GetOutGoingLineListWithSelectedFields((OutGoingLineDO) =>
-               {
-                   try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                  return new BO.OutGoingLine() { /*id=  OutGoingLineDO.ID*//* };
-               })
-                      let OutGoingLineBO = item as BO.OutGoingLine
-                      //orderby Bus.LicenseNum
-                      select OutGoingLineBO;
-           }*/
-        /*public void UpdateOutGoingLinePersonalDetails(BO.OutGoingLine OutGoingLine)
-        {
-            //Update DO.Bus            
-            DO.OutGoingLine OutGoingLineDO = new DO.OutGoingLine();
-            OutGoingLine.CopyPropertiesTo(OutGoingLineDO);
-            try
-            {
-               // dl.UpdateOutGoingLine(OutGoingLineDO);
-            }
-            catch (DO.BadLicenseNumException ex)
-            {
-                string Ex = ex.ToString();
-                throw new BO.BadBusIdException("Bus's LicenseNum is illegal", Ex);
-            }
-        }
-        public void DeleteOutGoingLine(BO.OutGoingLine OutGoingLine)
-        {
-            try
-            {
-               // dl.DeleteOutGoingLine(OutGoingLine.ToString());
-            }
-            catch (DO.BadLicenseNumException ex)
-            {
-                string Ex = ex.ToString();
-                throw new BO.BadBusIdException("BusLicenseNum does not exist or it is not a Bus", Ex);
-            }
-        }
-        public void AddOutGoingLine(BO.Bus OutGoingLine)
-        {
-
-            DO.OutGoingLine OutGoingLineDO = new DO.OutGoingLine();
-            if (OutGoingLine.LicenseNum.Length != 7 && OutGoingLine.LicenseNum.Length != 8)
-            {
-                throw new Exception("invalid license num lengh");
-            }
-
-            if ((OutGoingLine.LicenseDate.Year < 2018 && OutGoingLine.LicenseNum.Length != 7) || (OutGoingLine.LicenseDate.Year >= 2018 && OutGoingLine.LicenseDate < DateTime.Now && OutGoingLine.LicenseNum.Length != 8))
-            {//check the validation of the license num accroding to it date
-                throw new Exception("invalid license's date");
-            }
-
-            OutGoingLineDO.CopyPropertiesToNew(typeof(BO.OutGoingLine));
-            try
-            {
-               // dl.AddOutGoingLine(OutGoingLineDO);
-            }
-            catch (DO.BadLicenseNumException ex)
-            {
-                string Ex = ex.ToString();
-                throw new BO.BadBusIdException("Bus ID is illegal", Ex);
-            }
-
-          }
-
-        
-
-        /*#region Accident
-
-        /*BO.Bus GetAccident(BO.Bus bus, int num)
-        {
-            DO.Accident AccidentDO;
-            try
-            {
-                AccidentDO = dl.GetAccident(num);
-            }
-            catch (DO.BadLicenseNumException ex)
-            {
-                string Ex = ex.ToString();
-                throw new BO.BadBusIdException("the given accident didnt accured in this bus", Ex);
-            }
-            return BusDoBoAdapter(AccidentDO as );
-        }*/
-        /*  IEnumerable<BO.Bus> GetAccidentBy(Predicate<BO.Bus> predicate)
-          {
-
-          }*/
-        /*
-        #region Accident
-        void AddAccident(BO.Bus bus)
-        {
-
-        }
-
-        public void DeleteStation(string code)
-        {
-            throw new NotImplementedException();
-        }
-
-        DO.User IBL.userBoDoAdapter(User userBO)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Bus GetAccident(Bus bus, int num)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Bus> GetAccidentBy(Predicate<Bus> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IBL.AddAccident(Bus bus)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion*/
 
         #region FollowingStation
         BO.FollowingStations FollowingSDoBoAdapter(DO.FollowingStations fsDO)

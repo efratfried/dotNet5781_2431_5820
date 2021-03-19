@@ -60,8 +60,14 @@ namespace UI
         }
         void RefreshAllLineStationsOfLineGrid()
         {
+            bs = new ObservableCollection<BO.BusStationLine>();
+            foreach (var item in bl.GetBusStationLineList(MyBusLine.ID.ToString()))
+            {
+                bs.Add(item);
+            }
+            lineStationDataGrid.ItemsSource = bs;
             //IEnumerable<PO.BusLine> busLines;
-            lineStationDataGrid.ItemsSource = bl.GetBusStationLineList(MyBusLine.ID.ToString());
+            //lineStationDataGrid.ItemsSource = bl.GetBusStationLineList(MyBusLine.ID.ToString());
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -14,9 +14,7 @@
     <Grid x:Name="Main_Window" Margin="0,0,-6.4,-3.6" Background="#FFF7F7F7">
 
         <Rectangle Fill="Orange" HorizontalAlignment="Left" Height="574" Stroke="Orange" VerticalAlignment="Top" Width="193" Margin="1007,0,0,0"/>
-        <StackPanel x:Name="The_items_opening_window" HorizontalAlignment="Left" Width="1002" Background="White"  >
-            <TextBlock TextWrapping="Wrap" Text="TextBlock"/>
-        </StackPanel>
+        <StackPanel x:Name="The_items_opening_window" HorizontalAlignment="Left" Width="1002" Background="White"  />
         <Button x:Name="busses" Content="Busses" HorizontalAlignment="Left" Margin="1007,241,-1.6,0" VerticalAlignment="Top" Width="193" Height="60" FontWeight="Bold" Click="busses_Click" FontSize="28" Foreground="White" Background="DarkSlateGray">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">

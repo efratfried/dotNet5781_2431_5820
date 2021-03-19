@@ -7,6 +7,20 @@
         xmlns:BO="clr-namespace:BO;assembly=BL"
         mc:Ignorable="d"
         Title="Connecting" Height="485" Width="1000" WindowStartupLocation="CenterScreen" >
+    
+    <!--<Window.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="30" Background="White" BorderThickness="5" Padding="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style> ‏
+    </Window.Resources>-->
     <Grid x:Name="Connection_Grid">
 
         <Label Content="manager login" HorizontalAlignment="Left" Margin="630,60,0,0" VerticalAlignment="Top" Height="41" Width="156" FontWeight="Bold" FontStyle="Normal" FontSize="20">

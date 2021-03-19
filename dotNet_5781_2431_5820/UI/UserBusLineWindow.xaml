@@ -37,7 +37,7 @@
             <DataGrid.Columns>
 
                 <DataGridTextColumn x:Name="lineStationIndexColumn" Binding="{Binding LineStationIndex}" Header="Line Station Index" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="codeColumn" Binding="{Binding CoCodeStationde}" Header="     Code" Width="80"/>
+                <DataGridTextColumn x:Name="codeColumn" Binding="{Binding CodeStationde}" Header="     Code" Width="80"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding StationName}" Header="                      Name" Width="200"/>
                 <DataGridTextColumn x:Name="distanceColumn" Binding="{Binding Distance}" Header="Distance in km" Width="100"/>
                 <DataGridTextColumn x:Name="timeColumn" Binding="{Binding AverageDrivingTime}" Header="        Time" Width="100"/>

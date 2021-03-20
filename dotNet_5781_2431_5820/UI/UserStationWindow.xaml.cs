@@ -140,5 +140,10 @@ namespace UI
             e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
 
         }
+
+        private void linesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

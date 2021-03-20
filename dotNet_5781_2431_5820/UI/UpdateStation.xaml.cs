@@ -92,5 +92,10 @@ namespace PL
         {
 
         }
+
+        private void Updatename_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

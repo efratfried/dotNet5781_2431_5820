@@ -59,7 +59,7 @@
             <TextBox x:Name="Disable_accessTextBox" Grid.Column="2"  Height="23" Margin="37.4,113,20,12" Grid.Row="2" Text="{Binding DisableAccess, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsReadOnly="True" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" />
 
         </Grid>
-        <DataGrid x:Name="linesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="41.2,35.8,33.6,41.2" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Horizontal" FontFamily="Tahoma"  Foreground="Black" FontWeight="bold" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2"  >
+        <DataGrid x:Name="linesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="41.2,35.8,33.6,41.2" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Horizontal" FontFamily="Tahoma"  Foreground="Black" FontWeight="bold" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" SelectionChanged="linesDataGrid_SelectionChanged"  >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="BusID" Binding="{Binding ID}" Header="           ID" Width="100"/>
                 <DataGridTextColumn x:Name="busNumberColumn"    Binding="{Binding BusNum}"   Header="Bus Number" Width="SizeToHeader"  />
@@ -71,7 +71,7 @@
 
         </DataGrid>
         <Label Content="All the lines that pass in this station:" FontWeight="Bold" FontSize="14" Foreground="White" HorizontalAlignment="Left" Margin="45.2,0,0,0.2" VerticalAlignment="Bottom" Grid.Column="3" Height="9" Width="249" Grid.Row="1" Grid.ColumnSpan="2" />
-        <Label Content="Stations Information " HorizontalAlignment="Stretch"  VerticalAlignment="Center" FontWeight="Bold" FontFamily="Century Gothic" Height="60"  Foreground="Black" Grid.ColumnSpan="3" Grid.Column="2" Grid.Row="0" Margin="4.4,8,112.8,7.2" FontSize="32"/>
+        <Label Content="Stations Information " HorizontalAlignment="Stretch"  VerticalAlignment="Center" FontWeight="Bold" FontFamily="Century Gothic" Height="60"  Foreground="Black" Grid.ColumnSpan="3" Grid.Column="2" Grid.Row="0" Margin="42.4,8,74.8,7.2" FontSize="32"/>
 
     </Grid>
 </Window>

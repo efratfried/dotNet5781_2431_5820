@@ -12,8 +12,28 @@
     <Grid Margin="0,0,329.6,0.4">
         <Label x:Name="dis" Content="Distance" FontSize="32" FontWeight="Bold" Foreground="Black" Margin="10,10,9,302" Height="58" RenderTransformOrigin="0.5,0.5"/>
         <Label x:Name="timing" Content="Time" Margin="10,152,100,186" Background="Transparent" FontSize="14" FontWeight="Bold"/>
-        <TextBox x:Name="dis1" Margin="97,190,-53,154" RenderTransformOrigin="0.812,0.166" Width="120" Height="26"  HorizontalAlignment="Left"/>
-        <TextBox x:Name="time" Margin="97,155,-53,189"  Height="26" TextChanged="time_TextChanged"/>
+        <TextBox x:Name="dis1" Margin="97,190,-53,154" RenderTransformOrigin="0.812,0.166" Width="120" Height="26"  HorizontalAlignment="Left">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="16"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox x:Name="time" Margin="97,155,-53,189"  Height="26" TextChanged="time_TextChanged">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="16"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
         <Label x:Name="chooseS" Content="Distance" FontSize="14" FontWeight="Bold" Foreground="Black" Margin="10,189,88,152" Height="29" />
         <Button x:Name="Add" Background="Transparent" BorderThickness="1.5" Width="211" Content="Add" Height="Auto" Margin="277,338,-324,6" FontSize="14" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Click="Add_Click"/>
         <TextBlock x:Name="first1" Text="{Binding FirstStationCode}" Margin="279,0,-235,242" Background="White" Width="120" Height="29" VerticalAlignment="Bottom"/>

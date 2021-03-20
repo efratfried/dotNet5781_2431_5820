@@ -59,7 +59,17 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
             <Label Content="Bus Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,3" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="busNumberTextBox" Background="White" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3.8,6,0,7" Grid.Row="1" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown" TextChanged="busNumberTextBox_TextChanged" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="busNumberTextBox" Background="White" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3.8,6,0,7" Grid.Row="1" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="busNumberTextBox_PreviewKeyDown" TextChanged="busNumberTextBox_TextChanged" Grid.ColumnSpan="2">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="FontSize" Value="16"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
             <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,4.8" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White" Grid.ColumnSpan="2"/>
             <ComboBox x:Name="firstStationComboBox" Background="Transparent"  Grid.Column="2" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="4.8,7,0,6.8" Grid.Row="2" VerticalAlignment="Center" Width="303" SelectionChanged="firstStationComboBox_SelectionChanged" Grid.ColumnSpan="3"/>
             <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.2,0,4.6" Grid.Row="3" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White" Grid.ColumnSpan="2"/>

@@ -15,7 +15,7 @@
         <DatePicker x:Name="accidentDate" HorizontalAlignment="Left" Margin="146,175,0,0" VerticalAlignment="Top" Height="29" Width="198"/>
         <Label x:Name="license" Content="LicenseNum:" Margin="10,116,466.6,271" Foreground="White" FontWeight="Bold" FontFamily="Century Gothic" FontSize="14"/>
         <Label x:Name="date" Content="Date:" Margin="10,173,486.6,214" Foreground="White" FontWeight="Bold" FontFamily="Century Gothic" FontSize="14"/>
-        <Button x:Name="Addaccident" Content="Add Accident" Foreground="black" FontWeight="Bold" FontFamily="Century Gothic" FontSize="14" Margin="431,369,9.6,10" Background="Transparent" BorderBrush="Black" BorderThickness="1.5" Click="Addaccident_Click"/>
+        <Button x:Name="Addaccident" Content="Add Accident" Foreground="black" FontWeight="Bold" FontFamily="Century Gothic" FontSize="14" Margin="341,369,9.6,10" Background="Transparent" BorderBrush="Black" BorderThickness="1.5" Click="Addaccident_Click"/>
         <Image Source="/תאונה.png" Margin="294,204,32.6,22" />
 
     </Grid>

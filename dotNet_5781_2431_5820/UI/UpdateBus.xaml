@@ -10,17 +10,17 @@
         <ImageBrush ImageSource="bgmore.JPG"/>
     </Window.Background>
     <Grid Margin="1,2,-1.4,-2">
-        <ComboBox x:Name="firm" Background="White" HorizontalAlignment="Left" FontSize="18" FontWeight="bold" Margin="47,176,0,0" ItemsSource="{Binding Path=Firm}" VerticalAlignment="Top" Height="31" Width="120" RenderTransformOrigin="0.487,0.292" SelectionChanged="firm_SelectionChanged"/>
-        <TextBox x:Name="foul_status" FontSize="18" Background="White" HorizontalAlignment="Left" Margin="47,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="120" FontWeight="Bold" TextChanged="foul_status_TextChanged"/>
-        <TextBox x:Name="km_"  FontSize="18" FontWeight="bold" Background="White" HorizontalAlignment="Left" Margin="47,134,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" TextChanged="km__TextChanged" />
+        <ComboBox x:Name="firm" Background="White" HorizontalAlignment="Left" FontSize="18" Margin="47,176,0,0" ItemsSource="{Binding Path=Firm}" VerticalAlignment="Top" Height="31" Width="120" RenderTransformOrigin="0.487,0.292" SelectionChanged="firm_SelectionChanged"/>
+        <TextBox x:Name="foul_status" FontSize="18" Background="White" HorizontalAlignment="Left" Margin="47,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="120" TextChanged="foul_status_TextChanged"/>
+        <TextBox x:Name="km_"  FontSize="18" Background="White" HorizontalAlignment="Left" Margin="47,134,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292" TextChanged="km__TextChanged" />
         <Image Source="km.png" Margin="172,130,537.6,248"/>
         <Image Source="drive abialability.PNG" Margin="167,93,531.6,295"/>
         <Image Source="foul.PNG" Margin="148,223,503.6,168"/>
         <Image Source="firm.PNG" Margin="188,177,548.6,213"/>
-        <TextBlock x:Name="aviability_status" FontSize="18" FontWeight="bold" HorizontalAlignment="Left" Margin="47,93,0,0"  TextWrapping="Wrap" Text="{Binding Status}" Background="White" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292"/>
+        <TextBlock x:Name="aviability_status" FontSize="18" HorizontalAlignment="Left" Margin="47,93,0,0"  TextWrapping="Wrap" Text="{Binding Status}" Background="White" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292"/>
         <Label Content="Update bus details" Foreground="black" FontWeight="Bold" FontFamily="Century Gothic" Height="60" FontSize="32" Margin="47,10,442.6,350" />
-        <TextBox x:Name="Licensenum" FontSize="18" Background="Transparent" Foreground="black" FontWeight="Bold" Margin="502,252,166,126" Text="{Binding Path=LicenseNum}" IsReadOnly="True" TextChanged="Licensenum_TextChanged" BorderBrush="Transparent"/>
-        <Button x:Name="update_bus" Content="update" Background="Transparent" FontSize="24" Foreground="black" FontWeight="Bold" Height="Auto" Margin="632,349,33,23" Click="button_update_click" RenderTransformOrigin="0.501,0.5" BorderBrush="Black" BorderThickness="2.5"/>
+        <TextBox x:Name="Licensenum" FontSize="18" Background="Transparent" Foreground="black" FontWeight="Bold" Margin="519,252,151,126" Text="{Binding Path=LicenseNum}" IsReadOnly="True" TextChanged="Licensenum_TextChanged" BorderBrush="Transparent"/>
+        <Button x:Name="update_bus" Content="update" Background="Transparent" FontSize="14" Foreground="black" FontWeight="Bold" Height="Auto" Margin="519,374,10,10" Click="button_update_click" RenderTransformOrigin="0.501,0.5" BorderBrush="Black" BorderThickness="2.5"/>
         <Image  Source="background.PNG" Margin="468,42,131,173"/>
         <Image  Source="busicon.png" Margin="463,50,126,181" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>

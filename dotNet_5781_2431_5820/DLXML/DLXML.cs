@@ -154,7 +154,7 @@ namespace DL
                              select bus).FirstOrDefault();
 
             if (bus1 != null)
-                throw new DO.BadBusLicenseNumException(Bus.LicenseNum, "Duplicate Bus LicenseNum");
+                throw new DO.BadBusLicenseNumException(Bus.LicenseNum, "Duplicate Bus's LicenseNums");
 
             XElement BusElem = new XElement("Bus",
                                    new XElement("LicenseNum", Bus.LicenseNum.ToString()),
@@ -186,7 +186,7 @@ namespace DL
                 XMLTools.SaveListToXMLElement(BussRootElem, BususPath);
             }
             else
-                throw new DO.BadBusLicenseNumException(LicenseNum, $"bad Bus's LicenseNum: {LicenseNum}");
+                throw new DO.BadBusLicenseNumException(LicenseNum, $"wrong Bus's LicenseNum: {LicenseNum}");
         }
         /// <summary>
         /// this function gets a bus's accurance ,first checks if it exist if it does we can update the bus's fields.
@@ -213,7 +213,7 @@ namespace DL
                 XMLTools.SaveListToXMLElement(BussRootElem, BususPath);
             }
             else
-                throw new DO.BadBusLicenseNumException(Bus.LicenseNum, $"bad Bus's LicenseNum: {Bus.LicenseNum}");
+                throw new DO.BadBusLicenseNumException(Bus.LicenseNum, $"wrong Bus's LicenseNum: {Bus.LicenseNum}");
         }
 
         #endregion Bus
@@ -234,7 +234,7 @@ namespace DL
             if (stu != null)
                 return stu; //no need to Clone()
             else
-                throw new DO.BadBusLicenseNumException(ID.ToString(), $"bad BusLine LicenseNum: {ID}");
+                throw new DO.BadBusLicenseNumException(ID.ToString(), $"wrong BusLine id: {ID}");
         }
         /// <summary>
         /// the function gets an accuarance of a busline. no need to check if it exist because we want to add a new accurance so the id will be any way different.
@@ -305,7 +305,7 @@ namespace DL
                 ListBusLines.Add(BusLine); //no nee to Clone()
             }
             else
-                throw new DO.BadBusLicenseNumException(BusLine.BusNum.ToString(), $"bad BusLine LicenseNum: {BusLine.BusNum}");
+                throw new DO.BadBusLicenseNumException(BusLine.BusNum.ToString(), $"wrong BusLine id: {BusLine.BusNum}");
 
             XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);
         }
@@ -339,7 +339,7 @@ namespace DL
                 ListBusLines.Remove(bls);
             }
             else
-                throw new DO.BadBusLicenseNumException(BusNum.ToString(), $"bad BusLine LicenseNum: {BusNum}");
+                throw new DO.BadBusLicenseNumException(BusNum.ToString(), $"wring BusLine LicenseNum: {BusNum}");
 
             XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);
         }
@@ -369,7 +369,7 @@ namespace DL
             List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
 
             if (busStationLines.FirstOrDefault(cis => (cis.BusStationNum == busStationLine.BusStationNum.ToString() && cis.ID == busStationLine.ID.ToString())) != null)
-                throw new DO.BadBusStationLineCodeException(busStationLine.BusStationNum, busStationLine.ID.ToString(), "Bus LicenseNum is already registered to Station LicenseNum");
+                throw new DO.BadBusStationLineCodeException(busStationLine.BusStationNum, busStationLine.ID.ToString(), "station code is already exist");
             busStationLines.Add(busStationLine);
 
             XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
@@ -391,7 +391,7 @@ namespace DL
                 busStationLines[index] = busStationLine;
             }
             else
-                throw new DO.BadBusStationLineCodeException(busStationLine.BusStationNum, busStationLine.ID, "Bus LicenseNum is NOT registered to Station LicenseNum");
+                throw new DO.BadBusStationLineCodeException(busStationLine.BusStationNum, busStationLine.ID, "This station's code is not exist");
 
             XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
         }
@@ -412,7 +412,7 @@ namespace DL
                 busStationLines.Remove(sic);
             }
             else
-                throw new DO.BadBusStationLineCodeException(BusStationNum, id.ToString(), "Bus LicenseNum is NOT registered to Station LicenseNum");
+                throw new DO.BadBusStationLineCodeException(BusStationNum, id.ToString(), "This station's code is not exist");
 
             XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
 
@@ -486,7 +486,7 @@ namespace DL
                         ).FirstOrDefault();
 
             if (bus1 == null)
-                throw new DO.BadBusStationLineCodeException(bus1.ID, $"bad Bus station line License Num: {Id}");
+                throw new DO.BadBusStationLineCodeException(bus1.ID, $"This station's code is not exist: {Id}");
             return bus1;
         }
         /// <summary>
@@ -562,7 +562,7 @@ namespace DL
             if (stu != null)
                 return stu; //no need to Clone()
             else
-                throw new DO.BadStationNumException(code, $"bad station code: {code}");
+                throw new DO.BadStationNumException(code, $"This station's code is not exist: {code}");
             /*return ListStations.FirstOrDefault(c => c.CodeStation == code.ToString()); //no need to Clone()*/
 
             //if not exist throw excebustion etc.
@@ -601,7 +601,7 @@ namespace DL
 
             if (index == -1)
             {
-                throw new DO.BadCodeStationException(Station.CodeStation, "wrong station code : { StationCode}");
+                throw new DO.BadCodeStationException(Station.CodeStation, "This station's code is not exist : { StationCode}");
             }
             else
             {
@@ -621,7 +621,7 @@ namespace DL
 
             if (station1 != null)
             {
-                throw new DO.BadCodeStationException(station1.CodeStation, "wrong station code : { StationCode}");
+                throw new DO.BadCodeStationException(station1.CodeStation, "This station's code is already exist: { StationCode}");
             }
             else
             {
@@ -643,7 +643,7 @@ namespace DL
 
             if (station1 == null)
             {
-                throw new DO.BadCodeStationException(station1.CodeStation, "wrong station code : { StationCode}");
+                throw new DO.BadCodeStationException(station1.CodeStation, "This station's code is not exist : { StationCode}");
             }
             else
             {
@@ -712,7 +712,7 @@ namespace DL
                         ).FirstOrDefault();
 
             if (user1 == null)
-                throw new DO.BadUserName_PasswordException(Name, pass, $"wrong user's name or password: {Name},{pass}");
+                throw new DO.BadUserName_PasswordException(Name, pass, $"This user's name/password is not exist: {Name},{pass}");
             return user1;
         }
         /// <summary>
@@ -729,7 +729,7 @@ namespace DL
                               select User).FirstOrDefault();
 
             if (user1 != null)
-                throw new DO.BadUserName_PasswordException(user.UserName, "wrong user's name");
+                throw new DO.BadUserName_PasswordException(user.UserName, "The user's name/password is already exsist");
 
             XElement EserElem = new XElement("user",
                                    new XElement("UserName", user.UserName),
@@ -768,7 +768,7 @@ namespace DL
                 UsersList[index] = User;
             }
             else
-                throw new DO.BadUserName_PasswordException(User.UserName, User.Password, "wrong user's details");
+                throw new DO.BadUserName_PasswordException(User.UserName, User.Password, "This user's name/password is not exist");
 
             XMLTools.SaveListToXMLSerializer(UsersList, UserPath);
         }
@@ -789,7 +789,7 @@ namespace DL
                 UsersList.Remove(u);
             }
             else
-                throw new DO.BadUserName_PasswordException(Name, password, $"bad BusLine LicenseNum: {Name},{password}");
+                throw new DO.BadUserName_PasswordException(Name, password, $"This user's name/password is not exist: {Name},{password}");
 
             XMLTools.SaveListToXMLSerializer(UsersList, UserPath);
         }
@@ -842,7 +842,7 @@ namespace DL
                         ).FirstOrDefault();
 
             if (drivingb1 == null)
-                throw new DO.BadBusLicenseNumException(Num, $"wrong user's name or password: {Num}");
+                throw new DO.BadBusLicenseNumException(Num, $"wrong bus's id: {Num}");
             return drivingb1;
         }
         /// <summary>
@@ -951,15 +951,15 @@ namespace DL
         /// </summary>
         /// <param name="LicenseNum"></param>
         /// <returns></returns>
-        public DO.Accident GetAccident(string LicenseNum)
+        public DO.Accident GetAccident(string Num)
         {
             List<Accident> accident = XMLTools.LoadListFromXMLSerializer<Accident>(AccidentPath);
 
-            DO.Accident stu = accident.Find(a => a.LicenseNum == LicenseNum);
+            DO.Accident stu = accident.Find(a => a.LicenseNum == Num);
             if (stu != null)
                 return stu; //no need to Clone()
             else
-                throw new DO.BadBusLicenseNumException(LicenseNum, $"bad accident LicenseNum: {LicenseNum}");
+                throw new DO.BadBusLicenseNumException(Num, $"bad accident num: {Num}");
         }
         /// <summary>
         /// the function return all the accident of all  the list
@@ -984,7 +984,7 @@ namespace DL
             Accident.AccidentNum = Accidents[Accidents.Count - 1].AccidentNum;
             Accident.AccidentNum++;
             if (Accidents.FirstOrDefault(cis => (cis.LicenseNum == Accident.LicenseNum && cis.AccidentDate == Accident.AccidentDate && cis.AccidentNum == Accident.AccidentNum)) != null)
-                throw new DO.BadBusStationLineCodeException(Accident.LicenseNum, Accident.AccidentDate.ToString(), "accident details is already =exist");
+                throw new DO.BadBusStationLineCodeException(Accident.LicenseNum, Accident.AccidentDate.ToString(), "accident details are already exist");
             Accidents.Add(Accident);
 
             XMLTools.SaveListToXMLSerializer(Accidents, AccidentPath);
@@ -1005,7 +1005,7 @@ namespace DL
                 AccidentsList.Remove(a);
             }
             else
-                throw new DO.BadLicenseNumException(Accidentnum.ToString(), $"Wrong accident's ID : {Accidentnum}");
+                throw new DO.BadLicenseNumException(Accidentnum.ToString(), $"Wrong accident's num : {Accidentnum}");
 
             XMLTools.SaveListToXMLSerializer(AccidentsList, AccidentPath);
         }
@@ -1036,7 +1036,7 @@ namespace DL
                         ).FirstOrDefault();
 
             if (s == null)
-                throw new DO.BadBusStationLineCodeException(code1 + code2, $"wrong station's code: {code1 + code2}");
+                throw new DO.BadBusStationLineCodeException(code1 + code2, $"wrong stations's codes: {code1 + code2}");
             return s;
         }
         /// <summary>
@@ -1173,7 +1173,7 @@ namespace DL
                 XMLTools.SaveListToXMLElement(FollowingSElem, FollowingStationsPath);
             }
             else
-                throw new DO.BadBusLineException(FollowingStations.FirstStationCode, FollowingStations.SecondStationCode, $"bad Bus's LicenseNum: {FollowingStations.FirstStationCode},{FollowingStations.SecondStationCode}");
+                throw new DO.BadBusLineException(FollowingStations.FirstStationCode, FollowingStations.SecondStationCode, $"wrong stations's codes: {FollowingStations.FirstStationCode},{FollowingStations.SecondStationCode}");
         }
         #endregion
 

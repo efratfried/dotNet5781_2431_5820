@@ -47,7 +47,7 @@
             <Label Content="Disable access" HorizontalAlignment="Left" Margin="1,33,0,-27.2" Grid.Row="5" VerticalAlignment="Center" Foreground="Black" BorderBrush="Transparent" Height="27" Width="108" FontSize="14" FontWeight="Bold"/>
             <ComboBox x:Name="Disable_Access" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="1.6,33,0,-21.2" Width="120" SelectionChanged="Disable_Access_SelectionChanged" FontWeight="Bold" Grid.Row="5" Grid.Column="1"/>
         </Grid>
-        <Button x:Name="AddStationButton" Content="add station" Background="Transparent" BorderThickness="2.5" HorizontalAlignment="Left" Margin="656,399,0,0" VerticalAlignment="Top" Width="128" Click="AddStationButton_Click" Foreground="White" BorderBrush="Black" Height="46" FontSize="20" FontWeight="Bold"/>
+        <Button x:Name="AddStationButton" Content="add station" Background="Transparent" BorderThickness="2.5" HorizontalAlignment="Left" Margin="550,399,0,0" VerticalAlignment="Top" Width="234" Click="AddStationButton_Click" Foreground="Black" BorderBrush="Black" Height="46" FontSize="20" FontWeight="Bold"/>
         <Label Content="Longitude   : 34.3-35.5 " HorizontalAlignment="Left" Margin="336,215,0,0" VerticalAlignment="Top" Width="159"  FontSize="14" Foreground="White" Height="31"/>
         <Label Content="Latitude      : 31.3-33.3" HorizontalAlignment="Left" Margin="336,195,0,0" VerticalAlignment="Top" Width="148" Height="29"  FontSize="14" Foreground="White"/>
     </Grid>

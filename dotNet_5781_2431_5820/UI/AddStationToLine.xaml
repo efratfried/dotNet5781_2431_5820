@@ -14,6 +14,6 @@
         <Label x:Name="addstationtoline" Content="Add a station to line" FontSize="28" FontWeight="Bold" Foreground="White" Margin="159,20,-452,299.2" Height="51"/>
         <ComboBox x:Name="stationList" Margin="267,136,-475,206.2" Height="28" ItemsSource="{Binding}" SelectionChanged="stationList_SelectionChanged"/>
         <Label x:Name="station_list" Content="Choose a station:" FontSize="18" FontWeight="Bold" Foreground="Black" Margin="89,126,-267,206.2"/>
-        <Button x:Name="addstation" Content="Add station" Margin="462,327,-582,12.2" BorderBrush="black" FontSize="14" Click="addstation_Click" FontWeight="Bold" Background="Transparent" BorderThickness="1.5"/>
+        <Button x:Name="addstation" Content="Add station" Margin="425,327,-582,12.2" BorderBrush="black" FontSize="14" Click="addstation_Click" FontWeight="Bold" Background="Transparent" BorderThickness="1.5"/>
     </Grid>
 </Window>

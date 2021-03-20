@@ -66,7 +66,7 @@
             <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontFamily="Tahoma" FontWeight="bold" />
             <TextBox x:Name="lastStationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.6,3.8,0,3.6" Grid.Row="3" Text="{Binding LastStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma" PreviewKeyDown="lastStationTextBox_PreviewKeyDown"/>
         </Grid>
-        <Label Content="All the station of the line:" Grid.Column="1" HorizontalAlignment="Center" Margin="10.4,33.4,77.8,0" VerticalAlignment="Top" Height="39" Width="271" Grid.ColumnSpan="2" FontSize="18" FontWeight="Bold" Foreground="White" Grid.Row="1" Grid.RowSpan="2"/>
-        <Label Content="         Lines Information " HorizontalAlignment="Left" Margin="96.4,12,0,25.6" VerticalAlignment="Center" Height="56" FontWeight="Bold" FontFamily="Century Gothic" Foreground="black"  Grid.Column="1" Grid.ColumnSpan="3"/>
+        <Label Content="All the station of the line:" Grid.Column="1" HorizontalAlignment="Center" Margin="10.4,7.2,77.8,0" VerticalAlignment="Top" Height="39" Width="271" Grid.ColumnSpan="2" FontSize="18" FontWeight="Bold" Foreground="White" Grid.Row="2"/>
+        <Label Content="Lines Information " HorizontalAlignment="Left" Margin="133.4,10,0,32.4" VerticalAlignment="Center" Height="56" FontWeight="Bold" FontFamily="Century Gothic" FontSize="32" Foreground="black"  Grid.Column="1" Grid.ColumnSpan="3" Width="271"/>
     </Grid>
 </Window>

@@ -6,7 +6,7 @@
         
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="EnteringWindow" Height="485" Width="1000">
+        Title="EnteringWindow" Height="485" Width="1000" >
 
     <Window.Background>
         <ImageBrush ImageSource="bgmore.JPG"/>

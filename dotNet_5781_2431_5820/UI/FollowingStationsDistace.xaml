@@ -15,7 +15,7 @@
         <TextBox x:Name="dis1" Margin="97,190,-53,154" RenderTransformOrigin="0.812,0.166" Width="120" Height="26"  HorizontalAlignment="Left"/>
         <TextBox x:Name="time" Margin="97,155,-53,189"  Height="26" TextChanged="time_TextChanged"/>
         <Label x:Name="chooseS" Content="Distance" FontSize="14" FontWeight="Bold" Foreground="Black" Margin="10,189,88,152" Height="29" />
-        <Button x:Name="Add" Background="Transparent" BorderThickness="1" Content="Add" Height="Auto" Margin="340,325,-323,19" FontSize="14" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Click="Add_Click"/>
+        <Button x:Name="Add" Background="Transparent" BorderThickness="1.5" Width="211" Content="Add" Height="Auto" Margin="277,338,-324,6" FontSize="14" BorderBrush="Black" Foreground="Black" FontWeight="Bold" Click="Add_Click"/>
         <TextBlock x:Name="first1" Text="{Binding FirstStationCode}" Margin="279,0,-235,242" Background="White" Width="120" Height="29" VerticalAlignment="Bottom"/>
         <TextBlock x:Name="second1" Text="{Binding SecondStationCode}" Background="White" Height="29" Margin="97,99,-53,242" Width="120"/>
     </Grid>

@@ -24,7 +24,7 @@
             <ColumnDefinition Width="286*"/>
             <ColumnDefinition Width="287*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="add the ride" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Top" Width="169" Height="42" Margin="108.6,35.8,9.6,0" Click="Button_Click" FontSize="18" FontWeight="Bold" Background="Transparent" />
+        <Button Content="add the ride" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Top" Width="213" Height="42" Margin="64.6,35.8,9.6,0" Click="Button_Click" FontSize="14" FontWeight="Bold" Background="Transparent" BorderThickness="1.5"/>
         <Label Content="Add the start time of the ride" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="black" FontWeight="Bold" FontFamily="Century Gothic" Height="60" FontSize="32" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Grid.ColumnSpan="3" Margin="162,0.4,177.6,44.4" Width="454" Grid.RowSpan="2" Background="Transparent"/>
         <TextBox x:Name="hours" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="58.2,40.4,0,0" Grid.Row="2" TextWrapping="Wrap" Text="00" VerticalAlignment="Top" Width="36" Grid.RowSpan="2" PreviewKeyDown="hours_PreviewKeyDown"/>
         <TextBox x:Name="minutes" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="126.2,40.4,0,0" Grid.Row="2" TextWrapping="Wrap" Text="00" VerticalAlignment="Top" Width="36" Grid.RowSpan="2" PreviewKeyDown="minutes_PreviewKeyDown"/>

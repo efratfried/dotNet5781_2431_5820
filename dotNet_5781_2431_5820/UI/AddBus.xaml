@@ -51,7 +51,7 @@
             </TextBox.Style>
         </TextBox>
 
-        <Button x:Name="Add" Content=" Add Bus" FontSize="14"  Background="Transparent" BorderThickness="2.5" FontWeight="Bold" Margin="602,413,4,10" Foreground="black" BorderBrush="Black" Click="AddBus_Click" RenderTransformOrigin="0.5,0.5"/>
+        <Button x:Name="Add" Content=" Add Bus" FontSize="14"  Background="Transparent" BorderThickness="2.5" FontWeight="Bold" Margin="573,413,4,10" Foreground="black" BorderBrush="Black" Click="AddBus_Click" RenderTransformOrigin="0.5,0.5"/>
         <DatePicker x:Name="LicenseDate" HorizontalAlignment="Left" Margin="313,118,0,0" VerticalAlignment="Top" Height="29" Width="129"/>
         <Label Content="Firm" FontSize="14" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Left" Margin="16,210,0,216" VerticalAlignment="Center" Foreground="Black" Height="29"/>
         <ComboBox x:Name="firm" FontWeight="bold" HorizontalAlignment="Left" Margin="140,212,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="firm_SelectionChanged" Background="White" ItemsSource="{Binding}"/>

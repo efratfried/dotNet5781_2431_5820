@@ -35,9 +35,9 @@
         <Label Content="לוז יציאות" Grid.Column="1" HorizontalAlignment="Left" Margin="185,467,0,0" VerticalAlignment="Top" Height="29" Width="74"/>
         <Label Content="זמני הגעה ליעד" Grid.Column="1" HorizontalAlignment="Left" Margin="53,467,0,0" VerticalAlignment="Top" Width="102" Height="26"/>
         <Label Content="יגיע לתחנה בעוד" Grid.Column="1" HorizontalAlignment="Left" Margin="861,466,0,0" VerticalAlignment="Top" Width="129"/>
-        <Label Content="Start at:" Foreground="black" FontWeight="Bold" FontFamily="Century Gothic" FontSize="18" Margin="450,184,247,203"/>
+        <Label Content="Start at:" Foreground="black" FontWeight="Bold" FontFamily="Century Gothic" FontSize="18" Margin="495,184,219,203"/>
         <Label Content="Finish at:" Foreground="black" FontWeight="Bold" FontFamily="Century Gothic" FontSize="18" Margin="596,184,105,203"/>
-        <ListView x:Name="TCS" HorizontalAlignment="Left" Height="159" Margin="444,220,0,0" VerticalAlignment="Top" Width="103" RenderTransformOrigin="0.547,0.227" >
+        <ListView x:Name="TCS" HorizontalAlignment="Left" Height="159" Margin="484,220,0,0" VerticalAlignment="Top" Width="103" RenderTransformOrigin="0.547,0.227" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

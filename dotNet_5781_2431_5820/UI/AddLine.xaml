@@ -99,6 +99,6 @@
             <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,78.2,0,-40" Grid.Row="4" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White"/>
             <ComboBox x:Name="lastStationComboBox" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="98,48.4,-0.2,-68.8" Grid.Row="4" VerticalAlignment="Center" Width="319" SelectionChanged="lastStationComboBox_SelectionChanged" Grid.ColumnSpan="5"/>
         </Grid>
-        <Label Content="Add line details:" Foreground="White"  FontWeight="Bold" BorderBrush="Transparent" Height="47" FontSize="32" Margin="10,10,143.8,30.2" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+        <Label Content="Add line details:" Foreground="Black"  FontWeight="Bold" BorderBrush="Transparent" Height="47" FontSize="32" Margin="10,10,143.8,30.2" Grid.ColumnSpan="2" Grid.RowSpan="2" />
     </Grid>
 </Window>

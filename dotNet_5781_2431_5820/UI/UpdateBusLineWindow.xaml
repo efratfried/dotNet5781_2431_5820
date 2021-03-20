@@ -65,6 +65,6 @@
             <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.2,0,4.6" Grid.Row="3" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="White" Grid.ColumnSpan="2"/>
             <ComboBox x:Name="lastStationComboBox" Background="Transparent" Grid.Column="2" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="4.8,7.2,0,7.6" Grid.Row="3" VerticalAlignment="Center" Width="303" SelectionChanged="lastStationComboBox_SelectionChanged" Grid.ColumnSpan="3"/>
         </Grid>
-        <Label Content="Update line details:" HorizontalAlignment="Stretch" Margin="10,11,185,16.2" VerticalAlignment="Center"  Foreground="black" FontWeight="Bold" FontFamily="Century Gothic" Height="60" FontSize="32" Grid.ColumnSpan="3" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5"/>
+        <Label Content="Update line details:" HorizontalAlignment="Stretch" Margin="20,11,175,16.2" VerticalAlignment="Center"  Foreground="black" FontWeight="Bold" FontFamily="Century Gothic" Height="60" FontSize="32" Grid.ColumnSpan="3" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5"/>
     </Grid>
 </Window>

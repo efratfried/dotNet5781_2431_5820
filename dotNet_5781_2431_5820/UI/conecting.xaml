@@ -23,7 +23,7 @@
     </Window.Resources>-->
     <Grid x:Name="Connection_Grid">
 
-        <Label Content="manager login" HorizontalAlignment="Left" Margin="630,60,0,0" VerticalAlignment="Top" Height="41" Width="156" FontWeight="Bold" FontStyle="Normal" FontSize="20">
+        <Label Content="manager login" HorizontalAlignment="Left" Margin="651,60,0,0" VerticalAlignment="Top" Height="41" Width="156" FontWeight="Bold" FontStyle="Normal" FontSize="20">
             <Label.Style>
                 <Style TargetType="Label">
                     <Style.Triggers>
@@ -86,7 +86,7 @@
         </TextBox>
 
 
-        <Label Content=" sign in" HorizontalAlignment="Left" Margin="160,220,0,0" VerticalAlignment="Top" Height="41" Width="80" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black"/>
+        <Label Content=" sign in" HorizontalAlignment="Left" Margin="160,232,0,0" VerticalAlignment="Top" Height="41" Width="80" FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black"/>
         <TextBox x:Name="Newuser_name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="87,277,0,0" TextChanged="Newuser_namePassword_TextChanged" BorderBrush="Black" Text="{Binding UserName}">
             <TextBox.Style>
                 <Style TargetType="TextBox">

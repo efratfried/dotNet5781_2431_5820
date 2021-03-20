@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="bgmore.jpg" />
     </Window.Background>
     <Grid>
-        <Label x:Name="add_accident" Content="Add accident" Margin="2,5,359.6,355" Foreground="black" FontWeight="Bold" FontFamily="Century Gothic" Height="60" FontSize="32"/>
+        <Label x:Name="add_accident" Content="Add accident" Margin="10,10,351.6,350" Foreground="black" FontWeight="Bold" FontFamily="Century Gothic" Height="60" FontSize="32"/>
         <TextBlock x:Name="licensenum" Text="{Binding LicenseNum}" Margin="146,116,249.6,271" Background="White"/>
         <DatePicker x:Name="accidentDate" HorizontalAlignment="Left" Margin="146,175,0,0" VerticalAlignment="Top" Height="29" Width="198"/>
         <Label x:Name="license" Content="LicenseNum:" Margin="10,116,466.6,271" Foreground="White" FontWeight="Bold" FontFamily="Century Gothic" FontSize="14"/>

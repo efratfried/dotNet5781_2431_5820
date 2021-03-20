@@ -34,8 +34,8 @@ namespace PL
         }
         public AddStation(IBL _bl,PL.StationsWindow1 stationsWindow1)
         {
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bl = _bl;
             sta = stationsWindow1;   
             Disable_Access.ItemsSource = Enum.GetValues(typeof(MyEnum));

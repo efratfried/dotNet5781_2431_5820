@@ -28,6 +28,7 @@ namespace PL
         public StationsWindow1(IBL _bl)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             stationlist = new ObservableCollection<PO.Station>();
             bl = _bl;
             RefreshAllStationsComboBox();

@@ -24,6 +24,7 @@ namespace PL
         public AddOutGoingLine()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BO;
 using UI;
+using System.Collections.ObjectModel;
 
 namespace PL
 {
@@ -24,6 +25,7 @@ namespace PL
     {
         IBL bl;
         PO.Bus currentbus;
+        public ObservableCollection<BO.Accident> accident;
         public busseswindow(IBL _bl)
         {
             InitializeComponent();
@@ -46,10 +48,6 @@ namespace PL
             //IEnumerable<PO.BusLine> busLines;
             BusDetailsGrid.DataContext = bl.GetBus(currentbus.LicenseNum);
         }
-       void RefreshAccident()
-        {
-            Accident.ItemsSource = bl.GetAllAccident().ToList();
-        }
     
         private void Refreshbusses_listComboBox()//refresh the combobox each time the user changes the selection 
         {
@@ -71,6 +69,7 @@ namespace PL
         {
             currentbus = (PO.Bus)busses_list.SelectedItem;
             ___Bus_Window_.DataContext = currentbus;
+            Licensenumbus.Text = currentbus.LicenseNum;
 
             //inner_info.
             //if (busses_list.SelectedIndex < 0)

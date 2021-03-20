@@ -28,13 +28,13 @@ namespace PO
         static readonly DependencyProperty foulProperty = DependencyProperty.Register("foul", typeof(double), typeof(Bus));
         static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(BO.Status), typeof(Bus));
         static readonly DependencyProperty FirmProperty = DependencyProperty.Register("Firm", typeof(BO.Firm), typeof(Bus));
-        static readonly DependencyProperty AccidentProperty = DependencyProperty.Register("Accident", typeof(BO.Accident), typeof(Bus));
+        static readonly DependencyProperty AccidentProperty = DependencyProperty.Register("Accident", typeof(IEnumerable<BO.Accident>), typeof(Bus));
         public string LicenseNum { get => (string)GetValue(LicenseNumProperty); set => SetValue(LicenseNumProperty, value); }
         public DateTime LicenseDate { get => (DateTime)GetValue(LicenseDateProperty); set => SetValue(LicenseDateProperty, value); }
         public BO.Status Status { get => (BO.Status)GetValue(StatusProperty); set => SetValue(StatusProperty, value); }
         public double KM { get => (double)GetValue(KMProperty); set => SetValue(KMProperty, value); }
         public double foul { get => (double)GetValue(foulProperty); set => SetValue(foulProperty, value); }
         public BO.Firm Firm { get => (BO.Firm)GetValue(FirmProperty); set => SetValue(FirmProperty, value); }
-        public BO.Accident Accident { get => (BO.Accident)GetValue(AccidentProperty); set => SetValue(AccidentProperty, value); }
+        public IEnumerable<BO.Accident> Accident { get => (IEnumerable<BO.Accident>)GetValue(AccidentProperty); set => SetValue(AccidentProperty, value); }
     }
 }

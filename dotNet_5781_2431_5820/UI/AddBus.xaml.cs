@@ -27,6 +27,7 @@ namespace PL
         public AddBus(IBL _bL)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bL = _bL;
             LicenseNum.Text = "";
             LicenseDate.Text = "";

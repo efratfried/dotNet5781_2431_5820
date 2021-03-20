@@ -13,6 +13,7 @@ namespace DO
         public double KM { get; set; }
         public double foul { get; set; }
         public Firm Firm { get; set; }
+        public IEnumerable<Accident> AccidentsDuco { get; set; }
         public override string ToString()
         {
             return this.ToStringProperty();

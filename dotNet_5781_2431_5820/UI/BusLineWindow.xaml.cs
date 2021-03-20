@@ -32,6 +32,7 @@ namespace PL
         public BusLineWindow(IBL _bl)
         {     
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             ts = new ObservableCollection<PO.BusLine>();
             bl = _bl;
           
@@ -286,6 +287,11 @@ namespace PL
         }
 
         private void area_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void lineStationDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

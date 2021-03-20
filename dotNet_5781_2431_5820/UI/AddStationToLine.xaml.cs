@@ -29,6 +29,7 @@ namespace PL
         public AddStationToLine(IBL _bl,BO.FollowingStations FStations, PO.BusLine bs,int index ,PL.BusLineWindow busl)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bl = _bl;
             bw = busl;
             i = index;

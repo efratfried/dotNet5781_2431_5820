@@ -28,6 +28,7 @@ namespace UI
         public AddAccident(PO.Bus bus,IBL _bl)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bl = _bl;
             licensenum.Text = bus.LicenseNum;
             accidentDate.Text = "";

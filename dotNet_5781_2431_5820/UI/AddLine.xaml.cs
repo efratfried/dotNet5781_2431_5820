@@ -30,8 +30,8 @@ namespace PL
 
         public AddLine(IBL _bl, BusLineWindow _BS)
         {
-            //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             BS = _BS;
             bl = _bl;
             addedLine = new BO.BusLine();

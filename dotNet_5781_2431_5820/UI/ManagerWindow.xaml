@@ -29,8 +29,8 @@
         <Button x:Name="Stations"  Content="Stations" HorizontalAlignment="Left" Margin="1007,371,-1.6,0" VerticalAlignment="Top" Width="193" Height="60" Click="Stations_Click" FontSize="28" Foreground="White" Background="DarkSlateGray" FontWeight="Bold"/>
         <Button x:Name="buslines"  Content="BusLines" HorizontalAlignment="Left" Margin="1007,306,-1.6,0" VerticalAlignment="Top" Width="193" Height="60" Click="buslines_Click" FontSize="28" Foreground="White" Background="DarkSlateGray" FontWeight="Bold"/>
         <Image Source="user_icon2.PNG"  Margin="986,21,-25,0" VerticalAlignment="Top" Height="120"/>
-        <Label Content="  hello" FontSize="20" Margin="1024,161,99.4,361.6" Foreground="Black" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" />
-        <TextBox x:Name="username" DataContext="{Binding}"  HorizontalAlignment="Left" Height="34" Margin="1088,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="99" IsReadOnly="True" FontSize="20" Foreground="Black" FontWeight="Bold" Background="Transparent" BorderBrush="Transparent"/>
+        <Label Content="  hello" FontSize="20" Margin="1024,161,99,338" Foreground="Black" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" />
+        <TextBox x:Name="username" DataContext="{Binding}"  HorizontalAlignment="Left" Height="54" Margin="1088,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="99" IsReadOnly="True" FontSize="20" Foreground="Black" FontWeight="Bold" Background="Transparent" BorderBrush="Transparent"/>
         <Image Source="logoutdoor.PNG" Margin="9,4,1157,528" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
@@ -42,6 +42,6 @@
             </Image.RenderTransform>
         </Image>
         <Button x:Name="log_out" Margin="4,0,1155,525" FontSize="25" Background="Transparent" FontWeight="Bold" Click="log_out_Click" BorderBrush="Transparent"/>
-        <Rectangle x:Name="slidepanel" Fill="White" HorizontalAlignment="Left" Margin="1007,241,0,0" Stroke="Orange" VerticalAlignment="Top" Width="14"/>
+        <Rectangle x:Name="slidepanel" Fill="White" HorizontalAlignment="Left" Margin="1176,241,0,0" Stroke="Orange" VerticalAlignment="Top" Width="11" Height="60"/>
     </Grid>
 </Window>

@@ -27,7 +27,7 @@ namespace PL
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             username.Text = user.UserName;
-            slidepanel.Opacity = 0.0;
+            slidepanel.Opacity = 1.0;
         }
 
         private void busses_Click(object sender, RoutedEventArgs e)

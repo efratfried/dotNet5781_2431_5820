@@ -26,7 +26,7 @@ namespace UI
         {
             InitializeComponent();
             username.Text = user.UserName;
-            SlidePanel.Opacity = 0.0;
+            SlidePanel.Opacity = 0;
         }
 
         private void buslines_Click(object sender, RoutedEventArgs e)

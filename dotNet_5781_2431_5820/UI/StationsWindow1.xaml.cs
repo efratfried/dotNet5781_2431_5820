@@ -49,7 +49,7 @@ namespace PL
             StationComboBox.ItemsSource = stationlist;
             //StationComboBox.DisplayMemberPath = "CodeStation";
             StationComboBox.DisplayMemberPath = "StationName";
-            StationComboBox.SelectedIndex = -1;
+            StationComboBox.SelectedIndex = 0;
 
         }
     

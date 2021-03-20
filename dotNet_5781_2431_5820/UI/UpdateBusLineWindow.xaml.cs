@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace PL
     {
         IBL bl;
         PO.BusLine TempBusLine;
+        public ObservableCollection<PO.Station> stationlist;
         public UpdateBusLineWindow(PO.BusLine MybusLine,IBL _bl)
         {
             bl = _bl;
@@ -29,9 +31,47 @@ namespace PL
             TempBusLine = MybusLine;
             areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
             areaComboBox.SelectedIndex = 0;
+            RefreshFirstStationsComboBox();
+            RefreshLastStationsComboBox();
             //busNumberTextBox.Text = TempBusLine.BusNum.ToString();
             //firstStationComboBox.ItemsSource ;
             //lastStationComboBox.ItemsSource ;
+        }
+        void RefreshFirstStationsComboBox()//refresh the combobox each time the user changes the selection 
+        {
+            stationlist = new ObservableCollection<PO.Station>();
+            List<BO.Station> sta = bl.GetAllStations().ToList();
+            for (int i = 0; i < sta.Count; i++)
+            {
+                PO.Station sta2 = new PO.Station();
+                sta[i].DeepCopyTo(sta2);
+
+                stationlist.Add(sta2);
+            }
+            PO.Station S = stationlist.ToList().Find(i => i.CodeStation == TempBusLine.FirstStation.ToString());
+            firstStationComboBox.ItemsSource = stationlist;
+            //StationComboBox.DisplayMemberPath = "CodeStation";
+            firstStationComboBox.DisplayMemberPath = "StationName";
+            firstStationComboBox.SelectedIndex = 0;
+        }
+        void RefreshLastStationsComboBox()//refresh the combobox each time the user changes the selection 
+        {
+            stationlist = new ObservableCollection<PO.Station>();
+
+            List<BO.Station> sta = bl.GetAllStations().ToList();
+            for (int i = 0; i < sta.Count; i++)
+            {
+                PO.Station sta2 = new PO.Station();
+                sta[i].DeepCopyTo(sta2);
+
+                stationlist.Add(sta2);
+            }
+            PO.Station S = stationlist.ToList().Find(i => i.CodeStation == TempBusLine.LastStation.ToString());
+            stationlist.Remove(S);
+            lastStationComboBox.ItemsSource = stationlist;
+            //StationComboBox.DisplayMemberPath = "CodeStation";
+            lastStationComboBox.DisplayMemberPath = "StationName";
+            lastStationComboBox.SelectedIndex = 0;
         }
 
         /*try

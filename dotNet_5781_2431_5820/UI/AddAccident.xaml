@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
         Title="AddAccident" Height="450" Width="600">
+    
     <Window.Background>
         <ImageBrush ImageSource="bgmore.jpg" />
     </Window.Background>

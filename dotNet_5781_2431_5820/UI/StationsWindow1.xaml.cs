@@ -84,7 +84,6 @@ namespace PL
                     UpdateStation win = new UpdateStation(bl, MyStation);
                     win.Show();
                 }
-
             }
             catch (BO.BadOpenWindow ex)
             {

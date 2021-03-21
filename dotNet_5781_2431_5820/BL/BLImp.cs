@@ -710,6 +710,33 @@ namespace BL
             try
             {
                 dl.UpdateBusLine(BusLineDO);
+                List<DO.BusStationLine> bs = dl.GetAllBusStationLines(BusLineDO.ID.ToString()).OrderBy(I=>I.IndexInLine).ToList();
+
+                if(bs[bs.FindIndex(i=>i.IndexInLine==0)].BusStationNum!=BusLineDO.FirstStation.ToString())
+                {//checkiing which station did it update
+                    dl.DeleteBusStationLine(bs[bs.FindIndex(i => i.IndexInLine == 0)].ID, bs[bs.FindIndex(i => i.IndexInLine == 0)].BusStationNum);
+                    
+                    bs[bs.FindIndex(i => i.IndexInLine == 0)].BusStationNum = BusLineDO.FirstStation.ToString();
+                    dl.AddBusStationLine(bs[bs.FindIndex(i => i.IndexInLine == 0)]);
+
+                    DO.FollowingStations fw = new DO.FollowingStations();
+                    fw.FirstStationCode = bs[bs.FindIndex(i => i.IndexInLine == 0)].BusStationNum;
+                    fw.SecondStationCode = bs[bs.FindIndex(i => i.IndexInLine == 1)].BusStationNum;
+                    dl.AddFollowingStations(fw);
+                }
+
+                if (bs[bs.Count-1].BusStationNum != BusLineDO.LastStation.ToString())
+                {
+                    dl.DeleteBusStationLine(bs[bs.Count-1].ID, bs[bs.Count-1].BusStationNum);
+                    bs[bs.Count - 1].BusStationNum = BusLineDO.LastStation.ToString();
+                    dl.AddBusStationLine(bs[bs.Count - 1]);
+
+                    DO.FollowingStations fw = new DO.FollowingStations();
+                    fw.FirstStationCode = bs[bs.Count - 2].BusStationNum;
+                    fw.SecondStationCode = bs[bs.Count - 1].BusStationNum;
+                    dl.AddFollowingStations(fw);
+                }
+
             }
             catch (DO.BadLicenseNumException ex)
             {
@@ -727,8 +754,7 @@ namespace BL
             {
                 throw new BO.BadBusLineIdException("BusLine's ID does not exist or it is not a Bus", ex);
             }
-        }
-        
+        }       
         public void AddBusLine(BO.BusLine busline)
         {
             DO.BusLine BusLineDO = new DO.BusLine();

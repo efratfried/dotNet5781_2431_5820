@@ -155,15 +155,8 @@ namespace PL
             {
                 TempBusLine.Area = (BO.Area)areaComboBox.SelectedIndex;
                 TempBusLine.BusNum = int.Parse(busNumberTextBox.Text);
-
-               // TempBusLine.FirstStation = int.Parse(((BO.Station)firstStationComboBox.SelectedItem).CodeStation);
-               // TempBusLine.LastStation = int.Parse(((BO.Station)lastStationComboBox.SelectedItem).CodeStation);
-
-               /* if (TempBusLine.FirstStation == TempBusLine.LastStation)
-                {
-                    MessageBox.Show("ERROR", "Verification", MessageBoxButton.OK);
-                }*/
-                //bn.stationsList
+                TempBusLine.FirstStation = int.Parse(((PO.Station)firstStationComboBox.SelectedItem).CodeStation);
+                TempBusLine.LastStation = int.Parse(((PO.Station)lastStationComboBox.SelectedItem).CodeStation);
             }
             else
             {

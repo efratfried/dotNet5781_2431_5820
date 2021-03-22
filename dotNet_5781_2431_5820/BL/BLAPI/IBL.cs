@@ -50,8 +50,8 @@ namespace BLAPI
         BO.BusLine GetBusLine(int Num);
         IEnumerable<BO.BusLine> GetAllLinesByArea(BO.Area area);
         IEnumerable<BO.BusLine> GetBusLines();
-        IEnumerable<BO.BusLine> GetBusLineIDList();
-        //IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate);
+        //IEnumerable<BO.BusLine> GetBusLineIDList();
+        IEnumerable<BO.BusLine> GetBusLinesBy(Predicate<BO.BusLine> predicate);
         //IEnumerable<BO.BusLine> GetAllLinesPerStation(int code);
         void UpdateBusLinePersonalDetails(BO.BusLine busLine);
         void DeleteBusLine(int Num);
@@ -72,7 +72,6 @@ namespace BLAPI
         TimeSpan DrivingTimeBetweenTwoStations(string station1, string station2);
         TimeSpan WalkingTimeBetweenTwoStations(string station1, string station2);
         #endregion
-
 
         #region user
         BO.User userBoDoAdapter(DO.User userDO);

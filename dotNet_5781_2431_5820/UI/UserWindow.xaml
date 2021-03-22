@@ -14,16 +14,16 @@
 
         <Rectangle Fill="Orange" HorizontalAlignment="Left" Height="460" Stroke="Orange" VerticalAlignment="Top" Width="188" Margin="812,0,0,0" Grid.Column="1"/>
         <StackPanel x:Name="The_items_opening_window" HorizontalAlignment="Left" Height="463" VerticalAlignment="Top" Width="807" Margin="0,-3,0,0" Background="White" Grid.ColumnSpan="2"  />
-        <Button x:Name="Stations"  Content="Stations" HorizontalAlignment="Left" Margin="813,214,0,0" VerticalAlignment="Top" Width="187" Height="60" Click="Stations_Click" FontSize="28" Foreground="White" Background="DarkSlateGray" FontWeight="Bold" Grid.Column="1"/>
-        <Button x:Name="Simulation" Content="Station Simulation" Margin="813,279,0,0" VerticalAlignment="Top" Height="60" FontSize="21" Foreground="White" Background="DarkSlateGray" FontWeight="Bold" Grid.Column="1" Click="simulation_Click"/>
-        <Button x:Name="buslines" Content="BusLines" HorizontalAlignment="Left" Margin="812,149,0,0" VerticalAlignment="Top" Width="188" Height="60" Click="buslines_Click" FontSize="28" Foreground="White" Background="DarkSlateGray" FontWeight="Bold" Grid.Column="1"/>
-        <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/user_icon2.PNG"  Margin="879,10,54,0" VerticalAlignment="Top" Height="143" Grid.Column="1"/>
+        <Button x:Name="Stations"  Content="Stations" HorizontalAlignment="Left" Margin="813,214,0,0" VerticalAlignment="Top" Width="187" Height="60" Click="Stations_Click" FontSize="20" Foreground="White" Background="DarkSlateGray" FontWeight="Bold" Grid.Column="1"/>
+        <Button x:Name="Simulation" Content="Station Simulation" Margin="813,279,0,0" VerticalAlignment="Top" Height="60" FontSize="20" Foreground="White" Background="DarkSlateGray" FontWeight="Bold" Grid.Column="1" Click="simulation_Click"/>
+        <Button x:Name="buslines" Content="BusLines" HorizontalAlignment="Left" Margin="812,149,0,0" VerticalAlignment="Top" Width="188" Height="60" Click="buslines_Click" FontSize="20" Foreground="White" Background="DarkSlateGray" FontWeight="Bold" Grid.Column="1"/>
+       <Image Source="user_icon2.PNG"  Margin="879,10,54,0" VerticalAlignment="Top" Height="85" Grid.Column="1"/>
         <Label Content="  hello" FontSize="20" Margin="826,91,97,323" Foreground="Black" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" />
         <TextBox x:Name="username" DataContext="{Binding}"  HorizontalAlignment="Left" Height="34" Margin="895,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" IsReadOnly="True" FontSize="20" Foreground="Black" FontWeight="Bold" Background="Transparent" BorderBrush="Transparent" Grid.ColumnSpan="2"/>
         <Button x:Name="log_out" Margin="4,0,927,396" FontSize="25" Background="Transparent" FontWeight="Bold" Click="log_out_Click" BorderBrush="Transparent" Grid.Column="1"/>
-        <Button x:Name="schedual" Content="BusLine's schedual" Grid.ColumnSpan="2" Margin="813,344,0,57" FontSize="19" Foreground="White" Background="DarkSlateGray" FontWeight="Bold" Click="schedual_Click"/>
-        <Rectangle x:Name="SlidePanel" Margin="975,149,0,246" Fill="White" Visibility="Visible" StrokeLineJoin="Miter" Grid.ColumnSpan="2"/>
-        <Image Source="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/logoutdoor.PNG" Margin="9,6,943,402" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+        <Button x:Name="schedual" Content="Line's schedual" Grid.ColumnSpan="2" Margin="813,344,0,57" FontSize="20" Foreground="White" Background="DarkSlateGray" FontWeight="Bold" Click="schedual_Click"/>
+        <Rectangle x:Name="SlidePanel" Margin="979,149,0,249.8" Fill="White" Visibility="Visible" StrokeLineJoin="Miter" Grid.ColumnSpan="2"/>
+        <Image Source="logoutdoor.PNG" Margin="9,6,943,402" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

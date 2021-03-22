@@ -7,9 +7,23 @@
         xmlns:BO="clr-namespace:BO;assembly=BL"
         mc:Ignorable="d"
         Title="Connecting" Height="485" Width="1000" WindowStartupLocation="CenterScreen" >
+    <Window.Resources>
 
-   
-    <Grid x:Name="Connection_Grid">
+
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="30" Background="CornflowerBlue" BorderThickness="5" Padding="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        </Window.Resources>
+
+        <Grid x:Name="Connection_Grid">
 
         <Label Content="manager login" HorizontalAlignment="Left" Margin="651,60,0,0" VerticalAlignment="Top" Height="41" Width="156" FontWeight="Bold" FontStyle="Normal" FontSize="20">
             <Label.Style>
@@ -97,8 +111,10 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <Button x:Name="entering_" Content=" entering " Style="{DynamicResource RoundedButtonStyle}"   HorizontalAlignment="Left" Height="42" Margin="483,363,0,0" VerticalAlignment="Top" Width="105"  FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black" Click="entering"  RenderTransformOrigin="0.634,1.212" >
-            <!--<Button.Style>
+       
+            <Button x:Name="entering_" Content=" entering " Style="{StaticResource RoundedButtonStyle}"      FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black" Click="entering" Margin="463,379,333,10"  >
+
+                <!--<Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -107,7 +123,9 @@
                     </Style.Triggers>
                 </Style>
             </Button.Style>-->
-        </Button>
+            </Button>
+       
+      
 
 
 

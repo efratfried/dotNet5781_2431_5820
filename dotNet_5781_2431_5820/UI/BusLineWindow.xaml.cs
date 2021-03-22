@@ -35,8 +35,7 @@ namespace PL
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             ts = new ObservableCollection<PO.BusLine>();
             bl = _bl;
-          
-            RefreshAllLinesComboBox();        
+                      RefreshAllLinesComboBox();        
             lineStationDataGrid.IsReadOnly = true;
         }
 
@@ -68,14 +67,17 @@ namespace PL
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {          
             MyBusLine = (PO.BusLine)BusLineComboBox.SelectedItem;
-            BusLines.DataContext = MyBusLine;
-            RefreshAllLineStationsOfLineGrid();
+            if (MyBusLine!= null)
+            {
+                BusLines.DataContext = MyBusLine;
+                RefreshAllLineStationsOfLineGrid();
+            }
         }
 
         private void BusLineUpdate_Click(object sender, RoutedEventArgs e)
         {
                 MyBusLine = (PO.BusLine)BusLineComboBox.SelectedItem;
-                UpdateBusLineWindow win = new UpdateBusLineWindow(MyBusLine,bl);
+                UpdateBusLineWindow win = new UpdateBusLineWindow(MyBusLine,bl,this);
                 win.Show();
         }
 
@@ -89,9 +91,8 @@ namespace PL
                 if (MyBusLine != null)
                 {
                     bl.DeleteBusLine(MyBusLine.BusNum);
-
-                    RefreshAllLineStationsOfLineGrid();
-                    RefreshAllLinesComboBox();
+                    PO.BusLine g = ts.ToList().Find(i => i.ID == MyBusLine.ID);
+                    ts.Remove(g);
                 }
             }
             catch (BO.BadStationException ex)

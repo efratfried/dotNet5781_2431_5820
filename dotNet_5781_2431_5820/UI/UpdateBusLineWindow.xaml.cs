@@ -21,19 +21,22 @@ namespace PL
     /// </summary>
     public partial class UpdateBusLineWindow : Window
     {
+       PL.BusLineWindow plw;
         IBL bl;
         PO.BusLine TempBusLine;
         public ObservableCollection<PO.Station> stationlist;
-        public UpdateBusLineWindow(PO.BusLine MybusLine,IBL _bl)
+        public UpdateBusLineWindow(PO.BusLine MybusLine,IBL _bl,PL.BusLineWindow blw_)
         {
+            plw = blw_;
             bl = _bl;
             InitializeComponent();
             TempBusLine = MybusLine;
+            
             areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
-            areaComboBox.SelectedIndex = 0;
+            areaComboBox.SelectedIndex = Array.IndexOf(Enum.GetValues(TempBusLine.Area.GetType()),TempBusLine.Area);
             RefreshFirstStationsComboBox();
             RefreshLastStationsComboBox();
-            //busNumberTextBox.Text = TempBusLine.BusNum.ToString();
+            busNumberTextBox.Text = TempBusLine.BusNum.ToString();
             //firstStationComboBox.ItemsSource ;
             //lastStationComboBox.ItemsSource ;
         }
@@ -45,10 +48,15 @@ namespace PL
             {
                 PO.Station sta2 = new PO.Station();
                 sta[i].DeepCopyTo(sta2);
-
                 stationlist.Add(sta2);
             }
             PO.Station S = stationlist.ToList().Find(i => i.CodeStation == TempBusLine.FirstStation.ToString());
+            
+            for (int i = 0; i < plw.bs.Count; i++)
+            {
+                PO.Station d = stationlist.ToList().Find(j => j.CodeStation == plw.bs[i].BusStationNum);
+                stationlist.ToList().Remove(d);
+            }
             firstStationComboBox.ItemsSource = stationlist;
             //StationComboBox.DisplayMemberPath = "CodeStation";
             firstStationComboBox.DisplayMemberPath = "StationName";
@@ -67,6 +75,11 @@ namespace PL
                 stationlist.Add(sta2);
             }
             PO.Station S = stationlist.ToList().Find(i => i.CodeStation == TempBusLine.LastStation.ToString());
+            for (int i = 0; i < plw.bs.Count; i++)
+            {
+                PO.Station d = stationlist.ToList().Find(j => j.CodeStation == plw.bs[i].BusStationNum);
+                stationlist.ToList().Remove(d);
+            }
             stationlist.Remove(S);
             lastStationComboBox.ItemsSource = stationlist;
             //StationComboBox.DisplayMemberPath = "CodeStation";
@@ -174,7 +187,14 @@ namespace PL
                 case MessageBoxResult.Cancel:
                     break;
                 case MessageBoxResult.Yes:
+                    
                     bl.UpdateBusLinePersonalDetails(bs);
+                    plw.bs.Clear();
+                    foreach (var item in bl.GetBusStationLineList(TempBusLine.ID.ToString()))
+                    {
+                        plw.bs.Add(item);
+                    }
+
                     break;
                 case MessageBoxResult.No:
                     break;

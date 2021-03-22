@@ -326,16 +326,10 @@ namespace DL
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
             DO.BusLine bls = ListBusLines.Find(bus => bus.BusNum == BusNum);
-//
-            List<BusStationLine> ListBusStationLine = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath).Where(bsl=>bsl.ID == bls.ID.ToString()).ToList();/////צריך להמשיך- צריך למחוק את כל תחנות הקו של הקו ששלחנו למחיקה
-
 
             if (bls != null)
             {
-                foreach (var i in ListBusStationLine)
-                {
-                    DeleteBusStationLine(bls.ID,i.BusStationNum);
-                }
+                
                 ListBusLines.Remove(bls);
             }
             else
@@ -414,6 +408,13 @@ namespace DL
             else
                 throw new DO.BadBusStationLineCodeException(BusStationNum, id.ToString(), "This station's code is not exist");
 
+            XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
+
+        }
+        public void DeleteBusStationLine(string id)
+        {
+            List<BusStationLine> busStationLines = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+            busStationLines.RemoveAll(i => i.ID == id);
             XMLTools.SaveListToXMLSerializer(busStationLines, BusStationLinePath);
 
         }

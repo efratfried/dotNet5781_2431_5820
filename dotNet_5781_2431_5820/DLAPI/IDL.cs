@@ -43,6 +43,7 @@ namespace DLAPI
         DO.BusStationLine GetBusStationLine(string Id);
         void DeleteBusStationLine(string id, string LineNum);
         void DeleteBusStationLineFromAllStations(string StationID);
+        void DeleteBusStationLine(string id);
         IEnumerable<object> GetBusStationsLineListWithSelectedFields(Func<DO.BusStationLine, object> generate);
        
 

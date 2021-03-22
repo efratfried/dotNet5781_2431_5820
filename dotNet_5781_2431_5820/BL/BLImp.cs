@@ -736,7 +736,6 @@ namespace BL
                     fw.SecondStationCode = bs[bs.Count - 1].BusStationNum;
                     dl.AddFollowingStations(fw);
                 }
-
             }
             catch (DO.BadLicenseNumException ex)
             {

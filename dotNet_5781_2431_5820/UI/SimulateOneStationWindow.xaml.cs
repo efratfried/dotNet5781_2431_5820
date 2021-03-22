@@ -25,23 +25,24 @@ namespace PL
     /// </summary>
     public partial class SimulateOneStationWindow : Window
     {
-        IBL BL;
+        IBL bl;
         PO.Station station;
-        ObservableCollection<BO.OutGoingLine> OutGoingLineList;
+        public ObservableCollection<PO.Station> stationlist;
+        private ObservableCollection<BO.DigitalPanel> outGoingLineList;
         Stopwatch stopwatch;
+        BackgroundWorker workerPanl;
         BackgroundWorker timerworker;
         TimeSpan tsStartTime;
+        PO.Station sta2;
         bool isTimerRun;
+        string timmerText;
         public SimulateOneStationWindow(IBL _bl, PO.Station _stat)
         {
             InitializeComponent();
             Closing += Window_Closing;
-            BL = _bl;
+            bl = _bl;
             station = _stat;
             // gridOneStation.DataContext =station;
-            statName.Text = _stat.StationName;
-            statCode.Text = _stat.CodeStation;
-            statAdress.Text = _stat.Address;
             stopwatch = new Stopwatch();
             timerworker = new BackgroundWorker();
             timerworker.DoWork += Worker_DoWork;
@@ -50,10 +51,27 @@ namespace PL
             tsStartTime = DateTime.Now.TimeOfDay;
             stopwatch.Restart();
             isTimerRun = true;
-
-            //הוספנו מעצמינו
-            //  LBLineTiming.DataContext = lineTimingList;
+            stationlist = new ObservableCollection<PO.Station>();
+            RefreshAllStationsComboBox();
             timerworker.RunWorkerAsync();
+
+          
+        }
+        void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 
+        {
+            List<BO.Station> sta = bl.GetAllStations().ToList();
+            for (int i = 0; i < sta.Count; i++)
+            {
+                PO.Station sta2 = new PO.Station();
+                sta[i].DeepCopyTo(sta2);
+
+                stationlist.Add(sta2);
+            }
+            StationComboBox.ItemsSource = stationlist;
+            //StationComboBox.DisplayMemberPath = "CodeStation";
+            StationComboBox.DisplayMemberPath = "StationName";
+           // StationComboBox.SelectedIndex = 0;
+
         }
         private void Window_Closing(object sender, CancelEventArgs e)
         {
@@ -64,7 +82,7 @@ namespace PL
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             TimeSpan CurrentTime = tsStartTime + stopwatch.Elapsed;
-            string timmerText = CurrentTime.ToString().Substring(0, 8);
+            timmerText = CurrentTime.ToString().Substring(0, 8);
             this.timerTextBlock.Text = timmerText;
             //לממש את הפונקציה!
             //nisayon.ItemsSource = BL.GetLineTimingPerStation(station, CurrentTime);
@@ -75,16 +93,37 @@ namespace PL
         {
             while (isTimerRun)
             {
-                timerworker.ReportProgress(231);
+                 timerworker.ReportProgress(231);
                 Thread.Sleep(1000);
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Worker_DoWork1(object sender, DoWorkEventArgs e)
         {
-            System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // stationViewSource.Source = [generic data source]
+            while (isTimerRun)
+            {
+                workerPanl.ReportProgress(1);
+                Thread.Sleep(20000);
+                outGoingLineList.Clear();
+            }
+        }
+        private void Worker_ProgressChanged1(object sender, ProgressChangedEventArgs e)
+        {
+            try
+            {
+                outGoingLineList = new ObservableCollection<BO.DigitalPanel>();
+                foreach (BO.DigitalPanel item in bl.DigitalPaneles(int.Parse(sta2.CodeStation), TimeSpan.Parse(timmerText)))
+                {
+                    outGoingLineList.Add(item);
+                }
+                nisayon.ItemsSource = outGoingLineList;
+               
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void statName_TextChanged(object sender, TextChangedEventArgs e)
@@ -95,6 +134,17 @@ namespace PL
         private void nisayon_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            sta2 = (PO.Station)StationComboBox.SelectedItem;
+            
+            workerPanl = new BackgroundWorker();
+            workerPanl.DoWork += Worker_DoWork1;
+            workerPanl.ProgressChanged += Worker_ProgressChanged1;
+            workerPanl.WorkerReportsProgress = true;
+            workerPanl.RunWorkerAsync();
         }
     }
 }

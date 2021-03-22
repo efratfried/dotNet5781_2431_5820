@@ -103,7 +103,6 @@ namespace PL
                     win.Show();                  
                 }
                 if(ss.Distance==0)
-                {
                     FollowingStationsDistace win = new FollowingStationsDistace(ss, bl);
                     win.Show();
                 }*/

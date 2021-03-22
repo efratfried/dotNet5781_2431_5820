@@ -13,6 +13,97 @@ namespace BL
     {
         IDL dl = DLFactory.GetDL();
         static Random rand = new Random();
+        #region DigitalPanl
+        //public IEnumerable<BO.DigitalPanel> HelpDigitalPaneles(int Id, int NumberOfStation, TimeSpan time)
+        //{
+        //    try
+        //    {
+        //        List<BO.DigitalPanel> digitalPanels = new List<DigitalPanel>();
+
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //}
+        public IEnumerable<BO.DigitalPanel> DigitalPaneles(int NumberOfStation, TimeSpan time)
+        {
+            try
+            {
+                List<BO.DigitalPanel> digitalPanels1 = new List<DigitalPanel>();
+                foreach (BO.BusLine item in GetAllLinesPerStation(NumberOfStation))
+                {
+
+                    TimeSpan timeSpan = new TimeSpan();
+                    TimeSpan timeSpan1 = new TimeSpan();
+                    List<BO.BusStationLine> busStationLines = GetBusStationLineList(item.ID.ToString()).ToList();
+
+                    double Distance = 0;
+                    int index = busStationLines.FindIndex(i => i.BusStationNum == NumberOfStation.ToString());
+                    for (int i = 0; i <= index; i++)
+                    {
+                        timeSpan += busStationLines[i].AverageDrivingTime;
+                        Distance += busStationLines[i].Distance;
+                    }
+
+                    for (int i = index; i < busStationLines.Count - 1; i++)
+                    {
+                        timeSpan1 += busStationLines[i].AverageDrivingTime;
+                    }
+
+                    // 6:00 ---- 30:00 ------6:30--------- 6:20 = 10
+                    // 6:15 ---- 30:00 ------6:45--------- 6:20 = 25
+                    List<BO.DigitalPanel> digitalPanels = new List<DigitalPanel>();
+                    foreach (var item1 in GetAllfrequencies(item.ID).OrderBy(i => i.LineStartTime))
+                    {
+                        foreach (var item2 in item1.DepartureTimes)
+                        {
+                            if (item2 + timeSpan > time && time > item2)
+                            {
+                                BO.DigitalPanel digitalPanel = new DigitalPanel();
+                                digitalPanel.BusLineNumber = item.BusNum;
+                                digitalPanel.NameOfStation = busStationLines[busStationLines.Count - 1].StationName;
+                                digitalPanel.TimeComeToStation = item2 + timeSpan - time;
+                                digitalPanel.TimeComeToDistanation = item2 + timeSpan + timeSpan1;
+                                digitalPanel.DistanceFromStation = Distance / (item2 + timeSpan).TotalSeconds;
+                                digitalPanels.Add(digitalPanel);
+                            }
+                        }
+                    }
+                    //List<BO.DigitalPanel> digitalPanels = (from TimeCome in GetAllfrequencies(item.ID).ToList()
+                    //                                       orderby TimeCome.LineStartTime
+                    //                                       from l in TimeCome.DepartureTimes
+                    //                                       where l + timeSpan > time /*&& time >= l*/
+                    //                                       let temp = l + timeSpan
+                    //                                       select new BO.DigitalPanel()
+                    //                                       {
+                    //                                           BusLineNumber = item.BusNum,
+                    //                                           NameOfStation = busStationLines[busStationLines.Count - 1].StationName,
+                    //                                           TimeComeToStation = temp - time,
+                    //                                           TimeComeToDistanation = temp + timeSpan1,
+                    //                                           DistanceFromStation = Distance / temp.TotalSeconds
+                    //                                       }).ToList();
+                    foreach (var item1 in digitalPanels)
+                    {
+                        digitalPanels1.Add(item1);
+                    }
+
+
+
+
+
+                }
+                return digitalPanels1;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        #endregion
+
 
         #region Bus
         /// <summary>
@@ -483,7 +574,7 @@ namespace BL
             for (int i = 0; i < bs.Count; i++)
             {
                 BO.BusStationLine b = new BO.BusStationLine();
-             
+
                 bs[i].CopyPropertiesTo(b);
                 bsl.Add(b);
                 bsl[i].StationName = dl.GetStation(bsl[i].BusStationNum).StationName;
@@ -613,7 +704,7 @@ namespace BL
         }
 
         #endregion
-        //here
+
         #region BusLine
         /// <summary>
         /// a converting function of busline on the way from database to ui
@@ -785,7 +876,7 @@ namespace BL
             try
             {
                 dl.DeleteBusLine(ID);
-                  dl.DeleteBusStationLine(ID.ToString());
+                dl.DeleteBusStationLine(ID.ToString());
                 foreach (var item in GetAllfrequencies(ID))
                 {
                     dl.DeleteLineExit(item.Id, item.LineStartTime);
@@ -1145,6 +1236,11 @@ namespace BL
                 throw new BO.BadAccident("Accident wring details", ex.ToString());
             }
         }
+
+
         #endregion
+
+
+
     }
 }

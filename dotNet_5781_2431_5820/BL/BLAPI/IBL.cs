@@ -33,6 +33,11 @@ namespace BLAPI
 
         #endregion
 
+        #region DigitalPanl
+        IEnumerable<BO.DigitalPanel> DigitalPaneles(int NumberOfStation, TimeSpan time);
+        #endregion
+
+
         #region BusStationLine
         void DeleteStationFromLine(BO.BusLine busline, string code);
         IEnumerable<BO.BusStationLine> GetAllBusStationLines(int num);

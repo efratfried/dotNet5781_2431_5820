@@ -8,12 +8,12 @@
         mc:Ignorable="d"
         Title="SimulateOneStationWindow" Height="485" Width="1000">
     <Window.Background>
-        <ImageBrush ImageSource="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.jpg"/>
+        <ImageBrush ImageSource="bgmore.jpg"/>
     </Window.Background>
     <Window.Resources>
 
         <DataTemplate x:Key="LineTemplate"
-                  DataType="local:BO.LineTiming" >
+                  DataType="local:BO.DigitalPanel" >
             <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"  />
@@ -21,14 +21,20 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="25" />
                     <ColumnDefinition Width="15" />
-                    <ColumnDefinition Width="230" />
+                    <ColumnDefinition Width="180" />
                     <ColumnDefinition Width="15" />
-                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="5" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="{Binding Path=LineNum}" FlowDirection="RightToLeft" HorizontalAlignment="Stretch" FontFamily="Dubai Light" Foreground="Yellow" FontSize="14"  />
-                <TextBlock Grid.Column="2" x:Name="kmTextBlock" Text="{Binding Path=DestinationStation}" FlowDirection="RightToLeft" HorizontalAlignment="Stretch" FontFamily="Dubai Light"  FontSize="14" Foreground="Yellow" />
-                <TextBlock Grid.Column="4" x:Name="lala" Text="{Binding Path=Stringtimes}" HorizontalAlignment="Right" FlowDirection="RightToLeft" FontFamily="Dubai Light"  FontSize="14" Foreground="Yellow" />
+                <TextBlock Grid.Column="0" Text="{Binding Path=BusLineNumber}" FlowDirection="RightToLeft" HorizontalAlignment="Stretch" FontFamily="Dubai Light" Foreground="Yellow" FontSize="14"  />
+                <TextBlock Grid.Column="2" x:Name="kmTextBlock" Text="{Binding Path= NameOfStation}" FlowDirection="RightToLeft" HorizontalAlignment="Stretch" FontFamily="Dubai Light"  FontSize="14" Foreground="Yellow" />
+                <TextBlock Grid.Column="4" x:Name="lal" Text="{Binding Path=TimeComeToStation}" HorizontalAlignment="Right" FlowDirection="RightToLeft" FontFamily="Dubai Light"  FontSize="14" Foreground="Yellow" />
+                <TextBlock Grid.Column="6" x:Name="lala" Text="{Binding Path=DistanceFromStation}" HorizontalAlignment="Right" FlowDirection="RightToLeft" FontFamily="Dubai Light"  FontSize="14" Foreground="Yellow" />
+                <TextBlock Grid.Column="8" x:Name="la" Text="{Binding Path=TimeComeToDistanation}" HorizontalAlignment="Right" FlowDirection="RightToLeft" FontFamily="Dubai Light"  FontSize="14" Foreground="Yellow" />
 
             </Grid>
         </DataTemplate>
@@ -37,14 +43,10 @@
     <Grid Margin="0,-16,3.6,0.2" Background="Transparent">
 
         <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" FlowDirection="RightToLeft" Margin="363,39,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Height="35" Width="249" FontSize="16" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
-        <ListBox x:Name="nisayon" FlowDirection="RightToLeft" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="308" Margin="0,106,35,0" VerticalAlignment="Top" Width="436" Background="#FF0F0F0F" SelectionChanged="nisayon_SelectionChanged"/>
+        <ListBox x:Name="nisayon" FlowDirection="RightToLeft" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="308" Margin="0,106,35,0" VerticalAlignment="Top" Width="436"  SelectionChanged="nisayon_SelectionChanged"/>
         <Canvas HorizontalAlignment="Left" Visibility="Visible" Height="32" Margin="519,69,0,0" VerticalAlignment="Top" Width="436" Background="Black"/>
-        <Label Content=":station name" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="304,120,0,0" VerticalAlignment="Top" Width="161" FontFamily="Yu Gothic UI Semibold" Foreground="White" FontWeight="Bold" FontSize="18"/>
-        <Label Content=":adress" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="354,157,0,0" VerticalAlignment="Top" Width="111" FontFamily="Yu Gothic UI Semibold" Foreground="White" FontWeight="Bold" FontSize="18"/>
-        <Label Content=":station code" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="349,198,0,0" VerticalAlignment="Top" Width="116" FontFamily="Yu Gothic UI Semibold" Foreground="White" FontWeight="Bold" FontSize="18"/>
-        <TextBox x:Name="statName"  Background="Transparent" BorderBrush="Transparent" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="78,120,0,0" TextWrapping="Wrap" Text="{Binding StationName}" VerticalAlignment="Top" Height="32" Width="234" TextChanged="statName_TextChanged"/>
-        <TextBox x:Name="statAdress" Background="Transparent" BorderBrush="Transparent" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="79,157,0,0" TextWrapping="Wrap" Text="{Binding Address}" VerticalAlignment="Top" Height="9" Width="233"/>
-        <TextBox x:Name="statCode" Background="Transparent" BorderBrush="Transparent" FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="79,198,0,0" TextWrapping="Wrap" Text="{Binding CodeStation}" VerticalAlignment="Top" Height="32" Width="234"/>
+        <ComboBox Name="StationComboBox" HorizontalAlignment="Left" Margin="163,151,0,0" VerticalAlignment="Top" Width="208" Height="34" SelectionChanged="ComboBox_SelectionChanged"/>
+
 
     </Grid>
 </Window>

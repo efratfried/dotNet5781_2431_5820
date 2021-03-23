@@ -529,11 +529,20 @@ namespace DL
         public IEnumerable<DO.BusLine> GetLineStationsListThatMatchAStation(int code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
         {
             List<BusStationLine> listLineStations = XMLTools.LoadListFromXMLSerializer<BusStationLine>(BusStationLinePath);
+            List<DO.BusLine> bs = new List<BusLine>();
 
-            return from ls in listLineStations
+            foreach (var item in listLineStations.Where(i => i.BusStationNum==code.ToString()))
+            {
+                if(GetBusLine(int.Parse(item.ID)) != null)
+                {
+                    bs.Add(GetBusLine(int.Parse(item.ID)));
+                }
+            }
+            return bs;
+            /*return from ls in listLineStations
                    where ls.BusStationNum == code.ToString()
                    let p = GetBusLine(int.Parse(ls.ID))
-                   select p;
+                   select p;*/
         }
 
         #endregion BusStationLine
@@ -1065,11 +1074,9 @@ namespace DL
                     {
                         FirstStationCode = (fs.Element("FirstStationCode").Value),
                         SecondStationCode = (fs.Element("SecondStationCode").Value),
-                        FirstStationName = (fs.Element("SecondStationName").Value),
-                        SecondStationName = (fs.Element("SecondStationName").Value),
-                        Distance = double.Parse(fs.Element("distance").Value),
-                        AverageDrivingTime = TimeSpan.Parse(fs.Element("DrivingTimeBetween").Value),
-                        WalkingTime = TimeSpan.Parse(fs.Element("DrivingTimeBetween").Value),
+                        Distance = double.Parse(fs.Element("Distance").Value),
+                        AverageDrivingTime = TimeSpan.ParseExact(fs.Element("AverageDrivingTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                        //WalkingTime = TimeSpan.Parse(fs.Element("DrivingTimeBetween").Value),
                     }
                    );
         }
@@ -1190,14 +1197,14 @@ namespace DL
         {
             XElement element = XMLTools.LoadListFromXMLElement(LineExitXml);
             XElement lineExit1 = (from p in element.Elements()
-                                  where p.Element("Id").Value == lineExit.BusLineID1.ToString() && p.Element("LineStartTime").Value == lineExit.LineStartTime.ToString()
+                                  where p.Element("Id").Value == lineExit.Id.ToString() && p.Element("LineStartTime").Value == lineExit.LineStartTime.ToString()
                                   select p).FirstOrDefault();
             if (lineExit1 != null)
             {
-                throw new BadOutGoingLineException(lineExit.BusLineID1, lineExit.LineStartTime, "the Exit alrdy exist in the list in the same time");
+                throw new BadOutGoingLineException(lineExit.Id, lineExit.LineStartTime, "the Exit alrdy exist in the list in the same time");
             }
 
-            XElement lineExit2 = new XElement("LineExit", new XElement("Id", lineExit.BusLineID1),
+            XElement lineExit2 = new XElement("OutGoingLine", new XElement("Id", lineExit.Id),
                                    new XElement("LineStartTime", lineExit.LineStartTime.ToString()),
                                    new XElement("LineFinishTime", lineExit.LineFinishTime.ToString()),
                                    new XElement("LineFrequencyTime", lineExit.LineFrequencyTime.ToString()),
@@ -1328,8 +1335,6 @@ namespace DL
                        LineFrequencyTime = TimeSpan.ParseExact(p.Element("LineFrequencyTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                        LineFrequency = int.Parse(p.Element("LineFrequency").Value)
                    }; 
-
-
         }
         #endregion
     }

@@ -26,6 +26,7 @@ namespace PL
         BO.BusStationLine MybusStation;
         public ObservableCollection<PO.BusLine> ts;
         public ObservableCollection<BO.BusStationLine> bs;
+        ObservableCollection<BO.OutGoingLine> outgoingline;
        
         //BO.Line saveTheCurrentDetails;//a line to save the original details of the bus in case the update is illegal:
         
@@ -71,6 +72,12 @@ namespace PL
             {
                 BusLines.DataContext = MyBusLine;
                 RefreshAllLineStationsOfLineGrid();
+                outgoingline = new ObservableCollection<BO.OutGoingLine>();
+                foreach (var item in bl.GetAllfrequencies(((PO.BusLine)BusLineComboBox.SelectedItem).ID))
+                {
+                    outgoingline.Add(item);
+                }
+                Frequency.ItemsSource = outgoingline;
             }
         }
 
@@ -293,6 +300,17 @@ namespace PL
         }
 
         private void lineStationDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void AddLinesexit_Click(object sender, RoutedEventArgs e)
+        {
+            AddOutGoingLine win = new AddOutGoingLine(bl, MyBusLine);
+            win.Show();
+        }
+
+        private void Frequency_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

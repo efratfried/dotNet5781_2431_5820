@@ -89,10 +89,12 @@ namespace BLAPI
 
         #region outgoingline
         IEnumerable<BO.OutGoingLine> GetAllfrequencies(int lineNum);
+        void AddLineExit(BO.OutGoingLine Line);
         #endregion
 
         #region Accident
         IEnumerable<BO.Accident> GetAllAccident();
+        IEnumerable<BO.Accident> GetAccident();
         void AddAccident(BO.Accident Accident);
         void DeleteAccident(int Accidentnum);
         #endregion

@@ -89,13 +89,13 @@ namespace PL
 
         private void start_driving_Click(object sender, RoutedEventArgs e)
         {
-                delete_bus.IsEnabled = false;
+               /* delete_bus.IsEnabled = false;
                 update_bus.IsEnabled = false;
                 start_driving.IsEnabled = false;
                 start_filling_foul.IsEnabled = false;
                 //start_treatment.IsEnabled = false;
             AddOutGoingLine o = new AddOutGoingLine();
-            o.Show();
+            o.Show();*/
         }
 
         private void start_filling_foul_Click(object sender, RoutedEventArgs e)
@@ -132,6 +132,15 @@ namespace PL
             AddBus ab = new AddBus(bl);
             ab.ShowDialog();
 
+        }
+        void RefreshAccidentGrid()
+        {
+            accident = new ObservableCollection<BO.Accident>();
+            foreach (var item in bl.GetAllAccident(currentbus.Accident))
+            {
+                accident.Add(item);
+            }
+            lineStationDataGrid.ItemsSource = bs;
         }
 
         private void aviability_status_TextBlock(object sender, DependencyPropertyChangedEventArgs e)

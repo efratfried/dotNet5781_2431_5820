@@ -13,10 +13,20 @@ namespace UI
     {
         IBL bl = BLFactory.GetBL("1");//we create an "object" of IBL interface in order to use BL functions and classes
         DispatcherTimer timer = new DispatcherTimer();
+       // static Random r = new Random(DateTime.Now.Millisecond);
+
         public MainWindow()
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
+            /*foreach (var item in bl.GetAllFollowingStations())
+            {
+                item.AverageDrivingTime = new TimeSpan(00,r.Next(1,15),r.Next(1,59));
+                item.Distance = r.Next(3,15);
+                bl.UpdateFollowingStationPersonalDetails(item);
+            }*/
+
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();

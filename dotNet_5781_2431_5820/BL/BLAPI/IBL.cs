@@ -94,7 +94,7 @@ namespace BLAPI
 
         #region Accident
         IEnumerable<BO.Accident> GetAllAccident();
-        IEnumerable<BO.Accident> GetAccident();
+        IEnumerable<BO.Accident> GetAccident(string LicenseNum);
         void AddAccident(BO.Accident Accident);
         void DeleteAccident(int Accidentnum);
         #endregion

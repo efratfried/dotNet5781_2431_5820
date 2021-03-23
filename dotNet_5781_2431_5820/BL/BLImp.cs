@@ -1230,9 +1230,19 @@ namespace BL
                 throw new BO.BadAccident("Accident wring details", ex.ToString());
             }
         }
-        public IEnumerable<BO.Accident> GetAccident()
+        public IEnumerable<BO.Accident> GetAccident(string LicenseNum)
         {
-
+            IEnumerable<DO.Accident> AccidentDO;
+            try
+            {
+                AccidentDO = dl.GetAllAccidentsList(LicenseNum);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                string Ex = ex.ToString();
+                throw new BO.BadBusIdException("There arent any exist acciddent , thanx god", Ex);
+            }
+            return BusDoBoAdapter(AccidentDO);
         }
 
         #endregion

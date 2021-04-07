@@ -966,7 +966,7 @@ namespace DL
                 throw new DO.BadBusLicenseNumException(Num, $"bad Bus's LicenseNum: {Num}");
         }
         #endregion
-
+        
         /*#region Accident
         /// <summary>
         /// the function gets the licensenum of the bus that did the accident 
@@ -1059,9 +1059,11 @@ namespace DL
                                    }
                         ).FirstOrDefault();
 
-            if (s == null)
-                throw new DO.BadBusStationLineCodeException(code1 + code2, $"wrong stations's codes: {code1 + code2}");
-            return s;
+            /* if (s == null)
+             {
+                 throw new DO.BadBusStationLineCodeException(code1 + code2, $"wrong stations's codes: {code1 + code2}");
+             }*/
+            return ?? s;
         }
         /// <summary>
         /// the function gets a predicate variable of followingstation type & returns the wanted accurance accroding to the predicate

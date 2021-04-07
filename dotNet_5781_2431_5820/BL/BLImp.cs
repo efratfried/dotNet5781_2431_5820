@@ -549,18 +549,17 @@ namespace BL
             }
             for (int i = 0; i < bs.Count - 1; i++)
             {
+                BO.FollowingStations f=new FollowingStations();
+                if(dl.GetFollowingStation(bs[i].BusStationNum, bs[i + 1].BusStationNum)==null)
+                {
+                    f.FirstStationCode = bs[i].BusStationNum;
+                    f.SecondStationCode = bs[i + 1].BusStationNum;
+                    dl.AddFollowingStations(f);
+                }
                 bsl[i].Distance = dl.GetFollowingStation(bs[i].BusStationNum, bs[i + 1].BusStationNum).Distance;
                 bsl[i].AverageDrivingTime = dl.GetFollowingStation(bs[i].BusStationNum, bs[i + 1].BusStationNum).AverageDrivingTime;
             }
             return bsl;
-            //return from item in dl.GetBusStationsLineListWithSelectedFields((BusStationLineDO) =>
-            //{
-            //    try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-            //    return new BO.BusStationLine() { ID = BusStationLineDO.ID };
-            //})
-            //       let BusStationLineBo = item as BO.BusStationLine
-            //       //orderby Bus.LicenseNum
-            //       select BusStationLineBo;
         }
         /// <summary>
         /// the function gets an accurance of BusStationLine ,send & check in the DO layout if it exsist & return all it's accurance by their's id & index on the line.

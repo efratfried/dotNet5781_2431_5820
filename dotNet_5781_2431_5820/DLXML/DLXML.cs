@@ -33,7 +33,7 @@ namespace DL
         static string UserPath = @"UserXml.xml"; //XElement
         //static string AccidentPath = @"AccidentXml.xml"; //XMLSerializer
                                                          //string UserDrivePath = @"UserLineXml.xml"; //XMLSerializer
-        static string FollowingStationsPath = "@FollowingStationssXml.xml";
+        static string FollowingStationsPath = @"@FollowingStationssXml.xml";
         //static string runningNumbersPath = "@RunningNumbers.xml";
 
         //public List<FollowingStations> followingStations = new List<FollowingStations>();
@@ -302,7 +302,7 @@ namespace DL
             if (stu != null)
             {
                 ListBusLines.Remove(stu);
-                ListBusLines.Add(BusLine); //no nee to Clone()
+                ListBusLines.Add(BusLine); //no need to Clone()
             }
             else
                 throw new DO.BadBusLicenseNumException(BusLine.BusNum.ToString(), $"wrong BusLine id: {BusLine.BusNum}");
@@ -606,6 +606,20 @@ namespace DL
         /// <param name="Station"></param>
         public void UpdateStation(DO.Station Station)
         {
+
+            /*
+             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
+
+            DO.BusLine stu = ListBusLines.Find(bus => bus.ID == BusLine.ID);
+            if (stu != null)
+            {
+                ListBusLines.Remove(stu);
+                ListBusLines.Add(BusLine); //no need to Clone()
+            }
+            else
+                throw new DO.BadBusLicenseNumException(BusLine.BusNum.ToString(), $"wrong BusLine id: {BusLine.BusNum}");
+
+            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);*/
             List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
             int index = StationsList.FindIndex(i => i.CodeStation == Station.CodeStation);
 
@@ -953,7 +967,7 @@ namespace DL
         }
         #endregion
 
-        #region Accident
+        /*#region Accident
         /// <summary>
         /// the function gets the licensenum of the bus that did the accident 
         /// & return if the license num exsist the other accident's data.
@@ -1020,7 +1034,7 @@ namespace DL
             XMLTools.SaveListToXMLSerializer(AccidentsList, AccidentPath);
         }
         #endregion
-
+        */
         #region FollowingStations
         /// <summary>
         /// the function gets two codes of busstationline ,checks if they are match to one of the items in the followingstation file  -that ine of them match the first station & the other the seconf.

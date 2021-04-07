@@ -89,7 +89,7 @@ namespace DLAPI
         void DeleteDrivingBus(string Num); // removes only OutGoingLine, does not remove the appropriate Bus...
         #endregion
 
-        #region Accident
+       /* #region Accident
         DO.Accident GetAccident(string Num);
         IEnumerable<DO.Accident> GetAllAccidentsList();
         void AddAccident(DO.Accident Accident);

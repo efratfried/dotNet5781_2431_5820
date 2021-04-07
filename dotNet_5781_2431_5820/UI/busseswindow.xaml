@@ -18,7 +18,7 @@
         <!--<Button x:Name="start_treatment" Content="start treat" HorizontalAlignment="Left" Margin="154,373,0,0" VerticalAlignment="Top" Width="146" Click="start_treatment_Click" Foreground="black" BorderBrush="Black" Height="20"/>-->
         <Button x:Name="start_filling_foul" Content="strat refuiling" HorizontalAlignment="Left" Margin="275,368,0,0" VerticalAlignment="Top" Width="146" Click="start_filling_foul_Click" Foreground="black" BorderBrush="Black" Height="20"/>
         <Button x:Name="start_driving" Content="start driving" HorizontalAlignment="Left" Margin="275,322,0,0" VerticalAlignment="Top" Width="146" Click="start_driving_Click" Foreground="black" BorderBrush="Black" Height="20"/>
-        <Button x:Name="add_accident" Content="Add accident" Height="auto" Margin="275,278,573.6,159.2" Click="add_accident_Click" BorderBrush="Black"/>
+        <!--<Button x:Name="add_accident" Content="Add accident" Height="auto" Margin="275,278,573.6,159.2" Click="add_accident_Click" BorderBrush="Black"/>-->
         <Image Source="תאונה.png" Margin="639,136,311.6,291.2"/>
         <DataGrid x:Name="Accident" Margin="492,187,291.6,76.2" SelectionChanged="Accident_SelectionChanged" ItemsSource="{Binding}">
             <DataGrid.Columns>

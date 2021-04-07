@@ -21,7 +21,7 @@ namespace UI
     /// </summary>
     public partial class AddAccident : Window
     {
-        IBL bl;
+       /* IBL bl;
         public PO.Bus B;
 
         public IEnumerable<BO.Accident> accidents;
@@ -54,7 +54,7 @@ namespace UI
                        // AccidentNum = a.AccidentNum + 1
 
                     };
-                   /* ac.AccidentDate.TimeOfDay = DayOfWeek.Saturday.ToString()*/ 
+                   /* ac.AccidentDate.TimeOfDay = DayOfWeek.Saturday.ToString()
                     bl.AddAccident(ac);
 
                     MessageBox.Show("Succeed", "Verification", MessageBoxButton.OK);
@@ -62,6 +62,6 @@ namespace UI
                 }
             }
            
-        }
+        }*/
     }
 }

@@ -133,7 +133,7 @@ namespace PL
             ab.ShowDialog();
 
         }
-        void RefreshAccidentGrid()
+        /*void RefreshAccidentGrid()
         {
             accident = new ObservableCollection<BO.Accident>();
             foreach (var item in bl.GetAllAccident(currentbus.Accident))
@@ -141,7 +141,7 @@ namespace PL
                 accident.Add(item);
             }
             lineStationDataGrid.ItemsSource = bs;
-        }
+        }*/
 
         private void aviability_status_TextBlock(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -157,11 +157,11 @@ namespace PL
 
         }
 
-        private void add_accident_Click(object sender, RoutedEventArgs e)
+       /* private void add_accident_Click(object sender, RoutedEventArgs e)
         {
             AddAccident win = new AddAccident(currentbus,bl);
             win.ShowDialog();
-        }
+        }*/
 
         //  currentbus = DataContext as Bus;
     }

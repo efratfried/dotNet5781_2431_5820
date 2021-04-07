@@ -92,11 +92,11 @@ namespace BLAPI
         void AddLineExit(BO.OutGoingLine Line);
         #endregion
 
-        #region Accident
+        /*#region Accident
         IEnumerable<BO.Accident> GetAllAccident();
         IEnumerable<BO.Accident> GetAccident(string LicenseNum);
         void AddAccident(BO.Accident Accident);
         void DeleteAccident(int Accidentnum);
-        #endregion
+        #endregion*/
     }
 }

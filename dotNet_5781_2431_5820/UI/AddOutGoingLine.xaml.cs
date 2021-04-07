@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BLAPI;
 namespace PL
 {
     /// <summary>
@@ -21,9 +21,13 @@ namespace PL
     {
         public BO.OutGoingLine trip;
         public bool isTimeLegal = false;
-        public AddOutGoingLine()
+        public IBL bl;
+        public PO.BusLine MybusLine;
+        public AddOutGoingLine(IBL _bl,PO.BusLine busLine)
         {
             InitializeComponent();
+            bl = _bl;
+            MybusLine = busLine;
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -34,9 +38,15 @@ namespace PL
                     throw new BO.BadBusLineIdException("cannot add the trip, illegal time format");
 
                 TimeSpan ts = new TimeSpan(int.Parse(hours.Text), int.Parse(minutes.Text), int.Parse(seconds.Text));
+                TimeSpan ts1 = new TimeSpan(int.Parse(hoursEnd.Text), int.Parse(minutesEnd.Text), int.Parse(secondsEnd.Text));
+                TimeSpan ts2 = new TimeSpan(int.Parse(hoursF.Text), int.Parse(minutesF.Text), int.Parse(secondsF.Text));
+
                 trip = new BO.OutGoingLine();
                 trip.LineStartTime = ts;
-                //the other fields are not restarted yet!!!
+                trip.LineFinishTime = ts1;
+                trip.LineFrequencyTime = ts2;
+                trip.Id = MybusLine.ID;
+                bl.AddLineExit(trip);
                 this.Close();
             }
             catch (BO.BadBusLineIdException ex)

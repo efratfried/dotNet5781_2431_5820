@@ -53,10 +53,9 @@ namespace PL
             isTimerRun = true;
             stationlist = new ObservableCollection<PO.Station>();
             RefreshAllStationsComboBox();
-            timerworker.RunWorkerAsync();
-
-          
+            timerworker.RunWorkerAsync();          
         }
+
         void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 
         {
             List<BO.Station> sta = bl.GetAllStations().ToList();
@@ -83,10 +82,7 @@ namespace PL
         {
             TimeSpan CurrentTime = tsStartTime + stopwatch.Elapsed;
             timmerText = CurrentTime.ToString().Substring(0, 8);
-            this.timerTextBlock.Text = timmerText;
-            //לממש את הפונקציה!
-            //nisayon.ItemsSource = BL.GetLineTimingPerStation(station, CurrentTime);
-            //lineTimingList = new ObservableCollection<BO.LineTiming>(BL.GetLineTimingPerStation(station, tsCurrentTime)); //התצוגה תתעדכן כי זה אובזרוובל קוללקשיין
+            this.timerTextBlock.Text = timmerText;         
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
@@ -104,7 +100,7 @@ namespace PL
             {
                 workerPanl.ReportProgress(1);
                 Thread.Sleep(20000);
-                outGoingLineList.Clear();
+                //outGoingLineList.Clear();
             }
         }
         private void Worker_ProgressChanged1(object sender, ProgressChangedEventArgs e)
@@ -117,11 +113,10 @@ namespace PL
                     outGoingLineList.Add(item);
                 }
                 nisayon.ItemsSource = outGoingLineList;
-               
+              
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

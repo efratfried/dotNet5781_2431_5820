@@ -43,7 +43,7 @@
     <Grid Margin="0,-16,3.6,0.2" Background="Transparent">
 
         <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" FlowDirection="RightToLeft" Margin="363,39,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Height="35" Width="249" FontSize="16" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
-        <ListBox x:Name="nisayon" FlowDirection="RightToLeft" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="308" Margin="0,106,35,0" VerticalAlignment="Top" Width="436"  SelectionChanged="nisayon_SelectionChanged"/>
+        <ListBox x:Name="nisayon" FlowDirection="RightToLeft" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="308" Margin="0,106,35,0" VerticalAlignment="Top" Width="436"  SelectionChanged="nisayon_SelectionChanged" Background="Black"/>
         <Canvas HorizontalAlignment="Left" Visibility="Visible" Height="32" Margin="519,69,0,0" VerticalAlignment="Top" Width="436" Background="Black"/>
         <ComboBox Name="StationComboBox" HorizontalAlignment="Left" Margin="163,151,0,0" VerticalAlignment="Top" Width="208" Height="34" SelectionChanged="ComboBox_SelectionChanged"/>
 

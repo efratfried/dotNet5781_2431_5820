@@ -61,19 +61,18 @@ namespace PL
 
         private void Updatedetails_Click(object sender, RoutedEventArgs e)
         {
-            PO.Station sta = new PO.Station();
             if (UpdateAdress.Text != "" && Updatename.Text != "" && Updatelatitude.Text != "" && Updatelingtitude.Text != "")
             {
                 //BO.Station newStat = new BO.Station();//a local station, to save the changes that the user made in station's fields.
-                sta.CodeStation = station.CodeStation;
-                sta.Address = UpdateAdress.Text;
-                sta.StationName = Updatename.Text;
-                sta.longitude = double.Parse(Updatelatitude.Text);
-                sta.Latitude = double.Parse(Updatelingtitude.Text);
-                sta.DisableAccess = UpDisableAccess.ItemsSource.ToString() == "yes";
+               // sta.CodeStation = station.CodeStation;
+                station.Address = UpdateAdress.Text;
+                station.StationName = Updatename.Text;
+                station.longitude = double.Parse(Updatelatitude.Text);
+                station.Latitude = double.Parse(Updatelingtitude.Text);
+                station.DisableAccess = UpDisableAccess.ItemsSource.ToString() == "yes";
 
                     BO.Station temp = new BO.Station();
-                    sta.DeepCopyTo(temp);
+                    station.DeepCopyTo(temp);
                     bl.UpdateStationPersonalDetails(temp);
                 this.Close();
             }

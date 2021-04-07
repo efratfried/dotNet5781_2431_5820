@@ -606,20 +606,6 @@ namespace DL
         /// <param name="Station"></param>
         public void UpdateStation(DO.Station Station)
         {
-
-            /*
-             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(BusLinesbusPath);
-
-            DO.BusLine stu = ListBusLines.Find(bus => bus.ID == BusLine.ID);
-            if (stu != null)
-            {
-                ListBusLines.Remove(stu);
-                ListBusLines.Add(BusLine); //no need to Clone()
-            }
-            else
-                throw new DO.BadBusLicenseNumException(BusLine.BusNum.ToString(), $"wrong BusLine id: {BusLine.BusNum}");
-
-            XMLTools.SaveListToXMLSerializer(ListBusLines, BusLinesbusPath);*/
             List<Station> StationsList = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
             int index = StationsList.FindIndex(i => i.CodeStation == Station.CodeStation);
 
@@ -1058,12 +1044,12 @@ namespace DL
                                        AverageDrivingTime = TimeSpan.ParseExact(station.Element("AverageDrivingTime").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                                    }
                         ).FirstOrDefault();
-
-            /* if (s == null)
+               
+             if (s == null)
              {
                  throw new DO.BadBusStationLineCodeException(code1 + code2, $"wrong stations's codes: {code1 + code2}");
-             }*/
-            return ?? s;
+             }
+            return s;
         }
         /// <summary>
         /// the function gets a predicate variable of followingstation type & returns the wanted accurance accroding to the predicate

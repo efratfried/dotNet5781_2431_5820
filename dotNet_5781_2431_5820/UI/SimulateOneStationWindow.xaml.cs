@@ -59,6 +59,7 @@ namespace PL
         void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 
         {
             List<BO.Station> sta = bl.GetAllStations().ToList();
+
             for (int i = 0; i < sta.Count; i++)
             {
                 PO.Station sta2 = new PO.Station();
@@ -66,11 +67,14 @@ namespace PL
 
                 stationlist.Add(sta2);
             }
+            PO.Station st= stationlist.ToList().Find(i => i.CodeStation == "10847");
+            stationlist[stationlist.ToList().FindIndex(i => i.CodeStation == "10847")] = stationlist[0];
+            stationlist[0] = st;
             StationComboBox.ItemsSource = stationlist;
+
             //StationComboBox.DisplayMemberPath = "CodeStation";
             StationComboBox.DisplayMemberPath = "StationName";
-           // StationComboBox.SelectedIndex = 0;
-
+            //StationComboBox.SelectedIndex = -1;
         }
         private void Window_Closing(object sender, CancelEventArgs e)
         {
@@ -132,7 +136,7 @@ namespace PL
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        {       
             sta2 = (PO.Station)StationComboBox.SelectedItem;
             
             workerPanl = new BackgroundWorker();

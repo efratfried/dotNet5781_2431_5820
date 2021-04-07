@@ -548,14 +548,7 @@ namespace BL
                 bsl[i].StationName = dl.GetStation(bsl[i].BusStationNum).StationName;
             }
             for (int i = 0; i < bs.Count - 1; i++)
-            {
-                BO.FollowingStations f=new FollowingStations();
-                if(dl.GetFollowingStation(bs[i].BusStationNum, bs[i + 1].BusStationNum)==null)
-                {
-                    f.FirstStationCode = bs[i].BusStationNum;
-                    f.SecondStationCode = bs[i + 1].BusStationNum;
-                    dl.AddFollowingStations(f);
-                }
+            {               
                 bsl[i].Distance = dl.GetFollowingStation(bs[i].BusStationNum, bs[i + 1].BusStationNum).Distance;
                 bsl[i].AverageDrivingTime = dl.GetFollowingStation(bs[i].BusStationNum, bs[i + 1].BusStationNum).AverageDrivingTime;
             }

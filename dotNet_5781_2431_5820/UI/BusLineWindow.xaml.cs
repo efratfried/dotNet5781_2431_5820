@@ -26,17 +26,37 @@ namespace PL
         public ObservableCollection<PO.BusLine> ts;
         public ObservableCollection<BO.BusStationLine> bs;
         ObservableCollection<BO.OutGoingLine> outgoingline;
-       
+
         //BO.Line saveTheCurrentDetails;//a line to save the original details of the bus in case the update is illegal:
-        
+
         public BusLineWindow(IBL _bl)
-        {     
+        {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             ts = new ObservableCollection<PO.BusLine>();
             bl = _bl;
-                      RefreshAllLinesComboBox();        
+            RefreshAllLinesComboBox();
             lineStationDataGrid.IsReadOnly = true;
+            /* foreach (var item in ts)
+             {
+                 BO.OutGoingLine b = new BO.OutGoingLine();
+                 b.Id = item.ID;
+
+                 b.LineStartTime = new TimeSpan(6,0,0);
+                 b.LineFinishTime = new TimeSpan(12, 0, 0);
+                 b.LineFrequencyTime = new TimeSpan(0,30,0);
+                 bl.AddLineExit(b);
+
+                 b.LineStartTime = new TimeSpan(12, 0, 0);
+                 b.LineFinishTime = new TimeSpan(20, 0, 0);
+                 b.LineFrequencyTime = new TimeSpan(0, 5, 0);
+                 bl.AddLineExit(b);
+
+                 b.LineStartTime = new TimeSpan(20, 0, 0);
+                 b.LineFinishTime = new TimeSpan(24, 0, 0);
+                 b.LineFrequencyTime = new TimeSpan(0, 2, 0);
+                 bl.AddLineExit(b);
+             }*/
         }
 
         void RefreshAllLinesComboBox()//refresh the combobox each time the user changes the selection 
@@ -53,7 +73,7 @@ namespace PL
             BusLineComboBox.DisplayMemberPath = "BusNum";
             BusLineComboBox.SelectedIndex = 0;
         }
-                
+
         void RefreshAllLineStationsOfLineGrid()
         {
             bs = new ObservableCollection<BO.BusStationLine>();
@@ -65,9 +85,9 @@ namespace PL
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {          
+        {
             MyBusLine = (PO.BusLine)BusLineComboBox.SelectedItem;
-            if (MyBusLine!= null)
+            if (MyBusLine != null)
             {
                 BusLines.DataContext = MyBusLine;
                 RefreshAllLineStationsOfLineGrid();
@@ -82,9 +102,9 @@ namespace PL
 
         private void BusLineUpdate_Click(object sender, RoutedEventArgs e)
         {
-                MyBusLine = (PO.BusLine)BusLineComboBox.SelectedItem;
-                UpdateBusLineWindow win = new UpdateBusLineWindow(MyBusLine,bl,this);
-                win.Show();
+            MyBusLine = (PO.BusLine)BusLineComboBox.SelectedItem;
+            UpdateBusLineWindow win = new UpdateBusLineWindow(MyBusLine, bl, this);
+            win.Show();
         }
 
         private void BusLineDelete_Click(object sender, RoutedEventArgs e)
@@ -111,8 +131,8 @@ namespace PL
         {
             try
             {
-                AddLine addLineWindow = new AddLine(bl,this);//we sent the line to a new window we created named AddLine
-               // addLineWindow.Closing += addLineWindow_Closing;
+                AddLine addLineWindow = new AddLine(bl, this);//we sent the line to a new window we created named AddLine
+                                                              // addLineWindow.Closing += addLineWindow_Closing;
                 addLineWindow.ShowDialog();
             }
             catch (BO.BadBusLineIdException ex)
@@ -157,7 +177,7 @@ namespace PL
             {
                 BO.BusStationLine lineStationBO = ((sender as Button).DataContext as BO.BusStationLine);
                 bl.DeleteBusStationLine(lineStationBO.BusStationNum, int.Parse(lineStationBO.ID), lineStationBO.IndexInLine);
-                
+
                 bs.Clear();
                 foreach (var item in bl.GetBusStationLineList(lineStationBO.ID))
                 {
@@ -256,23 +276,23 @@ namespace PL
 
         private void AddStationToLine_Click(object sender, RoutedEventArgs e)
         {
- 
-            if(lineStationDataGrid.SelectedItem!=null)
+
+            if (lineStationDataGrid.SelectedItem != null)
             {
-                BO.BusStationLine bs = lineStationDataGrid.SelectedItem as BO.BusStationLine;                
+                BO.BusStationLine bs = lineStationDataGrid.SelectedItem as BO.BusStationLine;
                 BO.BusStationLine bs1 = this.bs[bs.IndexInLine + 1];
-                 BO.FollowingStations s = lineStationDataGrid.SelectedItem as BO.FollowingStations;
+                BO.FollowingStations s = lineStationDataGrid.SelectedItem as BO.FollowingStations;
                 try
                 {
-                    BO.FollowingStations tempS =bl.GetFollowingStation(bs.BusStationNum,bs1.BusStationNum);
-                    AddStationToLine win = new AddStationToLine(bl,tempS, MyBusLine,bs.IndexInLine+1,this);
+                    BO.FollowingStations tempS = bl.GetFollowingStation(bs.BusStationNum, bs1.BusStationNum);
+                    AddStationToLine win = new AddStationToLine(bl, tempS, MyBusLine, bs.IndexInLine + 1, this);
 
                     win.Show();
                 }
-                catch(BO.BadStationNumException)
+                catch (BO.BadStationNumException)
                 {
                     MessageBoxResult res = MessageBox.Show("The Station doesn't exist", "Error", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                }            
+                }
             }
             else
             {
@@ -281,15 +301,19 @@ namespace PL
         }
         private void update_click(object sender, RoutedEventArgs e)
         {
-            
+
 
             FollowingStationsDistace fss = new FollowingStationsDistace
-                (new BO.FollowingStations { FirstStationCode = ((sender as Button).DataContext as BO.BusStationLine).BusStationNum,
-                    SecondStationCode = bs[ bs.ToList().FindIndex(i => i.IndexInLine == ((sender as Button)
-                    .DataContext as BO.BusStationLine).IndexInLine + 1)].BusStationNum,
+                (new BO.FollowingStations
+                {
+                    FirstStationCode = ((sender as Button).DataContext as BO.BusStationLine).BusStationNum,
+                    SecondStationCode = bs[bs.ToList().FindIndex(i => i.IndexInLine == ((sender as Button)
+                   .DataContext as BO.BusStationLine).IndexInLine + 1)].BusStationNum,
                     AverageDrivingTime = ((sender as Button)
-                    .DataContext as BO.BusStationLine).AverageDrivingTime, Distance =
-                    ((sender as Button).DataContext as BO.BusStationLine).Distance } ,bl ,this);
+                    .DataContext as BO.BusStationLine).AverageDrivingTime,
+                    Distance =
+                    ((sender as Button).DataContext as BO.BusStationLine).Distance
+                }, bl, this);
             fss.Show();
         }
 
@@ -314,6 +338,4 @@ namespace PL
 
         }
     }
-
-
 }

@@ -20,13 +20,6 @@ namespace UI
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
-            /*foreach (var item in bl.GetAllFollowingStations())
-            {
-                item.AverageDrivingTime = new TimeSpan(00,r.Next(1,15),r.Next(1,59));
-                item.Distance = r.Next(3,15);
-                bl.UpdateFollowingStationPersonalDetails(item);
-            }*/
-
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();

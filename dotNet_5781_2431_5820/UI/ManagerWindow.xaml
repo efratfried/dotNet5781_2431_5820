@@ -6,7 +6,7 @@
          xmlns:BO="clr-namespace:BO;assembly=BL"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ManagerWindow" Height="600" Width="1200">
+        Title="ManagerWindow" Height="600" Width="1200" Icon="logo.png">
 
     <!--  <Window.Background>
         <ImageBrush ImageSource="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/road.JFIF‬"/>

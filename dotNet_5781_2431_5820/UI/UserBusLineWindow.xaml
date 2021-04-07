@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="UserBusLineWindow" Height="485" Width="1000">
+        Title="Lines" Height="485" Width="1000" Icon="logo.png">
     <Window.Background>
         <ImageBrush ImageSource="bgmore.jpg"/>
     </Window.Background>

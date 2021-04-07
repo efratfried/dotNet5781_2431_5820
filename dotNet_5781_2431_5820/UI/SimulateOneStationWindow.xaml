@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
          xmlns:BO="clr-namespace:BO;assembly=BL"
         mc:Ignorable="d"
-        Title="SimulateOneStationWindow" Height="485" Width="1000">
+        Title="Simulation of a Station" Height="485" Width="1000" Icon="logo.png">
     <Window.Background>
         <ImageBrush ImageSource="bgmore.jpg"/>
     </Window.Background>

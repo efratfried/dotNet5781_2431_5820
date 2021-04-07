@@ -21,9 +21,9 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        </Window.Resources>
+    </Window.Resources>
 
-        <Grid x:Name="Connection_Grid">
+    <Grid x:Name="Connection_Grid">
 
         <Label Content="manager login" HorizontalAlignment="Left" Margin="651,60,0,0" VerticalAlignment="Top" Height="41" Width="156" FontWeight="Bold" FontStyle="Normal" FontSize="20">
             <Label.Style>
@@ -35,7 +35,7 @@
                 </Style>
             </Label.Style>
         </Label>
-        <TextBox x:Name="manager_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="604,106,0,0" TextChanged="manager_Name_TextChanged" BorderBrush="#FF10168C">
+        <TextBox x:Name="manager_Name" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="605,106,0,0" TextChanged="manager_Name_TextChanged" BorderBrush="#FF10168C">
             <TextBox.Style>
                 <Style TargetType="TextBox">
                     <Style.Triggers>
@@ -46,7 +46,7 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <TextBox x:Name="manager_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="604,156,0,0" TextChanged="manager_passowrd_TextChanged" BorderBrush="#FF10168C">
+        <TextBox x:Name="manager_password" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="605,156,0,0" TextChanged="manager_passowrd_TextChanged" BorderBrush="#FF10168C">
             <TextBox.Style>
                 <Style TargetType="TextBox">
                     <Style.Triggers>
@@ -111,10 +111,10 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-       
-            <Button x:Name="entering_" Content=" entering " Style="{StaticResource RoundedButtonStyle}"      FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="Black" Click="entering" Margin="463,379,333,10"  >
 
-                <!--<Button.Style>
+        <Button x:Name="entering_" Content="Sign in" Style="{StaticResource RoundedButtonStyle}"      FontWeight="Bold" FontStyle="Normal" FontSize="20" Foreground="White" Click="entering" Margin="631,356,165,33"  >
+
+            <!--<Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -123,9 +123,9 @@
                     </Style.Triggers>
                 </Style>
             </Button.Style>-->
-            </Button>
-       
-      
+        </Button>
+
+
 
 
 

@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="AddOutGoingLine" Height="485" Width="800">
+        Title="Add LINE EXIT" Height="485" Width="800" Icon="logo.png">
     <Window.Background>
-        <ImageBrush ImageSource="C:/Users/user1/source/repos/efratfried/dotNet5781_2431_5820/dotNet_5781_2431_5820/PL/bgmore.JPG"/>
+        <ImageBrush ImageSource="bgmore.JPG"/>
     </Window.Background>
     <Grid Margin="0,-2,-0.4,2.2">
         <Grid.RowDefinitions>

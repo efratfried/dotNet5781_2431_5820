@@ -26,21 +26,21 @@ namespace UI
         {
             InitializeComponent();
             username.Text = user.UserName;
-            SlidePanel.Opacity = 0;
+            //SlidePanel.Opacity = 0;
         }
 
         private void buslines_Click(object sender, RoutedEventArgs e)
         {
-            SlidePanel.Opacity = 1;
-            SlidePanel.Height = buslines.Height;
+            //SlidePanel.Opacity = 1;
+            //SlidePanel.Height = buslines.Height;
             UserBusLineWindow buslineswindow = new UserBusLineWindow(bl);
             buslineswindow.ShowDialog();
         }
 
         private void Stations_Click(object sender, RoutedEventArgs e)
         {
-            SlidePanel.Opacity = 2;
-            SlidePanel.Height = Stations.Height;
+            //SlidePanel.Opacity = 2;
+            //SlidePanel.Height = Stations.Height;
             UserStationWindow stationwindow = new UserStationWindow(bl);
             stationwindow.ShowDialog();
         }
@@ -58,16 +58,16 @@ namespace UI
 
         private void simulation_Click(object sender, RoutedEventArgs e)
         {
-            SlidePanel.Opacity =3;
-            SlidePanel.Height = Simulation.Height;
+            //SlidePanel.Opacity =3;
+            //SlidePanel.Height = Simulation.Height;
             PL.SimulateOneStationWindow simulation = new PL.SimulateOneStationWindow(bl,s);
             simulation.ShowDialog();
         }
 
         private void schedual_Click(object sender, RoutedEventArgs e)
         {
-            SlidePanel.Opacity = 4;
-            SlidePanel.Height = schedual.Height;
+            //SlidePanel.Opacity = 4;
+            //SlidePanel.Height = schedual.Height;
             BusLineSchedual blschedual = new BusLineSchedual(bl);
             blschedual.ShowDialog();
         }

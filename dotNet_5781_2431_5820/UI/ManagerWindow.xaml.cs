@@ -27,29 +27,29 @@ namespace PL
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             username.Text = user.UserName;
-            slidepanel.Opacity = 1.0;
+            //slidepanel.Opacity = 1.0;
         }
 
         private void busses_Click(object sender, RoutedEventArgs e)
         {
-            slidepanel.Opacity = 1.0;
-            slidepanel.Height = busses.Height;
+            //slidepanel.Opacity = 1.0;
+            //slidepanel.Height = busses.Height;
             PL.busseswindow busseswindow= new PL.busseswindow(bl);
             busseswindow.ShowDialog();//CANT OPEN OTHER WHEN FIRST NOT CLOSE
         }
 
         private void buslines_Click(object sender, RoutedEventArgs e)
         {
-            slidepanel.Height = buslines.Height;
-            slidepanel.Opacity =1.0; 
+            //slidepanel.Height = buslines.Height;
+            //slidepanel.Opacity =1.0; 
             PL.BusLineWindow buslineswindow = new PL.BusLineWindow(bl);
             buslineswindow.ShowDialog();
         }
 
         private void Stations_Click(object sender, RoutedEventArgs e)
         {
-            slidepanel.Opacity = 1.0;
-            slidepanel.Height = Stations.Height;
+           // slidepanel.Opacity = 1.0;
+           // slidepanel.Height = Stations.Height;
             PL.StationsWindow1 stationwindow = new StationsWindow1(bl);
             stationwindow.ShowDialog();
         }

@@ -25,7 +25,7 @@
             <ColumnDefinition Width="199*"/>
             <ColumnDefinition Width="182*"/>
         </Grid.ColumnDefinitions>
-        <Image Source="/busicon.png" Grid.ColumnSpan="2" Margin="133.2,163.8,-18.4,55" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="3" Grid.Column="2" Grid.Row="2" >
+        <Image Source="/busicon.png" Grid.ColumnSpan="2" Margin="91,119,24,25" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Grid.Column="2" Grid.Row="2" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -36,7 +36,7 @@
             </Image.RenderTransform>
         </Image>
 
-        <Button x:Name="AddLineButton" Content="Add the Line" HorizontalAlignment="Center" Margin="161.2,32.2,8.6,0" VerticalAlignment="Top" Width="211" Click="AddLineButton_Click" Background="Transparent" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" FontSize="14" FontWeight="Bold" Foreground="Black" BorderBrush="Black" BorderThickness="1.5" Height="34">
+        <Button x:Name="AddLineButton" Content="Add the Line" HorizontalAlignment="Center" Margin="162,88,80,0" VerticalAlignment="Top" Width="138" Click="AddLineButton_Click"  Grid.Column="2" Grid.Row="3" FontSize="14" FontWeight="Bold" Foreground="Black" BorderBrush="Transparent" BorderThickness="1.5" Height="34" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>

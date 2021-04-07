@@ -22,7 +22,6 @@
         <TextBox x:Name="username" DataContext="{Binding}"  HorizontalAlignment="Left" Height="34" Margin="895,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" IsReadOnly="True" FontSize="20" Foreground="Black" FontWeight="Bold" Background="Transparent" BorderBrush="Transparent" Grid.ColumnSpan="2"/>
         <Button x:Name="log_out" Margin="4,0,927,396" FontSize="25" Background="Transparent" FontWeight="Bold" Click="log_out_Click" BorderBrush="Transparent" Grid.Column="1"/>
         <Button x:Name="schedual" Content="Line's schedual" Grid.ColumnSpan="2" Margin="813,344,0,57" FontSize="20" Foreground="White" Background="DarkSlateGray" FontWeight="Bold" Click="schedual_Click"/>
-        <Rectangle x:Name="SlidePanel" Margin="979,149,0,249.8" Fill="White" Visibility="Visible" StrokeLineJoin="Miter" Grid.ColumnSpan="2"/>
         <Image Source="logoutdoor.PNG" Margin="9,6,943,402" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
             <Image.RenderTransform>
                 <TransformGroup>

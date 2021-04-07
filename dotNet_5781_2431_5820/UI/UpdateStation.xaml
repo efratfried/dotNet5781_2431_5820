@@ -74,7 +74,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Button x:Name="Updatedetails" Content="Update station" Margin="702,404,9.6,10.2" FontSize="20" FontWeight="Bold" BorderBrush="Black" BorderThickness="2.5" Background="Transparent" Foreground="Black" Click="Updatedetails_Click"/>
-        <Image Source="bus-stop-pointer.png" Margin="765,210,63.6,51.2"/>
+        <Button x:Name="Updatedetails" Content="Update station" Margin="646,386,66,28" FontSize="20" FontWeight="Bold" BorderBrush="Transparent" BorderThickness="2.5"  Foreground="Black" Click="Updatedetails_Click"/>
+        <Image Source="bus-stop-pointer.png" Margin="707,186,122,75"/>
     </Grid>
 </Window>

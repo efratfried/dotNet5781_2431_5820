@@ -31,7 +31,16 @@
             <RowDefinition Height="335*"/>
             <RowDefinition Height="87*"/>
         </Grid.RowDefinitions>
-        <Image Source="/background.PNG" Margin="-36,321,652.4,31" Grid.RowSpan="2" />
+        <Image Source="/background.PNG" Margin="-5,244,606.4,-26" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-1.185"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
         <ComboBox x:Name="BusLineComboBox" FontSize="12" ItemsSource="{Binding}" Margin="156,88,498.4,221" SelectionChanged="ComboBox_SelectionChanged" Height="auto" RenderTransformOrigin="0.148,0.5"/>
         <!--<ComboBox x:Name="LineList" ItemsSource="{Binding BusNum}" HorizontalAlignment="Left" Margin="113,92,0,0" VerticalAlignment="Top" Width="115" SelectionChanged="cbLine_SelectionChanged"/>-->
         <Label x:Name="frequency" Content="Choose a frequency:" Margin="493,15,150.4,276" FontSize="14" FontWeight="Bold"/>

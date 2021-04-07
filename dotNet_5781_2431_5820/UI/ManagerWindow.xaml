@@ -42,6 +42,5 @@
             </Image.RenderTransform>
         </Image>
         <Button x:Name="log_out" Margin="4,0,1155,525" FontSize="25" Background="Transparent" FontWeight="Bold" Click="log_out_Click" BorderBrush="Transparent"/>
-        <Rectangle x:Name="slidepanel" Fill="White" HorizontalAlignment="Left" Margin="1176,241,0,0" Stroke="Orange" VerticalAlignment="Top" Width="11" Height="60"/>
     </Grid>
 </Window>

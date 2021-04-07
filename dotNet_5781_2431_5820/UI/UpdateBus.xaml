@@ -40,7 +40,7 @@
         <TextBlock x:Name="aviability_status" FontSize="18" HorizontalAlignment="Left" Margin="47,93,0,0"  TextWrapping="Wrap" Text="{Binding Status}" Background="White" VerticalAlignment="Top" Height="28" Width="120" RenderTransformOrigin="0.487,0.292"/>
         <Label Content="Update bus details" Foreground="black" FontWeight="Bold" FontFamily="Century Gothic" Height="60" FontSize="32" Margin="47,10,442.6,350" />
         <TextBox x:Name="Licensenum" FontSize="18" Background="Transparent" Foreground="black" FontWeight="Bold" Margin="519,252,151,126" Text="{Binding Path=LicenseNum}" IsReadOnly="True" TextChanged="Licensenum_TextChanged" BorderBrush="Transparent"/>
-        <Button x:Name="update_bus" Content="update" Background="Transparent" FontSize="14" Foreground="black" FontWeight="Bold" Height="Auto" Margin="519,374,10,10" Click="button_update_click" RenderTransformOrigin="0.501,0.5" BorderBrush="Black" BorderThickness="2.5"/>
+        <Button x:Name="update_bus" Content="update"  FontSize="14" Foreground="black" FontWeight="Bold" Height="Auto" Margin="578,344,60.4,40" Click="button_update_click" RenderTransformOrigin="0.501,0.5" BorderBrush="Transparent" BorderThickness="2.5"/>
         <Image  Source="background.PNG" Margin="468,42,131,173"/>
         <Image  Source="busicon.png" Margin="463,50,126,181" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>

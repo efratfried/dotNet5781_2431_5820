@@ -6,7 +6,7 @@
         
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="EnteringWindow" Height="485" Width="1000" >
+        Title="EnteringWindow" Height="485" Width="1000"  Icon="logo.png">
 
     <Window.Background>
         <ImageBrush ImageSource="bgmore.JPG"/>
@@ -20,17 +20,7 @@
 
         <!--<MediaElement LoadedBehavior="Play" Source="The Travego Coach - Official Trailer _ Mercedes-Benz Buses.mp4" Margin="87,-32,77,-27.4" Grid.RowSpan="2" Name="mePlayer"/>-->
         <Label Name="lblStatus" HorizontalContentAlignment="Center" Margin="10,61.4,0,255.6" Grid.Row="1" />
-        <!--<Button x:Name="connect" HorizontalAlignment="Left" Margin="902,2,-243,0" VerticalAlignment="Top" BorderBrush="Transparent" Width="67" Height="51" FontSize="18" Click="Button_Click" Background="Transparent">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="DimGray"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>-->
+
         <Image x:Name="login" Source="logout.PNG" Margin="918,6,0.4,0" RenderTransformOrigin="0.548,0.483" Height="53" VerticalAlignment="Top" />
         <Button x:Name="content" Margin="920,0,0,10.6" Click="Button_Click" Background="Transparent">
             <Button.Template>

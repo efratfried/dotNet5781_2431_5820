@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
          xmlns:BO="clr-namespace:BO;assembly=BL"
         mc:Ignorable="d"
-        Title="busseswindow" Height="485" Width="1000">
+        Title="busses" Height="485" Width="1000" Icon="logo.png">
 
     <Grid x:Name="___Bus_Window_" Margin="0,0,-8,-9">
         <Grid.ColumnDefinitions>

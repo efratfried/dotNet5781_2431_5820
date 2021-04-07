@@ -32,20 +32,10 @@ namespace PL
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bl = _bl;
             Refreshbusses_listComboBox();
-
-            //   RefreshAllBussesComboBox();
-
-
-            // cbStudentID.DisplayMemberPath = "Name";//show only specific Property of object
-            //  cbStudentID.SelectedValuePath = "ID";//selection return only specific Property of object
-
-            // studentCourseDataGrid.IsReadOnly = true;
-            // courseDataGrid.IsReadOnly = true;
-            
         }
+
         void RefreshBusDetailsGrid()
         {
-            //IEnumerable<PO.BusLine> busLines;
             BusDetailsGrid.DataContext = bl.GetBus(currentbus.LicenseNum);
         }
     
@@ -70,20 +60,6 @@ namespace PL
             currentbus = (PO.Bus)busses_list.SelectedItem;
             ___Bus_Window_.DataContext = currentbus;
             Licensenumbus.Text = currentbus.LicenseNum;
-
-            //inner_info.
-            //if (busses_list.SelectedIndex < 0)
-            //    return;
-            //try
-            //{
-            //    IEnumerable<BO.Bus> templist = bl.GetAllBuss().Cast<BO.Bus>();
-
-            //    currentbus = busses_list.SelectedItem as PO.Bus;
-            //}
-            //catch (BO.BadBusLineIdException ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
         }
 
 
@@ -93,7 +69,6 @@ namespace PL
                 update_bus.IsEnabled = false;
                 start_driving.IsEnabled = false;
                 start_filling_foul.IsEnabled = false;
-                //start_treatment.IsEnabled = false;
             AddOutGoingLine o = new AddOutGoingLine();
             o.Show();
         }
@@ -102,11 +77,6 @@ namespace PL
         {
             aviability_status.Text = "UnAvailable";
         }
-
-       /* private void start_treatment_Click(object sender, RoutedEventArgs e)
-        {
-            aviability_status.Text = "UnAvailable";
-        }*/
 
         private void update_bus_Click(object sender, RoutedEventArgs e)
         {

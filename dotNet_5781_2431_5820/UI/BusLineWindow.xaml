@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" xmlns:BLAPI="clr-namespace:BLAPI;assembly=BL" 
         mc:Ignorable="d"
-        Title="BusLinesWindow" Height="450" Width="1134" FontFamily="Tahoma"  Foreground="White">
+        Title=" Lines" Height="450" Width="1134" FontFamily="Tahoma"  Foreground="White" Icon="logo.png">
     <Window.Background>
         <ImageBrush ImageSource="bgmore.JPG"/>
     </Window.Background>

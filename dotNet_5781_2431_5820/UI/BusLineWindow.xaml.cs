@@ -23,7 +23,6 @@ namespace PL
     {
         IBL bl;
         PO.BusLine MyBusLine;
-        BO.BusStationLine MybusStation;
         public ObservableCollection<PO.BusLine> ts;
         public ObservableCollection<BO.BusStationLine> bs;
        

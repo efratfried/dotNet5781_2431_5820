@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="UserWindow" Height="485" Width="1000">
+        Title="hello User! :)" Height="485" Width="1000" Icon="logo.png">
     <Grid x:Name="Main_Window" Margin="0,0,-6.4,-4.8" Background="#FFF7F7F7">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>

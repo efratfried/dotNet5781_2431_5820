@@ -58,7 +58,6 @@ namespace DLAPI
       
        #region User
         IEnumerable<DO.User> GetAllUser();
-       // IEnumerable<DO.User> GetAllUser(Predicate<DO.User> predicate);
         DO.User GetUser(string Name,string pass);
         void AddUser(DO.User user);
         IEnumerable<object> GetUserListWithSelectedFields(Func<DO.User, object> generate);

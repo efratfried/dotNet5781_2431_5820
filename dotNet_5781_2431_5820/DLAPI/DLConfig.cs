@@ -19,7 +19,7 @@ namespace DLAPI
 
         /// <summary>
         /// Static constructor extracts Dal packages list and Dal type from
-        /// Dal configuration file config.xml
+        /// Dal configuration file config.xml 
         /// </summary>
         static DLConfig()
         {

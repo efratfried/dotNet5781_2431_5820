@@ -7,18 +7,16 @@ using System.Threading.Tasks;
 //using DO;
 
 namespace DLAPI
-{//basic on the "CRUD" rule - Create_Request_Update_Delete
+{
+    //basic on the "CRUD" rule - Create_Request_Update_Delete
     public interface IDL
     {
         #region Bus
         IEnumerable<DO.Bus> GetAllBusses();
-        //IEnumerable<DO.Bus> GetAllBusses(Predicate<DO.Bus> predicate);
-        //IEnumerable<DO.Bus> GetBusIDList();
         IEnumerable<object> GetAllBusListWithSelectedFields(Func<DO.Bus, object> generate);
         DO.Bus GetBus(string Num);
         void AddBus(DO.Bus Bus);
         void UpdateBus(DO.Bus Bus);
-        //void UpdateBus(string Num, Action<DO.Bus> update); //method that knows to updt specific fields in Person
         void DeleteBus(string Num);
       
         #endregion
@@ -29,7 +27,6 @@ namespace DLAPI
         IEnumerable<object> GetBusLineListWithSelectedFields(Func<DO.BusLine, object,object> generate);
         int AddBusLine(DO.BusLine BusLine);
         void UpdateBusLine(DO.BusLine newLine);
-        //void UpdateBusLine(string id, Action<DO.BusLine> update); //method that knows to updt specific fields in Student
         void DeleteBusLine(int id); // removes only Student, does not remove the appropriate Person...
         IEnumerable<DO.BusLine> GetLineStationsListThatMatchAStation(int code);
         #endregion
@@ -68,16 +65,6 @@ namespace DLAPI
         void UpdateUser(DO.User User);
         void DeleteUser(string Name,string password);
         #endregion
-
-        //#region UserDrive
-        //IEnumerable<DO.UserDrive> GetAllUserDrive();
-        //IEnumerable<DO.UserDrive> GetAllUserDrive(Predicate<DO.UserDrive> predicate);
-        //DO.UserDrive GetUserDrive(string Num);
-        //void AddUserDrive(DO.UserDrive UserDrive);
-        //void UpdateUserDrive(DO.UserDrive UserDrive);
-        //void UpdateUserDrive(string Num, Action<DO.UserDrive> update); //method that knows to updt specific fields in Person
-        //void DeleteUserDrive(string Num);
-        //#endregion
        
         #region drivingbus
         IEnumerable<DO.DrivingBus> GetAllDrivingsBusLists();
@@ -89,22 +76,12 @@ namespace DLAPI
         void DeleteDrivingBus(string Num); // removes only OutGoingLine, does not remove the appropriate Bus...
         #endregion
 
-       /* #region Accident
-        DO.Accident GetAccident(string Num);
-        IEnumerable<DO.Accident> GetAllAccidentsList();
-        void AddAccident(DO.Accident Accident);
-        void DeleteAccident(int Accidentnum); // removes only Accident, does not remove the appropriate Person...
-        #endregion*/
-
         #region FollowingStation
         IEnumerable<DO.FollowingStations> GetAllFollowingStationss();
         IEnumerable<object> GetAllFollowingStationsListWithSelectedFields(Func<DO.FollowingStations, object> generate);
-        //IEnumerable<DO.Bus> GetBusIDList();
-      //  IEnumerable<object> GetAllFollowingStationListWithSelectedFields(Func<DO.FollowingStations, object> generate);
         DO.FollowingStations GetFollowingStation(string code1,string code2);
         void AddFollowingStations(DO.FollowingStations FollowingStations);
         void UpdateFollowingStations(DO.FollowingStations FollowingStations);
-        //void UpdateBus(string Num, Action<DO.Bus> update); //method that knows to updt specific fields in Person
         void DeleteFollowingStation(DO.FollowingStations followingstation);
         void DeleteFollowingStation(string code);
         #endregion

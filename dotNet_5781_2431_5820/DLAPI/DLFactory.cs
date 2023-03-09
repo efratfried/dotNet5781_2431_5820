@@ -85,7 +85,7 @@ namespace DLAPI
                 // If the instance property is not initialized (i.e. it does not hold a real instance reference)...
                 if (dal == null)
                     throw new DLConfigException($"Class {dlNameSpace}.{dlClass} instance is not initialized");
-                // now it looks like we have appropriate dal implementation instance :-)
+                // now it looks like we have appropriate dal implementation instance
                 return dal;
             }
             catch (NullReferenceException ex)
